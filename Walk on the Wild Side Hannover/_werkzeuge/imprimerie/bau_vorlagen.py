@@ -49,14 +49,14 @@ PLAKATE = [
     ('p-1605', 'SESSION · Jojo & Reza, 16.05.2026'), ('p-2103', 'SESSION · Moury, 21.03.2026'), ('p-2401', 'SESSION · Loverence, 24.01.2026'),
     ('p-2211', 'SESSION · Moury, 22.11.2025'), ('p-0906', 'SESSION · Björn, 06.09.2025'),
     ('wp-relaunch', 'Relaunch Party, 01.12.2023'), ('wp-silvester24', 'Silvester Frühshoppen, 31.12.2024'), ('wp-mai25', 'Tanz in den Mai, 30.04.2025'),
-    ('wp-silvester25', 'Silvester Frühshoppen, 31.12.2025'), ('ja-2025', 'Two Years, 05.12.2025'), ('valentin', 'Wild Side x Rudi in Love, Valentinstag 2026'),
+    ('wp-silvester25', 'Silvester Frühshoppen, 31.12.2025'), ('ja-2025', 'Two Years, 05.12.2025'), ('valentin', 'Valentinstag 2026'),
     ('uw-pl-limmer25', 'Christi Limmerfahrt 2025'), ('uw-pl-limmer', 'Christi Limmerfahrt 2026'), ('uw-pl-okt', 'Oktoberfest des Event Klub 2026'),
 ]
-abt_plakate = [v('Plakat · ' + t, 'Instagram, an der Tür, an der Bar', 'insta' if k.startswith('p-') else 'ig11' if not k.startswith(('valentin', 'uw-', 'ja-')) else 'insta', 'plakatganz', 'hell', {"bild": k}) for k, t in PLAKATE]
+abt_plakate = [v(t, 'Instagram, an der Tür, an der Bar', 'insta' if k.startswith('p-') else 'ig11' if not k.startswith(('valentin', 'uw-', 'ja-')) else 'insta', 'plakatganz', 'hell', {"bild": k}) for k, t in PLAKATE]
 
 abt_session = []
 for tag, datum, name, nn, zeit, bild, welle in LINEUP:
-    abt_session.append(v('SESSION · %s, %s' % (nn, datum), 'Instagram', 'insta', 'plakat', 'session', session(tag, name, zeit, bild, welle), stil=S2))
+    abt_session.append(v('%s, %s' % (nn, datum), 'Instagram', 'insta', 'plakat', 'session', session(tag, name, zeit, bild, welle), stil=S2))
 abt_session += [
     v('SESSION · Aushang A3', 'an der Tür, an der Bar', 'a3h', 'plakat', 'session', session('17|10', 'GHAZOUANI\nBROTHERS', '10 PM TO 1 AM', 'sw-momo-giesst', 'welle-1'), stil=S2),
     v('SESSION · Story', 'Instagram-Story', 'story', 'plakat', 'session', session('17|10', 'GHAZOUANI\nBROTHERS', '10 PM TO 1 AM', 'sw-an-dj', 'welle-3'), stil=S2),
@@ -90,7 +90,7 @@ GAST = [('02.03.2024', 'Musa', 'Rebe & Brot, Hannover. Mit Momo hinter der Bar.'
         ('25.05.2024', 'Cold Drinks and More', 'Ein alter Bekannter aus Berlin mit fünf eigenen Drinks.', 'gast-cold'),
         ('19.10.2024', 'Enlil Arevalo', 'Ein Name der Barszene in Hannover, fünf Signature Drinks.', 'gast-enlil')]
 for d, n, t, b in GAST:
-    FESTE.append(v('Gastschicht · ' + n, 'Instagram', 'insta', 'plakatrueck', 'hell', {"bild": b, "ueber": "Walk on the Wild Side · Gastschicht", "titel": n.upper(),
+    FESTE.append(v('Gastschicht ' + n, 'Instagram', 'insta', 'plakatrueck', 'hell', {"bild": b, "ueber": "Walk on the Wild Side · Gastschicht", "titel": n.upper(),
                    "tag": d.replace('.', ' | ').replace(' | 20', ' | '), "zeit": "", "text": t, "fuss": PL_FUSS}))
 
 KARTE = [
@@ -145,7 +145,7 @@ FEIERN = [
                   {"wann": "Anzahlung", "was": "30 Prozent eine Woche vorher, der Rest am Abend vor Beginn", "wo": ""}, {"wann": "Abend", "was": "Ihr kommt um 19 Uhr, alles ist bereit", "wo": ""}]}),
     v('Euer Abend', 'Instagram', 'insta', 'fenster', 'dunkel', {"bild": "an-party", "ueber": "Feiern im Wild Side", "titel": "Euer Abend.", "unter": TEL,
       "text": "Ein Dinner an der langen Tafel, die ganze Bar für eure Gesellschaft, Musik, die zum Abend passt."}),
-    v('Gutschein · Ein Abend an der Bar', 'zum Verschenken', 'dlq', 'gutschein', 'dunkel', {"titel": "Ein Abend an der Bar", "unter": ZEILE, "wert": "",
+    v('Gutschein für einen Abend', 'zum Verschenken', 'dlq', 'gutschein', 'dunkel', {"titel": "Ein Abend an der Bar", "unter": ZEILE, "wert": "",
       "text": "Momo fragt, was du magst, und mixt daraus deinen Drink."}, {"vorlage": "gutscheinrueck", "inhalt": {"text": "Einzulösen an einem Abend nach Wahl, Donnerstag bis Samstag ab 19 Uhr."}}),
 ]
 
@@ -305,7 +305,7 @@ def neu(art, titel, bereich, x, fmt=None):
 
 
 for x in abt_session[:9]:
-    neu('abendplakat', x["n"].replace('SESSION · ', ''), 'SESSION', x)
+    neu('abendplakat', x["n"], 'SESSION', x)
 for x in abt_session[9:11]:
     neu('abendplakat', x["n"], 'SESSION', x, x["format"])
 for x in FESTE:

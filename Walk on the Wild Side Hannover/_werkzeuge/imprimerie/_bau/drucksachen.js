@@ -5,14 +5,14 @@ const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 const ZIEL = path.join(__dirname, '..', 'haeuser', 'wildside', 'drucksachen');
 const STUECKE = [
-  ['session-ghazouani-brothers', 'session', 'SESSION · Ghazouani Brothers, 17.10.2026', 'SESSION-Plakat, Instagram 4:5'],
+  ['session-ghazouani-brothers', 'session', 'Ghazouani Brothers, 17.10.2026', 'SESSION-Plakat, Instagram 4:5'],
   ['session-aushang-a3', 'session', 'SESSION · Aushang A3', 'SESSION-Plakat A3 zum Aushang'],
   ['session-story', 'session', 'SESSION · Story', 'SESSION-Plakat als Story 9:16'],
   ['session-programm', 'session', 'Die DJ-Abende', 'Programm der DJ-Abende, A5'],
   ['konzert-live-am-donnerstag', 'feste', 'Live am Donnerstag', 'Konzert-Plakat A3, weisses Plakat der Bar'],
   ['silvester-fruehshoppen', 'feste', 'Silvester Frühshoppen', 'Weisses Plakat «Eure Nachbarschafts-Mixology-Bar», Instagram 4:5'],
   ['tanz-in-den-mai', 'feste', 'Tanz in den Mai', 'Weisses Plakat, Instagram 4:5'],
-  ['gastschicht-musa', 'feste', 'Gastschicht · Musa', 'Weisses Plakat zur Gastschicht, Instagram 4:5'],
+  ['gastschicht-musa', 'feste', 'Gastschicht Musa', 'Weisses Plakat zur Gastschicht, Instagram 4:5'],
   ['karte-drunk-in-love', 'karte', 'Drunk in Love · Valentinskarte', 'Getränkekarte DL hoch mit Preisen vom Plakat'],
   ['karte-preise-der-bar', 'karte', 'Die Preise der Bar', 'Preisliste der Bar A5'],
   ['karte-klassiker', 'karte', 'Die Klassiker', 'Karte DL hoch: Negroni, Paloma, Mexikaner, ohne Alkohol'],
@@ -24,7 +24,7 @@ const STUECKE = [
   ['instagram-negroni', 'karte', 'Der Negroni', 'Instagram-Beitrag 4:5'],
   ['feiern-pauschale', 'feiern', 'Die ganze Bar · Pauschale', 'Angebotsblatt A5 mit den Pauschalen 49/59/79 €'],
   ['feiern-lange-tafel', 'feiern', 'Die lange Tafel', 'Angebotsblatt A5'],
-  ['gutschein', 'feiern', 'Gutschein · Ein Abend an der Bar', 'Gutschein DL quer, Vorder- und Rückseite'],
+  ['gutschein', 'feiern', 'Gutschein für einen Abend', 'Gutschein DL quer, Vorder- und Rückseite'],
 ];
 (async () => {
   fs.mkdirSync(ZIEL, { recursive: true });

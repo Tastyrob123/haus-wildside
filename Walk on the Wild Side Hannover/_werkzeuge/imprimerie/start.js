@@ -477,7 +477,7 @@
     liste.forEach((x, i) => {
       const g = GROSS(), nr = kvListe.push({ x, kontext }) - 1, doc = kvDoc(x, kontext), f = DS.FORMATE[x.format] || DS.FORMATE.a5h, [, H] = groesse(f, g);
       let bl = []; try { bl = [x.rueck ? kvBlatt(x, { vorlage: x.rueck.vorlage, ton: x.ton, inhalt: x.rueck.inhalt }, g, 'papier--hinten') : null, kvBlatt(x, { vorlage: x.vorlage, ton: x.ton, inhalt: x.inhalt, stil: x.stil }, g, 'papier--vorn')]; } catch (e) { console.warn(x.n, e); }   // fertige Vorschaubilder wie die Galerien (Cloud-Prüfung 31.10.: live gesetzte Blätter zählten als Lesetext); doc bleibt für «Übernehmen»
-      box.appendChild(stueckKarte({ kv: nr }, i, bl, H, x.n, `${f ? f.name : ''} · ${x.wo || ''}`, 'Übernehmen'));
+      box.appendChild(stueckKarte({ kv: nr }, i, bl, H, x.n, f ? f.name : '', ''));   // Unterzeile nur das Format (Cloud-Prüfung 31.10.: sonst zerfiel die Karte in Einzelwörter)
     });
     requestAnimationFrame(() => reihen(box));
   }
