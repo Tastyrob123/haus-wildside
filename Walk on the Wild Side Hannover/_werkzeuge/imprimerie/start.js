@@ -662,7 +662,7 @@
     new MutationObserver(pruefe).observe(t, { attributes: true, attributeFilter: ['placeholder'] });
     if (window.ResizeObserver) new ResizeObserver(pruefe).observe(t); pruefe();
   }
-  passePlatz(document.getElementById('startSuche'), ['Arten suchen …', 'Medien suchen …', 'Suchen']);
+  passePlatz(document.getElementById('startSuche'), ['Arten suchen …', 'Medien suchen …', 'Suchen', 'Suche']);
   ['startFrei', 'startDirekt'].forEach(id => { const t = document.getElementById(id); if (!t) return; kurzPlatz(t); if (window.ResizeObserver) new ResizeObserver(() => kurzPlatz(t)).observe(t); if (document.fonts) document.fonts.ready.then(() => kurzPlatz(t)); });
   /* Schnell anlegen: Arten mit echten Proportionen */
   function zeichneSchnell() {
