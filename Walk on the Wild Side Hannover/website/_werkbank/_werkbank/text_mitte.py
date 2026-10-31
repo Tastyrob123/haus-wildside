@@ -31,7 +31,10 @@ def anwenden(root):
             continue
         s = open(f, encoding='utf-8').read()
         s = re.sub(r'<style id="text-mitte">.*?</style><script id="text-mitte-js">.*?</script>', '', s, flags=re.S)
-        i = s.rfind('</body>'); s = s[:i] + BLOCK + s[i:]
+        i = s.find('<style id="knopf-mitte">')   # knopf_mitte (Werkbank Papier) bleibt hinter diesem Block, damit es ihn aufhebt
+        if i < 0:
+            i = s.rfind('</body>')
+        s = s[:i] + BLOCK + s[i:]
         open(f, 'w', encoding='utf-8').write(s); n += 1
     return n
 
