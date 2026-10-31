@@ -29,7 +29,7 @@
   "betreff": "Dein Platz an der Theke am Samstag",
   "text": "Hallo Jonas,\n\ndanke für deine Reservierung. Für Samstag, den 7. November, ab 21 Uhr halten wir dir zwei Plätze frei [Platz prüfen]; wir bestätigen dir den Abend per Nachricht.\n\nAm besten sitzt ihr an der Theke: Da ist Momo am nächsten dran, fragt, was ihr mögt, und mixt daraus euren Drink.\n\nBis bald an der Ecke\n\nDerya und Momo\nWalk on the Wild Side",
   "team": "Grundlage: Besuch («Ein Platz für euch.», «Die Bar bestätigt per Nachricht.»), Das Haus («An der Theke»).\nOffen: ob zwei Plätze an der Theke frei sind.",
-  "vorlage": "",
+  "vorlage": "reservieren",
   "absender": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
   "zeit": "2026-10-30T20:05:00+01:00"
  }

@@ -1,0 +1,30 @@
+{
+ "zeit": "2026-10-31T17:41:43+00:00",
+ "art": "dinner",
+ "name": "Probe Feier",
+ "kontakt": "probe@example.com",
+ "datum": "",
+ "personen": 12,
+ "anliegen": "Privates Dinner, Geburtstag, 12 Gäste",
+ "sprache": "de",
+ "gespraech": "formular-3ef09cae0804",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Über ein Formular der Website (Seite Feiern): Format: Privates Dinner\nDatum: -\nWie viele: 12\nAnlass: Geburtstag\nMusik dazu: Ohne\nWas habt ihr vor?: Geburtstag, eine Person isst keine Nüsse."
+  }
+ ],
+ "status": "neu",
+ "entwurf": null,
+ "web": true,
+ "an": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
+ "abteilung": "Dinner",
+ "seite": "/tafel.html#anfragen",
+ "seite_name": "Feiern",
+ "formular": "feiern",
+ "nachricht": "Format: Privates Dinner\nDatum: -\nWie viele: 12\nAnlass: Geburtstag\nMusik dazu: Ohne\nWas habt ihr vor?: Geburtstag, eine Person isst keine Nüsse.",
+ "allergene": [],
+ "uhrzeit": "",
+ "platz": "",
+ "hund": false
+}

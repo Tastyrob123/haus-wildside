@@ -788,7 +788,7 @@ function detail(a) {
   /* Robert 20.10.2026: «super unübersichtlich … nicht richtig formatiert»: drei ruhige Gruppen statt einer Wand aus Feldern (Wann und wie viele · Gast · Woher) */
   const datumKurz = String(a.datum || '').replace(/,?\s*\d{1,2}:\d{2}\s*Uhr$/, '');
   const angaben = { wann: [['Tag', esc(datumKurz || 'nicht genannt')], ['Zeit', esc(a.uhrzeit || ((String(a.datum || '').match(/\d{1,2}:\d{2}/) || [''])[0] ? (String(a.datum).match(/\d{1,2}:\d{2}/)[0] + ' Uhr') : 'nicht genannt'))], ['Plätze', esc(a.personen || 'nicht genannt')]].concat(a.platz ? [['Platz', esc(a.platz)]] : []),   // Schäfli: Platz nur, wenn der Gast ihn gewählt hat (Festsaal)
-    gast: (a.beispiel ? [] : [['Kontakt', kontaktLink(a.kontakt)]]).concat([['Sprache', esc(SPRACHE[a.sprache] || a.sprache)], ['Für die Küche', (a.allergene_lang || []).length ? esc(a.allergene_lang.join(', ')) : 'keine angegeben']]),
+    gast: (a.beispiel ? [] : [['Kontakt', kontaktLink(a.kontakt)]]).concat([['Sprache', esc(SPRACHE[a.sprache] || a.sprache)], ['Allergien', (a.allergene_lang || []).length ? esc(a.allergene_lang.join(', ')) : 'keine angegeben']]),
     woher: (a.web ? esc(FORMULAR[a.formular] || 'Formular') + ' · Website' + (a.seite_name ? ', Seite ' + esc(a.seite_name) : '') : 'Chat der Website') + ' · bei ' + esc(abt(a)) };
   /* Was der Gast selbst geschrieben hat (Wünsche), statt des Sammeltitels als Zitat; Formular-Felder als saubere Liste statt als Rohtext */
   const felder = a.web ? String(a.nachricht || '').split('\n').map(z => z.match(/^([^:]{2,40}):\s*(.*)$/)).filter(Boolean).map(m => [m[1].trim(), m[2].trim()]) : [];
