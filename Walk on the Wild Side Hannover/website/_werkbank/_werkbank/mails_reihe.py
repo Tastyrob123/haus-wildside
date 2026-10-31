@@ -15,7 +15,7 @@ _A = os.path.join(W, 'ansichten', 'Mails')
 LISTE = [x for x in (json.load(open(_Q)) if os.path.exists(_Q) else []) if os.path.exists(os.path.join(_A, x[0] + '.jpg'))]
 BEREIT = len(LISTE) >= 3
 BILDER = [('ml-' + nr, os.path.join(_A, nr + '.jpg'), 1100, dict(q=84)) for nr, *_ in LISTE]
-ZAHL = {3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs'}.get(len(LISTE), str(len(LISTE)))
+ZAHL = {3: 'Drei', 4: 'Vier', 5: 'Fünf', 6: 'Sechs', 10: 'Zehn', 11: 'Elf'}.get(len(LISTE), str(len(LISTE)))
 _PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>'
 
 
@@ -34,20 +34,20 @@ def bau(k):
 </section>'''
 
 
-EINTRAG = dict(key='mails', nach='rezeption', nav='Mails', name='Mails', zeilen=[f'{ZAHL} Mails,', 'im Ton Ihres Hauses.'],
-               text='Was ein Gast nach einer Anfrage oder vor der Reise von Ihnen bekommt, sieht aus wie die neue Seite. Drei Fälle als Idee: die Tischanfrage, die Woche vor der Anreise und der Gutschein. Namen und Daten darin sind Beispielwerte.',
+EINTRAG = dict(key='mails', nach='rezeption', nav='Mails', name='Mails', zeilen=[f'{ZAHL} Mails,', 'im Ton der Bar.'],
+               text='Was ein Gast nach der Reservierung, nach einer Anfrage für eine Feier oder vor einem DJ-Abend von euch bekommt, sieht aus wie die neue Seite. Namen und Daten der Gäste darin sind Beispielwerte.',
                bau=bau)
 
 CSS = '''
 /* ---------- Mails: drei hohe Blätter von vorn, Name und Satz darunter (mails_reihe.py, 12.10.2026) ---------- */
 .mr-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,44px);max-width:1280px;margin:0 auto}
 .mr-k{display:flex;flex-direction:column;color:inherit;text-decoration:none}
-.mr-k__b{display:block;aspect-ratio:640/900;border-radius:clamp(16px,1.7vw,24px);overflow:hidden;background:var(--papier);box-shadow:0 0 0 1px rgba(201,133,67,.3),0 44px 56px -32px rgba(0,0,0,.95),0 14px 22px -14px rgba(0,0,0,.6)}
+.mr-k__b{display:block;aspect-ratio:640/900;border-radius:clamp(16px,1.7vw,24px);overflow:hidden;background:var(--papier);box-shadow:0 0 0 1px rgba(216,178,100,.4),0 44px 56px -32px rgba(0,0,0,.95),0 14px 22px -14px rgba(0,0,0,.6)}
 .mr-k__b img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0;transform-origin:50% 12%;transition:transform 2.2s cubic-bezier(.16,1,.3,1)}
 @media(hover:hover){.mr-k:hover .mr-k__b img{transform:scale(1.04);transition-duration:2.8s}}
-.mr-k h3{margin:clamp(20px,2vw,28px) 0 0;font-family:var(--serif);font-weight:700;font-size:clamp(1.4rem,1.76vw,1.8rem);line-height:1.12;color:#fbf5ea}
+.mr-k h3{margin:clamp(20px,2vw,28px) 0 0;font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,1.76vw,1.8rem);line-height:1.12;color:#F2E9DC}
 .mr-k h3::after{content:'';display:block;width:44px;height:2px;margin:14px 0;background:var(--gold);opacity:.85}
-.mr-k p{margin:0 0 16px;max-width:40ch;font-size:clamp(.98rem,1.04vw,1.06rem);line-height:1.6;color:rgba(251,245,234,.84)}
+.mr-k p{margin:0 0 16px;max-width:40ch;font-size:clamp(.98rem,1.04vw,1.06rem);line-height:1.6;color:rgba(242,233,220,.84)}
 .mr-k .pfeil{margin-top:auto;align-self:flex-start;color:var(--gold)}
 .mr [data-a="heben"]{opacity:1;transform:translate3d(0,130px,0) scale(.97);transform-origin:50% 100%;transition:transform 2.1s cubic-bezier(.16,1,.3,1);transition-delay:var(--vz,0ms)}
 .mr [data-a="heben"].da{transform:none}
