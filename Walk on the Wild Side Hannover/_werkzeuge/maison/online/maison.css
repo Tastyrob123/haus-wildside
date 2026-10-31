@@ -344,3 +344,5 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 @media (max-width:700px){.m-f5 .rw-kopf__bsp:not([hidden]){display:block}.m-f5 .rw-kopf__bsp .rw-pkt{display:none}}
 /* schmal: die Zeile der Bar für sich, darunter Adresse · Ort (nie ein «·» am Zeilenende) */
 @media (max-width:800px){.m-f5__ort>span:first-child{display:block}.m-f5__ort>span:first-child+.rw-pkt{display:none}}
+/* Sperrabstand optisch mittig wie im Kleid (31.10.2026): nur Chromium hängt ihn nach dem letzten Buchstaben an; «Überspringen» im Rundgang rückt dort um den Abstand ein */
+@supports (interpolate-size:allow-keywords){.rdg-karte .rdg-zu{text-indent:.14em}}
