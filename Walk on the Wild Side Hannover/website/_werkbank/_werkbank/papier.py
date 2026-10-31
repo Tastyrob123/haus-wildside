@@ -253,6 +253,7 @@ def plakatwerkstatt():
 
 
 SEITE_NEU = {   # Karton, Titel und Breite der eigenen Stücke, die haus.py › PAPIER_SEITE noch nicht kennt (haus.py liest papier_neu_seite.json)
+    'karte': dict(karton=['', [['karte', 44, 'Vorderseite'], ['karte-r', 44, 'Rückseite']]], titel=['Die Karte', 'am Tresen.'], breit=['karte', 'karte-r']),
     'aufsteller': dict(karton=['', [['aufsteller', 40, 'Vorderseite'], ['aufsteller-r', 40, 'Rückseite']]], titel=['Ein Aufsteller', 'für den Tisch.'], breit=[]),
     'visitenkarte': dict(karton=['', [['visitenkarte', 60, 'Vorderseite'], ['visitenkarte-r', 60, 'Rückseite']]], titel=['Die', 'Visitenkarte.'], breit=['visitenkarte', 'visitenkarte-r']),
 }

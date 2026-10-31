@@ -1,4 +1,29 @@
 {
+ "karte": {
+  "karton": [
+   "",
+   [
+    [
+     "karte",
+     44,
+     "Vorderseite"
+    ],
+    [
+     "karte-r",
+     44,
+     "Rückseite"
+    ]
+   ]
+  ],
+  "titel": [
+   "Die Karte",
+   "am Tresen."
+  ],
+  "breit": [
+   "karte",
+   "karte-r"
+  ]
+ },
  "aufsteller": {
   "karton": [
    "",
