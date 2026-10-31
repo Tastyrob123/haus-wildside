@@ -312,7 +312,9 @@
       if (!t) return;
       var text = (voll && /…$/.test(t.textContent)) ? (/^Eigenes Foto · /.test(t.textContent) ? 'Eigenes Foto · ' : '') + voll : t.textContent;
       var i = text.lastIndexOf(' ');   /* die letzten zwei Wörter bleiben zusammen: nie ein Wort allein in der letzten Zeile (Kriterium 7) */
-      t.textContent = i > 0 ? text.slice(0, i) + '\u00a0' + text.slice(i + 1) : text;
+      t.textContent = '';   /* die letzten zwei Wörter in einer Zeile, die nicht bricht (auch nicht am Bindestrich) */
+      if (i > 0) { var j = text.lastIndexOf(' ', i - 1), ende = document.createElement('span'); ende.style.whiteSpace = 'nowrap'; ende.textContent = text.slice(j + 1); t.append(text.slice(0, j + 1), ende); }
+      else t.textContent = text;
     });
   }
   /* Kein «×» als Zählzeichen (K24, Tor 2, 30.10.2026): «Link · 4× auf der Seite» heisst «Link · an 4 Stellen der Seite», «Steht 9× …» heisst «Steht an 9 Stellen …» */

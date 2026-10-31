@@ -225,10 +225,10 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
 .ws-zl > .ws-link{padding-inline:8px;margin-right:-8px}
 /* Gastschichten: «Ändern» steht als Zeichen unter dem Namen (Text aus data-text), der Name ist die letzte Textzeile; nie ein Wort allein darin (Kriterium 7) */
 .ws-eintrag__auf[data-text]::after{content:attr(data-text)}
-/* Foto tauschen: Kacheln mindestens 176 px breit, sonst zerfällt die ganze Bildbeschreibung Wort für Wort (Kriterium 2); Beschriftung mit Luft zum Rand */
-.ws-fundus{grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+/* Foto tauschen: Kacheln mindestens 210 px breit, sonst zerfällt die ganze Bildbeschreibung Wort für Wort (Kriterium 2); Beschriftung mit Luft zum Rand */
+.ws-fundus{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .ws-fwahl{padding:6px 6px 8px;border-radius:var(--wo-r2)}
-@media (max-width:560px){.ws-fundus{grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}}
+@media (max-width:560px){.ws-fundus{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}}
 /* Knöpfe des Stamms in Fenstern («Speichern»): Innenabstand wie die Rahmen-Knöpfe, grund.css nahm ihn weg */
 .ws.wo-app .ws-fenster__kn .kn{padding:0 6px 0 20px}
 /* DJ-Abende: Schrift der Auswahl (Tag, Monat, Jahr, Plakat) optisch mittig im Feld (Kriterium 35), Zeile auf Versalhöhe zugeschnitten */
