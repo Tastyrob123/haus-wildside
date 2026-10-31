@@ -360,6 +360,10 @@ h2,h3,.wege__t,.gb-blatt header h3,.rgw .wfa__texte h3,.fbz__n{font-weight:400!i
 b,strong{font-weight:500}
 .gb-blatt header h3{font-family:var(--serif);text-transform:uppercase;letter-spacing:.135em}
 .wf .wege__t{font-family:var(--serif);text-transform:none;letter-spacing:-.01em;font-size:clamp(2rem,3.6vw,3.4rem)!important;line-height:1.1}
+/* Schriften der Bar unter ihrem Namen, auch wenn ein Kit-Lauf werkbank.css neu schreibt (dort heissen sie «Instrument Sans» und «DM Mono») */
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:100 900;font-display:swap;src:url('fonts/hanken.woff2') format('woff2')}
+@font-face{font-family:'Hanken Etikett';font-style:normal;font-weight:100 900;font-display:swap;src:url('fonts/hanken.woff2') format('woff2')}
+:root{--sans:'Hanken Grotesk','Sans Ersatz',system-ui,-apple-system,'Segoe UI',sans-serif!important;--mono:'Hanken Etikett','Hanken Grotesk',ui-monospace,monospace!important}
 /* Schrift mittig (Abnahme-Tor 31.10.: Prata-Ziffern im Register 2 px zu hoch, «01» im Befund 1 px zu weit links) */
 .rgc-p{padding:9px 10px 5px!important}
 .sbf-z{padding:7.7px 8.5px 6.3px 9.5px!important}

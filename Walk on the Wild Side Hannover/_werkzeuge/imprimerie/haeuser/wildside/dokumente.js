@@ -168,7 +168,7 @@
   function grund(c, seite, farbe, tapete) { seite.grund = farbe || c.T.grund; seite.tapete = tapete === undefined ? c.T.tapete : tapete; }
   /* Rahmen 4,5 % der kurzen Seite vom Rand; Kopf- und Fusszeile stehen innen gleich weit davon entfernt */
   function rahmen(c) {
-    const r = Math.max(4.5, .045 * c.u);
+    const r = Math.max(c.u < 80 ? 3.2 : 4.5, .045 * c.u);   // A7 und Platzkarten: Rahmen näher an der Kante, sonst bleibt unter dem Namen ein Streifen leer (Tor 31.10.)
     if (c.stil.rahmen !== 'ohne') c.el.push({ id: id(), typ: 'rahmen', x: r, y: r, w: c.w - 2 * r, h: c.h - 2 * r, staerke: Math.max(.25, .0018 * c.u), r: Math.max(1.2, .011 * c.u), farbe: c.T.linie, deck: .75 });
     return r;
   }

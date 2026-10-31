@@ -30,6 +30,8 @@ def anwenden(root):
         if rel.startswith(('_werkbank', '_sicherung', 'node_modules')) or '.vor-' in rel or '</body>' not in open(f, encoding='utf-8', errors='ignore').read():
             continue
         s = open(f, encoding='utf-8').read()
+        if not rel.startswith(('werkbank', 'befund')) and '<style id="text-mitte">' not in s:
+            continue   # Seiten der anderen Teile nur, wenn sie den Block schon tragen (dort gilt ihr eigener Ausgleich)
         s = re.sub(r'<style id="text-mitte">.*?</style><script id="text-mitte-js">.*?</script>', '', s, flags=re.S)
         i = s.find('<style id="knopf-mitte">')   # knopf_mitte (Werkbank Papier) bleibt hinter diesem Block, damit es ihn aufhebt
         if i < 0:

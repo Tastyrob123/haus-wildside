@@ -38,10 +38,7 @@ def anwenden(root):
                     n = n.replace(' loading="lazy"', '')   # kleine Seiten: Bilder sofort laden (WebKit-Prüfung in Actions)
                 if n != t:
                     open(p, 'w', encoding='utf-8').write(n)
-    fo = os.path.join(root, 'werkbank', 'fonts')
-    for alt in ('InstrumentSans-normal-400_600.woff2', 'DMMono-normal-400.woff2', 'DMMono-normal-500.woff2'):
-        if os.path.exists(os.path.join(fo, alt)) and os.path.exists(os.path.join(fo, 'hanken.woff2')):
-            os.remove(os.path.join(fo, alt))
+    # die Kit-Dateinamen in werkbank/fonts bleiben liegen (Inhalt Hanken): andere Kit-Läufe schreiben werkbank.css mit diesen Namen neu
 
 
 if __name__ == '__main__':

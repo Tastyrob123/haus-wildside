@@ -22,8 +22,8 @@ def abschnitt(h):
         stempel = ('<svg class="gb-st gb-st--eck" viewBox="0 0 260 110" aria-hidden="true"><rect x="4" y="4" width="252" height="102" rx="10" fill="none" stroke="currentColor" stroke-width="4"/>'
                    '<rect x="14" y="14" width="232" height="82" rx="5" fill="none" stroke="currentColor" stroke-width="1.4"/>'
                    '<path d="M34 56l14 14 30-32" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>'
-                   f'<text x="98" y="52" font-family="DM Mono,monospace" font-size="17" letter-spacing="3" fill="currentColor">GEPRÜFT</text>'
-                   f'<text x="98" y="76" font-family="DM Mono,monospace" font-size="11" letter-spacing="1.6" fill="currentColor">{e(datum.upper())}</text></svg>')
+                   f'<text x="98" y="52" font-family="Hanken Grotesk,sans-serif" font-size="17" letter-spacing="3" fill="currentColor">GEPRÜFT</text>'
+                   f'<text x="98" y="76" font-family="Hanken Grotesk,sans-serif" font-size="11" letter-spacing="1.6" fill="currentColor">{e(datum.upper())}</text></svg>')
         haken = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7"/></svg>'
         zeichen = f'<svg viewBox="{VB}" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg>'
         fotos = ''.join(f'<figure class="gb-f" data-a="auf" style="--i:{i}"><div class="gb-f__b">{bild(f"gt-{i}", n)}</div><figcaption>{e(n)}</figcaption></figure>'
