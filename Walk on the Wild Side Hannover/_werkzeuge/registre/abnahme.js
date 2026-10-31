@@ -1,20 +1,20 @@
-/* Abnahme Das Besucherbuch (Le Registre) · Culinarium Hannover (Kopie der Abnahme der Taverne zum Schäfli nach dem Demo-Check 21.10.2026, dort des Schlössli und
+/* Abnahme Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover (Kopie der Abnahme der Besucherliste des Culinarium Hannover, dort aus den früheren Häusern und
    des Berghotel Gasterntal): die Funktionsliste des Le Registre (Werkzeug-Master 3 R01–R24 und 4.6 G01–G15), jede Zeile bedient, nicht nur geladen; dazu
-   der Oberfläche der Häuser (Kopf, Rand, Leiste, Startbild aus /assets/oberflaeche/) und die Wege von Culinarium («Platz buchen» und Ticket auf «Der Abend»,
-   Warteliste im Ticket und im Fuss, Telefon der Bar, Instagram, weiter zur Bar und zu Dirty Chicken, Route auf «Der Weg»).
+   der Oberfläche der Häuser (Kopf, Rand, Leiste, Startbild aus /assets/oberflaeche/) und die Wege der Bar (Reservieren auf «Besuch», Anfrage auf «Feiern», Knopf «Reservieren»,
+   Telefon der Bar, Instagram, weiter zu Culinarium und Dirty Chicken, Karte auf «Besuch»).
      node abnahme.js [chromium|webkit|firefox] [1440|390 …] [Nummern …]       einzelne Läufe
      ALLE=1 node abnahme.js                                                   alle Läufe nacheinander, Ergebnis FUNKTIONSLISTE.md
-   Läuft an der eigenen Probe-Kopie (_pruefung/probe.sh → ~/Desktop/Website-Projekte/_Probe Culinarium Registre/), eigener Server auf Port 9086 (PRUEF_PORT, das Werkzeug dafür angehalten) mit
-   eigenem Datenordner unter /tmp (wird danach gelöscht). Am echten Culinarium wird nichts geschrieben.
-   Die Formulare der Website verschicken nichts (Vorschau, culinarium.js und buchen.js); Instagram, Google Maps und tel: werden im Prüfbrowser abgefangen. */
+   Läuft an der eigenen Probe-Kopie (_pruefung/probe.sh → ~/Desktop/Website-Projekte/_Probe Wild Side Registre/), eigener Server auf Port 9086 (PRUEF_PORT, das Werkzeug dafür angehalten) mit
+   eigenem Datenordner unter /tmp (wird danach gelöscht). Am echten Haus wird nichts geschrieben. Im Nachtbau gilt die schnelle Prüfung (tor-schnell); dieser Volllauf nur auf Roberts Wort.
+   Die Formulare der Website verschicken nichts (Vorführung, wild.js); Instagram, Google Maps und tel: werden im Prüfbrowser abgefangen. */
 const path = require('path'), fs = require('fs'), os = require('os'), cp = require('child_process');
 const PW = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
 const HIER = __dirname;
 const PORT = +(process.env.PRUEF_PORT || 9086);   /* Port des Besucherbuchs (Auftrag: nur der eigene Port); das laufende Werkzeug wird für den Lauf angehalten, geprüft wird die Probe-Kopie mit Wegwerf-Daten */
 const B = 'http://localhost:' + PORT + '/_werkzeuge/registre/';
-const PROBE = path.join(process.env.HOME, 'Desktop/Website-Projekte/_Probe Culinarium Registre');
+const PROBE = path.join(process.env.HOME, 'Desktop/Website-Projekte/_Probe Wild Side Registre');
 const A = B;
-const KEY = fs.readFileSync(path.join(process.env.HOME, 'Desktop/Website-Projekte/_Schluessel/culinarium-hannover.txt'), 'utf8').trim();
+const KEY = fs.readFileSync(path.join(process.env.HOME, 'Desktop/Website-Projekte/_Schluessel/wildside-hannover.txt'), 'utf8').trim();
 const BILDER = path.join(HIER, '_pruefung', 'bilder');
 const AUS = process.argv.slice(2);
 
@@ -22,18 +22,18 @@ const LISTE = [];
 const C = (id, bereich, text, fn, o = {}) => LISTE.push(Object.assign({ id, bereich, text, fn }, o));
 const ANSICHTEN = ['start', 'besuche', 'herkunft', 'zeit', 'seiten', 'verlauf', 'buchung', 'zaehlung'];
 const MIT_ZEITRAUM = ['start', 'besuche', 'herkunft', 'zeit', 'seiten', 'verlauf', 'buchung'];
-const TITEL = { start: 'Übersicht', besuche: 'Besuche', herkunft: 'Herkunft', zeit: 'Zeit', seiten: 'Seiten', verlauf: 'Verlauf', buchung: 'Zum Platz', zaehlung: 'So wird gezählt' };
+const TITEL = { start: 'Übersicht', besuche: 'Besuche', herkunft: 'Herkunft', zeit: 'Zeit', seiten: 'Seiten', verlauf: 'Verlauf', buchung: 'Zum Tisch', zaehlung: 'So wird gezählt' };
 const ok = (b, was) => { if (!b) throw new Error(was); };
 const warte = ms => new Promise(r => setTimeout(r, ms));
 const BEREIT = () => window.BG_REGISTRE === 1 && document.documentElement.classList.contains('auftakt-da');
-const HAUS = 'Culinarium';
+const HAUS = 'Wild Side';
 /* Namen der Werkzeuge aus dem Kleid des Hauses (_werkzeuge/oberflaeche/kleid/wildside.js, WO_HAUS.namen, gepflegt vom Chat der Zentrale), nie abgetippt */
-const KLEID_N = fs.readFileSync(path.join(HIER, '..', 'oberflaeche', 'kleid', 'culinarium.js'), 'utf8').match(/namen:\s*\{([^}]*)\}/)[1];
+const KLEID_N = fs.readFileSync(path.join(HIER, '..', 'oberflaeche', 'kleid', 'wildside.js'), 'utf8').match(/namen:\s*\{([^}]*)\}/)[1];
 const NAME_W = k => KLEID_N.match(new RegExp(k + ":\\s*'([^']+)'"))[1];
 const NAME = NAME_W('besuche'), STUBE_N = NAME_W('zentrale'), KLEIN = NAME.replace(/^(Die|Das|Der) /, m => m.toLowerCase());
 const rx = t => new RegExp(t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
 const NAV = '#rand .wo-re[data-gehe]:not([data-weg])', WEGE = '#rand [data-weg], #rand .wo-rand__wege a', TITEL_K = '#kopf .wo-kopf__mitte b', STAND_K = '#kopf .wo-kopf__mitte small', BER = '#kopf .wo-kopf__ber';
-const MAISON_DA = fs.existsSync(path.join(HIER, '..', 'maison', 'index.html'));   /* Die Zentrale von Culinarium baut ein anderer Chat (_werkzeuge/maison/, online /maison/) */
+const MAISON_DA = fs.existsSync(path.join(HIER, '..', 'maison', 'index.html'));   /* Den Tresen von Walk on the Wild Side baut ein anderer Chat (_werkzeuge/maison/, online /maison/) */
 
 async function auf(env, hash = 'start', q = 'gruss=tag', basis = A, opt = {}) {
   const page = await env.ctx.newPage();
@@ -75,8 +75,8 @@ C('A03', 'Laden', 'Jede der acht Ansichten öffnet über die Adresse (#start …
   for (const v of ANSICHTEN) { const p = await auf(env, v); const h = await text(p, TITEL_K); ok(h === TITEL[v], v + ': Kopftitel «' + h + '»'); ok((await text(p, '.wo-sb h1')).length > 8, v + ': Bühnentitel leer'); await p.close(); }
 });
 C('A04', 'Laden', 'Eine unbekannte Adresse (#gibtsnicht) öffnet die Übersicht', async env => { const p = await auf(env, 'gibtsnicht'); ok(await text(p, TITEL_K) === 'Übersicht', 'nicht Übersicht'); await p.close(); });
-C('A05', 'Laden', 'Der Tab-Titel nennt die Ansicht («Besuche · <Name aus dem Kleid> · Culinarium»)', async env => { for (const v of ['start', 'seiten', 'zaehlung']) { const p = await auf(env, v); const t = await p.title(); ok(t === TITEL[v] + ' · ' + NAME + ' · ' + HAUS, 'Titel «' + t + '»'); await p.close(); } });
-C('A06', 'Laden', 'Seiten stehen mit ihrem Namen da (Startseite, Der Abend, Alle Abende, Das Haus, Team, Der Weg, Dirty Chicken …, gelesen aus der Seiten-Leiste der Website), nie als Dateiname', async env => { const p = await auf(env, 'seiten'); const t = await text(p, '.tabelle'); ok(/Startseite/.test(t) && /Der Abend/.test(t) && /Alle Abende/.test(t) && /Das Haus/.test(t) && /Dirty Chicken/.test(t) && /Der Weg/.test(t) && !/\.html|index/.test(t), 'Dateiname sichtbar'); await p.close(); });
+C('A05', 'Laden', 'Der Tab-Titel nennt die Ansicht («Besuche · <Name aus dem Kleid> · Wild Side»)', async env => { for (const v of ['start', 'seiten', 'zaehlung']) { const p = await auf(env, v); const t = await p.title(); ok(t === TITEL[v] + ' · ' + NAME + ' · ' + HAUS, 'Titel «' + t + '»'); await p.close(); } });
+C('A06', 'Laden', 'Seiten stehen mit ihrem Namen da (Startseite, Drinks, Programm, Feiern, Das Haus, Besuch …, gelesen aus der Leiste der Website), nie als Dateiname', async env => { const p = await auf(env, 'seiten'); const t = await text(p, '.tabelle'); ok(/Startseite/.test(t) && /Drinks/.test(t) && /Programm/.test(t) && /Feiern/.test(t) && /Das Haus/.test(t) && /Besuch/.test(t) && !/\.html|index/.test(t), 'Dateiname sichtbar'); await p.close(); });
 C('A07', 'Laden', '?gruss=tag hält den Gruss fest («Guten Tag.») für die Bildschirmfotos der Werkbank', async env => { const p = await auf(env, 'start'); ok(/Guten Tag\./.test(await text(p, '.wo-sb h1')), 'Gruss'); await p.close(); });
 C('A08', 'Laden', 'Ohne Schlüssel zeigt die Adresse immer Beispielwerte (auch mit ?beispiel=1 gleich), überall beschriftet', async env => {
   for (const q of ['', 'beispiel=1']) { const p = await auf(env, 'start', q); ok(await sicht(p, '.bsp-band'), 'Beispiel-Band fehlt (' + q + ')'); ok(/Beispielwerte/.test(await text(p, '#leiste')), 'Leiste ohne Beispiel'); await p.close(); }
@@ -107,7 +107,7 @@ C('B06', 'Kopf', 'Am Handy (Oberfläche der Häuser): im Kopf Marke und «Bereic
   await p.click(BER); const t = await p.evaluate(s => [...document.querySelectorAll(s)].filter(a => a.offsetWidth).map(a => a.textContent.trim()), WEGE); for (const w of ['Website ansehen', 'Anleitung', STUBE_N]) ok(t.includes(w), w + ' fehlt: ' + t.join('|')); await p.close(); }, { nurHandy: true });
 
 /* ================= C Rand ================= */
-C('C01', 'Rand', 'Der Rand führt in die acht Ansichten (Übersicht; Die Gäste: Besuche, Herkunft, Zeit; Die Website: Seiten, Verlauf, Zum Platz; Gut zu wissen: So wird gezählt), die aktuelle ist markiert', async env => {
+C('C01', 'Rand', 'Der Rand führt in die acht Ansichten (Übersicht; Die Gäste: Besuche, Herkunft, Zeit; Die Website: Seiten, Verlauf, Zum Tisch; Gut zu wissen: So wird gezählt), die aktuelle ist markiert', async env => {
   const p = await auf(env, 'start'); const d = await p.evaluate(n => [...document.querySelectorAll(n)].map(a => a.dataset.gehe), NAV); ok(d.join() === ANSICHTEN.join(), 'Einträge ' + d.join());
   if (env.breite > 900) for (const v of ANSICHTEN) { await p.click(`${NAV}[data-gehe="${v}"]`); await p.waitForTimeout(250); ok(await p.evaluate(v => location.hash === '#' + v && document.querySelector('#rand .wo-re.wo-an')?.dataset.gehe === v && document.querySelector('#rand .wo-re.wo-an').getAttribute('aria-current') === 'true', v), 'Rand → ' + v); }
   await p.close(); });
@@ -138,24 +138,24 @@ C('D04', 'Zeitraum', 'Die Besuchstage in der Übersicht tragen Beschriftung im r
 C('E01', 'Leiste', 'Die Leiste unten nennt «Du siehst Beispielwerte» und dazu den Satz «Erfunden, damit du siehst …»', async env => { const p = await auf(env); const t = await text(p, '#leiste'); ok(/Du siehst Beispielwerte/.test(t) && /Erfunden, damit du siehst/.test(t) || env.breite <= 900, t); ok(/Du siehst Beispielwerte/.test(t), t); await p.close(); });
 /* E02 «Dieses Gerät nicht mitzählen» entfällt (Robert 18.10.2026 18:44: Knopf überflüssig) */
 C('E03', 'Leiste', 'In der Vorführung gibt es keinen Knopf zu den echten Besuchen und kein «Neu laden»', async env => { const p = await auf(env); ok(!(await p.$('#l-echt')) && !(await p.$('#l-neu')), 'Knopf sichtbar'); await p.close(); });
-C('E04', 'Leiste', 'Am Handy ist die Leiste umgebrochen, nichts läuft aus dem Bild; «Als Tabelle sichern» steht dort unter der Besuchsliste (culinarium.css blendet ihn in der Leiste aus, wie Carlton und Doldenhorn) und ist erreichbar', async env => { const p0 = await auf(env, 'besuche'); await p0.evaluate(() => document.querySelector('[data-sichern]').scrollIntoView({ block: 'center' })); await p0.waitForTimeout(400); ok(await sicht(p0, '[data-sichern]'), 'Knopf unter der Liste weg'); await p0.close(); const p = await auf(env); ok(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Überlauf'); const ab = await p.evaluate(() => [...document.querySelectorAll('#leiste button')].filter(x => x.offsetWidth && x.scrollWidth > x.clientWidth + 1).map(x => x.textContent.trim())); ok(!ab.length, 'Knopftext abgeschnitten: ' + ab.join(', ')); await p.close(); }, { nurHandy: true });
+C('E04', 'Leiste', 'Am Handy ist die Leiste umgebrochen, nichts läuft aus dem Bild; «Als Tabelle sichern» steht dort unter der Besuchsliste (registre-haus.css blendet ihn in der Leiste aus, wie Carlton und Doldenhorn) und ist erreichbar', async env => { const p0 = await auf(env, 'besuche'); await p0.evaluate(() => document.querySelector('[data-sichern]').scrollIntoView({ block: 'center' })); await p0.waitForTimeout(400); ok(await sicht(p0, '[data-sichern]'), 'Knopf unter der Liste weg'); await p0.close(); const p = await auf(env); ok(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'Überlauf'); const ab = await p.evaluate(() => [...document.querySelectorAll('#leiste button')].filter(x => x.offsetWidth && x.scrollWidth > x.clientWidth + 1).map(x => x.textContent.trim())); ok(!ab.length, 'Knopftext abgeschnitten: ' + ab.join(', ')); await p.close(); }, { nurHandy: true });
 
 /* ================= F Meldungen ================= */
 C('F01', 'Meldungen', 'Meldungen stehen als Karte mit Kreuz, höchstens drei, und verschwinden nach fünf Sekunden von selbst; das Kreuz schliesst sofort', async env => {
   const p = await auf(env); for (let i = 0; i < 4; i++) { await p.evaluate(() => quit('Probe', 'Meldung'));   /* quit() des Besucherbuchs (registre.js); das Paket der Oberfläche hat keine eigene Meldung (Gasterntal-Vorlage rief WO.quit, das es nicht gibt) */ await p.waitForTimeout(120); }
   ok(await zahl(p, '.quit') === 3, 'Zahl ' + await zahl(p, '.quit')); await p.click('.quit button'); await p.waitForTimeout(200); ok(await zahl(p, '.quit') === 2, 'Kreuz'); await p.waitForTimeout(5400); ok(await zahl(p, '.quit') === 0, 'bleibt stehen');
-  const g = await p.evaluate(() => localStorage.getItem('culinarium-nicht-zaehlen')); if (g) { await p.evaluate(() => localStorage.removeItem('culinarium-nicht-zaehlen')); } await p.close(); });
+  const g = await p.evaluate(() => localStorage.getItem('wildside-nicht-zaehlen')); if (g) { await p.evaluate(() => localStorage.removeItem('wildside-nicht-zaehlen')); } await p.close(); });
 
 /* ================= G Bühne ================= */
 C('G01', 'Bühne', 'Jede Ansicht beginnt mit dem Startbild der Oberfläche: Übersicht «voll» mit dem Aussenfoto des Hauses, jede andere Ansicht «Bühne» mit eigenem Bild; Foto geladen, Titel, Satz, mindestens 240 px hoch', async env => {
   const fotos = new Set(); for (const v of ANSICHTEN) { const p = await auf(env, v); const r = await p.evaluate(() => { const i = document.querySelector('.wo-sb__foto img'), b = document.querySelector('.wo-sb').getBoundingClientRect(); return [i.complete && i.naturalWidth > 100, document.querySelector('.wo-sb h1').textContent.length, !!document.querySelector('.wo-sb__satz'), b.height, document.querySelector('.wo-sb').classList.contains('wo-sb--voll'), i.getAttribute('src')]; });
     ok(r[0] && r[1] > 8 && r[2] && r[3] >= 240 && r[4] === (v === 'start'), v + ' ' + JSON.stringify(r)); fotos.add(r[5]); await p.close(); } ok(fotos.size === ANSICHTEN.length, 'Bilder doppelt: ' + fotos.size); });
-C('G02', 'Bühne', 'Die Übersicht zeigt im Startbild vier Kennzahlen (Besuche, Länder, heute, zum Platz) wie Zahlen auf einem Plakat des Hauses', async env => { const p = await auf(env); ok(await zahl(p, '.buehne__chips li') === 4, 'Plaketten'); await p.close(); });
+C('G02', 'Bühne', 'Die Übersicht zeigt im Startbild vier Kennzahlen (Besuche, Länder, heute, zum Tisch) wie Zahlen auf einem Plakat des Hauses', async env => { const p = await auf(env); ok(await zahl(p, '.buehne__chips li') === 4, 'Plaketten'); await p.close(); });
 C('G03', 'Bühne', 'In jeder Ansicht mit Zahlen steht über dem Inhalt das Band «Beispielwerte. Diese Zahlen sind erfunden …»', async env => { for (const v of MIT_ZEITRAUM) { const p = await auf(env, v); ok(await sicht(p, '.bsp-band') || await p.evaluate(() => !!document.querySelector('.bsp-band')), v + ' ohne Band'); await p.close(); } });
 C('G04', 'Bühne', 'Der Zeitraum sitzt im Startbild jeder Ansicht (Segment-Wahl der Oberfläche)', async env => { const p = await auf(env, 'zeit'); ok(await p.evaluate(() => !!document.querySelector('.wo-sb [data-tage]')), 'Zeitraum nicht auf der Bühne'); await p.close(); });
 
 /* ================= H Übersicht ================= */
-C('H01', 'Übersicht', 'Vier Zahlen: Besuche (mit Vergleich zum Zeitraum davor), angesehene Seiten (je Besuch), Minuten je Besuch, zum Platz (Platz gebucht oder auf die Warteliste, Prozent der Besuche)', async env => {
+C('H01', 'Übersicht', 'Vier Zahlen: Besuche (mit Vergleich zum Zeitraum davor), angesehene Seiten (je Besuch), Minuten je Besuch, zum Tisch (Tisch reserviert oder Feier angefragt, Prozent der Besuche)', async env => {
   const p = await auf(env); const t = await p.evaluate(() => [...document.querySelectorAll('.zahlen .blatt')].map(b => b.textContent.replace(/\s+/g, ' ').trim())); ok(t.length === 4, 'Zahl ' + t.length); ok(/zu davor/.test(t[0]) && /je Besuch/.test(t[1]) && /\d:\d\d/.test(t[2]) && /% der Besuche/.test(t[3]), t.join(' | ')); await p.close(); });
 C('H02', 'Übersicht', 'Besuche je Tag als Säulen, eine je Tag, mit Tag und Zahl beim Darüberfahren und Datum darunter', async env => {
   const p = await auf(env); ok(await zahl(p, '.tafel .saeulen .s') === 30, 'Säulen'); const s = await p.$('.tafel .saeulen .s:nth-child(14)'); await s.scrollIntoViewIfNeeded(); await p.waitForTimeout(1500); await s.hover(); await p.waitForTimeout(700);   /* erst stillstehen lassen (Blatt schwebt ein), dann darüberfahren; der Hinweis blendet weich ein */
@@ -169,7 +169,7 @@ C('H04', 'Übersicht', '«Zuletzt zu Besuch»: die letzten fünf Besuche als Kar
 C('H05', 'Übersicht', '«Alle Besuche» führt in die Besuchsliste', async env => { const p = await auf(env); await p.evaluate(() => document.querySelector('.mehr').scrollIntoView({ block: 'center' })); await p.waitForTimeout(400); await p.click('.mehr button'); await p.waitForTimeout(400); ok(await text(p, TITEL_K) === 'Besuche', 'Ziel'); await p.close(); });
 
 /* ================= I Besuche ================= */
-C('I01', 'Besuche', 'Über der Liste grenzt man ein: Alle, Zum Platz, Warteliste begonnen, Anruf oder Instagram, Am Handy (je mit Zahl); die Wahl ist markiert und Zum Platz zeigt nur Besuche mit goldenem Kreis', async env => {
+C('I01', 'Besuche', 'Über der Liste grenzt man ein: Alle, Zum Tisch, Formular begonnen, Anruf oder Instagram, Am Handy (je mit Zahl); die Wahl ist markiert und Zum Tisch zeigt nur Besuche mit goldenem Kreis', async env => {
   const p = await auf(env, 'besuche'); for (const f of ['buchung', 'anfrage', 'kontakt', 'handy', 'alle']) { await p.click(`[data-filter="${f}"]`); await p.waitForTimeout(250); const r = await p.evaluate(f => ({ an: document.querySelector(`[data-filter="${f}"]`).getAttribute('aria-pressed'), n: document.querySelectorAll('.liste .besuch').length, gold: [...document.querySelectorAll('.liste .besuch')].every(b => b.classList.contains('gold')), zahl: +document.querySelector(`[data-filter="${f}"]`).textContent.split('·')[1] }), f);
     ok(r.an === 'true' && r.n > 0 && r.n <= r.zahl && (f !== 'buchung' || r.gold), f + ' ' + JSON.stringify(r)); } await p.close(); });
 C('I01b', 'Besuche', 'Beim Wählen eines Filters oder bei «Weitere zeigen» bleibt die Seite ruhig: die Filterleiste und die Liste schweben nicht neu herein (und lassen sich sofort anklicken)', async env => {
@@ -185,10 +185,10 @@ C('I03', 'Besuche', 'Einen Besuch wählen wechselt nur die Karte; die Liste blei
   const xy = await p.evaluate(() => { const r = document.querySelectorAll('.liste .besuch')[5].getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }); await p.mouse.click(xy[0], xy[1]); await p.waitForTimeout(600); const y2 = await p.evaluate(() => [document.querySelector('#flaeche').scrollTop, scrollY]);
   ok(await zahl(p, '.liste .besuch.aktiv') === 1 && await p.evaluate(() => document.querySelectorAll('.liste .besuch')[5].classList.contains('aktiv')), 'falsche Auswahl'); ok(await text(p, '.detail h2') === ziel, 'Karte zeigt nicht ' + ziel);
   if (env.breite > 1180) ok(Math.abs(y2[0] - y1[0]) < 4 && Math.abs(y2[1] - y1[1]) < 1.5, 'Seite sprang ' + y1 + ' → ' + y2); else ok(y2[0] + y2[1] >= 0, 'schmal'); await p.close(); });
-C('I04', 'Besuche', 'Die Karte nennt Ort (Land), Tag, Siegel («Platz gebucht» / «Auf der Warteliste» / «Warteliste begonnen» / «Anruf oder Instagram» wo es zutrifft), sechs Angaben (Gekommen, Geblieben, Seiten, Gerät, Sprache, Gekommen über) und den Weg durch die Website mit Zeit je Seite', async env => {
+C('I04', 'Besuche', 'Die Karte nennt Ort (Land), Tag, Siegel («Tisch reserviert» / «Feier angefragt» / «Formular begonnen» / «Anruf oder Instagram» wo es zutrifft), sechs Angaben (Gekommen, Geblieben, Seiten, Gerät, Sprache, Gekommen über) und den Weg durch die Website mit Zeit je Seite', async env => {
   const p = await auf(env, 'besuche'); await p.click('[data-filter="buchung"]'); await p.waitForTimeout(250); const r = await p.evaluate(() => ({ h: document.querySelector('.detail h2').textContent, siegel: document.querySelector('.detail .siegel')?.textContent, angaben: document.querySelectorAll('.detail .angaben > div').length, weg: document.querySelectorAll('.detail .weg li').length, gold: document.querySelectorAll('.detail .ereignis.gold').length, fein: !!document.querySelector('.detail .fein') }));
-  ok(r.h.length > 3 && /Platz gebucht|Auf der Warteliste/.test(r.siegel) && r.angaben === 6 && r.weg >= 1 && r.gold >= 1 && r.fein, JSON.stringify(r)); await p.close(); });
-C('I05', 'Besuche', 'Unter einer Seite im Weg stehen die Klicks dort ««Platz buchen» geöffnet», «Platz gebucht», «Warteliste begonnen», «Auf die Warteliste gesetzt», «Warteliste im Fuss», «Route geöffnet» …)', async env => { const p = await auf(env, 'besuche'); await p.click('[data-filter="buchung"]'); await p.waitForTimeout(300); ok(/Platz gebucht|Auf die Warteliste gesetzt/.test(await text(p, '.detail .weg')), 'keine Ereignisse'); await p.click('[data-filter="anfrage"]'); await p.waitForTimeout(300); ok(/Warteliste begonnen|Warteliste im Fuss/.test(await text(p, '.detail .weg')) && /Warteliste begonnen/.test(await text(p, '.detail .siegel')), 'Warteliste ohne Ereignis'); await p.close(); });
+  ok(r.h.length > 3 && /Tisch reserviert|Feier angefragt/.test(r.siegel) && r.angaben === 6 && r.weg >= 1 && r.gold >= 1 && r.fein, JSON.stringify(r)); await p.close(); });
+C('I05', 'Besuche', 'Unter einer Seite im Weg stehen die Klicks dort («Reservieren begonnen», «Tisch reserviert», «Feier-Anfrage begonnen», «Feier angefragt», «Karte geöffnet» …)', async env => { const p = await auf(env, 'besuche'); await p.click('[data-filter="buchung"]'); await p.waitForTimeout(300); ok(/Tisch reserviert|Feier angefragt/.test(await text(p, '.detail .weg')), 'keine Ereignisse'); await p.click('[data-filter="anfrage"]'); await p.waitForTimeout(300); ok(/Reservieren begonnen|Feier-Anfrage begonnen/.test(await text(p, '.detail .weg')) && /Formular begonnen/.test(await text(p, '.detail .siegel')), 'Formular ohne Ereignis'); await p.close(); });
 C('I06', 'Besuche', '«Weitere zeigen» bringt jeweils 60 Besuche mehr; ganz unten steht, wie viele gezeigt werden («die neuesten 400»)', async env => { const p = await auf(env, 'besuche'); const n0 = await zahl(p, '.liste .besuch'); await p.click('[data-mehr]'); await p.waitForTimeout(300); const n1 = await zahl(p, '.liste .besuch'); ok(n0 === 40 && n1 === 100, n0 + '→' + n1); ok(/neuesten 400 Besuche/.test(await text(p, '.liste')), 'Hinweis 400'); await p.close(); });
 C('I07', 'Besuche', 'Ist eine Auswahl leer, steht «Kein Besuch in dieser Auswahl» statt einer leeren Liste', async env => {
   const p = await env.ctx.newPage(); await p.route('**/beispiel/30.json', async r => { const d = await (await r.fetch()).json(); d.besuche.forEach(b => { b.buchung = false; }); r.fulfill({ json: d }); });
@@ -196,7 +196,7 @@ C('I07', 'Besuche', 'Ist eine Auswahl leer, steht «Kein Besuch in dieser Auswah
 C('I08', 'Besuche', 'Rechner (ab 1181 px): die Karte rechts reicht vom Kopf bis über die Leiste, der Hinweis sitzt unten; sie bleibt beim Scrollen unter dem Kopf stehen; ohne eigene Scrollfläche; ist sie mit einem langen Weg höher als der Platz, klebt sie mit dem Ende über der Leiste (G15)', async env => {
   const p = await auf(env, 'besuche'); await p.evaluate(() => scrollTo(0, document.querySelector('.eingang').getBoundingClientRect().top + scrollY - 60)); await p.waitForTimeout(300); const r = await p.evaluate(() => { const c = document.querySelector('.detail .besuchsblatt').getBoundingClientRect(), l = document.querySelector('#leiste').getBoundingClientRect(), w = document.querySelector('.detail .weg'); return { unten: Math.round(l.top - c.bottom), oben: Math.round(c.top), ueber: getComputedStyle(w).overflowY, haengt: [...document.querySelectorAll('*')].filter(e => /auto|scroll/.test(getComputedStyle(e).overflowY) && e.scrollHeight > e.clientHeight + 1 && e !== document.documentElement && e !== document.body).length }; });
   ok(r.unten < 60 && r.ueber === 'visible' && !r.haengt, JSON.stringify(r)); await p.evaluate(() => scrollTo(0, 1500)); await p.waitForTimeout(300);
-  /* Schäfli 21.10.2026: ist die Karte höher als der Platz (langer Weg, 1366 × 650), klebt sie mit ihrem Ende über der Leiste statt oben (sonst wäre ihr Ende nie erreichbar) */
+  /* früheres Haus 21.10.2026: ist die Karte höher als der Platz (langer Weg, 1366 × 650), klebt sie mit ihrem Ende über der Leiste statt oben (sonst wäre ihr Ende nie erreichbar) */
   const c2 = await p.evaluate(() => { const c = document.querySelector('.detail .besuchsblatt').getBoundingClientRect(), l = document.querySelector('#leiste').getBoundingClientRect(); return { oben: Math.round(c.top), unten: Math.round(l.top - c.bottom), lang: c.height > innerHeight - 188 }; });
   ok(c2.lang ? c2.unten >= -2 && c2.unten < 60 : c2.oben >= 86 && c2.oben <= 98, 'Karte bleibt nicht stehen: ' + JSON.stringify(c2)); await p.close(); }, { nurRechner: true });
 C('I09', 'Besuche', 'Schmal (bis 1180 px) steht die Karte über der Liste; wählt man weiter unten einen Besuch, rückt die Seite zur Karte', async env => {
@@ -210,12 +210,12 @@ C('J01', 'Herkunft', 'Länder (zehn), Gekommen über (acht, «Direkt aufgerufen�
   const t = await text(p, '#ansicht'); ok(/Deutschland/.test(t) && /Direkt aufgerufen/.test(t) && /Google/.test(t) && /Instagram/.test(t) && /Hannover/.test(t) && /Handy/.test(t) && /Sprache des Browsers/.test(t) && /Deutsch/.test(t) && /%/.test(t), 'Beschriftung'); ok(/Aus Hannover und Region/.test(t) && /Aus Deutschland/.test(t), 'Hannover-Anteil'); await p.close(); });
 C('J02', 'Zeit', 'Zeit: Besuche nach Uhrzeit (24 Säulen), nach Wochentag und Stunde (Raster 7 × 24) und nach Wochentag; oben die Spitzen (meiste Besuche, stärkster Tag, ab 18 Uhr, am Wochenende)', async env => {
   const p = await auf(env, 'zeit'); ok(await zahl(p, '.saeulen--uhr .s') === 24 && await zahl(p, '.raster i') === 168 && await zahl(p, '.band > div') === 4, 'Aufbau'); await p.close(); });
-C('J03', 'Seiten', 'Seiten: jede Seite mit Aufrufen (absteigend sortiert), Balken, Zeit im Schnitt und wie oft sie auf dem Weg zum Platz lag; Fusszeile «Nicht aufgeführte Seiten …»', async env => {
-  const p = await auf(env, 'seiten'); const z = await p.evaluate(() => [...document.querySelectorAll('.tabelle .zeile:not(.zeile--kopf) .zeile__z')].map(x => +x.textContent.replace(/[’' ]/g, ''))); ok(z.length >= 8 && z.every((v, i) => i === 0 || z[i - 1] >= v), 'Sortierung ' + z.length + ': ' + z.slice(0, 5));   /* Culinarium hat neun Seiten */ ok(/Nicht aufgeführte Seiten/.test(await text(p, '#ansicht')), 'Fuss'); ok(/Min\.|Sek\./.test(await text(p, '.tabelle')), 'Zeit'); await p.close(); });
+C('J03', 'Seiten', 'Seiten: jede Seite mit Aufrufen (absteigend sortiert), Balken, Zeit im Schnitt und wie oft sie auf dem Weg zum Tisch lag; Fusszeile «Nicht aufgeführte Seiten …»', async env => {
+  const p = await auf(env, 'seiten'); const z = await p.evaluate(() => [...document.querySelectorAll('.tabelle .zeile:not(.zeile--kopf) .zeile__z')].map(x => +x.textContent.replace(/[’' ]/g, ''))); ok(z.length >= 8 && z.every((v, i) => i === 0 || z[i - 1] >= v), 'Sortierung ' + z.length + ': ' + z.slice(0, 5));   /* Walk on the Wild Side hat acht Seiten */ ok(/Nicht aufgeführte Seiten/.test(await text(p, '#ansicht')), 'Fuss'); ok(/Min\.|Sek\./.test(await text(p, '.tabelle')), 'Zeit'); await p.close(); });
 C('J04', 'Verlauf', 'Verlauf: Besuche je Tag neben dem Zeitraum davor, Vergleichstabelle (Jetzt/Davor/Veränderung), Woche für Woche, die wichtigsten Länder im Verlauf', async env => {
   const p = await auf(env, 'verlauf'); ok(await zahl(p, '.saeulen--vgl .s') === 30 && await zahl(p, '.saeulen--vgl .s u') === 30, 'Säulen'); ok(await zahl(p, '.vergleich .vz') >= 7 && await zahl(p, '.wochen li') >= 5 && await zahl(p, '.lv') === 4, 'Teile'); ok(/zu davor|gleich wie davor/.test(await text(p, '.vergleich')), 'Veränderung'); await p.close(); });
-C('J05', 'Zum Platz', 'Zum Platz: neun Werte mit Prozent und gezählten Zahlen (von der Startseite und von «Alle Abende» zum Platz; über die Warteliste; «Platz buchen» ohne Buchung; Warteliste begonnen; Warteliste im Fuss; Anruf oder Instagram; weiter zur Bar oder zu Dirty Chicken; Route), «Welche Seiten vor dem Platz lagen», der Weg zum Platz', async env => {
-  const p = await auf(env, 'buchung'); ok(await zahl(p, '.werte .wert') === 9, 'neun Werte'); const w = await p.evaluate(() => [...document.querySelectorAll('.werte .wert b')].map(b => b.textContent)); ok(w.every(x => /%/.test(x)), w.join()); ok(await zahl(p, '.zwei > .blatt:nth-child(1) .rang li') >= 2 && await zahl(p, '.trichter li') === 3, 'Teile');   /* zum Platz führen Startseite, «Der Abend» und die Seiten davor */ await p.close(); });
+C('J05', 'Zum Tisch', 'Zum Tisch: neun Werte mit Prozent und gezählten Zahlen (von der Startseite und von «Drinks» zum Tisch; über «Feiern»; Reservieren ohne Abschicken; Feier-Anfrage begonnen; «Reservieren» angeklickt; Anruf oder Instagram; weiter zu Culinarium oder Dirty Chicken; Karte), «Welche Seiten vor dem Tisch lagen», der Weg zum Tisch', async env => {
+  const p = await auf(env, 'buchung'); ok(await zahl(p, '.werte .wert') === 9, 'neun Werte'); const w = await p.evaluate(() => [...document.querySelectorAll('.werte .wert b')].map(b => b.textContent)); ok(w.every(x => /%/.test(x)), w.join()); ok(await zahl(p, '.zwei > .blatt:nth-child(1) .rang li') >= 2 && await zahl(p, '.trichter li') === 3, 'Teile');   /* zum Tisch führen Startseite, «Besuch», «Feiern» und die Seiten davor */ await p.close(); });
 
 /* ================= K Schweben ================= */
 C('K01', 'Schweben', 'Blätter liegen beim Öffnen tief und klein (unter dem Bild), schweben beim Auftauchen nach der Uhr (2,7 s, Feder) auf ihren Platz; nicht am Scrollen geführt', async env => {
@@ -263,7 +263,7 @@ C('L05', 'Rundgang', 'Am Handy steht die Karte unten über dem Bild; in eingebet
 /* ================= M Zählung und Datenschutz ================= */
 C('M01', 'Zählung', '«So wird gezählt» sagt, was gezählt wird, was nie gezählt wird (kein Name, keine Adresse, kein Cookie), Aufbewahrung, eigene Geräte, Grenzen, Zugang', async env => { const p = await auf(env, 'zaehlung'); const t = await text(p, '#ansicht'); ok(/Was gezählt wird/.test(t) && /Was nie gezählt wird/.test(t) && /Kein Cookie/.test(t) && /400 Tage/.test(t) && /Passwort/.test(t), 'Inhalt'); await p.close(); });
 C('M02', 'Zählung', 'Der Dienst gibt in der Vorführung nie echte Werte heraus (ohne Schlüssel, mit falschem Schlüssel, mit ?beispiel): immer «beispiel: true»', async env => {
-  for (const q of ['tage=30', 'tage=30&k=falsch', 'tage=7&beispiel=1']) { const d = await stand(B, q); ok(d.beispiel === true && d.summe.besuche > (/tage=7/.test(q) ? 40 : 100), q); }   /* Culinarium: ein kleines Haus, 7 Tage um 60 bis 110 Beispielbesuche */ }, { server: true });
+  for (const q of ['tage=30', 'tage=30&k=falsch', 'tage=7&beispiel=1']) { const d = await stand(B, q); ok(d.beispiel === true && d.summe.besuche > (/tage=7/.test(q) ? 40 : 100), q); }   /* eine Nachbarschaftsbar: 7 Tage um 80 bis 130 Beispielbesuche */ }, { server: true });
 
 /* ================= N Server ================= */
 const UA = i => `Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/605 Safari/605 Test${i}`;
@@ -286,7 +286,7 @@ C('N07', 'Server', 'Leerer Zeitraum: «Noch kein Besuch gezählt» mit «Beispie
 C('N08', 'Server', 'Der Test-Server antwortet nur dem eigenen Rechner und gibt keine Quelltexte (.py) und keine Tagesdateien heraus', async env => { for (const u of ['_werkzeuge/registre/registre.py', '_werkzeuge/registre/server.py', '_werkzeuge/registre/_daten/x.json']) { const r = await fetch(B.replace('/_werkzeuge/registre/', '/') + u); ok(r.status === 404, u + ' ' + r.status); } }, { server: true });
 
 /* ================= O Anleitung ================= */
-C('O01', 'Anleitung', 'Die Anleitung öffnet (zweimal geladen), hat zehn Kapitel (wie Schäfli, Schlössli und Gasterntal: das Rivage neun, dazu Zeit und Verlauf, ohne den Knopf «nicht mitzählen») in vier Themen mit Bildern aus dem Werkzeug, Bild gross mit Klick und Esc, keine toten Links', async env => {
+C('O01', 'Anleitung', 'Die Anleitung öffnet (zweimal geladen), hat zehn Kapitel (wie im Culinarium: Zeit und Verlauf eigene Kapitel, ohne den Knopf «nicht mitzählen») in vier Themen mit Bildern aus dem Werkzeug, Bild gross mit Klick und Esc, keine toten Links', async env => {
   for (let i = 0; i < 2; i++) { const p = await auf(env, '', '', A.replace(/$/, 'anleitung.html'), { roh: true }); await p.waitForLoadState('load'); ok(await zahl(p, 'article.kap') === 10, 'Kapitel ' + await zahl(p, 'article.kap')); ok(await zahl(p, '.inhalt .thema') === 4, 'Themen');
     await p.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 700) { scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); } }); await p.waitForTimeout(800); ok(await p.evaluate(() => [...document.querySelectorAll('article.kap img')].every(i => i.complete && i.naturalWidth > 0)), 'Bild fehlt'); const bi = await p.$('article.kap .bild'); await bi.scrollIntoViewIfNeeded(); await bi.click(); await p.waitForTimeout(400); ok(await sicht(p, '.gross'), 'Bild nicht gross'); await p.keyboard.press('Escape'); await p.waitForTimeout(300); ok(!(await sicht(p, '.gross')), 'Esc');
     const links = await p.evaluate(() => [...document.querySelectorAll('a[href^="#"]')].map(a => a.getAttribute('href')).filter(h => h.length > 1 && !document.querySelector(h))); ok(!links.length, 'tote Sprungmarken ' + links); await p.close(); } });
@@ -295,7 +295,7 @@ C('O01', 'Anleitung', 'Die Anleitung öffnet (zweimal geladen), hat zehn Kapitel
 const NORMAL_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15';
 async function seiteMitMessung(env, datei, vor, sprache = 'fr-FR') {   /* eine Seite der Website aus der Probe-Kopie mit messung.js (probe.sh setzt die Zeile wie der Vorschlag) */
   const ctx = await env.browser.newContext({ viewport: { width: 1440, height: 900 }, userAgent: NORMAL_UA, locale: sprache });
-  await ctx.addInitScript(v => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); if (v) try { localStorage.setItem('culinarium-nicht-zaehlen', '1'); } catch (e) {} }, !!vor);
+  await ctx.addInitScript(v => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); if (v) try { localStorage.setItem('wildside-nicht-zaehlen', '1'); } catch (e) {} }, !!vor);
   await ctx.route(/instagram\.com|google\.[a-z.]+\/maps|maps\.apple\.com/, r => r.fulfill({ status: 200, contentType: 'text/html', body: '<p>Probe</p>' }));   /* nichts geht hinaus */
   await ctx.route(/^(mailto|tel):/, r => r.abort());
   await ctx.route(/\/api\/anfrage$/, r => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));   /* Anschluss ans Gästebuch (29.10.2026): angenommen, nichts geht hinaus */
@@ -307,65 +307,36 @@ async function seiteMitMessung(env, datei, vor, sprache = 'fr-FR') {   /* eine S
 const klickeEcht = (p, sel) => p.evaluate(s => { const a = document.querySelector(s); if (!a) return false; a.addEventListener('click', e => e.preventDefault(), { once: true }); a.click(); return true; }, sel);
 /* Formular abschicken wie mit dem Knopf (die Website verschickt nichts, sie zeigt ihr «Danke» bzw. geht weiter) */
 const abschicken = (p, sel, halt) => p.evaluate(([s, h]) => { const f = document.querySelector(s); if (h) f.addEventListener('submit', e => { e.preventDefault(); e.stopImmediatePropagation(); }, { once: true, capture: true });   /* halt: die Seite bleibt (Fuss-Warteliste geht sonst auf «Der Abend»); messung.js hört vorher am Dokument */ f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true })); }, [sel, !!halt]);
-C('Z01', 'Zählung', 'Zählung auf der Website (messung.js aus vorschlag/, an den Seiten der Probe-Kopie): Öffnen zählt die Seite (Sprache des Browsers, Gerät, Sekunden); auf der Startseite Telefon der Bar, Instagram von Culinarium und der Bar und die Warteliste im Fuss (geht weiter auf «Der Abend», die E-Mail steht dort im Ticket); auf «Der Abend» zählt «Platz buchen» geöffnet, leer «Jetzt bezahlen» zählt nicht, mit Name und E-Mail zählt «gebucht», sobald das Ticket steht; das Ticket der Warteliste zählt begonnen, leer abgeschickt nicht, ausgefüllt («Danke») als Warteliste; auf «Der Weg» die Route; das Besucherbuch zeigt den Besuch mit diesem Weg', async env => {
+C('Z01', 'Zählung', 'Zählung auf der Website (messung.js aus vorschlag/, an den Seiten der Probe-Kopie): Öffnen zählt die Seite (Sprache des Browsers, Gerät, Sekunden); auf der Startseite Telefon der Bar, Instagram der Bar, der Knopf «Reservieren» und der Weg zu Culinarium; auf «Besuch» Reservieren begonnen und abgeschickt (erst mit «Danke») und die Karte; auf «Feiern» Anfrage begonnen und abgeschickt; die Besucherliste zeigt sie mit Schlüssel', async env => {
   let { ctx, p } = await seiteMitMessung(env, 'index.html');
   ok(await p.evaluate(() => window.__registre === 1), 'messung.js läuft nicht');
   ok(await klickeEcht(p, 'a[href^="tel:+491633909578"]'), 'Startseite ohne Telefon der Bar');
-  ok(await klickeEcht(p, 'a[href*="instagram.com/culinarium_hannover"]') && await klickeEcht(p, 'a[href*="instagram.com/walkonthewildside_hannover"]'), 'Startseite ohne Instagram');
-  await p.evaluate(() => { document.querySelector('.fu-wl-f').elements.namedItem('mail').value = 'probe@example.com'; }); await abschicken(p, '.fu-wl-f');
-  await p.waitForURL(/abend\.html/, { timeout: 8000 }); await p.waitForTimeout(900);
-  ok(await p.evaluate(() => (document.querySelector('.wt-form input[name="mail"]') || {}).value === 'probe@example.com'), 'E-Mail aus dem Fuss nicht im Ticket');
-  await p.close(); await ctx.close();
-  ({ ctx, p } = await seiteMitMessung(env, 'abend.html'));
-  await p.evaluate(() => document.querySelector('#termine-buchen').scrollIntoView()); await p.waitForTimeout(700);
-  ok(await p.evaluate(() => { const b = document.querySelector('[data-buchen]'); if (b) b.click(); return !!b; }), 'kein «Platz buchen»'); await p.waitForTimeout(500);
-  ok(await p.evaluate(() => !document.querySelector('#tb-dialog').hidden), 'Fenster «Platz buchen» öffnet nicht');
-  await p.evaluate(() => document.querySelector('[data-bezahlen]').click()); await p.waitForTimeout(2400);
-  ok(await p.evaluate(() => document.querySelector('#tb-dialog [data-schritt="3"]').hidden), 'leer «gebucht»');
-  let d0 = await stand(B, 'tage=7&export=1&k=' + KEY); ok(!d0.besuche.some(x => x.weg.some(w => w.s === 'abend.html' && w.e.includes('buchung'))), 'leeres «Jetzt bezahlen» gezählt');
-  await p.evaluate(() => { const d = document.querySelector('#tb-dialog'); d.querySelector('input[name=tb-name]').value = 'Probe'; d.querySelector('input[name=tb-mail]').value = 'probe@example.com'; d.querySelector('[data-bezahlen]').click(); });
-  await p.waitForTimeout(2600); ok(await p.evaluate(() => !document.querySelector('#tb-dialog [data-schritt="3"]').hidden), 'Ticket steht nicht');
-  await p.evaluate(() => document.querySelector('#tb-dialog [data-zu]').click()); await p.waitForTimeout(300);
-  await p.evaluate(() => { const f = document.querySelector('.wt-form'); f.elements.namedItem('mail').value = ''; f.scrollIntoView(); }); await p.waitForTimeout(300);
-  await abschicken(p, '.wt-form'); await p.waitForTimeout(1200);
-  ok(await p.evaluate(() => !document.querySelector('.wt-form').classList.contains('fertig')), 'leere Warteliste «fertig»');
-  d0 = await stand(B, 'tage=7&export=1&k=' + KEY); ok(!d0.besuche.some(x => x.weg.some(w => w.s === 'abend.html' && w.e.includes('booking'))), 'leere Warteliste gezählt');
-  await p.fill('.wt-form input[name="name"]', 'Probe'); await p.fill('.wt-form input[name="mail"]', 'probe@example.com');
-  await abschicken(p, '.wt-form'); await p.waitForTimeout(1200);
-  ok(await p.evaluate(() => document.querySelector('.wt-form').classList.contains('fertig')), 'Warteliste nicht «fertig»');
-  await p.waitForTimeout(600); await p.close(); await ctx.close();
-  ({ ctx, p } = await seiteMitMessung(env, 'weg.html'));
-  ok(await klickeEcht(p, 'a[href*="google.com/maps"]'), '«Der Weg» ohne Route'); await p.waitForTimeout(1000); await p.close(); await ctx.close(); await warte(500);
-  const d = await stand(B, 'tage=7&export=1&k=' + KEY); const b = d.besuche.find(x => x.weg.some(w => w.s === 'index.html' && w.e.includes('anfrage') && w.sp === 'fr') && x.weg.some(w => w.s === 'weg.html'));
+  ok(await klickeEcht(p, 'a[href*="instagram.com/walkonthewildside_hannover"]'), 'Startseite ohne Instagram');
+  ok(await klickeEcht(p, '.vi-stueck'), 'Startseite ohne Weg zu Culinarium');
+  ok(await klickeEcht(p, 'a[href="besuch.html#reservieren"]'), 'Startseite ohne «Reservieren»');
+  await p.waitForTimeout(900); await p.close(); await ctx.close();
+  ({ ctx, p } = await seiteMitMessung(env, 'besuch.html'));
+  await p.evaluate(() => document.querySelector('form.rh-form').scrollIntoView()); await p.waitForTimeout(500);
+  await p.fill('form.rh-form input[name="name"]', 'Probe'); await abschicken(p, 'form.rh-form'); await p.waitForTimeout(1200);
+  ok(await p.evaluate(() => document.querySelector('form.rh-form').classList.contains('fertig')), 'Reservieren zeigt kein «Danke»');
+  ok(await klickeEcht(p, 'a[href*="openstreetmap.org"]'), '«Besuch» ohne Karte'); await p.waitForTimeout(900); await p.close(); await ctx.close();
+  ({ ctx, p } = await seiteMitMessung(env, 'tafel.html'));
+  await p.fill('form.formular input[name="name"]', 'Probe'); await abschicken(p, 'form.formular'); await p.waitForTimeout(1200);
+  ok(await p.evaluate(() => document.querySelector('form.formular').classList.contains('fertig')), 'Anfrage zeigt kein «Danke»');
+  await p.waitForTimeout(600); await p.close(); await ctx.close(); await warte(500);
+  const d = await stand(B, 'tage=7&export=1&k=' + KEY); const b = d.besuche.find(x => x.weg.some(w => w.s === 'index.html' && w.sp === 'fr') && x.weg.some(w => w.s === 'tafel.html'));
   if (!b) env.fehler.push('Z01 Besuche: ' + JSON.stringify(d.besuche.map(x => [x.zs, x.weg.map(w => w.s + ':' + w.e.join('+'))])).slice(0, 900));
   ok(b, 'Besuch nicht gezählt: ' + d.besuche.length + ' Besuche'); const w = b.weg.find(x => x.s === 'index.html');
   ok(JSON.stringify(w.e) === JSON.stringify(['anfrage', 'anruf', 'chat', 'mail']), 'Klicks Startseite ' + w.e.join(',')); ok(w.sp === 'fr' && b.g === 'rechner', 'Sprache/Gerät ' + [w.sp, b.g]);
-  const ab = b.weg.filter(x => x.s === 'abend.html'), abE = [...new Set(ab.flatMap(x => x.e))].sort(); ok(JSON.stringify(abE) === JSON.stringify(['booking', 'buchung', 'fenster', 'tisch']), '«Der Abend» ' + JSON.stringify(ab));
-  ok(ab.some(x => x.sek >= 1), 'Sekunden auf «Der Abend»');
-  const wg = b.weg.find(x => x.s === 'weg.html'); ok(wg && JSON.stringify(wg.e) === JSON.stringify(['route']), '«Der Weg» ' + JSON.stringify(wg));
-  const q = await auf(env, 'start', 'gruss=tag&k=' + KEY, B, { ruhig: 1 }); const s2 = await q.evaluate(() => Object.assign({ bsp: S.d.beispiel }, S.d.summe)); ok(!s2.bsp && s2.buchung >= 1 && s2.route >= 1 && s2.kontakt >= 1 && +(await text(q, '.buehne__chips li:nth-child(4) b')).replace(/[.’']/g, '') === s2.buchung, 'Das Besucherbuch zeigt den Platz nicht: ' + JSON.stringify(s2)); await q.close();
-}, { server: true, nurBreite: 1440, lang: true });
-C('Z01b', 'Zählung', 'Warteliste im Fuss ohne E-Mail zählt nicht, mit E-Mail zählt sie; auf «Das Haus» zählt der Weg zur Bar, auf «Dirty Chicken» Instagram von Dirty Chicken als «weiter», auf «Team» Instagram des Teams als Instagram', async env => {
-  const zaehl = async s => { const d = await stand(B, 'tage=7&export=1&k=' + KEY); return d.besuche.flatMap(x => x.weg.filter(w => w.s === s && w.sp === 'it')); };   /* nur Seiten dieser Zeile: sie meldet sich italienisch */
-  let { ctx, p } = await seiteMitMessung(env, 'bar.html', false, 'it-IT');
-  await p.evaluate(() => { document.querySelector('.fu-wl-f').elements.namedItem('mail').value = ''; }); await abschicken(p, '.fu-wl-f', true); await p.waitForTimeout(500);
-  ok(await klickeEcht(p, 'a[href*="instagram.com/walkonthewildside_hannover"]'), '«Das Haus» ohne Weg zur Bar');
-  await p.waitForTimeout(800); await p.close(); await ctx.close(); await warte(400);
-  let e = await zaehl('bar.html'); ok(e.length && !e.some(w => w.e.includes('anfrage')) && e.some(w => w.e.includes('chat')), '«Das Haus»: ' + JSON.stringify(e));
-  ({ ctx, p } = await seiteMitMessung(env, 'dirty-chicken.html', false, 'it-IT'));
-  ok(await klickeEcht(p, 'a[href*="instagram.com/dirtychicken.hannover"]'), 'Dirty Chicken ohne Instagram'); await p.waitForTimeout(800); await p.close(); await ctx.close();
-  ({ ctx, p } = await seiteMitMessung(env, 'leute.html', false, 'it-IT'));
-  ok(await klickeEcht(p, 'a[href*="instagram.com/rudi__san"]'), 'Team ohne Instagram');
-  await p.evaluate(() => { document.querySelector('.fu-wl-f').elements.namedItem('mail').value = 'probe@example.com'; }); await abschicken(p, '.fu-wl-f', true);
-  await p.waitForTimeout(1000); await p.close(); await ctx.close(); await warte(500);
-  e = await zaehl('dirty-chicken.html'); ok(e.some(w => JSON.stringify(w.e) === '["chat"]'), 'Dirty Chicken: ' + JSON.stringify(e));
-  e = await zaehl('leute.html'); ok(e.some(w => w.e.includes('mail') && w.e.includes('anfrage')), 'Team: ' + JSON.stringify(e));
+  const be = [...new Set(b.weg.filter(x => x.s === 'besuch.html').flatMap(x => x.e))].sort(); ok(JSON.stringify(be) === JSON.stringify(['buchung', 'fenster', 'route']), '«Besuch» ' + be);
+  const fe = [...new Set(b.weg.filter(x => x.s === 'tafel.html').flatMap(x => x.e))].sort(); ok(JSON.stringify(fe) === JSON.stringify(['booking', 'tisch']), '«Feiern» ' + fe);
+  const q = await auf(env, 'start', 'gruss=tag&k=' + KEY, B, { ruhig: 1 }); const s2 = await q.evaluate(() => Object.assign({ bsp: S.d.beispiel }, S.d.summe)); ok(!s2.bsp && s2.buchung >= 1 && s2.route >= 1 && s2.kontakt >= 1, 'Die Besucherliste zeigt die Zählung nicht'); await q.close();
 }, { server: true, nurBreite: 1440, lang: true });
 C('Z02', 'Zählung', 'Nicht gezählt: Geräte mit «nicht mitzählen», automatische Browser (webdriver), Seiten der Werkzeuge', async env => {
   const vorher = (await stand(B, 'tage=7&k=' + KEY)).summe.seiten;
-  let { ctx, p } = await seiteMitMessung(env, 'abende.html', true); ok(await p.evaluate(() => !window.__registre), 'zählt trotz «nicht mitzählen»'); await p.close(); await ctx.close();
+  let { ctx, p } = await seiteMitMessung(env, 'drinks.html', true); ok(await p.evaluate(() => !window.__registre), 'zählt trotz «nicht mitzählen»'); await p.close(); await ctx.close();
   const c2 = await env.browser.newContext({ userAgent: NORMAL_UA });
-  const p2 = await c2.newPage(); await p2.goto(B.replace('_werkzeuge/registre/', '') + 'abende.html'); await p2.waitForTimeout(800); ok(await p2.evaluate(() => !window.__registre), 'zählt im Prüfbrowser'); await c2.close();
+  const p2 = await c2.newPage(); await p2.goto(B.replace('_werkzeuge/registre/', '') + 'drinks.html'); await p2.waitForTimeout(800); ok(await p2.evaluate(() => !window.__registre), 'zählt im Prüfbrowser'); await c2.close();
   const c3 = await env.browser.newContext({ userAgent: NORMAL_UA }); await c3.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false }));
   const p3 = await c3.newPage(); await p3.goto(B + '?gruss=tag'); await p3.addScriptTag({ url: '/assets/messung.js?v=probe' }); await p3.waitForTimeout(600); ok(await p3.evaluate(() => !window.__registre), 'zählt im Werkzeug'); await c3.close();
   await warte(400); ok((await stand(B, 'tage=7&k=' + KEY)).summe.seiten === vorher, 'Seiten gezählt, die nicht zählen dürfen');
@@ -383,12 +354,12 @@ function erwartet(t, heute, uhr) {   /* dieselbe Rechnung in registre.py (selbst
   return JSON.parse(cp.execFileSync(PY, ['-c', `import sys,json;sys.path.insert(0,${JSON.stringify(HIER)});import registre as R;print(json.dumps(R.ablage_heute(${t},${JSON.stringify(heute)},${JSON.stringify(uhr)}),ensure_ascii=False))`], { maxBuffer: 64e6 }).toString());
 }
 const hannover = ms => { const f = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(ms)); const g = k => f.find(x => x.type === k).value; return [`${g('year')}-${g('month')}-${g('day')}`, `${g('hour')}:${g('minute')}:${g('second')}`]; };
-/* Uhrzeit in Hannover als Zeitpunkt, Sommer- oder Winterzeit richtig (die Schäfli-Prüfung hatte fest +02:00) */
+/* Uhrzeit in Hannover als Zeitpunkt, Sommer- oder Winterzeit richtig (die Prüfung eines früheren Hauses hatte fest +02:00) */
 const ortZeit = (tag, hm) => ['+01:00', '+02:00'].map(o => new Date(tag + 'T' + hm + ':00' + o).getTime()).find(ms => hannover(ms)[1].startsWith(hm));
 const sortiert = o => Array.isArray(o) ? o.map(sortiert) : o && typeof o === 'object' ? Object.fromEntries(Object.keys(o).sort().map(k => [k, sortiert(o[k])])) : o;
 async function aufZeit(env, ms, t, hash = 'start') {
   const page = await env.ctx.newPage(); await page.clock.install({ time: new Date(ms) }); await page.clock.resume();   /* Uhr läuft ab ms weiter (Auftakt zählt Millisekunden) */
-  await page.addInitScript(t => { try { localStorage.setItem('culinarium-registre-tage', String(t)); } catch (e) {} }, t);
+  await page.addInitScript(t => { try { localStorage.setItem('wildside-registre-tage', String(t)); } catch (e) {} }, t);
   page.on('pageerror', e => env.fehler.push(env.id + ': Seitenfehler: ' + e.message));
   await page.goto(A + '?gruss=tag#' + hash, { waitUntil: 'load' }); await page.waitForFunction(BEREIT, null, { timeout: 15000 }); await page.waitForTimeout(300);
   return page;
@@ -477,7 +448,7 @@ C('P03', 'Nachrechnen', '«Als Tabelle sichern»: lädt eine CSV mit genau den B
   ok(z[0][0] === 'Art' && z[0].length === 21 && z.length - 1 === soll.besuche.length, 'Zeilen ' + (z.length - 1) + ' statt ' + soll.besuche.length);
   ok(z.slice(1).every(r => r[0] === 'Beispiel' && r.length === 21), 'nicht jede Zeile als Beispiel');
   const b0 = soll.besuche[0], r0 = z[1]; ok(r0[1] === b0.tag.split('-').reverse().join('.') && r0[2] === b0.z && +r0[9] === b0.dauer && +r0[10] === b0.seiten, 'erste Zeile ' + r0.join('|'));
-  ok(z[0][13] === 'Platz gebucht' && z[0][14] === 'Auf die Warteliste gesetzt' && z.slice(1).filter(r => r[13] === 'ja' || r[14] === 'ja').length === soll.besuche.filter(b => b.buchung).length, 'Buchung ja/nein');
+  ok(z[0][13] === 'Tisch reserviert' && z[0][14] === 'Feier angefragt' && z.slice(1).filter(r => r[13] === 'ja' || r[14] === 'ja').length === soll.besuche.filter(b => b.buchung).length, 'Buchung ja/nein');
   ok(!z.some(r => r.some(c => /^[=+@]/.test(c))), 'Formel in einer Zelle'); ok(await p.locator('#meldung .quit').filter({ hasText: 'Als Tabelle gesichert' }).count() === 1, 'Quittung'); await p.close();
   if (env.art !== 'chromium' || env.breite !== 1440) return;
   /* 450 echte Besuche als Tagesdatei im Wegwerf-Ordner des Test-Servers (über den Dienst würde die Grenze von 120 je Minute greifen) */
@@ -503,12 +474,12 @@ C('Q02', 'Rahmen', '«Zur Werkbank» erscheint nur, wenn aus der Werkbank geöff
   const ctx2 = await env.browser.newContext({ viewport: { width: env.breite, height: env.hoehe } }); p = await ctx2.newPage(); await p.goto(A + '?gruss=tag#start'); await p.waitForFunction(BEREIT); await p.waitForTimeout(600);
   ok(!(await p.evaluate(() => [...document.querySelectorAll('body > *')].some(e => e.shadowRoot && e.shadowRoot.querySelector('a')))), 'Knopf ohne Herkunft'); await ctx2.close();
 });
-C('Q03', 'Rahmen', 'Fehlermelder: ein Skriptfehler landet im Browser («culinarium-registre-fehler») und beim Dienst, Ladefehler nicht, höchstens 20', async env => {
+C('Q03', 'Rahmen', 'Fehlermelder: ein Skriptfehler landet im Browser («wildside-registre-fehler») und beim Dienst, Ladefehler nicht, höchstens 20', async env => {
   const ctx = await env.browser.newContext({ viewport: { width: env.breite, height: env.hoehe } }); await OHNE_BOT(ctx); const p = await ctx.newPage(); let beacon = 0;
   p.on('request', r => { if (/api\/registre\?fehler=1/.test(r.url()) && r.method() === 'POST') beacon++; });
   await p.goto(B + '?gruss=tag#start'); await p.waitForFunction(BEREIT);
   await p.evaluate(() => { for (let i = 0; i < 25; i++) setTimeout(() => { throw new Error('Probe ' + i); }, 0); const im = new Image(); im.src = 'gibtsnicht.png'; document.body.appendChild(im); });
-  await p.waitForTimeout(1200); const l = await p.evaluate(() => JSON.parse(localStorage.getItem('culinarium-registre-fehler') || '[]')); await ctx.close();
+  await p.waitForTimeout(1200); const l = await p.evaluate(() => JSON.parse(localStorage.getItem('wildside-registre-fehler') || '[]')); await ctx.close();
   ok(l.length === 20 && /Probe 0/.test(l[0].t) && !l.some(x => /gibtsnicht/.test(x.t)), 'Einträge ' + l.length); ok(beacon >= 1 && beacon <= 20, 'an den Dienst: ' + beacon);
 }, { server: true });
 C('Q04', 'Sicherheit', 'Dienst: fremde Herkunft 403, zu grosse Zeile 413, zu viele Anfragen 429, Quelltexte und Tagesdateien nie', async env => {
@@ -543,8 +514,8 @@ C('Q06', 'Rahmen', 'Unter der Sicherheitsregel der Online-Fassung (CSP wie verce
 function liste() {
   const R = fs.existsSync(path.join(HIER, 'abnahme-ergebnis.json')) ? JSON.parse(fs.readFileSync(path.join(HIER, 'abnahme-ergebnis.json'), 'utf8')) : null;
   const gruppen = {}; LISTE.forEach(c => (gruppen[c.bereich] = gruppen[c.bereich] || []).push(c));
-  let md = '---\ntags: [projekt, website]\nstatus: aktiv\n---\n\n# Funktionsliste Das Besucherbuch (Le Registre) · Culinarium Hannover\n\nVorlage: Das Besucherbuch der Taverne zum Schäfli (21.10.2026, nach dem Demo-Check), dahinter Schlössli, Gasterntal, Doldenhorn, Carlton-Europe (G10–G13) und Grand Beau-Rivage (Stand 16.10.2026); Rahmen aus der Oberfläche der Häuser (Kleid culinarium, «Die Bühne»). Jede Zeile ist zugleich eine Prüfung in `abnahme.js`. ' + (R ? `Letzter Lauf ${R.datum}: **${R.gruen} von ${R.gilt} Zeilen grün** in ${R.laeufe.length} Läufen (${R.laeufe.join(', ')}).` : 'Noch kein Lauf.') + '\n\n`✓` = in allen Läufen grün, in denen die Zeile gilt. «Rechner»/«Handy»: die Zeile gilt nur dort.\n\n';
-  for (const [b, cs] of Object.entries(gruppen)) { md += `## ${b}\n\n| Nr. | Was das Rivage tut, bei Culinarium genauso bedient | gilt | Stand |\n|---|---|---|---|\n`; for (const c of cs) { const r = R && R.zeilen[c.id]; md += `| ${c.id} | ${c.text.replace(/\|/g, '/')} | ${c.nurRechner ? 'Rechner' : c.nurHandy ? 'Handy' : c.server ? 'Dienst' : 'alle'} | ${r ? (r.rot ? '✗ ' + r.rot.join(', ') : '✓ ' + r.gruen + '/' + r.gilt) : '–'} |\n`; } md += '\n'; }
+  let md = '---\ntags: [projekt, website]\nstatus: aktiv\n---\n\n# Funktionsliste Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover\n\nVorlage: die Besucherliste des Culinarium Hannover (28.10.2026); Rahmen aus der Oberfläche der Häuser (Kleid wildside, «Die Bühne»). Jede Zeile ist zugleich eine Prüfung in `abnahme.js`. ' + (R ? `Letzter Lauf ${R.datum}: **${R.gruen} von ${R.gilt} Zeilen grün** in ${R.laeufe.length} Läufen (${R.laeufe.join(', ')}).` : 'Noch kein Lauf.') + '\n\n`✓` = in allen Läufen grün, in denen die Zeile gilt. «Rechner»/«Handy»: die Zeile gilt nur dort.\n\n';
+  for (const [b, cs] of Object.entries(gruppen)) { md += `## ${b}\n\n| Nr. | Was die Besucherliste tut, bei Walk on the Wild Side bedient | gilt | Stand |\n|---|---|---|---|\n`; for (const c of cs) { const r = R && R.zeilen[c.id]; md += `| ${c.id} | ${c.text.replace(/\|/g, '/')} | ${c.nurRechner ? 'Rechner' : c.nurHandy ? 'Handy' : c.server ? 'Dienst' : 'alle'} | ${r ? (r.rot ? '✗ ' + r.rot.join(', ') : '✓ ' + r.gruen + '/' + r.gilt) : '–'} |\n`; } md += '\n'; }
   fs.writeFileSync(path.join(HIER, 'FUNKTIONSLISTE.md'), md); return md;
 }
 async function lauf() {

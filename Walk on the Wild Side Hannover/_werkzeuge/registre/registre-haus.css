@@ -65,7 +65,7 @@
 }
 
 /* Bilder in jeder Liste in der Grösse aus dem Werkzeug-Master («Bilder in jeder Liste», 20.10.2026): Listenzeile 104 × 78, Handy 72 × 54, nie die alten
-   58 × 46 (das Schlössli stand noch auf 56 × 42). Gilt für Besuche (Seite, auf der der Besuch begann, Land klein darauf), Seiten, Ranglisten und den Weg. */
+   58 × 46 (ein früheres Haus stand noch auf 56 × 42). Gilt für Besuche (Seite, auf der der Besuch begann, Land klein darauf), Seiten, Ranglisten und den Weg. */
 .rg .sbild{width:104px;height:78px;border-radius:var(--wo-r2)}
 .rg .mit-bild{gap:16px}
 .rg .weg .sbild{width:72px;height:54px;border-radius:var(--wo-r3)}
@@ -91,7 +91,7 @@
 }
 
 /* Verlauf, «Woche für Woche»: bei 920–1180 px (zwei Blätter nebeneinander, Rand offen) war die Zeile 328 px breit und ragte bis zu 59 px aus dem Fenster
-   (selbst gefunden 21.10.2026, auch in der Vorlage des Schlössli). Jetzt rückt «n zum Tisch» unter den Balken, nichts ragt hinaus. */
+   (selbst gefunden 21.10.2026, auch in einer früheren Vorlage). Jetzt rückt «n zum Tisch» unter den Balken, nichts ragt hinaus. */
 .rg .zwei>*{min-width:0}
 @media (min-width:701px) and (max-width:1180px){
   .rg .wochen li{grid-template-columns:96px minmax(24px,1fr) 40px;gap:4px 10px}
@@ -101,7 +101,7 @@
 /* Demo-Check 21.10.2026 (selbst gefunden, Messung + Bild): seit die Listenbilder 104 × 78 gross sind, hatte der Name in den Ranglisten keinen Platz mehr.
    «Am meisten angesehen» zeigte schon bei 1440 px «Bar & Smoker…», «Gruppen und…», bei 920–1240 px fast nur noch Bilder; «Gekommen über» kürzte auf
    «Direkt aufg…», «Guide Mich…»; in der Besuchsliste fehlte die Dauer («5 Min. …»). Jetzt brechen Namen um (nie mitten im Wort), die Spalte mit Bild ist breiter,
-   und Blätter mit Bildlisten sowie der Vergleich stehen bei 701–1240 px untereinander (Lösung Schlössli-Demo-Check für den Vergleich). */
+   und Blätter mit Bildlisten sowie der Vergleich stehen bei 701–1240 px untereinander (Lösung Demo-Check eines früheren Hauses für den Vergleich). */
 .rg .rang__n{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:normal;word-break:normal;hyphens:manual}
 .rg .rang__n small{overflow:visible;text-overflow:clip}
 .rg .rang__n .mit-bild>span{overflow-wrap:normal;word-break:normal;hyphens:manual}
@@ -113,7 +113,7 @@
 @media (max-width:600px){
   .rg .rang li:has(.mit-bild){grid-template-columns:minmax(0,1.6fr) minmax(36px,.7fr) auto 34px}
 }
-/* Zierzeile «Das Besucherbuch · Taverne zum Schäfli» endete im Schäfli bei 901–1240 px als «… Taverne zum…» (Demo-Check 21.10.2026): bricht dort um wie am Handy */
+/* Zierzeile mit langem Hausnamen endete in einem früheren Haus bei 901–1240 px gekürzt (Demo-Check 21.10.2026): bricht dort um wie am Handy */
 @media (min-width:601px) and (max-width:1240px){
   .wo-sb .wo-sb__zier span{white-space:normal;overflow:visible;line-height:1.6}
   .wo-sb .wo-sb__zier i{display:none}
@@ -239,10 +239,12 @@
 /* Titel der Ansicht im Kopf: Prata ist höher als die Zeile, die Unterlängen lagen ausserhalb des Kastens (gemessen 31.10.2026); die Titel sind kurz und kürzen nie */
 .rg #kopf .wo-kopf__mitte b{overflow:visible;text-overflow:clip}
 /* Runder Knopf «Website ansehen» (Kopf bei schmalen Fenstern): die versteckte Beschriftung lag ausserhalb des Knopfs; der Name steht als aria-label */
-.rg #kopf .wo-kn--gold.wo-kn--klein>span{display:none}
+@media (min-width:901px) and (max-width:1240px){.rg #kopf .wo-kn--gold.wo-kn--klein>span{display:none}}
 /* Handy: die Wahlen über der Besuchsliste, Schrift optisch mittig (gemessen 1,1 px zu hoch) */
 @media (max-width:600px){.rg .wahl3.wo-seg.wahl3--filter button{padding:12px 14px 10px}}
 /* Karte eines Besuchs: der Ort bricht nie mitten im Wort («Hildeshei-m»); in schmalen Karten steht das Etikett über dem Ort */
 .rg .besuchsblatt h2{overflow-wrap:normal;word-break:normal;hyphens:manual}
 .rg .besuchsblatt__kopf{flex-wrap:wrap-reverse}
 .rg .besuchsblatt__kopf>div{flex:1 1 220px;min-width:0}
+/* Wahlen über der Besuchsliste: Zahlen ohne Tabellenbreite, sonst liess die breite «1» am Ende die Schrift optisch nach links rücken (gemessen 1,1 px bei «· 71») */
+.rg .wahl3--filter button{font-variant-numeric:proportional-nums}

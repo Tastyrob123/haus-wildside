@@ -41,7 +41,7 @@ const TITEL = Object.fromEntries(BEREICHE.filter(x => x[0]).map(x => [x[0], x[1]
 const HANNOVER = ['Hannover', 'Langenhagen', 'Garbsen', 'Laatzen', 'Seelze', 'Isernhagen', 'Lehrte', 'Hemmingen', 'Ronnenberg', 'Wunstorf', 'Burgdorf', 'Neustadt am Rübenberge', 'Barsinghausen', 'Springe', 'Gehrden', 'Pattensen', 'Sehnde', 'Uetze', 'Burgwedel', 'Wedemark', 'Wennigsen'];
 const WTAG = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
 /* Die Stube (La Maison): lokal liegt sie neben dem Besucherbuch (_werkzeuge/maison/), online unter /maison/ (wie im Doldenhorn; Andock-Datei der Stube: statik → maison) */
-/* Lokal immer auf ihrem eigenen Server (127.0.0.1, Port aus dem Kleid), nie auf dem Port des Besucherbuchs: dort fehlen ihre Stand-Wege (Fehlerbuch 10a, Schlössli/Schäfli 21.10.2026) */
+/* Lokal immer auf ihrem eigenen Server (127.0.0.1, Port aus dem Kleid), nie auf dem Port des Besucherbuchs: dort fehlen ihre Stand-Wege (Fehlerbuch 10a, frühere Häuser 21.10.2026) */
 const MAISON = /\/_werkzeuge\/registre\//.test(location.pathname)
   ? (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && window.WO_HAUS && WO_HAUS.ports ? 'http://127.0.0.1:' + WO_HAUS.ports.zentrale + '/_werkzeuge/maison/' : '../maison/') : '../../maison/';
 const MERK = 'wildside-nicht-zaehlen';   /* dieselbe Marke liest messung.js auf der Website (gleiche Adresse vorausgesetzt) */
@@ -212,7 +212,7 @@ function werteAus(sum) {
 /* ---------- Rahmen ---------- */
 /* Kopf, Rand, Leiste und Startbild kommen aus der Oberfläche der Häuser (_Werkzeuge/stamm/oberflaeche/, im Haus /assets/oberflaeche/, Kleid wildside,
    Rahmen aus dem Kleid; kein eigener Kopf und kein eigenes Startbild).
-   Ids, data-gehe und die Klick-Handler bleiben wie im Le Registre des Doldenhorn und des Schäfli. */
+   Ids, data-gehe und die Klick-Handler bleiben wie in den früheren Häusern. */
 const STUBE = MAISON;
 /* Namen der Werkzeuge: nur aus dem Kleid des Hauses (kleid/wildside.js → WO_HAUS.namen, einzige Stelle, gepflegt vom Chat der Zentrale), hier nie abgetippt.
    NAME groß am Satzanfang («Die Besucherliste»), KLEIN im Satz («die Besucherliste»; nur Nominativ und Akkusativ, damit jeder Artikel passt). */
@@ -258,9 +258,9 @@ function leiste() {
    je Ansicht ein eigenes Foto der Bar (assets/bild/<schlüssel>-480/-960.webp der Website, Bildregister BILD in website/bau.py),
    nie ein Foto, das die Ansicht darunter als Seitenbild zeigt (Memory «Hero nicht mit Material der Seite»):
    Übersicht das Eckschild bei Nacht (Aussenfoto aus dem Kleid), Besuche Momo giesst, Herkunft die rote Tür in den Raum, Zeit die volle Bar am Abend,
-   Seiten die NEGRONI-Glühbirnen, Verlauf die Decke über der Rückbar, Zum Tisch zwei Gläser stossen an, So wird gezählt die Rückbar mit Derya.
+   Seiten die NEGRONI-Glühbirnen, Verlauf die Decke über der Bar, Zum Tisch zwei Gläser stossen an, So wird gezählt die Flaschen der Bar.
    Die Website hat die Breiten 480 und 960 (nicht 640/1000 wie das Culinarium): srcset hier selbst, die Marke #b hält das Paket davon ab, eigene Breiten zu raten. */
-const BUEHNE = { start: ['schild-ecke', '50% 46%'], besuche: ['momo-giesst', '50% 40%'], herkunft: ['tuer-rot', '50% 45%'], zeit: ['voll', '50% 50%'], seiten: ['negroni', '50% 40%'], verlauf: ['decke-hoch', '50% 40%'], buchung: ['anstossen', '50% 45%'], zaehlung: ['rueckbar', '50% 45%'] };
+const BUEHNE = { start: ['schild-ecke', '50% 46%'], besuche: ['momo-giesst', '50% 40%'], herkunft: ['tuer-rot', '50% 45%'], zeit: ['voll', '50% 50%'], seiten: ['negroni', '50% 40%'], verlauf: ['decke-bar', '50% 40%'], buchung: ['anstossen', '50% 45%'], zaehlung: ['flaschen', '50% 45%'] };
 /* Startbild jeder Ansicht: WO.startbild, Übersicht «voll» mit dem Aussenfoto des Hauses, jede andere Ansicht «buehne» mit ihrem eigenen Bild */
 function kopf(mono, titel, satz, rechts = '', chips = '') {
   const [bild, lage] = BUEHNE[S.ansicht] || BUEHNE.start, voll = S.ansicht === 'start', b = '/assets/bild/' + bild;
@@ -281,7 +281,7 @@ function hinweisBeispiel() {
 }
 function gehe(ziel, wahl) {
   if (!TITEL[ziel]) ziel = 'start';
-  /* Besuch in der Liste wählen: nur die Karte rechts wechselt, die Seite bleibt, wo sie ist (Vorlage Grand Beau-Rivage, Robert 15.10.2026: «springe immer wieder nach oben») */
+  /* Besuch in der Liste wählen: nur die Karte rechts wechselt, die Seite bleibt, wo sie ist (Vorlage ersten Haus, Robert 15.10.2026: «springe immer wieder nach oben») */
   const fach = $('#ansicht .detail');
   if (ziel === 'besuche' && S.ansicht === 'besuche' && wahl !== undefined && fach && S.d.besuche[+wahl]) {
     S.wahl = +wahl;
@@ -400,7 +400,7 @@ function zeichne(ruhig) {
   document.title = (TITEL[S.ansicht] || NAME) + ' · ' + NAME + ' · ' + WO.haus.name;
   schweben(el, ruhig);
 }
-/* Schweben (Gefühl der Carlton-Seiten, Rezeptur des Le Registre im Grand Beau-Rivage, Robert 16.10.2026: «darf nicht an den Scroll geknüpft sein, muss luxuriös
+/* Schweben (Gefühl der Carlton-Seiten, Rezeptur des Le Registre im ersten Haus, Robert 16.10.2026: «darf nicht an den Scroll geknüpft sein, muss luxuriös
    reingeschwebt kommen»): Sobald ein Blatt am unteren Rand auftaucht, schwebt es nach der Uhr an seinen Platz (.rg-da). Balken und Säulen wachsen erst, wenn ihr Blatt
    gut zur Hälfte im Bild ist (.rg-los). */
 let IO = null, IO_LOS = null;
@@ -640,7 +640,7 @@ function buchung() {
   </div>`;
   return aus;
 }
-/* Weg zum Tisch: dieselben Stufen und Namen liest La Maison (Fehlerbuch 10a, Stube Schäfli: nie eine eigene Ableitung, kein Anteil über 100 %).
+/* Weg zum Tisch: dieselben Stufen und Namen liest La Maison (Fehlerbuch 10a, Stube eines früheren Hauses: nie eine eigene Ableitung, kein Anteil über 100 %).
    Besuche → «Besuch» oder «Feiern» geöffnet (Aufrufe der beiden Seiten, auf denen reserviert und angefragt wird) → Tisch reserviert oder Feier angefragt. */
 function trichter(w) {
   const s = S.d.summe.besuche || 1, auf = S.d.seiten.filter(x => x.s === 'besuch.html' || x.s === 'tafel.html').reduce((a, x) => a + (x.n || 0), 0), platz = Math.min(auf, S.d.summe.buchung || 0);
@@ -699,7 +699,7 @@ async function zeichenLaden() {   /* die Wortmarke der Bar aus dem Kleid (WO_HAU
   window.BG_REGISTRE_STAND = () => JSON.parse(JSON.stringify(Object.assign({ _ablage: S.ablage, _uhr: S.uhr }, S.d)));   /* nur lesen: was gerade angezeigt wird (Prüfläufe) */
 })();
 
-/* Lange Besuche (Schäfli 21.10.2026, selbst gefunden bei 1366 × 650): ist die Karte eines Besuchs höher als der Platz zwischen Kopf und Leiste, klebte sie oben
+/* Lange Besuche (früheres Haus 21.10.2026, selbst gefunden bei 1366 × 650): ist die Karte eines Besuchs höher als der Platz zwischen Kopf und Leiste, klebte sie oben
    und ihr Ende (der Weg, der Hinweis) lag unter der Leiste, nie erreichbar. Dann klebt sie so, dass ihr Ende über der Leiste steht; beim Scrollen läuft sie
    bis dorthin mit. Passt sie, bleibt alles wie in den anderen Häusern (oben unter dem Kopf). Nur am Rechner (ab 1181 px), nur über top. */
 (function () {

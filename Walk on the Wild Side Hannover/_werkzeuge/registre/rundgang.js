@@ -1,4 +1,4 @@
-/* Kurzer Rundgang durch die Besucherliste · Walk on the Wild Side Hannover (Kopie der Besucherliste des Culinarium Hannover; Karte und Schild im Kleid des Hauses wie im Tresen; Vorlage: assets/js/rundgang.js des Grand Beau-Rivage, Robert 16.10.2026: «einmal ganz kurz zeigen, hier kannst du das machen,
+/* Kurzer Rundgang durch die Besucherliste · Walk on the Wild Side Hannover (Kopie der Besucherliste des Culinarium Hannover; Karte und Schild im Kleid des Hauses wie im Tresen; Vorlage: assets/js/rundgang.js des ersten Hauses, Robert 16.10.2026: «einmal ganz kurz zeigen, hier kannst du das machen,
    da das, damit man weiss, wo man gelandet ist»). Ein Lichtkegel liegt auf dem echten Bedienelement, daneben eine Karte mit zwei, drei Sätzen.
    Kein Start von selbst: unten rechts erscheint ein Schild «Kurzer Rundgang» (fünf Sekunden, die Maus darauf hält es), dann zieht es sich zurück.
    Wieder aufrufen: «Kurzer Rundgang» im Rand oder ?rundgang (startet direkt). Automatische Prüfungen (navigator.webdriver) und eingebettete Ansichten sehen nichts. */
