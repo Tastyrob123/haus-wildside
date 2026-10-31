@@ -491,6 +491,13 @@ def nach_bau():
     text_mitte.anwenden(ROOT)
     import bild_mass   # Bilder in der gezeigten Grösse, damit der Tab in WebKit nicht am Speicher scheitert (Abnahme-Tor 4, 30.10.2026)
     bild_mass.anwenden(ROOT)
+    try:   # Knopfschrift in Chromium und WebKit gleich mittig (Baustein von Werkbank Papier, papier_nach.knopf_mitte, nach text_mitte)
+        import papier_nach as _pn
+        for _s in ('werkbank/index.html', 'werkbank/ki.html', 'werkbank/karte.html', 'werkbank/impressum.html', 'werkbank/geprueft/index.html', 'befund/index.html'):
+            if os.path.exists(os.path.join(ROOT, _s)):
+                _pn.knopf_mitte(os.path.join(ROOT, _s))
+    except Exception as _f:
+        print('knopf_mitte nicht gesetzt:', _f)
     import kleid_wild   # zuletzt: Schriftfamilien des Kits auf Prata und Hanken, Reste der Vorlage im Kleid der Bar (Wild Side 31.10.2026)
     kleid_wild.anwenden(ROOT)
 
