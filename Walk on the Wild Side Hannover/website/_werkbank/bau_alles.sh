@@ -1,37 +1,52 @@
 #!/bin/bash
-# Werkbank Culinarium: das ganze Paket bauen (Werkbank-Chat 28.10.2026). Vorlage: bau_alles.sh des Schäfli (dort _Werkbank-Kit/alles.sh), ergänzt um die eigenen Schritte.
+# Werkbank Walk on the Wild Side: das ganze Paket bauen (Nachtbau 31.10.2026, Vorlage bau_alles.sh des Culinarium).
 #   bash website/_werkbank/bau_alles.sh [--ohne-aufnahmen]
 # Revier: website/_werkbank/ ist der Projektordner des Kits; die Website liegt eine Ebene höher und wird nur gelesen (assets ist ein Verweis).
-# Voraussetzung: Vorschau-Server läuft:  python3 website/_werkbank/serve.py 9088   (Kit unverändert, ein Browser zur Zeit, headless; nichts geht online)
+# Voraussetzung: Vorschau-Server läuft:  python3 website/_werkbank/serve.py 9088, Werkzeug-Server 9081–9087 (cloud/server.sh). Kit unverändert, headless, nichts geht online.
+# Teile: Kern (Startseite, Befund, KI, Karte, Geprüft), Papier (Unterlagen, Drucksachen, Untersetzer, Sticker, Beigaben, Postkarten), Feed/Mails/Dateien.
 set -e
-K=~/Desktop/Website-Projekte/_Werkbank-Kit
+K="${WERKBANK_KIT:-$(cd "$(dirname "$0")/../../.." && pwd)/_Werkbank-Kit}"
 P="$(cd "$(dirname "$0")" && pwd)"; cd "$P"
-export PYTHONPATH="$K" WB_PORT=9088
-python3 _werkbank/druckschrift.py > /dev/null           # feste Schnitte von Fraunces und Urbanist (alle Achsen)
+export PYTHONPATH="$K:$P/_werkbank" WB_PORT=9088
 python3 "$K/kern.py" "$P" | grep -v "Schrift fehlt" || true
-python3 "$K/schriften.py" "$P" > /dev/null
+python3 "$K/schriften.py" "$P" > /dev/null || true
+timeout 300 python3 _werkbank/druckschrift.py > /dev/null           # Prata und Hanken als feste Druckschnitte (nach schriften.py, das die Kit-Namen anlegt)
 if [ "$1" != "--ohne-aufnahmen" ]; then
-  node _werkbank/ansicht_lang.js "$P"                   # jede Seite am Rechner und am Handy
-  node _werkbank/sb_ideen.js                            # Ideen und Gäste-Funktionen
-  node _werkbank/sb_werkzeuge.js                        # Bildschirme der sieben Werkzeuge (Adressen aus _werkbank/werkzeuge.json)
+  timeout 900 node _werkbank/ansicht_lang.js "$P"                    # jede Seite der Website am Rechner und am Handy
+  timeout 900 node _werkbank/sb_ideen.js                             # Ideen und Gäste-Funktionen
+  timeout 900 node _werkbank/sb_werkzeuge.js                         # Bildschirme der sieben Werkzeuge (Adressen aus _werkbank/werkzeuge.json)
+  timeout 300 node _werkbank/heute/befund_bilder.js || true          # nur mit _quelle/: Aufnahmen für den Befund (liegen danach in _werkbank/heute/)
 fi
-python3 _werkbank/sb_heute.py                           # heute (Instagram, Aufnahmen des Spähers) und neu
-python3 _werkbank/sb_karten.py; [ -d unterlagen/pdf ] && python3 "$K/unterlagen.py" "$P" | grep -v "Schrift fehlt" || true   # Karten: heute und neu (PDFs von La Carte)
-python3 _werkbank/papier.py "$P"; node "$K/papier_druck.js" "$P"; python3 "$K/papier_seiten.py" "$P" | grep -v "Schrift fehlt"   # Drucksachen und Untersetzer
-python3 _werkbank/papier_nach.py   # Untersetzer-Seite: «je 94 mm», Du, ß (Tor 4, 30.10.2026)
-PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/sticker.py "$P"; PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/beigaben.py "$P"; PYTHONPATH="$K:$P/_werkbank" node _werkbank/sticker_druck.js "$P"; PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/sticker.py "$P" --seite; PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/beigaben.py "$P" --seite   # Sticker und Beigaben (Prüfchat Gestaltung 29.10.2026)
-PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/postkarten.py "$P"; PYTHONPATH="$K:$P/_werkbank" node _werkbank/postkarten_druck.js "$P"; PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/postkarten.py "$P" --seite   # 15 Postkarten
-python3 "$K/feed.py" "$P"; node "$K/feed_druck.js" "$P"; python3 "$K/feed.py" "$P"; node "$K/feed_druck.js" "$P" --handy   # Feed
-PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/feed_leicht.py "$P" 2>/dev/null || PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/feed_leicht.py   # gleich nach feed.py (imprimerie-sperrung 29.10.2026)
-node _werkbank/geraete/schirme.js feed                  # Feed im Handy der Werkbank
-python3 mails/_src/bau.py; node mails/_src/aufnahme.js  # zehn Mails
-python3 "$K/material.py" "$P" | grep -v "Schrift fehlt" || true   # Dateien
-PYTHONPATH="$K:$P/_werkbank" python3 _werkbank/material_mehr.py "$P"   # Sticker und Beigaben in den Dateien
+python3 _werkbank/sb_heute.py                                        # heute (Instagram) und neu
+# ---------- Papier (Werkbank Papier) ----------
+timeout 300 python3 _werkbank/papier.py "$P"
+timeout 900 node "$K/papier_druck.js" "$P" > /dev/null
+timeout 300 python3 "$K/papier_seiten.py" "$P" | grep -v "Schrift fehlt" || true
+timeout 600 python3 _werkbank/sb_karten.py
+timeout 600 python3 _werkbank/sb_karten.py --seite | grep -v "Schrift fehlt" || true
+timeout 120 python3 _werkbank/sticker.py "$P"
+timeout 120 python3 _werkbank/beigaben.py "$P"
+rm -rf _werkbank/roh/einzel-sticker
+timeout 900 node _werkbank/sticker_druck.js "$P" > /dev/null
+timeout 300 python3 _werkbank/sticker.py "$P" --seite
+timeout 300 python3 _werkbank/beigaben.py "$P" --seite
+timeout 120 python3 _werkbank/postkarten.py "$P"
+timeout 900 node _werkbank/postkarten_druck.js "$P" > /dev/null
+timeout 300 python3 _werkbank/postkarten.py "$P" --seite
+timeout 120 python3 _werkbank/papier_nach.py
+# ---------- Feed, Mails, Dateien ----------
+python3 "$K/feed.py" "$P"; node "$K/feed_druck.js" "$P"; python3 "$K/feed.py" "$P"; node "$K/feed_druck.js" "$P" --handy
+python3 _werkbank/feed_leicht.py "$P" 2>/dev/null || python3 _werkbank/feed_leicht.py
+node _werkbank/geraete/schirme.js feed || true
+python3 mails/_src/bau.py; node mails/_src/aufnahme.js
+python3 "$K/material.py" "$P" | grep -v "Schrift fehlt" || true
+python3 _werkbank/material_mehr.py "$P"
 node "$K/ziele.js" "$P" || true
-node _werkbank/sb_strom.js || true                      # Befund, Prüfbericht, Karte «Ein Vorschlag.», Markenbuch für die Objekte
-PYTHONPATH="$K:_werkbank" python3 _werkbank/objekte_bau.py "$P"
-python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"      # die Werkbank (ruft haus.nach_bau: Kapitel, Befund, KI-Seite, Ihr-Form)
-node _werkbank/sb_strom.js
-PYTHONPATH="$K:_werkbank" python3 _werkbank/objekte_bau.py "$P"
+# ---------- Kern: Startseite, Befund, KI, Karte «Ein Vorschlag.», Geprüft ----------
+node _werkbank/sb_strom.js || true                                   # Befund, Prüfbericht, Karte, Markenbuch für die Objekte
+python3 _werkbank/objekte_bau.py "$P"
+python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"                    # die Werkbank (ruft haus.nach_bau: Kapitel, Befund, KI-Seite, Ihr-Form, Kleid)
+node _werkbank/sb_strom.js || true
+python3 _werkbank/objekte_bau.py "$P"
 python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"
 echo "fertig: http://127.0.0.1:9088/werkbank/"

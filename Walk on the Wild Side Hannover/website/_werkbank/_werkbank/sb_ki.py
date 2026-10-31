@@ -96,7 +96,7 @@ def geraete():
 
 
 def hauptteil():
-    zahlen = ''.join(f'<div class="ki-zahl" data-a="auf" style="--i:{i}"><p class="ki-zahl__n"><span class="odo" data-z="{z}">{z}</span></p><p class="ki-zahl__t">{e(t)}</p></div>' for i, (z, t) in enumerate(ZAHLEN))
+    zahlen = ''.join(f'<div class="ki-zahl" data-a="auf" style="--i:{i}"><p class="ki-zahl__n"><span data-z="{z}">{z}</span></p><p class="ki-zahl__t">{e(t)}</p></div>' for i, (z, t) in enumerate(ZAHLEN))
     kosten = ''.join(f'<li class="mn-p"><p class="mn-p__z"><b>{e(n)}</b><i></i><span>{e(w)}</span></p><p class="mn-p__s">{e(KOSTEN_OFFEN)}</p></li>' for n, w, *_x in STELLEN)
     stellen = ''
     for i, (n, w, b, tut, an, sp, ohne) in enumerate(STELLEN):

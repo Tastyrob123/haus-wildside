@@ -24,17 +24,17 @@ SCHRIFTEN = [('Große Zeilen', 'a', 'Prata', 'Aa', 'Du sagst, was du magst.', 'E
 
 _FB = {f['k']: f for f in _LV['farben']}
 GRUPPEN = [  # Gruppe, Töne (Schlüssel, Name, Wert): die Farben aus dem Markenbuch (livre.json › farben), Werte der Website (wild.css)
-    ('Die Bar bei Nacht', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('nacht', 'platte', 'platte-hell')]),
-    ('Die weißen Plakate', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('creme', 'creme-2', 'dunkel')]),
-    ('Eckschild und Wortmarke', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('gold', 'gold-tief', 'rot')]),
+    ('Die Bar bei Nacht', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('nacht', 'platte', 'holz')]),
+    ('Die weißen Plakate', [(k, {'dunkel': 'Tinte'}.get(k, _FB[k]['n']), _FB[k]['h'].lower()) for k in ('creme', 'dunkel')]),
+    ('Eckschild und Wortmarke', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('gold', 'rot')]),
     ('Nur bei den DJ-Abenden', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('ultramarin', 'plakatrot')]),
 ]
 F = {k: n for _, l in GRUPPEN for k, n, _ in l}
 HERKUNFT = [  # Foto der Website, Titel, Töne daraus (Markenbuch › gruppen)
     ('pf-schild-1440', 'Die Schilder an der Hausecke', ['nacht', 'platte', 'gold']),
-    ('negroni-1536', 'NEGRONI aus Glühbirnen', ['gold', 'gold-tief']),
+    ('negroni-1536', 'NEGRONI aus Glühbirnen', ['gold']),
     ('p-1710-1408', 'SESSION-Plakat, Oktober 2026', ['plakatrot', 'ultramarin', 'creme']),
-    ('decke-raum-1600', 'Der Raum unter der Decke', ['platte-hell', 'creme-2']),
+    ('decke-raum-1600', 'Der Raum unter der Decke', ['holz', 'creme']),
 ]
 LAGE = {'pf-schild-1440': (.5, .4), 'p-1710-1408': (.5, .3), 'negroni-1536': (.5, .5), 'decke-raum-1600': (.5, .45)}
 BILDER = [('hs-' + k, os.path.join(MB, k + '.webp'), 760, dict(schnitt=1, lage=LAGE.get(k, (.5, .5)))) for k, _, _ in HERKUNFT]
@@ -89,7 +89,7 @@ def abschnitt(h):
         <div class="hs2-schriften">{schriften}</div>
       </div>
       <div class="hs2-z">
-        <p class="hs2-etik"><span>Farben</span><span>elf Töne aus dem Markenbuch</span></p>
+        <p class="hs2-etik"><span>Farben</span><span>neun Töne aus dem Markenbuch</span></p>
         <div class="hs2-band">{band}</div>
       </div>
       <div class="hs2-z">
