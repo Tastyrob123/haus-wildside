@@ -41,7 +41,7 @@ Nur `wildside-maison` schreibt hier. Wer etwas am Kleid braucht, löst es im eig
 | Datum | Was | Für wen |
 |---|---|---|
 | 31.10.2026 | Kleid Wild Side angelegt (Oberchef): Farben, Schriften Prata/Hanken, Eckschild-Form, Wortmarke der Bar im Ring | alle sieben |
-| 31.10.2026 | `oberflaeche.js` Startbild-Foto: Stufen aus `WO_HAUS.fotoStufen` statt fest 640/1000 (die Website des Wild Side hat 480/960/1536; vorher 404 auf `schild-ecke-640/1000.webp` in jedem Startbild), Alt-Text aus `WO_HAUS.fotoAlt`; `kleid/wildside.js` beide Werte neu | alle sieben |
+| 31.10.2026 | `oberflaeche.js` Startbild-Foto: Stufen aus `WO_HAUS.fotoStufen` statt fest 640/1000 (die Website des Wild Side hat 480/960/1536; vorher 404 auf `schild-ecke-640/1000.webp` in jedem Startbild), Alt-Text aus `WO_HAUS.fotoAlt`; `kleid/wildside.js` beide Werte neu. Nachgeschärft (Hinweis Oberchef/Besucherliste): grösste Stufe = die im Weg des Fotos genannte, kleine = 480 nur wenn kleiner; in allen sieben Werkzeugen und der Musterseite keine 404 mehr | alle sieben |
 | 31.10.2026 | `kleid/wildside.css`: Knopf «Bereiche» am Handy (bis 900 px) als Nebenweg des Eckschilds (Nacht, Gold-Haarlinie, 14 px) statt goldener Pille | alle sieben |
 | 31.10.2026 | `kleid/wildside.css`: Hauptknopf `.wo-kn--gold` mit Creme-Knauf und rotem Pfeil (vorher dunkler Knauf aus dem Stamm), ohne hellen Schriftschatten | alle sieben |
 | 28.10.2026 | Angelegt: Paket aus dem Schäfli, Kleid Culinarium, Zeichen «C» | alle sieben |
