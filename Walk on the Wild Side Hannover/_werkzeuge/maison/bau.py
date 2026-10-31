@@ -305,7 +305,7 @@ try:
     _st = json.load(open(os.path.join(WZ, 'registre', 'stufen.json'), encoding='utf-8'))
     STUFE = _st['maison']; STUFE_SEITE = _st.get('seite') or 'besuch.html'
 except (OSError, ValueError, KeyError):
-    STUFE = ['«Bis 2 Uhr» geöffnet', 'reserviert oder Feier angefragt', 'an der Bar', 'zählt das Team am Abend, nicht die Website']   # Wege der Website: besuch.html → Reservieren / Feiern anfragen
+    STUFE = ['«Bis 2 Uhr» geöffnet', 'reserviert oder Feier angefragt', 'an der Bar', 'zählt das Team, nicht die Website']   # Wege der Website: besuch.html → Reservieren / Feiern anfragen
     STUFE_SEITE = 'besuch.html'
 
 
@@ -536,8 +536,8 @@ def seite(online, v):
     # Empfang wie beim Grand Beau-Rivage: die Fenster, darüber in der Mitte der Kopf (Wortmarke · Bar · Ort, «Der Tresen» gross, Gruss, Datum) und die
     # Zahlenzeile der Besucherliste (Taste 6). Keine «x», getrennt mit «·»; «Beispiel» leise in der Datumszeile.
     reg = auf['registre']
-    zeile = (f'<p class="m-f5__zeile"><span>Heute</span><b data-stand="registre-heute">–</b>Besuche{pkt}<b data-stand="registre-buchung">–</b>zum Tisch{pkt}'
-             + (f'<span class="hz-z"><a href="{e(reg)}" data-taste="6">{e(W["registre"]["name"])} öffnen{PF}</a></span>' if reg else f'<span class="hz-z"><a href="#registre" data-taste="6">{e(W["registre"]["name"])}{PF}</a></span>') + '</p>')
+    zeile = (f'<div class="m-f5__zeile"><span>Heute</span><b data-stand="registre-heute">–</b>Besuche{pkt}<b data-stand="registre-buchung">–</b>zum Tisch{pkt}'
+             + (f'<span class="hz-z"><a href="{e(reg)}" data-taste="6">{e(W["registre"]["name"])} öffnen{PF}</a></span>' if reg else f'<span class="hz-z"><a href="#registre" data-taste="6">{e(W["registre"]["name"])}{PF}</a></span>') + '</div>')   # Kennzahlen als Zeile (div): kein Lesetext
     empfang = (f'<section class="m-empfang m-f5" id="oben">'
                f'<nav class="m-f5__reihe" aria-label="Alle Werkzeuge"><ol class="hz-tafel">{"".join(fenster(i, k) for i, k in enumerate(REIHE[:5]))}</ol></nav>'
                f'<div class="m-f5__oben">{wortmarke("m-f5__wm")}<p class="m-f5__ort"><span>{e(BAR)}</span>{pkt}<span>{e(STRASSE)}</span>{pkt}<span>{e(ORT)}</span></p>'
@@ -675,6 +675,7 @@ def rundgang():
                      ('#b99a5c', '#D8B264'), ('#fffdf9', '#FFFBF5'), ('#f7f1e5', '#F7F1E7'), ('#f4ecdc', '#F2E9DC'), ('210,191,152', '216,178,100'),
                      ('130,108,53', '122,92,36'), ('10,12,22', '19,14,13'), ('10,13,26', '19,14,13'), ('26,29,40', '28,21,19'), ('27,32,51', '28,21,19')):
         s = s.replace(alt, neu)
+    s = s.replace('border-radius:999px', 'border-radius:14px')   # Eckschild: Knöpfe und Schild als Platte mit 14 px, keine Pillen
     s = re.sub(r'^/\*[^\n]*\*/\n', '', s, count=1)
     if re.search(r'Barlow|Cormorant|Cinzel|Gasterntal|Fenster ist|#2c3136|#485056|Instrument|DM Mono|Fraunces', s):
         raise SystemExit('rundgang.js: Angabe der Vorlage übrig')

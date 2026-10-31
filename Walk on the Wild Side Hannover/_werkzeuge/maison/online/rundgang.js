@@ -50,7 +50,7 @@
     '.rdg-karte .rdg-weg{display:flex;gap:5px;flex:1 1 auto;min-width:64px}.rdg-karte .rdg-weg b{display:block;height:3px;flex:1 1 0;min-width:6px;max-width:26px;border-radius:2px;background:rgba(28,21,19,.14)}.rdg-karte .rdg-weg b.da{background:#D8B264}' +
     '.rdg-karte .rdg-zu{flex:none;margin:0;border:0;background:none;padding:6px 2px;font:500 10px/1 Hanken,"Helvetica Neue",Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7A5C24;cursor:pointer}' +
     '.rdg-karte .rdg-zu:hover{color:#1C1513}' +
-    '.rdg-karte .rdg-los{flex:none;margin:0;display:inline-flex;align-items:center;gap:12px;height:42px;padding:0 6px 0 18px;border:0;border-radius:999px;cursor:pointer;' +
+    '.rdg-karte .rdg-los{flex:none;margin:0;display:inline-flex;align-items:center;gap:12px;height:42px;padding:0 6px 0 18px;border:0;border-radius:14px;cursor:pointer;' +
       'font:500 10px/1 Hanken,"Helvetica Neue",Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#F2E9DC!important;' +
       'background:linear-gradient(180deg,#7A5C24,#1C1513 55%,#130E0D);box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 10px 18px -10px rgba(19,14,13,.8)}' +
     '.rdg-karte .rdg-los i{display:grid;margin:0;place-items:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F1E2BE,#D8B264 55%,#D8B264);' +
@@ -65,7 +65,7 @@
     '.rdg-karte .rdg-fuss{flex-wrap:nowrap!important}' +
     '.rdg-karte .rdg-zu,.rdg-karte .rdg-los{font:500 10px/1 Hanken,"Helvetica Neue",Arial,sans-serif!important;letter-spacing:.14em!important;text-transform:uppercase!important;min-width:0!important;width:auto!important;outline:0;border:0!important;margin:0!important}' +
     '.rdg-karte .rdg-zu{height:auto!important;padding:6px 2px!important;background:none!important;box-shadow:none!important;color:#7A5C24!important}' +
-    '.rdg-karte .rdg-los{height:42px!important;padding:0 6px 0 18px!important;letter-spacing:.16em!important;border-radius:999px!important}' +
+    '.rdg-karte .rdg-los{height:42px!important;padding:0 6px 0 18px!important;letter-spacing:.16em!important;border-radius:14px!important}' +
     '.rdg-karte .rdg-los i{width:30px!important;height:30px!important;flex:none!important}' +
     '@media (max-width:700px){.rdg-karte{left:16px!important;right:16px;top:auto!important;bottom:16px;width:auto;--rx:0!important;--ry:0!important}}' +
     '@media (prefers-reduced-motion:reduce){.rdg-karte{animation:none}}';
@@ -206,7 +206,7 @@
 
   var SCHILD_CSS = '' +
     '.rdg-schild{position:fixed;right:24px;bottom:24px;z-index:2147482990;display:flex;align-items:center;gap:14px;box-sizing:border-box;' +
-      'padding:10px 10px 10px 18px;border-radius:999px;color:#1C1513;background:linear-gradient(180deg,#FFFBF5,#F2E9DC);' +
+      'padding:10px 10px 10px 18px;border-radius:14px;color:#1C1513;background:linear-gradient(180deg,#FFFBF5,#F2E9DC);' +
       'box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(122,92,36,.28),0 18px 34px -16px rgba(19,14,13,.55),0 6px 14px -8px rgba(19,14,13,.35);' +
       'transform:translate3d(0,0,0);transition:transform .55s cubic-bezier(.2,.8,.2,1);animation:rdg-schild-auf .7s cubic-bezier(.2,.9,.25,1.15) both}' +
     '@keyframes rdg-schild-auf{from{transform:translate3d(0,calc(100% + 40px),0)}to{transform:translate3d(0,0,0)}}' +
@@ -214,7 +214,7 @@
     '.rdg-schild__t{display:flex;flex-direction:column;gap:4px;line-height:1}' +
     '.rdg-schild__t small{font:500 9px/1 Hanken,"Helvetica Neue",Arial,sans-serif!important;letter-spacing:.2em!important;text-transform:uppercase;color:#7A5C24}' +
     '.rdg-schild__t b{font:400 18px/1 Prata,Georgia,serif!important;letter-spacing:0!important;color:#1C1513}' +
-    '.rdg-schild .rdg-los{flex:none;margin:0!important;display:inline-flex;align-items:center;gap:10px;height:38px!important;padding:0 5px 0 15px!important;border:0!important;border-radius:999px!important;cursor:pointer;' +
+    '.rdg-schild .rdg-los{flex:none;margin:0!important;display:inline-flex;align-items:center;gap:10px;height:38px!important;padding:0 5px 0 15px!important;border:0!important;border-radius:14px!important;cursor:pointer;' +
       'font:500 9.5px/1 Hanken,"Helvetica Neue",Arial,sans-serif!important;letter-spacing:.16em!important;text-transform:uppercase!important;color:#F2E9DC!important;' +
       'background:linear-gradient(180deg,#7A5C24,#1C1513 55%,#130E0D)!important;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 8px 16px -10px rgba(19,14,13,.8)!important}' +
     '.rdg-schild .rdg-los i{display:grid;place-items:center;width:28px!important;height:28px!important;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F1E2BE,#D8B264 55%,#D8B264);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 3px 6px -2px rgba(0,0,0,.45);transition:transform .2s}' +

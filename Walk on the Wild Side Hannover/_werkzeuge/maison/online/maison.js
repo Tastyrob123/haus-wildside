@@ -61,13 +61,13 @@
   var zeige = function (i) {
     will = i; if (i === jetzt) return;
     var el = stueck(i); if (!el) { el = stueck('ruhe'); i = 'ruhe'; }
-    if (!el) { Z.forEach(function (z, j) { z.classList.toggle('an', j === will); }); jetzt = will; return; }   /* Fassung ohne Rahmen: nur die Zeile markieren */
+    if (!el) { Z.forEach(function (z, j) { z.classList.toggle('zeigt', j === will); }); jetzt = will; return; }   /* Fassung ohne Rahmen: nur die Zeile markieren (Klasse «zeigt», nicht «an»: Zeigen ist keine Ansicht, Prüftor 31.10.2026) */
     if (el.tagName === 'IMG' && el.loading === 'lazy') el.loading = 'eager';
     var fertig = function () {
       if (will !== i && !(i === 'ruhe' && will === 'ruhe')) return;
       B.forEach(function (b) { b.classList.toggle('an', b === el); });
       U.forEach(function (u) { u.classList.toggle('an', u.getAttribute('data-vorschau') === String(i)); });
-      Z.forEach(function (z, j) { z.classList.toggle('an', j === i); });
+      Z.forEach(function (z, j) { z.classList.toggle('zeigt', j === i); });
       jetzt = i;
     };
     (el.tagName === 'IMG' && el.decode ? el.decode() : Promise.resolve()).then(fertig, fertig);
@@ -151,7 +151,7 @@
     var punkte = {};
     $$('.m-insel__p').forEach(function (a) { punkte[a.getAttribute('href').slice(1)] = a; });
     var sio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { var a = punkte[e.target.id]; if (a) a.classList.toggle('an', e.isIntersecting); });
+      es.forEach(function (e) { var a = punkte[e.target.id]; if (a) a.classList.toggle('im-blick', e.isIntersecting); });   /* Saal im Blick (M01); nicht «an»: Rollen ist kein Wechsel der Ansicht */
     }, { rootMargin: '-45% 0px -45% 0px' });
     Object.keys(punkte).forEach(function (id) { var s = document.getElementById(id); if (s) sio.observe(s); });
   } else {
