@@ -1,4 +1,4 @@
-/* Anleitung Das Besucherbuch · Culinarium Hannover: Bild gross mit Klick, Esc schliesst; das Zeichen des Hauses (das «C» der Wortmarke, oberflaeche/kleid/wildside-zeichen.svg)
+/* Anleitung Die Besucherliste · Walk on the Wild Side Hannover: Bild gross mit Klick, Esc schliesst; das Zeichen des Hauses (die Wortmarke der Bar, oberflaeche/kleid/wildside-zeichen.svg)
    (eigene Datei: online laufen eingebettete Skripte ohne Prüfsumme nicht). */
 (function () {
   var g = document.getElementById('gross'), im = g.querySelector('img');

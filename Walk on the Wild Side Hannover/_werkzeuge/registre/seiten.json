@@ -1,11 +1,10 @@
 {
  "index.html": "Startseite",
- "abend.html": "Der Abend",
- "abende.html": "Alle Abende",
- "bar.html": "Das Haus",
- "leute.html": "Team",
- "weg.html": "Der Weg",
- "dirty-chicken.html": "Dirty Chicken",
+ "drinks.html": "Drinks",
+ "programm.html": "Programm",
+ "tafel.html": "Feiern",
+ "haus.html": "Das Haus",
+ "besuch.html": "Besuch",
  "impressum.html": "Impressum",
  "datenschutz.html": "Datenschutz"
 }

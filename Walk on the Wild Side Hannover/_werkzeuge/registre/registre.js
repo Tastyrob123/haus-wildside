@@ -1,9 +1,9 @@
-/* Das Besucherbuch (Le Registre) · Culinarium Hannover (Tasty Studios 28.10.2026, Werkzeug 6). Das Haus sieht, wer seine Website besucht:
+/* Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover (Tasty Studios, Nachtbau 31.10.2026, Werkzeug 6). Die Bar sieht, wer ihre Website besucht:
    woher (Land, Ort), wann (Tag, Uhrzeit, Wochentag), was (Seiten, Zeit je Seite), wie es sich entwickelt (Verlauf) und ob ein Besuch
-   weiterführt (Platz gebucht, auf die Warteliste gesetzt, Anruf in der Bar, Instagram, weiter zur Bar oder zu Dirty Chicken, Route).
+   weiterführt (Tisch reserviert, Feier angefragt, Knopf «Reservieren», Anruf in der Bar, Instagram, weiter zu Culinarium oder Dirty Chicken, Karte).
    Nie ein Name, keine Adresse der Verbindung, kein Cookie.
-   Kopie von Das Besucherbuch der Taverne zum Schäfli (Bau und Demo-Check 21.10.2026), dieses nach Schlössli, Gasterntal, Doldenhorn und Carlton-Europe; Funktion und
-   Bedienung wie Le Registre des Grand Beau-Rivage; Kleid von Culinarium (Nacht, Schiefer, Warmweiss, Kerzenlicht; Fraunces mit weichen Enden, das «C» der Wortmarke).
+   Kopie der Besucherliste des Culinarium Hannover (28.10.2026, von Robert abgenommen): Aufbau, Funktionen und Wege gleich, Inhalt und Kleid von
+   Walk on the Wild Side (Nacht, Platte, Creme, Gold als Haarlinie, Rot als Punkt; Prata und Hanken Grotesk; die Wortmarke WALK / ON THE / WILD SIDE).
    Eigener Zähl-Schlüssel und eigener Speicher, nie gemeinsam mit einem anderen Haus (Werkzeug-Master 3, Robert 17.10.2026).
    Server-Teil: registre.py über /api/registre (lokal server.py). Ohne Server-Teil liest das Werkzeug beispiel/<tage>.json und schiebt die Tage auf heute.
    Vorführ-Betrieb (Master, Lernprotokoll 14.10.2026): der Kunde sieht nur Beispielwerte, überall als Beispiel beschriftet, kein Knopf zu den echten.
@@ -13,7 +13,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>';
-const ZVB = '-0.5 -0.5 39.3 41.36';   /* das «C» der Wortmarke (oberflaeche/kleid/wildside-zeichen.svg, aus dem nachgezogenen Vektor der Website) */
+const ZVB = '0 0 1296 1600';   /* die Wortmarke WALK / ON THE / WILD SIDE (oberflaeche/kleid/wildside-zeichen.svg, aus dem nachgezogenen Logo der Bar) */
 const ZT = `<svg class="zt" viewBox="${ZVB}" aria-hidden="true"><use href="#zeichen"/></svg>`;
 const SYM = {
   buch: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 3.2c2-.8 3.8-.6 5.5.6 1.7-1.2 3.5-1.4 5.5-.6v9.6c-2-.8-3.8-.6-5.5.6-1.7-1.2-3.5-1.4-5.5-.6z"/><path d="M8 3.8v9.6"/></svg>',
@@ -26,16 +26,16 @@ const SYM = {
   runter: '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 2v7.5M2.8 6.4 6 9.6l3.2-3.2"/></svg>' };
 const SPRACHE = { de: 'Deutsch', en: 'Englisch', fr: 'Französisch', it: 'Italienisch', nl: 'Niederländisch', es: 'Spanisch', pt: 'Portugiesisch', zh: 'Chinesisch', ja: 'Japanisch', ko: 'Koreanisch', ar: 'Arabisch', xx: 'Andere Sprache' };
 const GERAET = { handy: 'Handy', tablet: 'Tablet', rechner: 'Rechner' };
-const EREIGNIS = { fenster: '«Platz buchen» geöffnet', buchung: 'Platz gebucht', booking: 'Auf die Warteliste gesetzt', tisch: 'Warteliste begonnen', anfrage: 'Warteliste im Fuss', anruf: 'Bar angerufen', mail: 'Instagram von Culinarium', chat: 'Weiter zur Bar oder zu Dirty Chicken', route: 'Route geöffnet' };
-/* Schlüssel wie in allen Häusern (registre.py EREIGNISSE): fenster = «Platz buchen» an einem Termin auf «Der Abend» geöffnet, buchung = Platz gebucht,
-   booking = auf die Warteliste gesetzt, tisch = Warteliste im Ticket begonnen, anfrage = Warteliste im Fuss einer Seite abgeschickt, anruf = Telefon der Bar,
-   mail = Instagram von Culinarium oder vom Team, chat = weiter zur Bar Walk on the Wild Side oder zu Dirty Chicken, route = Route auf «Der Weg» */
+const EREIGNIS = { fenster: 'Reservieren begonnen', buchung: 'Tisch reserviert', booking: 'Feier angefragt', tisch: 'Feier-Anfrage begonnen', anfrage: '«Reservieren» angeklickt', anruf: 'Bar angerufen', mail: 'Instagram der Bar', chat: 'Weiter zu Culinarium oder Dirty Chicken', route: 'Karte geöffnet' };
+/* Schlüssel wie in allen Häusern (registre.py EREIGNISSE): fenster = Reservieren auf «Besuch» begonnen, buchung = Tisch reserviert (Formular abgeschickt),
+   booking = Feier auf «Feiern» angefragt, tisch = Feier-Anfrage begonnen, anfrage = Knopf «Reservieren» angeklickt, anruf = Telefon der Bar,
+   mail = Instagram der Bar, chat = weiter zu Culinarium oder Dirty Chicken (im selben Haus), route = Karte auf «Besuch» */
 const REIHE = ['fenster', 'buchung', 'booking', 'tisch', 'anfrage', 'anruf', 'mail', 'chat', 'route'];
 const GOLD_E = ['buchung', 'booking', 'anruf'];
-const ZUR_BUCHUNG = ['buchung', 'booking'];   /* «zum Platz»: Platz gebucht oder auf die Warteliste gesetzt (wie registre.py ZUR_BUCHUNG) */
+const ZUR_BUCHUNG = ['buchung', 'booking'];   /* «zum Tisch»: Tisch reserviert oder Feier angefragt (wie registre.py ZUR_BUCHUNG) */
 const BEREICHE = [
   ['start', 'Übersicht', ''], ['', 'Die Gäste'], ['besuche', 'Besuche', 'heute'], ['herkunft', 'Herkunft', ''], ['zeit', 'Zeit', ''],
-  ['', 'Die Website'], ['seiten', 'Seiten', ''], ['verlauf', 'Verlauf', ''], ['buchung', 'Zum Platz', ''], ['', 'Gut zu wissen'], ['zaehlung', 'So wird gezählt', '']];
+  ['', 'Die Website'], ['seiten', 'Seiten', ''], ['verlauf', 'Verlauf', ''], ['buchung', 'Zum Tisch', ''], ['', 'Gut zu wissen'], ['zaehlung', 'So wird gezählt', '']];
 const TITEL = Object.fromEntries(BEREICHE.filter(x => x[0]).map(x => [x[0], x[1]]));
 /* Stadt und Region Hannover (die 21 Städte und Gemeinden der Region Hannover, soweit sie unter den Orten vorkommen können) für «Aus Hannover und Region» */
 const HANNOVER = ['Hannover', 'Langenhagen', 'Garbsen', 'Laatzen', 'Seelze', 'Isernhagen', 'Lehrte', 'Hemmingen', 'Ronnenberg', 'Wunstorf', 'Burgdorf', 'Neustadt am Rübenberge', 'Barsinghausen', 'Springe', 'Gehrden', 'Pattensen', 'Sehnde', 'Uetze', 'Burgwedel', 'Wedemark', 'Wennigsen'];
@@ -44,7 +44,7 @@ const WTAG = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samsta
 /* Lokal immer auf ihrem eigenen Server (127.0.0.1, Port aus dem Kleid), nie auf dem Port des Besucherbuchs: dort fehlen ihre Stand-Wege (Fehlerbuch 10a, Schlössli/Schäfli 21.10.2026) */
 const MAISON = /\/_werkzeuge\/registre\//.test(location.pathname)
   ? (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && window.WO_HAUS && WO_HAUS.ports ? 'http://127.0.0.1:' + WO_HAUS.ports.zentrale + '/_werkzeuge/maison/' : '../maison/') : '../../maison/';
-const MERK = 'culinarium-nicht-zaehlen';   /* dieselbe Marke liest messung.js auf der Website (gleiche Adresse vorausgesetzt) */
+const MERK = 'wildside-nicht-zaehlen';   /* dieselbe Marke liest messung.js auf der Website (gleiche Adresse vorausgesetzt) */
 const VORFUEHRUNG = true;
 const SCHL = (location.search.match(/[?&]k=([\w-]+)/) || [])[1] || '';
 const ECHT_DA = !VORFUEHRUNG || !!SCHL;
@@ -143,7 +143,7 @@ function pyRund(x, st = 0) {
   const z = Number(k) / 10 ** st;
   return x < 0 ? -z : z;
 }
-const ART = { karte: ['abende.html'], abend: ['abend.html'], essen: ['dirty-chicken.html'], erleben: ['bar.html', 'leute.html'], feste: [], weg: ['weg.html'] };   /* wie registre.py art_von */
+const ART = { karte: ['drinks.html'], abend: ['besuch.html'], essen: [], erleben: ['programm.html', 'haus.html'], feste: ['tafel.html'], weg: [] };   /* wie registre.py art_von */
 const artVon = s => s === 'index.html' ? 'start' : Object.keys(ART).find(k => ART[k].includes(s)) || 'sonst';
 const rang = (l, n) => l.filter(x => x.n > 0).sort((a, b) => b.n - a.n || (String(a.k) < String(b.k) ? -1 : String(a.k) > String(b.k) ? 1 : 0)).slice(0, n);
 function wochenAus(jt) {   /* wie registre.py: Woche Montag bis Sonntag, angebrochene am Rand */
@@ -195,22 +195,22 @@ function kuerzen(d, jetzt) {
   const mit = d.je_tag.filter(t => t.besuche); d.seit = mit.length ? mit[0].tag : null; d.leer = !u.besuche;
 }
 
-/* Stelle der Seite, auf der ein Besuch zum Platz kam, sonst -1 (wie registre.py platz_bis): jede Seite bis dahin lag auf dem Weg zum Platz */
+/* Stelle der Seite, auf der ein Besuch zum Tisch kam, sonst -1 (wie registre.py platz_bis): jede Seite bis dahin lag auf dem Weg zum Tisch */
 const platzBis = weg => weg.findIndex(x => (x.e || []).some(e => ZUR_BUCHUNG.includes(e)));
-/* Die neun Werte «Zum Platz», dieselbe Rechnung wie registre.py werte_aus */
+/* Die neun Werte «Zum Tisch», dieselbe Rechnung wie registre.py werte_aus */
 function werteAus(sum) {
   const wert = (z, v, mehr) => Object.assign({ zahl: z, von: v, anteil: v ? pyRund(Math.min(100, 100 * z / v), 1) : null }, mehr || {});
   const auf = sum('seite');
   return { start: wert(sum('platz', 'start'), sum('seite', 'start')), karte: wert(sum('platz', 'karte'), sum('seite', 'karte')),
     booking: wert(sum('booking'), sum('buchung') + sum('booking'), { anfrage: sum('buchung') }), abbruch: wert(Math.max(0, sum('fenster') - sum('buchung')), sum('fenster')),
-    tisch: wert(sum('tisch'), auf, { abend: sum('tisch', 'abend') }),
+    tisch: wert(sum('tisch'), auf, { abend: sum('tisch', 'feste') }),
     anfrage: wert(sum('anfrage'), auf, { start: sum('anfrage', 'start') }),
-    kontakt: wert(sum('anruf') + sum('mail'), auf, { anruf: sum('anruf'), mail: sum('mail') }), chat: wert(sum('chat'), auf, { dc: sum('chat', 'essen') }),
-    route: wert(sum('route'), auf, { weg: sum('route', 'weg') }) };
+    kontakt: wert(sum('anruf') + sum('mail'), auf, { anruf: sum('anruf'), mail: sum('mail') }), chat: wert(sum('chat'), auf, { dc: sum('chat', 'start') }),
+    route: wert(sum('route'), auf, { weg: sum('route', 'abend') }) };
 }
 
 /* ---------- Rahmen ---------- */
-/* Kopf, Rand, Leiste und Startbild kommen aus der Oberfläche der Häuser (_Werkzeuge/stamm/oberflaeche/, im Haus /assets/oberflaeche/, Kleid culinarium,
+/* Kopf, Rand, Leiste und Startbild kommen aus der Oberfläche der Häuser (_Werkzeuge/stamm/oberflaeche/, im Haus /assets/oberflaeche/, Kleid wildside,
    Rahmen aus dem Kleid; kein eigener Kopf und kein eigenes Startbild).
    Ids, data-gehe und die Klick-Handler bleiben wie im Le Registre des Doldenhorn und des Schäfli. */
 const STUBE = MAISON;
@@ -242,7 +242,7 @@ function rand() {
 function leiste() {
   const d = S.d, u = d.summe, aus = nicht();
   const satz = d.leer ? 'In den letzten ' + n(d.tage) + ' Tagen wurde noch kein Besuch gezählt.'
-    : 'Letzte ' + n(d.tage) + ' Tage: ' + mal(u.besuche, 'ein Besuch', 'Besuche') + (u.laender ? ' aus ' + mal(u.laender, 'einem Land', 'Ländern') : '') + ', ' + (u.buchung === 1 ? 'einer' : u.buchung ? n(u.buchung) : 'keiner') + ' zum Platz.';
+    : 'Letzte ' + n(d.tage) + ' Tage: ' + mal(u.besuche, 'ein Besuch', 'Besuche') + (u.laender ? ' aus ' + mal(u.laender, 'einem Land', 'Ländern') : '') + ', ' + (u.buchung === 1 ? 'einer' : u.buchung ? n(u.buchung) : 'keiner') + ' zum Tisch.';
   const kn = WO.knopf('Als Tabelle sichern', 'kopie', 'glas', { klein: true, id: 'l-export', titel: 'Alle Besuche des gewählten Zeitraums als Tabelle (CSV, öffnet in Excel und Numbers)', attr: 'aria-label="Als Tabelle sichern"' })
     + (S.beispiel ? (ECHT_DA && !S.ablage ? WO.knopf('Zu den echten Besuchen', 'pfeil', 'gold', { klein: true, id: 'l-echt' }) : '')
       : WO.knopf('Neu laden', 'verlauf', 'gold', { klein: true, id: 'l-neu', attr: 'aria-label="Neu laden"' }));
@@ -254,22 +254,22 @@ function leiste() {
   if ($('#l-echt')) $('#l-echt').onclick = () => beispiel(false);
 }
 /* Bühne: Kopf jeder Ansicht im Rahmen der Oberfläche; in der Übersicht die Kennzahlen als Schilder.
-   je Ansicht ein eigenes Foto von Rudis Abenden (assets/bild/<schlüssel>-1600.webp der Website, Bildregister BILD in website/bau.py; geschärfte Fassungen
-   ziehen von selbst nach), nie ein Foto, das die Ansicht darunter als Seitenbild zeigt (Memory «Hero nicht mit Material der Seite»):
-   Übersicht das Aussenfoto aus dem Kleid (die Fenster der Bar am Abend), Besuche ein Teller wird an den Tisch gebracht, Herkunft die Schilder an der Hausecke
-   in Linden, Zeit ein Drink bei Nacht, Seiten die Plakatwand, Verlauf zwei Köche am Pass, Zum Platz angestossen bei Kerzen an der Tafel,
-   So wird gezählt ein Tablett mit Gläsern */
-const BUEHNE = { start: ['fassade', '50% 55%'], besuche: ['service', '50% 40%'], herkunft: ['schildtag', '50% 40%'], zeit: ['glasnacht', '50% 50%'], seiten: ['plakatwand', '50% 50%'], verlauf: ['kueche', '50% 40%'], buchung: ['anstossen', '50% 38%'], zaehlung: ['tablett', '50% 50%'] };
+   je Ansicht ein eigenes Foto der Bar (assets/bild/<schlüssel>-480/-960.webp der Website, Bildregister BILD in website/bau.py),
+   nie ein Foto, das die Ansicht darunter als Seitenbild zeigt (Memory «Hero nicht mit Material der Seite»):
+   Übersicht das Eckschild bei Nacht (Aussenfoto aus dem Kleid), Besuche Momo giesst, Herkunft die rote Tür in den Raum, Zeit die volle Bar am Abend,
+   Seiten die NEGRONI-Glühbirnen, Verlauf die Decke über der Rückbar, Zum Tisch zwei Gläser stossen an, So wird gezählt die Rückbar mit Derya.
+   Die Website hat die Breiten 480 und 960 (nicht 640/1000 wie das Culinarium): srcset hier selbst, die Marke #b hält das Paket davon ab, eigene Breiten zu raten. */
+const BUEHNE = { start: ['schild-ecke', '50% 46%'], besuche: ['momo-giesst', '50% 40%'], herkunft: ['tuer-rot', '50% 45%'], zeit: ['voll', '50% 50%'], seiten: ['negroni', '50% 40%'], verlauf: ['decke-hoch', '50% 40%'], buchung: ['anstossen', '50% 45%'], zaehlung: ['rueckbar', '50% 45%'] };
 /* Startbild jeder Ansicht: WO.startbild, Übersicht «voll» mit dem Aussenfoto des Hauses, jede andere Ansicht «buehne» mit ihrem eigenen Bild */
 function kopf(mono, titel, satz, rechts = '', chips = '') {
-  const [bild, lage] = BUEHNE[S.ansicht] || BUEHNE.start, voll = S.ansicht === 'start';
-  return WO.startbild({ werkzeug: 'besuche', art: voll ? 'voll' : 'buehne', foto: voll ? undefined : '/assets/bild/' + bild + '-1600.webp', zier: mono, h1: titel, satz,
+  const [bild, lage] = BUEHNE[S.ansicht] || BUEHNE.start, voll = S.ansicht === 'start', b = '/assets/bild/' + bild;
+  return WO.startbild({ werkzeug: 'besuche', art: voll ? 'voll' : 'buehne', foto: b + '-960.webp#b', srcset: b + '-480.webp 480w, ' + b + '-960.webp 960w', sizes: '(max-width:900px) 100vw, 46vw', zier: mono, h1: titel, satz,
     knoepfe: (voll ? WO.knopf('Anleitung', 'buch', 'gold', { href: 'anleitung.html', neu: true }) : '') + chips + rechts })
-    .replace('<section class="wo-sb', `<section style="--wo-foto-pos:${voll ? '50% 46%' : lage}" class="buehne wo-sb`);
+    .replace('<section class="wo-sb', `<section style="--wo-foto-pos:${lage}" class="buehne wo-sb`);
 }
 function chipsStart(d) {
   const u = d.summe; if (d.leer) return '';
-  return `<ul class="buehne__chips"><li><b>${n(u.besuche)}</b><span>Besuche</span></li><li><b>${n(u.laender)}</b><span>Länder</span></li><li><b>${n(u.heute)}</b><span>heute</span></li><li><b>${n(u.buchung)}</b><span>zum Platz</span></li></ul>`;
+  return `<ul class="buehne__chips"><li><b>${n(u.besuche)}</b><span>Besuche</span></li><li><b>${n(u.laender)}</b><span>Länder</span></li><li><b>${n(u.heute)}</b><span>heute</span></li><li><b>${n(u.buchung)}</b><span>zum Tisch</span></li></ul>`;
 }
 function zeitraum() {
   const k = t => `<button type="button" data-tage="${t}" class="${S.tage === t ? 'an' : ''}" aria-pressed="${S.tage === t}">${t} Tage</button>`;
@@ -339,7 +339,7 @@ async function sichern() {
       if (!r.ok || !Array.isArray(x.besuche)) throw new Error(String(x.fehler || 'Der Dienst gab die Besuche nicht heraus (' + r.status + ').').replace(/^[A-ZÄÖÜ]+ · /, ''));
       liste = x.besuche;
     }
-    const name = 'besuche-culinarium-' + d.von + '-bis-' + d.bis + (bsp ? '-beispielwerte' : '') + '.csv';
+    const name = 'besuche-wildside-' + d.von + '-bis-' + d.bis + (bsp ? '-beispielwerte' : '') + '.csv';
     const url = URL.createObjectURL(new Blob([tabelle(liste, bsp)], { type: 'text/csv;charset=utf-8' }));
     const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 4000);
@@ -369,10 +369,10 @@ function saeulen(werte, beschrift, tip, klasse = '', vorher) {
   </div>`;
 }
 function karteBesuch(b, i, aktiv) {
-  const marke = b.buchung ? 'Zum Platz' : b.anfrage ? 'Warteliste' : b.kontakt ? 'Kontakt' : b.chat ? '<span class="besuch__m">Bar</span><span class="besuch__m">Dirty&nbsp;Chicken</span>' : esc(GERAET[b.g] || '');
-  /* Tor 6 Fund 31 (30.10.2026): Seiten und Dauer sind zwei Teile; der Trenner «·» gehört zum zweiten und wird am Zeilenanfang abgeschnitten (culinarium.css),
-     steht also nie am Anfang oder Ende einer Zeile. Das Etikett «Bar · Dirty Chicken» steht in schmalen Karten zweizeilig. */
-  /* Demo-Check 21.10.2026: die Zeile unter dem Ort bricht nur zwischen Uhrzeit, Seiten und Dauer um, nie mitten in «5 Min. 28 Sek.» (culinarium.css lässt sie umbrechen statt kürzen) */
+  const marke = b.buchung ? 'Zum Tisch' : b.anfrage ? 'Begonnen' : b.kontakt ? 'Kontakt' : b.chat ? '<span class="besuch__m">Culinarium</span><span class="besuch__m">Dirty&nbsp;Chicken</span>' : esc(GERAET[b.g] || '');
+  /* Tor 6 Fund 31 (30.10.2026): Seiten und Dauer sind zwei Teile; der Trenner «·» gehört zum zweiten und wird am Zeilenanfang abgeschnitten (registre-haus.css,
+     steht also nie am Anfang oder Ende einer Zeile. Das Etikett «Culinarium · Dirty Chicken» steht in schmalen Karten zweizeilig. */
+  /* Demo-Check 21.10.2026: die Zeile unter dem Ort bricht nur zwischen Uhrzeit, Seiten und Dauer um, nie mitten in «5 Min. 28 Sek.» (registre-haus.css lässt sie umbrechen statt kürzen) */
   return `<button class="besuch rg-a${b.buchung ? ' gold' : ''}${aktiv ? ' aktiv' : ''}" type="button" data-gehe="besuche" data-wahl="${i}" aria-pressed="${aktiv}">
     <span class="besuch__b">${sbild(b.weg && b.weg[0] ? b.weg[0].s : '')}<span class="besuch__l">${esc(b.l && b.l !== '??' ? b.l : '–')}</span></span>
     <span class="besuch__n"><b>${zusammen(ort(b))}</b><small><i class="besuch__w">${esc(tagWort(b.tag) + ', ' + b.z + ' Uhr').replace(/ /g, '\u00a0')}</i><i class="besuch__t"> · </i><i class="besuch__r">${[mal(b.seiten, 'eine Seite', 'Seiten')].concat(b.dauer ? [dauer(b.dauer, true)] : []).map(x => `<i class="besuch__s">${esc(x).replace(/ /g, '\u00a0')}</i>`).join('')}</i></small></span>
@@ -390,7 +390,7 @@ function zeichne(ruhig) {
   const f = { besuche, herkunft, zeit, seiten, verlauf, buchung, zaehlung }[S.ansicht] || start;
   el.innerHTML = f();
   $$('[data-gehe]', el).forEach(b => b.onclick = e => { e.preventDefault(); gehe(b.dataset.gehe, b.dataset.wahl); });
-  $$('[data-tage]', el).forEach(b => b.onclick = () => { if (S.tage === +b.dataset.tage) return; S.tage = +b.dataset.tage; S.wahl = 0; S.zeige = 40; try { localStorage.setItem('culinarium-registre-tage', S.tage); } catch (e) { /* privat */ } frisch(); });
+  $$('[data-tage]', el).forEach(b => b.onclick = () => { if (S.tage === +b.dataset.tage) return; S.tage = +b.dataset.tage; S.wahl = 0; S.zeige = 40; try { localStorage.setItem('wildside-registre-tage', S.tage); } catch (e) { /* privat */ } frisch(); });
   $$('[data-bsp]', el).forEach(b => b.onclick = () => beispiel(true));
   $$('[data-sichern]', el).forEach(b => b.onclick = () => sichern());
   $$('[data-filter]', el).forEach(b => b.onclick = () => { S.filter = b.dataset.filter; S.wahl = -1; S.zeige = 40; zeichne(true); });
@@ -424,7 +424,7 @@ function schweben(el, still) {
 function start() {
   const d = S.d, u = d.summe, v = d.vorher;
   const gruss = /[?&]gruss=tag/.test(location.search) ? 'Guten Tag.' : WO.gruss();
-  const satzS = 'Wer deine Website besucht hat: woher die Gäste kommen, welche Seiten sie ansehen, wie lange sie bleiben und wer sich seinen Platz an der Tafel sichert. Gezählt ohne Cookies, nie mit Namen.';
+  const satzS = 'Wer deine Website besucht hat: woher die Gäste kommen, welche Seiten sie ansehen, wie lange sie bleiben und wer einen Tisch reservieren oder feiern will. Gezählt ohne Cookies, nie mit Namen.';
   let aus = kopf(esc(NAME + ' · ' + WO.haus.name), `${gruss}<br><em>Wer war zu Besuch?</em>`, satzS, zeitraum(), chipsStart(d)) + hinweisBeispiel();   // einheitliches Startbild der Werkzeuge (WO.startbild)
   if (d.leer) return aus + leer();
   const viele = d.je_tag.length, schritt = viele <= 7 ? 1 : viele <= 31 ? 5 : 15;
@@ -432,7 +432,7 @@ function start() {
       <div class="blatt"><span class="mono">Besuche</span><b>${n(u.besuche)}</b>${vergleich(u.besuche, v.besuche)}</div>
       <div class="blatt"><span class="mono">Angesehene Seiten</span><b>${n(u.seiten)}</b><small>${u.seiten_je_besuch != null ? n(u.seiten_je_besuch) + ' je Besuch' : '&nbsp;'}</small></div>
       <div class="blatt"><span class="mono">Zeit je Besuch</span><b>${u.dauer_mittel != null ? Math.floor(u.dauer_mittel / 60) + ':' + String(u.dauer_mittel % 60).padStart(2, '0') : '–'}</b><small>Minuten im Schnitt</small></div>
-      <div class="blatt"><span class="mono">Zum Platz</span><b>${n(u.buchung)}</b><small>${u.besuche ? prozent(100 * u.buchung / u.besuche) + ' der Besuche' : '&nbsp;'}</small></div>
+      <div class="blatt"><span class="mono">Zum Tisch</span><b>${n(u.buchung)}</b><small>${u.besuche ? prozent(100 * u.buchung / u.besuche) + ' der Besuche' : '&nbsp;'}</small></div>
     </div>
     <section class="blatt tafel">
       <header><h3>Besuche je Tag</h3><p>${esc(datum(d.von))} bis ${esc(datum(d.bis))}<span style="white-space:nowrap">&nbsp;· <button class="link" type="button" data-gehe="verlauf">Verlauf</button></span></p></header>
@@ -465,7 +465,7 @@ function besuche() {
   if (!l.some(x => x[1] === S.wahl)) S.wahl = l.length ? l[0][1] : -1;
   const b = d.besuche[S.wahl];
   const f = (k, name) => `<button type="button" data-filter="${k}" class="${S.filter === k ? 'an' : ''}" aria-pressed="${S.filter === k}">${name} · ${n(nach[k].length)}</button>`;
-  aus += `<div class="wahl3 wo-seg wahl3--filter" role="group" aria-label="Auswahl">${f('alle', 'Alle')}${f('buchung', 'Zum Platz')}${f('anfrage', 'Warteliste begonnen')}${f('kontakt', 'Anruf oder Instagram')}${f('handy', 'Am Handy')}</div>`;
+  aus += `<div class="wahl3 wo-seg wahl3--filter" role="group" aria-label="Auswahl">${f('alle', 'Alle')}${f('buchung', 'Zum Tisch')}${f('anfrage', 'Formular begonnen')}${f('kontakt', 'Anruf oder Instagram')}${f('handy', 'Am Handy')}</div>`;
   if (!l.length) return aus + `<div class="leer-hinweis"><b>Kein Besuch in dieser Auswahl.</b> In diesem Zeitraum ging noch niemand diesen Weg.</div>`;
   let letzter = '';
   const liste = l.slice(0, S.zeige).map(([x, i]) => { const k = x.tag !== letzter ? `<p class="tagzeile">${esc(tagWort(x.tag, true))}</p>` : ''; letzter = x.tag; return k + karteBesuch(x, i, i === S.wahl); }).join('');
@@ -484,7 +484,7 @@ function detail(b) {
   }).join('');
   return `<article class="blatt besuchsblatt">
     <div class="besuchsblatt__kopf"><div><span class="mono">Besuch · ${esc(tagWort(b.tag, true))}</span><h2>${esc(ort(b))}</h2></div>
-      ${b.buchung ? `<span class="siegel">${b.weg.some(x => (x.e || []).includes('buchung')) ? 'Platz gebucht' : 'Auf der Warteliste'}</span>` : b.anfrage ? '<span class="siegel">Warteliste begonnen</span>' : b.kontakt ? '<span class="siegel">Anruf oder Instagram</span>' : ''}</div>
+      ${b.buchung ? `<span class="siegel">${b.weg.some(x => (x.e || []).includes('buchung')) ? 'Tisch reserviert' : 'Feier angefragt'}</span>` : b.anfrage ? '<span class="siegel">Formular begonnen</span>' : b.kontakt ? '<span class="siegel">Anruf oder Instagram</span>' : ''}</div>
     <dl class="angaben">
       <div><dt>Gekommen</dt><dd>${esc(b.z)} Uhr</dd></div>
       <div><dt>Geblieben</dt><dd>${b.dauer ? dauer(b.dauer, true) : '–'}</dd></div>
@@ -527,7 +527,7 @@ function herkunft() {
 
 function zeit() {
   const d = S.d;
-  let aus = kopf('Zeit', 'Wann Gäste <em>vorbeischauen.</em>', 'Zu welcher Stunde und an welchem Wochentag die Besuche beginnen. Uhrzeit in Hannover. So siehst du, wann sich ein Beitrag zum nächsten Abend oder ein Hinweis auf freie Plätze am ehesten lohnt.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Zeit', 'Wann Gäste <em>vorbeischauen.</em>', 'Zu welcher Stunde und an welchem Wochentag die Besuche beginnen. Uhrzeit in Hannover. So siehst du, wann sich ein Beitrag zum nächsten DJ-Abend oder Konzert am ehesten lohnt.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const st = d.stunden, wt = d.raster.map(r => r.reduce((a, x) => a + x, 0));
   const spitze = st.indexOf(Math.max(...st)), wspitze = wt.indexOf(Math.max(...wt));
@@ -559,11 +559,11 @@ function raster(r) {
 
 function seiten() {
   const d = S.d;
-  let aus = kopf('Seiten', 'Was sich Gäste <em>ansehen.</em>', 'Jede Seite der Website mit der Zahl der Aufrufe, der Zeit, die Gäste im Schnitt darauf bleiben, und wie oft sie auf dem Weg eines Gastes lag, der danach seinen Platz buchte oder sich auf die Warteliste setzte.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Seiten', 'Was sich Gäste <em>ansehen.</em>', 'Jede Seite der Website mit der Zahl der Aufrufe, der Zeit, die Gäste im Schnitt darauf bleiben, und wie oft sie auf dem Weg eines Gastes lag, der danach einen Tisch reservierte oder eine Feier anfragte.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const max = Math.max(1, ...d.seiten.map(x => x.n));
   aus += `<section class="blatt tabelle">
-    <div class="zeile zeile--kopf"><span>Seite</span><span>Aufrufe</span><span aria-hidden="true"></span><span>Zeit im Schnitt</span><span>Zum Platz</span></div>
+    <div class="zeile zeile--kopf"><span>Seite</span><span>Aufrufe</span><span aria-hidden="true"></span><span>Zeit im Schnitt</span><span>Zum Tisch</span></div>
     ${d.seiten.map((x, i) => `<div class="zeile" style="--i:${Math.min(i, 20)}"><span class="zeile__n"><b>${mitBild(x.s)}</b></span><span class="zeile__z">${n(x.n)}</span>
       <span class="rang__b"><i style="--w:${Math.max(.02, x.n / max).toFixed(3)}"></i></span><span>${x.sek != null ? dauer(x.sek, true) : '–'}</span><span>${x.buchung ? n(x.buchung) : '–'}</span></div>`).join('')}
   </section>
@@ -587,7 +587,7 @@ function verlauf() {
         <div class="vz vz--kopf"><span></span><b>Jetzt</b><em>Davor</em><small></small></div>
         ${zeile('Besuche', u.besuche, v.besuche)}${zeile('Angesehene Seiten', u.seiten, v.seiten)}
         ${zeile('Seiten je Besuch', u.seiten_je_besuch, v.seiten_je_besuch, x => Number(x).toLocaleString('de-DE'))}
-        ${zeile('Zeit je Besuch', u.dauer_mittel, v.dauer_mittel, zeitFmt)}${zeile('Zum Platz', u.buchung, v.buchung)}${zeile('Warteliste begonnen', u.anfrage, v.anfrage)}${zeile('Anruf oder Instagram', u.kontakt, v.kontakt)}${zeile('Route geöffnet', u.route, v.route)}
+        ${zeile('Zeit je Besuch', u.dauer_mittel, v.dauer_mittel, zeitFmt)}${zeile('Zum Tisch', u.buchung, v.buchung)}${zeile('Formular begonnen', u.anfrage, v.anfrage)}${zeile('Anruf oder Instagram', u.kontakt, v.kontakt)}${zeile('Karte geöffnet', u.route, v.route)}
       </section>
       <section class="blatt"><header><h3>Woche für Woche</h3></header>
         ${wochen(d.wochen)}
@@ -601,7 +601,7 @@ function verlauf() {
 function wochen(w) {
   const max = Math.max(1, ...w.map(x => x.besuche / x.tage));
   return `<ol class="wochen">${w.map((x, i) => `<li style="--i:${i}"><span>${kurzDatum(x.von)}–${kurzDatum(x.bis)}${x.tage < 7 ? `<small>${x.tage} ${x.tage === 1 ? 'Tag' : 'Tage'}</small>` : ''}</span>
-    <span class="rang__b"><i style="--w:${Math.max(.02, (x.besuche / x.tage) / max).toFixed(3)}"></i></span><b>${n(x.besuche)}</b><em>${n(x.buchung)} zum Platz</em></li>`).join('')}</ol>
+    <span class="rang__b"><i style="--w:${Math.max(.02, (x.besuche / x.tage) / max).toFixed(3)}"></i></span><b>${n(x.besuche)}</b><em>${n(x.buchung)} zum Tisch</em></li>`).join('')}</ol>
     <p class="fein">Montag bis Sonntag. Angebrochene Wochen am Rand: der Balken zeigt den Schnitt je Tag.</p>`;
 }
 function linie(werte) {   /* kleine Verlaufslinie als SVG, Fläche darunter in Kerzenlicht */
@@ -612,40 +612,40 @@ function linie(werte) {   /* kleine Verlaufslinie als SVG, Fläche darunter in K
 
 function buchung() {
   const d = S.d, w = d.werte;
-  let aus = kopf('Zum Platz', 'Wie oft ein Besuch <em>an die Tafel führt.</em>', 'Einen Platz gibt es auf «Der Abend»: bei einem Termin mit freien Plätzen direkt buchen, sonst im Ticket auf die Warteliste. Hier steht, wie oft ein Besuch dahin führt, welche Seiten der Gast vorher ansah, dazu Anruf in der Bar, Instagram, der Weg zur Bar und zu Dirty Chicken und die Route nach Linden.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Zum Tisch', 'Wie oft ein Besuch <em>an den Tisch führt.</em>', 'Einen Tisch reservierst du auf «Besuch», eine Feier fragst du auf «Feiern» an. Hier steht, wie oft ein Besuch dahin führt, welche Seiten der Gast vorher ansah, dazu der Knopf «Reservieren», Anruf in der Bar, Instagram, der Weg zu Culinarium und Dirty Chicken und die Karte nach Linden.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const k = (key, name, text, ohne) => { const x = w[key] || {}, da = x.von > 0;
     return `<div class="wert blatt"><span class="mono">${name}</span><b>${da ? prozent(x.anteil) : '–'}</b><p>${da ? text(x) : ohne}</p></div>`; };
   const auf = z => z === 1 ? 'Aufruf' : 'Aufrufen';
   const mal_ = z => z === 1 ? 'einmal' : n(z) + ' Mal';
   aus += `<div class="werte">
-    ${k('start', 'Von der Startseite zum Platz', x => n(x.zahl) + ' von ' + n(x.von) + ' ' + auf(x.von) + ' der Startseite in Besuchen, die danach zum Platz führten', 'Die Startseite wurde noch nicht geöffnet.')}
-    ${k('karte', 'Von «Alle Abende» zum Platz', x => n(x.zahl) + ' von ' + n(x.von) + ' ' + auf(x.von) + ' von «Alle Abende» in Besuchen, die danach zum Platz führten', '«Alle Abende» wurde noch nicht geöffnet.')}
-    ${k('booking', 'Über die Warteliste', x => n(x.zahl) + ' von ' + n(x.von) + ' Wegen zum Platz gingen über die Warteliste, ' + mal(x.anfrage, 'ein Platz wurde', 'Plätze wurden') + ' direkt gebucht', 'Noch niemand kam zum Platz.')}
-    ${k('abbruch', '«Platz buchen» ohne Buchung', x => n(x.zahl) + ' von ' + n(x.von) + ' Mal geöffnet, ohne dass gebucht wurde', '«Platz buchen» wurde noch nicht geöffnet.')}
-    ${k('tisch', 'Warteliste begonnen', x => mal_(x.zahl) + ' im Ticket auf «Der Abend» begonnen, bei ' + n(x.von) + ' ' + auf(x.von), 'Noch kein Aufruf.')}
-    ${k('anfrage', 'Warteliste im Fuss', x => mal_(x.zahl) + ' die E-Mail im Fuss einer Seite eingetragen, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.start) + ' auf der Startseite', 'Noch kein Aufruf.')}
-    ${k('kontakt', 'Anruf oder Instagram', x => mal_(x.anruf) + ' die Nummer der Bar, ' + mal_(x.mail) + ' Instagram von Culinarium oder dem Team, bei ' + n(x.von) + ' ' + auf(x.von), 'Noch kein Aufruf.')}
-    ${k('chat', 'Weiter zur Bar oder zu Dirty Chicken', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.dc) + ' von der Seite «Dirty Chicken»', 'Noch kein Aufruf.')}
-    ${k('route', 'Route geöffnet', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.weg) + ' von «Der Weg»', 'Noch kein Aufruf.')}
+    ${k('start', 'Von der Startseite zum Tisch', x => n(x.zahl) + ' von ' + n(x.von) + ' ' + auf(x.von) + ' der Startseite in Besuchen, die danach zum Tisch führten', 'Die Startseite wurde noch nicht geöffnet.')}
+    ${k('karte', 'Von «Drinks» zum Tisch', x => n(x.zahl) + ' von ' + n(x.von) + ' ' + auf(x.von) + ' von «Drinks» in Besuchen, die danach zum Tisch führten', '«Drinks» wurde noch nicht geöffnet.')}
+    ${k('booking', 'Über «Feiern»', x => n(x.zahl) + ' von ' + n(x.von) + ' Wegen zum Tisch waren eine Anfrage zum Feiern, ' + mal(x.anfrage, 'ein Tisch wurde', 'Tische wurden') + ' reserviert', 'Noch niemand kam zum Tisch.')}
+    ${k('abbruch', 'Reservieren ohne Abschicken', x => n(x.zahl) + ' von ' + n(x.von) + ' Mal begonnen, ohne dass die Reservierung abgeschickt wurde', 'Reservieren wurde noch nicht begonnen.')}
+    ${k('tisch', 'Feier-Anfrage begonnen', x => mal_(x.zahl) + ' im Formular auf «Feiern» begonnen, bei ' + n(x.von) + ' ' + auf(x.von), 'Noch kein Aufruf.')}
+    ${k('anfrage', '«Reservieren» angeklickt', x => mal_(x.zahl) + ' der Knopf «Reservieren» in der Leiste einer Seite, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.start) + ' auf der Startseite', 'Noch kein Aufruf.')}
+    ${k('kontakt', 'Anruf oder Instagram', x => mal_(x.anruf) + ' die Nummer der Bar, ' + mal_(x.mail) + ' Instagram der Bar, bei ' + n(x.von) + ' ' + auf(x.von), 'Noch kein Aufruf.')}
+    ${k('chat', 'Weiter zu Culinarium oder Dirty Chicken', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.dc) + ' auf der Startseite', 'Noch kein Aufruf.')}
+    ${k('route', 'Karte geöffnet', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.weg) + ' auf «Besuch»', 'Noch kein Aufruf.')}
   </div>
   <div class="zwei zwei--fuell">
-    <section class="blatt"><header><h3>Welche Seiten vor dem Platz lagen</h3></header>
+    <section class="blatt"><header><h3>Welche Seiten vor dem Tisch lagen</h3></header>
       ${balken(d.seiten.filter(x => x.buchung).sort((a, b) => b.buchung - a.buchung).slice(0, 8).map(x => ({ k: x.s, n: x.buchung })), x => mitBild(x.k), null, d.seiten.reduce((a, x) => a + (x.buchung || 0), 0))}</section>
     <div class="stapel">
-      <section class="blatt"><header><h3>Der Weg zum Platz</h3></header>${trichter(w)}</section>
-      <section class="blatt"><header><h3>Plätze Woche für Woche</h3></header>${balken(d.wochen.map(x => ({ k: x, n: x.buchung })), x => kurzDatum(x.k.von) + '–' + kurzDatum(x.k.bis), x => x.k.tage < 7 ? x.k.tage + (x.k.tage === 1 ? ' Tag' : ' Tage') : '', d.summe.buchung)}</section>
+      <section class="blatt"><header><h3>Der Weg zum Tisch</h3></header>${trichter(w)}</section>
+      <section class="blatt"><header><h3>Tische Woche für Woche</h3></header>${balken(d.wochen.map(x => ({ k: x, n: x.buchung })), x => kurzDatum(x.k.von) + '–' + kurzDatum(x.k.bis), x => x.k.tage < 7 ? x.k.tage + (x.k.tage === 1 ? ' Tag' : ' Tage') : '', d.summe.buchung)}</section>
     </div>
   </div>`;
   return aus;
 }
-/* Weg zum Platz: dieselben Stufen und Namen liest La Maison (Fehlerbuch 10a, Stube Schäfli: nie eine eigene Ableitung, kein Anteil über 100 %).
-   Besuche → «Der Abend» geöffnet (Aufrufe der Seite) → Platz gebucht oder auf der Warteliste (Besuche zum Platz). */
+/* Weg zum Tisch: dieselben Stufen und Namen liest La Maison (Fehlerbuch 10a, Stube Schäfli: nie eine eigene Ableitung, kein Anteil über 100 %).
+   Besuche → «Besuch» oder «Feiern» geöffnet (Aufrufe der beiden Seiten, auf denen reserviert und angefragt wird) → Tisch reserviert oder Feier angefragt. */
 function trichter(w) {
-  const s = S.d.summe.besuche || 1, abend = (S.d.seiten.find(x => x.s === 'abend.html') || {}).n || 0, platz = Math.min(abend, S.d.summe.buchung || 0);
-  const stufen = [['Besuche', s], ['«Der Abend» geöffnet', Math.min(s, abend)], ['Platz gebucht oder auf der Warteliste', platz]];
+  const s = S.d.summe.besuche || 1, auf = S.d.seiten.filter(x => x.s === 'besuch.html' || x.s === 'tafel.html').reduce((a, x) => a + (x.n || 0), 0), platz = Math.min(auf, S.d.summe.buchung || 0);
+  const stufen = [['Besuche', s], ['«Besuch» oder «Feiern» geöffnet', Math.min(s, auf)], ['Tisch reserviert oder Feier angefragt', platz]];
   return `<ol class="trichter">${stufen.map(([name, z], i) => `<li style="--i:${i};--w:${Math.max(.04, z / s).toFixed(3)}"><i></i><span>${name}</span><b>${n(z)}</b>${i ? `<em>${prozent(100 * z / (stufen[i - 1][1] || 1), 0)} davon</em>` : '<em>&nbsp;</em>'}</li>`).join('')}</ol>
-    <p class="fein">«Der Abend» zählt jeden Aufruf der Seite; ein Gast, der sie zweimal öffnet, zählt zweimal. Gebucht und Warteliste zählen je Besuch einmal.</p>`;
+    <p class="fein">«Besuch» und «Feiern» zählen jeden Aufruf; ein Gast, der beide öffnet, zählt zweimal. Reserviert und angefragt zählen je Besuch einmal.</p>`;
 }
 
 function zaehlung() {
@@ -656,9 +656,9 @@ function zaehlung() {
       <li>Land, Ort und Region, wie sie der Anbieter aus der Verbindung ablesen kann</li>
       <li>Ob Handy, Tablet oder Rechner, und in welcher Sprache der Browser eingestellt ist</li>
       <li>Von welcher Website der Gast kam (nur der Name, etwa google.de oder instagram.com)</li>
-      <li>Ob auf «Der Abend» «Platz buchen» geöffnet und ein Platz gebucht, die Warteliste begonnen oder abgeschickt (im Ticket oder im Fuss einer Seite), die Nummer der Bar gewählt, Instagram von Culinarium oder vom Team geöffnet, der Weg zur Bar oder zu Dirty Chicken oder die Route nach Linden angeklickt wurde</li></ul></section>
+      <li>Ob auf «Besuch» eine Reservierung begonnen oder abgeschickt, auf «Feiern» eine Anfrage begonnen oder abgeschickt, der Knopf «Reservieren» angeklickt, die Nummer der Bar gewählt, Instagram der Bar geöffnet, der Weg zu Culinarium oder Dirty Chicken oder die Karte nach Linden angeklickt wurde</li></ul></section>
     <section class="blatt liste-txt"><h3>Was nie gezählt wird</h3><ul>
-      <li>Kein Name, keine Mailadresse, nichts, was jemand eintippt: von einer Buchung oder der Warteliste zählt nur, dass sie abgeschickt wurde, nicht ihr Inhalt</li>
+      <li>Kein Name, keine Mailadresse, nichts, was jemand eintippt: von einer Reservierung oder Anfrage zählt nur, dass sie abgeschickt wurde, nicht ihr Inhalt</li>
       <li>Keine Adresse der Verbindung: sie hält nur am selben Tag die Seiten eines Besuchs zusammen und wird dafür unumkehrbar verschlüsselt, nie gespeichert</li>
       <li>Kein Cookie, nichts auf dem Gerät des Gastes. Am nächsten Tag erkennt ${KLEIN} denselben Gast nicht wieder</li>
       <li>Keine Weitergabe: die Zahlen liegen nur in deinem Speicher, nicht bei Google oder einem anderen Dienst</li>
@@ -673,12 +673,12 @@ function zaehlung() {
 }
 
 /* ---------- Start ---------- */
-async function zeichenLaden() {   /* das «C» der Wortmarke aus dem Kleid (WO_HAUS.zeichen), einmal geladen, überall per <use>; Füllung aus der Schriftfarbe */
+async function zeichenLaden() {   /* die Wortmarke der Bar aus dem Kleid (WO_HAUS.zeichen), einmal geladen, überall per <use>; Füllung aus der Schriftfarbe */
   try { const r = await fetch(WO_HAUS.zeichen); const t = await r.text(); const m = t.match(/<svg[^>]*>([\s\S]*)<\/svg>/); if (m) $('#zeichen').innerHTML = m[1].replace(/<!--[\s\S]*?-->/g, '').replace(/\sfill="[^"]*"/g, ''); } catch (e) { /* ohne Zeichen geht alles weiter */ }
 }
 (async function () {
   $('#tuer h1').textContent = NAME + ' startet nicht.'; document.title = NAME + ' · ' + WO.haus.name; $('#rand').setAttribute('aria-label', 'Bereiche: ' + NAME);   /* Name nur aus dem Kleid */
-  try { const t = +localStorage.getItem('culinarium-registre-tage'); if (t === 7 || t === 30 || t === 90) S.tage = t; } catch (e) { /* privat */ }
+  try { const t = +localStorage.getItem('wildside-registre-tage'); if (t === 7 || t === 30 || t === 90) S.tage = t; } catch (e) { /* privat */ }
   const h = location.hash.slice(1); if (TITEL[h]) S.ansicht = h;
   const zeichen = zeichenLaden();
   try { const r = await fetch('seiten.json', { cache: 'no-store' }); if (r.ok) S.namen = await r.json(); } catch (e) { /* dann stehen die Dateinamen da */ }
@@ -691,7 +691,7 @@ async function zeichenLaden() {   /* das «C» der Wortmarke aus dem Kleid (WO_H
   }
   await zeichen;
   rand(); leiste(); zeichne();
-  /* Tor 30.10.2026: in niedrigen Fenstern kommt die Leiste erst nach dem ersten Scrollen (culinarium.css, Punkt 22) */
+  /* Tor 30.10.2026: in niedrigen Fenstern kommt die Leiste erst nach dem ersten Scrollen (registre-haus.css, Punkt 22) */
   const gerollt = () => document.body.classList.toggle('rg-gerollt', scrollY > 40); addEventListener('scroll', gerollt, { passive: true }); gerollt();
   window.addEventListener('hashchange', () => { const z = location.hash.slice(1); if (TITEL[z] && z !== S.ansicht) gehe(z); });
   window.BG_REGISTRE = 1;

@@ -1,8 +1,8 @@
-/* Das Besucherbuch · Culinarium Hannover: Anschluss an die Oberfläche der Häuser (28.10.2026, aus der Taverne zum Schäfli übernommen, dort mit den Funden des
-   Demo-Checks 21.10.2026). Rahmen, Kopf, Rand, Leiste und Startbild kommen aus /assets/oberflaeche/ (grund.css, rahmen-buehne.css, kleid/wildside.css).
-   Hier steht nur, was das Besucherbuch darin eigen hat: die Kennzahlen im Startbild wie Zahlen auf einem Plakat (Fraunces, darunter die Marke in DM Mono und
-   Kerzenlicht), der Zeitraum, das «C» der Wortmarke als Zeichen, der Raum ohne eigene Scrollfläche. Geladen nach dem Kleid.
-   Keine Pillen-Reihen: Wahlen und Knöpfe mit der Kante der Website (10 px). Bewegung nur über transform und opacity (Regel 55). */
+/* Die Besucherliste · Walk on the Wild Side Hannover: Anschluss an die Oberfläche der Häuser (Nachtbau 31.10.2026, Kopie der Besucherliste des Culinarium
+   Hannover, dort mit den Funden des Abnahme-Tors 30.10.2026). Rahmen, Kopf, Rand, Leiste und Startbild kommen aus /assets/oberflaeche/ (grund.css,
+   rahmen-buehne.css, kleid/wildside.css). Hier steht nur, was die Besucherliste darin eigen hat: die Kennzahlen im Startbild wie Zahlen auf einem Plakat
+   der Bar (Prata, darunter das Etikett in Hanken gesperrt und Gold), der Zeitraum, die Wortmarke als Zeichen, der Raum ohne eigene Scrollfläche.
+   Geladen nach dem Kleid. Keine Pillen-Reihen: Wahlen und Knöpfe mit der Kante des Eckschilds. Bewegung nur über transform und opacity (Regel 55). */
 
 /* Raum: die Seite scrollt als Ganzes, nie eine Fläche für sich (UMSTELLUNG.md, Prüfen Punkt 3) */
 .rg .flaeche{overflow:visible;position:relative}
@@ -16,7 +16,7 @@
 .rg .rand__haus{margin:14px 10px 2px;padding-top:12px}
 
 /* Startbild: das gemeinsame Startbild der Oberfläche, nichts eigen gestaltet. Die vier Kennzahlen stehen wie Zahlen auf einem Plakat des Hauses
-   (Zahl in der Titelschrift, darunter die Marke in Mono und Kerzenlicht), dazu der Zeitraum als Segment-Wahl des Pakets. */
+   (Zahl in der Titelschrift, darunter das Etikett in Gold), dazu der Zeitraum als Segment-Wahl des Pakets. */
 .wo-sb .wo-sb__kn{align-items:center}
 .wo-sb .buehne__chips{display:flex;flex-wrap:wrap;gap:26px;margin:0 0 0 12px;padding:0;list-style:none}
 .wo-sb .buehne__chips li{display:flex;flex-direction:column;list-style:none}
@@ -54,11 +54,11 @@
    Jetzt steht die Schrift dunkel auf hellem Grund, der Balken läuft als schmale Spur darunter; lesbar bei 1 % wie bei 100 %. */
 .trichter li{padding:12px 16px 22px!important}
 .trichter li i{inset:auto 16px 9px 16px!important;height:6px!important;border-radius:3px!important;background:var(--nacht)!important}
-.trichter li::after{content:'';position:absolute;left:16px;right:16px;bottom:9px;height:6px;border-radius:3px;background:rgba(38,36,45,.1);z-index:-1}
+.trichter li::after{content:'';position:absolute;left:16px;right:16px;bottom:9px;height:6px;border-radius:3px;background:rgba(28,21,19,.1);z-index:-1}
 .trichter span,.trichter b{color:var(--tinte)!important;mix-blend-mode:normal!important}
-.trichter em{color:rgba(38,36,45,.66)!important;mix-blend-mode:normal!important}
+.trichter em{color:rgba(28,21,19,.66)!important;mix-blend-mode:normal!important}
 
-/* Handy: die Zierzeile «Le Registre · Culinarium» bricht um statt abgeschnitten zu enden (am Rechner passt sie in eine Zeile) */
+/* Handy: die Zierzeile «Die Besucherliste · Wild Side» bricht um statt abgeschnitten zu enden (am Rechner passt sie in eine Zeile) */
 @media (max-width:600px){
   .wo-sb .wo-sb__zier span{white-space:normal;overflow:visible;line-height:1.6}
   .wo-sb .wo-sb__zier i{display:none}
@@ -85,13 +85,13 @@
   .rg .wahl3.wo-seg.wahl3--filter{display:grid;grid-template-columns:1fr 1fr;width:100%;border-radius:var(--wo-r1)}
   .rg .wahl3.wo-seg.wahl3--filter button{border-radius:var(--wo-r2);white-space:normal;text-align:center;padding:11px 8px;line-height:1.25}
   .rg .wahl3.wo-seg.wahl3--filter button:first-child{grid-column:1/-1}
-  /* Weg durch die Website: Bild über dem Namen, damit Namen wie «Dirty Chicken» nie mitten im Wort brechen (Fehlerbuch 10a: Wörter nie mitten getrennt) */
+  /* Weg durch die Website: Bild über dem Namen, damit Namen wie «Datenschutz» nie mitten im Wort brechen (Fehlerbuch 10a: Wörter nie mitten getrennt) */
   .rg .weg .mit-bild{flex-direction:column;align-items:flex-start;gap:8px}
   .rg .weg .mit-bild>span{overflow-wrap:normal;word-break:normal;hyphens:manual}
 }
 
 /* Verlauf, «Woche für Woche»: bei 920–1180 px (zwei Blätter nebeneinander, Rand offen) war die Zeile 328 px breit und ragte bis zu 59 px aus dem Fenster
-   (selbst gefunden 21.10.2026, auch in der Vorlage des Schlössli). Jetzt rückt «n zum Platz» unter den Balken, nichts ragt hinaus. */
+   (selbst gefunden 21.10.2026, auch in der Vorlage des Schlössli). Jetzt rückt «n zum Tisch» unter den Balken, nichts ragt hinaus. */
 .rg .zwei>*{min-width:0}
 @media (min-width:701px) and (max-width:1180px){
   .rg .wochen li{grid-template-columns:96px minmax(24px,1fr) 40px;gap:4px 10px}
@@ -119,10 +119,10 @@
   .wo-sb .wo-sb__zier i{display:none}
 }
 
-/* Culinarium: das «C» der Wortmarke als Zeichen (fast quadratisch, nicht hoch wie das Lamm der Vorlage) */
-.rg .zt{width:30px;height:32px}
-/* Trichter «Der Weg zum Platz»: Balken in Nacht auf hellem Grund (Linie in Tinte), Text dunkel; Werte nur aus dem Kleid */
-.trichter li::after{background:rgba(38,36,45,.1)}
+/* Walk on the Wild Side: die Wortmarke WALK / ON THE / WILD SIDE als Zeichen (Seitenverhältnis 1296 : 1600) */
+.rg .zt{width:26px;height:32px}
+/* Trichter «Der Weg zum Tisch»: Balken in Nacht auf hellem Grund (Linie in Tinte), Text dunkel; Werte nur aus dem Kleid */
+.trichter li::after{background:rgba(28,21,19,.1)}
 .trichter em{color:var(--wo-leise)!important}
 
 /* ===== Abnahme-Tor 6, 30.10.2026 ===== */
@@ -144,7 +144,7 @@
 .rg .zeile--kopf>span{white-space:nowrap}
 .rg .zeile>span:nth-child(2){text-align:right}
 @media (min-width:1241px){.rg .zeile{grid-template-columns:minmax(0,2fr) 76px minmax(60px,1.3fr) 150px 96px}}
-/* Köpfe alle gleich klein (die Zeit- und Platz-Spalte gab ihnen die Grösse der Werte) */
+/* Köpfe alle gleich klein (die Zeit- und Tisch-Spalte gab ihnen die Grösse der Werte) */
 .rg .zeile--kopf>span{font-size:10px}
 /* 13/21 (cu-messlauf): Zeitwerte nie umbrechen; 621–1240 px ohne Balkenspalte, damit der Seitenname Platz hat (bei 1000 px zerfiel er in Silben) */
 .rg .zeile>span:nth-child(4){white-space:nowrap}
@@ -199,7 +199,7 @@
   .rg .rang:not(:has(.mit-bild))>li{grid-column:1/-1;grid-template-columns:subgrid}
   .rg .rang:not(:has(.mit-bild)) .rang__n{white-space:nowrap}
 }
-/* 24 Kennzahlen «Zum Platz» bei 621–1240 px: jedes Etikett hat zwei Zeilen Platz, die Zahlen stehen auf einer Linie */
+/* 24 Kennzahlen «Zum Tisch» bei 621–1240 px: jedes Etikett hat zwei Zeilen Platz, die Zahlen stehen auf einer Linie */
 @media (min-width:621px) and (max-width:1240px){.rg .werte .wert>.mono{min-height:2lh}}
 /* 6 Während des Rundgangs liegt die Leiste nicht über dem Gezeigten */
 .rg:has(.rdg-karte) #leiste{transform:translateY(calc(100% + 40px))}
@@ -216,7 +216,7 @@
 .rg .rang:has(.mit-bild)>li{grid-column:1/-1;grid-template-columns:subgrid}
 .rg .rang__n:has(.mit-bild) .mit-bild>span{white-space:nowrap}
 @media (max-width:620px){.rg .rang:has(.mit-bild){grid-template-columns:auto minmax(28px,1fr) auto 34px;column-gap:8px}}
-/* 28 Kennzahlen «Zum Platz»: die Etiketten einer Reihe sind gleich hoch (Raster der Reihe), die Zahlen stehen auf einer Linie, auch wenn ein Etikett drei Zeilen braucht */
+/* 28 Kennzahlen «Zum Tisch»: die Etiketten einer Reihe sind gleich hoch (Raster der Reihe), die Zahlen stehen auf einer Linie, auch wenn ein Etikett drei Zeilen braucht */
 @media (min-width:621px){.rg .werte .wert{grid-row:span 3;grid-template-rows:subgrid;row-gap:6px;align-content:normal}.rg .werte .wert>.mono{min-height:0;align-self:start}}
 /* Fund 30: Meldung steht, Rundgang-Schild tritt so lange zurück */
 .rg:has(#meldung .quit) .rdg-schild{visibility:hidden;pointer-events:none}
