@@ -76,7 +76,8 @@ def knopf_mitte(pfad):
     css = open(os.path.join(w, 'knopf_mitte.css'), encoding='utf-8').read()
     js = open(os.path.join(w, 'knopf_mitte.js'), encoding='utf-8').read().strip()
     # Handy: Seitentitel (Prata 40 px) etwas kleiner, «Eure Unterlagen,» lief in WebKit bei 390 bis 394 px (Tor in Actions, 31.10.2026)
-    css += '\n@media(max-width:480px){h1.t1{font-size:min(40px,9.4vw)}}'
+    # 31.10. 21:49: in WebKit ist Prata breiter, bei 9,4vw noch 394 px → 8,6vw (bei 390: 33,5 px)
+    css += '\n@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}'
     block = f'<style id="knopf-mitte">{css}</style><script id="knopf-mitte-js">{js}</script>'
     t = open(pfad, encoding='utf-8').read()
     t = re.sub(r'<style id="knopf-mitte">.*?</style><script id="knopf-mitte-js">.*?</script>', '', t, flags=re.S)
