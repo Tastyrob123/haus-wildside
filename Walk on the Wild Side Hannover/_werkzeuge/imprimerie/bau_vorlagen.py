@@ -58,7 +58,7 @@ abt_session = []
 for tag, datum, name, nn, zeit, bild, welle in LINEUP:
     abt_session.append(v('SESSION · %s, %s' % (nn, datum), 'Instagram', 'insta', 'plakat', 'session', session(tag, name, zeit, bild, welle), stil=S2))
 abt_session += [
-    v('SESSION · Aushang A3', 'an der Tür, an der Bar', 'a3h', 'plakat', 'session', session('17|10', 'GHAZOUANI\nBROTHERS', '10 PM TO 1 AM', 'sw-an-dj', 'welle-1'), stil=S2),
+    v('SESSION · Aushang A3', 'an der Tür, an der Bar', 'a3h', 'plakat', 'session', session('17|10', 'GHAZOUANI\nBROTHERS', '10 PM TO 1 AM', 'sw-momo-giesst', 'welle-1'), stil=S2),
     v('SESSION · Story', 'Instagram-Story', 'story', 'plakat', 'session', session('17|10', 'GHAZOUANI\nBROTHERS', '10 PM TO 1 AM', 'sw-an-dj', 'welle-3'), stil=S2),
     v('Samstags legt jemand auf', 'Instagram', 'insta', 'buehne', 'dunkel', {"bild": "an-dj", "ueber": "Samstags · 21 bis 1 Uhr", "titel": "Samstags legt jemand auf.",
       "text": "Rund einmal im Monat legt jemand auf, von 21 bis 1 Uhr. Auf den Plakaten heisst die Reihe SESSION, gemeint sind Drinks und Musik an einem Abend.", "aktion": IG}),

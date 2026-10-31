@@ -165,6 +165,38 @@ def tapete(ziel, farbe, deck, groesse=448):
     im.save(ziel, 'WEBP', lossless=True)
 
 
+DRUCK = ['konzert-scharf', 'momo-giesst', 'decke-raum', 'an-empore-tafel', 'silvester']   # Druckfassungen bis 2400 px für A3 (druck.json)
+
+
+def druckfassungen():
+    """Grössere Fassungen nur für PDF und Druckprüfung (satz.js liest druck.json): die Wellen in 2400 × 3200, einige Fotos in der grössten Stufe der Website,
+    Schwarzweiss-Porträts aus der grössten Stufe."""
+    D = os.path.join(Z, 'druck'); os.makedirs(D, exist_ok=True)
+    for f in os.listdir(D):
+        os.remove(os.path.join(D, f))
+    aus = {}
+    for n, (per, ph, sch, seed) in enumerate(WELLEN, 1):
+        p = os.path.join(D, 'welle-%d.jpg' % n)
+        im = welle(p + '.webp', 2400, 3200, per * 1.6, ph, sch, seed=seed); os.remove(p + '.webp')
+        im.save(p, 'JPEG', quality=88); aus['welle-%d' % n] = list(im.size)
+    gross = lambda k: sorted(glob.glob(os.path.join(WEB, 'assets', 'bild', k + '-*.webp')), key=lambda q: int(re.search(r'-(\d+)\.webp$', q).group(1)))
+    for k in DRUCK + ['sw-' + x for x in SW]:
+        q = gross(k[3:] if k.startswith('sw-') else k)
+        if not q:
+            continue
+        im = ImageOps.exif_transpose(Image.open(q[-1]))
+        if max(im.size) <= 1600:
+            continue
+        if k.startswith('sw-'):
+            g = ImageEnhance.Contrast(ImageOps.autocontrast(ImageOps.grayscale(im), cutoff=1)).enhance(1.18); im = g
+        im = im.convert('RGB'); im.save(os.path.join(D, k + '.jpg'), 'JPEG', quality=88); aus[k] = list(im.size)
+    json.dump(aus, open(os.path.join(Z, 'druck.json'), 'w'))
+    return aus
+
+
+WELLEN = [(250, .1, .5, 3), (220, .55, -.4, 7), (280, .3, 1.0, 11)]
+
+
 def main():
     for u in ('schriften', 'bilder', 'mini', 'kopf', 'mail'):
         os.makedirs(os.path.join(Z, u), exist_ok=True)
@@ -239,7 +271,7 @@ def main():
 
     # Plakat-Grund: drei Wellen (hochkant gerechnet, alle Formate schneiden daraus)
     motive = []
-    for n, (per, ph, sch, seed) in enumerate([(250, .1, .5, 3), (220, .55, -.4, 7), (280, .3, 1.0, 11)], 1):
+    for n, (per, ph, sch, seed) in enumerate(WELLEN, 1):
         k = 'welle-%d' % n
         p = os.path.join(Z, 'bilder', k + '.webp')
         im = welle(p, 1500, 2000, per, ph, sch, seed=seed)
@@ -265,8 +297,7 @@ def main():
             os.remove(os.path.join(Z, 'mail', f))
     bilder.sort(key=lambda b: (ROLLEN.index(b['gruppe']), b['key']))
     json.dump(motive, open(os.path.join(Z, 'motive.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    if not os.path.exists(os.path.join(Z, 'druck.json')):
-        json.dump({}, open(os.path.join(Z, 'druck.json'), 'w'))
+    druckfassungen()
 
     marke = dict(
         key='wildside', name='Wild Side', voll='Walk on the Wild Side Hannover', ort='Hannover-Linden', artikel='das',
