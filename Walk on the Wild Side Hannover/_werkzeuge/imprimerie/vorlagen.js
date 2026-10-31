@@ -611,7 +611,7 @@
     if (c.stil.ausr === 'l' && LINKS_MOEGLICH.includes(vorlage) && !(vorlage === 'gutschein' && c.quer)) linksbuendig(c);
     for (const e of c.el) {   // kein Wort bricht mitten im Wort (Tor 31.10.2026: «Geburtstag», «Preise», «SESSION»): Titel, Kapitale und Plakatschrift kleiner, bis das längste Wort passt
       if (e.typ !== 'text' || !/^(titel|kapitale|plakat|plakatfett|kopf)$/.test(e.rolle)) continue;
-      const lang = String(e.text || '').split(/\s+/).sort((a, b) => b.length - a.length)[0] || '';
+      const lang = String(e.text || '').split(/[\s\-\u2010]+/).sort((a, b) => b.length - a.length)[0] || '';   // am Bindestrich darf die Zeile brechen
       if (lang.length < 6) continue;
       const bw = DS.mess(Object.assign({}, e, { text: lang, w: 100000 })).bw || 0;
       if (bw > e.w * .88) { e.gr = +(e.gr * e.w * .86 / bw).toFixed(2); e.h = DS.mess(e).h; }   // Luft für die Rundung in kleinen Vorschauen

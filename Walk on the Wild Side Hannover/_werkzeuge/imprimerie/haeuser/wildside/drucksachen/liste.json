@@ -6,10 +6,10 @@
   "format": "Instagram 4:5",
   "seiten": 1,
   "rot": [],
+  "pdf": "session-ghazouani-brothers.pdf",
   "vorschau": [
    "session-ghazouani-brothers.jpg"
-  ],
-  "pdf": "session-ghazouani-brothers.pdf"
+  ]
  },
  {
   "k": "session-aushang-a3",
@@ -18,10 +18,10 @@
   "format": "A3 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "session-aushang-a3.pdf",
   "vorschau": [
    "session-aushang-a3.jpg"
-  ],
-  "pdf": "session-aushang-a3.pdf"
+  ]
  },
  {
   "k": "session-story",
@@ -30,10 +30,10 @@
   "format": "Story 9:16",
   "seiten": 1,
   "rot": [],
+  "pdf": "session-story.pdf",
   "vorschau": [
    "session-story.jpg"
-  ],
-  "pdf": "session-story.pdf"
+  ]
  },
  {
   "k": "session-programm",
@@ -42,10 +42,10 @@
   "format": "A5 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "session-programm.pdf",
   "vorschau": [
    "session-programm.jpg"
-  ],
-  "pdf": "session-programm.pdf"
+  ]
  },
  {
   "k": "konzert-live-am-donnerstag",
@@ -54,10 +54,10 @@
   "format": "A3 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "konzert-live-am-donnerstag.pdf",
   "vorschau": [
    "konzert-live-am-donnerstag.jpg"
-  ],
-  "pdf": "konzert-live-am-donnerstag.pdf"
+  ]
  },
  {
   "k": "silvester-fruehshoppen",
@@ -66,10 +66,10 @@
   "format": "Instagram 4:5",
   "seiten": 1,
   "rot": [],
+  "pdf": "silvester-fruehshoppen.pdf",
   "vorschau": [
    "silvester-fruehshoppen.jpg"
-  ],
-  "pdf": "silvester-fruehshoppen.pdf"
+  ]
  },
  {
   "k": "tanz-in-den-mai",
@@ -78,10 +78,10 @@
   "format": "Instagram 4:5",
   "seiten": 1,
   "rot": [],
+  "pdf": "tanz-in-den-mai.pdf",
   "vorschau": [
    "tanz-in-den-mai.jpg"
-  ],
-  "pdf": "tanz-in-den-mai.pdf"
+  ]
  },
  {
   "k": "gastschicht-musa",
@@ -90,10 +90,10 @@
   "format": "Instagram 4:5",
   "seiten": 1,
   "rot": [],
+  "pdf": "gastschicht-musa.pdf",
   "vorschau": [
    "gastschicht-musa.jpg"
-  ],
-  "pdf": "gastschicht-musa.pdf"
+  ]
  },
  {
   "k": "karte-drunk-in-love",
@@ -102,10 +102,10 @@
   "format": "DL hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "karte-drunk-in-love.pdf",
   "vorschau": [
    "karte-drunk-in-love.jpg"
-  ],
-  "pdf": "karte-drunk-in-love.pdf"
+  ]
  },
  {
   "k": "karte-preise-der-bar",
@@ -114,10 +114,10 @@
   "format": "A5 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "karte-preise-der-bar.pdf",
   "vorschau": [
    "karte-preise-der-bar.jpg"
-  ],
-  "pdf": "karte-preise-der-bar.pdf"
+  ]
  },
  {
   "k": "karte-klassiker",
@@ -126,10 +126,10 @@
   "format": "DL hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "karte-klassiker.pdf",
   "vorschau": [
    "karte-klassiker.jpg"
-  ],
-  "pdf": "karte-klassiker.pdf"
+  ]
  },
  {
   "k": "untersetzer-was-magst-du",
@@ -138,10 +138,10 @@
   "format": "A6 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "untersetzer-was-magst-du.pdf",
   "vorschau": [
    "untersetzer-was-magst-du.jpg"
-  ],
-  "pdf": "untersetzer-was-magst-du.pdf"
+  ]
  },
  {
   "k": "tischaufsteller-du-sagst",
@@ -150,23 +150,23 @@
   "format": "A6 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "tischaufsteller-du-sagst.pdf",
   "vorschau": [
    "tischaufsteller-du-sagst.jpg"
-  ],
-  "pdf": "tischaufsteller-du-sagst.pdf"
+  ]
  },
  {
   "k": "flyer-nachbarschafts-mixology-bar",
-  "n": "Flyer · Eure Nachbarschafts-Mixology-Bar",
+  "n": "Flyer der Bar",
   "was": "Flyer A6, vorne Foto, hinten Zeiten",
   "format": "A6 hoch",
   "seiten": 2,
   "rot": [],
+  "pdf": "flyer-nachbarschafts-mixology-bar.pdf",
   "vorschau": [
    "flyer-nachbarschafts-mixology-bar.jpg",
    "flyer-nachbarschafts-mixology-bar-2.jpg"
-  ],
-  "pdf": "flyer-nachbarschafts-mixology-bar.pdf"
+  ]
  },
  {
   "k": "aushang-oeffnungszeiten",
@@ -175,10 +175,10 @@
   "format": "A4 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "aushang-oeffnungszeiten.pdf",
   "vorschau": [
    "aushang-oeffnungszeiten.jpg"
-  ],
-  "pdf": "aushang-oeffnungszeiten.pdf"
+  ]
  },
  {
   "k": "instagram-falstaff",
@@ -187,10 +187,10 @@
   "format": "Instagram 4:5",
   "seiten": 1,
   "rot": [],
+  "pdf": "instagram-falstaff.pdf",
   "vorschau": [
    "instagram-falstaff.jpg"
-  ],
-  "pdf": "instagram-falstaff.pdf"
+  ]
  },
  {
   "k": "instagram-negroni",
@@ -199,10 +199,10 @@
   "format": "Instagram 4:5",
   "seiten": 1,
   "rot": [],
+  "pdf": "instagram-negroni.pdf",
   "vorschau": [
    "instagram-negroni.jpg"
-  ],
-  "pdf": "instagram-negroni.pdf"
+  ]
  },
  {
   "k": "feiern-pauschale",
@@ -211,10 +211,10 @@
   "format": "A5 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "feiern-pauschale.pdf",
   "vorschau": [
    "feiern-pauschale.jpg"
-  ],
-  "pdf": "feiern-pauschale.pdf"
+  ]
  },
  {
   "k": "feiern-lange-tafel",
@@ -223,10 +223,10 @@
   "format": "A5 hoch",
   "seiten": 1,
   "rot": [],
+  "pdf": "feiern-lange-tafel.pdf",
   "vorschau": [
    "feiern-lange-tafel.jpg"
-  ],
-  "pdf": "feiern-lange-tafel.pdf"
+  ]
  },
  {
   "k": "gutschein",
@@ -235,10 +235,10 @@
   "format": "DL quer",
   "seiten": 2,
   "rot": [],
+  "pdf": "gutschein.pdf",
   "vorschau": [
    "gutschein.jpg",
    "gutschein-2.jpg"
-  ],
-  "pdf": "gutschein.pdf"
+  ]
  }
 ]

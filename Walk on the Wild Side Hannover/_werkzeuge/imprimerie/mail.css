@@ -305,6 +305,7 @@
 .ml-nav button{padding-top:3px}
 /* gemeinsame Kanten (Kriterium 6): mittig gesetzte Köpfe der Spalten stehen als ganze Zeile auf der Mittelachse, «Zur Übersicht» als ganze Zeile */
 .ml-links h3,.ml-rechts h3,.ml-kapitel,.ml-einfuegen{text-align:center}
-.ml-zurueck{display:flex;width:100%;box-sizing:border-box}
+.ml-zurueck{display:flex;width:auto}
 .ml-pruef__liste button>span{flex:1;min-width:0;overflow-wrap:anywhere}
 @media (max-width:600px){.ml-pruef__liste{position:fixed;left:16px;right:16px;top:132px;width:auto;z-index:60}}
+.ml-einfuegen [data-neu=knopf]{--h:3.7px}
