@@ -185,12 +185,17 @@ exports.ergaenzung = function ergaenzung(opt) {
   // K4 leere Kachel: Kachel/Knopf ohne Text und ohne sichtbares Bild; Bilder, die nicht laden; Flächen nur mit Hintergrund → Bildprüfung
   const KACHEL = /k[aä]chel|karte|tile|card|stueck|\bwo\b|wo__|feld|tafel|kasten|swatch|muster|tapete|vorschau|bild|foto|thumb|mini/i;
   const pruefBild = [];
+  // Bildprüfung nur für Flächen, die man wirklich sieht (Oberchef Wild Side 31.10.2026, Beleg: Schaufenster 021 «Foto tauschen» – die runden Kopf-Knöpfe liegen unter
+  // dem offenen Fenster und wurden als «leer» gemeldet; Gästebuch/Schaufenster – Bilder unterhalb des Fensters lädt WebKit erst beim Hinscrollen, der Ausschnitt war einfarbig):
+  // Mitte im Fenster und obenauf (elementFromPoint trifft die Fläche selbst oder ihr Inneres).
+  const obenauf = e => { const q = e.getBoundingClientRect(), x = q.left + q.width / 2, y = q.top + q.height / 2; if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) return false;
+    const t = document.elementFromPoint(x, y); return !!t && (t === e || e.contains(t)); };
   for (const e of sichtbar) {
     const k = typeof e.className === 'string' ? e.className : ''; const r = e.getBoundingClientRect();
     if (r.width < 40 || r.height < 40 || r.width > VW * 0.9) continue;
     if (e.tagName === 'IMG') { if (e.complete && e.naturalWidth === 0 && e.getAttribute('src')) fund(4, 'bild-fehlt', e, `Bild lädt nicht: ${(e.getAttribute('src') || '').split('/').pop()}`); continue; }
     // Fläche, die nur aus einem Hintergrundbild besteht (Muster, Tapete, Farbfeld): ins Bild schauen, ob etwas zu sehen ist
-    if (cs(e).backgroundImage.startsWith('url(') && !(e.innerText || '').trim() && !e.children.length && pruefBild.length < 14 && !e.closest('[class*="papier"],[class*="blatt"]')) { pruefBild.push({ sel: pfad(e) + ' [' + (cs(e).backgroundImage.match(/([^/]+?)["')]*$/) || ['', ''])[1] + ']', r: rect(e) }); continue; }
+    if (cs(e).backgroundImage.startsWith('url(') && !(e.innerText || '').trim() && !e.children.length && pruefBild.length < 14 && !e.closest('[class*="papier"],[class*="blatt"]')) { if (obenauf(e)) pruefBild.push({ sel: pfad(e) + ' [' + (cs(e).backgroundImage.match(/([^/]+?)["')]*$/) || ['', ''])[1] + ']', r: rect(e) }); continue; }
     if (!KACHEL.test(k) && !e.matches('button,a[href],figure,li')) continue;
     if (e.closest('[class*="papier"],[class*="blatt"]') && !istDok(e)) continue;
     const hatText = (e.innerText || '').trim().length > 0;
@@ -198,7 +203,7 @@ exports.ergaenzung = function ergaenzung(opt) {
     const bg = cs(e).backgroundImage !== 'none' || [...e.querySelectorAll('*')].some(x => sicht(x) && cs(x).backgroundImage !== 'none' && x.getBoundingClientRect().width > r.width * .5);
     if (!hatText && !medien.length && !bg && !e.matches('input,textarea,select') && (e.children.length === 0 || KACHEL.test(k))) {
       if (cs(e).backgroundColor !== 'rgba(0, 0, 0, 0)' || parseFloat(cs(e).borderTopWidth) > 0) fund(4, 'leer', e, `Kachel ohne Inhalt (${Math.round(r.width)}×${Math.round(r.height)} px)`); }
-    else if (!hatText && (bg || medien.length) && KACHEL.test(k) && pruefBild.length < 14) pruefBild.push({ sel: pfad(e), r: rect(e) });
+    else if (!hatText && (bg || medien.length) && KACHEL.test(k) && pruefBild.length < 14 && obenauf(e)) pruefBild.push({ sel: pfad(e), r: rect(e) });
   }
 
   // Dokumente: Lage für die Bildprüfung (Löcher, Mitte); K12 Stil; K14 doppelte Marke
