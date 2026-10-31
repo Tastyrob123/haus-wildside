@@ -12,7 +12,7 @@
   /* ---------- Vorlagen: Fakten aus katalog.js (NEWSLETTER), dort gepflegt ---------- */
   const NL = n => ((window.DSKATALOG && DSKATALOG.NEWSLETTER || []).find(x => x.n === n) || {}).inhalt || {};
   const VORLAGEN = [
-    { key: "abend", n: "Der nächste DJ-Abend", wo: "an alle Gäste", foto: "an-dj", bau() {
+    { key: "abend", n: "Der DJ-Abend", wo: "an alle Gäste", foto: "an-dj", bau() {
       return { betreff: "SESSION · Samstag an der Bar", vorschau: "Rund einmal im Monat legt jemand auf, von 21 bis 1 Uhr. Momo mixt dazu.", versand: "mailchimp",
         kopf: { foto: "an-dj", alt: "Das DJ-Pult im Licht" }, fuss: { abmelden: true },
         bloecke: [
@@ -89,7 +89,7 @@
     titel: { n: 'Titel', ic: '<path d="M5 6h14M12 6v13"/>', neu: () => ({ typ: 'titel', ueber: 'Walk on the Wild Side', titel: 'Titel', unter: '' }) },
     text: { n: 'Text', ic: '<path d="M4 6h16M4 10h16M4 14h16M4 18h10"/>', neu: () => ({ typ: 'text', text: 'Dein Text.' }) },
     foto: { n: 'Foto', ic: '<path d="M4 5h16v14H4zM4 16l5-5 4 4 2.5-2.5L20 17"/>', neu: () => ({ typ: 'foto', foto: 'fenster', alt: 'Von der Strasse durchs Fenster: die Rückbar', unterschrift: '', voll: false }) },
-    knopf: { n: 'Knopf mit Link', ic: '<rect x="3" y="8" width="18" height="8" rx="4"/><path d="M14 12h3m-1.5-1.5L17 12l-1.5 1.5"/>', neu: () => ({ typ: 'knopf', text: 'Mehr erfahren', link: WEB }) },
+    knopf: { n: 'Knopf', ic: '<rect x="3" y="8" width="18" height="8" rx="4"/><path d="M14 12h3m-1.5-1.5L17 12l-1.5 1.5"/>', neu: () => ({ typ: 'knopf', text: 'Mehr erfahren', link: WEB }) },
     termine: { n: 'Termine', ic: '<path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/>', neu: () => ({ typ: 'termine', titel: '', eintraege: [{ wann: '[Datum · Zeit]', was: '[Anlass]', wo: '[Ort]' }] }) },
     liste: { n: 'Preisliste', ic: '<path d="M4 7h11M4 12h11M4 17h11M18 7h2M18 12h2M18 17h2"/>', neu: () => ({ typ: 'liste', titel: '', eintraege: [{ name: '[Name]', detail: '[Beschreibung]', preis: '[Preis] €' }] }) },
     trenner: { n: 'Zierlinie', ic: '<path d="M3 12h6M15 12h6M12 9l3 3-3 3-3-3z"/>', neu: () => ({ typ: 'trenner' }) },

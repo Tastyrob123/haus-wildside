@@ -52,6 +52,11 @@ figcaption{font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;c
 /* Messlauf 29.10.2026 (Regel einzelwort): kein einzelnes Wort allein in der letzten Titelzeile */
 h1,h2,h3,h4,figcaption{text-wrap:balance}
 .zs{white-space:nowrap}
+/* Wild Side (31.10.2026): Prata hat keinen Schrägschnitt und nur eine Stärke: nie künstlich kursiv oder fett, Betonung über die Farbe; Hauptknopf rot wie das Eckschild */
+*{font-synthesis:none}em,i{font-style:normal}
+.kopf a.gold{background:linear-gradient(180deg,#F65562 0%,#F0323F 52%,#C8202D 100%);color:#FFF6EC}
+.kopf a.kn{white-space:nowrap}
+@media (max-width:520px){.kopf{flex-wrap:wrap;row-gap:10px}.kopf nav{margin-left:0}}
 </style>
 <script src="/assets/oberflaeche/kleid/wildside.js?v=ce397a8c87"></script>
 <script src="/assets/oberflaeche/oberflaeche.js?v=0b1fa78a6c" defer></script>
@@ -76,7 +81,7 @@ h1,h2,h3,h4,figcaption{text-wrap:balance}
 <li>Die Leiste unten sagt in einem Satz, was offen ist. «Neu laden» holt den Stand, «Zum Eingang» führt zu den Anfragen. Es sieht auch von selbst nach, ob etwas Neues da ist.</li></ol>
 <figure><img src="bilder/rez-uebersicht.jpg?v=c9c5b6e98d" alt="Übersicht" loading="lazy"><figcaption><span data-wo-name="gaeste">Werkzeug</span> · Übersicht</figcaption></figure></section>
 
-<section class="k" id="k2"><span class="m">02 · Eingang</span><h2>Eine Anfrage <em>beantworten.</em></h2>
+<section class="k" id="k2"><span class="m">02 · Eingang</span><h2>Eine <span class="zs">Anfrage <em>beantworten.</em></span></h2>
 <p class="s">Jede Anfrage aus einem Formular der Website landet hier, mit allen Angaben, den Allergien als Klartext und der Seite, von der sie kam. Ebenso eine Anfrage aus dem Chat, sobald der Gast Name und Kontakt nennt. Niemand sagt dem Gast, dass etwas reserviert oder bestätigt ist; das tut dein Team.</p>
 <ol><li>«Eingang» öffnen. Oben Reservieren, Dinner, Feiern und Nachrichten mit der Zahl offener Anfragen, darunter die Auswahl «Alle», «Neu», «Offen», «Erledigt». Die Anfragen stehen nach Tagen geordnet (Heute, Gestern, Wochentag, Früher). Neue tragen ein goldenes Feld «Neu».</li>
 <li>Eine Anfrage anklicken. Rechts stehen Name, Tag, Uhrzeit, Plätze, Platz, Allergien, Sprache und Kontakt, darunter die Hinweise: Bar geschlossen (Sonntag bis Mittwoch), ab zehn Gästen die lange Tafel statt der Theke, ein Format, das nicht zur Zahl der Gäste passt (Privates Dinner 10 bis 14, lange Tafel 10 bis 20, ganze Bar ab 30), Allergien beim Dinner (die Website sagt dazu nichts: Rudi fragen), die Anzahlung bei Feiern (30 Prozent eine Woche vorher). Unter «Die Nachricht über die Website» liest du nach, was der Gast ausgefüllt hat. Öffnen macht eine neue Anfrage zur gelesenen.</li>

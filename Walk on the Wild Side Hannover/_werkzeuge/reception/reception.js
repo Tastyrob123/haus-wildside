@@ -89,7 +89,7 @@ const TITEL = { start: 'Übersicht', eingang: 'Eingang', gefragt: 'Das wurde gef
 /* Kopf, Rand, Leiste und Startbild aus dem Paket der Werkzeuge des Hauses (assets/oberflaeche, Rahmen «Die Bühne», kleid/wildside.*):
    gleich wie in den anderen Werkzeugen der Bar. Ids, data-gehe und Handler bleiben (UMSTELLUNG.md). */
 const WEGE = { anleitung: 'anleitung.html', pruefung: 'pruefung.html' };
-const SB_FOTO = { eingang: 'theke', gefragt: 'momo-lacht', nachgetragen: 'rueckbar', wissen: 'decke-raum' };   // Bühne je Ansicht, Fotos des Hauses
+const SB_FOTO = { eingang: 'theke', gefragt: 'momo-flaschen', nachgetragen: 'rueckbar', wissen: 'decke-raum' };   // Bühne je Ansicht, Fotos des Hauses
 /* Knöpfe in Startbild und Bühne im Stil des Pakets (gleiche Ids und data-Attribute) */
 const woKn = h => String(h || '').replace(/class="kn kn--(gold|linie)( glanz-kn)?"/g, (m, a) => `class="wo-kn wo-kn--${a === 'gold' ? 'gold' : 'hell'}"`)
   .replace(/class="kn"/g, 'class="wo-kn wo-kn--hell"').replace(/(<(?:a|button) class="wo-kn[^"]*"[^>]*>)([^<]+)<i>/g, '$1<span>$2</span><i>')
