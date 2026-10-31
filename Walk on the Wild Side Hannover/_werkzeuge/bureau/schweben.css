@@ -1,4 +1,4 @@
-/* La Carte · Waldhotel Doldenhorn (über La Carte des Carlton-Europe): Kopie von studio/schweben.css des Grand Beau-Rivage (16.10.2026), unverändert in der Wirkung. */
+/* schweben.css · Das Schaufenster · Walk on the Wild Side: Kopie aus dem Culinarium (31.10.2026), dort aus La Carte der früheren Häuser, unverändert in der Wirkung. */
 /* Schweben, Pulsieren, Zoom für die Werkzeuge (Gefühl der Carlton-Seiten, wie in Le Registre). Gehört zu schweben.js.
    Jedes Blatt trägt data-sw. Wo der Browser Scroll-Zeitachsen kann, wird es am Scrollen aus der Tiefe hochgeführt (sw-zug, gebunden an den Einzug
    entry 0% bis 100%, nichts bleibt am Seitenende hängen); im Bild (.sw-da) federt es zusätzlich nach der Uhr in seine Grösse (sw-puls).

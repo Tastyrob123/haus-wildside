@@ -348,6 +348,16 @@
       if (document.activeElement === f) t.focus();
     });
   }
-  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); }
+  /* Breite Kacheln unter «Häufig gebraucht»: das Foto in der nächsten Stufe der Website (960 statt 480 px), sonst stand es unscharf vergrössert; fehlt die Stufe, bleibt das kleine */
+  function scharf() {
+    document.querySelectorAll('.ws-aufgaben > .wo-ag .wo-ag__b img:not([data-scharf])').forEach(function (i) {
+      i.setAttribute('data-scharf', '');
+      var alt = i.getAttribute('src') || '';
+      if (!/-480\.webp/.test(alt)) return;
+      i.addEventListener('error', function () { if (i.getAttribute('src') !== alt) i.setAttribute('src', alt); }, { once: true });
+      i.setAttribute('src', alt.replace('-480.webp', '-960.webp'));
+    });
+  }
+  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
   if (window.MutationObserver) new MutationObserver(function () { if (!plan) plan = requestAnimationFrame(alles); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 })();

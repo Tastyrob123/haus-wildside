@@ -200,11 +200,19 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
 /* Kopf 901–1240 px: vom Knopf «Website ansehen» bleibt nur der runde Knauf; die Beschriftung war nur zugeklemmt und stand gemessen über den Knopf hinaus.
    Jetzt ist sie weg, der Name des Wegs steht als aria-label am Knopf (termine-ansicht.js). */
 @media (min-width:901px) and (max-width:1240px){#ws-kopf .wo-kn--gold.wo-kn--klein>span{display:none}}
-/* Häufig gebraucht: sieben Aufgaben in drei Spalten (erste und letzte doppelt breit), nie vier schmale Spalten, in denen die Titel Wort für Wort umbrechen */
-@container (min-width:968px){
-  .ws-aufgaben{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child{grid-column:span 2}
-  .ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child .wo-ag__b{aspect-ratio:32/9}
+/* Häufig gebraucht: nie vier schmale Spalten, in denen Titel und Satz Wort für Wort umbrechen (Kriterium 2). Ab 1366 px drei Spalten (erste und letzte
+   doppelt breit), darunter bis 701 px zwei Spalten (die erste über die ganze Reihe, dann drei Paare) */
+@media (min-width:1366px){
+  .ws.wo-app .wo-aufg.ws-aufgaben{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:first-child,
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child{grid-column:span 2!important}
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:is(:first-child,:last-child) .wo-ag__b{aspect-ratio:32/9}
+}
+@media (min-width:701px) and (max-width:1365px){
+  .ws.wo-app .wo-aufg.ws-aufgaben{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:first-child{grid-column:1 / -1!important}
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:not(:first-child){grid-column:auto!important}
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:first-child .wo-ag__b{aspect-ratio:32/9}
 }
 /* Sieben Bereiche: der siebte steht nie allein schmal in seiner Reihe (dort zerfiel sein kurzer Satz Wort für Wort), er nimmt die ganze Reihe */
 @media (min-width:1101px){
@@ -235,3 +243,4 @@ textarea.ws-langfeld{display:block;width:100%;box-sizing:border-box;resize:none;
    die Kachel und die erste Taste hängen dafür um ihren Innenabstand in den Rand der Platte hinaus */
 .ws-gt__vorschau{margin-left:-18px}
 #ws-mitte > section.ws-karte > .ws-reihe > .ws-taste:first-child{margin-left:-15px}
+.ws.wo-app .ws-aufgaben > .wo-ag > .wo-ag__b{align-self:stretch;width:auto}   /* das Bild füllt die Kachel ganz, auch in der breiten ersten */
