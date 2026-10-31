@@ -222,10 +222,8 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
    «In der Seite» bekommt seitlich Luft (Kriterium 2), steht aber an derselben Stelle wie vorher. */
 .ws-karte:has(> .ws-zl) > .ws-karte__kopf,.ws-zl > .ws-mono{padding-left:14px}
 .ws-zl > .ws-link{padding-inline:8px;margin-right:-8px}
-/* Gastschichten: «Ändern» steht in der Zeile des Namens, nie allein darunter (Kriterium 7) */
-.ws-eintrag__t{flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:16px}
-.ws-eintrag__t > .ws-mono{flex:1 0 100%}
-.ws-eintrag__t > b{flex:0 1 auto}
+/* Gastschichten: «Ändern» steht als Zeichen unter dem Namen (Text aus data-text), der Name ist die letzte Textzeile; nie ein Wort allein darin (Kriterium 7) */
+.ws-eintrag__auf[data-text]::after{content:attr(data-text)}
 /* Foto tauschen: Kacheln mindestens 176 px breit, sonst zerfällt die ganze Bildbeschreibung Wort für Wort (Kriterium 2); Beschriftung mit Luft zum Rand */
 .ws-fundus{grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
 .ws-fwahl{padding:6px 6px 8px;border-radius:var(--wo-r2)}
@@ -246,3 +244,4 @@ textarea.ws-langfeld{display:block;width:100%;box-sizing:border-box;resize:none;
 .ws.wo-app .ws-aufgaben > .wo-ag > .wo-ag__b{align-self:stretch;width:auto}   /* das Bild füllt die Kachel ganz, auch in der breiten ersten */
 /* Hinweis für Gäste: zwei Felder nebeneinander stehen auf einer Linie, auch wenn eine Beschriftung zwei Zeilen braucht (Kriterium 3) */
 .ws-zwei-werte{align-items:end}
+@media (max-width:560px){.ws-zl > .ws-link{justify-self:start;margin:0 0 0 6px}}   /* einspaltig: «In der Seite» beginnt auf der Kante der Werte (14 px) */

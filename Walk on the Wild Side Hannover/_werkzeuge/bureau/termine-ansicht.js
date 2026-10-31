@@ -292,20 +292,26 @@
    letzten Zeile: die letzten zwei Wörter bleiben zusammen (Safari kennt den Umbruch «pretty» noch nicht) */
 (function () {
   function fest() {
-    document.querySelectorAll(':is(.wo-ag__t, .wo-bk__t) > :is(b, span):not([data-fest]):not(:has(*))').forEach(function (b) {
+    document.querySelectorAll(':is(.wo-ag__t, .wo-bk__t) > :is(b, span):not([data-fest]):not(:has(*)), .ws-eintrag__t > b:not([data-fest])').forEach(function (b) {
       b.setAttribute('data-fest', '');
       var t = b.textContent.trim(), i = t.lastIndexOf(' '), j = i > 0 ? t.lastIndexOf(' ', i - 1) : -1;
-      if (j < 0) return;
+      if (j < 0) { if (i > 0 && b.parentNode.classList.contains('ws-eintrag__t')) b.textContent = t.replace(' ', '\u00a0'); return; }   /* Namen aus zwei Wörtern bleiben ganz */
       b.textContent = t.slice(0, j + 1) + t.slice(j + 1).replace(' ', '\u00a0');
     });
+  }
+  /* Gastschichten: «Ändern» unter dem Namen als Zeichen der Kachel (CSS ::after), damit die letzte Textzeile der Name bleibt */
+  function aendernZeichen() {
+    document.querySelectorAll('.ws-eintrag__auf:not([data-text])').forEach(function (e) { var t = e.textContent.trim(); if (!t) return; e.setAttribute('data-text', t); e.textContent = ''; });
   }
   /* Fenster «Foto tauschen»: der Bildtitel steht ganz (das gemeinsame Werkzeug kürzt ihn auf 48 Zeichen mit «…»; der volle steht im title) */
   function ganz() {
     document.querySelectorAll('.ws-fwahl:not([data-ganz])').forEach(function (k) {
       k.setAttribute('data-ganz', '');
       var t = k.querySelector('.ws-fwahl__t'), voll = k.getAttribute('title');
-      if (!t || !voll || !/…$/.test(t.textContent)) return;
-      t.textContent = (/^Eigenes Foto · /.test(t.textContent) ? 'Eigenes Foto · ' : '') + voll;
+      if (!t) return;
+      var text = (voll && /…$/.test(t.textContent)) ? (/^Eigenes Foto · /.test(t.textContent) ? 'Eigenes Foto · ' : '') + voll : t.textContent;
+      var i = text.lastIndexOf(' ');   /* die letzten zwei Wörter bleiben zusammen: nie ein Wort allein in der letzten Zeile (Kriterium 7) */
+      t.textContent = i > 0 ? text.slice(0, i) + '\u00a0' + text.slice(i + 1) : text;
     });
   }
   /* Kein «×» als Zählzeichen (K24, Tor 2, 30.10.2026): «Link · 4× auf der Seite» heisst «Link · an 4 Stellen der Seite», «Steht 9× …» heisst «Steht an 9 Stellen …» */
@@ -358,6 +364,6 @@
       i.setAttribute('src', alt.replace('-480.webp', '-960.webp'));
     });
   }
-  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
+  function alles() { plan = 0; fest(); aendernZeichen(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
   if (window.MutationObserver) new MutationObserver(function () { if (!plan) plan = requestAnimationFrame(alles); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 })();

@@ -321,6 +321,16 @@ class Antwort(stamm.Antwort):
             return self._pruefseite()
         if methode == 'GET' and pfad == '/werkzeuge/website/pruefung.js':
             return self._pruefskript()
+        if methode == 'GET' and pfad == '/werkzeuge/website/website.js' and os.environ.get('BUREAU_SPUR'):   # nur Prüfserver mit Spur: Stapel jedes gemeldeten Fehlers ins Protokoll
+            roh = (STAMM / 'werkzeuge' / 'website' / 'website.js').read_text(encoding='utf-8').replace(
+                "function fehler(e) {\n", "function fehler(e) {\n  try { fetch('/_werkzeuge/bureau/api/fehler', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: (String((e && (e.fehler || e.message)) || e) + ' @ ' + String((e && e.stack) || new Error().stack).replace(/http:[^ )]*\\//g, '')).slice(0, 395), stichwort: 'spur', wo: Z.ansicht + ' ' + innerWidth }) }); } catch (x) {}\n", 1).encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/javascript; charset=utf-8')
+            self.send_header('Content-Length', str(len(roh)))
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(roh)
+            return
         if methode == 'GET':
             if pfad in ('/', '/_werkzeuge/bureau'):
                 self.send_response(301)
