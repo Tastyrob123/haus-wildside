@@ -88,7 +88,7 @@ def beschreibung():
         'kopie': {'unter': 'website', 'ordner': ['assets']},
         'gesperrt': [],
         # DJ-Abende: eigene Ansicht (die Plakate der Plakatwand, der Kontaktbogen und der Flyer der Startseite entstehen aus der Liste der Abende)
-        'auslassen': ['.pw-wand', '.kb-gross', '.kb-bogen', '#flyer', '.wo-tafel', '.vk-rueck', '.vi-spiegel'],
+        'auslassen': ['.pw-wand', '.kb-gross', '.kb-bogen', '#flyer', '.wo-tafel', '.vk-rueck', '.vi-spiegel', '.f03-marke', '.et9-logo'],   # dazu: Logos der Nachbarn und der Portale sind Zeichen, keine tauschbaren Fotos
         'vorschau': {'ohne_skripte': [], 'zusatz_css': '.fenster{overflow:clip}@media (hover:none){[data-ws-e],img[data-ws-b]{cursor:pointer}}'},
         'bereiche': {
             **{k: {'an': False} for k in ('zimmer', 'preisstufen', 'packages', 'saele', 'unterlagen', 'stellen')},

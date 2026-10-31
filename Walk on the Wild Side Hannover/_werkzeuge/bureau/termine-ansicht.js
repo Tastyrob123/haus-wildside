@@ -117,9 +117,13 @@
     var o = ((L && L.plakate) || []).map(function (p) { return { wert: p.key, text: p.titel || p.alt }; });
     return H.auswahl(o, t.plakat, beiWahl, 'Plakat');
   }
-  function textFeld(wert, name, label, beiTippen) {
-    var i = H.el('input', { type: 'text', class: 'cu-zahl cu-ein', name: name, value: wert || '', maxlength: name === 'name' ? '60' : '80', autocomplete: 'off', spellcheck: 'false', 'aria-label': label });
-    i.addEventListener('input', function () { beiTippen(i.value); });
+  function hoehe(t) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+  function textFeld(wert, name, label, beiTippen) {   // eine Zeile, die bei langem Text umbricht (nie ein versteckter Anfang); Zeilenumbruch wird zu Leerzeichen
+    var i = H.el('textarea', { class: 'cu-zahl cu-ein', name: name, rows: '1', maxlength: name === 'name' ? '60' : '80', autocomplete: 'off', spellcheck: 'false', 'aria-label': label });
+    i.value = wert || '';
+    i.addEventListener('keydown', function (e) { if (e.key === 'Enter') e.preventDefault(); });
+    i.addEventListener('input', function () { if (/\n/.test(i.value)) i.value = i.value.replace(/\s*\n\s*/g, ' '); hoehe(i); beiTippen(i.value); });
+    requestAnimationFrame(function () { hoehe(i); });
     return i;
   }
   function pruefeEingabe(t) {
@@ -170,7 +174,7 @@
     var t = { id: 'n' + Date.now().toString(36).slice(-8), datum: iso(d), name: '', zeile: '', plakat: (L && L.plakate && L.plakate[0] ? L.plakate[0].key : '') };
     liste.push(t);
     zeichne(document.getElementById('ws-mitte'), H); H.neu();
-    var k = document.querySelector('[data-cu-termin="' + t.id + '"]'); if (k) { k.scrollIntoView({ block: 'center' }); k.classList.add('cu-t--leuchtet'); var i = k.querySelector('input[name="name"]'); if (i) try { i.focus({ preventScroll: true }); } catch (e) { /* ohne Fokus */ } }
+    var k = document.querySelector('[data-cu-termin="' + t.id + '"]'); if (k) { k.scrollIntoView({ block: 'center' }); k.classList.add('cu-t--leuchtet'); var i = k.querySelector('[name="name"]'); if (i) try { i.focus({ preventScroll: true }); } catch (e) { /* ohne Fokus */ } }
   }
 
   function vergleich() {   // «Vorher, nachher»: veröffentlicht (durchgestrichen) gegen Entwurf (markiert)
@@ -319,6 +323,31 @@
   var plan = 0;
   /* Suche unter «Zeiten & Preise»: das Beispiel des Stamms nennt Hotel-Wörter (Frühstück, CHF, Sauna); hier stehen Wörter, die auf der Website der Bar vorkommen */
   function suchBeispiel() { var i = document.getElementById('ws-suche'); if (i && /Frühstück|CHF|Sauna/.test(i.placeholder)) i.placeholder = 'zum Beispiel Uhr, EUR, Pauschale'; }
-  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); suchBeispiel(); }
+  /* Lange Werte in Feldern des Stamms (Bildbeschreibung, Google-Titel, Instagram-Link): ein einzeiliges Feld versteckt den Anfang (Kriterium 2). Daneben
+     steht ein Textfeld, das umbricht; das Feld des Stamms bleibt (verborgen) die Quelle: Eingaben gehen als «input» an es, Werte, die der Stamm setzt
+     («Wie ursprünglich»), erscheinen im Textfeld. Zeilenumbrüche werden zu Leerzeichen, Enter fügt keinen ein. */
+  var WERT = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+  function langfeld() {
+    document.querySelectorAll('input#ws-alt:not([data-lang]), input[id^="ws-gt-t-"]:not([data-lang]), input[id^="ws-ang-"][type="url"]:not([data-lang]), input[id^="ws-ang-"][type="text"]:not([data-lang])').forEach(function (f) {
+      f.setAttribute('data-lang', '');
+      var t = document.createElement('textarea');
+      t.className = 'ws-langfeld'; t.rows = 1; t.spellcheck = false; t.setAttribute('autocomplete', 'off');
+      var lb = f.id && document.querySelector('label[for="' + CSS.escape(f.id) + '"]');
+      if (lb) { if (!lb.id) lb.id = 'lb-' + f.id; t.setAttribute('aria-labelledby', lb.id); }
+      t.value = f.value;
+      var hoch = function () { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
+      var spiegel = function () { t.disabled = f.disabled; t.setAttribute('aria-invalid', f.getAttribute('aria-invalid') || 'false'); };
+      Object.defineProperty(f, 'value', { configurable: true, get: function () { return WERT.get.call(this); }, set: function (v) { WERT.set.call(this, v); if (t.value !== String(v)) { t.value = v; hoch(); } } });
+      t.addEventListener('keydown', function (e) { if (e.key === 'Enter') e.preventDefault(); });
+      t.addEventListener('input', function () { var v = t.value.replace(/\s*\n\s*/g, ' '); if (v !== t.value) t.value = v; WERT.set.call(f, v); f.dispatchEvent(new Event('input', { bubbles: true })); hoch(); });
+      if (window.MutationObserver) new MutationObserver(spiegel).observe(f, { attributes: true, attributeFilter: ['disabled', 'aria-invalid'] });
+      spiegel();
+      f.style.display = 'none';
+      f.after(t);
+      requestAnimationFrame(hoch);
+      if (document.activeElement === f) t.focus();
+    });
+  }
+  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); }
   if (window.MutationObserver) new MutationObserver(function () { if (!plan) plan = requestAnimationFrame(alles); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 })();

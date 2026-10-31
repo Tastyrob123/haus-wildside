@@ -17,7 +17,7 @@ body.an{margin:0;background:var(--wo-papier);color:var(--wo-tinte);font:16px/1.6
 .an-schritt{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:start;padding:40px 0;border-top:2px solid var(--wo-nacht2)}
 .an-schritt--ohne{grid-template-columns:minmax(0,760px)}
 .an-nr{margin:0 0 10px;font:var(--wo-titel-g) 44px/1 var(--wo-titel);color:var(--wo-g3)}
-.an-text h2{margin:0 0 14px;font:var(--wo-titel-g) 28px/1.15 var(--wo-titel);color:var(--wo-tief)}
+.an-text h2{margin:0 0 14px;font:var(--wo-titel-g) 28px/1.15 var(--wo-titel);color:var(--wo-tief);text-wrap:balance}
 .an-text p{margin:0 0 14px}
 .an-schritt figure{margin:0;border-radius:var(--wo-r1);overflow:hidden;box-shadow:0 0 0 1px var(--wo-linie),0 30px 50px -30px color-mix(in srgb,var(--wo-tief) 60%,transparent);background:var(--wo-blatt)}
 .an-schritt figure img{display:block;width:100%;height:auto}
