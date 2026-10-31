@@ -386,7 +386,7 @@ def farben():
         return []
     try:
         f = json.load(open(os.path.join(WZ, 'livre', 'livre.json'), encoding='utf-8')).get('farben') or []
-        return [(x['n'], x['h'].lower()) for x in f if re.fullmatch(r'#[0-9a-fA-F]{6}', x.get('h', '')) and x.get('n') and x.get('g') not in ('heute', 'abende', 'dc')][:12]   # Hausfarben ohne Plakatfarben und Dirty-Chicken-Violett (Le Livre 28.10.2026)
+        return [(x['n'], x['h'].lower()) for x in f if re.fullmatch(r'#[0-9a-fA-F]{6}', x.get('h', '')) and x.get('n') and x.get('g') not in ('heute', 'abende', 'dc', 'session')][:12]   # Hausfarben ohne die Farben der SESSION-Plakate (Markenbuch, Gruppe «session»)
     except (OSError, ValueError, KeyError, TypeError, AttributeError):
         return []
 
@@ -450,7 +450,7 @@ def seite(online, v):
   </div>
 </section>
 
-<section class="m-saal papier" id="imprimerie">
+<section class="m-saal creme" id="imprimerie">
   <div class="innen">
   {saal_kopf('imprimerie', 2)}
   <div class="m-saal__feld">
@@ -490,7 +490,7 @@ def seite(online, v):
   </div>
 </section>
 
-<section class="m-saal papier" id="registre">
+<section class="m-saal creme" id="registre">
   <div class="innen">
   {saal_kopf('registre', 5)}
   <div class="m-saal__feld">

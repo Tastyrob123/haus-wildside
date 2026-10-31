@@ -2,9 +2,9 @@
 <html lang="de">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Muster · Werkzeug-Oberfläche</title><meta name="robots" content="noindex, nofollow">
-<!-- Musterseite des Pakets: jeder Baustein einmal, im Kleid des Hauses. Im Haus unter /assets/oberflaeche/muster.html?haus=culinarium.
+<!-- Musterseite des Pakets: jeder Baustein einmal, im Kleid des Hauses. Im Haus unter /assets/oberflaeche/muster.html?haus=wildside.
      So wird auch jedes Werkzeug eingebunden: 1. kleid/<haus>.js  2. grund.css  3. rahmen-<inseln|buehne>.css  4. kleid/<haus>.css  5. oberflaeche.js -->
-<script>var WOH = (new URLSearchParams(location.search).get('haus') || 'culinarium').replace(/[^a-z]/g, ''); document.write('<script src="kleid/' + WOH + '.js"><\/script>');</script>
+<script>var WOH = (new URLSearchParams(location.search).get('haus') || 'wildside').replace(/[^a-z]/g, ''); document.write('<script src="kleid/' + WOH + '.js"><\/script>');</script>
 <script>document.write('<link rel="stylesheet" href="grund.css"><link rel="stylesheet" href="rahmen-' + WO_HAUS.rahmen + '.css"><link rel="stylesheet" href="kleid/' + WOH + '.css"><script src="oberflaeche.js"><\/script>');</script>
 </head>
 <body class="wo-app">

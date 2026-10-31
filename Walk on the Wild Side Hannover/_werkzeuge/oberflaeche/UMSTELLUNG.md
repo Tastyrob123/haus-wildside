@@ -3,17 +3,17 @@ tags: [projekt, website]
 status: aktiv
 ---
 
-# Werkzeug-Oberfläche · Culinarium Hannover
+# Werkzeug-Oberfläche · Walk on the Wild Side Hannover
 
-Angelegt am 28.10.2026 vom Chat `culinarium-maison` (Zentrale), dem **einzigen Schreiber dieses Ordners**. Paket = Stamm der Häuser (`grund.css`, `rahmen-buehne.css`, `rahmen-inseln.css`, `oberflaeche.js`, `muster.html`, Klon aus dem Schäfli, unverändert), Kleid eigen: `kleid/wildside.js` + `kleid/wildside.css` + `kleid/wildside-zeichen.svg` (das «C» der Wortmarke, unverändert aus `website/assets/zeichen/marke.svg #wm`, die die Website aus Rudis Original `_quelle/logo/original/culinarium-logo-original.svg` baut). Rahmen «Die Bühne»: Kopf dunkel, Raum hell (Werkzeuge hell).
+Übernommen am 31.10.2026 (Nachtbau) aus dem Culinarium Hannover, wo der Chat `culinarium-maison` das Paket am 28.10.2026 aus dem Schäfli angelegt hat. **Einziger Schreiber dieses Ordners ist `wildside-maison` (Der Tresen)**; das Kleid hat der Oberchef am 31.10.2026 angelegt. Paket = Stamm der Häuser (`grund.css`, `rahmen-buehne.css`, `rahmen-inseln.css`, `oberflaeche.js`, `bewegung.js`, `muster.html`), Kleid eigen: `kleid/wildside.js` + `kleid/wildside.css` + `kleid/wildside-zeichen.svg` + `kleid/wildside-marke.svg` (die Wortmarke der Bar, wie die Website sie zeigt: `website/bau.py` `LOGO` aus `_quelle/logo/wildside-logo-nachgezogen.svg`, unverändert). Rahmen «Die Bühne»: Kopf dunkel wie die Nacht der Bar, Raum hell wie das Creme der weissen Plakate.
 
 ## Einbinden (jedes Werkzeug gleich)
 
-Der Server des Werkzeugs liefert `/assets/oberflaeche/…` aus **diesem Ordner** und `/assets/…` sonst aus `website/assets/` (Fotos `/assets/bild/<schlüssel>-<breite>.webp`, Schriften `/assets/schrift/`, Wortmarke und Tapeten `/assets/zeichen/`). Muster: `_werkzeuge/maison/server.py` (`translate_path`, Port 9081).
+Der Server des Werkzeugs liefert `/assets/oberflaeche/…` aus **diesem Ordner** und `/assets/…` sonst aus `website/assets/` (Fotos `/assets/bild/<schlüssel>-<breite>.webp`, Schriften `/assets/schrift/`). Muster: `_werkzeuge/maison/server.py` (`translate_path`, Port 9081).
 
 ```html
 <script src="/assets/oberflaeche/kleid/wildside.js?v=1"></script>          <!-- vor allem anderen, ohne defer -->
-<link rel="preload" href="/assets/schrift/fraunces-soft.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/schrift/prata-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/oberflaeche/grund.css?v=1">
 <link rel="stylesheet" href="/assets/oberflaeche/rahmen-buehne.css?v=1">
 <link rel="stylesheet" href="/assets/oberflaeche/kleid/wildside.css?v=1">
@@ -21,25 +21,29 @@ Der Server des Werkzeugs liefert `/assets/oberflaeche/…` aus **diesem Ordner**
 <script src="/assets/oberflaeche/oberflaeche.js?v=1"></script>            <!-- vor dem Skript des Werkzeugs -->
 ```
 
-`?v=` beim Bau aus dem Inhalt bilden (M20), nie von Hand. Gerüst und Zeichen-Funktionen (`WO.kopf`, `WO.startbild`, `WO.rand`, `WO.leiste`, `WO.knopf`, `WO.name`) wie im Schäfli. Musterseite mit jedem Baustein: http://127.0.0.1:9081/assets/oberflaeche/muster.html?haus=culinarium (Server von La Maison).
+`?v=` beim Bau aus dem Inhalt bilden (M20), nie von Hand. Gerüst und Zeichen-Funktionen (`WO.kopf`, `WO.startbild`, `WO.rand`, `WO.leiste`, `WO.knopf`, `WO.name`) wie im Stamm. Musterseite mit jedem Baustein: http://127.0.0.1:9081/assets/oberflaeche/muster.html?haus=wildside (Server des Tresens).
 
 ## Werte des Hauses (nur lesen, nie abtippen)
 
-- **Namen der Werkzeuge:** nur `WO.name('<teil>')` bzw. `WO_HAUS.namen` (Teile: zentrale, website, karten, gaeste, marke, besuche, druck). Robert hat am 28.10.2026 Satz A gewählt: Der Tresen · Das Schaufenster · Die Pairing-Karte · Das Gästebuch · Das Markenbuch · Die Besucherliste · Die Plakatwerkstatt; dazu je Werkzeug ein Satz in `WO_HAUS.saetze`. Nirgends Namen fest schreiben. Python-Seiten lesen sie aus `kleid/wildside.js` (Regex auf `namen:`). Wechseln die Namen, ändert sich nur diese eine Zeile.
-- **Wege und Ports:** `WO_HAUS.wege` (`/_werkzeuge/<werkzeug>/`), `WO_HAUS.ports` (9081 Zentrale … 9087 Drucksachen, 9088 Werkbank, 8765 Website). Wege zu anderen Werkzeugen immer `http://127.0.0.1:<port>/…`, nie `localhost` (Fehlerbuch 10a); die Zentrale: `http://127.0.0.1:9081/_werkzeuge/maison/`.
-- **Farben:** nur die Variablen. Dunkle Flächen `--wo-nacht` (#1C1B21 Strasse), `--wo-nacht2` (#3A3845 Schiefer), `--wo-tief` (#16151A Nacht); Licht `--wo-kerze` (#EF7649), `--wo-gold` (#F5A689 Kerze hell, Linien und Zeichen auf Dunkel), `--wo-akzent` (#B15736 Kerze tief, Betonung auf Hell); Raum `--wo-papier`, `--wo-blatt` (#FAF4F4 Warmweiss), `--wo-weiss`; Schrift `--wo-tinte` (#26242D), `--wo-leise` (#5B5763). Dirty Chicken: Klasse `.wo-dc` setzt Akzent auf Violett #8953A9, **nur** wo es um Dirty Chicken geht. Keine eigenen Hexwerte für dunkle Flächen (Fehlerbuch 10a). Werte stammen aus `website/assets/culinarium.css` (gebaut), nicht aus dem Entwurf (`CHARAKTER.md` nennt Kerze #CF7233, verbaut ist #EF7649; Oberchef 28.10.2026: die gebaute Website gilt).
-- **Schrift:** Titel `var(--wo-titel)` = Fraunces, wght 340 (300–420), `font-variation-settings:"SOFT" 100` (in `.wo-sb__h`, `.wo-zw` schon gesetzt); Rudis Zeilen Klasse `.wo-rudi` (Versalien, Schrägstrich als Trenner im Text: «LAUCH / BLUMENKOHL / CHIPOTLE»); Lauf `var(--wo-sans)` = Instrument Sans (wie der Fliesstext der Website); Etiketten `var(--wo-etikett)` = Urbanist; Zahlen und Daten `var(--wo-mono)` = DM Mono (`.wo-zahl`). **Nie fett, nie kursiv** (die kursiven Stamm-Stellen sind im Kleid aufrecht gestellt).
-- **Form:** Flächen wie angeschlagene Plakate (Radius 10 px wie die Website, oben eine Kante in Kerzenlicht); einziges Ornament = das «x» von «Momo x Rudi» zwischen zwei Linien (`--cu-x`, über jedem `.wo-zw`); Zeichen = das «C» der Wortmarke im Ring; Knopf = dunkle Platte mit rundem Knauf in Kerze. Keine Einkerbungen, keine Punkt-Etiketten, keine Pillen-Reihen, nicht das warmweisse Band mit Doppelrahmen (abgelehnt 26.10.).
-- **Ganze Wortmarke** (wo das Werkzeug sie braucht, z. B. Briefkopf): `<svg viewBox="0 0 364.78 40.36"><use href="/assets/zeichen/marke.svg#wm"/></svg>`, Farbe über `color`. Nie neu zeichnen, nie aus dem Profilbild, nie eine eigene Nachzeichnung.
-- **Aussenfoto des Startbilds:** `WO_HAUS.foto` = `/assets/bild/fassade-1600.webp` (Schlüssel `fassade`, «Die Fenster der Bar am Abend»). Weitere Fotos nur aus dem Register `BILD` in `website/bau.py` (der Bilder-Chat schärft, die Pfade bleiben).
-- **Texte:** Besucher kennen Rudi, Momo und das Konzept nicht: kein Insider-Wort ohne Erklärung. Jeder Satz wertet auf (Sorgfalt, Handarbeit, der einzelne Gast), Zahlen nur als Exklusivität (wenige Plätze), nie als Menge.
+- **Namen der Werkzeuge:** nur `WO.name('<teil>')` bzw. `WO_HAUS.namen` (Teile: zentrale, website, karten, gaeste, marke, besuche, druck): Der Tresen · Das Schaufenster · Die Pairing-Karte · Das Gästebuch · Das Markenbuch · Die Besucherliste · Die Plakatwerkstatt (gleicher Satz wie im Culinarium, Robert 28./29.10.2026); je Werkzeug ein Satz in `WO_HAUS.saetze`. Python-Seiten lesen sie aus `kleid/wildside.js` (Regex auf `namen:`). Wechseln die Namen, ändert sich nur diese eine Zeile.
+- **Wege und Ports:** `WO_HAUS.wege` (`/_werkzeuge/<werkzeug>/`), `WO_HAUS.ports` (9081 Zentrale … 9087 Drucksachen, 9088 Werkbank). Wege zu anderen Werkzeugen immer `http://127.0.0.1:<port>/…`, nie `localhost` (Fehlerbuch 10a); die Zentrale: `http://127.0.0.1:9081/_werkzeuge/maison/`.
+- **Farben** (aus `website/assets/wild.css`, `CHARAKTER.md` 4): nur die Variablen. Dunkle Flächen `--wo-tief` (#130E0D Nacht), `--wo-nacht` (#1C1513), `--wo-nacht2` (#261E1A); Gold `--wo-gold` (#D8B264) **nur** als Haarlinie, Etikett, Knauf (Rahmen des Eckschilds); `--wo-akzent` (#7A5C24 Gold tief, Betonung auf Hell); Rot `--wo-rot`/`--wo-punkt` (#F0323F) **nur** als Punkt (Hauptknopf, Wortmarke); Raum `--wo-papier` (#EFE6D8), `--wo-blatt` (#F7F1E7), Creme der Plakate #F2E9DC; Schrift `--wo-tinte` (#1C1513), `--wo-leise` (#5E524A). Ultramarin #1A00AA nur über `.wo-dj` (DJ-Abende, SESSION-Plakate). Keine eigenen Hexwerte für Flächen.
+- **Schrift:** Titel `var(--wo-titel)` = Prata (eine Stärke, nie fett, nie kursiv); Lauf `var(--wo-sans)` = Hanken Grotesk 400; Etiketten `var(--wo-etikett)` = Hanken 500 gesperrt; Zahlen `.wo-zahl` Hanken mit `tabular-nums`. Dateien `/assets/schrift/prata-latin.woff2`, `/assets/schrift/hanken-latin.woff2`. Fraunces, Urbanist, Instrument Sans, DM Mono gibt es hier nicht.
+- **Form: das Eckschild.** Platten 18 px Radius mit Gold-Haarlinie innen und weichem Schatten, Kacheln 14 px; Knöpfe als Schild mit rundem Knauf: `.wo-kn--gold` = Hauptweg Rot mit Creme-Knauf, `.wo-kn--dunkel` = Nebenweg Nacht mit Goldlinie und Gold-Knauf, `.wo-kn--hell` = Creme mit Goldlinie. Über Zwischentiteln eine kurze Gold-Haarlinie, sonst kein Schmuck. Keine Einkerbungen, keine Pillen-Reihen, keine Tickets, keine Leuchtschrift, keine Sticker.
+- **Zeichen und Wortmarke:** im Ring oben links (`.wo-marke-w`) die Wortmarke der Bar in Rot. Ganze Wortmarke, wo ein Werkzeug sie braucht: `<svg viewBox="0 0 1296 1600"><use href="/assets/oberflaeche/kleid/wildside-marke.svg#wm"/></svg>`, Farbe über `color` (Rot #F0323F oder Creme). Nie als Schrift nachbauen.
+- **Aussenfoto des Startbilds:** `WO_HAUS.foto` = `/assets/bild/schild-ecke-960.webp` (die Ecke Haasemannstraße am Abend); `WO_HAUS.fotoStufen` = Stufen der Website (480/960), `WO_HAUS.fotoAlt` = Alt-Text aus dem Bildregister. Weitere Fotos nur aus `website/bilder.py` (`BILDER`).
+- **Texte:** die Bar duzt. Jeder Satz wertet auf (der einzelne Gast, der Drink, der Abend), nie Masse. Die Karte **wechselt** (nie «keine Karte»). E-Mail der Bar ist nicht belegt: keine erfinden.
 
 ## Änderungen
 
-Nur `culinarium-maison` schreibt hier. Wer etwas am Kleid braucht, meldet es per SendMessage an `culinarium-maison` (oder über den Oberchef); nie in diesem Ordner selbst ändern. Jede Änderung mit Sicherung `*.vor-<was>-<datum>` und Eintrag unten.
+Nur `wildside-maison` schreibt hier. Wer etwas am Kleid braucht, löst es im eigenen CSS und meldet es dem Oberchef; nie in diesem Ordner selbst ändern. Jede Änderung mit Sicherung (nicht eingecheckt) und Eintrag unten. Die Zeilen bis 30.10.2026 stammen aus dem Culinarium (Stamm, gelten hier mit).
 
 | Datum | Was | Für wen |
 |---|---|---|
+| 31.10.2026 | Kleid Wild Side angelegt (Oberchef): Farben, Schriften Prata/Hanken, Eckschild-Form, Wortmarke der Bar im Ring | alle sieben |
+| 31.10.2026 | `oberflaeche.js` Startbild-Foto: Stufen aus `WO_HAUS.fotoStufen` statt fest 640/1000 (die Website des Wild Side hat 480/960/1536; vorher 404 auf `schild-ecke-640/1000.webp` in jedem Startbild), Alt-Text aus `WO_HAUS.fotoAlt`; `kleid/wildside.js` beide Werte neu | alle sieben |
+| 31.10.2026 | `kleid/wildside.css`: Knopf «Bereiche» am Handy (bis 900 px) als Nebenweg des Eckschilds (Nacht, Gold-Haarlinie, 14 px) statt goldener Pille | alle sieben |
+| 31.10.2026 | `kleid/wildside.css`: Hauptknopf `.wo-kn--gold` mit Creme-Knauf und rotem Pfeil (vorher dunkler Knauf aus dem Stamm), ohne hellen Schriftschatten | alle sieben |
 | 28.10.2026 | Angelegt: Paket aus dem Schäfli, Kleid Culinarium, Zeichen «C» | alle sieben |
 | 28.10.2026 | `kleid/wildside.js`: lokal zeigen `WO_HAUS.wege` der anderen Werkzeuge auf `http://127.0.0.1:<port>/…` (Fund culinarium-reception); online relativ. Eigene Umschreibungen in den Werkzeugen nur noch für Wege, die mit «/» beginnen, oder ganz weg. Sicherung `kleid/wildside.js.vor-wege-2026-10-28` | alle sechs |
 | 28.10.2026 | Namen nach Roberts Wahl (Satz A «An der Bar») in `kleid/wildside.js` (`namen`, neu `saetze`); Sicherung `kleid/wildside.js.vor-namen-2026-10-28` | alle sieben |

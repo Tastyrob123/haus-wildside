@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prüfserver von La Maison · Culinarium Hannover (nur zum Bedienen und Prüfen, 28.10.2026).
+"""Prüfserver des Tresens (La Maison) · Walk on the Wild Side Hannover (nur zum Bedienen und Prüfen; Kopie des Stamms vom 28.10.2026).
 
   python3 _werkzeuge/maison/server.py [port]      Standard 9081
 
@@ -19,7 +19,7 @@ WEB = os.path.join(WURZEL, 'website')
 WZ = os.path.join(WURZEL, '_werkzeuge')
 OF = os.path.join(WZ, 'oberflaeche')
 TEIL = {'bureau': 'website', 'carte': 'karten', 'imprimerie': 'druck', 'reception': 'gaeste', 'livre': 'marke', 'registre': 'besuche'}
-WERKBANK = 'http://127.0.0.1:9088'   # Server der Werkbank (Chat «culinarium-werkbank», Port 9088): «Zur Werkbank» führt lokal dorthin
+WERKBANK = 'http://127.0.0.1:9088'   # Server der Werkbank (Agent «wildside-werkbank», Port 9088): «Zur Werkbank» führt lokal dorthin
 FEST = {'bureau': 9082, 'carte': 9083, 'reception': 9084, 'livre': 9085, 'registre': 9086, 'imprimerie': 9087}   # Ports aus dem gemeinsamen Auftrag
 
 
@@ -92,5 +92,5 @@ class S(socketserver.ThreadingTCPServer):
 
 if __name__ == '__main__':
     with S(('127.0.0.1', PORT), H) as httpd:
-        print(f'La Maison · Culinarium Hannover, Prüfserver auf http://127.0.0.1:{PORT}/_werkzeuge/maison/ (Wurzel {WURZEL})', flush=True)
+        print(f'Der Tresen · Walk on the Wild Side Hannover, Prüfserver auf http://127.0.0.1:{PORT}/_werkzeuge/maison/ (Wurzel {WURZEL})', flush=True)
         httpd.serve_forever()

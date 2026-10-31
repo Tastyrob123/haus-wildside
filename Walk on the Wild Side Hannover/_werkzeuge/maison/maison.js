@@ -1,4 +1,4 @@
-/* Der Tresen · Walk on the Wild Side Hannover (Nachtbau 31.10.2026), Kopie des Tresens des Culinarium. Quelle für bau.py, nicht die Ausgabe. Vorlage: La Maison der Häuser.
+/* Der Tresen · Walk on the Wild Side Hannover (Nachtbau 31.10.2026), Kopie des abgenommenen Tresens. Quelle für bau.py, nicht die Ausgabe. Vorlage: La Maison der Häuser.
    Gruss, Datum, Empfang «Die Plakatwand» (Vorschau statt Foto, M23), Auftritte, Leiste und der Stand je Werkzeug.
    Stand nur aus den Werkzeugen selbst (nichts geschätzt): Wege als Daten in der Seite (#maison-wege); ein Weg darf eine Liste sein
    (antwortet der erste nicht, gilt der nächste). Werte gehen nur als Zahl in die Seite. Antwortet ein Werkzeug nicht: Satz ohne Zahl. */
