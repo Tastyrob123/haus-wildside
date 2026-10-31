@@ -126,7 +126,8 @@ const ohneZahlen = s => String(s).replace(/[\d.,:%]+/g, '#');
     const ph = await hoch() || h;
     const clip = (r, rand) => { const x = Math.max(0, r.x - rand), y = Math.max(0, r.y - rand); return { x, y, width: Math.min(w - x, r.w + 2 * rand), height: Math.min(ph - y, r.h + 2 * rand) }; };
     zu.doks = []; zu.kacheln = [];
-    for (const [i, d] of e.doks.entries()) { if (d.r.h < 110 || d.r.w < 70 || d.r.x < 0 || d.r.x + d.r.w > w + 2) continue; const f = `${bildName}-d${i}.png`; const c = clip(d.r, 0); if (c.width < 20 || c.height < 20) continue;
+    for (const [i, d] of e.doks.entries()) { if (d.r.h < 110 || d.r.w < 70 || d.r.x < 0 || d.r.x + d.r.w > w + 2) continue;
+      if (d.r.y + d.r.h > ph + 2) continue;   // Blatt reicht über die Aufnahme hinaus (eigene Scroll-Fläche): halbes Blatt ist kein «Loch» (Beleg Plakatwerkstatt 034-d0, 022-d2; Oberchef 31.10.2026) const f = `${bildName}-d${i}.png`; const c = clip(d.r, 0); if (c.width < 20 || c.height < 20) continue;
       await page.screenshot({ path: path.join(ordner, f), clip: c, fullPage: true }).then(() => zu.doks.push({ datei: f, r: d.r, sel: d.sel })).catch(() => { }); }
     for (const [i, d] of e.bilder.entries()) { if (d.r.x < 0 || d.r.x + d.r.w > w + 2) continue; const f = `${bildName}-k${i}.png`; const c = clip(d.r, 0); if (c.width < 20 || c.height < 20) continue;
       await page.screenshot({ path: path.join(ordner, f), clip: c, fullPage: true }).then(() => zu.kacheln.push({ datei: f, r: d.r, sel: d.sel })).catch(() => { }); }
