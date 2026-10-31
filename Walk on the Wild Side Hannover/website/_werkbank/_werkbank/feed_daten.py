@@ -58,8 +58,8 @@ SEITE = dict(
     bilder='eure eigenen Fotos, die noch nie gepostet wurden, und eure SESSION-Plakate')
 
 _WELLE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E"
-          "%3Cpath d='M0 60 C60 10 120 10 180 60 S300 110 360 60' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E"
-          "%3Cpath d='M0 180 C60 130 120 130 180 180 S300 230 360 180' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E%3C/svg%3E\") 0 0/360px 240px")   # glatt über die Kachelgrenze (gleiche Steigung bei 0 und 360)
+          "%3Cpath d='M-360 60 C-300 10 -240 10 -180 60 S-60 110 0 60 S120 10 180 60 S300 110 360 60 S480 10 540 60 S660 110 720 60' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E"
+          "%3Cpath d='M-360 180 C-300 130 -240 130 -180 180 S-60 230 0 180 S120 130 180 180 S300 230 360 180 S480 130 540 180 S660 230 720 180' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E%3C/svg%3E\") 0 0/360px 240px")   # Linie läuft über die Kachel hinaus: keine Kerben an der Kachelgrenze
 BOGEN_CSS = (
     "@font-face{font-family:'Prata';src:url('../assets/schrift/prata-latin.woff2') format('woff2');font-weight:400}"
     "@font-face{font-family:'Hanken';src:url('../assets/schrift/hanken-latin.woff2') format('woff2');font-weight:100 900}"
