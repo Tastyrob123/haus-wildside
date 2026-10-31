@@ -215,7 +215,7 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 .m-fuss__spalte a{text-decoration:none;border-bottom:1px solid rgba(28,21,19,.3);justify-self:start}
 .m-fuss__leer{color:var(--leise)}
 .m-nb{white-space:nowrap}
-@media (max-width:900px){.m-fuss__platte{grid-template-columns:1fr 1fr}}
+@media (max-width:1100px){.m-fuss__platte{grid-template-columns:1fr 1fr}.m-fuss__marke{align-items:flex-start;text-align:left}}   /* 1000 px: vier Spalten liessen «Schritt» allein in der Zeile */
 @media (max-width:520px){.m-fuss__platte{grid-template-columns:1fr}.m-fuss__marke{align-items:flex-start;text-align:left}}
 
 /* ---------- Bewegung wie in den Zentralen der anderen Häuser (Fehlerbuch 10a): Empfang beim Öffnen mit Bühne aus 40 px und 1,04, Plakate
