@@ -2,83 +2,18 @@
  "druck": [
   {
    "id": "karte",
-   "name": "Die Karte am Platz",
+   "name": "Die Karte am Tresen",
    "seiten": 2
   },
   {
    "id": "drinks",
-   "name": "Drink-Kärtchen",
+   "name": "Ein Kärtchen zu jeder Technik",
    "seiten": 4
   },
   {
-   "id": "ticket",
-   "name": "Ticket",
+   "id": "aufsteller",
+   "name": "Tischaufsteller",
    "seiten": 2
-  },
-  {
-   "id": "briefpapier",
-   "name": "Briefpapier",
-   "seiten": 2
-  },
-  {
-   "id": "menue",
-   "name": "Menükarte des Abends",
-   "seiten": 1
-  },
-  {
-   "id": "platzkarte",
-   "name": "Platzkarte",
-   "seiten": 2
-  },
-  {
-   "id": "reserviert",
-   "name": "Die Tafel ist reserviert",
-   "seiten": 1
-  },
-  {
-   "id": "willkommen",
-   "name": "Willkommen am Platz",
-   "seiten": 1
-  },
-  {
-   "id": "ausgebucht",
-   "name": "Heute ausgebucht",
-   "seiten": 1
-  },
-  {
-   "id": "warteliste",
-   "name": "Auf die Warteliste",
-   "seiten": 1
-  },
-  {
-   "id": "plakat-a3",
-   "name": "Plakat zum Aushang",
-   "seiten": 1
-  },
-  {
-   "id": "fuenf-drinks",
-   "name": "Die fünf Drinks",
-   "seiten": 1
-  },
-  {
-   "id": "rudis-zeilen",
-   "name": "Rudis Zeilen",
-   "seiten": 1
-  },
-  {
-   "id": "flyer",
-   "name": "Flyer",
-   "seiten": 2
-  },
-  {
-   "id": "danke",
-   "name": "Danke für den Abend",
-   "seiten": 1
-  },
-  {
-   "id": "allergien",
-   "name": "Allergien am Platz",
-   "seiten": 1
   },
   {
    "id": "visitenkarte",
@@ -86,89 +21,159 @@
    "seiten": 2
   },
   {
-   "id": "dc-karte",
-   "name": "Dirty Chicken: die Karte",
+   "id": "briefpapier",
+   "name": "Briefbogen und Umschlag",
+   "seiten": 2
+  },
+  {
+   "id": "pw-session-ghazouani-brothers",
+   "name": "Ghazouani Brothers, 17.10.2026",
    "seiten": 1
   },
   {
-   "id": "dc-flyer",
-   "name": "Dirty Chicken: Flyer",
+   "id": "pw-session-aushang-a3",
+   "name": "SESSION · Aushang A3",
    "seiten": 1
   },
   {
-   "id": "heute-abend",
-   "name": "Heute Abend an der Theke",
+   "id": "pw-session-story",
+   "name": "SESSION · Story",
    "seiten": 1
   },
   {
-   "id": "pressemappe",
-   "name": "Pressemappe",
+   "id": "pw-session-programm",
+   "name": "Die DJ-Abende",
    "seiten": 1
   },
   {
-   "id": "termine",
-   "name": "Die nächsten Abende",
+   "id": "pw-konzert-live-am-donnerstag",
+   "name": "Live am Donnerstag",
    "seiten": 1
   },
   {
-   "id": "ablauf-team",
-   "name": "Ablauf für das Team",
+   "id": "pw-silvester-fruehshoppen",
+   "name": "Silvester Frühshoppen",
    "seiten": 1
   },
   {
-   "id": "einladung",
-   "name": "Einladung an Stammgäste",
+   "id": "pw-tanz-in-den-mai",
+   "name": "Tanz in den Mai",
+   "seiten": 1
+  },
+  {
+   "id": "pw-gastschicht-musa",
+   "name": "Gastschicht · Musa",
+   "seiten": 1
+  },
+  {
+   "id": "pw-karte-drunk-in-love",
+   "name": "Drunk in Love · Valentinskarte",
+   "seiten": 1
+  },
+  {
+   "id": "pw-karte-preise-der-bar",
+   "name": "Die Preise der Bar",
+   "seiten": 1
+  },
+  {
+   "id": "pw-karte-klassiker",
+   "name": "Die Klassiker",
+   "seiten": 1
+  },
+  {
+   "id": "pw-untersetzer-was-magst-du",
+   "name": "Was magst du?",
+   "seiten": 1
+  },
+  {
+   "id": "pw-tischaufsteller-du-sagst",
+   "name": "Du sagst, was du magst",
+   "seiten": 1
+  },
+  {
+   "id": "pw-flyer-nachbarschafts-mixology-bar",
+   "name": "Flyer der Bar",
+   "seiten": 2
+  },
+  {
+   "id": "pw-aushang-oeffnungszeiten",
+   "name": "Öffnungszeiten",
+   "seiten": 1
+  },
+  {
+   "id": "pw-instagram-falstaff",
+   "name": "Falstaff Bar Guide 2027",
+   "seiten": 1
+  },
+  {
+   "id": "pw-instagram-negroni",
+   "name": "Der Negroni",
+   "seiten": 1
+  },
+  {
+   "id": "pw-feiern-pauschale",
+   "name": "Die ganze Bar · Pauschale",
+   "seiten": 1
+  },
+  {
+   "id": "pw-feiern-lange-tafel",
+   "name": "Die lange Tafel",
+   "seiten": 1
+  },
+  {
+   "id": "pw-gutschein",
+   "name": "Gutschein · Ein Abend an der Bar",
    "seiten": 2
   }
  ],
  "etiketten": [
   {
    "id": "u01",
-   "name": "Eisblau, 29./30.11.2024"
+   "name": "Die Wortmarke"
   },
   {
    "id": "u02",
-   "name": "Orange, 21./22.02.2025"
+   "name": "SESSION"
   },
   {
    "id": "u03",
-   "name": "Grasgrün, 13./14.06.2025"
+   "name": "Wortmarke in der Welle"
   },
   {
    "id": "u04",
-   "name": "Nachtblau, 14./15.11.2025"
+   "name": "Du sagst, was du magst."
   },
   {
    "id": "u05",
-   "name": "Ochsenblut, 27./28.03.2026"
+   "name": "Erst der Drink, dann die Musik."
   },
   {
    "id": "u06",
-   "name": "Sepia, 25./26.09.2026"
+   "name": "91 Punkte"
   },
   {
    "id": "u07",
-   "name": "Fatwashing"
+   "name": "Das Eckschild"
   },
   {
    "id": "u08",
-   "name": "Milkwashing"
+   "name": "NEGRONI"
   },
   {
    "id": "u09",
-   "name": "Enzyme"
+   "name": "Die Zeiten"
   },
   {
    "id": "u10",
-   "name": "Linden"
+   "name": "Die Adresse"
   },
   {
    "id": "u11",
-   "name": "HAASEMANNSTR. 13"
+   "name": "Instagram"
   },
   {
    "id": "u12",
-   "name": "Seit 2023"
+   "name": "Seit 2018 in Linden"
   }
  ]
 }
