@@ -34,7 +34,7 @@
           {"typ": "knopf", "text": "Anrufen: +49 163 3909578", "link": "tel:+491633909578"},
         ] };
     } },
-    { key: "rueckblick", n: "Jeder Abend ein Plakat", wo: "an alle Gäste", foto: "p-1710", bau() {
+    { key: "rueckblick", n: "Jeder Abend ein Plakat", wo: "an alle Gäste", foto: "an-party", bau() {
       return { betreff: "Jeder Abend ein Plakat", vorschau: "Seit September 2025 holt das Wild Side DJs an die Bar. Jeder Abend bekommt ein eigenes Plakat.", versand: "mailchimp",
         kopf: { foto: "konzert-love", alt: "Ein Duo spielt in der Bar" }, fuss: { abmelden: true },
         bloecke: [
