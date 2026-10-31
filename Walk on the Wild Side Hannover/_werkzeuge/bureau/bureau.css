@@ -244,3 +244,5 @@ textarea.ws-langfeld{display:block;width:100%;box-sizing:border-box;resize:none;
 .ws-gt__vorschau{margin-left:-18px}
 #ws-mitte > section.ws-karte > .ws-reihe > .ws-taste:first-child{margin-left:-15px}
 .ws.wo-app .ws-aufgaben > .wo-ag > .wo-ag__b{align-self:stretch;width:auto}   /* das Bild füllt die Kachel ganz, auch in der breiten ersten */
+/* Hinweis für Gäste: zwei Felder nebeneinander stehen auf einer Linie, auch wenn eine Beschriftung zwei Zeilen braucht (Kriterium 3) */
+.ws-zwei-werte{align-items:end}
