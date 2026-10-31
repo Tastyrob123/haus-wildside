@@ -5,7 +5,7 @@ status: aktiv
 
 # Baustein: Warteliste der Website → Eingang von La Réception · Culinarium Hannover
 
-Gebaut am 28.10.2026 vom Chat `culinarium-reception` (Werkzeug Gäste-Chat-Team), Muster: Baustein des Gastgebers der Taverne zum Schäfli. Auf der Website ist **nichts** eingebaut; das macht der Website-Chat (Revier `website/`), sobald der Oberchef es freigibt.
+Gebaut am 28.10.2026 vom Chat `wildside-reception` (Werkzeug Gäste-Chat-Team), Muster: Baustein des Gastgebers der Taverne zum Schäfli. Auf der Website ist **nichts** eingebaut; das macht der Website-Chat (Revier `website/`), sobald der Oberchef es freigibt.
 
 ## Was er tut
 

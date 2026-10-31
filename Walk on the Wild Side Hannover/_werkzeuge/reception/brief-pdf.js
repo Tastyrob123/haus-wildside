@@ -4,9 +4,9 @@
    daten = { name, kontakt, absender, betreff, text, gestalt }  (gestalt wie im Werkzeug: Grösse s, Bündigkeit al, Abstand mb, Schrift f, Farbe c, Textart ta, Linien, Fotos, Kopftexte) */
 (function () {
   const GKOPF = { haus: 'Culinarium', zeile: 'A UNiQUE EXPERiENCE BY MOMO X RUDI · Walk on the Wild Side', fuss: 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover\nTelefon der Bar +49 163 3909578 · Instagram @culinarium_hannover' };   // wie reception.js GKOPF
-  const HFARBE = { navy: '#1f1d25', blau: '#413e4e', tinte: '#1a191f', papier: '#e5dedd', creme: '#cebbb7', weiss: '#f5f1f0', sand: '#ea5823', gold: '#f4ad93', messing: '#d06138', taupe: '#92492e', rot: '#c42e13' };
-  const LFARBE = { taupe: 'rgba(146,73,46,.42)', gold: '#d06138', navy: '#1f1d25' };
-  const SERIF = "Petrona,Georgia,'Times New Roman',serif", SANS = "'Instrument Sans',system-ui,sans-serif", MONO = "'DM Mono',Menlo,monospace";
+  const HFARBE = { navy: '#271d1b', blau: '#523e3a', tinte: '#201918', papier: '#e9e3d9', creme: '#dac7ab', weiss: '#f8f3ed', sand: '#cc9e41', gold: '#e8d19f', messing: '#cb9c3d', taupe: '#94712c', rot: '#c42e13' };
+  const LFARBE = { taupe: 'rgba(148,113,44,.42)', gold: '#cb9c3d', navy: '#271d1b' };
+  const SERIF = "Petrona,Georgia,'Times New Roman',serif", SANS = "'Hanken',system-ui,sans-serif", MONO = "'Hanken',Menlo,monospace";
   const SCHRIFT = { serif: `font-family:${SERIF}`, sans: `font-family:${SANS}`, mono: `font-family:${MONO}`, cinzel: `font-family:${SERIF}`, versal: `font-family:${SERIF};letter-spacing:.16em;text-transform:uppercase` };
   const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', kursiv: 'font-style:normal', versal: 'text-transform:uppercase;letter-spacing:.16em', medium: 'font-weight:500' };
   const PX = 0.2646, BREITE_BILDSCHIRM = 500;   // Breite einer verschobenen Linie oder eines Fotos am Bildschirm (px) im Verhältnis zur Textbreite
@@ -128,7 +128,7 @@
       return wurzel.querySelectorAll('.seite').length;
     }
 
-    await Promise.all(["700 10pt \'Gelasio\'", "10pt \'Instrument Sans\'", "10pt \'DM Mono\'"].map(f => document.fonts.load(f, 'AaÄäÖöÜüéèàç«»–·')));   // alle Schnitte zuerst laden, sonst bleibt Text im Druck unsichtbar
+    await Promise.all(["10pt \'Prata\'", "10pt \'Hanken\'"].map(f => document.fonts.load(f, 'AaÄäÖöÜüéèàç«»–·')));   // alle Schnitte zuerst laden, sonst bleibt Text im Druck unsichtbar
     await document.fonts.ready;
     await Promise.all([ZEICHEN, ...bilder.map(b => `/assets/bild/${b.k}-1000.webp`)].map(u => new Promise(r => { const i = new Image(); i.onload = i.onerror = r; i.src = u; })));   // Bilder zuerst laden, sonst stimmen die Höhen beim Messen nicht
     let seiten = 0, pt = 10.5;

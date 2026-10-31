@@ -6,49 +6,48 @@
 <title>Anleitung · Culinarium Hannover</title>
 <meta name="description" content="Schritt für Schritt durch das Werkzeug des Teams von Culinarium für die Warteliste, Anfragen und Fragen der Gäste.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#1f1d25">
+<meta name="theme-color" content="#271d1b">
 <link rel="icon" href="/assets/oberflaeche/kleid/wildside-zeichen.svg?v=ca963e407d">
-<link rel="preload" href="../../assets/schrift/fraunces-soft.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/schrift/prata-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;src:url('../../assets/schrift/fraunces-soft.woff2') format('woff2')}
-@font-face{font-family:'Fraunces';font-style:italic;font-weight:400;font-display:swap;src:url('../../assets/schrift/fraunces-soft.woff2') format('woff2')}
-@font-face{font-family:'Instrument Sans';font-weight:400 600;font-display:swap;src:url('../../assets/schrift/instrument.woff2') format('woff2')}
-@font-face{font-family:'DM Mono';font-weight:400;font-display:swap;src:url('../../assets/schrift/dmmono.woff2') format('woff2')}
-:root{--navy:#1f1d25;--nacht:#131216;--papier:#e5dedd;--weiss:#f5f1f0;--gold:#f4ab91;--messing:#d06138;--taupe:#92492e;--tinte:#131216;--serif:'Fraunces',Georgia,serif;--sans:'Instrument Sans',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,monospace}
+@font-face{font-family:'Prata';font-style:normal;font-weight:400;font-display:swap;src:url('../../assets/schrift/prata-latin.woff2') format('woff2')}
+@font-face{font-family:'Hanken';font-weight:300 700;font-display:swap;src:url('../../assets/schrift/hanken-latin.woff2') format('woff2')}
+@font-face{font-family:'Hanken';font-weight:300 700;font-display:swap;src:url('../../assets/schrift/hanken-latin.woff2') format('woff2')}
+:root{--navy:#271d1b;--nacht:#171211;--papier:#e9e3d9;--weiss:#f8f3ed;--gold:#e8d09d;--messing:#cb9c3d;--taupe:#94712c;--tinte:#171211;--serif:'Prata',Georgia,serif;--sans:'Hanken',system-ui,sans-serif;--mono:'Hanken',ui-monospace,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font:16px/1.65 var(--sans);color:var(--tinte);background:linear-gradient(rgba(229,222,221,.86),rgba(229,222,221,.86)),url('../../assets/zeichen/tapete-hell.svg') 0 0/168px 168px,var(--papier)}
+body{font:16px/1.65 var(--sans);color:var(--tinte);background:linear-gradient(rgba(233,227,217,.86),rgba(233,227,217,.86)),url('../../assets/zeichen/tapete-hell.svg') 0 0/168px 168px,var(--papier)}
 a{color:inherit}
-.kopf{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:18px;padding:14px clamp(18px,4vw,56px);background:linear-gradient(180deg,#2c2a34,#1f1d25 60%,#131216);color:var(--weiss);box-shadow:0 0 0 1px rgba(244,171,145,.4),0 14px 30px -18px rgba(19,18,22,.7)}
+.kopf{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:18px;padding:14px clamp(18px,4vw,56px);background:linear-gradient(180deg,#372a28,#271d1b 60%,#171211);color:var(--weiss);box-shadow:0 0 0 1px rgba(232,208,157,.4),0 14px 30px -18px rgba(23,18,17,.7)}
 .kopf b{font:400 12px var(--serif);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
 .kopf nav{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap}
-.kopf a.kn{display:inline-flex;align-items:center;padding:9px 18px;border-radius:999px;font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--weiss);box-shadow:inset 0 0 0 1px rgba(244,171,145,.4)}
-.kopf a.gold{background:linear-gradient(180deg,#f5b49d,#d06138);color:var(--nacht);box-shadow:none}
-.hero{position:relative;overflow:hidden;color:var(--weiss);padding:clamp(48px,7vw,96px) clamp(22px,6vw,90px);background:linear-gradient(90deg,rgba(19,18,22,.96),rgba(19,18,22,.7)),url('/assets/bild/tafelleer-1000.webp') center/cover,var(--navy)}
+.kopf a.kn{display:inline-flex;align-items:center;padding:9px 18px;border-radius:999px;font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--weiss);box-shadow:inset 0 0 0 1px rgba(232,208,157,.4)}
+.kopf a.gold{background:linear-gradient(180deg,#ead5a8,#cb9c3d);color:var(--nacht);box-shadow:none}
+.hero{position:relative;overflow:hidden;color:var(--weiss);padding:clamp(48px,7vw,96px) clamp(22px,6vw,90px);background:linear-gradient(90deg,rgba(23,18,17,.96),rgba(23,18,17,.7)),url('/assets/bild/tafelleer-1000.webp') center/cover,var(--navy)}
 .hero span.m{font:11px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .hero h1{font:400 clamp(36px,5.6vw,68px)/1.06 var(--serif);margin:14px 0 16px;max-width:15em}
 .hero h1 em{color:var(--gold)}
-.hero p{max-width:56ch;color:#dccecb}
+.hero p{max-width:56ch;color:#e5d7c2}
 main{max-width:1060px;margin:0 auto;padding:46px clamp(18px,4vw,40px) 90px}
 .inhalt{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:0 0 20px}
-.inhalt a{display:flex;gap:12px;align-items:baseline;padding:14px 18px;border-radius:16px;background:var(--weiss);text-decoration:none;box-shadow:0 0 0 1px rgba(146,73,46,.25),0 12px 24px -18px rgba(19,18,22,.5)}
+.inhalt a{display:flex;gap:12px;align-items:baseline;padding:14px 18px;border-radius:16px;background:var(--weiss);text-decoration:none;box-shadow:0 0 0 1px rgba(148,113,44,.25),0 12px 24px -18px rgba(23,18,17,.5)}
 .inhalt a b{font:400 11px var(--mono);letter-spacing:.14em;color:var(--taupe)}
-.k{margin-top:60px;padding-top:22px;border-top:1px solid rgba(146,73,46,.4)}
+.k{margin-top:60px;padding-top:22px;border-top:1px solid rgba(148,113,44,.4)}
 .k .m{font:11px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
 .k h2{font:400 clamp(28px,3.6vw,40px)/1.1 var(--serif);color:var(--navy);margin:6px 0 12px}
 .k h2 em{color:var(--taupe)}
-.k p.s{max-width:68ch;color:rgba(19,18,22,.82)}
+.k p.s{max-width:68ch;color:rgba(23,18,17,.82)}
 .k ol{list-style:none;counter-reset:z;display:grid;gap:10px;margin:16px 0;max-width:72ch}
-.k ol li{counter-increment:z;position:relative;padding:12px 16px 12px 52px;border-radius:14px;background:rgba(245,241,240,.8);box-shadow:inset 0 0 0 1px rgba(146,73,46,.2)}
-.k ol li::before{content:counter(z);position:absolute;left:14px;top:11px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:500 12px var(--sans);color:var(--nacht);background:linear-gradient(180deg,#f5b49d,#d06138)}
-.k .gut{margin:14px 0 18px;max-width:72ch;padding:14px 18px;border-radius:14px;background:linear-gradient(180deg,#2d2b36,#1f1d25);color:var(--weiss);box-shadow:inset 0 0 0 1px rgba(244,171,145,.35)}
+.k ol li{counter-increment:z;position:relative;padding:12px 16px 12px 52px;border-radius:14px;background:rgba(248,243,237,.8);box-shadow:inset 0 0 0 1px rgba(148,113,44,.2)}
+.k ol li::before{content:counter(z);position:absolute;left:14px;top:11px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:500 12px var(--sans);color:var(--nacht);background:linear-gradient(180deg,#ead5a8,#cb9c3d)}
+.k .gut{margin:14px 0 18px;max-width:72ch;padding:14px 18px;border-radius:14px;background:linear-gradient(180deg,#392b28,#271d1b);color:var(--weiss);box-shadow:inset 0 0 0 1px rgba(232,208,157,.35)}
 .k .gut b{display:block;font:400 11px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
 figure{margin:22px 0 4px}
-figure img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 0 0 1px rgba(146,73,46,.3),0 30px 50px -30px rgba(19,18,22,.7);cursor:zoom-in}
+figure img{display:block;width:100%;height:auto;border-radius:18px;box-shadow:0 0 0 1px rgba(148,113,44,.3),0 30px 50px -30px rgba(23,18,17,.7);cursor:zoom-in}
 figcaption{font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);margin-top:8px}
-.gross{position:fixed;inset:0;z-index:20;background:rgba(19,18,22,.88);display:none;place-items:center;padding:24px;cursor:zoom-out}
+.gross{position:fixed;inset:0;z-index:20;background:rgba(23,18,17,.88);display:none;place-items:center;padding:24px;cursor:zoom-out}
 .gross.auf{display:grid}.gross img{max-width:min(1400px,100%);max-height:100%;border-radius:12px}
 .hilfe{display:grid;gap:10px;margin-top:16px}
-.hilfe div{padding:14px 18px;border-radius:14px;background:var(--weiss);box-shadow:inset 0 0 0 1px rgba(146,73,46,.25)}
+.hilfe div{padding:14px 18px;border-radius:14px;background:var(--weiss);box-shadow:inset 0 0 0 1px rgba(148,113,44,.25)}
 .hilfe b{font:500 11px var(--mono);letter-spacing:.16em;color:var(--taupe)}
 /* Messlauf 29.10.2026 (Regel einzelwort): kein einzelnes Wort allein in der letzten Titelzeile */
 h1,h2,h3,h4,figcaption{text-wrap:balance}

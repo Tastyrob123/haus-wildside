@@ -1,20 +1,17 @@
 #!/usr/bin/env python3
-"""La Maison (Zentrale) des Culinarium Hannover (28.10.2026, Chat «culinarium-maison»).
-Funktion, Bedienung und Technik wie La Maison der Taverne zum Schäfli und der anderen Häuser (Master Werkzeug-Bau 4.1, M01 bis M27,
-R03, R04, R18, R19); Kleid und Empfang eigen für dieses Haus.
+"""Der Tresen (Zentrale, Arbeitsname La Maison) von Walk on the Wild Side Hannover (Nachtbau 31.10.2026, Agent «wildside-maison»).
+Kopie des abgenommenen Tresens des Culinarium Hannover (28.–30.10.2026): Funktion, Bedienung und Technik gleich (Master Werkzeug-Bau 4.1, M01 bis M27,
+R03, R04, R18, R19); Kleid und Inhalt aus diesem Haus (Eckschild: Nacht, Gold-Haarlinie, Creme der Plakate, Rot nur als Punkt; Prata und Hanken).
 
   python3 _werkzeuge/maison/bau.py      baut beide Fassungen aus einem Lauf (M13):
       _werkzeuge/maison/index.html …       lokal, über server.py (http://127.0.0.1:9081/_werkzeuge/maison/)
       _werkzeuge/maison/online/…           online-Fassung (nichts wird hochgeladen; Wege ohne localhost)
 
-Empfang «Die Plakatwand»: Jeder Abend des Culinarium kündigt sich mit einem eigenen Plakat an (marke.json → eigene_welt). Links die Bühne
-wie ein Schaufenster der Bar, in Ruhe die Fenster der Bar am Abend, beim Darüberfahren die echte Vorschau des Werkzeugs (M23); rechts die sechs
-Werkzeuge als Plakate an der Wand: oben ein Foto aus den Abenden, unten das Band mit Name, was es tut, Stand. Das «x» von «Momo x Rudi»
-als einziges Ornament, das «C» der Wortmarke als Zeichen.
-
-Was ein Werkzeug liefert (Bildschirm, Knopf-Namen), nimmt der Bau erst, wenn es im Revier des Werkzeugs liegt (_werkzeuge/<werkzeug>/index.html)
-und sein Bildschirm unter roh/ liegt (aufgenommen mit schirme.js). Bis dahin: Satz ohne Zahl, Tafel ohne Knopf-Namen, lokal ein
-beschrifteter Platzhalter, online die Ruhe-Ansicht. Kundendaten (Name, Adresse, Fotos) nur aus der Website und der Sammlung gelesen, nie abgetippt."""
+Empfang: fünf hohe Fenster über den ganzen Schirm, je Werkzeug ein Foto aus der Bar (Fenster zur Strasse, Momo giesst, NEGRONI-Glühbirnen, Gäste an der Bar,
+das Eckschild), darüber in der Mitte die Wortmarke der Bar, «Der Tresen», Gruss, Datum und die Zahlenzeile der Besucherliste. Darunter je Werkzeug ein Saal
+mit echten Bildschirmen und der Tafel «So geht’s». Was ein Werkzeug liefert (Bildschirm, Knopf-Namen), nimmt der Bau erst, wenn es im Revier des Werkzeugs
+liegt (_werkzeuge/<werkzeug>/index.html) und sein Bildschirm unter roh/ liegt (aufgenommen mit schirme.js). Hauswerte (Adresse, Fotos) nur aus der Website
+gelesen (website/bau.py HAUS, website/bilder.py BILDER), nie abgetippt."""
 import ast, glob, hashlib, html, json, os, re, runpy, shutil, sys
 
 e = html.escape
@@ -22,39 +19,38 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 WZ = os.path.dirname(HIER)                             # _werkzeuge/
 ROOT = os.path.dirname(WZ)                             # Projektordner des Hauses
 WEB = os.path.join(ROOT, 'website')
-KETTE = os.path.join(ROOT, '_kette')
 QUELLE = os.path.join(HIER, 'quelle')
 ROH = os.path.join(HIER, 'roh')
-PORT = 9081                                             # Prüfserver von La Maison (server.py)
+PORT = 9081                                             # Prüfserver des Tresens (server.py)
 PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
 
 
-# ---------------------------------------------------------------- Hauswerte, gelesen aus der Sammlung (fakten.json) und website/bau.py (nie importiert: ast)
-FAKTEN = json.load(open(os.path.join(KETTE, '03-sammler', 'fakten.json'), encoding='utf-8'))
-_adr = re.fullmatch(r'(?P<bar>[^,]+), (?P<strasse>[^,]+), (?P<plz>\d{5}) (?P<ort>[^ (]+)(?: \((?P<teil>[^)]+)\))?', FAKTEN['adresse']['wert'])
-if not _adr:
-    raise SystemExit('fakten.json: Adresse nicht lesbar')
-NAME = 'Culinarium'                                        # Name der Marke (Wortmarke CULINARIUM, marke.json)
-BAR, STRASSE, PLZ_ORT, ORT = _adr['bar'], _adr['strasse'], _adr['plz'] + ' ' + _adr['ort'], _adr['ort'] + '-Linden'
-if 'Linden' not in (_adr['teil'] or ''):
-    ORT = _adr['ort']
+# ---------------------------------------------------------------- Hauswerte, gelesen aus website/bau.py (HAUS) und website/bilder.py (BILDER), nie importiert (ast)
+def _dict_aus(datei, name):
+    baum = ast.parse(open(os.path.join(WEB, datei), encoding='utf-8').read())
+    for k in baum.body:
+        if isinstance(k, ast.Assign) and len(k.targets) == 1 and getattr(k.targets[0], 'id', '') == name:
+            return k.value
+    raise SystemExit(f'website/{datei}: {name} nicht gefunden')
+
+
+_haus = _dict_aus('bau.py', 'HAUS')
+HAUS = {ast.literal_eval(kk): ast.literal_eval(v) for kk, v in zip(_haus.keys, _haus.values) if isinstance(v, ast.Constant)}
+_ort = re.fullmatch(r'(?P<plz>\d{5}) (?P<ort>[^-]+)(?:-(?P<teil>.+))?', HAUS['ort'])
+if not _ort:
+    raise SystemExit('website/bau.py: HAUS ort nicht lesbar')
+NAME = 'Walk on the Wild Side'                              # Name der Bar (Eckschild, Wortmarke)
+BAR = 'Nachbarschafts-Mixology-Bar'                         # eigene Zeile der Bar (Instagram-Bio, Plakate «Eure Nachbarschafts-Mixology-Bar», CHARAKTER.md 3)
+STRASSE, PLZ_ORT, ORT = HAUS['adresse'], _ort['plz'] + ' ' + _ort['ort'], HAUS['ort'][6:]
 
 
 def _bild_register():
-    """BILD aus website/bau.py: Schlüssel → alt, pos (zweiter und dritter Wert jedes Eintrags, ohne den Pfad auszuwerten)."""
-    baum = ast.parse(open(os.path.join(WEB, 'bau.py'), encoding='utf-8').read())
-    for k in baum.body:
-        if isinstance(k, ast.Assign) and len(k.targets) == 1 and getattr(k.targets[0], 'id', '') == 'BILD':
-            return {ast.literal_eval(kk): dict(pos=ast.literal_eval(v.elts[1]), alt=ast.literal_eval(v.elts[2]))
-                    for kk, v in zip(k.value.keys, k.value.values) if isinstance(v, ast.Tuple) and len(v.elts) >= 3}
-    raise SystemExit('website/bau.py: BILD nicht gefunden')
+    """BILDER aus website/bilder.py: Schlüssel → alt (zweiter Wert jedes Eintrags), Lage des Motivs mittig."""
+    d = _dict_aus('bilder.py', 'BILDER')
+    return {ast.literal_eval(kk): dict(pos='50% 50%', alt=ast.literal_eval(v.elts[1])) for kk, v in zip(d.keys, d.values) if isinstance(v, ast.Tuple) and len(v.elts) >= 2}
 
 
 BILDER_W = _bild_register()
-MARKE = json.load(open(os.path.join(KETTE, '05-markenbauer', 'marke.json'), encoding='utf-8'))
-ABENDFARBEN = [f for f in MARKE.get('abendfarben') or [] if re.fullmatch(r'#[0-9A-Fa-f]{6}', f.get('hex', '')) and re.fullmatch(r'#[0-9A-Fa-f]{6}', (f.get('toene') or {}).get('akzent', ''))]
-if not ABENDFARBEN:
-    raise SystemExit('marke.json: keine Abendfarben')
 
 
 def svg_innen(pfad):
@@ -66,7 +62,7 @@ def svg_innen(pfad):
 
 
 ZEICHEN_DATEI = os.path.join(WZ, 'oberflaeche', 'kleid', 'wildside-zeichen.svg')
-LAMM_VB, LAMM = svg_innen(ZEICHEN_DATEI)       # das «C» der Wortmarke (Zeichen des Hauses; Name LAMM nur, weil der Bau der Vorlage so heisst)
+LAMM_VB, LAMM = svg_innen(ZEICHEN_DATEI)       # Zeichen des Hauses: die Wortmarke der Bar (Name LAMM nur, weil der Bau der Vorlage so heisst)
 
 
 # ---------------------------------------------------------------- Werkzeuge des Hauses
@@ -76,35 +72,31 @@ TEIL = {'bureau': 'website', 'carte': 'karten', 'imprimerie': 'druck', 'receptio
 PORTS = {'bureau': 9082, 'carte': 9083, 'reception': 9084, 'livre': 9085, 'registre': 9086, 'imprimerie': 9087}   # AUFTRAG-GEMEINSAM.md
 
 
-def welt_namen():
-    t = open(os.path.expanduser('~/Desktop/Website-Projekte/_Werkzeuge/stamm/welt.js'), encoding='utf-8').read()
-    return {teil: (land, tut) for teil, land, tut in re.findall(r"(\w+): \{ grand: '[^']+', land: '([^']+)', tut: '([^']+)' \}", t)}
-
-
-WN = welt_namen()
 # Namen der Werkzeuge: EINE Stelle für alle sieben Werkzeuge ist _werkzeuge/oberflaeche/kleid/wildside.js (WO_HAUS.namen). Hier nur gelesen.
 def haus_namen():
-    t = open(os.path.join(WZ, 'oberflaeche', 'kleid', 'culinarium.js'), encoding='utf-8').read()
+    t = open(os.path.join(WZ, 'oberflaeche', 'kleid', 'wildside.js'), encoding='utf-8').read()
     m = re.search(r"namen:\s*\{([^}]*)\}", t)
     return dict(re.findall(r"(\w+):\s*'([^']+)'", m.group(1))) if m else {}
 
 
 NAMEN = haus_namen()
-ZENTRALE = NAMEN.get('zentrale') or WN['zentrale'][0]
-ROLLE = {'bureau': 'Website pflegen', 'carte': 'Menü und Drinks je Abend', 'imprimerie': 'Plakate und Drucksachen', 'reception': 'Team hinter dem Gäste-Chat',
-         'livre': 'Marke zum Arbeiten', 'registre': 'Besuche der Website'}   # Culinarium: ohne Preislisten, Zimmer oder Säle (die hat das Haus nicht)
-W = {k: dict(name=NAMEN.get(TEIL[k]) or WN[TEIL[k]][0], rolle=ROLLE[k]) for k in REIHE}
-ROLLE_K = {'bureau': 'Website', 'carte': 'Karten', 'imprimerie': 'Drucksachen', 'reception': 'Gäste', 'livre': 'Marke', 'registre': 'Besuche'}   # kurze Zeile im Gefach
-KURZ = {'bureau': 'Die Website, Seite für Seite', 'carte': 'Menü und Drinks je Abend', 'imprimerie': 'Plakate, druckfertig', 'reception': 'Fragen der Gäste',
+if not all(NAMEN.get(t) for t in list(TEIL.values()) + ['zentrale']):
+    raise SystemExit('kleid/wildside.js: Namen der Werkzeuge unvollständig')
+ZENTRALE = NAMEN['zentrale']
+ROLLE = {'bureau': 'Website pflegen', 'carte': 'Die wechselnde Karte', 'imprimerie': 'Plakate und Drucksachen', 'reception': 'Team hinter dem Gäste-Chat',
+         'livre': 'Marke zum Arbeiten', 'registre': 'Besuche der Website'}
+W = {k: dict(name=NAMEN[TEIL[k]], rolle=ROLLE[k]) for k in REIHE}
+ROLLE_K = {'bureau': 'Website', 'carte': 'Karten', 'imprimerie': 'Drucksachen', 'reception': 'Gäste', 'livre': 'Marke', 'registre': 'Besuche'}   # kurze Zeile im Fenster
+KURZ = {'bureau': 'Die Website, Seite für Seite', 'carte': 'Die wechselnde Karte von Momo', 'imprimerie': 'Plakate, druckfertig', 'reception': 'Fragen der Gäste',
         'livre': 'Fotos, Wortmarke, Farben', 'registre': 'Besuche ohne Namen'}
-# Satz je Saal: was das Werkzeug für dieses Haus tut (nur, was die Website hat: Abende, Plakate, Menü mit Drinks, Warteliste, Bar, Dirty Chicken)
+# Satz je Saal: was das Werkzeug für diese Bar tut (nur, was die Website hat: wechselnde Karte, DJ-Abende, Konzerte, Feiern, Reservieren)
 SATZ = {
-    'bureau': 'Die Website zum Anfassen: Texte, Fotos, die nächsten Abende und Hinweise für Gäste, Seite für Seite und ohne Programmierer.',
-    'carte': 'Das Menü jedes Abends mit seinen Drinks: jeder Gang mit dem Drink, den Momo dazu stellt. Daraus entstehen die Karte am Platz und die PDF.',
-    'imprimerie': 'Für jeden Abend sein eigenes Plakat, dazu Karten und Beiträge, in der Plakatsprache des Culinarium und ohne Grafikprogramm.',
-    'reception': 'Was Gäste zu den Abenden wissen wollen, zu Plätzen, Unverträglichkeiten und dem Weg in die Bar, mit einem Antwortentwurf. Dazu ein Chat, der aus deinen Seiten antwortet.',
-    'livre': 'Die Marke des Culinarium zum Arbeiten, für dich und für jede Agentur: Fotos der Abende, Wortmarke, Farben und Schriften.',
-    'registre': 'Wer deine Website besucht: woher die Gäste kommen, welche Abende sie sich ansehen und wie oft es weiter zum Platz geht.',
+    'bureau': 'Die Website zum Anfassen: Texte, Fotos, Zeiten, die DJ-Abende und Hinweise für Gäste, Seite für Seite und ohne Programmierer.',
+    'carte': 'Die Karte wechselt, die Drinks entwirft Momo. Hier steht sie Drink für Drink, mit den Klassikern und den Sonderkarten; daraus entstehen die Karte auf dem Tresen und die PDF.',
+    'imprimerie': 'Für jeden DJ-Abend sein eigenes Plakat, dazu Karten, Untersetzer und Beiträge, in der Sprache der Bar und ohne Grafikprogramm.',
+    'reception': 'Was Gäste wissen wollen, zu Zeiten, Plätzen, Feiern und den DJ-Abenden, mit einem Entwurf für deine Antwort. Dazu ein Chat, der aus deinen Seiten antwortet.',
+    'livre': 'Die Marke der Bar zum Arbeiten, für dich und für jede Agentur: Fotos unter der Decke, Wortmarke, Farben und Schriften.',
+    'registre': 'Wer deine Website besucht: woher die Gäste kommen, welche Seiten sie sich ansehen und wie oft es weiter zum Reservieren oder Feiern geht.',
 }
 
 

@@ -147,7 +147,7 @@
        Im Stylesheet bleiben nur die Schrift und der Druck. */
     var lage = document.createElement('style');
     lage.textContent =
-      '@font-face{font-family:"ZW Mono";font-style:normal;font-weight:400;font-display:swap;src:local("DM Mono"),url("' + (tag && tag.getAttribute('data-schrift') || (WURZEL || basis) + 'assets/schrift/dmmono.woff2') + '")}' +
+      '@font-face{font-family:"ZW Hanken";font-style:normal;font-weight:400;font-display:swap;src:url("' + (tag && tag.getAttribute('data-schrift') || (WURZEL || basis) + 'assets/schrift/hanken-latin.woff2') + '")}' +
       '@media print{#zur-werkbank{display:none!important}}';
     document.head.appendChild(lage);
     var setz = function (k, v) { wirt.style.setProperty(k, v, 'important'); };
@@ -175,19 +175,19 @@
       '<style>' +
       ':host{direction:ltr}' +
       'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:999px;' +
-      'font:400 11.5px/1 "ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
-      'color:#15141a;background:linear-gradient(180deg,#f9f6f5 0%,#e4dcda 46%,#cebbb7 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
-      'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(146,73,46,.32),inset 0 0 0 1px rgba(201,93,54,.62),0 0 0 1px rgba(22,21,27,.28),0 12px 22px -12px rgba(22,21,27,.6);' +
+      'font:400 11.5px/1 "ZW Hanken","Hanken",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
+      'color:#1b1412;background:linear-gradient(180deg,#fbf8f3 0%,#e9e1d5 46%,#dac7ab 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
+      'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(148,113,44,.32),inset 0 0 0 1px rgba(201,152,54,.62),0 0 0 1px rgba(28,21,20,.28),0 12px 22px -12px rgba(28,21,20,.6);' +
       'transition:transform .55s cubic-bezier(.32,.72,0,1)}' +
       'a::after{content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:38%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.85) 50%,transparent 100%);transform:translateX(-180%) skewX(-18deg);transition:transform 0s}' +
-      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#393644,#0e0e11);color:#eee8e7;' +
-      'box-shadow:inset 0 1px 0 rgba(231,217,214,.4),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(244,173,148,.45);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
+      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#483632,#120e0d);color:#f2ece4;' +
+      'box-shadow:inset 0 1px 0 rgba(240,226,206,.4),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(233,209,159,.45);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
       'svg{display:block;width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}' +
       'span{display:block;padding-top:1px}' +
       ':host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{letter-spacing:.04em;font-size:13px;text-transform:none}' +
       '@media (hover:hover){a:hover{transform:translateY(-2px)}a:hover i{transform:translateX(-2px) scale(1.05)}a:hover::after{transform:translateX(360%) skewX(-18deg);transition:transform 1s cubic-bezier(.16,1,.3,1)}}' +
       'a:active{transform:translateY(1px) scale(.985)}' +
-      'a:focus-visible{outline:2px solid #f4ad94;outline-offset:3px}' +
+      'a:focus-visible{outline:2px solid #e9d19f;outline-offset:3px}' +
       '@media (max-width:560px){a{height:40px;gap:9px;padding:0 16px 0 4px;font-size:10.5px}i{width:32px;height:32px}:host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{font-size:12px}}' +
       '@media (prefers-reduced-motion:reduce){a,i,a::after{transition:none!important}}' +
       '</style>' +

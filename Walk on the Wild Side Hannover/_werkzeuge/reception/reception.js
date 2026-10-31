@@ -242,7 +242,7 @@ function arten() {   // die Arten als Kacheln mit Foto (wo-aufg des Pakets), wie
 }
 /* ---------- Eingang ---------- */
 /* Glieder einer Zeile (Tor 3, K12, 30.10.2026): jedes Glied bleibt ganz, der Trennpunkt steht vor dem Glied und wird am Zeilenanfang abgeschnitten
-   (culinarium-reception.css .re-gl-r), so steht nie ein «·» am Rand einer Zeile. */
+   (wildside-reception.css .re-gl-r), so steht nie ein «·» am Rand einer Zeile. */
 function glieder(l) { return l.filter(Boolean).map(x => `<span class="re-gl">${x}</span>`).join(''); }
 function karteAnfrage(a, i = 0) {
   const st = a.status === 'neu' ? 'Neu' : a.status === 'erledigt' ? 'Erledigt' : a.entwurf ? 'Brief bereit' : 'Gelesen';
@@ -309,10 +309,10 @@ const BRIEFBILDER = [['tafelleer', 'Die lange Tafel'], ['anstossen', 'Anstossen 
 const SCHRIFT = { serif: 'font-family:var(--serif)', sans: 'font-family:var(--sans)', mono: 'font-family:var(--mono)', cinzel: 'font-family:var(--caps)', versal: 'font-family:var(--caps);letter-spacing:.16em;text-transform:uppercase' };
 const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', versal: 'text-transform:uppercase;letter-spacing:.06em' };   // Culinarium: nie kursiv, nie fett; Versalien wie Rudis Zeilen
 /* Hauspalette, gleich in La Carte, La Réception und L’Imprimerie (Absprache 16.10.2026) */
-const HFARBE = { navy: '#16151A', blau: '#3A3845', tinte: '#26242D', papier: '#F3ECEA', creme: '#E9E0DE', weiss: '#FAF4F4', sand: '#EF7649', gold: '#F5A689', messing: '#B15736', taupe: '#5B5763', rot: '#D23A2A' };
+const HFARBE = { navy: '#1b1514', blau: '#483835', tinte: '#2f2422', papier: '#f7f0e6', creme: '#eee6d8', weiss: '#fcf9f2', sand: '#d5af63', gold: '#e7ce97', messing: '#b28835', taupe: '#665754', rot: '#c79635' };
 const HNAME = { navy: 'Nacht', blau: 'Schiefer', tinte: 'Tinte', papier: 'Warmweiss tief', creme: 'Warmweiss gedeckt', weiss: 'Warmweiss', sand: 'Kerze', gold: 'Kerze hell', messing: 'Kerze tief', taupe: 'Leise', rot: 'Rot' };
 /* Hauspalette des Culinarium (Farbwelt A «Plakat», Werte wie _werkzeuge/oberflaeche/kleid/wildside.css, aus website/assets/culinarium.css): abgeschrieben, weil La Réception das Markenbuch nicht lädt */
-const LFARBE = { taupe: 'rgba(239,118,73,.55)', gold: '#EF7649', navy: '#3A3845' };
+const LFARBE = { taupe: 'rgba(213,175,99,.55)', gold: '#d5af63', navy: '#483835' };
 const GNAME = { linie1: 'Linie unter dem Kopf', linie2: 'Linie über dem Betreff', linie3: 'Linie über der Fusszeile', zeichen: 'Zeichen', haus: 'Hausname', zeile: 'Unterzeile', an: 'Empfänger', von: 'Absender', betreff: 'Betreff', fuss: 'Fusszeile' };
 const gName = k => GNAME[k] || (/^p\d+$/.test(k) ? 'Absatz ' + (+k.slice(1) + 1) : 'Foto');
 function gStil(g, bild = false) {
@@ -352,7 +352,7 @@ function gestaltBrief(a, e, rtl) {
           <div class="gs-werk__grp gs-werk__schrift" role="group" aria-label="Schrift"><button class="gs-werk__k gs-sel" type="button" data-g="f-serif" data-tip="Schrift Antiqua"><b style="font-family:var(--serif);font-size:17px">Aa</b></button><button class="gs-werk__k gs-sel" type="button" data-g="f-cinzel" data-tip="Schrift Versalien"><b style="font-family:var(--caps);font-size:13px">Aa</b></button><button class="gs-werk__k gs-sel" type="button" data-g="f-sans" data-tip="Schrift Grotesk"><b style="font-family:var(--sans);font-size:14px">Aa</b></button></div>
           <div class="gs-werk__grp"><button class="gs-werk__k gs-sel" type="button" data-g="kleiner" aria-label="Kleiner" data-tip="Kleiner"><svg viewBox="0 0 16 16"><path d="M3.5 8h9"/></svg></button><span class="gs-werk__wert" id="gs-gr">–</span><button class="gs-werk__k gs-sel" type="button" data-g="groesser" aria-label="Grösser" data-tip="Grösser"><svg viewBox="0 0 16 16"><path d="M3.5 8h9M8 3.5v9"/></svg></button></div>
           <div class="gs-werk__grp"><button class="gs-werk__k gs-sel" type="button" data-g="left" aria-label="Linksbündig" data-tip="Linksbündig"><svg viewBox="0 0 16 16"><path d="M3 4h10M3 8h6M3 12h8"/></svg></button><button class="gs-werk__k gs-sel" type="button" data-g="center" aria-label="Zentriert" data-tip="Zentriert"><svg viewBox="0 0 16 16"><path d="M3 4h10M5 8h6M4 12h8"/></svg></button><button class="gs-werk__k gs-sel" type="button" data-g="right" aria-label="Rechtsbündig" data-tip="Rechtsbündig"><svg viewBox="0 0 16 16"><path d="M3 4h10M7 8h6M5 12h8"/></svg></button></div>
-          <div class="gs-werk__grp gs-werk__farbe" role="group" aria-label="Linienfarbe"><button class="gs-werk__k gs-sel" type="button" data-g="fb-taupe" data-tip="Linie Taupe"><i style="background:rgba(200,135,111,.6)"></i></button><button class="gs-werk__k gs-sel" type="button" data-g="fb-gold" data-tip="Linie Gold"><i style="background:#d06138"></i></button><button class="gs-werk__k gs-sel" type="button" data-g="fb-navy" data-tip="Linie Blau"><i style="background:#1f1d25"></i></button></div>
+          <div class="gs-werk__grp gs-werk__farbe" role="group" aria-label="Linienfarbe"><button class="gs-werk__k gs-sel" type="button" data-g="fb-taupe" data-tip="Linie Taupe"><i style="background:rgba(213,175,98,.6)"></i></button><button class="gs-werk__k gs-sel" type="button" data-g="fb-gold" data-tip="Linie Gold"><i style="background:#cb9c3d"></i></button><button class="gs-werk__k gs-sel" type="button" data-g="fb-navy" data-tip="Linie Blau"><i style="background:#271d1b"></i></button></div>
           <div class="gs-werk__grp"><button class="gs-werk__k gs-sel" type="button" data-g="enger" aria-label="Weniger Abstand darunter" data-tip="Abstand kleiner"><svg viewBox="0 0 16 16"><path d="M3 3h10M3 13h10M8 5.5v5M6 8.5l2 2 2-2"/></svg></button><button class="gs-werk__k gs-sel" type="button" data-g="weiter" aria-label="Mehr Abstand darunter" data-tip="Abstand grösser"><svg viewBox="0 0 16 16"><path d="M3 3h10M3 13h10M8 5.5v5M6 7.5l2-2 2 2"/></svg></button></div>
           <div class="gs-werk__grp"><button class="gs-werk__k gs-sel" type="button" data-g="schreiben" aria-label="Text ändern" data-tip="Text ändern"><svg viewBox="0 0 16 16"><path d="M10.5 3.5l2 2L6 12H4v-2z"/></svg></button><button class="gs-werk__k gs-sel" type="button" data-g="zurueck" aria-label="Diesen Teil zurücksetzen" data-tip="Teil zurücksetzen"><svg viewBox="0 0 16 16"><path d="M4 8a4 4 0 1 0 1.2-2.9M4 3v2.6h2.6"/></svg></button><button class="gs-werk__k gs-sel" type="button" data-g="weg" aria-label="Foto entfernen" data-tip="Foto entfernen"><svg viewBox="0 0 16 16"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/></svg></button></div>
           <span class="gs-werk__t"></span>
@@ -397,33 +397,33 @@ function textAus(el) {   // Baustein → Text: <br> und Zeilen werden \n, offene
 function briefMail(a, e) {
   const G = e.gestalt || {}, bilder = G._bilder || [], basis = location.origin + location.pathname.replace(/_?werkzeuge\/reception\/.*$/, ''), wz = location.origin + location.pathname.replace(/[^/]*$/, '');
   const st = (k, fs, extra = '') => { const g = G[k] || {}; const l = [`font-size:${Math.round(fs * (g.s || 1) * 10) / 10}px`, extra];
-    if (g.al) l.push(`text-align:${g.al}`); if (g.f === 'versal') l.push("font-family:Fraunces,Georgia,serif;letter-spacing:.16em;text-transform:uppercase"); if (g.f === 'sans') l.push("font-family:'Instrument Sans',Helvetica,Arial,sans-serif"); if (g.f === 'serif') l.push("font-family:Fraunces,Georgia,serif"); if (g.f === 'cinzel') l.push('font-family:Fraunces,Georgia,serif'); if (g.f === 'mono') l.push("font-family:'DM Mono',Menlo,monospace"); if (g.ta && TEXTART[g.ta]) l.push(TEXTART[g.ta]); if (g.c && HFARBE[g.c]) l.push(`color:${HFARBE[g.c]}`); if (g.lh) l.push(`line-height:${g.lh}`); if (g.ls != null) l.push(`letter-spacing:${g.ls}em`); const oben = Math.max(0, (g.dy || 0) + (g.mt || 0)), unten = (g.mb || 0); if (oben) l.push(`padding-top:${oben}px`); if (unten > 0) l.push(`padding-bottom:${unten}px`);
+    if (g.al) l.push(`text-align:${g.al}`); if (g.f === 'versal') l.push("font-family:Prata,Georgia,serif;letter-spacing:.16em;text-transform:uppercase"); if (g.f === 'sans') l.push("font-family:'Hanken',Helvetica,Arial,sans-serif"); if (g.f === 'serif') l.push("font-family:Prata,Georgia,serif"); if (g.f === 'cinzel') l.push('font-family:Prata,Georgia,serif'); if (g.f === 'mono') l.push("font-family:'Hanken',Menlo,monospace"); if (g.ta && TEXTART[g.ta]) l.push(TEXTART[g.ta]); if (g.c && HFARBE[g.c]) l.push(`color:${HFARBE[g.c]}`); if (g.lh) l.push(`line-height:${g.lh}`); if (g.ls != null) l.push(`letter-spacing:${g.ls}em`); const oben = Math.max(0, (g.dy || 0) + (g.mt || 0)), unten = (g.mb || 0); if (oben) l.push(`padding-top:${oben}px`); if (unten > 0) l.push(`padding-bottom:${unten}px`);
     if ((g.dx || 0) > 0) l.push(`padding-left:${g.dx}px`); return l.filter(Boolean).join(';'); };
   const t = x => esc(x).replace(/\n/g, '<br>');
   const kt = k => t((G[k] && typeof G[k].t === 'string') ? G[k].t : GKOPF[k]);
   const fotos = nach => bilder.filter(b => b.nach === nach).map(b => { const g = G[b.id] || {}; const w = Math.round(Math.min(560, (g.w || 560) * (g.s || 1)));
     return `<tr><td style="padding:6px 0 18px;${g.al ? 'text-align:' + g.al : 'text-align:center'}"><img src="${basis}assets/bild/${b.k}-1000.webp" width="${w}" alt="${esc(b.n || '')}" style="display:inline-block;width:${w}px;max-width:100%;height:auto;border:0"></td></tr>`; }).join('');
-  const mLinie = (k, pad) => { const g = G[k] || {}; if (g.aus) return ''; const w = g.w ? Math.min(504, g.w) + 'px' : '100%', al = g.al || 'center', farbe = { taupe: '#dacac7', gold: '#d06138', navy: '#1f1d25' }[g.fb || 'taupe'] || HFARBE[g.fb];
+  const mLinie = (k, pad) => { const g = G[k] || {}; if (g.aus) return ''; const w = g.w ? Math.min(504, g.w) + 'px' : '100%', al = g.al || 'center', farbe = { taupe: '#e3d4be', gold: '#cb9c3d', navy: '#271d1b' }[g.fb || 'taupe'] || HFARBE[g.fb];
     return `<tr><td style="padding:${pad};text-align:${al}"><div style="display:inline-block;width:${w};height:${g.st || 1}px;background:${farbe};line-height:1px;font-size:1px">&nbsp;</div></td></tr>`; };
-  const serif = "font-family:Fraunces,Georgia,serif;color:#1a191f";
+  const serif = "font-family:Prata,Georgia,serif;color:#201918";
   const ab = e.text.split(/\n{2,}/);
-  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ece7e6"><tr><td align="center" style="padding:24px 12px">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#f5f1f0;border-radius:22px;overflow:hidden">
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efeae3"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#f8f3ed;border-radius:22px;overflow:hidden">
 <tr><td style="padding:0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-<tr><td style="background:#1f1d25;text-align:center;padding:34px 20px 4px"><img src="${wz}marke-haus-weiss.png" width="${Math.round(250 * ((G.zeichen || {}).s || 1))}" alt="Culinarium" style="height:auto;border:0"></td></tr>
-${KOPF_EIGEN(G, 'haus') ? `<tr><td style="background:#1f1d25;${st('haus', 15, "text-align:center;letter-spacing:.2em;text-transform:uppercase;font-weight:400;font-family:Fraunces,Georgia,'Times New Roman',serif;color:#f5f1f0;padding-top:12px")}">${kt('haus')}</td></tr>` : ''}
-${KOPF_EIGEN(G, 'zeile') ? `<tr><td style="background:#1f1d25;${st('zeile', 10.5, "text-align:center;letter-spacing:.24em;text-transform:uppercase;font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;color:#ea5823;padding:8px 20px 30px")}">${kt('zeile')}</td></tr>` : '<tr><td style="background:#1f1d25;padding:0 0 30px;font-size:1px;line-height:1px">&nbsp;</td></tr>'}
+<tr><td style="background:#271d1b;text-align:center;padding:34px 20px 4px"><img src="${wz}marke-haus-weiss.png" width="${Math.round(250 * ((G.zeichen || {}).s || 1))}" alt="Culinarium" style="height:auto;border:0"></td></tr>
+${KOPF_EIGEN(G, 'haus') ? `<tr><td style="background:#271d1b;${st('haus', 15, "text-align:center;letter-spacing:.2em;text-transform:uppercase;font-weight:400;font-family:Prata,Georgia,'Times New Roman',serif;color:#f8f3ed;padding-top:12px")}">${kt('haus')}</td></tr>` : ''}
+${KOPF_EIGEN(G, 'zeile') ? `<tr><td style="background:#271d1b;${st('zeile', 10.5, "text-align:center;letter-spacing:.24em;text-transform:uppercase;font-family:'Hanken','Helvetica Neue',Helvetica,Arial,sans-serif;color:#cc9e41;padding:8px 20px 30px")}">${kt('zeile')}</td></tr>` : '<tr><td style="background:#271d1b;padding:0 0 30px;font-size:1px;line-height:1px">&nbsp;</td></tr>'}
 <tr><td style="padding:34px 40px 30px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${mLinie('linie1', '22px 0 24px')}
 ${mLinie('linie2', '0 0 14px')}
-<tr><td style="font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#92492e">Betreff</td></tr>
-<tr><td style="${st('betreff', 22, serif + ';font-weight:400;color:#1a191f;padding:6px 0 22px;line-height:1.2')}">${t(e.betreff)}</td></tr>
+<tr><td style="font-family:'Hanken','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#94712c">Betreff</td></tr>
+<tr><td style="${st('betreff', 22, serif + ';font-weight:400;color:#201918;padding:6px 0 22px;line-height:1.2')}">${t(e.betreff)}</td></tr>
 ${fotos('kopf')}
-${ab.map((x, n) => `<tr><td dir="auto" style="${st('p' + n, 16, "font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;color:#282730;line-height:1.62;padding-bottom:" + (14 + Math.max(0, (G['p' + n] || {}).mb || 0)) + 'px' + (ab.length > 2 && n === ab.length - 1 ? ';padding-top:8px' : ''))}">${t(x)}</td></tr>${fotos('p' + n)}`).join('\n')}
+${ab.map((x, n) => `<tr><td dir="auto" style="${st('p' + n, 16, "font-family:'Hanken','Helvetica Neue',Helvetica,Arial,sans-serif;color:#322725;line-height:1.62;padding-bottom:" + (14 + Math.max(0, (G['p' + n] || {}).mb || 0)) + 'px' + (ab.length > 2 && n === ab.length - 1 ? ';padding-top:8px' : ''))}">${t(x)}</td></tr>${fotos('p' + n)}`).join('\n')}
 ${mLinie('linie3', '16px 0 0')}
-<tr><td style="${st('fuss', 13, "text-align:center;font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;color:#413f4e;line-height:1.6;padding-top:14px")}">${kt('fuss')}</td></tr>
+<tr><td style="${st('fuss', 13, "text-align:center;font-family:'Hanken','Helvetica Neue',Helvetica,Arial,sans-serif;color:#523f3b;line-height:1.6;padding-top:14px")}">${kt('fuss')}</td></tr>
 </table></td></tr></table></td></tr></table></td></tr></table>`;
 }
 async function briefPDF(a) {   // Der Server setzt den Brief als A4-PDF (Chromium); die Datei wird direkt geladen
@@ -658,7 +658,7 @@ function verbindeBrief(a) {
     let h = `<header><span class="gs-gruppe__t">Gestalten</span><h2>${esc(gName(k))}</h2><button class="gs-seite__zu" type="button" data-s="zu" data-v="" aria-label="Schliessen">${ZU}</button></header><div class="gs-seite__inhalt">`;
     if (text) {
       const fam = g.f === 'versal' ? 'cinzel' : (g.f || (k === 'haus' ? 'cinzel' : k === 'zeile' || k === 'fuss' ? 'mono' : 'serif'));
-      h += gruppe('Schriftart', seg([['serif', 'Fraunces', 'var(--serif)'], ['cinzel', 'Versalien', 'var(--caps)'], ['sans', 'Instrument Sans', 'var(--sans)'], ['mono', 'DM Mono', 'var(--mono)']].map(([v, n, f]) => kn('f', v, `<span style="font-family:${f}">${n}</span>`, fam === v)).join(''), ' gs-seg--schrift'));
+      h += gruppe('Schriftart', seg([['serif', 'Prata', 'var(--serif)'], ['cinzel', 'Versalien', 'var(--caps)'], ['sans', 'Hanken', 'var(--sans)'], ['mono', 'Hanken', 'var(--mono)']].map(([v, n, f]) => kn('f', v, `<span style="font-family:${f}">${n}</span>`, fam === v)).join(''), ' gs-seg--schrift'));
       const ta = g.ta || (g.f === 'versal' || /uppercase/.test(cs.textTransform) ? 'versal' : 'normal');
       h += gruppe('Schriftgrösse', groesse('pt', pt, 4, 72, .5, 'pt') + regler('pt', pt, 4, 72, .5, pt.toString().replace('.', ',') + ' pt'));
       h += gruppe('Textart', seg([['normal', 'Normal'], ['versal', 'Versalien']].map(([v, n]) => kn('ta', v, n, ta === v)).join(''))   /* Culinarium: nie kursiv */);
