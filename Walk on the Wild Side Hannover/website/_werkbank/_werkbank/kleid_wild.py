@@ -34,6 +34,8 @@ def anwenden(root):
                 for a, b in TAUSCH:
                     n = n.replace(a, b)
                 n = _farben(n)
+                if f.endswith('.html') and not p.endswith(os.path.join('werkbank', 'index.html')):
+                    n = n.replace(' loading="lazy"', '')   # kleine Seiten: Bilder sofort laden (WebKit-Prüfung in Actions)
                 if n != t:
                     open(p, 'w', encoding='utf-8').write(n)
     fo = os.path.join(root, 'werkbank', 'fonts')
