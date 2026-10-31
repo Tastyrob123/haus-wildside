@@ -7,6 +7,7 @@ import re
 TAUSCH = [
     ("'Instrument Sans'", "'Hanken Grotesk'"), ('"Instrument Sans"', '"Hanken Grotesk"'),
     ("'DM Mono'", "'Hanken Etikett'"), ('"DM Mono"', '"Hanken Etikett"'),
+    ('font-family="DM Mono', 'font-family="Hanken Grotesk'), ('font-family="Fraunces', 'font-family="Prata'), ('font-family="Instrument Sans', 'font-family="Hanken Grotesk'),
     ("'Fraunces'", "'Prata'"), ('"Fraunces"', '"Prata"'), ("'Urbanist'", "'Hanken Grotesk'"),
     ('InstrumentSans-normal-400_600.woff2', 'hanken.woff2'), ('DMMono-normal-400.woff2', 'hanken.woff2'), ('DMMono-normal-500.woff2', 'hanken.woff2'),
 ]

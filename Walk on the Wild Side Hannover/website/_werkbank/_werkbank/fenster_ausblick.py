@@ -19,7 +19,7 @@ import haus as _H
 VB = _H.ZEICHEN[0]
 
 FENSTER = [   # id, vor welchem Abschnitt, Bild (Foto der Website, abgedunkelt nach _werkbank/eigen/fen-<id>-*.webp), Zeilen, kleine Zeile, Bildbeschreibung
-    dict(id='fenster-haus', vor='papier', bild='theke', zeilen=('Ihr führt die Seite', 'selbst.'), klein='Für Termine, Menüs, Plakate und Gäste gibt es je ein eigenes Werkzeug.',
+    dict(id='fenster-haus', vor='papier', bild='theke', zeilen=('Ihr führt die Seite', 'selbst.'), klein='Für DJ-Abende, Karten, Plakate und Gäste gibt es je ein eigenes Werkzeug.',
          alt='Hinter der Theke des Walk on the Wild Side unter dem Negroni-Schriftzug'),
     dict(id='fenster-tisch', vor='material', bild='fenster', zeilen=('Eine Bar,', 'ein Auftritt.'), klein='Website, Karten, Werkzeuge und Papier im Kleid des Wild Side.',
          alt='Blick durchs Fenster in die Bar des Walk on the Wild Side'),

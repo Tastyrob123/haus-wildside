@@ -297,6 +297,9 @@ GEPRUEFT_TRIO = [(bild('wf-theke'), 1.6, (.5, .5), 'An der Theke'), (bild('rueck
 GEPRUEFT_OFFEN = 'Ein paar Fragen könnt nur ihr beantworten: wer Vertragspartner ist und ins Impressum kommt, wer an welchem Foto und Plakat die Rechte hat und wer welches Werkzeug bekommt.'
 GEPRUEFT_EIN = 'Hier steht in einfachen Worten, was an Website, Karten und Werkzeugen angesehen und ausprobiert wurde, und was danach noch bei euch liegt.'
 GEPRUEFT_NAV = ['Website', 'Karten', 'Werkzeuge', 'Daten', 'Offen']
+PRUEF_WERKZEUGE = [   # aus den Commits «…: fertig – geprüft (…)» im git log vom 31.10.2026 (Zahl der geprüften Zustände, je 0 Funde)
+    ('zentrale', '1 Zustand'), ('website', '59 Zustände'), ('karten', '34 Zustände'), ('gaeste', '51 Zustände'),
+    ('marke', '26 Zustände'), ('besuche', '172 Zustände'), ('druck', '346 Zustände')]
 GEPRUEFT_MEHR = [
     ('Die Website', 'seite', 'Acht Seiten: sechs für eure Gäste von der Startseite bis zum Besuch, dazu Impressum und Datenschutz.', [
         'Jede Seite in Safari und in Chrome geöffnet, auf dem Handy und auf dem Rechner. Nichts verrutscht zur Seite, kein Bild fehlt, kein Skript bricht ab.',
@@ -307,7 +310,9 @@ GEPRUEFT_MEHR = [
         'Neu gesetzt im Kleid der neuen Seite, die Schriften fest eingebettet.']),
     ('Die sieben Werkzeuge', 'schloss', 'Die Werkzeuge, mit denen ihr Karte, DJ-Abende, Plakate und Gäste selbst führt.', [
         'Jedes Werkzeug in seinem eigenen Durchgang gebaut und Schritt für Schritt bedient, mit erfundenen Gästen und Zahlen.',
-        'Kein Werkzeug schickt etwas von sich aus und keines öffnet ein Mailprogramm. Antworten an Gäste bleiben als Entwurf im Werkzeug, bis jemand sie selbst verschickt.']),
+        'Kein Werkzeug schickt etwas von sich aus und keines öffnet ein Mailprogramm. Antworten an Gäste bleiben als Entwurf im Werkzeug, bis jemand sie selbst verschickt.',
+        'Jedes Werkzeug ging durch die Prüfung in vier Breiten (1440, 1280, 1000 und 390 Pixel), Start, jeder Reiter, jedes Fenster: '
+        + ', '.join(f'{_werkzeugname(t)} {n}' for t, n in PRUEF_WERKZEUGE) + '. Gefunden wurde dabei nichts, das offen geblieben ist.']),
     ('Eure Daten und die eurer Gäste', 'schild', 'Was gespeichert wird und was nicht.', [
         'Gäste bekommen keine Cookies. Im Entwurf werden keine Besuche gezählt; ' + _nf.klein(_werkzeugname('besuche')) + ' zeigt erfundene Zahlen.',
         'Reservieren und Feiern anfragen laufen im Entwurf nur zur Probe; nichts davon erreicht die echte Bar.',
@@ -461,7 +466,7 @@ def nach_bau():
     sb_farbe.anwenden()
     # Das Zeichen (Wortmarke) in Gold als Datei für die Karte «Ein Vorschlag.» (als <img> wäre currentColor schwarz)
     vb, innen = ZEICHEN
-    open(os.path.join(_WB, 'eigen', 'zeichen-kerze.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" fill="{FARBEN["messing"]}">{innen}</svg>')
+    open(os.path.join(_WB, 'eigen', 'zeichen-kerze.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" fill="{FARBEN["rot"]}">{innen}</svg>')   # die Wortmarke in ihrem Rot
     open(os.path.join(_WB, 'eigen', 'zeichen-c.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" fill="#000">{innen}</svg>')   # Maske für Schmuck im CSS (Listen, Namenszug)
     _ft = os.path.join(ROOT, 'feed', '_tafeln.html')
     if os.path.exists(_ft):
