@@ -193,3 +193,16 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
   .ws.wo-app .wo-ber{grid-template-columns:minmax(0,1fr)}
   .ws.wo-app .wo-ber > .wo-bk:nth-child(odd):last-child{grid-column:auto;justify-self:stretch;width:auto}
 }
+
+/* Schnelle Prüfung 31.10.2026 (Wild Side): Prata reicht über die Zeile des Kopf-Titels hinaus (Ober- und Unterlänge); der gemeinsame Rahmen kürzt den Titel
+   mit «…» und schnitt dabei oben und unten an. Innen etwas Luft, aussen gleich viel zurück: Lage und Höhe des Kopfs bleiben. */
+@media (min-width:901px){#ws-kopf .wo-kopf__mitte b{padding-block:5px;margin-block:-5px}}
+/* Kopf 901–1240 px: vom Knopf «Website ansehen» bleibt nur der runde Knauf; die Beschriftung war nur zugeklemmt und stand gemessen über den Knopf hinaus.
+   Jetzt ist sie weg, der Name des Wegs steht als aria-label am Knopf (termine-ansicht.js). */
+@media (min-width:901px) and (max-width:1240px){#ws-kopf .wo-kn--gold.wo-kn--klein>span{display:none}}
+/* Häufig gebraucht: sieben Aufgaben in drei Spalten (erste und letzte doppelt breit), nie vier schmale Spalten, in denen die Titel Wort für Wort umbrechen */
+@container (min-width:968px){
+  .ws-aufgaben{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child{grid-column:span 2}
+  .ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child .wo-ag__b{aspect-ratio:32/9}
+}

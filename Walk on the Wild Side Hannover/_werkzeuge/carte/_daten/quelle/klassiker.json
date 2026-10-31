@@ -1,0 +1,43 @@
+{
+ "ziel": "klassiker",
+ "art": "satz",
+ "key": "klassiker",
+ "name": "Die Klassiker",
+ "unter": "An jedem Abend",
+ "gruppe": "Weitere Karten",
+ "ab": "",
+ "plakat": "",
+ "foto": "glas-negroni",
+ "titel": "Die Klassiker",
+ "datum": "Auch ohne Frage",
+ "mit": "Ein paar Drinks gehören fest zum Haus.",
+ "rubriken": [
+  {
+   "titel": "Die Klassiker",
+   "eintraege": [
+    {
+     "name": "Negroni",
+     "zutaten": "Gin | Wermut | Bitter | auf Eis gerührt",
+     "preis": ""
+    },
+    {
+     "name": "Paloma",
+     "zutaten": "Tequila | Grapefruit | Limette | Soda",
+     "preis": ""
+    },
+    {
+     "name": "Mexikaner",
+     "zutaten": "Der scharfe Shot des Hauses",
+     "preis": ""
+    },
+    {
+     "name": "Ohne Alkohol",
+     "zutaten": "Shrub | Soda | Kräuter | klarer Saft",
+     "preis": ""
+    }
+   ]
+  }
+ ],
+ "hinweis": "",
+ "quelle": "website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine"
+}

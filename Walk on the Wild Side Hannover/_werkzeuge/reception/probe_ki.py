@@ -1,7 +1,7 @@
 """Probe-Antworten statt Claude (Robert 16.10.2026: «lokal bis zur Kostenrunde», keine bezahlten KI-Aufrufe in Prüfläufen).
 
-Im Culinarium ist das der Standard: python3 _werkzeuge/reception/server.py 9084 (ohne RECEPTION_KI=1). Kopie aus dem Schäfli, dort aus dem Schlössli, Ruedihus, Carlton und Doldenhorn.
-Dann ruft kein Teil von La Réception und vom Chat die KI auf und kein Schlüssel wird gelesen. Jede Stelle, die sonst Claude fragt, bekommt
+Im Wild Side ist das der Standard: python3 _werkzeuge/reception/server.py 9084 (ohne RECEPTION_KI=1). Kopie aus dem Culinarium, dort aus dem Schäfli, Schlössli, Ruedihus, Carlton und Doldenhorn.
+Dann ruft kein Teil des Gästebuchs und vom Chat die KI auf und kein Schlüssel wird gelesen. Jede Stelle, die sonst Claude fragt, bekommt
 eine Antwort in genau der Form, die Claude liefern würde, sichtbar als Probe beschriftet:
   Chat (gast.frage)        Text «Probe-Antwort ohne KI …»; nennt der Gast eine E-Mail oder Telefonnummer, ruft die Probe das Werkzeug «anfrage» auf
                            (so entsteht wie echt eine Anfrage im Eingang); enthält die Frage «lücke», meldet sie «nicht belegt».
@@ -11,7 +11,7 @@ eine Antwort in genau der Form, die Claude liefern würde, sichtbar als Probe be
 """
 import json, re, time
 
-BEREICH = 'Culinarium'
+BEREICH = 'Die Bar'
 
 
 
@@ -33,6 +33,50 @@ def _beleg(frage):
                         for b in sb['bereiche'] for g in b['gruppen'] for z in g['zeilen']]
             _CHAT = m
         return _CHAT.antworte(frage)
+    except Exception:
+        return _steckbrief(frage)
+
+
+_SB = None
+_STOPP = set('der die das und oder ein eine einen einem ist sind gibt es bei euch ihr ich du wir was wie wo wann wer kann man mit für von zum zur den dem des auf aus noch auch habt hat haben the and you your for are what how when where'.split())
+
+
+def _steckbrief(frage):
+    """Ohne die Online-Antwort der Website (_online/api/frage.py fehlt in diesem Haus): dieselbe Antwort aus dem belegten Steckbrief, die Zeilen mit den
+    meisten gemeinsamen Wörtern als Punkte «Stichwort: Angabe». Nichts erfunden: nur Angaben aus steckbrief.json (jede mit Beleg auf der Website)."""
+    global _SB
+    try:
+        if _SB is None:
+            import json as _j, os as _o
+            sb = _j.load(open(_o.path.join(_o.path.dirname(_o.path.abspath(__file__)), 'steckbrief.json'), encoding='utf-8'))
+            _SB = [(b['bereich'], g['gruppe'], z['was'], z['angabe']) for b in sb['bereiche'] for g in b['gruppen'] for z in g['zeilen']]
+        f = frage.lower()
+        if re.search(r'allerg|unverträg|gluten|laktose|nuss|nüss|hund|dog|barriere|rollstuhl|wheelchair|park|kind|baby|parking|e-?mail', f):
+            return None   # steht in keiner Quelle des Hauses: Lücke fürs Team
+        thema = [(r'feier|geburtstag|hochzeit|firmen|gruppe|dinner|tafel|empore|ganze bar|pauschale|budget|jga|party|birthday|wedding|group|private', ('Feiern',)),
+                 (r'\bdj|session|konzert|live|musik|programm|eintritt|auflegen|gastschicht|silvester|valentin|mai\b|music|concert', ('Programm',)),
+                 (r'öffnung|geöffnet|offen|wann|uhr\b|heute|reservier|platz|plätze|tisch|donnerstag|freitag|samstag|sonntag|open|when|book|table', ('Zeiten & Reservieren',)),
+                 (r'drink|cocktail|karte|negroni|paloma|mexikaner|preis|kost|euro|€|alkohol|milk|fat|enzym|bier|wein|essen|price|menu', ('Drinks & Preise',)),
+                 (r'anfahrt|anreise|adresse|wo ist|wo seid|wo finde|komme ich|hinkommen|bahn|tram|haasemann|küchengarten|where|address', ('Der Weg',)),
+                 (r'telefon|anrufen|instagram|kontakt|erreichen|phone|call', ('Kontakt',)),
+                 (r'culinarium|dirty|chicken|sandwich', ('Im selben Haus',)),
+                 (r'momo|derya|team|falstaff|decke|gewölbe|draussen|terrasse|raum|who', ('Das Haus & Team', 'Die Bar'))]
+        ber = next((b for r, b in thema if re.search(r, f)), None)
+        w = {x for x in re.findall(r'[a-zäöüß0-9]{3,}', f) if x not in _STOPP}
+        kand = [z for z in _SB if ber and z[0] in ber]
+        if not kand or not w:
+            return None
+        def punkte(z):
+            t = ' '.join(z).lower()
+            return sum(2 if x in z[2].lower() or x in z[1].lower() else 1 for x in w if x in t or (len(x) > 5 and x[:5] in t))
+        best = sorted(((punkte(z), -i, z) for i, z in enumerate(kand)), reverse=True)
+        if best[0][0] < 1:
+            if not ber:
+                return None
+            best = [(1, 0, z) for z in kand if z[1] == kand[0][1]]   # Thema klar, Wörter nicht: die erste Gruppe des Bereichs
+        oben = [z for p, _, z in best if p >= max(1, best[0][0] - 1)][:3]
+        g = oben[0][1]
+        return {'belegt': True, 'text': f'Dazu steht auf der Website, unter «{g}»:\n' + '\n'.join(f'- {z[2]}: {z[3]}' for z in oben)}
     except Exception:
         return None
 
@@ -79,13 +123,21 @@ def api(koerper):
         name = (re.search(r'Name:\s*(.+)', letzte) or re.search(r'"name":\s*"([^"]+)"', letzte))
         wer = name.group(1).strip() if name else 'Gast'
         allerg = (re.search(r'Allergien \(Formular\):\s*(.+)', letzte) or [None, ''])[1].strip()
-        satz_al = f'Deine Angaben zu Allergien ({allerg}) gibt das Team an Rudi in der Küche weiter [Küche fragen].\n\n' if allerg and allerg != 'keine angegeben' else ''
-        return _antwort(f'Betreff: Dein Platz an der Tafel\n\nHallo {wer},\n\n'
-                        'danke für deine Nachricht und schön, dass du an einem unserer Abende dabei sein möchtest.\n\n'
-                        'Der nächste Abend steht noch nicht fest [Termin eintragen]; sobald er feststeht, erfährst du es zuerst [Plätze prüfen].\n\n'
-                        f'{satz_al}Damit wir deinen Platz in Ruhe vorbereiten können:\n- Freitag oder Samstag\n- wie viele Plätze\n\n'
-                        'Bis bald an der Tafel\n\n[Name]\nCulinarium im Walk on the Wild Side'
-                        '\n---\nGrundlage: Der Abend (Website)\nOffen: Termin, Plätze')
+        art = (re.search(r'Art:\s*(.+)', letzte) or [None, ''])[1].strip()
+        satz_al = f'Deine Angaben zu Allergien ({allerg}) gibt das Team an Rudi weiter [Rudi fragen].\n\n' if allerg and allerg != 'keine angegeben' else ''
+        if art in ('Privates Dinner', 'Feier'):
+            return _antwort(f'Betreff: Euer Abend im Wild Side\n\nHallo {wer},\n\n'
+                            'danke für deine Nachricht und schön, dass ihr bei uns feiern wollt.\n\n'
+                            'Derya und Momo melden sich mit einem Vorschlag, nur für euch [Angebot von Derya und Momo]. Bei jedem Abend gilt: 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn.\n\n'
+                            f'{satz_al}Damit wir euren Abend vorbereiten können:\n- Datum\n- wie viele ihr seid\n- der Anlass\n\n'
+                            'Bis bald an der Ecke\n\n[Name]\nWalk on the Wild Side'
+                            '\n---\nGrundlage: Feiern (Website)\nOffen: Angebot, Datum, Anzahl')
+        return _antwort(f'Betreff: Dein Platz im Wild Side\n\nHallo {wer},\n\n'
+                        'danke für deine Nachricht und schön, dass du zu uns an die Ecke kommen willst.\n\n'
+                        'Wir schauen, ob dein Platz frei ist [Platz prüfen], und bestätigen dir den Abend per Nachricht.\n\n'
+                        f'{satz_al}Damit wir deinen Platz in Ruhe vorbereiten können:\n- welcher Abend\n- welche Uhrzeit\n- wie viele Plätze\n\n'
+                        'Bis bald an der Ecke\n\n[Name]\nWalk on the Wild Side'
+                        '\n---\nGrundlage: Besuch (Website)\nOffen: Platz, Abend, Uhrzeit')
     # Chat (gast.frage, auch der zweite Schritt nach der Buchungsmaske)
     if any(isinstance(m.get('content'), list) and any(b.get('type') == 'tool_result' for b in m['content']) for m in koerper.get('messages') or []):
         return _antwort('OK')
@@ -94,16 +146,15 @@ def api(koerper):
     if kontakt and 'anfrage' in werkzeuge:
         name = re.search(r'(?:ich bin|mein name ist|name:|my name is|je suis)\s+([A-ZÄÖÜ][\w-]+(?:\s+[A-ZÄÖÜ][\w-]+)?)', frage, re.I)
         pers = re.search(r'(\d{1,3})\s*(?:personen|gäste|persons|people|personnes)', frage, re.I)
-        art = 'feier' if re.search(r'feier|geburtstag|hochzeit|party|birthday|wedding|firmen|gruppe|privat', frage, re.I) else ('warteliste' if re.search(r'warteliste|nächste[nr]? abend|vormerk|platz|plätze|ticket', frage, re.I) else 'nachricht')
+        art = 'dinner' if re.search(r'dinner|menü|essen', frage, re.I) else 'feier' if re.search(r'feier|geburtstag|hochzeit|party|birthday|wedding|firmen|gruppe|ganze bar|tafel', frage, re.I) else ('reservieren' if re.search(r'reservier|platz|plätze|tisch|theke|book|table', frage, re.I) else 'nachricht')
         return _antwort('Danke, deine Nachricht liegt jetzt beim Team. Es meldet sich persönlich bei dir.',
                         ('anfrage', {'art': art, 'name': name.group(1) if name else 'Gast', 'kontakt': kontakt.group(0), 'datum': None,
                                      'personen': int(pers.group(1)) if pers else None, 'anliegen': frage[:300]}))
     if 'lücke' in frage.lower() or 'luecke' in frage.lower():
         return _antwort('Dazu steht nichts in meinen Unterlagen. Ich gebe deine Frage gern ans Team weiter.', ('nicht_belegt', {'thema': frage[:80]}))
-    if 'warteliste' in werkzeuge and re.search(r'warteliste|nächste[nr]? (abend|termin)|wann ist|platz (frei|buchen)|tickets?\b|next (evening|date)', frage, re.I):   # wie echt: der Weg zur Warteliste unter der Antwort
-        b = _beleg(frage)
-        return _antwort((b or {}).get('text') or 'Der nächste Termin steht noch nicht fest. Wer auf der Warteliste steht, erfährt ihn zuerst.',
-                        ('warteliste', {'datum': None, 'uhrzeit': None, 'personen': None}))
+    if 'reservieren' in werkzeuge and re.search(r'reservier|platz (frei|buchen|für)|tisch für|book|table for', frage, re.I):   # wie echt: der Weg zu «Platz reservieren» unter der Antwort
+        return _antwort('Mit «Platz reservieren» auf der Seite Besuch geht es am schnellsten, die Bar bestätigt per Nachricht.\n- Geöffnet: Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr\n- Viele Gäste: ab zehn gibt es die lange Tafel, ab dreissig die ganze Bar',
+                        ('reservieren', {'datum': None, 'uhrzeit': None, 'personen': None}))
     b = _beleg(frage)
     if b and b.get('belegt'):
         return _antwort(b['text'])

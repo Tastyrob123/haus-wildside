@@ -71,9 +71,12 @@
     var lade = vorn ? ' fetchpriority="high"' : ' loading="lazy"';
     var farbe = H.fotoFarbe ? ' style="background-color:' + H.fotoFarbe + '"' : '';
     /* eigene Fotos eines Werkzeugs (z. B. die Köpfe der Plakatwerkstatt) bringen ihr srcset/sizes selbst mit (30.10.2026) */
-    if (!m) return '<img src="' + f + '"' + (srcset ? ' srcset="' + srcset + '" sizes="' + (sizes || '50vw') + '"' : '') + ' alt="Das ' + esc(H.name) + ' von aussen" decoding="async"' + lade + farbe + '>';
-    return '<img src="' + m[1] + '-1000.webp" srcset="' + m[1] + '-640.webp 640w, ' + m[1] + '-1000.webp 1000w" sizes="(max-width:900px) 100vw, 46vw" '
-      + 'alt="Das ' + esc(H.name) + ' von aussen" decoding="async"' + lade + farbe + '>';
+    var alt = H.fotoAlt || ('Das ' + H.name + ' von aussen');
+    if (!m) return '<img src="' + f + '"' + (srcset ? ' srcset="' + srcset + '" sizes="' + (sizes || '50vw') + '"' : '') + ' alt="' + esc(alt) + '" decoding="async"' + lade + farbe + '>';
+    /* Stufen der Website (Wild Side 31.10.2026: 480/960/1536, WO_HAUS.fotoStufen; ohne Angabe 640/1000 wie im Stamm): nie eine Stufe, die es nicht gibt */
+    var st = H.fotoStufen && H.fotoStufen.length ? H.fotoStufen.slice(0, 2) : [640, 1000];
+    return '<img src="' + m[1] + '-' + st[st.length - 1] + '.webp" srcset="' + st.map(function (b) { return m[1] + '-' + b + '.webp ' + b + 'w'; }).join(', ') + '" sizes="(max-width:900px) 100vw, 46vw" '
+      + 'alt="' + esc(alt) + '" decoding="async"' + lade + farbe + '>';
   }
   function startbild(o) {
     var art = o.art || 'voll';

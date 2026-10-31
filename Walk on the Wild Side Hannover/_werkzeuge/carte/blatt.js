@@ -3,7 +3,7 @@
    Vorschau (im Werkzeug, als Rahmen): Daten kommen per postMessage, Text ist markiert (data-k), Klicks und Geschriebenes gehen zurück.
    Danach wird jede Seite so gross gesetzt, wie ihr Inhalt es zulässt (wie _werkbank/satz_druck_datei.js, mit dem die PDFs der Website gedruckt sind).
    Doldenhorn 17.10.2026: Kopie aus La Carte des Carlton-Europe, auf den Satz der Unterlagen des Waldhotel Doldenhorn umgestellt.
-   Gasterntal 17.10.2026: Kopie aus der Tafel des Ruedihus. Schäfli 21.10.2026. Culinarium 28.10.2026: Schriften des Hauses (Fraunces, Instrument Sans, Urbanist, DM Mono). */
+   Gasterntal 17.10.2026: Kopie aus der Tafel des Ruedihus. Schäfli 21.10.2026. Wild Side 31.10.2026 (Vorlage Pairing-Karte im Culinarium): Schriften des Hauses (Prata, Hanken Grotesk). */
 (function () {
   'use strict';
   var q = new URLSearchParams(location.search), ZEICHEN = null, D = null, MODUS = 'einfach', ZOOM = 0.62, ZOOM_EIGEN = false, N = 0, DATEN = null;
@@ -90,7 +90,7 @@
   var CACHE = { karte: null, css: null, html: [], bericht: [] };
   // Eine Seite, die direkt in der Vorschau verändert wurde (Ziehen, Pfeile, Schreiben), gilt beim nächsten Satz als geändert
   function schmutzig(el) { var bl = el && el.closest && el.closest('.blatt'); if (!bl) return; var i = [].indexOf.call(document.querySelectorAll('#seiten > .blatt'), bl); if (i >= 0) CACHE.html[i] = null; }
-  /* Gestaltung 30.10.2026 (Tor K12, Stilblatt): Trenner « / », « · » in Rudis Zeilen und « | » in Momos Zeilen entfallen am Zeilenende und am Zeilenanfang.
+  /* Gestaltung 30.10.2026 (Tor K12, Stilblatt): Trenner « / », « · » und « | » in den Zutaten entfallen am Zeilenende und am Zeilenanfang.
      Nach dem Einpassen wird jeder Trenner gemessen; bricht die Zeile an ihm, wird er zum Zeilenumbruch (Text bleibt im Element, nur unsichtbar). */
   function trennerAmRand(wurzeln) {
     // nur Trenner, an denen die Zeile wirklich bricht, bekommen ein Element; alle anderen bleiben reiner Text (Schreiben in der Vorschau, Proben)
@@ -130,7 +130,7 @@
     CACHE.karte = opt.vorschau ? d.ziel : null; CACHE.css = css; CACHE.html = s.slice();
     // Doldenhorn 17.10.2026: die Schriften des Satzes ausdrücklich laden, bevor eingepasst wird. «fonts.ready» allein meldet fertig, solange noch
     // keine Schrift angefragt ist; dann wurde mit der Ersatzschrift gemessen und eine Seite (Bistro S. 2, am Handy) fälschlich als «zu hoch» gemeldet.
-    var SCHRIFTEN = ['340 12px "Fraunces Titel"', '320 12px "Fraunces Zeile"', '400 12px "Fraunces Zeile"', '400 12px "Instrument Sans"', '500 12px "Instrument Sans"', '500 12px Urbanist', '600 12px Urbanist', '400 12px "DM Mono"'];
+    var SCHRIFTEN = ['400 12px "Prata Satz"', '400 12px "Hanken Satz"', '500 12px "Hanken Satz"'];
     return Promise.all(SCHRIFTEN.map(function (f) { return document.fonts.load(f).catch(function () { return null; }); })).then(function () { return document.fonts.ready; }).then(function () {
       if (opt.vorschau) return null;   // Vorschau: Bilder haben feste Masse, der Satz steht schon, sie laden nach (Slow 4G: Text zuerst)
       return Promise.all([].map.call(document.images, function (i) { return i.complete ? 0 : new Promise(function (r) { i.onload = i.onerror = r; }); }));
@@ -165,7 +165,7 @@
     zeichen().then(function () {
       return fetch('/_werkzeuge/carte/api/druckdaten?z=' + encodeURIComponent(q.get('z') || '') + '&q=' + encodeURIComponent(q.get('q') || 'stand'), { cache: 'no-store' });
     }).then(function (r) { if (!r.ok) throw new Error('Daten ' + r.status); return r.json(); }).then(function (d) {
-      document.title = d.name + ' · Culinarium';
+      document.title = d.name + ' · Walk on the Wild Side';
       return setze(d, {});
     }).then(function (b) { window.CARTE_FERTIG = b; document.documentElement.dataset.fertig = '1'; })
       .catch(function (e) { window.CARTE_FEHLER = String(e && e.stack || e); });

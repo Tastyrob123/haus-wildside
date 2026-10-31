@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
-"""Wissen des Chats für La Réception des Culinarium Hannover (28.10.2026). Muster: _bau/schaefli_wissen.py der Taverne zum Schäfli (nur gelesen).
-Liest nur, aus dem Projektordner:
-  _werkzeuge/reception/_bau/website-text/*.txt   Wortlaut der Website, wie ein Gast ihn sieht (node _bau/website_text.js, ohne Beispieltermine)
-  _quelle/extern/ig/beitraege.md                 der Beitrag zum letzten Abend (Vorverkauf, Rückgabe), Wortlaut
-  _kette/03-sammler/fakten.json                  Kontaktwege, Plus Code, Instagram (jede Zeile mit ihrer Quelle)
+"""Wissen des Chats für das Gästebuch von Walk on the Wild Side Hannover (31.10.2026). Muster: _bau/culinarium_wissen.py des Culinarium.
+Liest nur, aus dem Hausordner:
+  _werkzeuge/reception/_bau/website-text/*.txt   Wortlaut der Website, wie ein Gast ihn sieht (node _bau/website_text.js, ohne Vorführ-Hinweise)
+  website/besuch.html, website/tafel.html          die Bestätigungssätze der beiden Formulare (stehen erst nach dem Absenden auf der Seite)
+  website/bau.py                                   HAUS (Adresse, Telefon, Instagram, Zeiten)
 Schreibt: gast/gast_wissen.txt, gast/gast_umgebung.txt, gast/gast_haus.json und vorlagen/*.txt.
 Nichts wird abgetippt oder umformuliert; jeder Satz, den dieses Skript für Vorlagen und Umgebung übernimmt, muss wörtlich in der Quelle stehen,
-sonst bricht es ab. «Vegetarisch» kommt nicht ins Wissen (Rückmeldung Rudi 26.10.2026: nicht mehr rein vegetarisch, CHARAKTER.md Abschnitt 8).
-Die Beispieltermine und die gespielte Zahlung auf «Der Abend» («Vorschau · Termine und Zahlung sind nur simuliert») sind keine Angaben des Hauses
-und bleiben draussen. Fehlt etwas, fehlt es auch im Chat und der Chat verweist an das Team.
-Aufruf: python3 _werkzeuge/reception/_bau/culinarium_wissen.py   (nach neuen Quellen erneut, danach steckbrief_bau.py)"""
+sonst bricht es ab. Ein Satz der Startseite («Eine Getränkekarte gibt es im Wild Side nicht.») bleibt draussen: Die Karte wechselt (Kundin 30.10.2026,
+CHARAKTER.md Abschnitt 1); die Seite Drinks und «Gut zu wissen» sagen es richtig. Eine E-Mail-Adresse der Bar ist nicht belegt (die Angebotsmappe nennt
+die von Culinarium) und kommt nirgends vor. Fehlt etwas, fehlt es auch im Chat und der Chat verweist an das Team.
+Aufruf aus dem Hausordner: python3 _werkzeuge/reception/_bau/wildside_wissen.py   (nach neuen Quellen erneut, danach steckbrief_bau.py)"""
 import json, os, re, sys
 
 C = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))     # _werkzeuge/reception
 PROJ = os.path.dirname(os.path.dirname(C))
 WT = os.path.join(C, '_bau', 'website-text')
 ZIEL = os.path.join(C, 'gast')
-SEITEN = [('index', 'Startseite'), ('abend', 'Der Abend (Culinarium, Warteliste)'), ('abende', 'Alle Abende'), ('bar', 'Das Haus: Walk on the Wild Side'),
-          ('leute', 'Team'), ('weg', 'Der Weg'), ('dirty-chicken', 'Dirty Chicken (Pop-up)')]
-NAV = {'Zum Inhalt', 'Der Abend', 'Alle Abende', 'Das Haus', 'Team', 'Der Weg', 'Dirty Chicken', 'Warteliste', 'Menü', 'Startseite'}
-FUSS_ANFANG = 'Ein Menü, fünf passende Drinks, eine lange Tafel.'
+SEITEN = [('index', 'Startseite'), ('drinks', 'Drinks: Was magst du?'), ('programm', 'Programm: Lauter (DJ-Abende, Konzerte, Feste)'),
+          ('tafel', 'Feiern: Euer Abend (Privates Dinner, lange Tafel, ganze Bar, Preise)'), ('haus', 'Das Haus: Unter dieser Decke'), ('besuch', 'Besuch: Zeiten, Weg, Reservieren, Fragen')]
+NAV = {'Drinks', 'Programm', 'Feiern', 'Das Haus', 'Besuch', 'Reservieren'}
+FUSS_ANFANG = 'An einzelnen Wochenenden wird aus der langen Tafel ein Menü: Rudi kocht, Momo mixt die Drinks dazu.'
+ZEITZEILEN = {'Donnerstag', 'Freitag', 'Samstag', '19 bis 1 Uhr', '19 bis 2 Uhr', 'Sonntag bis Mittwoch', 'geschlossen'}
+# Beschriftungen der Formulare und der gezeichneten Karte sind keine Angaben des Hauses
+FORM = {'Wie viele · tippt die Hocker an', '4 Plätze', 'mehr', 'Abend', 'Uhrzeit', '19 Uhr', 'Plätze', 'Name', 'Telefon oder E-Mail', 'Platz reservieren',
+        'Format', 'Datum', 'Wie viele', 'Anlass', 'Geburtstag', 'Musik dazu', 'Ohne', 'E-Mail oder Telefon', 'Was habt ihr vor?', 'Anfrage senden',
+        'Auf der Karte', 'Haasemannstraße', '13', 'Rampenstraße', 'Kartengrundlage © OpenStreetMap-Mitwirkende'}
+RAUS = {'Eine Getränkekarte gibt es im Wild Side nicht. Wer an die Theke kommt, wird gefragt, was er mag, und Momo macht daraus einen Drink. So sieht das aus.'}
 
 
 def seite(n):
@@ -31,12 +37,12 @@ def seite(n):
         zeilen.pop(0)
     if FUSS_ANFANG in zeilen:               # Fuss: steht auf jeder Seite gleich, einmal als eigener Teil
         i = zeilen.index(FUSS_ANFANG)
-        while i and zeilen[i - 1] in ('Culinarium', 'CULINARIUM'):
+        while i and zeilen[i - 1] in ZEITZEILEN:
             i -= 1
         zeilen, fuss = zeilen[:i], zeilen[i:]
     else:
         fuss = []
-    text = '\n'.join(z for z in zeilen if not re.fullmatch(r'[‹›+−]|\d{1,2}', z))
+    text = '\n'.join(z for z in zeilen if z not in FORM and z not in RAUS)
     return text, fuss, abgerufen
 
 
@@ -54,72 +60,72 @@ def bau():
         t, f, ab = seite(n)
         fuss = fuss or f
         alles += '\n' + t
-        teile.append(f'=== Seite: {titel} · Culinarium Hannover (Website: {n}.html; Wortlaut wie auf der Seite, abgerufen {ab}) ===\n{t}')
-    teile.append('=== Seite: Das Haus, Fenster beim Scrollen (Website: bar.html) ===\nDas ganze Haus auf seiner eigenen Seite.\n'
-                 + muss('Konzerte am Donnerstag, SESSION mit DJs an den Decks, Gastschichten, Anlässe und die lange Tafel für eure eigene Feier.',
-                        open(os.path.join(PROJ, 'website', 'bar.html'), encoding='utf-8').read(), 'bar.html'))
-    teile.append('=== Fuss jeder Seite (Culinarium, das Haus, das Pop-up, Warteliste) ===\n' + '\n'.join(fuss))
+        teile.append(f'=== Seite: {titel} · Walk on the Wild Side (Website: {n}.html; Wortlaut wie auf der Seite, abgerufen {ab}) ===\n{t}')
+    fuss = [z for z in fuss if z not in ('Zu Culinarium', 'Zu Dirty Chicken')]
+    teile.append('=== Fuss jeder Seite (Zeiten, die Nachbarn im Haus, Adresse) ===\n' + '\n'.join(fuss))
     alles += '\n' + '\n'.join(fuss)
-    if re.search(r'vegetar', '\n'.join(teile), re.I) and not re.search(r'Alle Abende', '\n'.join(teile)):
-        sys.exit('PRUEF · «vegetarisch» ausserhalb der Geschichte der Abende.')
+    if re.search(r'gibt es im Wild Side nicht|keine Karte', '\n'.join(teile)):
+        sys.exit('PRUEF · «keine Karte» im Wissen: die Karte wechselt (Kundin 30.10.2026).')
+    if re.search(r'[\w.+-]+@[\w-]+\.[a-z]{2,}', '\n'.join(teile)):
+        sys.exit('PRUEF · eine E-Mail-Adresse im Wissen: die Bar hat keine belegte.')
     wissen = '\n\n'.join(teile) + '\n'
 
-    # Umgebung: Wege zum Ticket und zum Team, Lage (fakten.json und der Beitrag zum letzten Abend, Wortlaut)
-    ig = open(os.path.join(PROJ, '_quelle', 'extern', 'ig', 'beitraege.md'), encoding='utf-8').read()
-    fk = json.load(open(os.path.join(PROJ, '_kette', '03-sammler', 'fakten.json'), encoding='utf-8'))
-    vv = muss('Tickets ausschließlich per Vorverkauf über PayPal.', ig, 'beitraege.md (DbYnkdkjrNy)')
-    nachr = muss('Schreibt uns hierzu gerne eine Nachricht', ig, 'beitraege.md (DbYnkdkjrNy)')
-    rueck = muss('Da die Plätze begrenzt sind, bitten wir um Verständnis, dass Tickets nicht rückerstattet werden können.', ig, 'beitraege.md (DbYnkdkjrNy)')
-    plus = muss('9PC7+49 Hannover', alles, 'der Website (weg.html)')
-    bar_tel = muss('+49 163 3909578', alles, 'der Website (Fuss)')
-    res = muss('Reservieren geht per Nachricht oder Telefon.', alles, 'der Website (bar.html)')
-    if fk['telefon']['wert'] is not None or fk['mail']['wert'] is not None:
-        sys.exit('PRUEF · fakten.json kennt jetzt Telefon oder Mail von Culinarium: Umgebung neu schreiben.')
-    umgebung = f"""=== Tickets für einen Abend (Beitrag von @culinarium_hannover zum Abend am 25. und 26. September 2026, veröffentlicht 29.07.2026, Wortlaut) ===
-{vv}
-{nachr} (gemeint: eine Nachricht an @culinarium_hannover auf Instagram)
-{rueck}
+    besuch_html = open(os.path.join(PROJ, 'website', 'besuch.html'), encoding='utf-8').read()
+    tafel_html = open(os.path.join(PROJ, 'website', 'tafel.html'), encoding='utf-8').read()
+    bau_py = open(os.path.join(PROJ, 'website', 'bau.py'), encoding='utf-8').read()
+    tel = muss('+49 163 3909578', bau_py, 'website/bau.py (HAUS)')
+    tel2 = muss('+49 174 9916296', bau_py, 'website/bau.py (HAUS, Angebotsmappe)')
+    ig = muss('@walkonthewildside_hannover', bau_py, 'website/bau.py (HAUS)')
+    bahn = muss('Stadtbahn bis Am Küchengarten, Linien 9 und 17', alles, 'besuch.html')
+    zahlung = muss('Bei jedem Abend 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn.', alles, 'tafel.html')
+    umgebung = f"""=== Kontakt (Website: besuch.html und tafel.html, website/bau.py HAUS) ===
+Telefon der Bar: {tel} und {tel2}. Instagram: {ig}.
+Reservieren: mit «Platz reservieren» auf der Seite Besuch (Abend, Uhrzeit, Plätze, Name, Telefon oder E-Mail). {muss('Die Bar bestätigt per Nachricht.', alles, 'besuch.html')}
+Feiern: mit der Anfrage «Euer Abend» auf der Seite Feiern (Format, Datum, wie viele, Anlass, Musik dazu, Name, E-Mail oder Telefon). {muss('Noch schneller geht es telefonisch:', alles, 'tafel.html')} {tel} oder {tel2}.
+Eine E-Mail-Adresse der Bar steht in keiner Quelle des Hauses; nenne keine.
 
-=== Kontakt (Recherche des Hauses, 25.10.2026, _kette/03-sammler/fakten.json) ===
-Culinarium hat keine eigene Telefonnummer und keine eigene E-Mail-Adresse. Fragen zu einem Abend: eine Nachricht an @culinarium_hannover auf Instagram.
-Die Bar Walk on the Wild Side, in der Culinarium stattfindet: Telefon {bar_tel}. {res}
-Instagram: @culinarium_hannover (Culinarium), @walkonthewildside_hannover (die Bar), @dirtychicken.hannover (Dirty Chicken).
+=== Anzahlung bei Feiern (Website: tafel.html, «So geht es») ===
+{zahlung}
 
-=== Lage (Google Maps, 25.10.2026) ===
-Walk on the Wild Side, Haasemannstraße 13, 30449 Hannover (Linden-Mitte), Ecke Rampenstraße. Plus Code {plus}.
-Weitere Angaben zur Anreise (Haltestelle, Parkplatz) stehen in keiner Quelle des Hauses.
+=== Lage (Website: besuch.html) ===
+Walk on the Wild Side, Haasemannstraße 13, 30449 Hannover-Linden, Ecke Rampenstraße. {bahn}, dann zwei Minuten zu Fuss.
+Parkplätze, Barrierefreiheit, Hunde und Kinder stehen in keiner Quelle des Hauses.
 """
-    kontakt = f'der Bar unter {bar_tel} oder mit einer Nachricht an @culinarium_hannover auf Instagram'
+    kontakt = f'der Bar am Telefon unter {tel} oder {tel2} oder mit einer Nachricht an {ig} auf Instagram'
     haus = {
-        'name': 'Culinarium', 'ort': 'Hannover-Linden', 'tel': bar_tel, 'mail': '', 'kontakt': kontakt,
+        'name': 'Walk on the Wild Side', 'ort': 'Hannover-Linden', 'tel': tel, 'mail': '', 'kontakt': kontakt,
         'adresse': 'Walk on the Wild Side, Haasemannstraße 13, 30449 Hannover',
-        'zeiten': 'Culinarium an einzelnen Wochenenden, Freitag ab 19 Uhr und Samstag ab 17 Uhr; die Bar Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr',
-        'art': 'Food-Pairing-Abende an der langen Tafel in der Bar Walk on the Wild Side: drei Gänge, fünf Signature Drinks, vierzehn Plätze',
-        'ruhetage': 'Culinarium gibt es nur an einzelnen Wochenenden (Freitag ab 19 Uhr, Samstag ab 17 Uhr), der nächste Termin steht noch nicht fest; die Bar hat Sonntag bis Mittwoch geschlossen',
+        'zeiten': 'Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr; Sonntag bis Mittwoch geschlossen',
+        'art': 'Nachbarschafts-Mixology-Bar in Linden-Mitte: die Karte wechselt, die Drinks entwirft Momo, an der Bar sagst du, was du magst',
+        'ruhetage': 'Die Bar hat Sonntag bis Mittwoch geschlossen',
         'fahrplan': '', 'kategorien': [], 'orte': [],
-        'reservation': '/abend.html#warteliste', 'reservation_name': 'Warteliste',
-        'muster': ('Frage: Wann ist der nächste Abend?\nAntwort: Der nächste Termin steht noch nicht fest. Wer auf der Warteliste steht, erfährt ihn zuerst.\n'
-                   '- Freitag: ab 19 Uhr\n- Samstag: ab 17 Uhr\n- Plätze: vierzehn an einer Tafel\n\n'
-                   'Frage: Habt ihr einen Kinderstuhl?\nAntwort: Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n'
-                   f'- Telefon der Bar: {bar_tel}\n- Instagram: @culinarium_hannover'),
+        'reservation': '/besuch.html#reservieren', 'reservation_name': 'Platz reservieren',
+        'muster': ('Frage: Wann habt ihr offen?\nAntwort: Donnerstag bis Samstag ab 19 Uhr.\n'
+                   '- Donnerstag: 19 bis 1 Uhr\n- Freitag und Samstag: 19 bis 2 Uhr\n- Sonntag bis Mittwoch: geschlossen\n\n'
+                   'Frage: Darf mein Hund mit?\nAntwort: Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n'
+                   f'- Telefon der Bar: {tel}\n- Instagram: {ig}'),
     }
-    # Vorlagen der Briefe: was das Haus selbst schreibt (E31), Wortlaut der Website
-    abend_t = seite('abend')[0]; start_t = seite('index')[0]; bar_t = seite('bar')[0]
-    bar_html = open(os.path.join(PROJ, 'website', 'bar.html'), encoding='utf-8').read()   # das Fenster der Bar-Seite zeigt seinen Satz erst beim Scrollen
-    js = open(os.path.join(PROJ, 'website', 'assets', 'culinarium.js'), encoding='utf-8').read()
-    danke = muss("'Danke, ' + fName.value.trim()", js, 'website/assets/culinarium.js (Warteliste)')
+    besuch_t = seite('besuch')[0]; tafel_t = seite('tafel')[0]
     vorlagen = {
-        'warteliste': [muss('Vierzehn Plätze an einer Tafel, und der letzte Abend war ausgebucht. Trag dich ein: Sobald der nächste Termin feststeht, erfährst du es vor allen anderen.', abend_t, 'abend.html'),
-                       'Bestätigung des Formulars auf der Website: «Danke, [Name]. Du stehst auf der Liste: [Tag], [Personen].»' if danke else '',
-                       muss('Tickets gibt es bisher nur im Vorverkauf. Sobald der nächste Abend feststeht, erfahren es die zuerst, die auf der Warteliste stehen.', start_t, 'index.html')],
-        'abend': [muss('Tickets gibt es bisher nur im Vorverkauf. Sobald der nächste Abend feststeht, erfahren es die zuerst, die auf der Warteliste stehen.', start_t, 'index.html'),
-                  muss('Das Menü wechselt mit jedem Abend. Was genau kommt, steht auf der Karte an deinem Platz.', start_t, 'index.html'),
-                  muss('„Da die Plätze begrenzt sind, bitten wir um Verständnis, dass Tickets nicht rückerstattet werden können.“', start_t, 'index.html'),
-                  vv + ' ' + nachr + '.'],
-        'feier': [muss('Konzerte am Donnerstag, SESSION mit DJs an den Decks, Gastschichten, Anlässe und die lange Tafel für eure eigene Feier.', bar_html, 'bar.html (Fenster «Das ganze Haus auf seiner eigenen Seite.»)'),
-                  muss('Dazu Gastschichten, Konzerte, DJ-Abende und private Abende an der langen Tafel.', start_t, 'index.html'),
-                  muss('Reservieren geht per Nachricht oder Telefon.', bar_t, 'bar.html')],
+        'reservieren': [muss('Ab zehn Gästen gibt es die lange Tafel, ab dreissig die ganze Bar: alles unter Feiern. Die Bar bestätigt per Nachricht.', besuch_t, 'besuch.html (Reservieren)'),
+                        muss('Die Bar ist klein. Wer zu mehreren kommt, reserviert besser, direkt hier: Platz reservieren.', besuch_t, 'besuch.html (Wann)'),
+                        'Bestätigung des Formulars auf der Website: «' + muss('Danke. Die Bar bestätigt dir den Abend.', besuch_html, 'besuch.html (Formular)') + '»',
+                        muss('Konzerte und DJ-Abende sind ohne Eintritt.', besuch_t, 'besuch.html (Gut zu wissen)')],
+        'dinner': [muss('Ein exklusiver Abend für zehn bis vierzehn Gäste an der langen Tafel, mit Rudi in der Küche und Momo an der Bar. Für Geburtstage, kleine Weihnachtsfeiern, Junggesellenabschiede oder einen Abend mit den Menschen, die zählen.', tafel_t, 'tafel.html (Privates Dinner)'),
+                   'Ablauf: Ein Gruss aus der Küche · Drei Gänge: ' + muss('Ein vegetarisches Menü von Rudi', tafel_t, 'tafel.html') + ' · Im Glas: ' + muss('Fünf Drinks von Momo, auf die Gänge abgestimmt', tafel_t, 'tafel.html'),
+                   muss('Derya und Momo melden sich mit einem Vorschlag, nur für euch.', tafel_t, 'tafel.html (So geht es)'),
+                   'Anzahlung: ' + zahlung,
+                   'Bestätigung des Formulars auf der Website: «' + muss('Danke. Derya und Momo melden sich mit einem Angebot für euren Abend.', tafel_html, 'tafel.html (Formular)') + '»'],
+        'feier': [muss('Oben auf der kleinen Empore steht die lange Tafel. Vier Stunden gehört sie eurer Runde, unten läuft die Bar weiter. Ihr legt vorher ein Budget für die Drinks fest; ist es erreicht, stockt ihr auf, oder eure Gäste bestellen selbst weiter.', tafel_t, 'tafel.html (Die lange Tafel, 10 bis 20 Gäste)'),
+                  muss('Ab dreissig Gästen schliesst die Bar für euch. Von 19 bis 2 Uhr gehört euch der ganze Raum: unter der Decke, an der Theke, auf der Empore.', tafel_t, 'tafel.html (Die ganze Bar)'),
+                  'Pauschale pro Person, 19 bis 2 Uhr: Kategorie 1 Bier, Wein, Spritz 49 € · Kategorie 2 dazu Longdrinks 59 € · Kategorie 3 dazu fünf Signature Cocktails 79 €. '
+                  + muss('Wer länger bleibt: ab 2 Uhr jede angefangene Stunde 10 Euro pro Person.', tafel_t, 'tafel.html (Weg 1)'),
+                  'Budget: Service und Raum 500 €, euer Budget für Drinks ab 1.000 €. ' + muss('Das Budget lässt sich nach oben frei anpassen.', tafel_t, 'tafel.html (Weg 2)'),
+                  muss('Schreibt, was ihr vorhabt. Derya und Momo melden sich mit einem Angebot.', tafel_t, 'tafel.html (Euer Abend)'),
+                  'Anzahlung: ' + zahlung],
     }
+    for k in ('49 €', '59 €', '79 €', '500 €', 'ab 1.000 €'):
+        muss(k, tafel_t, 'tafel.html (Preise)')
     open(os.path.join(ZIEL, 'gast_wissen.txt'), 'w', encoding='utf-8').write(wissen)
     open(os.path.join(ZIEL, 'gast_umgebung.txt'), 'w', encoding='utf-8').write(umgebung)
     json.dump(haus, open(os.path.join(ZIEL, 'gast_haus.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

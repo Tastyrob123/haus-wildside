@@ -1,10 +1,11 @@
-/* La Carte · Culinarium Hannover — Bedienung (28.10.2026, Kopie aus der Tafel im Schäfli, dort aus Schlössli, Gasterntal,
-   Ruedihus, Doldenhorn, Carlton-Europe und mc.js des Grand Beau-Rivage). Karten des Hauses: je Abend eine Menükarte (Rudis Teller, Momos Drinks). Die Karte ist ein Baum aus dem Satz (satz/satz.js, gesetzt von satz_bau.py
+/* Die Pairing-Karte · Walk on the Wild Side Hannover — Bedienung (31.10.2026, Kopie aus der Pairing-Karte im Culinarium, dort aus der Tafel im
+   Schäfli, Schlössli, Gasterntal, Ruedihus, Doldenhorn, Carlton-Europe und mc.js des Grand Beau-Rivage). Karten der Bar: die wechselnde Karte mit
+   Momos Drinks, die Klassiker, die Sonderkarten zum Valentinstag und die Preise für Feiern. Die Karte ist ein Baum aus dem Satz (satz/satz.js, gesetzt von satz_bau.py
    aus den Daten des Hauses, karten_lesen.py); Einträge, Rubriken und Texte erkennt SATZ.art(), die Felder eines Eintrags SATZ.felder(). Zwei Wege «Einfach»
    (Liste und Fenster) und «Fortgeschritten» (direkt in der Karte schreiben), jede Änderung zuerst als Entwurf, Veröffentlichen druckt PDF und prüft
    sie gegen die Daten. Rahmen (Kopf, Rand, Startbild, Leiste) aus der gemeinsamen Werkzeug-Oberfläche (/assets/oberflaeche/, Rahmen «Die Bühne»,
-   Kleid culinarium); der Arbeitsbereich (Liste, Vorschau, Gestalten) bleibt der der Tafel. «Der nächste Abend»: Gänge mit Teller und Drink (C08/C24
-   in der Form des Hauses). Server: carte.py über serve.py. Ohne Bibliothek. Kein Auswahlfeld des Betriebssystems. */
+   Kleid wildside); der Arbeitsbereich (Liste, Vorschau, Gestalten) bleibt der der Tafel. «Die Karte»: bis zu sechs Drinks mit Name und Zutaten
+   (C08/C24 in der Form des Hauses, interne Kennung «abend»). Server: carte.py über serve.py. Ohne Bibliothek. Kein Auswahlfeld des Betriebssystems. */
 (() => {
 'use strict';
 const $ = (s, r = document) => r.querySelector(s);
@@ -21,30 +22,34 @@ const SYM = {
   links: '<svg viewBox="0 0 14 14"><path d="m9 2.5-4.500 4.500L9 11.500"/></svg>', rechts: '<svg viewBox="0 0 14 14"><path d="m5 2.5 4.500 4.500L5 11.500"/></svg>',
   kopie: '<svg viewBox="0 0 14 14"><rect x="4.500" y="4.500" width="7" height="7" rx="1.200"/><path d="M9.500 4.500V3a.8.8 0 0 0-.8-.8H3A.8.8 0 0 0 2.200 3v5.700a.8.8 0 0 0 .8.8h1.500"/></svg>',
 };
-/* Hauswerte Culinarium: Foto je Karte (Kachel im Rand und Startbild) aus dem Bildregister der Website (website/bau.py BILD, ausgeliefert unter
-   /assets/bild/<schlüssel>-<breite>.webp): je früherem Abend sein Plakat, ohne Plakat das erste Bild des Abends, «Der nächste Abend» die gedeckte Tafel.
-   Die Zuordnung schreibt einlesen.py nach bilder/fotos.json (eine Stelle). */
+/* Hauswerte Wild Side: Foto je Karte (Kachel im Rand und Startbild) aus dem Bildregister der Website (website/bau.py BILD, ausgeliefert unter
+   /assets/bild/<schlüssel>-<breite>.webp): «Die Karte» Momo, der giesst, die Klassiker der Negroni, die Valentinskarten ihre Zeichnungen, die Preise
+   die Flaschen der Rückbar. Die Zuordnung schreibt einlesen.py nach bilder/fotos.json (eine Stelle), klein nach bilder/z/, gross nach bilder/g/. */
 let FOTO = {};
-const fotoKlein = z => `/_werkzeuge/carte/bilder/z/${FOTO[z] || 'tafelleer'}.webp`;   // 112 px (einlesen.py vorschaubilder)
-const fotoGross = z => `/assets/bild/${FOTO[z] || 'tafelleer'}-1000.webp`;
-const ROLLEN = { kueche: 'Küche', service: 'Service', direktion: 'Direktion' };
+const FOTO_STD = 'momo-giesst';
+const fotoKlein = z => `/_werkzeuge/carte/bilder/z/${FOTO[z] || FOTO_STD}.webp`;   // 112 px (einlesen.py vorschaubilder)
+const fotoGross = z => `/_werkzeuge/carte/bilder/g/${FOTO[z] || FOTO_STD}.webp`;
+const ROLLEN = { kueche: 'Bar', service: 'Service', direktion: 'Direktion' };   // Schlüssel «kueche» aus der Vorlage, im Haus die Bar
 /* Namen der Werkzeuge nur aus kleid/wildside.js (WO_HAUS.namen, eine Stelle); bis Robert wählt, die Arbeitsnamen */
 const NAME = (window.WO && WO.name('karten')) || 'Die Pairing-Karte', STUBE = (window.WO && WO.name('zentrale')) || 'Der Tresen', SCHREIBTISCH = (window.WO && WO.name('website')) || 'Das Schaufenster';   // Namen nur aus kleid/wildside.js (Robert 28.10.2026: Satz A «An der Bar»)
 const klein = n => n.replace(/^(Das|Die|Der) /, a => a.toLowerCase());   // Name mitten im Satz: «arbeitet die Pairing-Karte für sich»
-/* Die Website und die anderen Werkzeuge des Hauses: lokal die Website auf 8765 (Roberts Server), die Werkzeuge je auf ihrem Port (WO_HAUS.ports,
-   Zentrale 9081 …), immer 127.0.0.1 (Fehlerbuch 10a); online auf derselben Adresse wie La Carte */
+/* Die Website und die anderen Werkzeuge des Hauses: die Werkzeuge je auf ihrem Port (WO_HAUS.ports, Zentrale 9081 …), immer 127.0.0.1
+   (Fehlerbuch 10a). Die Website liest die Pairing-Karte über ihren eigenen Server (serve.py liefert die Seiten der Website nur lesend aus), lokal
+   wie online auf derselben Adresse: so ist «Website ansehen» auch erreichbar, wenn der Website-Server nicht läuft. */
 const PORTE = (window.WO_HAUS && WO_HAUS.ports) || { zentrale: 9081, website: 9082, karten: 9083, gaeste: 9084, marke: 9085, besuche: 9086, druck: 9087, werkbank: 9088, website_lokal: 8765 };
-const HAUS = location.port ? location.protocol + '//127.0.0.1:' + PORTE.website_lokal + '/' : '/';
+const HAUS = '/';
 const WERKBANK = location.port ? location.protocol + '//127.0.0.1:' + PORTE.werkbank + '/werkbank/' : '/werkbank/';
 const PORT_WERKZEUG = PORTE;
 const API = '/_werkzeuge/carte/api/';   // lokal (serve.py) und online derselbe Weg
-/* Wo die Karte auf der Website steht: jede Menükarte im Fenster ihres Abends auf «Alle Abende» (abende.html, data-abend = Plakat-ID) */
-const SEITE_DER_KARTE = {};
-const ORT_DER_KARTE = { 'abende.html': 'Alle Abende', 'abend.html': 'Der Abend', 'index.html': 'Startseite' };
-const WEBSEITEN = [['abende.html', 'Alle Abende'], ['abend.html', 'Der Abend'], ['index.html', 'Startseite']];
-let WEBSEITE = 'abende.html';
-const webAdresse = z => `${HAUS}${SEITE_DER_KARTE[z] || 'abende.html'}`;
-/* Bildzeichen an Gerichten hat keine Karte des Culinarium */
+/* Wo die Karte auf der Website steht: die Drinks (Gespräch, Klassiker) auf drinks.html, die Preise der Bar auf tafel.html (Feiern), der Valentinstag
+   unter den Festen auf programm.html; je Karte der Abschnitt, zu dem die Ansicht «Website» rollt */
+const SEITE_DER_KARTE = { abend: 'drinks.html', klassiker: 'drinks.html', 'drunk-in-love': 'programm.html', 'dishes-in-love': 'programm.html', preisliste: 'tafel.html' };
+const ABSCHNITT = { abend: 'gespraech', klassiker: 'klassiker', 'drunk-in-love': 'feste', 'dishes-in-love': 'feste', preisliste: 'budget' };
+const ORT_DER_KARTE = { 'drinks.html': 'Drinks', 'tafel.html': 'Feiern', 'programm.html': 'Programm', 'index.html': 'Startseite' };
+const WEBSEITEN = [['drinks.html', 'Drinks'], ['tafel.html', 'Feiern'], ['programm.html', 'Programm']];
+let WEBSEITE = 'drinks.html';
+const webAdresse = z => `${HAUS}${SEITE_DER_KARTE[z] || 'drinks.html'}`;
+/* Bildzeichen an Gerichten hat keine Karte der Bar */
 const SYMBOLE = [];
 /* Die Website verlinkt keine Karte als PDF */
 const PDF_DER_WEBSITE = {};
@@ -54,7 +59,7 @@ if (window.WO && WO.haus && WO.haus.wege && location.port) Object.keys(WO.haus.w
 let NEU_KARTE = false, ANSICHT = 'karte';
 let LISTE = [], Z = '', STAND = null, D = null, BASIS = '', MODUS = 'einfach', OFFEN = false, UNDO = [], BLITZ = null, ERWARTET = null, SCHRIFT = null;
 const ZM_STD = { einfach: 0.62, frei: 0.8 };   // Doldenhorn: ab dem ersten «+» darf die Vorschau breiter werden als ihr Platz (seitlich schieben)
-let WER = 'Team Culinarium', ROLLE = 'direktion',   /* Robert 20.10.2026: «Entfernen diese, wer arbeitet hier? Abfrage.» Fester Eintrag im Protokoll, volle Rechte; Anmeldung erst bei der Auslieferung */
+let WER = 'Team Wild Side', ROLLE = 'direktion',   /* Robert 20.10.2026: «Entfernen diese, wer arbeitet hier? Abfrage.» Fester Eintrag im Protokoll, volle Rechte; Anmeldung erst bei der Auslieferung */
     ZM = { einfach: 0.6, frei: 0.78 }, BEREIT = false, TEXTGEAENDERT = false, TIMER = null, BERICHT = null, GESCHRIEBEN = [], EINST = {}, RECHTE = {};
 try { MODUS = localStorage.getItem('lc-modus') || 'einfach'; ZM.einfach = +(localStorage.getItem('lc-zoom-einfach') || 0.62); ZM.frei = +(localStorage.getItem('lc-zoom-frei') || 0.8); } catch (e) { /* ohne Speicher geht es auch */ }
 
@@ -96,7 +101,7 @@ function setzePfad(o, pfad, wert) {
 function vater(pfad) { const k = pfad.split('.'), i = +k.pop(); return { arr: liesPfad(D, k.join('.')), idx: i, arrPfad: k.join('.') }; }
 const istEl = x => istKnoten(x) && x.fn === 'el';
 const nachbar = (arr, i, r) => { for (let j = i + r; j >= 0 && j < arr.length; j += r) if (istEl(arr[j]) && !arr[j].aus) return j; return -1; };
-/* Preis in der Schreibweise der Karten des Hauses (website/bau.py ABENDE: «89,00 EUR»): «89» → «89,00», «89.5» → «89,50», die Währung wie bei den Nachbarn */
+/* Preis in der Schreibweise der Karten des Hauses (Angebotsmappe: «12,00 EUR»): «12» → «12,00», «12.5» → «12,50», die Währung wie bei den Nachbarn */
 function nachbarPreise() {
   const aus = [];
   (D.seiten || []).forEach((s, i) => zeilenSeite(i).forEach(r => SATZ.felder(r.n, r.art).forEach(f => { if (f.preis && /\d/.test(f.wert)) aus.push(f.wert.trim()); })));
@@ -108,24 +113,24 @@ function preisForm(v, mitWaehrung) {
   const m = /^(\d{1,4})(?:[.,](\d{1,2}))?(\s*(?:€|eur|euro))?$/i.exec(t);
   if (!m) return t;
   const z = m[1] + ',' + (m[2] || '00').padEnd(2, '0');
-  const eur = m[3] || mitWaehrung === true;   // der Ticketpreis des Abends steht immer mit «EUR» wie auf den Plakaten (website/bau.py ABENDE)
+  const eur = m[3] || mitWaehrung === true;   // der Preis je Drink der Karte steht immer mit «EUR» wie in der Angebotsmappe der Bar
   return z + (eur && mitWaehrung !== false ? ' EUR' : '');
 }
 
 /* Arten der Einträge (satz.js art): was die Liste zeigt und wie das Fenster heisst */
 const FN = { eintrag: 'Eintrag', rubrik: 'Rubrik', zwischen: 'Zwischentitel', titel: 'Titel', text: 'Text' };
-const LANG = /^(Beschreibung|Übersetzung|Teller|Drink|Gericht|Text)/;
+const LANG = /^(Beschreibung|Übersetzung|Zutaten|Gericht|Text)/;
 function artVon(pfad, d = D) { const k = pfad.split('.'), e = liesPfad(d, k.slice(0, -2).join('.')); return SATZ.art(liesPfad(d, pfad), istKnoten(e) ? e : null); }
 function titelVon(n, art) {
   const f = SATZ.felder(n, art || SATZ.art(n));
-  const w = f.find(x => /^(Teller|Name|Tag|Rubrik|Titel|Zwischentitel|Überschrift|Gericht)/.test(x.name) && String(x.wert).trim()) || f.find(x => String(x.wert).trim() && !x.preis);
+  const w = f.find(x => /^(Name|Tag|Rubrik|Titel|Zwischentitel|Überschrift|Gericht)/.test(x.name) && String(x.wert).trim()) || f.find(x => String(x.wert).trim() && !x.preis);
   return w ? String(w.wert).replace(/\s+/g, ' ').trim() : (FN[art] || 'Eintrag');
 }
 function unterVon(n, art) {
   const f = SATZ.felder(n, art || SATZ.art(n)), t = titelVon(n, art);
-  return f.filter(x => /^(Drink|Beschreibung|Zusatz|Hinweis|Angabe|Gericht|Rolle)/.test(x.name) && String(x.wert).trim() && String(x.wert).trim() !== t).map(x => String(x.wert).trim()).join(' · ').slice(0, 160);
+  return f.filter(x => /^(Zutaten|Beschreibung|Zusatz|Hinweis|Angabe|Gericht|Rolle)/.test(x.name) && String(x.wert).trim() && String(x.wert).trim() !== t).map(x => String(x.wert).trim()).join(' · ').slice(0, 160);
 }
-function vollerGang(r) { const f = SATZ.felder(r.n, r.art).map(x => x.name); return f.includes('Teller') && f.includes('Drink'); }   // Vorlage für neue Gänge: einer mit Teller und Drink (nie der Absacker ohne Teller, nie der Preis)
+function vollerGang(r) { const f = SATZ.felder(r.n, r.art).map(x => x.name); return f.includes('Name') && f.includes('Zutaten'); }   // Vorlage für neue Einträge: einer mit Name und Zutaten (nie der Preis allein)
 function gangVon(n, art) { const g = SATZ.felder(n, art || SATZ.art(n)).find(x => x.name === 'Gang'); return g ? String(g.wert).trim() : ''; }
 function preisVon(n, art) { return SATZ.felder(n, art || SATZ.art(n)).filter(x => x.preis && String(x.wert).trim()).map(x => String(x.wert).trim()).join(' · '); }
 
@@ -149,9 +154,9 @@ function eintraege(d) {
   const aus = [];
   const T = x => String(x ?? '').replace(/\*\*|__|~/g, '');
   if (d.art === 'abend') {
-    const w = d.abend, bi = h(imgUrl(FOTO[Z] || 'tafelleer'));
-    aus.push({ key: 'abend', ort: 'Der Abend', text: `<span class="vgl__b" aria-hidden="true" style="background-image:${bi}"></span><b>${h(SATZ.ABEND.spanne(w.ab))}</b><span>${h(w.motto || w.titel)}</span><span>${h(w.mit || '')}</span><span>${h(w.preis)} ${h(w.zusatz || '')}</span><span>${h(w.hinweis || '')}</span>` });
-    w.tage.forEach((t, i) => aus.push({ key: 'tag' + i, ort: 'Menü und Drinks', text: `<span class="vgl__b" aria-hidden="true" style="background-image:${bi}"></span>` + (t.zu ? `<b>Gänge folgen</b><span>${h(t.hinweis)}</span>` : `<b>Menü und Drinks</b>` + SATZ.ABEND.GAENGE.filter(g => t[g[0]] || t[g[0] + '_z']).map(g => `<span>${h(g[1])}: ${h(t[g[0]])}${t[g[0] + '_z'] ? ' · ' + h(t[g[0] + '_z']) : ''}</span>`).join('')) }));
+    const w = d.abend, bi = h(imgUrl(FOTO[Z] || FOTO_STD));
+    aus.push({ key: 'abend', ort: 'Die Karte', text: `<span class="vgl__b" aria-hidden="true" style="background-image:${bi}"></span><b>${h(SATZ.ABEND.spanne(w.ab))}</b><span>${h(w.motto || w.titel)}</span><span>${h(w.mit || '')}</span><span>${h(w.preis)} ${h(w.zusatz || '')}</span><span>${h(w.hinweis || '')}</span>` });
+    w.tage.forEach((t, i) => aus.push({ key: 'tag' + i, ort: 'Drinks', text: `<span class="vgl__b" aria-hidden="true" style="background-image:${bi}"></span>` + (t.zu ? `<b>Drinks folgen</b><span>${h(t.hinweis)}</span>` : `<b>Drinks von Momo</b>` + SATZ.ABEND.GAENGE.filter(g => t[g[0]] || t[g[0] + '_z']).map(g => `<span>${h(t[g[0]])}${t[g[0] + '_z'] ? ' · ' + h(SATZ.ABEND.zeile(t[g[0] + '_z'])) : ''}</span>`).join('')) }));
     return aus;
   }
   d.seiten.forEach((s, i) => {
@@ -195,7 +200,7 @@ function oben() {
   const k = LISTE.find(x => x.ziel === Z) || {}, g = D && geaendert();
   el.innerHTML = WO.kopf({ werkzeug: 'karten', unter: 'Karte', titel: k.name || NAME, markeHref: '/_werkzeuge/carte/',
     stand: OFFEN ? 'Nicht gespeichert' : g ? 'Entwurf wartet' : k.pdf_zeit ? 'PDF vom ' + k.pdf_zeit : 'Noch keine PDF veröffentlicht',
-    pruefung: '/_werkzeuge/carte/pruefung.html', anleitung: '/_werkzeuge/carte/anleitung.html', website: HAUS });   // Messlauf 29.10.2026: «Website ansehen» öffnet die Startseite wie in den anderen Werkzeugen; zur Seite mit der Karte führt «Alle Abende auf der Website» im Rand
+    pruefung: '/_werkzeuge/carte/pruefung.html', anleitung: '/_werkzeuge/carte/anleitung.html', website: HAUS + 'index.html' });   // Messlauf 29.10.2026: «Website ansehen» öffnet die Startseite wie in den anderen Werkzeugen; zur Seite mit der Karte führt «… auf der Website» im Rand
   /* dazu wie in jeder Tafel: Protokoll, Zustand und wer gerade arbeitet (R05, Rollen); Der Schreibtisch steht im Rand unter «Wege» */
   const r = $('.wo-kopf__r', el), tr = r && $('.wo-trenn', r);
   if (tr) tr.insertAdjacentHTML('beforebegin', `<button class="wo-kn wo-kn--rund" type="button" data-akt="protokoll" title="Protokoll" aria-label="Protokoll">${WO.ic('verlauf')}</button><button class="zustand${STATUS_ROT ? ' rot' : ''}" type="button" data-akt="gesund"><span>${STATUS_ROT ? 'Prüfen' : 'Alles in Ordnung'}</span></button>`);
@@ -205,39 +210,39 @@ let STATUS_ROT = false, SATZ_ZEICHEN = { ZEICHEN: '', WORTMARKE: '' };
 /* Zeichen des Hauses (aus dem Band der Karte), eingefärbt über currentColor */
 function zeichenHaus(kl) { return (SATZ_ZEICHEN.ZEICHEN || '').replace('<svg ', `<svg class="${kl}" `); }
 function rand() {
-  /* Culinarium: oben «Der nächste Abend», darunter die früheren Abende, neueste zuerst (Gruppen mit Zwischentitel, R06) */
-  const eins = k => `<li><button class="wo-rk kw" type="button" data-z="${k.ziel}" aria-current="${k.ziel === Z}"><span class="wo-rk__b" style="background-image:url('${fotoKlein(k.ziel)}')"></span><span class="wo-rk__t"><b>${h(k.name)}</b><small>${h(k.unter || 'Menü und Drinks').replace(/(\S+-\S+)/g, '<span class="nw">$1</span>')}</small></span>${k.entwurf || (k.ziel === Z && D && geaendert()) ? '<em class="wo-marke">Entwurf</em>' : ''}</button></li>`;
+  /* Wild Side: oben «Die Karte» (wechselnd), darunter die weiteren Karten der Bar (Gruppen mit Zwischentitel, R06) */
+  const eins = k => `<li><button class="wo-rk kw" type="button" data-z="${k.ziel}" aria-current="${k.ziel === Z}"><span class="wo-rk__b" style="background-image:url('${fotoKlein(k.ziel)}')"></span><span class="wo-rk__t"><b>${h(k.name)}</b><small>${h(k.unter || 'Drinks von Momo').replace(/(\S+-\S+)/g, '<span class="nw">$1</span>')}</small></span>${k.entwurf || (k.ziel === Z && D && geaendert()) ? '<em class="wo-marke">Entwurf</em>' : ''}</button></li>`;
   const gruppen = [...new Set(LISTE.map(k => k.gruppe))];
   const karten = gruppen.map((g, i) => `${i ? `<li class="kw-gruppe"><p class="wo-mk">${h(g)}</p></li>` : ''}${LISTE.filter(k => k.gruppe === g).map(eins).join('')}`).join('');
   const wege = [
     { text: 'Frühere Fassungen', attr: 'data-akt="verlauf"' }, { text: 'Veröffentlichte PDF', href: `${API}pdf?z=${Z}&q=live`, attr: 'target="_blank" rel="noopener"' },
     { text: 'Zur Werkbank', href: WERKBANK, attr: 'target="_blank" rel="noopener"' },
-    { text: 'Alle Abende auf der Website', href: webAdresse(Z), attr: 'target="_blank" rel="noopener"' },
+    { text: (ORT_DER_KARTE[SEITE_DER_KARTE[Z]] || 'Drinks') + ' auf der Website', href: webAdresse(Z), attr: 'target="_blank" rel="noopener"' },
     { text: SCHREIBTISCH, href: (WO.haus.wege || {}).website || `${HAUS}`, attr: 'target="_blank" rel="noopener"' },
     { text: 'Anschluss an die Website', attr: 'data-akt="einst"' }, { text: 'Kurzer Rundgang', attr: 'data-akt="rundgang"' }];
   $('#rand').innerHTML = `<div class="wo-rand__g karten"><p class="wo-mk">${h(gruppen[0] || 'Deine Karten')}</p><ul>${karten}</ul></div>
     <div class="wo-rand__g modus-g"><p class="wo-mk">Bearbeiten</p><div class="wo-seg modus" role="group" aria-label="Art der Bearbeitung"><button type="button" data-m="einfach" aria-pressed="${MODUS === 'einfach'}">Einfach</button><button type="button" data-m="frei" aria-pressed="${MODUS === 'frei'}">Fortgeschritten</button></div>
-    <p class="modus__t">${MODUS === 'einfach' ? 'Gänge und Drinks in einer Liste: hinzufügen, ändern, ausblenden, entfernen, verschieben. Ein Klick zeigt den Gang links und rechts auf derselben Höhe.' : 'Du gestaltest direkt in der Karte: jedes Element verschieben, grösser oder kleiner ziehen, jeden Text ändern, auch Titel, Datum und Fusszeile. Dazu die Daten der Karte als Text.'}</p></div>
+    <p class="modus__t">${MODUS === 'einfach' ? 'Drinks und Preise in einer Liste: hinzufügen, ändern, ausblenden, entfernen, verschieben. Ein Klick zeigt den Eintrag links und rechts auf derselben Höhe.' : 'Du gestaltest direkt in der Karte: jedes Element verschieben, grösser oder kleiner ziehen, jeden Text ändern, auch Titel, Datum und Fusszeile. Dazu die Daten der Karte als Text.'}</p></div>
     ${WO.rand([{ titel: 'Wege', eintraege: wege }], { website: HAUS, anleitung: '/_werkzeuge/carte/anleitung.html', pruefung: '/_werkzeuge/carte/pruefung.html' }).replace('<div class="wo-rand__g">', '<div class="wo-rand__g wege">')}`;
   oben();
 }
 /* Startbild jeder Ansicht (Oberfläche der Häuser, «Bühne»): Foto des Raums rechts, Zier mit dem Zeichen, Titel mit Akzent, ein Satz, die
    Angaben der Karte und der Knopf der Ansicht. Der Auftritt läuft nur beim Wechsel der Karte (schweben.js). */
 const SATZ_KOPF = {
-  einfach: 'Ein Klick auf einen Gang zeigt ihn links und rechts auf derselben Höhe und lässt ihn kurz aufblinken; Doppelklick oder der Stift öffnet ihn. Jede Änderung wartet als Entwurf und steht sofort rechts in der Karte. PDF und Website bleiben, wie sie sind, bis du unten auf «Veröffentlichen» drückst.',
-  frei: 'Ein Klick wählt ein Element der Karte. Ziehen verschiebt es, die Ecken machen es grösser oder kleiner, ein Doppelklick schreibt in den Text, rechts gestaltest du Schrift, Farbe und Ausrichtung. ⌘Z nimmt zurück. Neue Gänge legst du im Modus «Einfach» an.',
+  einfach: 'Ein Klick auf einen Eintrag zeigt ihn links und rechts auf derselben Höhe und lässt ihn kurz aufblinken; Doppelklick oder der Stift öffnet ihn. Jede Änderung wartet als Entwurf und steht sofort rechts in der Karte. PDF und Website bleiben, wie sie sind, bis du unten auf «Veröffentlichen» drückst.',
+  frei: 'Ein Klick wählt ein Element der Karte. Ziehen verschiebt es, die Ecken machen es grösser oder kleiner, ein Doppelklick schreibt in den Text, rechts gestaltest du Schrift, Farbe und Ausrichtung. ⌘Z nimmt zurück. Neue Einträge legst du im Modus «Einfach» an.',
 };
-const SATZ_ABEND = 'Für jeden Abend eine Karte am Platz: zu jedem Gang Rudis Teller und Momos Drink eintragen, rechts steht es sofort auf der Karte. Gespeichert wird beim Verlassen des Feldes, die PDF ändert sich erst mit «Veröffentlichen». Das darf die Küche selbst.';
+const SATZ_ABEND = 'Die Karte der Bar wechselt, die Drinks dafür entwirft Momo: je Drink Name und Zutaten eintragen, rechts steht es sofort auf der Karte. Gespeichert wird beim Verlassen des Feldes, die PDF ändert sich erst mit «Veröffentlichen». Das darf die Bar selbst.';
 function kopf() {
   const k = LISTE.find(x => x.ziel === Z) || {}, neu = kopf.letzte !== Z; kopf.letzte = Z;
   const datum = k.pdf_zeit ? k.pdf_zeit.slice(0, 10) : (k.stand_zeit ? k.stand_zeit.slice(8, 10) + '.' + k.stand_zeit.slice(5, 7) + '.' + k.stand_zeit.slice(0, 4) : '');
   const fm = (D && D.format) || [210, 297], gr = Math.max(fm[0], fm[1]) >= 400 ? 'A3' : Math.max(fm[0], fm[1]) >= 290 ? 'A4' : 'A5', format = gr + (fm[0] > fm[1] ? ' quer' : '');
   const zahlen = [[k.seiten || 0, (k.seiten === 1 ? 'Seite' : 'Seiten') + ' in der PDF'], [format, 'Format'], [datum || '–', k.pdf_zeit ? 'PDF vom' : 'Stand vom']];
-  const kn = Z === 'abend' && MODUS === 'einfach' ? WO.knopf('Nächsten Abend anlegen', 'plus', 'gold', { attr: 'data-akt="abend-neu"' }) : MODUS === 'einfach' ? WO.knopf('Neuer Eintrag', 'plus', 'gold', { attr: 'data-akt="neu"' }) : WO.knopf('Daten der Karte', 'pfeil', 'hell', { attr: 'data-akt="daten"' });
+  const kn = Z === 'abend' && MODUS === 'einfach' ? WO.knopf('Neue Karte anlegen', 'plus', 'gold', { attr: 'data-akt="abend-neu"' }) : MODUS === 'einfach' ? WO.knopf('Neuer Eintrag', 'plus', 'gold', { attr: 'data-akt="neu"' }) : WO.knopf('Daten der Karte', 'pfeil', 'hell', { attr: 'data-akt="daten"' });
   $('#kopf').innerHTML = WO.startbild({ werkzeug: 'karten', art: 'buehne', foto: fotoGross(Z),
     zier: `${h(NAME)} · ${h(k.gruppe || '')}`,   // Tor 5 30.10.2026 (K7/K12): ohne «· Einfach» (stand am Handy allein, «·» am Zeilenende); der Weg steht im Rand
-    h1: `${h(k.name || '')} <em>${h(k.unter || 'Menü und Drinks')}</em>`, satz: h(Z === 'abend' && MODUS === 'einfach' ? SATZ_ABEND : SATZ_KOPF[MODUS === 'frei' ? 'frei' : 'einfach']),
-    knoepfe: kn + (D && D.abend && D.abend.beispiel ? `<p class="kopf__bsp">Beispiel: die Karte vom ${h(SATZ.ABEND.spanne(D.abend.ab))}. Mit «Nächsten Abend anlegen» beginnt die Karte des nächsten Abends.</p>` : '') + `<dl class="kopf__zahlen">${zahlen.map(([z, t]) => `<div><dt>${h(t)}</dt><dd>${h(String(z))}</dd></div>`).join('')}</dl>` });
+    h1: `${h(k.name || '')} <em>${h(k.unter || 'Drinks von Momo')}</em>`, satz: h(Z === 'abend' && MODUS === 'einfach' ? SATZ_ABEND : SATZ_KOPF[MODUS === 'frei' ? 'frei' : 'einfach']),
+    knoepfe: kn + (D && D.abend && D.abend.beispiel ? `<p class="kopf__bsp">Beispiel: die Karte «${h(D.abend.motto || D.abend.titel)}» vom ${h(SATZ.ABEND.tagName(D.abend.ab, 0).replace(/^[^,]+, /, ''))}. Mit «Neue Karte anlegen» beginnt die nächste Karte der Bar.</p>` : '') + `<dl class="kopf__zahlen">${zahlen.map(([z, t]) => `<div><dt>${h(t)}</dt><dd>${h(String(z))}</dd></div>`).join('')}</dl>` });
   const sb = $('#kopf .wo-sb'); if (sb && neu) sb.classList.add('auftritt');
   const img = $('#kopf .wo-sb__foto img'); if (img) { img.alt = ''; img.setAttribute('decoding', 'async'); }
 }
@@ -251,33 +256,32 @@ function reiheHTML(r, st, bild) {
   const aus = n.aus ? '<i class="chip grau">Ausgeblendet</i>' : '';
   const k = `<div class="r__k">${a === 'rubrik' ? WO.knopf('Eintrag hinzufügen', 'plus', 'gold', { klein: true, attr: 'data-akt="neu-hier"' }) : ''}<button class="rund" type="button" data-akt="edit" title="Bearbeiten" aria-label="Bearbeiten">${SYM.stift}</button><button class="rund" type="button" data-akt="kopie" title="Kopieren" aria-label="Kopieren">${SYM.kopie}</button><button class="rund" type="button" data-akt="hoch" title="Nach oben" aria-label="Nach oben">${SYM.hoch}</button><button class="rund" type="button" data-akt="runter" title="Nach unten" aria-label="Nach unten">${SYM.runter}</button><button class="rund" type="button" data-akt="aus" title="${n.aus ? 'Wieder zeigen' : 'Ausblenden'}" aria-label="${n.aus ? 'Wieder zeigen' : 'Ausblenden'}">${n.aus ? SYM.augezu : SYM.auge}</button><button class="rund gefahr" type="button" data-akt="weg" title="Entfernen" aria-label="Entfernen">${SYM.korb}</button></div>`;
   const kl = ['r', n.aus ? 'aus' : '', a === 'rubrik' ? 'r--rubrik' : '', ['zwischen', 'titel'].includes(a) ? 'r--klein' : '', a === 'text' ? 'r--text' : ''].filter(Boolean).join(' ');
-  return `<div class="${kl}${bild ? ' r--bild' : ''}" data-pfad="${h(r.pfad)}">${bild ? `<span class="r__b" aria-hidden="true" data-bild="${h(bild)}"></span>` : ''}<div class="r__t" data-akt="waehle">${gangVon(n, a) && gangVon(n, a) !== t ? `<small class="r__gang">${h(gangVon(n, a))}</small>` : ''}<b${gangVon(n, a) && gangVon(n, a) !== t ? ' class="wo-rudi"' : ''}>${h(t)}</b>${a !== 'eintrag' && a !== 'rubrik' ? `<small>${h(FN[a])}</small>` : ''}${chip}${aus}${a !== 'rubrik' && u ? `<span>${h(u)}</span>` : ''}</div><span class="r__p">${h(p)}</span>${k}</div>`;
+  return `<div class="${kl}${bild ? ' r--bild' : ''}" data-pfad="${h(r.pfad)}">${bild ? `<span class="r__b" aria-hidden="true" data-bild="${h(bild)}"></span>` : ''}<div class="r__t" data-akt="waehle">${gangVon(n, a) && gangVon(n, a) !== t ? `<small class="r__gang">${h(gangVon(n, a))}</small>` : ''}<b${gangVon(n, a) && gangVon(n, a) !== t ? ' class="r__mitgang"' : ''}>${h(t)}</b>${a !== 'eintrag' && a !== 'rubrik' ? `<small>${h(FN[a])}</small>` : ''}${chip}${aus}${a !== 'rubrik' && u ? `<span>${h(u)}</span>` : ''}</div><span class="r__p">${h(p)}</span>${k}</div>`;
 }
-function abendHTML() {   // Culinarium: je Abend ein Menü, zu jedem Gang Rudis Teller und Momos Drink, wie die Karte am Platz
+function abendHTML() {   // Wild Side: eine Karte, die wechselt; je Drink Name und Zutaten, wie die Karten der Bar (Name gross, Zutaten klein darunter)
   const w = D.abend, M = SATZ.ABEND, t = w.tage[0];
   const f = (pfad, titel, wert, ph = '') => `<label class="feld"><span>${titel}</span><textarea class="mw-t" rows="1" data-mw="${pfad}"${ph ? ` placeholder="${h(ph)}"` : ''}>${h(wert)}</textarea></label>`;
-  const gang = g => `<p class="mw-gang">${h(g[1])}</p><div class="feld zw2">${f(`tage.0.${g[0]}`, 'Teller · Rudi', t[g[0]] || '', g[0] === 'absacker' || g[0] === 'amuse' ? 'Leer, wenn es nur den Drink gibt' : 'z. B. Lauch / Blumenkohl / Chipotle')}${f(`tage.0.${g[0]}_z`, 'Drink · Momo', t[g[0] + '_z'] || '')}</div>`;
+  const gang = (g, i) => `<p class="mw-gang">${h(g[1])}</p><div class="feld zw2">${f(`tage.0.${g[0]}`, 'Name des Drinks', t[g[0]] || '', i ? 'Leer, wenn die Karte weniger Drinks hat' : 'z. B. Whey Bramble')}${f(`tage.0.${g[0]}_z`, 'Zutaten', t[g[0] + '_z'] || '', 'z. B. Gin | Lemon Shrub | Vetiver')}</div>`;
   const menue = `<div class="teil mw-tag${t.zu ? ' mw-tag--zu' : ''}" style="--i:0"><div class="mw-in">
-      <p class="mw-name">Menü und Drinks</p>
-      ${t.zu ? f('tage.0.hinweis', 'Satz auf der Karte', t.hinweis, 'Die Gänge dieses Abends folgen.') : M.GAENGE.map(gang).join('')}
-      <div class="feld"><span class="schalter" role="switch" tabindex="0" aria-checked="${!!t.zu}" data-akt="tagzu" data-i="0"><b></b>Die Gänge stehen noch nicht fest</span></div>
+      <p class="mw-name">Die Drinks von Momo</p>
+      ${t.zu ? f('tage.0.hinweis', 'Satz auf der Karte', t.hinweis, 'Die Drinks dieser Karte folgen.') : M.GAENGE.map(gang).join('')}
+      <div class="feld"><span class="schalter" role="switch" tabindex="0" aria-checked="${!!t.zu}" data-akt="tagzu" data-i="0"><b></b>Die Drinks stehen noch nicht fest</span></div>
     </div></div>`;
-  const vorschlag = (LISTE.find(k => k.ziel !== 'abend') || {}).name;
-  return `<div class="teil"><div class="mw-in"><p class="mw-name">Der Abend · Freitag und Samstag</p>
+  return `<div class="teil"><div class="mw-in"><p class="mw-name">Die Karte gilt ab</p>
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="rund" type="button" data-akt="abend" data-r="-1" aria-label="Eine Woche früher">${SYM.links}</button><b class="mw-datum">${h(M.spanne(w.ab))}</b><button class="rund" type="button" data-akt="abend" data-r="1" aria-label="Eine Woche später">${SYM.rechts}</button>
       </div></div></div>${menue}
     <div class="teil"><div class="mw-in"><p class="mw-name">Kopf und Fuss der Karte</p>
-      <div class="feld zw2">${f('motto', 'Motto des Abends', w.motto || '', 'Leer: Titel unten')}${f('titel', 'Titel', w.titel, 'Menü')}</div>${f('mit', 'Zeile unter dem Datum', w.mit || '', 'BY MOMO X RUDI')}
-      <div class="feld zw2">${f('preis', 'Ticketpreis', w.preis, vorschlag ? 'wie die Plakate, z. B. 89,00 EUR' : '')}${f('zusatz', 'Unter dem Preis', w.zusatz || '')}</div>${f('hinweis', 'Hinweis', w.hinweis || '', 'z. B. auch vegetarisch möglich')}${f('fuss', 'Fusszeile', w.fuss || '', 'Leer: die Adresse wie unten auf der Karte')}
+      <div class="feld zw2">${f('motto', 'Name der Karte', w.motto || '', 'Leer: Titel daneben')}${f('titel', 'Titel', w.titel, 'Die Karte')}</div>${f('mit', 'Zeile unter dem Datum', w.mit || '', 'z. B. Signature Drinks von Momo')}
+      <div class="feld zw2">${f('preis', 'Preis je Drink', w.preis, 'wie die Preisliste, z. B. 12,00 EUR')}${f('zusatz', 'Unter dem Preis', w.zusatz || '')}</div>${f('hinweis', 'Hinweis', w.hinweis || '', 'z. B. jeder Drink auch ohne Alkohol')}${f('fuss', 'Fusszeile', w.fuss || '', 'Leer: die Adresse wie unten auf der Karte')}
     </div></div>`;
 }
-/* Bild je Zeile (Fehlerbuch 10a, Robert 19.10.2026: «in allen Tools Bilder dazu»): nur Fotos des Hauses von der Website. Ein Gang zeigt nur ein Foto, das
-   wirklich ihn zeigt; Fotos von Rudis Tellern gibt es nur zu Gängen, die auf keiner überlieferten Karte stehen (website/bau.py ZEILEN), darum trägt die
-   Karte ihr Bild einmal am Titel (Plakat des Abends), nie in jeder Zeile wiederholt (Fehlerbuch 10a, Schlössli 20.10.2026). */
+/* Bild je Zeile (Fehlerbuch 10a, Robert 19.10.2026: «in allen Tools Bilder dazu»): nur Fotos des Hauses von der Website. Ein Drink zeigt nur ein Foto, das
+   wirklich ihn zeigt; Fotos einzelner Drinks der Karten gibt es nicht, darum trägt die Karte ihr Bild einmal am Titel, nie in jeder Zeile wiederholt
+   (Fehlerbuch 10a, Schlössli 20.10.2026). */
 const imgUrl = n => `url('/_werkzeuge/carte/bilder/z/${n}.webp')`;   // 112 px (einlesen.py vorschaubilder)
-function rubrikBild(t) { return imgUrl(FOTO[Z] || 'tafelleer'); }
+function rubrikBild(t) { return imgUrl(FOTO[Z] || FOTO_STD); }
 function bildVon(r) {
-  if (r.art === 'titel') return imgUrl(FOTO[Z] || 'tafelleer');
+  if (r.art === 'titel') return imgUrl(FOTO[Z] || FOTO_STD);
   return '';
 }
 function liste() {
@@ -286,7 +290,7 @@ function liste() {
   const st = zustand();
   el.innerHTML = D.seiten.map((s, i) => {
     const zl = zeilenSeite(i), rub = zl.some(r => r.art === 'rubrik'), ein = zl.some(r => r.art === 'eintrag');
-    const inn = zl.map(r => reiheHTML(r, st, bildVon(r))).join('') + `<div class="neu-zeile">${ein ? `${WO.knopf('Gang am Ende', 'plus', 'gold', { klein: true, attr: `data-akt="neu-ende" data-i="${i}"` })}` : ''}${rub ? `${WO.knopf('Neue Rubrik', 'plus', 'gold', { klein: true, attr: `data-akt="rubrik-neu" data-i="${i}"` })}` : ''}</div>`;
+    const inn = zl.map(r => reiheHTML(r, st, bildVon(r))).join('') + `<div class="neu-zeile">${ein ? `${WO.knopf('Eintrag am Ende', 'plus', 'gold', { klein: true, attr: `data-akt="neu-ende" data-i="${i}"` })}` : ''}${rub ? `${WO.knopf('Neue Rubrik', 'plus', 'gold', { klein: true, attr: `data-akt="rubrik-neu" data-i="${i}"` })}` : ''}</div>`;
     return `<div class="teil${s.aus ? ' aus' : ''}" data-teil="${i}" style="--i:${Math.min(i, 6)}"><div class="teil__k"><b>Seite ${i + 1}</b><span>${zl.filter(r => r.art === 'eintrag').length} ${zl.filter(r => r.art === 'eintrag').length === 1 ? 'Eintrag' : 'Einträge'}</span><div style="display:flex;gap:6px"><button class="rund" type="button" data-akt="s-hoch" data-i="${i}" aria-label="Seite nach vorn">${SYM.hoch}</button><button class="rund" type="button" data-akt="s-runter" data-i="${i}" aria-label="Seite nach hinten">${SYM.runter}</button><button class="rund" type="button" data-akt="s-aus" data-i="${i}" aria-label="Seite ausblenden">${s.aus ? SYM.augezu : SYM.auge}</button></div></div>${inn}</div>`;
   }).join('');
   if (BLITZ) { const r = $(`.r[data-pfad="${BLITZ}"]`); if (r) { r.classList.add('blitz'); r.scrollIntoView({ block: 'nearest' }); } BLITZ = null; }
@@ -304,8 +308,8 @@ function bilderZeigen() {
 }
 
 // ---------------------------------------------------------------- Vorschau (Rahmen blatt.html)
-/* Ansicht «Website» (wie GBR): die Seite «Alle Abende», auf der jede Menükarte im Fenster ihres Abends steht. Das Werkzeug öffnet dort den Abend
-   dieser Karte (Klick auf data-abend, wie ein Gast); die Website zeigt ihren heutigen Stand (die Karten liest sie erst mit dem Einbau von karten.json). */
+/* Ansicht «Website» (wie GBR): die Seite der Website, auf der die Karte vorkommt (Drinks, Feiern, Programm). Das Werkzeug rollt dort zum Abschnitt
+   dieser Karte; die Website zeigt ihren heutigen Stand (die Karten liest sie erst mit dem Einbau von karten.json). */
 function website() {
   const an = ANSICHT === 'website';
   $('#vf').hidden = an; $('#web').hidden = !an; $('#webwahl').hidden = !an; $('.vorschau__z').hidden = an;   // Zoom gilt nur für die Karte
@@ -318,9 +322,9 @@ function website() {
     try {
       const d = f.contentDocument; d.querySelectorAll('[data-r]').forEach(x => x.classList.add('da'));
       WEB_ENTWURF = false;
-      const key = (STAND && STAND.key) || '', ziel = key && d.querySelector(`[data-abend="${key}"]`);
-      if (ziel && seite === 'abende.html') { ziel.scrollIntoView({ block: 'center' }); setTimeout(() => { try { ziel.click(); } catch (e) { /* egal */ } }, 350); }
-      $('#v-zahl').textContent = (ORT_DER_KARTE[seite] || 'Website') + (ziel && seite === 'abende.html' ? ' · heute, mit der Karte dieses Abends' : Z === 'abend' && seite === 'abende.html' ? ' · der nächste Abend steht hier, sobald er angekündigt ist' : ' · heute, so steht es auf der Website');
+      const ab = seite === SEITE_DER_KARTE[Z] && ABSCHNITT[Z], ziel = ab && d.getElementById(ab);
+      if (ziel) { d.querySelectorAll('.auf,.sw,[data-p]').forEach(x => x.classList.add('da', 'an', 'sichtbar')); setTimeout(() => { try { ziel.scrollIntoView({ block: 'start' }); } catch (e) { /* egal */ } }, 120); }
+      $('#v-zahl').textContent = (ORT_DER_KARTE[seite] || 'Website') + ' · heute, so steht es auf der Website';
     } catch (e) { /* gleiche Herkunft, sollte gehen */ }
   };
   const src = `${API}webseite?z=${Z}&seite=${seite}&t=${Date.now()}`;
@@ -406,7 +410,7 @@ function waehleAusVorschau(pfad) {   // aus der Karte: Liste links springt hin, 
    (anordnen.js, 15./16.10.2026). Gewählt, gezogen und gezeigt wird in der Vorschau (blatt.js, ANR); hier liegen die Daten, der Verlauf für ⌘Z / ⌘⇧Z
    und die Seitenleiste «Gestalten» rechts (öffnet beim Wählen, × oder Esc schliesst, nie über der Karte).
    Wo die lage steht: Eintrag (Pfad «seiten.…») → n.lage, seine Linie («…:lin») → n.lage.lin; Bankett-Zeile → u.lage; Teile der Seite
-   «b:» Band, «l:» Logo, «k:» Kopfzeile, «z:» Zeichen, «f:» Fusszeile, «s:» Titel der Seite → seite.lage[…]; Der nächste Abend → abend.lage['t<Tag>.<Rolle>'] bzw. ['t<Tag>#']. */
+   «b:» Band, «l:» Logo, «k:» Kopfzeile, «z:» Zeichen, «f:» Fusszeile, «s:» Titel der Seite → seite.lage[…]; Die Karte → abend.lage['t<Tag>.<Rolle>'] bzw. ['t<Tag>#']. */
 const HIST = [], ZUK = [];
 let WAHLID = null, WAHLINFO = null, GST_OFFEN = false, SCHREIB_VOR = null;
 const RUND = (x, n) => Math.round(x * n) / n;
@@ -463,10 +467,10 @@ function entf(id) {   // Entf: Einträge gehen von der Karte (wie «Ausblenden»
 function abwaehlen() { WAHLID = null; WAHLINFO = null; GST_OFFEN = false; seitenleiste(); const f = $('#vf'); if (f && f.contentWindow) f.contentWindow.postMessage({ carte: 'abwaehlen' }, location.origin); }
 
 /* Seitenleiste «Gestalten» (GBR: «Schriftarten, Schriftgrösse und Textart ändern … so ein kleines Side-Menü»), Begriffe wie in L’Imprimerie */
-const SCHRIFTEN = [['titel', 'Fraunces'], ['zeile', 'Rudis Zeile'], ['instrument', 'Instrument Sans'], ['etikett', 'Urbanist'], ['mono', 'DM Mono']];
-const TEXTART = [['normal', 'Normal'], ['versal', 'Versalien']];   // nie fett, nie kursiv (Kleid des Culinarium)
+const SCHRIFTEN = [['titel', 'Prata'], ['lauf', 'Hanken Grotesk']];
+const TEXTART = [['normal', 'Normal'], ['versal', 'Versalien']];   // nie fett, nie kursiv (Kleid des Hauses)
 const AUSR = [['links', 'Links'], ['mitte', 'Mitte'], ['rechts', 'Rechts']];
-const FARBNAME = { nacht: 'Nacht', schiefer: 'Schiefer', tinte: 'Tinte', leise: 'Leise', kerze: 'Kerze', kerzet: 'Kerze tief', kerzeh: 'Kerze hell', papier: 'Warmweiss', weiss: 'Weiss' };
+const FARBNAME = { nacht: 'Nacht', platte: 'Platte', leise: 'Leise', gold: 'Gold', golddunkel: 'Gold dunkel', rot: 'Rot', creme: 'Creme', weiss: 'Weiss' };
 const segment = (feld, liste, an, kl = '') => `<div class="gst-seg ${kl}">${liste.map(([k, t]) => `<button type="button" data-feld="${feld}" data-wert="${k}" class="${an === k ? 'an' : ''}"${feld === 'f' ? ` style="font-family:${SATZ.SCHRIFT[k].replace(/"/g, "'")}"` : ''}>${t}</button>`).join('')}</div>`;
 const groesse = (feld, wert, einheit) => `<div class="gst-gr"><button type="button" data-schritt="${feld}" data-r="-1" aria-label="Kleiner">−</button><input type="text" inputmode="decimal" data-zahl="${feld}" value="${wert}"><span>${einheit}</span><button type="button" data-schritt="${feld}" data-r="1" aria-label="Grösser">+</button></div>`;
 const farben = an => `<div class="gst-farben">${Object.entries(SATZ.FARBE).map(([k, v]) => `<button type="button" data-feld="c" data-wert="${k}" title="${FARBNAME[k] || k}" aria-label="${FARBNAME[k] || k}" style="background:${v}" class="${an === k ? 'an' : ''}"></button>`).join('')}</div>`;
@@ -484,7 +488,7 @@ function seitenleiste() {
   if (!an) return;
   const kopf = `<div class="gst-kopf"><b>Gestalten</b><button type="button" class="gst-zu" data-tu="zu" aria-label="Leiste schliessen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button></div>`;
   const i = WAHLINFO;
-  if (!i) { g.innerHTML = kopf + '<p class="gst-leer">Ein Element der Karte anklicken: Titel, Datum, Gang, Teller, Drink, Preis, Strich oder Fusszeile.</p>'; return; }
+  if (!i) { g.innerHTML = kopf + '<p class="gst-leer">Ein Element der Karte anklicken: Titel, Datum, Rubrik, Name, Zutaten, Preis oder Fusszeile.</p>'; return; }
   const v = liesLage(WAHLID);
   let html = kopf + `<p class="gst-name">${h(i.name)}</p>`;
   if (i.art === 'linie') html += gruppe('Stärke', groesse('d', i.dicke.toFixed(2), 'mm')) + gruppe('Länge', groesse('b', i.laenge.toFixed(1), 'mm')) + gruppe('Farbe', farben(v.c));
@@ -551,7 +555,7 @@ function lagen(d) {
 }
 function lageAnders(a, b) { const A = lagen(a), B = lagen(b); return new Set([...Object.keys(A), ...Object.keys(B)].filter(k => A[k] !== B[k])).size; }
 
-/* Der nächste Abend: ein Text in der Karte gehört zu einem Feld des Abends (satz.js: w und vor); Gang-Namen und Datum sind fest */
+/* Die Karte: ein Text in der Karte gehört zu einem Feld der Karte (satz.js: w und vor); das Datum ist fest */
 function abendSchreiben(pfad, wert) {
   const gen = { seiten: SATZ.ABEND.seiten(D.abend) }, k = pfad.split('.');
   const knoten = liesPfad(gen, k.slice(0, -2).join('.'));
@@ -563,7 +567,7 @@ function abendSchreiben(pfad, wert) {
 function oeffneAusVorschau(pfad) { const p = eintragPfad(pfad); if (p) eintragFenster(p); }
 
 // ---------------------------------------------------------------- Leiste
-function darfVeroeffentlichen() { return !!(RECHTE.veroeffentlichen && RECHTE.veroeffentlichen.includes(ROLLE)) || (ROLLE === 'kueche' && Z === 'abend'); }   // die Karte des nächsten Abends veröffentlicht die Küche selbst
+function darfVeroeffentlichen() { return !!(RECHTE.veroeffentlichen && RECHTE.veroeffentlichen.includes(ROLLE)) || (ROLLE === 'kueche' && Z === 'abend'); }   // «Die Karte» veröffentlicht die Bar selbst
 function leiste() {
   oben();
   const g = geaendert(), n = g ? vergleich(STAND, D).length : 0;
@@ -699,7 +703,6 @@ function eintragFenster(pfad, neu) {
     if (zs) { if (zs.getAttribute('aria-checked') !== 'true') x.aus = true; else delete x.aus; }
     const fn = SATZ.felder(x, art), nm = fn.find(f => /^(Name|Tag)/.test(f.name));
     if (art === 'eintrag' && fe.some(f => /^(Name|Tag)/.test(f.name)) && !(nm && String(nm.wert).trim())) { $('#f-fehler').textContent = 'Bitte einen Namen eintragen.'; return; }
-    if (art === 'eintrag' && fe.some(f => f.name === 'Gang') && !fn.some(f => /^(Teller|Drink)/.test(f.name) && String(f.wert).trim())) { $('#f-fehler').textContent = 'Bitte einen Teller oder einen Drink eintragen.'; return; }   // Culinarium: ein Gang trägt Rudis Teller oder Momos Drink
     if (art !== 'eintrag' && fe.length && !fn.some(f => String(f.wert).trim())) { $('#f-fehler').textContent = 'Bitte einen Text eintragen.'; return; }
     const t = titelVon(x, art);
     if (!neu && JSON.stringify(x) === JSON.stringify(n)) { BEIM_ZU = null; zu(); return sag('Nichts geändert, nichts gespeichert.'); }
@@ -754,7 +757,7 @@ function kopieren(pfad) {
   eintragFenster(v.arrPfad + '.' + (v.idx + 1), true);
 }
 function neuAmEnde(i) {
-  const alle = zeilenSeite(i).filter(r => r.art === 'eintrag' && gangVon(r.n, r.art)), zl = alle.filter(vollerGang).length ? alle.filter(vollerGang) : alle;   // Culinarium: Vorlage ist der letzte volle Gang, nie der Ticketpreis
+  const alle = zeilenSeite(i).filter(r => r.art === 'eintrag' && SATZ.felder(r.n, r.art).some(f => f.name === 'Name')), zl = alle.filter(vollerGang).length ? alle.filter(vollerGang) : alle;   // Vorlage ist der letzte volle Eintrag, nie der Preis allein
   const letzte = zl[zl.length - 1];
   if (!letzte) return sag('Auf dieser Seite gibt es noch keinen Eintrag als Vorlage.', 'Kopier zuerst einen Eintrag einer anderen Seite.', [], true);
   kopieren(letzte.pfad);
@@ -779,8 +782,8 @@ function neuHier(pfad) {
 function neuGlobal() {
   const opts = [];
   D.seiten.forEach((s, i) => zeilenSeite(i).forEach(r => { if (r.art === 'rubrik' && rubrikBlock(r.pfad)) opts.push([r.pfad, titelVon(r.n, 'rubrik') + (D.seiten.length > 1 ? ` · S. ${i + 1}` : '')]); }));
-  if (!opts.length) { const e = D.seiten.map((s, i) => { const a = zeilenSeite(i).filter(r => r.art === 'eintrag' && gangVon(r.n, r.art)); return (a.filter(vollerGang).length ? a.filter(vollerGang) : a).pop(); }).filter(Boolean).pop(); return e ? kopieren(e.pfad) : sag('Diese Karte hat keine Einträge als Vorlage.', '', [], true); }
-  fenster(`<h2>Neuer <em>Gang.</em></h2><p class="satz">Wohin? Der neue Eintrag kommt ans Ende, als Kopie des letzten Eintrags darin, damit er dasselbe Format hat. Verschieben lässt er sich danach mit den Pfeilen.</p>
+  if (!opts.length) { const e = D.seiten.map((s, i) => { const a = zeilenSeite(i).filter(r => r.art === 'eintrag' && SATZ.felder(r.n, r.art).some(f => f.name === 'Name')); return (a.filter(vollerGang).length ? a.filter(vollerGang) : a).pop(); }).filter(Boolean).pop(); return e ? kopieren(e.pfad) : sag('Diese Karte hat keine Einträge als Vorlage.', '', [], true); }
+  fenster(`<h2>Neuer <em>Eintrag.</em></h2><p class="satz">Wohin? Der neue Eintrag kommt ans Ende, als Kopie des letzten Eintrags darin, damit er dasselbe Format hat. Verschieben lässt er sich danach mit den Pfeilen.</p>
     <div class="chips g-wahl" id="g-r" style="margin-bottom:6px">${opts.map(([p, t], k) => `<button type="button" data-k="${k}" aria-pressed="false"><span class="g-b" aria-hidden="true" style="background-image:${rubrikBild(t)}"></span>${h(t)}</button>`).join('')}</div>`);
   $('#g-r').addEventListener('click', ev => { const b = ev.target.closest('[data-k]'); if (!b) return; zu(); neuHier(opts[+b.dataset.k][0]); });
 }
@@ -792,7 +795,7 @@ function rubrikNeu(i) {
   eintragFenster(v.arrPfad + '.' + (v.arr.length - 1), true);
 }
 
-// ---------------------------------------------------------------- Der nächste Abend
+// ---------------------------------------------------------------- Die Karte (wechselnd, interne Kennung «abend»)
 function mwKnoten(pfad) { const k = pfad.split('.'), gen = { seiten: SATZ.ABEND.seiten(D.abend) }; for (let x = k.length; x > 2; x--) { const n = liesPfad(gen, k.slice(0, x).join('.')); if (istKnoten(n)) return n; } return null; }
 function mwAusVorschau(pfad) {
   const n = mwKnoten(pfad), feld = n && n.w; if (!feld) return;
@@ -812,16 +815,16 @@ function mwRechts(feld) {   // ein Feld zeigt beim Hineinklicken seine Zeile rec
   const r = t.getBoundingClientRect(); blitzRechts(pf, r.top + r.height / 2);
 }
 function beispielWeg() { if (!D.abend.beispiel) return; delete D.abend.beispiel; const b = $('#kopf .kopf__bsp'); if (b) b.remove(); }
-function abendSetzen(pfad, wert) { if (pfad === 'preis') wert = preisForm(wert, true); setzePfad(D.abend, pfad, wert); beispielWeg(); }   // die erste eigene Eingabe macht aus dem Beispiel den Abend des Hauses
+function abendSetzen(pfad, wert) { if (pfad === 'preis') wert = preisForm(wert, true); setzePfad(D.abend, pfad, wert); beispielWeg(); }   // die erste eigene Eingabe macht aus dem Beispiel die Karte des Hauses
 function abendSchieben(r, leeren) {
   const M = SATZ.ABEND;
-  if (leeren) {   // der nächste Freitag ab heute (Abende sind Freitag und Samstag), mindestens eine Woche nach dem bisherigen Abend
+  if (leeren) {   // der nächste Donnerstag ab heute (die Bar öffnet Donnerstag bis Samstag), mindestens eine Woche nach der bisherigen Karte
     const heute = M.iso(new Date()), ab = M.freitag(heute > D.abend.ab ? heute : M.iso(M.datum(D.abend.ab, 7)));
-    return frage('Nächsten Abend <em>anlegen?</em>', `Die Karte gilt dann für ${M.spanne(ab)}. Teller und Drinks werden geleert, Zeile, Preis und Fusszeile bleiben, das Motto auch (mit den Pfeilen verschiebst du das Datum). Der bisherige Abend bleibt unter «Frühere Fassungen».`, 'Nächster Abend',
-      () => tun(() => { D.abend.tage = D.abend.tage.map(() => M.leererTag()); D.abend.ab = ab; beispielWeg(); }, 'Nächster Abend angelegt', 'Jetzt Rudis Teller und Momos Drinks eintragen.'));
+    return frage('Neue Karte <em>anlegen?</em>', `Die Karte gilt dann ${M.spanne(ab).replace(/^Ab/, 'ab')}. Die Drinks werden geleert, Zeile, Preis und Fusszeile bleiben, der Name der Karte auch (mit den Pfeilen verschiebst du das Datum). Die bisherige Karte bleibt unter «Frühere Fassungen».`, 'Neue Karte',
+      () => tun(() => { D.abend.tage = D.abend.tage.map(() => M.leererTag()); D.abend.ab = ab; beispielWeg(); }, 'Neue Karte angelegt', 'Jetzt Momos Drinks eintragen: Name und Zutaten.'));
   }
   const neu = M.iso(M.datum(D.abend.ab, 7 * r));
-  tun(() => { D.abend.ab = neu; }, 'Datum geändert', `Die Karte gilt für ${M.spanne(neu)}. Teller und Drinks bleiben.`);
+  tun(() => { D.abend.ab = neu; }, 'Datum geändert', `Die Karte gilt ${M.spanne(neu).replace(/^Ab/, 'ab')}. Die Drinks bleiben.`);
 }
 
 // ---------------------------------------------------------------- Vorher / nachher, Verlauf, Daten, Protokoll, Zustand, Anschluss
@@ -841,7 +844,7 @@ async function verlaufFenster() {
   fenster(`<h2>Frühere <em>Fassungen.</em></h2><p class="satz">Jede veröffentlichte Fassung bleibt aufbewahrt, dazu jeder verworfene Entwurf und der Stand, mit dem das Werkzeug begonnen hat. Eine Fassung zurückholen legt sie in den Entwurf; die PDF ändert sich erst beim Veröffentlichen. Zurückholen darf die Direktion.</p>
     <div class="verlauf"><div class="verlauf__z"><span class="verlauf__b" aria-hidden="true" style="background-image:url('${fotoKlein(Z)}')"></span><div><b>Ursprünglicher Stand</b><br><span class="mono">so, wie die Karte eingelesen wurde</span></div><div>${WO.knopf('In den Entwurf holen', 'pfeil', 'hell', { klein: true, attr: 'data-d="grundstand"' })}</div></div>
     ${l.map(x => `<div class="verlauf__z"><span class="verlauf__b" aria-hidden="true" style="background-image:url('${fotoKlein(Z)}')"></span><div><b>${x.art === 'verworfen' ? 'Verworfener Entwurf' : 'Veröffentlicht'}</b><br><span class="mono">${h(x.zeit)}${x.wer ? ' · ' + h(x.wer) : ''}</span></div><div>${x.pdf ? `<a class="kn kn--klein kn--hell" href="${API}pdf?z=${Z}&q=live" style="display:none"></a>` : ''}${WO.knopf('In den Entwurf holen', 'pfeil', 'hell', { klein: true, attr: `data-d="${h(x.datei)}"` })}</div></div>`).join('') || [   /* M27 (Robert 18.10.2026): nie leer, solange nichts veröffentlicht ist, stehen beschriftete Beispiele da */
-      ['Veröffentlicht', '16.10.2026 17:20 · Direktion'], ['Verworfener Entwurf', '12.10.2026 10:45 · Küche'], ['Veröffentlicht', '05.10.2026 09:10 · Direktion']]
+      ['Veröffentlicht', '16.10.2026 17:20 · Direktion'], ['Verworfener Entwurf', '12.10.2026 10:45 · Bar'], ['Veröffentlicht', '05.10.2026 09:10 · Direktion']]
       .map(([t, z]) => `<div class="verlauf__z verlauf__z--bsp"><span class="verlauf__b" aria-hidden="true" style="background-image:url('${fotoKlein(Z)}')"></span><div><b>${t}</b><br><span class="mono">Beispiel · ${z}</span></div><div><span class="kn kn--klein kn--hell" aria-disabled="true">In den Entwurf holen</span></div></div>`).join('')
       + '<p class="verlauf__bsp">Beispiele. So steht hier jede Fassung, sobald die erste PDF veröffentlicht ist.</p>'}</div>
     <div class="fenster__kn"><button class="kn kn--hell" type="button" data-zu>Schliessen</button></div>`);
@@ -864,12 +867,12 @@ function datenFenster() {
   });
 }
 function datenFensterAbend() {
-  fenster(`<h2>Daten <em>des Abends.</em></h2><p class="satz">Für Fortgeschrittene: der Abend als Text. «ab» ist der Freitag, ein Menü je Abend (tage hat genau einen Eintrag): amuse, aperitif, vorspeise, haupt, dessert, absacker sind Rudis Teller, je mit Momos Drink (…_z); «zu»: true, solange die Gänge noch nicht feststehen. Nach «Übernehmen» steht die Karte rechts, gespeichert wird mit dem Knopf unten.</p>
+  fenster(`<h2>Daten <em>der Karte.</em></h2><p class="satz">Für Fortgeschrittene: die Karte als Text. «ab» ist der Abend, von dem an sie gilt, «tage» hat genau einen Eintrag: d1 bis d6 sind die Namen der Drinks, je mit ihren Zutaten (…_z); «zu»: true, solange die Drinks noch nicht feststehen. Nach «Übernehmen» steht die Karte rechts, gespeichert wird mit dem Knopf unten.</p>
     <textarea class="daten" id="j-t" spellcheck="false">${h(JSON.stringify(D.abend, null, 1))}</textarea><p class="fehler" id="j-f"></p>
     <div class="fenster__kn"><button class="kn kn--hell" type="button" data-zu>Abbrechen</button><button class="kn" type="button" id="j-ok">Übernehmen<i>${PF}</i></button></div>`, true);
   $('#j-ok').addEventListener('click', () => {
     let x; try { x = JSON.parse($('#j-t').value); } catch (e) { $('#j-f').textContent = 'Der Text ist kein gültiges Format: ' + e.message; return; }
-    if (!x || !/^\d{4}-\d\d-\d\d$/.test(x.ab || '') || !Array.isArray(x.tage) || x.tage.length !== 1) { $('#j-f').textContent = 'Es fehlen das Datum (ab) oder das Menü des Abends (genau ein Eintrag unter «tage»).'; return; }
+    if (!x || !/^\d{4}-\d\d-\d\d$/.test(x.ab || '') || !Array.isArray(x.tage) || x.tage.length !== 1) { $('#j-f').textContent = 'Es fehlen das Datum (ab) oder die Drinks der Karte (genau ein Eintrag unter «tage»).'; return; }
     D.abend = x; OFFEN = inhalt(D) !== BASIS; zu(); vorschau(); leiste();
     sag('Übernommen', 'Noch nicht gespeichert. Mit «Speichern» unten landet es im Entwurf.');
   });
@@ -895,7 +898,7 @@ async function einstFenster() {
   const s = (await api('status')).einstellungen; EINST = s;
   if (s.demo) return fenster(`<h2>Anschluss an die <em>Website.</em></h2><p class="satz"><b>Demo.</b> In der Demo arbeitet ${h(klein(NAME))} für sich: «Veröffentlichen» setzt die Karte und ihre PDF hier im Werkzeug, die Website bleibt, wie sie ist. Mit dem Auftrag wird der Anschluss eingeschaltet; dann erscheinen veröffentlichte Karten auch auf der Website.</p>
     <div class="fenster__kn"><button class="kn kn--hell" type="button" data-zu>Schliessen</button></div>`);   // Demo-Check 21.10.2026
-  fenster(`<h2>Anschluss an die <em>Website.</em></h2><p class="satz">Die Website zeigt die Menükarte jedes Abends heute aus ihren eigenen Daten, eine PDF verlinkt sie nicht. Solange der Anschluss aus ist, arbeitet das Werkzeug für sich. Mit Anschluss legt «Veröffentlichen» die neue PDF auf die Website (unterlagen/pdf/), die vorige wird vorher gesichert; die Karten in der Form der Website stehen nach jedem Veröffentlichen in karten.json bereit. Nur die Direktion darf das ändern.</p>
+  fenster(`<h2>Anschluss an die <em>Website.</em></h2><p class="satz">Die Website zeigt die Drinks und die Preise der Bar heute aus ihren eigenen Daten, eine PDF verlinkt sie nicht. Solange der Anschluss aus ist, arbeitet das Werkzeug für sich. Mit Anschluss legt «Veröffentlichen» die neue PDF auf die Website (unterlagen/pdf/), die vorige wird vorher gesichert; die Karten in der Form der Website stehen nach jedem Veröffentlichen in karten.json bereit. Nur die Direktion darf das ändern.</p>
     <div class="felder" style="margin-top:20px"><div class="feld"><span class="schalter" role="switch" tabindex="0" aria-checked="${!!s.anschluss_pdf}" id="e-a"><b></b>Veröffentlichte PDF auf die Website übernehmen</span></div></div>
     <div class="fenster__kn"><button class="kn kn--hell" type="button" data-zu>Schliessen</button><button class="kn" type="button" id="e-ok">Speichern<i>${PF}</i></button></div>`);
   const sw = $('#e-a'); const um = () => sw.setAttribute('aria-checked', sw.getAttribute('aria-checked') !== 'true'); sw.addEventListener('click', um); sw.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); um(); } });
@@ -949,7 +952,7 @@ function verwerfen() {
 // ---------------------------------------------------------------- Laden
 async function lade(z, still) {
   const r = await api('karte?z=' + encodeURIComponent(z));
-  if (z !== Z) { WAHLID = null; WAHLINFO = null; GST_OFFEN = false; NEU_KARTE = true; WEBSEITE = SEITE_DER_KARTE[z] || 'abende.html'; }   // Demo-Check 21.10.2026: Ansicht «Website» zeigt die Seite dieser Karte, nicht die zuletzt gewählte
+  if (z !== Z) { WAHLID = null; WAHLINFO = null; GST_OFFEN = false; NEU_KARTE = true; WEBSEITE = SEITE_DER_KARTE[z] || 'drinks.html'; }   // Demo-Check 21.10.2026: Ansicht «Website» zeigt die Seite dieser Karte, nicht die zuletzt gewählte
   HIST.length = 0; ZUK.length = 0;
   Z = z; STAND = r.stand; D = kopie(r.entwurf || r.stand); BASIS = inhalt(D); OFFEN = false; UNDO = []; GESCHRIEBEN = [];
   ERWARTET = r.entwurf_zeit || STAND.veroeffentlicht;   // auch ein Entwurf, der dem Stand gleicht (nach «Rückgängig»), hat seine eigene Zeit
@@ -962,7 +965,7 @@ async function lade(z, still) {
 async function wechsel(z) {
   document.documentElement.classList.remove('wo-rand-auf');   // R07: am Handy schliesst sich der Rand nach der Wahl (oberflaeche.js tut es auch)
   if (z === Z) return;
-  await KETTE;   // läuft gerade ein Speichern (der nächste Abend speichert beim Verlassen des Feldes, 16.10.2026), erst abwarten: dann ist nichts mehr offen
+  await KETTE;   // läuft gerade ein Speichern (die Karte speichert beim Verlassen des Feldes, 16.10.2026), erst abwarten: dann ist nichts mehr offen
   if (OFFEN) return frage('Nicht <em>gespeichert.</em>', 'Du hast in dieser Karte Änderungen, die noch nicht gespeichert sind.', 'Verwerfen und wechseln', () => lade(z));
   await lade(z);
 }
@@ -994,7 +997,7 @@ document.addEventListener('click', ev => {
   if (a === 'neu') return neuGlobal();
   if (a === 'neu-hier') return neuHier(pfad);
   if (a === 'abend-neu') return abendSchieben(1, true);
-  if (a === 'tagzu') { const i = +b.dataset.i; return tun(() => { D.abend.tage[i].zu = !D.abend.tage[i].zu; beispielWeg(); }, D.abend.tage[i].zu ? 'Gänge wieder auf der Karte' : 'Gänge folgen noch'); }
+  if (a === 'tagzu') { const i = +b.dataset.i; return tun(() => { D.abend.tage[i].zu = !D.abend.tage[i].zu; beispielWeg(); }, D.abend.tage[i].zu ? 'Drinks wieder auf der Karte' : 'Drinks folgen noch'); }
   if (a === 'edit') return eintragFenster(pfad);
   if (a === 'waehle') return waehle(pfad);
   if (a === 'kopie') return kopieren(pfad);
@@ -1005,7 +1008,7 @@ document.addEventListener('click', ev => {
   if (a === 'weg') return entfernen(pfad);
   if (a === 'aus') { const v = vater(pfad), u = v.arr[v.idx], wird = !u.aus; return tun(() => { if (wird) u.aus = true; else delete u.aus; }, wird ? 'Ausgeblendet' : 'Wieder auf der Karte', `«${istKnoten(u) ? titelVon(u) : u.text}»`, pfad); }
   const si = +b.dataset.i;
-  if (a === 's-aus' && !D.seiten[si].aus && D.seiten.filter(x => !x.aus).length === 1) return sag('Die einzige Seite bleibt.', 'Auf der Karte steht sonst keine Seite mehr. Einzelne Gänge blendest du mit dem Auge aus.');   // Culinarium: jede Menükarte hat eine Seite
+  if (a === 's-aus' && !D.seiten[si].aus && D.seiten.filter(x => !x.aus).length === 1) return sag('Die einzige Seite bleibt.', 'Auf der Karte steht sonst keine Seite mehr. Einzelne Einträge blendest du mit dem Auge aus.');   // jede Karte der Bar hat eine Seite
   if (a === 's-aus') return tun(() => { const s = D.seiten[si]; if (s.aus) delete s.aus; else s.aus = true; }, D.seiten[si].aus ? 'Seite ausgeblendet' : 'Seite wieder auf der Karte', 'Seite ' + (si + 1));
   if (a === 's-hoch' || a === 's-runter') { const j = si + (a === 's-hoch' ? -1 : 1); if (j < 0 || j >= D.seiten.length) return; return tun(() => { [D.seiten[si], D.seiten[j]] = [D.seiten[j], D.seiten[si]]; }, 'Seite verschoben', `Seite ${si + 1} steht jetzt als Seite ${j + 1}`); }
 });
@@ -1014,7 +1017,7 @@ document.addEventListener('keydown', ev => {
   if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === 's') { ev.preventDefault(); if (OFFEN) speichern('Im Entwurf gespeichert'); }
   const sw = ev.target.closest && ev.target.closest('.schalter[data-akt]'); if (sw && (ev.key === ' ' || ev.key === 'Enter')) { ev.preventDefault(); sw.click(); }
 });
-/* Der nächste Abend: Eingaben gehen sofort in die Karte rechts, gespeichert wird beim Verlassen des Feldes */
+/* Die Karte: Eingaben gehen sofort in die Karte rechts, gespeichert wird beim Verlassen des Feldes */
 $('#liste').addEventListener('dblclick', ev => { const t = ev.target.closest('.r__t'); const r = t && t.closest('.r'); if (r && r.dataset.pfad && !/\.titel$/.test(r.dataset.pfad)) eintragFenster(r.dataset.pfad); });
 $('#liste').addEventListener('input', ev => {
   const el = ev.target.closest('[data-mw]'); if (!el || Z !== 'abend') return;
@@ -1026,7 +1029,7 @@ $('#liste').addEventListener('focusin', ev => {
   (t.closest('label.feld') || t).classList.add('mw-an');
   mwRechts(t.dataset.mw);
 });
-/* Felder des Abends wachsen mit dem Text (kein Abschneiden nach rechts), Enter schreibt keine neue Zeile (GBR mwWachsen) */
+/* Felder der Karte wachsen mit dem Text (kein Abschneiden nach rechts), Enter schreibt keine neue Zeile (GBR mwWachsen) */
 function mwWachsen(el) { (el ? [el] : $$('#liste textarea.mw-t')).forEach(t => { t.style.height = 'auto'; let hoch = t.scrollHeight;   // Tor 30.10.2026 (K2): leeres Feld so hoch wie sein Platzhalter, nie abgeschnitten
   if (!t.value && t.placeholder) { t.value = t.placeholder; hoch = Math.max(hoch, t.scrollHeight); t.value = ''; } t.style.height = hoch + 2 + 'px'; }); }
 document.addEventListener('input', ev => { if (ev.target.matches && ev.target.matches('textarea.mw-t')) mwWachsen(ev.target); });
@@ -1055,7 +1058,7 @@ window.addEventListener('beforeunload', ev => { if (OFFEN) { ev.preventDefault()
     break;
   } catch (e) {
     if (versuch < 2) { await new Promise(z => setTimeout(z, versuch ? 3000 : 1200)); continue; }
-    document.body.innerHTML = `<div style="min-height:100vh;display:grid;place-items:center;padding:24px;background:#16151A;color:#FAF4F4;font-family:system-ui,sans-serif;text-align:center"><div><p style="font-size:1.4rem;margin:0 0 10px">${h(NAME)} startet nicht.</p><p style="margin:0 0 22px;color:rgba(250,244,244,.7)">${h(e.message)}</p><a href="/_werkzeuge/carte/pruefung.html" style="display:inline-block;padding:12px 22px;border-radius:10px;background:#EF7649;color:#16151A;text-decoration:none">Prüfung öffnen</a></div></div>`;
+    document.body.innerHTML = `<div style="min-height:100vh;display:grid;place-items:center;padding:24px;background:#130E0D;color:#F7F1E7;font-family:system-ui,sans-serif;text-align:center"><div><p style="font-size:1.4rem;margin:0 0 10px">${h(NAME)} startet nicht.</p><p style="margin:0 0 22px;color:rgba(250,244,244,.7)">${h(e.message)}</p><a href="/_werkzeuge/carte/pruefung.html" style="display:inline-block;padding:12px 22px;border-radius:10px;background:#D8B264;color:#130E0D;text-decoration:none">Prüfung öffnen</a></div></div>`;
     if (window.carteMerk) window.carteMerk('Start: ' + e.message);
     break;
   }

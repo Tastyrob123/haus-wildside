@@ -1,7 +1,7 @@
 {
  "port": 9088,
  "base": "http://127.0.0.1:9088/",
- "kurz": "culinarium",
+ "kurz": "wildside",
  "seiten": [
   [
    "index.html",
@@ -9,33 +9,28 @@
    8
   ],
   [
-   "abend.html",
-   "Der Abend",
+   "drinks.html",
+   "Drinks",
    4
   ],
   [
-   "abende.html",
-   "Alle Abende",
-   3
+   "programm.html",
+   "Programm",
+   5
   ],
   [
-   "bar.html",
+   "tafel.html",
+   "Feiern",
+   5
+  ],
+  [
+   "haus.html",
    "Das Haus",
-   3
+   4
   ],
   [
-   "leute.html",
-   "Das Team",
-   3
-  ],
-  [
-   "weg.html",
-   "Der Weg",
-   2
-  ],
-  [
-   "dirty-chicken.html",
-   "Dirty Chicken",
+   "besuch.html",
+   "Besuch",
    4
   ],
   [
@@ -44,15 +39,15 @@
    1
   ]
  ],
- "wahl": "main > section",
+ "wahl": "body > section, body > header",
  "start_ms": 4200,
- "heute": "https://www.instagram.com/culinarium_hannover/",
+ "heute": "https://www.instagram.com/walkonthewildside_hannover/",
  "etiketten_ordner": "untersetzer",
- "name": "Culinarium",
- "gold": "#ef7649",
- "punkt": "#ef7649",
- "tinte": "#26242d",
- "chat_frage": "Bis wann gibt es etwas zu essen?",
- "chat_frage_h": "Kann ich meinen Hund mitbringen?",
+ "name": "Walk on the Wild Side",
+ "gold": "#d8b264",
+ "punkt": "#f0323f",
+ "tinte": "#1b1512",
+ "chat_frage": "Habt ihr heute Abend noch Platz?",
+ "chat_frage_h": "Kann ich bei euch feiern?",
  "mappe": false
 }

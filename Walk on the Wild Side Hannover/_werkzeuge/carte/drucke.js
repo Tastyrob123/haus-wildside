@@ -1,7 +1,7 @@
-// La Carte · Druck einer Karte als PDF (wie _werkbank/satz_druck_datei.js, mit dem die PDFs der Website gedruckt sind): node drucke.js <karte> <stand|entwurf|…> <ziel.pdf>
+// Die Pairing-Karte · Druck einer Karte als PDF (wie _werkbank/satz_druck_datei.js, mit dem die PDFs der Website gedruckt sind): node drucke.js <karte> <stand|entwurf|…> <ziel.pdf>
 // Öffnet satz/blatt.html auf dem eigenen Server (CARTE_PORT, Standard 9083), wartet, bis der Satz steht, und druckt. Letzte Zeile: Bericht als JSON.
 const path = require('path'), fs = require('fs');
-const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
+const { chromium } = (() => { try { return require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright')); } catch (e) { return require('playwright'); } })();   // Mac oder Cloud
 const [z, art, aus] = process.argv.slice(2);
 const PORT = process.env.CARTE_PORT || '9083';
 (async () => {

@@ -1,230 +1,153 @@
 {
- "stand": 1793159628.4597652,
+ "stand": 1793467841.4115288,
  "bereiche": [
   {
-   "bereich": "Culinarium",
+   "bereich": "Die Bar",
    "gruppen": [
     {
      "gruppe": "Auf einen Blick",
      "zeilen": [
       {
-       "fid": "2522ee7985",
+       "fid": "9e91157ac7",
        "was": "Was es ist",
-       "angabe": "Food-Pairing-Abende an der langen Tafel im Walk on the Wild Side, Hannover-Linden",
-       "beleg": "Food-Pairing-Abende an der langen Tafel im Walk on the Wild Side, Hannover-Linden.",
+       "angabe": "eine Nachbarschafts-Mixology-Bar in Linden-Mitte",
+       "beleg": "Eine Nachbarschafts-Mixology-Bar in Linden-Mitte.",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "64ab26bbcb",
-       "was": "Am Abend",
-       "angabe": "ein Menü mit fünf passenden Drinks an einer langen Tafel",
-       "beleg": "ein Menü mit fünf passenden Drinks an einer langen Tafel für vierzehn Gäste",
+       "fid": "380e196c6d",
+       "was": "Die Karte",
+       "angabe": "wechselt immer wieder, die Drinks dafür entwirft Momo; an der Bar sagst du, was du magst",
+       "beleg": "Die Karte im Wild Side wechselt immer wieder, die Drinks dafür entwirft Momo. Und an der Bar sagst du, was du magst.",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "a616d71711",
-       "was": "Wann",
-       "angabe": "an einzelnen Wochenenden, meist ein Freitag und der Samstag danach",
-       "beleg": "Culinarium gibt es an einzelnen Wochenenden, meist ein Freitag und der Samstag danach.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "05af1ce63e",
-       "was": "Beginn",
-       "angabe": "Freitag ab 19 Uhr, Samstag ab 17 Uhr",
-       "beleg": "Freitags ab 19 Uhr, samstags ab 17 Uhr.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "d9269e4318",
-       "was": "Plätze",
-       "angabe": "vierzehn an einer langen Tafel",
-       "beleg": "Vierzehn Gäste an einer langen Tafel.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "68557d731b",
-       "was": "Seit wann",
-       "angabe": "seit 2023: aus einem Pop-up an der Bar sind ausgebuchte Abende geworden",
-       "beleg": "Aus einem Pop-up an der Bar sind ausgebuchte Abende geworden.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "bereich": "Der Abend & Warteliste",
-   "gruppen": [
-    {
-     "gruppe": "So läuft ein Abend",
-     "zeilen": [
-      {
-       "fid": "54eb896e9b",
-       "was": "Aperitif",
-       "angabe": "zum Ankommen",
-       "beleg": "Aperitif",
-       "datei": "gast_wissen.txt",
-       "mehr": [
-        "zum Ankommen"
-       ]
-      },
-      {
-       "fid": "ffbf937928",
-       "was": "Drei Gänge",
-       "angabe": "von Rudi, an jedem Abend neu",
-       "beleg": "von Rudi, an jedem Abend neu",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "7f6ed51d55",
-       "was": "Fünf Drinks",
-       "angabe": "Momos Signature Drinks, passend zum Essen",
-       "beleg": "Momos Signature Drinks, passend zum Essen",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "4280f69c70",
-       "was": "Tasting und Schulung",
-       "angabe": "Momo erklärt jeden Drink am Tisch: Fatwashing, Milkwashing, Klärung mit Enzymen",
-       "beleg": "Momo erklärt jeden Drink am Tisch: Fatwashing, Milkwashing, Klärung mit Enzymen",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "9d934fa323",
-       "was": "Das Menü",
-       "angabe": "ändert sich mit jedem Abend; was es gibt, steht auf der Karte an deinem Platz",
-       "beleg": "Das Menü ändert sich mit jedem Abend.",
-       "datei": "gast_wissen.txt",
-       "mehr": [
-        "Was genau es gibt, steht auf der Karte an deinem Platz."
-       ]
-      }
-     ]
-    },
-    {
-     "gruppe": "Der nächste Abend",
-     "zeilen": [
-      {
-       "fid": "2fd9b282a0",
-       "was": "Termin",
-       "angabe": "steht noch nicht fest",
-       "beleg": "Der nächste Termin steht noch nicht fest.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "2d8581748a",
-       "was": "Warteliste",
-       "angabe": "wer sich einträgt, erfährt den nächsten Termin vor allen anderen",
-       "beleg": "Trag dich ein: Sobald der nächste Termin feststeht, erfährst du es vor allen anderen.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "5a4cd49276",
-       "was": "Eintragen",
-       "angabe": "auf «Der Abend»: Tag (Freitag, Samstag oder egal), Plätze, Name und E-Mail; im Fuss jeder Seite mit der E-Mail vormerken",
-       "beleg": "Egal",
-       "datei": "gast_wissen.txt",
-       "mehr": [
-        "Dein Platz am nächsten Abend."
-       ]
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "bereich": "Tickets & Preise",
-   "gruppen": [
-    {
-     "gruppe": "Preis",
-     "zeilen": [
-      {
-       "fid": "a6430beac7",
-       "was": "Zuletzt",
-       "angabe": "89,00 EUR am 25. und 26. September 2026, ausgebucht",
-       "beleg": "Zuletzt 89,00 EUR am 25. und 26. September 2026.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "dbd24d3878",
-       "was": "Darin",
-       "angabe": "drei Gänge, fünf Drinks, Tasting und Schulung",
-       "beleg": "Angekündigt waren drei Gänge, fünf Drinks, Tasting und Schulung.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      }
-     ]
-    },
-    {
-     "gruppe": "Tickets",
-     "zeilen": [
-      {
-       "fid": "6fd3b62876",
-       "was": "Vorverkauf",
-       "angabe": "Tickets gibt es bisher nur im Vorverkauf, per PayPal; dazu eine Nachricht an @culinarium_hannover",
-       "beleg": "Tickets gibt es bisher nur im Vorverkauf.",
-       "datei": "gast_wissen.txt",
-       "mehr": [
-        "Tickets ausschließlich per Vorverkauf über PayPal."
-       ]
-      },
-      {
-       "fid": "ae2db5c064",
-       "was": "Zurückgeben",
-       "angabe": "nicht möglich: Tickets werden nicht rückerstattet",
-       "beleg": "Da die Plätze begrenzt sind, bitten wir um Verständnis, dass Tickets nicht rückerstattet werden können.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "bereich": "Drinks & Küche",
-   "gruppen": [
-    {
-     "gruppe": "Die Drinks",
-     "zeilen": [
-      {
-       "fid": "aaa08baf5d",
+       "fid": "82dbd6719b",
        "was": "Wer",
-       "angabe": "Momo (Mohamed Ben Khelifa) mixt die Signature Drinks hinter der Bar des Hauses",
-       "beleg": "Die Drinks mixt Momo, hinter der Bar des Hauses.",
+       "angabe": "Derya Ivkin führt die Bar, Momo Ben Khelifa mixt",
+       "beleg": "Derya Ivkin führt die Bar, Momo Ben Khelifa mixt",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "04b700ebef",
-       "was": "Fatwashing",
-       "angabe": "die Spirituose nimmt den Geschmack eines Fetts an, kalt gestellt wird das Fett wieder abgehoben",
-       "beleg": "Die Spirituose nimmt den Geschmack eines Fetts an; kalt gestellt, wird das Fett wieder abgehoben.",
+       "fid": "b517e967ac",
+       "was": "Falstaff",
+       "angabe": "Bar Guide 2027: 91 Punkte unter den Cocktailbars, 47 von 50 für die Drinks",
+       "beleg": "Im Falstaff Bar Guide 2027 steht das Wild Side mit 91 Punkten unter den Cocktailbars: 47 von 50 für die Drinks.",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "0bcad735e8",
-       "was": "Milkwashing",
-       "angabe": "Milch bindet die Trübstoffe und wird abgefiltert, der Drink wird klar und weich",
-       "beleg": "Milch bindet die Trübstoffe und wird abgefiltert, der Drink wird klar und weich.",
+       "fid": "41ac880aef",
+       "was": "Gäste",
+       "angabe": "bei Google im Schnitt 4,8 von 5 aus 75 Bewertungen",
+       "beleg": "Bei Google geben 75 Gäste im Schnitt 4,8 von 5.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "bereich": "Zeiten & Reservieren",
+   "gruppen": [
+    {
+     "gruppe": "Geöffnet",
+     "zeilen": [
+      {
+       "fid": "cef0bdcb2e",
+       "was": "Donnerstag",
+       "angabe": "19 bis 1 Uhr",
+       "beleg": "Donnerstag 19 bis 1 Uhr",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "bf82796124",
+       "fid": "5c47cb71d2",
+       "was": "Freitag und Samstag",
+       "angabe": "19 bis 2 Uhr",
+       "beleg": "Freitag und Samstag 19 bis 2 Uhr",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "f7f434ed30",
+       "was": "Geschlossen",
+       "angabe": "Sonntag bis Mittwoch",
+       "beleg": "Sonntag bis Mittwoch",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    },
+    {
+     "gruppe": "Reservieren",
+     "zeilen": [
+      {
+       "fid": "b06dab7ce4",
+       "was": "Lohnt sich",
+       "angabe": "die Bar ist klein: wer zu mehreren kommt, reserviert besser",
+       "beleg": "Die Bar ist klein. Wer zu mehreren kommt, reserviert besser, direkt hier: Platz reservieren.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "9552ded9f3",
+       "was": "So geht es",
+       "angabe": "«Platz reservieren» auf der Seite Besuch: Abend, Uhrzeit, Plätze, Name, Telefon oder E-Mail; die Bar bestätigt per Nachricht",
+       "beleg": "Reservieren: mit «Platz reservieren» auf der Seite Besuch (Abend, Uhrzeit, Plätze, Name, Telefon oder E-Mail).",
+       "datei": "gast_umgebung.txt",
+       "mehr": [
+        "Die Bar bestätigt per Nachricht."
+       ]
+      },
+      {
+       "fid": "e67c13a0ea",
+       "was": "Viele Gäste",
+       "angabe": "ab zehn Gästen gibt es die lange Tafel, ab dreissig die ganze Bar",
+       "beleg": "Ab zehn Gästen gibt es die lange Tafel, ab dreissig die ganze Bar: alles unter Feiern.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "bereich": "Drinks & Preise",
+   "gruppen": [
+    {
+     "gruppe": "Wie Momo arbeitet",
+     "zeilen": [
+      {
+       "fid": "1b516c89e1",
+       "was": "Das Gespräch",
+       "angabe": "Momo fragt nach dem Geschmack, nach dem Glas, nach dem, was drin sein soll; daraus wird ein Drink",
+       "beleg": "So läuft es an der Theke: Momo fragt nach dem Geschmack, nach dem Glas, nach dem, was drin sein soll. Daraus wird ein Drink.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "075385d6fe",
+       "was": "Milk Washing",
+       "angabe": "Milch bindet die Trübstoffe und wird wieder abgefiltert: klar wie Wasser, weich wie Sahne",
+       "beleg": "Milch bindet die Trübstoffe und wird wieder abgefiltert. Was bleibt, ist klar wie Wasser und weich wie Sahne.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "e53492f070",
+       "was": "Fat Washing",
+       "angabe": "ein Fett gibt seinen Geschmack an die Spirituose ab, Kakaobutter an Rum zum Beispiel",
+       "beleg": "Ein Fett gibt seinen Geschmack an die Spirituose ab, Kakaobutter an Rum zum Beispiel.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "611cf49071",
        "was": "Enzyme",
        "angabe": "lösen die Trübung aus Fruchtsaft, der Geschmack bleibt",
        "beleg": "Enzyme lösen die Trübung aus Fruchtsaft, der Geschmack bleibt.",
@@ -234,31 +157,84 @@
      ]
     },
     {
-     "gruppe": "Die Küche",
+     "gruppe": "Die Klassiker",
      "zeilen": [
       {
-       "fid": "33901f1062",
-       "was": "Wer",
-       "angabe": "Rudi Napieraj kocht die drei Gänge",
-       "beleg": "In der Küche steht Rudi Napieraj.",
+       "fid": "e2560aa4e1",
+       "was": "Negroni",
+       "angabe": "Gin, Wermut, Bitter, auf Eis gerührt; an jedem Abend",
+       "beleg": "Gin, Wermut, Bitter, auf Eis gerührt.",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "Den Negroni gibt es an jedem Abend."
+       ]
+      },
+      {
+       "fid": "4b665e9485",
+       "was": "Paloma",
+       "angabe": "Tequila, Grapefruit, Limette und Soda",
+       "beleg": "Tequila, Grapefruit, Limette und Soda.",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "22846a9f0c",
-       "was": "Rudis Zeilen",
-       "angabe": "LAUCH / BLUMENKOHL / CHIPOTLE, so schreibt er seine Teller",
-       "beleg": "LAUCH / BLUMENKOHL / CHIPOTLE",
+       "fid": "7c7f050fd7",
+       "was": "Mexikaner",
+       "angabe": "der scharfe Shot des Hauses, Wild-Side-Tradition",
+       "beleg": "Der scharfe Shot des Hauses.",
        "datei": "gast_wissen.txt",
-       "mehr": [
-        "Seine Teller schreibt er in drei, vier Wörtern, so stehen sie auch hier."
-       ]
+       "mehr": []
       },
       {
-       "fid": "c046ffe946",
-       "was": "Gemüse",
-       "angabe": "steht bei ihm oft im Mittelpunkt: Lauch, Blumenkohl, Kürbis, Rote Bete",
-       "beleg": "Gemüse steht bei ihm oft im Mittelpunkt: Lauch, Blumenkohl, Kürbis, Rote Bete.",
+       "fid": "bd9f07ce5c",
+       "was": "Ohne Alkohol",
+       "angabe": "Shrub, Soda, Kräuter, klarer Saft, mit derselben Sorgfalt",
+       "beleg": "Ja, mit derselben Sorgfalt: Shrub, Soda, Kräuter, klarer Saft.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    },
+    {
+     "gruppe": "Preise",
+     "zeilen": [
+      {
+       "fid": "0148d20115",
+       "was": "Signature Drinks",
+       "angabe": "12 Euro",
+       "beleg": "Signature Drinks 12 Euro, alkoholfreie Drinks 11, Longdrinks 10, Wein und Spritz 8, Sekt auf Eis 6, Bier 4, alkoholfreie Getränke 3 Euro.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "bc8d1a72ef",
+       "was": "Alkoholfreie Drinks",
+       "angabe": "11 Euro",
+       "beleg": "Signature Drinks 12 Euro, alkoholfreie Drinks 11, Longdrinks 10, Wein und Spritz 8, Sekt auf Eis 6, Bier 4, alkoholfreie Getränke 3 Euro.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "9209007613",
+       "was": "Longdrinks",
+       "angabe": "10 Euro",
+       "beleg": "Signature Drinks 12 Euro, alkoholfreie Drinks 11, Longdrinks 10, Wein und Spritz 8, Sekt auf Eis 6, Bier 4, alkoholfreie Getränke 3 Euro.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "cbc94237b4",
+       "was": "Wein, Spritz, Bier",
+       "angabe": "Wein und Spritz 8, Sekt auf Eis 6, Bier 4, alkoholfreie Getränke 3 Euro",
+       "beleg": "Signature Drinks 12 Euro, alkoholfreie Drinks 11, Longdrinks 10, Wein und Spritz 8, Sekt auf Eis 6, Bier 4, alkoholfreie Getränke 3 Euro.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "7fc9126e25",
+       "was": "Essen",
+       "angabe": "an normalen Abenden nicht; beim Privaten Dinner und bei Festen mit Buffet oder Foodtruck",
+       "beleg": "An normalen Abenden nicht.",
        "datei": "gast_wissen.txt",
        "mehr": []
       }
@@ -267,35 +243,113 @@
    ]
   },
   {
-   "bereich": "Kontakt",
+   "bereich": "Programm",
    "gruppen": [
     {
-     "gruppe": "So erreichst du das Team",
+     "gruppe": "Die Woche",
      "zeilen": [
       {
-       "fid": "1a43b44e04",
-       "was": "Culinarium",
-       "angabe": "keine eigene Telefonnummer und keine E-Mail-Adresse; Fragen zu einem Abend per Nachricht an @culinarium_hannover auf Instagram",
-       "beleg": "Culinarium hat keine eigene Telefonnummer und keine eigene E-Mail-Adresse.",
-       "datei": "gast_umgebung.txt",
+       "fid": "da0c125f09",
+       "was": "Donnerstag",
+       "angabe": "ab und zu live: kleine Konzerte mitten im Raum, Jazz, Soul, Pop, ohne Eintritt, ab 20 Uhr",
+       "beleg": "Kleine Konzerte mitten im Raum: Jazz, Soul, Pop. Duos und Trios, ohne Eintritt, ab 20 Uhr.",
+       "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "f6bb1bfd97",
-       "was": "Die Bar",
-       "angabe": "Telefon +49 163 3909578; reservieren per Nachricht oder Telefon",
-       "beleg": "Telefon +49 163 3909578.",
-       "datei": "gast_umgebung.txt",
+       "fid": "811c7833ec",
+       "was": "Freitag",
+       "angabe": "Momo an der Bar: er fragt, mixt und erzählt, bis 2 Uhr",
+       "beleg": "Momo fragt, mixt und erzählt. Bis 2 Uhr.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "4f2b2e9b88",
+       "was": "Samstag",
+       "angabe": "die DJ-Abende: rund einmal im Monat, von 21 bis 1 Uhr, auf den Plakaten SESSION",
+       "beleg": "Rund einmal im Monat legt jemand auf, von 21 bis 1 Uhr. Auf den Plakaten heisst die Reihe SESSION, gemeint sind Drinks und Musik an einem Abend.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "041420b927",
+       "was": "Eintritt",
+       "angabe": "Konzerte und DJ-Abende sind ohne Eintritt",
+       "beleg": "Konzerte und DJ-Abende sind ohne Eintritt.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    },
+    {
+     "gruppe": "DJ-Abende",
+     "zeilen": [
+      {
+       "fid": "09495d2a08",
+       "was": "Zuletzt",
+       "angabe": "Ghazouani Brothers am 17.10.2026, elektronisch, aus Tunis",
+       "beleg": "Ghazouani Brothers",
+       "datei": "gast_wissen.txt",
        "mehr": [
-        "Reservieren geht per Nachricht oder Telefon."
+        "17.10.2026 · elektronisch, aus Tunis"
        ]
       },
       {
-       "fid": "a820b2f818",
-       "was": "Instagram",
-       "angabe": "@culinarium_hannover, @walkonthewildside_hannover, @dirtychicken.hannover",
-       "beleg": "Instagram: @culinarium_hannover (Culinarium), @walkonthewildside_hannover (die Bar), @dirtychicken.hannover (Dirty Chicken).",
-       "datei": "gast_umgebung.txt",
+       "fid": "15c382d48b",
+       "was": "Der nächste",
+       "angabe": "kündigt die Bar auf Instagram an",
+       "beleg": "Den nächsten kündigt die Bar auf Instagram an.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "6be6157bfb",
+       "was": "Gastschichten",
+       "angabe": "an manchen Abenden steht neben Momo jemand aus einer anderen Bar, aus Hannover oder Berlin",
+       "beleg": "An manchen Abenden steht neben Momo jemand aus einer anderen Bar, aus Hannover oder Berlin, und bringt eigene Drinks mit.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    },
+    {
+     "gruppe": "Die Feste",
+     "zeilen": [
+      {
+       "fid": "4446fae780",
+       "was": "Silvester",
+       "angabe": "ab mittags, abends geht es weiter",
+       "beleg": "Silvester ab mittags",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "Abends geht es weiter."
+       ]
+      },
+      {
+       "fid": "ede483a8df",
+       "was": "Geburtstag der Bar",
+       "angabe": "im Winter, mit DJs, Mexikanern und einem Drink zur Begrüssung",
+       "beleg": "Mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "7535c2b054",
+       "was": "Tanz in den Mai",
+       "angabe": "30. April, Eintritt frei",
+       "beleg": "Tanz in den Mai",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "Mahir Maulud am Deck, Momo an der Bar, Eintritt frei."
+       ]
+      },
+      {
+       "fid": "4cfaafc2bc",
+       "was": "Valentinstag",
+       "angabe": "mit Rudi von Culinarium: vier Drinks und Teller zum Teilen, nur an diesem Abend",
+       "beleg": "Mit Rudi von Culinarium: eine Karte mit vier Drinks und Tellern zum Teilen, die es nur an diesem Abend gibt.",
+       "datei": "gast_wissen.txt",
        "mehr": []
       }
      ]
@@ -303,53 +357,138 @@
    ]
   },
   {
-   "bereich": "Das Haus (Bar)",
+   "bereich": "Feiern",
    "gruppen": [
     {
-     "gruppe": "Walk on the Wild Side",
+     "gruppe": "Drei Formate",
      "zeilen": [
       {
-       "fid": "7f9807974c",
-       "was": "Was",
-       "angabe": "eine Nachbarschafts-Mixology-Bar in Linden, Haasemannstraße 13: Drinks, Events, private Veranstaltungen und Tastings",
-       "beleg": "eine Nachbarschafts-Mixology-Bar in Linden, Haasemannstraße 13. Drinks, Events, private Veranstaltungen und Tastings.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "c08f465ff5",
-       "was": "Ohne Karte",
-       "angabe": "wer an die Theke kommt, erzählt, was er mag, und bekommt seinen eigenen Drink",
-       "beleg": "Eine Getränkekarte gibt es im Walk on the Wild Side nicht.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "dd6446411a",
-       "was": "Geöffnet",
-       "angabe": "Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr; Sonntag bis Mittwoch geschlossen",
-       "beleg": "Donnerstag 19 bis 1 Uhr · Freitag und Samstag 19 bis 2 Uhr",
+       "fid": "0ec1197f0c",
+       "was": "Privates Dinner",
+       "angabe": "10 bis 14 Gäste, mit Rudi in der Küche und Momo an der Bar: Gruss aus der Küche, drei Gänge, fünf Drinks",
+       "beleg": "Ein exklusiver Abend für zehn bis vierzehn Gäste an der langen Tafel, mit Rudi in der Küche und Momo an der Bar.",
        "datei": "gast_wissen.txt",
        "mehr": [
-        "Sonntag bis Mittwoch"
+        "Fünf Drinks von Momo, auf die Gänge abgestimmt"
        ]
       },
       {
-       "fid": "c3d4f06c52",
-       "was": "Eigene Feier",
-       "angabe": "die lange Tafel für eure eigene Feier; dazu Konzerte, DJ-Abende, Gastschichten",
-       "beleg": "die lange Tafel für eure eigene Feier",
+       "fid": "a819062a1d",
+       "was": "Die lange Tafel",
+       "angabe": "10 bis 20 Gäste auf der Empore, vier Stunden, mit eigenem Budget für die Drinks",
+       "beleg": "Oben auf der kleinen Empore steht die lange Tafel. Vier Stunden gehört sie eurer Runde, unten läuft die Bar weiter.",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "Ihr legt vorher ein Budget für die Drinks fest"
+       ]
+      },
+      {
+       "fid": "8fa56cf4a3",
+       "was": "Die ganze Bar",
+       "angabe": "ab 30 Gästen, von 19 bis 2 Uhr als geschlossene Gesellschaft",
+       "beleg": "Ab dreissig Gästen schliesst die Bar für euch. Von 19 bis 2 Uhr gehört euch der ganze Raum: unter der Decke, an der Theke, auf der Empore.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    },
+    {
+     "gruppe": "Die ganze Bar: Preise",
+     "zeilen": [
+      {
+       "fid": "3b2b14aaa9",
+       "was": "Kategorie 1",
+       "angabe": "Bier, Wein, Spritz: 49 € pro Person",
+       "beleg": "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "49 €"
+       ]
+      },
+      {
+       "fid": "4217151fcb",
+       "was": "Kategorie 2",
+       "angabe": "dazu Longdrinks: 59 € pro Person",
+       "beleg": "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "59 €"
+       ]
+      },
+      {
+       "fid": "bc9cf3659f",
+       "was": "Kategorie 3",
+       "angabe": "dazu fünf Signature Cocktails: 79 € pro Person",
+       "beleg": "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "79 €"
+       ]
+      },
+      {
+       "fid": "e75c6fed89",
+       "was": "Länger bleiben",
+       "angabe": "ab 2 Uhr jede angefangene Stunde 10 Euro pro Person",
+       "beleg": "Wer länger bleibt: ab 2 Uhr jede angefangene Stunde 10 Euro pro Person.",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "398daf3015",
-       "was": "Seit",
-       "angabe": "Ende Oktober 2017 in Linden; seit dem Reopening am 9. November 2023 führt Derya Ivkin die Bar",
-       "beleg": "Christoph Elbert und Verena Schindler eröffneten die Bar Ende Oktober 2017 in Linden",
+       "fid": "94c7dbaff7",
+       "was": "Budget",
+       "angabe": "Service und Raum 500 €, Budget für Drinks ab 1.000 €",
+       "beleg": "Für Service und Raum gibt es einen festen Betrag, für die Drinks setzt ihr vorher einen Rahmen.",
        "datei": "gast_wissen.txt",
        "mehr": [
-        "Seit dem Reopening am 9. November 2023 führt Derya Ivkin sie."
+        "500 €",
+        "ab 1.000 €"
+       ]
+      }
+     ]
+    },
+    {
+     "gruppe": "So geht es",
+     "zeilen": [
+      {
+       "fid": "31fceb9bf2",
+       "was": "Anfragen",
+       "angabe": "Anlass, Datum, wie viele ihr seid",
+       "beleg": "Ihr schreibt, was ihr vorhabt: Anlass, Datum, wie viele ihr seid.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "c902be3c85",
+       "was": "Angebot",
+       "angabe": "Derya und Momo melden sich mit einem Vorschlag",
+       "beleg": "Derya und Momo melden sich mit einem Vorschlag, nur für euch.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "dec5bdcdf2",
+       "was": "Anzahlung",
+       "angabe": "30 Prozent eine Woche vorher, der Rest am Abend vor Beginn",
+       "beleg": "Bei jedem Abend 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "927b1de1d6",
+       "was": "Musik dazu",
+       "angabe": "DJ, Gesang oder Jazz, auch mit den Musikern, die sonst hier spielen",
+       "beleg": "Ihr sucht noch einen DJ, Live-Musik, Gesang oder Jazz?",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "91ce496c49",
+       "was": "Grosse Events",
+       "angabe": "ausser Haus, in externen Locations wie der Loge; Infos auf Anfrage",
+       "beleg": "Für grössere Veranstaltungen zieht die Bar um, in externe Locations wie die Loge.",
+       "datei": "gast_wissen.txt",
+       "mehr": [
+        "Infos auf Anfrage."
        ]
       }
      ]
@@ -357,32 +496,55 @@
    ]
   },
   {
-   "bereich": "Team",
+   "bereich": "Das Haus & Team",
    "gruppen": [
     {
-     "gruppe": "Drei Leute, ein Haus",
+     "gruppe": "Der Raum",
      "zeilen": [
       {
-       "fid": "f7d448b11f",
+       "fid": "8a9ea11e37",
+       "was": "An der Theke",
+       "angabe": "auf den Hockern am nächsten dran: Momo fragt, was du magst",
+       "beleg": "Auf den Hockern an der Theke bist du am nächsten dran.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "29bca8ba43",
+       "was": "Am Tisch",
+       "angabe": "Holztische und eine Polsterbank, Kerzenlicht, unter dem Gewölbe",
+       "beleg": "Holztische und eine Polsterbank an hellen Wänden, darüber Messingleuchten, auf dem Tisch Kerzenlicht.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      },
+      {
+       "fid": "e4b2f3fa54",
+       "was": "Draussen",
+       "angabe": "wenn es warm ist, Tische vor der Tür an der Ecke",
+       "beleg": "Wenn es warm ist, stehen Tische vor der Tür an der Ecke.",
+       "datei": "gast_wissen.txt",
+       "mehr": []
+      }
+     ]
+    },
+    {
+     "gruppe": "Zwei Leute",
+     "zeilen": [
+      {
+       "fid": "0c9affdd1b",
        "was": "Derya Ivkin",
-       "angabe": "führt die Bar, das Haus von Culinarium, seit dem Reopening im November 2023",
-       "beleg": "Führt das Walk on the Wild Side, das Haus von Culinarium, seit dem Reopening im November 2023.",
+       "angabe": "führt die Bar seit Herbst 2023, Wiedereröffnung am 9. November 2023",
+       "beleg": "Seit Herbst 2023 gehört die Bar ihr und Momo.",
        "datei": "gast_wissen.txt",
-       "mehr": []
+       "mehr": [
+        "Übernimmt die Bar im Herbst, Wiedereröffnung am 9. November."
+       ]
       },
       {
-       "fid": "469bed48f9",
-       "was": "Momo",
-       "angabe": "Mohamed Ben Khelifa, mixt die Signature Drinks und erklärt jeden selbst",
-       "beleg": "Steht hinter der Bar und mixt die Signature Drinks, auch die fünf eines Culinarium-Abends, und erklärt jeden selbst.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "b9e81cbeed",
-       "was": "Rudi Napieraj",
-       "angabe": "kocht seit 2024 bei Culinarium und steht beim Pop-up Dirty Chicken in der Küche",
-       "beleg": "Kocht seit 2024 bei Culinarium, drei Gänge an der langen Tafel, und steht beim Pop-up Dirty Chicken in der Küche.",
+       "fid": "4551cf5eac",
+       "was": "Momo Ben Khelifa",
+       "angabe": "entwirft die Drinks; vorher Biotechnologie an der Uni, dann Bars in Berlin und Hannover",
+       "beleg": "Vorher Biotechnologie an der Uni, dann Bars in Berlin und Hannover.",
        "datei": "gast_wissen.txt",
        "mehr": []
       }
@@ -399,28 +561,26 @@
       {
        "fid": "1242db0cb0",
        "was": "Adresse",
-       "angabe": "Walk on the Wild Side, Haasemannstraße 13, 30449 Hannover",
-       "beleg": "Haasemannstraße 13",
+       "angabe": "Haasemannstraße 13, 30449 Hannover-Linden",
+       "beleg": "Haasemannstraße 13, 30449 Hannover-Linden",
        "datei": "gast_wissen.txt",
-       "mehr": [
-        "30449 Hannover"
-       ]
+       "mehr": []
       },
       {
        "fid": "dd95ea7b9a",
        "was": "Ecke",
-       "angabe": "Haasemannstraße, Ecke Rampenstraße, am Schild über der Hausecke",
+       "angabe": "Haasemannstraße, Ecke Rampenstraße; das Schild an der Ecke leuchtet",
        "beleg": "Haasemannstraße, Ecke Rampenstraße",
        "datei": "gast_wissen.txt",
        "mehr": [
-        "Am Schild über der Hausecke erkennst du die Bar schon von weitem."
+        "Das Schild an der Ecke leuchtet."
        ]
       },
       {
-       "fid": "758bf80316",
-       "was": "Plus Code",
-       "angabe": "9PC7+49 Hannover",
-       "beleg": "9PC7+49 Hannover",
+       "fid": "93d5f33d4f",
+       "was": "Bahn",
+       "angabe": "Stadtbahn bis Am Küchengarten, Linien 9 und 17, dann zwei Minuten zu Fuss",
+       "beleg": "Stadtbahn bis Am Küchengarten, Linien 9 und 17",
        "datei": "gast_wissen.txt",
        "mehr": []
       }
@@ -429,70 +589,58 @@
    ]
   },
   {
-   "bereich": "Dirty Chicken",
+   "bereich": "Kontakt",
    "gruppen": [
     {
-     "gruppe": "Das Pop-up",
+     "gruppe": "So erreichst du das Team",
      "zeilen": [
       {
-       "fid": "5d975a0db5",
-       "was": "Was",
-       "angabe": "Fried Chicken im Brötchen mit Paprika-Honig-Mayo und eingelegten Zwiebeln, Chunks mit Spicy Glaze und grüner Sauce, Pommes, Krautsalat, Dirty Drinks und Musik",
-       "beleg": "Im Brötchen mit Paprika-Honig-Mayo und eingelegten Zwiebeln, als Chunks mit Spicy Glaze und grüner Sauce.",
-       "datei": "gast_wissen.txt",
+       "fid": "53991acd08",
+       "was": "Telefon",
+       "angabe": "+49 163 3909578 und +49 174 9916296",
+       "beleg": "Telefon der Bar: +49 163 3909578 und +49 174 9916296.",
+       "datei": "gast_umgebung.txt",
        "mehr": []
       },
       {
-       "fid": "74ab53c459",
-       "was": "Wann",
-       "angabe": "nur an einzelnen Tagen; die Termine stehen auf Instagram @dirtychicken.hannover",
-       "beleg": "Nur an einzelnen Tagen.",
-       "datei": "gast_wissen.txt",
-       "mehr": [
-        "@dirtychicken.hannover"
-       ]
+       "fid": "a820b2f818",
+       "was": "Instagram",
+       "angabe": "@walkonthewildside_hannover",
+       "beleg": "Instagram: @walkonthewildside_hannover.",
+       "datei": "gast_umgebung.txt",
+       "mehr": []
       },
       {
-       "fid": "24ef551a52",
-       "was": "Opening",
-       "angabe": "30. Mai 2026, 14 bis 22 Uhr, im AM:PM Café im Tiedthof, Goseriede 4",
-       "beleg": "30. Mai 2026, 14 bis 22 Uhr",
-       "datei": "gast_wissen.txt",
-       "mehr": [
-        "AM:PM Café im Tiedthof, Goseriede 4"
-       ]
+       "fid": "d698b331b6",
+       "was": "E-Mail",
+       "angabe": "keine Adresse der Bar in den Quellen; Telefon oder Instagram",
+       "beleg": "Eine E-Mail-Adresse der Bar steht in keiner Quelle des Hauses; nenne keine.",
+       "datei": "gast_umgebung.txt",
+       "mehr": []
       }
      ]
     }
    ]
   },
   {
-   "bereich": "Alle Abende",
+   "bereich": "Im selben Haus",
    "gruppen": [
     {
-     "gruppe": "Bisher",
+     "gruppe": "Die Nachbarn",
      "zeilen": [
       {
-       "fid": "08c2d94600",
-       "was": "Erstes Pop-up",
-       "angabe": "20. Mai 2023 mit Momo",
-       "beleg": "Das erste Pop-up gab es am 20. Mai 2023 mit Momo.",
+       "fid": "ac09cf3497",
+       "was": "Culinarium",
+       "angabe": "Food-Pairing-Abende an einzelnen Wochenenden: Rudi kocht drei Gänge, Momo mixt fünf Drinks dazu, eigene Tickets",
+       "beleg": "An einzelnen Wochenenden wird aus der Tafel ein Menü: Rudi kocht drei Gänge, Momo mixt fünf Drinks dazu, vierzehn Gäste sitzen an einem Tisch. Eigene Abende, eigene Tickets, eigene Seite.",
        "datei": "gast_wissen.txt",
        "mehr": []
       },
       {
-       "fid": "b045eb44ce",
-       "was": "Name",
-       "angabe": "2023 «by Momo x Christoph», seit Juli 2024 «by Momo x Rudi»",
-       "beleg": "2023 hiessen die Abende „by Momo x Christoph“, seit Juli 2024 „by Momo x Rudi“.",
-       "datei": "gast_wissen.txt",
-       "mehr": []
-      },
-      {
-       "fid": "2843d4db14",
-       "was": "Plakate",
-       "angabe": "seit September 2023 bekommt jeder Abend ein eigenes Plakat",
-       "beleg": "Seit September 2023 bekommt jeder Culinarium-Abend ein eigenes Plakat.",
+       "fid": "63286aa72c",
+       "was": "Dirty Chicken",
+       "angabe": "Rudis Sandwiches, mal hier, mal im Tiedthof; Termine auf Instagram",
+       "beleg": "Rudis Sandwiches aus der Familie der Bar, mal hier, mal im Tiedthof. Termine auf Instagram.",
        "datei": "gast_wissen.txt",
        "mehr": []
       }

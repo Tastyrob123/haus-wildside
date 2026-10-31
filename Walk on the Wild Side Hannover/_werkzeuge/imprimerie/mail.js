@@ -5,7 +5,7 @@
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const PFEIL = '<svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
-  const WEB = 'https://www.instagram.com/culinarium_hannover/', TEL = WEB, MAIL = WEB;
+  const WEB = 'https://www.instagram.com/walkonthewildside_hannover/', TEL = WEB, MAIL = WEB;
   const LOKAL = location.origin + location.pathname.replace(/[^/]*$/, '');
   let M = null;
 
@@ -251,7 +251,7 @@
   function fotoRaster() {
     const q = $('#mlFotoSuche').value.trim().toLowerCase(), z = ziel() || {};
     const l = M.bilder.filter(b => (fGruppe === 'Alle' || b.gruppe === fGruppe) && (!q || (b.alt + ' ' + b.key + ' ' + b.gruppe).toLowerCase().includes(q)));
-    $('#mlFotoRaster').innerHTML = l.map(b => `<button data-foto="${b.key}" class="${z.foto === b.key && !z.url ? 'an' : ''}" title="${esc(b.alt)}"><img loading="lazy" src="haeuser/culinarium/mini/${b.key}.webp" alt=""><span>${esc(b.alt)}</span></button>`).join('') || '<p class="ml-leise">Nichts gefunden.</p>';
+    $('#mlFotoRaster').innerHTML = l.map(b => `<button data-foto="${b.key}" class="${z.foto === b.key && !z.url ? 'an' : ''}" title="${esc(b.alt)}"><img loading="lazy" src="haeuser/wildside/mini/${b.key}.webp" alt=""><span>${esc(b.alt)}</span></button>`).join('') || '<p class="ml-leise">Nichts gefunden.</p>';
   }
 
   /* ---------- Prüfung, Ausgabe ---------- */
@@ -278,7 +278,7 @@
 
   /* ---------- Linke Platte: Vorlagen, Meine E-Mails, Teile ---------- */
   function zeichneVorlagen() {
-    $('#mlVorlagen').innerHTML = VORLAGEN.map(v => `<button data-vorlage="${v.key}"><span class="ml-vb"${v.foto ? ` style="background-image:url('haeuser/culinarium/mini/${v.foto}.webp')"` : ''}></span><span><b>${esc(v.n).replace(/ (\S+)$/, '\u00a0$1')}</b><small>${esc(v.wo)}</small></span></button>`).join('');
+    $('#mlVorlagen').innerHTML = VORLAGEN.map(v => `<button data-vorlage="${v.key}"><span class="ml-vb"${v.foto ? ` style="background-image:url('haeuser/wildside/mini/${v.foto}.webp')"` : ''}></span><span><b>${esc(v.n).replace(/ (\S+)$/, '\u00a0$1')}</b><small>${esc(v.wo)}</small></span></button>`).join('');
   }
   function zeichneMeine() {
     const l = lies(); $('#mlMeineZahl').textContent = l.length; $('#mlMeineBox').hidden = !l.length;
@@ -290,7 +290,7 @@
   }
 
   async function los() {
-    M = await (await fetch('haeuser/culinarium/marke.json')).json();
+    M = await (await fetch('haeuser/wildside/marke.json')).json();
     const z = M.zeichen, svg = `<svg viewBox="${z.vb.join(' ')}">${z.pfade.map(d => `<path d="${d}"/>`).join('')}</svg>`;
     $('#mlZeichen').innerHTML = svg; $('#mlKapitelZeichen').innerHTML = svg;
     zeichneVorlagen(); zeichneMeine();

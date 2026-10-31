@@ -4,38 +4,38 @@
   "rechner": 8,
   "stellen": [
    [
+    1,
+    0
+   ],
+   [
     2,
     0
+   ],
+   [
+    2,
+    0.5
    ],
    [
     3,
     0
    ],
    [
-    4,
+    7,
     0
    ],
    [
-    5,
+    8,
     0
    ],
    [
-    14,
-    0
-   ],
-   [
-    15,
-    0
-   ],
-   [
-    16,
+    9,
     0
    ]
   ],
   "handy": 8
  },
- "abend.html": {
-  "name": "Der Abend",
+ "drinks.html": {
+  "name": "Drinks",
   "rechner": 4,
   "stellen": [
    [
@@ -43,35 +43,24 @@
     0
    ],
    [
-    2,
-    0
+    1,
+    0.125
    ],
    [
-    5,
+    3,
     0
    ]
   ],
   "handy": 4
  },
- "abende.html": {
-  "name": "Alle Abende",
-  "rechner": 3,
+ "programm.html": {
+  "name": "Programm",
+  "rechner": 5,
   "stellen": [
-   [
-    0,
-    0.5
-   ],
    [
     1,
     0
-   ]
-  ],
-  "handy": 3
- },
- "bar.html": {
-  "name": "Das Haus",
-  "rechner": 3,
-  "stellen": [
+   ],
    [
     2,
     0
@@ -79,38 +68,39 @@
    [
     3,
     0
+   ],
+   [
+    7,
+    0
    ]
   ],
-  "handy": 3
+  "handy": 5
  },
- "leute.html": {
-  "name": "Das Team",
-  "rechner": 3,
+ "tafel.html": {
+  "name": "Feiern",
+  "rechner": 5,
   "stellen": [
    [
     1,
     0
    ],
    [
-    1,
-    0.3333333333333333
-   ]
-  ],
-  "handy": 3
- },
- "weg.html": {
-  "name": "Der Weg",
-  "rechner": 2,
-  "stellen": [
-   [
-    1,
+    2,
     0
+   ],
+   [
+    3,
+    0
+   ],
+   [
+    11,
+    0.5
    ]
   ],
-  "handy": 2
+  "handy": 5
  },
- "dirty-chicken.html": {
-  "name": "Dirty Chicken",
+ "haus.html": {
+  "name": "Das Haus",
   "rechner": 4,
   "stellen": [
    [
@@ -124,6 +114,25 @@
    [
     6,
     0
+   ]
+  ],
+  "handy": 4
+ },
+ "besuch.html": {
+  "name": "Besuch",
+  "rechner": 4,
+  "stellen": [
+   [
+    1,
+    0
+   ],
+   [
+    2,
+    0
+   ],
+   [
+    4,
+    0.5
    ]
   ],
   "handy": 4

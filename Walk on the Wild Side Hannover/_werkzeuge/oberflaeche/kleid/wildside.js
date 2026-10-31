@@ -5,6 +5,7 @@
 window.WO_HAUS = { kurz: 'wildside', name: 'Wild Side', voll: 'Walk on the Wild Side Hannover', ort: 'Hannover-Linden', bar: 'Walk on the Wild Side', welt: 'bar', rahmen: 'buehne', anrede: 'du',   /* die Bar duzt (Website, Instagram) */
   /* Aussenfoto des Startbilds: das Eckschild an der Hausecke bei Nacht (Bildregister der Website, Schlüssel «schild-ecke», CHARAKTER.md 3 und 5) */
   foto: '/assets/bild/schild-ecke-960.webp', fotoKlein: '/assets/bild/schild-ecke-480.webp', fotoFarbe: '#2a1d17',
+  fotoStufen: [480, 960], fotoAlt: 'Die Ecke Haasemannstraße am Abend, Gäste vor der Tür',   /* Stufen der Website (website/bilder.py: 480/960/1536), Alt-Text aus dem Bildregister */
   /* Zeichen im Ring: die echte Wortmarke (drei Zeilen WALK / ON THE / WILD SIDE), nachgezogen aus dem Logo der Bar (_quelle/logo/wildside-logo-nachgezogen.svg), unverändert */
   zeichen: '/assets/oberflaeche/kleid/wildside-zeichen.svg', zeichenMass: 0.81, wortmarke: '/assets/oberflaeche/kleid/wildside-marke.svg#wm', wortmarkeMass: 0.81,
   /* Namen der sieben Werkzeuge: die EINE Stelle. Gleicher Satz wie im Culinarium (Robert 28./29.10.2026, Satz A «An der Bar»); Dateien, Schlüssel und Adressen bleiben (maison, bureau, carte …). */

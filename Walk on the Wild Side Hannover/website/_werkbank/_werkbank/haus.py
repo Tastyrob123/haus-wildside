@@ -1,14 +1,16 @@
-"""Culinarium Hannover: Inhalt der Werkbank («Alles auf einen Blick») und ihrer Beigaben.   Werkzeug: ~/Desktop/Website-Projekte/_Werkbank-Kit/
+"""Walk on the Wild Side Hannover: Inhalt der Werkbank («Alles auf einen Blick») und ihrer Beigaben.   Werkzeug: ~/Desktop/Website-Projekte/_Werkbank-Kit/
 
-Werkbank-Chat Culinarium, 28.10.2026 (Auftrag Oberchef, Roberts Wort: «alles, was passiert, wenn die Website soweit fertig ist … Werkzeugbank, Tools»).
-Aufbau und Wege wie die Werkbank der Taverne zum Schäfli (jüngstes Vorbild, Stand 21.10.2026, nur gelesen und kopiert), Kleid und Worte von Culinarium:
-die Nacht der Bar, Schiefer und Warmweiss der Plakate, Kerze aus den Abendfotos, Fraunces mit weichen Enden, Rudis Zeilen in Versalien mit Schrägstrich,
-das «C» aus Rudis Wortmarke als Zeichen (bis 29.10.2026 das «x» von «Momo x Rudi»). Fakten nur aus der Website (website/bau.py und ihre Seiten) und _kette/03-sammler/fakten.json, nichts abgetippt.
+Werkbank-Chat Wild Side, Nachtbau 31.10.2026 (Auftrag Oberchef; Roberts Deal: «kopieren, umkleiden, Hauswerte eintragen, nichts neu erfinden»).
+Vorlage: die Werkbank des Culinarium Hannover (28.–30.10.2026, dort über die Taverne zum Schäfli), Aufbau, Wege und Funktionen unverändert.
+Kleid der Bar (CHARAKTER.md 4, _werkzeuge/AUFTRAG-GEMEINSAM.md «Kleid»): Nacht #130E0D, Platte #1C1513/#261E1A, Creme #F2E9DC der weissen Plakate,
+Gold #D8B264 nur als Haarlinie, Etikett, Knauf; Rot #F0323F nur als Punkt; Prata für Titel (eine Stärke, nie fett, nie kursiv), Hanken Grotesk zum Lesen
+und für gesperrte Etiketten; die echte Wortmarke (WALK / ON THE / WILD SIDE, nachgezogen) als einziges Zeichen. Fakten nur aus der Website
+(website/bau.py HAUS und LINEUP, ihre Seiten), CHARAKTER.md und _quelle/, nichts abgetippt, nichts erfunden.
 
 Eigenes Revier: website/_werkbank/ ist der Projektordner des Kits (ROOT), die Website liegt eine Ebene höher (WEB) und wird nur gelesen;
 assets/ ist ein Verweis auf website/assets (nur gelesen). Serviert von website/_werkbank/serve.py auf Port 9088 (zuerst das Revier, sonst die Website).
-Ton: Robert und Rudi duzen sich (WhatsApp), die Website spricht im Du: der Brief sagt «Hallo Rudi», sonst «ihr/euch» an Rudi, Momo und Derya.
-Deutsche Schreibung mit ß. Kein Preis in der Werkbank. Abende, keine Zimmer, kein Restaurant mit Tageskarte."""
+Ton: die Bar duzt (Website, Instagram): der Brief sagt «Hallo Derya», sonst «ihr/euch» an Derya und Momo. Deutsche Schreibung mit ß.
+Kein Preis für Roberts Arbeit in der Werkbank. Eine E-Mail-Adresse der Bar ist nicht belegt: keine erfunden, Kontakt über Telefon, Instagram, Formular."""
 import json
 import os
 import re as _re
@@ -20,61 +22,66 @@ import hilfen as K
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # = website/_werkbank (Projektordner des Kits)
 WEB = os.path.dirname(ROOT)                                          # = website/ (nur gelesen)
 PROJ = os.path.dirname(WEB)
-FAKTEN = json.load(open(os.path.join(PROJ, '_kette', '03-sammler', 'fakten.json'), encoding='utf-8'))
+KLEID = os.path.join(PROJ, '_werkzeuge', 'oberflaeche', 'kleid')
 
 
 def bild(key, hoechstens=2400):
-    """Grösste Fassung eines Fotos der Website bis «hoechstens» Pixel Breite (assets/bild/<key>-<breite>.webp) als voller Pfad für K.hausbild.
-    So kommen die geschärften Fassungen des Bilder-Chats von selbst nach (bau.py schreibt sie unter demselben Schlüssel)."""
+    """Grösste Fassung eines Fotos der Website bis «hoechstens» Pixel Breite (assets/bild/<key>-<breite>.webp) als voller Pfad für K.hausbild."""
     b = sorted(int(m.group(1)) for p in _glob.glob(os.path.join(WEB, 'assets', 'bild', key + '-*.webp')) if (m := _re.search(r'-(\d+)\.webp$', p)) and int(m.group(1)) <= hoechstens)
     if not b:
         raise FileNotFoundError(f'Bild {key} fehlt in website/assets/bild')
     return os.path.join(WEB, 'assets', 'bild', f'{key}-{b[-1]}.webp')
 
 
-NAME = 'Culinarium'
-KURZ = 'culinarium'
-LEISTE = 'CULINARIUM'
+NAME = 'Walk on the Wild Side'
+KURZ = 'wildside'
+LEISTE = ''          # die Wortmarke steht in der Leiste schon als Zeichen (keine doppelten Logos, Kriterium 14)
 HAUSART = 'restaurant'
 PORT = 9088
-DOMAIN = 'culinarium-hannover.de'
-HEUTE_URL = 'https://www.instagram.com/culinarium_hannover/'
-ANREDE = 'Hallo Rudi'
-RECHTE = 'Culinarium und den jeweiligen Fotografen.'
+DOMAIN = 'Instagram'   # die Bar hat heute keine Website (wildside-hannover.de war nie eine, CHARAKTER.md 9); «heute» ist das Profil auf Instagram
+HEUTE_URL = 'https://www.instagram.com/walkonthewildside_hannover/'
+ANREDE = 'Hallo Derya'
+RECHTE = 'dem Walk on the Wild Side und den jeweiligen Fotografen.'
 START_MS = 4200
-WAHL = 'main > section'
+WAHL = 'body > section, body > header'
 ADRESSE = 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover'
 
-# ---------- Farben: die der Website (website/assets/culinarium.css :root) ----------
-# Nacht der Bar, Strasse, Warm, Schiefer der Plakate, Warmweiss der Plakate, Kerze aus den Abendfotos. «gold» ist hier die Kerze: die eine warme Farbe des Hauses.
-FARBEN = dict(nacht='#16151a', tief='#1c1b21', navy='#222028', blau='#3a3845', papier='#faf4f4', creme='#f2eaea', weiss='#fffbfa',
-              gold='#ef7649', messing='#b15736', taupe='#5b5763', tinte='#26242d', punkt='#ef7649', rot='#ef7649')
+# ---------- Farben: die der Website (website/assets/wild.css :root) ----------
+# Nacht, Platte, Creme der weissen Plakate, Gold als Haarlinie und Etikett, Rot als Punkt. «gold» ist das Gold des Eckschilds, «punkt»/«rot» das Rot der Wortmarke.
+FARBEN = dict(nacht='#130e0d', tief='#1c1513', navy='#261e1a', blau='#33281f', papier='#f2e9dc', creme='#e7dccb', weiss='#f7f1e7',
+              gold='#d8b264', messing='#b08a43', taupe='#6e5d4e', tinte='#1b1512', punkt='#f0323f', rot='#f0323f')
 _SCHRIFT = os.path.join(WEB, 'assets', 'schrift')
-SCHRIFT = dict(titel=('Fraunces', 'fraunces-soft.woff2'), titel_folge="Georgia,serif", ersatz="local('Georgia')", druckgewicht=340)
-SCHRIFT_MEHR = ['urbanist.woff2']
-DRUCKQUELLEN = []   # Fraunces und Urbanist setzt _werkbank/druckschrift.py fest (alle Achsen), der Kit nur Instrument Sans und DM Mono
-DRUCKSCHRIFT = [('Fraunces', 340, 'Fraunces-Light.ttf'), ('Fraunces', 400, 'Fraunces-Regular.ttf'), ('Fraunces', 500, 'Fraunces-Regular.ttf'), ('Fraunces', 700, 'Fraunces-Regular.ttf'), ('Urbanist', 500, 'Urbanist-Medium.ttf'), ('Urbanist', 600, 'Urbanist-SemiBold.ttf')]
-# Die Webschriften der Website unter den Namen, die der Kit erwartet (er sucht sie in assets/fonts; die Website legt sie unter assets/schrift ab)
+SCHRIFT = dict(titel=('Prata', 'prata.woff2'), titel_folge="Georgia,serif", ersatz="local('Georgia')", druckgewicht=400)
+SCHRIFT_MEHR = []
+DRUCKQUELLEN = []   # Prata und Hanken setzt _werkbank/druckschrift.py fest
+DRUCKSCHRIFT = [('Prata', 400, 'Prata-Regular.ttf'), ('Prata', 500, 'Prata-Regular.ttf'), ('Prata', 700, 'Prata-Regular.ttf')]
+# Die Webschriften der Website unter den Namen, die der Kit erwartet (er sucht sie in werkbank/fonts; die Website legt sie unter assets/schrift ab).
+# Der Kit kennt nur die Familien «Instrument Sans» und «DM Mono»: beide zeigen hier auf Hanken Grotesk (kleid_wild.py benennt sie danach um).
 _WF = os.path.join(ROOT, 'werkbank', 'fonts')
 os.makedirs(_WF, exist_ok=True)
-for _q, _z in (('fraunces-soft.woff2', 'fraunces-soft.woff2'), ('instrument.woff2', 'InstrumentSans-normal-400_600.woff2'), ('dmmono.woff2', 'DMMono-normal-400.woff2'), ('urbanist.woff2', 'urbanist.woff2')):
+for _q, _z in (('prata-latin.woff2', 'prata.woff2'), ('hanken-latin.woff2', 'hanken.woff2'), ('hanken-latin.woff2', 'InstrumentSans-normal-400_600.woff2'), ('hanken-latin.woff2', 'DMMono-normal-400.woff2')):
     if os.path.exists(os.path.join(_SCHRIFT, _q)):
         shutil.copy2(os.path.join(_SCHRIFT, _q), os.path.join(_WF, _z))
-# Muster der Website: das feine Raster mit dem Zeichen (assets/zeichen/tapete-dunkel.svg, Ton in Ton), vom Wurzelweg aus
-MUSTER = 'url(/assets/zeichen/tapete-dunkel.svg)'
-MUSTER_B = '224px'
-MUSTER_DRUCK = '16mm'
-# Das Zeichen: das «C», erster Buchstabe von Rudis Wortmarke, als Datei aus dem Kleid (_werkzeuge/oberflaeche/kleid/wildside-zeichen.svg), unverändert
-# übernommen, nie nachgezeichnet (Robert 29.10.2026: «wieso ist in der werkbank überall dieses x ???»; vorher das «x» aus «Momo x Rudi», eigen/zeichen-x.svg).
-_ZC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'eigen', 'zeichen-c.svg')
-open(_ZC, 'w', encoding='utf-8').write(open(os.path.join(os.path.dirname(WEB), '_werkzeuge', 'oberflaeche', 'kleid', 'wildside-zeichen.svg'), encoding='utf-8').read())
+# Muster: das Ornament der Website (assets/bild/haus-tapete.svg, Gold-Haarlinien), als eigene Kachel für dunkle und helle Flächen (werkbank/eigen/tapete-*.svg)
+_EI = os.path.join(ROOT, 'werkbank', 'eigen')
+os.makedirs(_EI, exist_ok=True)
+_TP = open(os.path.join(WEB, 'assets', 'bild', 'haus-tapete.svg'), encoding='utf-8').read()
+open(os.path.join(_EI, 'tapete-dunkel.svg'), 'w', encoding='utf-8').write(_TP.replace('opacity=".55"', 'opacity=".16"'))
+open(os.path.join(_EI, 'tapete-hell.svg'), 'w', encoding='utf-8').write(_TP.replace('stroke="#D8B264"', 'stroke="#B08A43"').replace('opacity=".55"', 'opacity=".22"'))
+MUSTER = 'url(/werkbank/eigen/tapete-dunkel.svg)'
+MUSTER_B = '150px'
+MUSTER_DRUCK = '12mm'
+# Das Zeichen: die echte Wortmarke der Bar (drei Zeilen WALK / ON THE / WILD SIDE, nachgezogen) aus dem Kleid, unverändert übernommen, nie nachgezeichnet.
+_ZC = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'eigen', 'zeichen-ws.svg')
+os.makedirs(os.path.dirname(_ZC), exist_ok=True)
+open(_ZC, 'w', encoding='utf-8').write(open(os.path.join(KLEID, 'wildside-zeichen.svg'), encoding='utf-8').read())
 ZEICHEN = K.svg_innen(_ZC)
-ZEICHEN = (ZEICHEN[0], ZEICHEN[1].replace(' fill="#000"', ''))   # Farbe über currentColor, wie bei jedem Zeichen der Werkbank
+ZEICHEN = (ZEICHEN[0], ZEICHEN[1].replace(' fill="#000"', ''))   # Farbe über currentColor
 
 
 def _wortmarke():
-    """Die Wortmarke CULINARIUM aus website/assets/zeichen/marke.svg (Symbol «wm»), so wie die Website sie zeigt."""
-    s = open(os.path.join(WEB, 'assets', 'zeichen', 'marke.svg'), encoding='utf-8').read()
+    """Die Wortmarke aus _werkzeuge/oberflaeche/kleid/wildside-marke.svg (Symbol «wm»), so wie Website und Werkzeuge sie zeigen."""
+    s = open(os.path.join(KLEID, 'wildside-marke.svg'), encoding='utf-8').read()
     m = _re.search(r'<symbol id="wm" viewBox="([^"]+)">(.*?)</symbol>', s, _re.S)
     vb = ' '.join(str(float(x)).rstrip('0').rstrip('.') for x in m.group(1).split())
     return vb, _re.sub(r'\s+fill="currentColor"', '', _re.sub(r'\s*\n\s*', ' ', m.group(2))).strip()
@@ -84,171 +91,161 @@ WORT = _wortmarke()
 ETIKETTEN = dict(ordner='untersetzer', name='Untersetzer', einzahl='Untersetzer')
 
 SEITEN = [   # alle Seiten, die ein Gast als Seite wahrnimmt, dazu das Rechtliche (Sätze nur aus dem, was auf der Seite steht)
-    ('index.html', 'Startseite', 8, 'Culinarium im Walk on the Wild Side, der Abend an der langen Tafel, das erste Glas, drei Gänge, die Plakate, das Haus, die Leute, Dirty Chicken und was Gäste vorher wissen wollen.', ''),
-    ('abend.html', 'Der Abend', 4, 'Was auf den Tisch kommt, wann und wie viel, die nächsten Abende zum Buchen und die Warteliste.', ''),
-    ('abende.html', 'Alle Abende', 3, 'Jeder Abend seit dem ersten Pop-up 2023 mit seinem Plakat, Jahr für Jahr in einer Vitrine.', ''),
-    ('bar.html', 'Das Haus', 3, 'Walk on the Wild Side: die Bar in Linden, ihre Drinks, ihre Geschichte seit 2017 und wann sie offen hat.', ''),
-    ('leute.html', 'Das Team', 3, 'Derya, Momo und Rudi mit ihrem Weg, die Mannschaft bei der Arbeit und wie alles kam.', ''),
-    ('weg.html', 'Der Weg', 2, 'Die Haasemannstraße 13 in Linden, die Zeiten der Abende und die gezeichnete Karte.', ''),
-    ('dirty-chicken.html', 'Dirty Chicken', 4, 'Das Pop-up aus demselben Haus: das Essen, die Nacht mit Live-Musik und das erste Pop-up im Tiedthof.', ''),
+    ('index.html', 'Startseite', 8, 'Ein Abend an der Ecke von 19 bis 2 Uhr: das Eckschild, Momos Frage, das Gewölbe, seit 2018 in Linden, die DJ-Abende, die lange Tafel und wer im selben Haus wohnt.', ''),
+    ('drinks.html', 'Drinks', 4, 'Was magst du? Das Gespräch an der Theke, Momos drei Techniken aus dem Labor und die Klassiker des Hauses.', ''),
+    ('programm.html', 'Programm', 5, 'Die Plakatwand, die Woche mit drei Abenden, jeder DJ-Abend mit seinem Plakat, Gäste hinterm Tresen, die Feste und Stadtfeste.', ''),
+    ('tafel.html', 'Feiern', 5, 'Vom Privaten Dinner über die lange Tafel bis zur ganzen Bar, mit Pauschalen, Budget, Preisen der Bar, Musik und Anfrage.', ''),
+    ('haus.html', 'Das Haus', 4, 'Unter dieser Decke: vier Plätze im Raum, Derya und Momo, was bisher geschah, Falstaff und Google.', ''),
+    ('besuch.html', 'Besuch', 4, 'Wann die Bar offen hat, die Ecke auf der Karte, einen Platz reservieren und was Gäste vorher fragen.', ''),
     ('impressum.html', 'Rechtliches', 1, 'Impressum und Datenschutz.', 'recht'),
 ]
 LANG = {'Startseite': 'Startseite', 'Rechtliches': 'Impressum und Datenschutz'}
-KURZNAME = {'Dirty Chicken': 'Dirty Chicken', 'Alle Abende': 'Abende'}
+KURZNAME = {}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import namen_fall as _nf  # noqa: E402
 
 
 def _werkzeugname(teil):
-    """Name eines Werkzeugs aus der einen Stelle (_werkzeuge/oberflaeche/kleid/wildside.js › namen, Schreiber culinarium-maison), nie fest geschrieben."""
-    k = open(os.path.join(PROJ, '_werkzeuge', 'oberflaeche', 'kleid', 'culinarium.js'), encoding='utf-8').read()
+    """Name eines Werkzeugs aus der einen Stelle (_werkzeuge/oberflaeche/kleid/wildside.js › namen), nie fest geschrieben."""
+    k = open(os.path.join(KLEID, 'wildside.js'), encoding='utf-8').read()
     return dict(_re.findall(r"(\w+): '([^']+)'", _re.search(r'namen:\s*\{([^}]*)\}', k).group(1)))[teil]
 
 
-# ---------- Unterlagen: die Karten des Hauses (La Carte von Culinarium, PDFs in unterlagen/pdf) ----------
-SATZ_FUSS = 'Culinarium · im Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover'
+# ---------- Unterlagen: die Karten der Bar (gesetzt mit der Pairing-Karte, PDFs in unterlagen/pdf) ----------
+SATZ_FUSS = 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover-Linden'
 UNTERLAGEN = dict(
-    pflege=('Karten selbst ändern',   # Tor 4 30.10.2026: Knopf in einer Zeile; wohin er führt, sagt der Satz daneben
-            'http://127.0.0.1:9083/_werkzeuge/carte/'),
-    text='Zu jedem Abend gehört eine Karte am Platz: Gang für Gang Rudis Teller und Momos Drink. Hier liegen zwei davon neu gesetzt neben dem Foto der Karte, wie sie an diesem Abend auf dem Tisch lag.',
-    seite_text='Die Karte am Platz, neu gesetzt im Kleid der neuen Seite: Gang für Gang Rudis Teller und Momos Drink. Links die Karte, wie sie an diesem Abend auf dem Tisch lag, rechts die Idee. Die Karten aller Abende pflegt ihr ' + _nf.in_(_werkzeugname('karten')) + '.',
-    knopf2=('Der Abend auf der Website', '../abend.html'))
-FAECHER = [('abend-2025-02-21', 'Februar 2025'), ('abend-2023-09-15', 'September 2023')]   # PDFs: unterlagen/pdf (aus La Carte, Lieferung 28.10.2026, sb_karten.py)
+    pflege=('Karten selbst ändern', 'http://127.0.0.1:9083/_werkzeuge/carte/'),
+    text='Die Karte wechselt immer wieder, die Drinks dafür entwirft Momo. Hier liegen die Karten der Bar neu gesetzt neben dem Blatt, wie es auf dem Tisch lag.',
+    seite_text='Die Karten der Bar, neu gesetzt im Kleid der neuen Seite: Momos Drinks mit Zutaten und Preis. Links das Blatt, wie es auf dem Tisch lag, rechts die Idee. Jede neue Karte schreibt ihr ' + _nf.in_(_werkzeugname('karten')) + '.',
+    knopf2=('Die Drinks auf der Website', '../drinks.html'))
+FAECHER = []   # (ziel, Name) aus sb_karten.py (unterlagen.json)
 
 # ---------- Auftakt, Brief ----------
 AUFTAKT = dict(
-    titel=['Ein Abend,', 'eine Tafel.'],
-    text='Die neue Website von Culinarium, so wie sie werden könnte. Dazu eure Karten für jeden Abend, sieben Werkzeuge, mit denen ihr Termine, Menüs und Plakate selbst führt, und Ideen für Papier und Instagram.',
-    abzuege=[(bild('anstossen'), 'Am Tisch wird angestoßen'), (bild('glas'), 'Ein Drink von Momo'), (bild('kerze1'), 'Ein Drink wird erklärt')])
+    titel=['Ein Abend', 'an der Ecke.'],
+    text='Die neue Website des Walk on the Wild Side, so wie sie werden könnte. Dazu sieben Werkzeuge, mit denen ihr Karte, DJ-Abende, Anfragen und Plakate selbst führt, und Ideen für Papier und Instagram.',
+    abzuege=[(bild('momo-giesst'), 'Momo gießt ein'), (bild('negroni'), 'NEGRONI über der Vitrine'), (bild('schild'), 'Das Eckschild bei Nacht')])
 BRIEF = dict(
     art='kurz',
-    bild=bild('tafelleer'), schnitt=2.0, lage=(.5, .5), bild_alt='Die lange Tafel im Walk on the Wild Side, gedeckt und mit Kerzen',
-    schild=('Culinarium', 'im Walk on the Wild Side · Linden'), ort='Tasty Studios',
+    bild=bild('decke-raum'), schnitt=2.0, lage=(.5, .42), bild_alt='Das Gewölbe über dem Raum des Walk on the Wild Side, die Theke darunter',
+    schild=('Walk on the Wild Side', 'Haasemannstraße 13 · Linden'), ort='Tasty Studios',
     absaetze=[
-        'Ein Abend bei euch fängt an der Theke an: Momo stellt das erste Glas hin und erklärt, was darin steckt, dann kommt aus der Küche der erste Gang. Wer einmal an eurer Tafel saß, weiß, wie viel Sorgfalt in jedem Teller und jedem Drink liegt. Die neue Seite soll das zeigen, bevor jemand seinen Platz bucht.',
-        'Heute gibt es Culinarium auf Instagram. Termine, Menü und Preis stehen in Bildunterschriften, gebucht wird über eine Nachricht und PayPal. Die neue Seite stellt alles an einen Ort: jeden Abend mit seinem Plakat, das Menü in deinen Zeilen, Momos Drinks, das Haus in Linden, und weiter unten Dirty Chicken. Ist ein Abend voll, trägt man sich auf die Warteliste ein.',
-        'Um die Seite herum liegt, was ihr im Alltag braucht: die Karte für jeden Abend, Ideen für Papier und Instagram und sieben Werkzeuge, in denen ihr Termine, Menüs und Plakate selbst führt. Alles hier lässt sich anklicken und ausprobieren.'],
-    schluss='<q>A unique experience.</q> <small>Culinarium</small>',
+        'Ein Abend bei euch fängt mit einer Frage an: Was magst du? Momo hört zu, greift zu den Flaschen und stellt einen Drink hin, den es so nur an diesem Abend gibt. Darüber das Gewölbe, samstags legt jemand auf. Die neue Seite soll das zeigen, bevor jemand zum ersten Mal an der Ecke steht.',
+        'Heute gibt es das Wild Side auf Instagram und in Portalen wie Google und Falstaff. Zeiten, DJ-Abende und Feiern stehen in Beiträgen und Bildunterschriften, reserviert wird per Anruf oder Nachricht. Die neue Seite stellt alles an einen Ort: die Drinks, die DJ-Abende mit ihren Plakaten, Feiern auf der Empore, das Haus unter der Decke und den Weg an die Ecke.',
+        'Um die Seite herum liegt, was ihr im Alltag braucht: die Karte, die Momo immer wieder neu schreibt, Ideen für Papier und Instagram und sieben Werkzeuge, in denen ihr Karte, DJ-Abende, Anfragen und Plakate selbst führt. Alles hier lässt sich anklicken und ausprobieren.'],
+    schluss='<q>Good Drinks, Good Music, Good Energy.</q> <small>Walk on the Wild Side</small>',
     abzuege=[])
 GABEN = dict(seite='{n} Seiten.', unterlagen='Eure Karten.', papier='{d} Drucksachen und {e} Untersetzer.', feed='{n} Beiträge.', gaeste='Für eure Gäste.', studio='')
-GABEN_BILDER = dict(seite=(bild('loch'), (.5, .5)), unterlagen=(bild('karte'), (.5, .5)), papier=(bild('kartglas'), (.5, .5)), material=(bild('flaschen'), (.5, .5)), gaeste=(bild('toast'), (.5, .5)))
-LAUFWORTE = ['Culinarium', '<b>Momo x Rudi</b>', 'Eine lange Tafel', 'Fünf Signature Drinks', '<b>Linden</b>', 'A unique experience']
+GABEN_BILDER = dict(seite=(bild('decke-hoch'), (.5, .5)), unterlagen=(bild('karte-2023'), (.5, .5)), papier=(bild('p-0906'), (.5, .3)), material=(bild('flaschen'), (.5, .5)), gaeste=(bild('theke'), (.5, .5)))
+LAUFWORTE = ['Walk on the Wild Side', '<b>Nachbarschafts-Mixology-Bar</b>', 'Du sagst, was du magst', 'Samstags SESSION', '<b>Linden</b>', 'Falstaff 91 Punkte']
 REIHENFOLGE = ['brief', 'vergleich', 'ideen', 'gefuege', 'seiten', 'unterlagen', 'handschrift', 'papier', 'material', 'dazu', 'schluss']   # der Feed kommt als eigene Bühne (feed_buehne.py)
 
-# ---------- Website: Ideen (Aufnahmen _werkbank/sb_ideen.js → ansichten/Ideen), Vergleich (vorher.js → ansichten/Vorher) ----------
+# ---------- Website: Ideen (Aufnahmen _werkbank/sb_ideen.js → ansichten/Ideen), Vergleich (sb_heute.py → ansichten/Vorher) ----------
 IDEEN = [   # (Aufnahme, Titel, Satz, Ausschnitt): jeder Satz nur aus dem, was auf der Aufnahme zu sehen ist
-    ('Ideen/start', 'Culinarium zuerst', 'Die Wortmarke groß über den Bildern eines Abends, darunter in einem Satz, was Culinarium ist, und der Weg zum nächsten Abend.', '50% 50%'),
-    ('Ideen/ebenen', 'Der Abend und das Haus', 'Gleich nach dem Auftakt steht, wessen Seite das ist: links die Abende an der langen Tafel, rechts die Bar, in der sie stattfinden.', '50% 50%'),
-    ('Ideen/ablauf', 'So läuft ein Abend', 'Aperitif, drei Gänge, fünf Signature Drinks, Tasting und Schulung: der Abend Schritt für Schritt, jeder mit seinem Bild.', '50% 50%'),
-    ('Ideen/glas', 'Das erste Glas', 'Momos Techniken mit Namen: Fatwashing, Milkwashing und Klärung mit Enzymen, jede in einem Satz erklärt.', '50% 50%'),
-    ('Ideen/gaenge', 'Rudis Zeilen', 'Die Gänge in Rudis eigener Schreibweise, in Versalien mit Schrägstrich, jeder neben seinem Teller.', '50% 50%'),
-    ('Ideen/plakate', 'Jeder Abend hat sein Plakat', 'Die Plakate seit dem ersten Pop-up an einer Wand, dicht wie eine Sammlung, mit dem Weg zu allen Abenden.', '50% 50%'),
-    ('Ideen/chronik', 'Seit 2023', 'Vom ersten Pop-up im Mai 2023 bis zum ausgebuchten September 2026, Jahr für Jahr mit Bild.', '50% 50%'),
-    ('Ideen/haus', 'Das Haus', 'Das Walk on the Wild Side als Ort aller Abende, mit Adresse und dem Weg zur Seite der Bar.', '50% 50%'),
-    ('Ideen/dirty', 'Aus demselben Haus', 'Dirty Chicken weiter unten auf der Startseite, im eigenen Violett, mit eigener Seite.', '50% 50%'),
-    ('Ideen/vitrinen', 'Alle Abende in Vitrinen', 'Je Jahr eine Vitrine, darin die Plakate mit Datum und Preis, so wie die Abende angekündigt waren.', '50% 50%'),
-    ('Ideen/team', 'Drei Leute, ein Haus', 'Derya, Momo und Rudi mit ihrer Rolle, ihrem Satz und ihrem Weg in Jahreszeilen.', '50% 50%'),
-    ('Ideen/weg', 'So findest du hin', 'Die Zeiten der Abende groß, darunter Adresse, Plus Code und die gezeichnete Karte von Linden.', '50% 50%'),
+    ('Ideen/start', 'Du sagst, was du magst.', 'Das Eckschild bei Nacht über den ganzen Schirm, links die Wortmarke, der Satz der Bar, die Zeiten und der Weg zum Reservieren.', '50% 50%'),
+    ('Ideen/bar', 'Eure Nachbarschafts-Mixology-Bar', 'Gleich nach dem Auftakt steht, wessen Bar das ist: wer sie führt, wo sie liegt und wann sie offen hat, in einem Schild mit Goldlinie.', '50% 50%'),
+    ('Ideen/gespraech', 'Was magst du?', 'Momos Frage als Weg durch die Seite: Momo bei der Arbeit in fünf Fotos an einer Goldlinie, von der Frage bis zum fertigen Glas.', '50% 50%'),
+    ('Ideen/gewoelbe', 'Ein Gewölbe über der Theke', 'Zwölf Stücke steigen aus verschiedenen Tiefen und schließen sich zum Bild der Decke.', '50% 50%'),
+    ('Ideen/chronik', 'Seit 2018 in Linden', 'Fotos und Jahre im Wechsel wie ein Schachbrett, die 91 von Falstaff als dunkle Zelle.', '50% 50%'),
+    ('Ideen/lauter', 'Samstags legt jemand auf', 'Das Plakat des nächsten DJ-Abends liegt wie ein Flyer auf dem Tresen, daneben die Woche der Bar.', '50% 50%'),
+    ('Ideen/tafel', 'Die lange Tafel', 'Ein breites Bild der Empore über zwei kleinen, daneben der Weg zu Feiern mit zehn bis zwanzig Gästen.', '50% 50%'),
+    ('Ideen/imhaus', 'Unter demselben Dach', 'Culinarium, Dirty Chicken und die Feste als Vitrine unter warmem Licht, die Links auf einer Linie.', '50% 50%'),
+    ('Ideen/technik', 'Aus dem Labor an die Theke', 'Milk Washing, Fat Washing und Enzyme als drei Platten, jede Technik in zwei Sätzen erklärt.', '50% 50%'),
+    ('Ideen/plakate', 'Jeder Abend ein Plakat', 'Das große Plakat auf Creme, alle DJ-Abende klein daneben; wer auf einen Abend zeigt, sieht sein Plakat.', '50% 50%'),
+    ('Ideen/raum', 'Dein Platz für heute Abend', 'An der Theke, am Tisch, auf der Empore, draußen an der Ecke: vier Plätze im Raum, jeder mit Bild und Satz.', '50% 50%'),
+    ('Ideen/licht', 'Das Licht geht an', 'Sechs Fotos Kante an Kante im Halbdunkel, das Licht geht eins nach dem anderen an, darüber «Bis 2 Uhr.».', '50% 50%'),
 ]
-VORHER = [   # Culinarium hat heute keine Website: «heute» sind Aufnahmen von Instagram vom 25.10.2026 (sb_heute.py), «neu» die neue Seite
+VORHER = [   # das Wild Side hat heute keine Website: «heute» ist das Profil auf Instagram (Aufnahme des Spähers, _quelle/aus-culinarium/spaeher), «neu» die neue Seite
     ('startseite', 'Startseite', 'Aus einem Profil wird eine Seite.',
-     ['Heute ist Culinarium ein Profil auf Instagram: der Name, drei Zeilen und die Beiträge. Neu steht eine Seite unter eigenem Namen, mit dem Weg zum nächsten Abend gleich oben.',
-      'Was ein Abend ist, steht in einem Satz, bevor die Seite erzählt: ein Menü, fünf passende Drinks, eine lange Tafel.',
-      'Das Haus, die Leute und Dirty Chicken haben je ihren eigenen Platz.'], 'index.html'),
-    ('abend', 'Der Abend', 'Der Abend an einem Ort.',
-     ['Heute stehen Menü, Uhrzeiten, Preis und der Weg zum Ticket im Text eines Beitrags. Neu hat der Abend eine eigene Seite.',
-      'Was auf den Tisch kommt, wann es losgeht und was es kostet, groß und klar, auch am Telefon.',
-      'Gebucht wird auf der Seite; ist ein Abend voll, trägt sich der Gast auf die Warteliste ein.'], 'abend.html'),
-    ('abende', 'Alle Abende', 'Jedes Plakat mit seinem Abend.',
-     ['Heute liegen die Plakate im Profil zwischen den anderen Beiträgen. Neu stehen alle Abende seit 2023 beisammen.',
-      'Je Jahr eine Vitrine, jedes Plakat mit Datum und Preis, so wie der Abend angekündigt war.',
-      'So sieht man auf einen Blick, wie Culinarium gewachsen ist.'], 'abende.html'),
+     ['Heute ist das Wild Side ein Profil auf Instagram: der Name, vier Zeilen und die Beiträge. Neu steht eine Seite unter eigenem Namen, mit Zeiten und dem Weg zum Reservieren gleich oben.',
+      'Was die Bar ausmacht, steht in einem Satz, bevor die Seite erzählt: Momo fragt, was du magst, und macht daraus einen Drink.',
+      'Drinks, DJ-Abende, Feiern, das Haus und der Besuch haben je ihre eigene Seite.'], 'index.html'),
 ]
-VERGLEICH_TEXT = 'Links, wie Culinarium heute im Netz steht, rechts die neue Seite. Den Griff schiebt ihr hin und her, daneben steht, was neu ist.'
+VERGLEICH_TEXT = 'Links, wie das Wild Side heute im Netz steht, rechts die neue Seite. Den Griff schiebt ihr hin und her, daneben steht, was neu ist.'
 
 
 def gefuege(z):
     n = [
-        ['fotos', 0, 0, 'Eure Fotos', 'von den Abenden', 'ein', 'Eure Fotos', 'Die Aufnahmen, die Rudi geschickt hat: die Tafel bei Kerzenlicht, Momo an der Bar, jeder Teller, die Mannschaft und die Bar von außen.', ['Tafel', 'Bar', 'Teller']],
-        ['plakate', 0, 1, 'Eure Plakate', 'seit 2023', 'ein', 'Eure Plakate', 'Jedes Plakat seit dem ersten Pop-up, mit Datum, Preis und seiner Farbe.', ['Plakate', 'Farbe je Abend']],
-        ['menues', 0, 2, 'Eure Menüs', 'in Rudis Zeilen', 'ein', 'Eure Menüs', 'Die Gänge in Rudis Schreibweise und Momos Signature Drinks, wie ihr sie angekündigt habt.', ['Gänge', 'Drinks']],
-        ['texte', 0, 3, 'Eure Worte', 'aus euren Beiträgen', 'ein', 'Eure Worte', 'Was ihr auf Instagram über eure Abende schreibt, ist der Grund jeder Zeile auf der Seite.', ['Beiträge', 'Bio']],
-        ['zeichen', 0, 4, 'Euer Logo', 'Rudis Original', 'ein', 'Euer Logo', 'CULINARIUM und «A UNiQUE EXPERiENCE» aus Rudis Original-Logo, in jeder Größe scharf.', ['Logo']],
-        ['haus', 0, 5, 'Das Haus', 'Walk on the Wild Side', 'ein', 'Das Haus', 'Die Bar in Linden mit Adresse, Zeiten und Geschichte, als Ort jedes Abends.', []],
+        ['fotos', 0, 0, 'Eure Fotos', 'von Abenden an der Bar', 'ein', 'Eure Fotos', 'Die Aufnahmen aus euren Beiträgen, von Google und vom Haus: Momo an der Theke, das Gewölbe, die Gläser, das Eckschild bei Nacht.', ['Bar', 'Decke', 'Gläser']],
+        ['plakate', 0, 1, 'Eure Plakate', 'seit September 2025', 'ein', 'Eure Plakate', 'Jedes SESSION-Plakat der DJ-Abende, mit Datum und Gesicht des Abends, dazu die weißen Plakate mit roter Wortmarke.', ['SESSION', 'Feste']],
+        ['karte', 0, 2, 'Eure Karten', 'Momos Drinks', 'ein', 'Eure Karten', 'Die Karte, die Momo immer wieder neu schreibt, die Klassiker und die Valentinskarte «Drunk in Love».', ['Drinks', 'Preise']],
+        ['texte', 0, 3, 'Eure Worte', 'aus euren Beiträgen', 'ein', 'Eure Worte', 'Was ihr auf Instagram schreibt, «Eure Nachbarschafts-Mixology-Bar», «Good Drinks, Good Music, Good Energy», ist der Grund jeder Zeile.', ['Beiträge', 'Bio']],
+        ['zeichen', 0, 4, 'Eure Wortmarke', 'drei Zeilen in Rot', 'ein', 'Eure Wortmarke', 'WALK / ON THE / WILD SIDE aus eurem Logo, nachgezogen, in jeder Größe scharf.', ['Wortmarke']],
+        ['mappe', 0, 5, 'Eure Mappe', 'Angebote zum Feiern', 'ein', 'Eure Mappe', 'Die Angebotsmappe der Bar: Privates Dinner, lange Tafel, die ganze Bar, Pauschalen und Preise.', []],
         ['bildwelt', 1, 0, 'Bildwelt', 'jedes Foto mit festem Platz', '', 'Bildwelt', 'Jedes Foto liegt in mehreren Größen vor, für den Rechner und fürs Handy, und sitzt mit seinem Ausschnitt fest.', ['Ausschnitt', 'Größen']],
-        ['abenddaten', 1, 1, 'Die Abende', 'eine Stelle', '', 'Die Abende', 'Jeder Abend mit Plakat, Datum, Uhrzeit, Preis und Plätzen an einer Stelle. Daraus entstehen die Vitrinen, die Chronik und die nächsten Termine.', ['Datum', 'Preis', 'Plakat']],
-        ['karten', 1, 2, 'Karte je Abend', 'Menü und Drinks', '', 'Karte je Abend', 'Das Menü und die Drinks eines Abends als Blatt, für den Tisch und als PDF.', []],
-        ['muster', 1, 3, 'Nacht und Kerze', 'auf den Flächen', '', 'Farben und Muster', 'Die Nacht der Bar, Schiefer und Warmweiß der Plakate und die Kerze aus euren Fotos, dazu ein feines Raster Ton in Ton.', ['Farben', 'Raster']],
-        ['zeilen', 1, 4, 'Rudis Zeilen', 'als Schrift', '', 'Rudis Zeilen', 'Die Gänge in Versalien mit Schrägstrich, wie Rudi sie schreibt, als feste Schrift der Seite.', []],
-        ['chronik', 1, 5, 'Chronik', '2017 bis heute', '', 'Chronik', 'Die Bar seit 2017, das erste Pop-up 2023, Rudi seit 2024 und der ausgebuchte September 2026.', []],
-        ['start', 2, 0, 'Startseite', 'der Abend zuerst', 'seite', 'Startseite', 'Vom Auftakt über das erste Glas und drei Gänge zu den Plakaten, zum Haus, zu den Leuten und zu Dirty Chicken. Von hier führt ein Weg zu jeder Seite.', ['Glas', 'Gänge', 'Plakate']],
-        ['abend', 2, 1, 'Der Abend', 'buchen und Warteliste', 'seite', 'Der Abend', 'Was auf den Tisch kommt, wann und wie viel, die nächsten Abende und die Warteliste.', ['Menü', 'Termine']],
-        ['abende', 2, 2, 'Alle Abende', 'in Vitrinen', 'seite', 'Alle Abende', 'Jeder Abend mit seinem Plakat, Jahr für Jahr.', []],
-        ['team', 2, 3, 'Haus und Team', 'Bar und Leute', 'seite', 'Das Haus und das Team', 'Die Bar in Linden, Derya, Momo und Rudi, und der Weg zur Haasemannstraße.', []],
-        ['dc', 2, 4, 'Dirty Chicken', 'das Pop-up', 'seite', 'Dirty Chicken', 'Das Pop-up aus demselben Haus mit eigener Seite im eigenen Violett.', []],
-        ['buchen', 3, 0, 'Platz buchen', 'mit Ticket', 'sys', 'Platz buchen', 'Im Entwurf gespielt: einen Abend wählen, Plätze wählen, zahlen, das Ticket kommt per Mail. Welches Kassensystem es wird, entscheidet ihr.', []],
-        ['warteliste', 3, 1, 'Warteliste', 'ins Werkzeug', 'sys', 'Warteliste', 'Wer keinen Platz mehr bekommt, trägt sich ein. Der Eintrag kommt im Werkzeug für die Gäste an, nie als Mail.', []],
-        ['pdf', 3, 2, 'Karten als PDF', 'zum Teilen', 'sys', 'Karten als PDF', 'Jede Karte eines Abends liegt zusätzlich als PDF bereit.', []],
-        ['studio', 3, 3, 'Sieben Werkzeuge', 'für euch', 'sys', 'Sieben Werkzeuge', 'Mit ihnen tragt ihr Termine, Menüs, Plakate und Texte selbst ein; jede Änderung wartet als Entwurf.', ['Termine', 'Menüs', 'Plakate']],
+        ['abende', 1, 1, 'Die DJ-Abende', 'eine Stelle', '', 'Die DJ-Abende', 'Jeder DJ-Abend mit Datum, Namen und Plakat an einer Stelle. Daraus entstehen die Woche, die Plakatwand und der nächste Abend auf der Startseite.', ['Datum', 'Plakat']],
+        ['zeiten', 1, 2, 'Zeiten und Adresse', 'eine Stelle', '', 'Zeiten und Adresse', 'Donnerstag bis Samstag ab 19 Uhr, die Ecke, Telefon und Instagram stehen einmal und erscheinen überall gleich.', []],
+        ['muster', 1, 3, 'Nacht und Gold', 'wie das Eckschild', '', 'Farben und Form', 'Die Nacht der Bar, das Creme der weißen Plakate, Gold als Haarlinie wie am Eckschild, Rot nur als Punkt.', ['Farben', 'Eckschild']],
+        ['uhr', 1, 4, 'Von 19 bis 2 Uhr', 'als Faden', '', 'Die Uhrzeiten', 'Jedes Kapitel der Startseite trägt eine Uhrzeit, vom Auftakt um 19 Uhr bis zum Fuß um 2 Uhr.', []],
+        ['chronik', 1, 5, 'Chronik', '2018 bis 2027', '', 'Chronik', 'Momo seit 2018 in Linden, die Wiedereröffnung am 9. November 2023, die DJ-Abende seit 2025, Falstaff 2027.', []],
+        ['start', 2, 0, 'Startseite', 'ein Abend an der Ecke', 'seite', 'Startseite', 'Vom Eckschild über Momos Frage und das Gewölbe zu den DJ-Abenden, zur langen Tafel und zu den Nachbarn im Haus.', ['Frage', 'Gewölbe', 'SESSION']],
+        ['drinks', 2, 1, 'Drinks', 'Was magst du?', 'seite', 'Drinks', 'Das Gespräch an der Theke, drei Techniken aus dem Labor und die Klassiker.', ['Gespräch', 'Klassiker']],
+        ['programm', 2, 2, 'Programm', 'Lauter', 'seite', 'Programm', 'Die Woche, die DJ-Abende mit ihren Plakaten, Gastschichten und Feste.', []],
+        ['feiern', 2, 3, 'Feiern', 'Euer Abend', 'seite', 'Feiern', 'Privates Dinner, lange Tafel und die ganze Bar mit Preisen und Anfrage.', []],
+        ['haus', 2, 4, 'Haus und Besuch', 'unter dieser Decke', 'seite', 'Das Haus und der Besuch', 'Der Raum, Derya und Momo, die Jahre, die Zeiten und der Weg an die Ecke.', []],
+        ['reservieren', 3, 0, 'Reservieren', 'per Nachricht', 'sys', 'Reservieren', 'Im Entwurf gespielt: Plätze antippen, Abend und Uhrzeit wählen, die Bar bestätigt per Nachricht. Es wird nichts verschickt.', []],
+        ['anfrage', 3, 1, 'Feiern anfragen', 'ins Werkzeug', 'sys', 'Feiern anfragen', 'Wer feiern will, schreibt Format, Tag und Zahl der Gäste. Die Anfrage kommt im Werkzeug für die Gäste an, nie als Mail.', []],
+        ['pdf', 3, 2, 'Karte als PDF', 'zum Teilen', 'sys', 'Karte als PDF', 'Jede Karte liegt zusätzlich als PDF bereit.', []],
+        ['studio', 3, 3, 'Sieben Werkzeuge', 'für euch', 'sys', 'Sieben Werkzeuge', 'Mit ihnen tragt ihr Karte, DJ-Abende, Plakate und Texte selbst ein; jede Änderung wartet als Entwurf.', ['Karte', 'DJ-Abende', 'Plakate']],
     ]
-    k = [['fotos', 'bildwelt'], ['plakate', 'abenddaten'], ['plakate', 'muster'], ['menues', 'karten'], ['menues', 'zeilen'], ['texte', 'start'], ['zeichen', 'muster'], ['haus', 'chronik'],
-         ['bildwelt', 'start'], ['bildwelt', 'team'], ['abenddaten', 'abend'], ['abenddaten', 'abende'], ['zeilen', 'start'], ['chronik', 'team'], ['muster', 'dc'],
-         ['abend', 'buchen'], ['abend', 'warteliste'], ['karten', 'pdf'], ['studio', 'abend'], ['studio', 'abende'], ['studio', 'start']]
+    k = [['fotos', 'bildwelt'], ['plakate', 'abende'], ['plakate', 'muster'], ['karte', 'pdf'], ['karte', 'drinks'], ['texte', 'start'], ['zeichen', 'muster'], ['mappe', 'feiern'],
+         ['bildwelt', 'start'], ['bildwelt', 'haus'], ['abende', 'programm'], ['abende', 'start'], ['zeiten', 'haus'], ['uhr', 'start'], ['chronik', 'haus'],
+         ['feiern', 'anfrage'], ['haus', 'reservieren'], ['studio', 'programm'], ['studio', 'drinks'], ['studio', 'start']]
     return {'sp': ['Von euch', 'Daraus gemacht', 'Die Seiten', 'Im Hintergrund'], 'fx': [0.118, 0.372, 0.628, 0.882], 'n': n, 'k': k,
-            'tour': ['fotos', 'plakate', 'menues', 'buchen', 'warteliste', 'studio'], 'fuss': 'Folgt einer Linie: Sie führt von dem, was von euch kommt, zur Seite',
+            'tour': ['fotos', 'plakate', 'karte', 'reservieren', 'anfrage', 'studio'], 'fuss': 'Folgt einer Linie: Sie führt von dem, was von euch kommt, zur Seite',
             'start': ['Übersicht', 'Von euch zur Seite', 'Tippt eine Kachel an, dann leuchtet ihr Weg. Oder startet den Rundgang.']}
 
 
 # ---------- Für eure Gäste (Gäste-Funktionen der Website, Aufnahmen sb_ideen.js → ansichten/Gaeste) ----------
 GAESTE = [
-    ('buchen', 'Platz buchen', 'Einen der nächsten Abende wählen, Plätze wählen und zahlen; das Ticket kommt per Mail. Im Entwurf ist die Zahlung nur gespielt.', '50% 0'),
-    ('warteliste', 'Die Warteliste', 'Ist ein Abend voll, trägt sich der Gast auf dem Ticket ein: Freitag, Samstag oder egal, wie viele Plätze, Name und Mail.', '50% 50%'),
-    ('menue', 'Was auf den Tisch kommt', 'Aperitif, drei Gänge und fünf Drinks auf einen Blick, mit Bildern aus euren Abenden.', '50% 50%'),
-    ('zeiten', 'Wann und wie viel', 'Freitag ab 19 Uhr, Samstag ab 17 Uhr, die Plätze an der Tafel und der Preis des letzten Abends, groß und klar.', '50% 50%'),
-    ('fragen', 'Gut zu wissen', 'Was Gäste vor ihrem ersten Abend wissen wollen, mit einer Antwort zum Antippen.', '50% 50%'),
-    ('weg', 'Der Weg', 'Die Bar an der Ecke Haasemannstraße und Rampenstraße, auf einer Karte im Stil des Hauses.', '50% 50%'),
+    ('reservieren', 'Einen Platz reservieren', 'Hocker antippen, Abend und Uhrzeit wählen, Name und Telefon; die Bar bestätigt per Nachricht. Im Entwurf wird nichts verschickt.', '50% 0'),
+    ('wann', 'Wann offen ist', 'Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr, der heutige Tag hervorgehoben.', '50% 50%'),
+    ('feiern', 'Wie viele seid ihr?', 'Drei Formate vom Privaten Dinner bis zur ganzen Bar; wer sein Format wählt, kommt direkt zu Preisen und Anfrage.', '50% 50%'),
+    ('woche', 'Die Woche', 'Donnerstag live, Freitag Momo an der Bar, Samstag die DJ-Abende: drei Abende auf einen Blick.', '50% 50%'),
+    ('fragen', 'Was Gäste vorher fragen', 'Karte, Preise, Drinks ohne Alkohol, Eintritt, Essen, draußen sitzen, feiern: sieben Antworten zum Aufklappen.', '50% 50%'),
+    ('wo', 'Die Ecke', 'Haasemannstraße 13, Ecke Rampenstraße, mit Stadtbahn und Karte von Linden-Mitte.', '50% 50%'),
 ]
 GAESTE_TEL = []
-GAESTE_KNOEPFE = [('Platz buchen', '../abend.html#termine-buchen'), ('Auf die Warteliste', '../abend.html#warteliste'), ('Der Weg', '../weg.html')]
-GAESTE_LINK = '../abend.html'
-GABEN['gaeste'] = 'Platz buchen, die Warteliste, das Menü, die Zeiten, die Fragen und der Weg.'
+GAESTE_KNOEPFE = [('Platz reservieren', '../besuch.html#reservieren'), ('Feiern anfragen', '../tafel.html#anfragen'), ('Der Weg', '../besuch.html#wo')]
+GAESTE_LINK = '../besuch.html'
+GABEN['gaeste'] = 'Reservieren, die Zeiten, Feiern, die Woche, die Fragen und der Weg.'
 
 # ---------- Handschrift (marke_werkbank.py) ----------
 HANDSCHRIFT = dict(
-    text='Eure Plakate haben schon alles, was eine Marke braucht: die Wortmarke, zwei feste Farben und je Abend eine eigene. Die Seite nimmt das auf, dazu eine weiche Titelschrift für die großen Zeilen, Rudis Zeilen in Versalien und die Kerze aus euren Fotos.',
-    marke_etik='Logo und Zeichen', marke_text='Euer Logo kommt aus Rudis Original und bleibt in jeder Größe scharf: Schiefer auf Warmweiß, Warmweiß auf Dunkel, nie neu gesetzt.',
-    schriften=[], farben=[], farben_etik='aus Plakaten und Fotos',
-    muster_etik='Das feine Raster',
-    muster_text='Auf den dunklen Flächen liegt ein feines Raster Ton in Ton. Man findet es auf der Seite, auf den Karten und auf jeder Drucksache.',
+    text='Eure Bar hat schon alles, was eine Marke braucht: die Wortmarke in Rot, das Eckschild mit Goldrahmen und die Plakate in Creme. Die Seite nimmt das auf, dazu eine Antiqua mit Glanz für die großen Zeilen.',
+    marke_etik='Wortmarke', marke_text='Eure Wortmarke kommt aus dem Logo der Bar und bleibt in jeder Größe scharf: Rot auf Creme, Creme auf der Nacht, nie neu gesetzt.',
+    schriften=[], farben=[], farben_etik='aus Schild, Plakaten und Fotos',
+    muster_etik='Das Ornament',
+    muster_text='Auf ruhigen Flächen liegt ein feines Ornament in Gold-Haarlinien, Ton in Ton. Man findet es auf der Seite und auf den Drucksachen.',
     knopf_text='Diese Knöpfe darf man drücken.', knoepfe=('Ausprobieren', 'Noch einmal'))
 
 # ---------- Feed, Papier, Dateien ----------
 FEED = dict(art='bogen', bogen=[1, 2, 3, 4, 5, 6, 7, 8, 9], bogen_zeile='Die ersten drei Reihen',
             text1='', text2='Tippt auf den Bildschirm, dann scrollt ihr durch den Feed wie am Handy.', kacheln=[])
 PAPIER = dict(
-    etik_text='An der Theke stehen Momos Drinks auf Untersetzern: zwölf Ideen in den Abendfarben eurer Plakate, mit dem C und euren Zeilen.',
-    druck_text='Von der Karte am Platz bis zum Deckblatt für die Presse, dazu <a href="../sticker/index.html" target="_blank" rel="noopener">40 Sticker</a> und <a href="../beigaben/index.html" target="_blank" rel="noopener">fünf Beigaben</a>.',   # Kapitel VI (Prüfchat Gestaltung 29.10.2026)
-    orte_e=[(3, 6, 28, -3), (36, 6, 28, 2), (69, 6, 28, -2), (3, 54, 28, 2), (36, 54, 28, -3), (69, 54, 28, 3)],   # drei mal zwei mit Abstand, nichts überdeckt (Robert 29.10.2026)
-    orte_d=[('karte', 3, 16, 29, -3, 0), ('ausgebucht', 35.5, 16, 29, 2, 0), ('dc-flyer', 68, 16, 29, -2, 0)])   # drei Blätter nebeneinander (Robert 29.10.2026)
+    etik_text='An der Theke stehen Momos Drinks auf Untersetzern: zwölf Ideen mit der Wortmarke, dem Eckschild und den Wellen der SESSION-Plakate.',
+    druck_text='Von der Karte bis zum Plakat für die Tür, dazu <a href="../sticker/index.html" target="_blank" rel="noopener">Sticker</a> und <a href="../beigaben/index.html" target="_blank" rel="noopener">Beigaben</a>.',
+    orte_e=[(3, 6, 28, -3), (36, 6, 28, 2), (69, 6, 28, -2), (3, 54, 28, 2), (36, 54, 28, -3), (69, 54, 28, 3)],
+    orte_d=[('karte', 3, 16, 29, -3, 0), ('tuer', 35.5, 16, 29, 2, 0), ('session', 68, 16, 29, -2, 0)])
 PAPIER_SEITE = dict(
-    breit={'karte', 'karte-r', 'ticket', 'ticket-r', 'briefbogen', 'umschlag'},
+    breit={'karte', 'karte-r', 'briefbogen', 'umschlag', 'gutschein', 'gutschein-r'},
     formen=set(),
-    auslage=[('karte', 2, 2, 26, -6), ('ticket', 32, 8, 58, 3), ('drink-1', 74, 44, 17, 7), ('drink-2', 56, 56, 17, -4), ('karte-r', 6, 50, 26, 4), ('umschlag', 28, 70, 42, -3)],
+    auslage=[('karte', 2, 2, 26, -6), ('gutschein', 32, 8, 58, 3), ('drink-1', 74, 44, 17, 7), ('drink-2', 56, 56, 17, -4), ('karte-r', 6, 50, 26, 4), ('umschlag', 28, 70, 42, -3)],
     karton={'karte': ('', [('karte', 44, 'Vorderseite'), ('karte-r', 44, 'Rückseite')]),
-            'drinks': ('', [('drink-1', 30, 'Fatwashing'), ('drink-2', 30, 'Milkwashing'), ('drink-3', 30, 'Enzyme')]),
-            'ticket': ('', [('ticket', 88, 'Vorderseite'), ('ticket-r', 88, 'Rückseite')]),
+            'drinks': ('', [('drink-1', 30, 'Milk Washing'), ('drink-2', 30, 'Fat Washing'), ('drink-3', 30, 'Enzyme')]),
+            'gutschein': ('', [('gutschein', 88, 'Vorderseite'), ('gutschein-r', 88, 'Rückseite')]),
             'briefpapier': ('', [('umschlag', 92, 'Umschlag'), ('briefbogen', 38, 'Briefbogen')])},
-    titel={'karte': ['Die Karte', 'am Platz.'], 'drinks': ['Ein Kärtchen', 'zu jedem Drink.'], 'ticket': ['Ein Ticket', 'zum Mitnehmen.'], 'briefpapier': ['Briefbogen', 'und Umschlag.']},
-    schatten={'karte', 'drinks', 'ticket', 'briefpapier'},
+    titel={'karte': ['Die Karte', 'für die Theke.'], 'drinks': ['Ein Kärtchen', 'zu jeder Technik.'], 'gutschein': ['Ein Gutschein', 'für einen Abend.'], 'briefpapier': ['Briefbogen', 'und Umschlag.']},
+    schatten={'karte', 'drinks', 'gutschein', 'briefpapier'},
     flaeche=['fl--papier', 'fl--nacht tapete-leicht', 'fl--papier', 'fl--creme'],
     etik_titel=('Untersetzer', 'für die Theke.'),
-    etik_text='Zum Drink an der Theke gehört ein Untersetzer. Hier sind {n} als Idee: sechs in den Abendfarben eurer Plakate, sechs auf der Nacht der Bar mit euren Zeilen.',
+    etik_text='Zum Drink an der Theke gehört ein Untersetzer. Hier sind {n} als Idee: sechs auf Creme mit roter Wortmarke und den Wellen der Plakate, sechs auf der Nacht der Bar mit Goldlinie.',
     etik_kap='Die Untersetzer', etik_kopf=['Zwölf', 'Untersetzer.'],
-    etik_kopftext='Die Farben kommen von euren Plakaten, das C aus Rudis Wortmarke, die Zeilen von euren Abenden.',
-    druck_text='Papier, das bei euch auf der Tafel, an der Theke oder im Umschlag landen könnte. Was nicht passt, lasst ihr einfach weg.',
+    etik_kopftext='Die Wortmarke kommt aus eurem Logo, die Wellen von den SESSION-Plakaten, die Goldlinie vom Eckschild.',
+    druck_text='Papier, das bei euch an der Theke, an der Tür oder im Umschlag landen könnte. Was nicht passt, lasst ihr einfach weg.',
     etik_auslage=[(2, 4, 30, -5), (35, 0, 30, 4), (68, 6, 30, -3), (4, 36, 30, 3), (37, 36, 30, -4), (70, 40, 28, 5), (12, 66, 28, 2), (46, 68, 28, -3), (0, 0, 0, 0), (0, 0, 0, 0), (0, 0, 0, 0), (0, 0, 0, 0)])
-# Weitere Drucksachen (Prüfchat Gestaltung 29.10.2026): Karton, Titel und Breite je Stück aus papier_neu_seite.json (geschrieben von papier.py)
+# Weitere Drucksachen: Karton, Titel und Breite je Stück aus papier_neu_seite.json (geschrieben von papier.py)
 try:
     for _k, _v in json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'papier_neu_seite.json'), encoding='utf-8')).items():
         PAPIER_SEITE['karton'][_k] = (_v['karton'][0], [tuple(x) for x in _v['karton'][1]]); PAPIER_SEITE['titel'][_k] = _v['titel']
@@ -256,72 +253,72 @@ try:
 except FileNotFoundError:
     pass
 MATERIAL = dict(
-    text='Was für den Entwurf neu entstanden ist, liegt sortiert in einem Ordner: die Karten als PDF, die Drucksachen, die Untersetzer, die Sticker, die Beigaben, die Postkarten, die Beiträge für Instagram und euer Logo als Datei.',
-    streu=[(bild('m3'), 'Gläser mit Goldrand', -4, '-0.05'), (bild('schaum'), 'Schaum aus dem Siphon', 3, '0.04'), (bild('m5'), 'Haselnüsse', -2, '-0.07'),
-           (bild('flaschen'), 'An der Bar', 4, '0.05'), (bild('baiser'), 'Baiser mit Beeren', -3, '-0.04')],   # kein Foto, das sonst auf der Werkbank steht
-    druck_satz='Von der Karte am Platz bis zur Einladung für Stammgäste.',
-    zeichen=[('Euer Logo', '../../_quelle/logo/original/culinarium-logo-original.svg', 'Culinarium Logo.svg')],   # Rudis Original (28.10.2026), wie auf der Website
-    zeichen_satz='Rudis Original-Logo als Zeichnung, die in jeder Größe scharf bleibt.',
+    text='Was für den Entwurf neu entstanden ist, liegt sortiert in einem Ordner: die Karten als PDF, die Drucksachen, die Untersetzer, die Sticker, die Beigaben, die Postkarten, die Beiträge für Instagram und eure Wortmarke als Datei.',
+    streu=[(bild('wf-coupes-oben'), 'Gläser mit Goldrand', -4, '-0.05'), (bild('rm-glaeser'), 'Hinter der Theke', 3, '0.04'), (bild('wf-pink'), 'Ein Drink mit Schaum', -2, '-0.07'),
+           (bild('wf-giesst'), 'Momo gießt ein', 4, '0.05'), (bild('wf-erdbeer'), 'Highball mit Erdbeere', -3, '-0.04')],
+    druck_satz='Von der Karte für die Theke bis zum Plakat für die Tür.',
+    zeichen=[('Eure Wortmarke', '../../_werkzeuge/oberflaeche/kleid/wildside-marke.svg', 'Walk on the Wild Side Wortmarke.svg')],
+    zeichen_satz='Die Wortmarke der Bar als Zeichnung, die in jeder Größe scharf bleibt.',
     auslage=[])
 AUSBLICK = dict(text='Ein paar Dinge fehlen noch.', gross=('', '', ''), punkte=[], studio='')
-SCHLUSS = dict(bild=bild('barnacht'))
+SCHLUSS = dict(bild=bild('schild-ecke'))
 KAPITEL = {
     'vergleich': dict(text=VERGLEICH_TEXT),
     'ideen': dict(text='Hinter jeder Stelle der Seite steht ein Gedanke. Zwölf davon sind hier aufgenommen, so wie die Seite heute aussieht.'),
     'gefuege': dict(text='Links, was von euch kommt, in der Mitte, was daraus geworden ist, rechts die Seiten und was im Hintergrund mitläuft.'),
     'seiten': dict(text='Eine Seite aussuchen, mit den Pfeilen weiterblättern. Rechts dieselbe Stelle am Handy, mit «Öffnen» seid ihr auf der echten Seite.'),
     'unterlagen': dict(text=UNTERLAGEN['text']),
-    'gaeste': dict(text='Wer einen Abend bucht, will vorher wissen, was auf den Tisch kommt, wann es losgeht und wie er hinfindet. Auf der neuen Seite steht das an einem Ort, und ist ein Abend voll, bleibt der Gast auf der Warteliste.'),
-    'papier': dict(text='Für Culinarium ist einiges entstanden: zwölf Untersetzer für Momos Drinks, 24 Drucksachen von der Karte am Platz bis zum Flyer, Mails für eure Gäste und eine Postkarte zu jedem Plakat.'),
-    'material': dict(text='Wer eine Datei braucht, findet sie hier: jede Karte als PDF, jede Drucksache, jeden Untersetzer und euer Logo in voller Schärfe.'),
+    'gaeste': dict(text='Wer vorbeikommen will, will vorher wissen, wann offen ist, ob noch Platz ist und wie er hinfindet. Wer feiern will, sucht Format und Preis. Auf der neuen Seite steht das an einem Ort.'),
+    'papier': dict(text='Für das Wild Side ist einiges entstanden: zwölf Untersetzer für Momos Drinks, Drucksachen von der Karte bis zum Plakat für die Tür, Mails für eure Gäste und eine Postkarte zu jedem DJ-Abend.'),
+    'material': dict(text='Wer eine Datei braucht, findet sie hier: jede Karte als PDF, jede Drucksache, jeden Untersetzer und eure Wortmarke in voller Schärfe.'),
     'geprueft': dict(text='Bevor etwas davon zu euch kommt, wird es geöffnet, gelesen und gedrückt: am Handy wie am Rechner, jede Karte gegen eure Angaben, jedes Werkzeug in jedem Schritt. Das Blatt fasst es zusammen, der Bericht erzählt es ganz.'),
     'schluss': dict(text='Sagt mir offen, was euch am Entwurf gefällt und was nicht. Ändern lässt sich alles.'),
 }
-MEINS = ['Der Brief und alle Sätze der Werkbank', 'Titel und Sätze zu den Ideen, zum Gefüge, zu den Drucksachen und Untersetzern', 'Feldnamen und Zeilen auf Ticket und Platzkarte', 'Texte zu den Beiträgen des Feeds']
+MEINS = ['Der Brief und alle Sätze der Werkbank', 'Titel und Sätze zu den Ideen, zum Gefüge, zu den Drucksachen und Untersetzern', 'Feldnamen und Zeilen auf Gutschein und Karte', 'Texte zu den Beiträgen des Feeds']
 
-# ---------- Geprüft (nur Belegtes; Belege in website/_werkbank/pruefung/, Karten von La Carte, Werkzeuge aus ihren Lieferungen) ----------
+# ---------- Geprüft (nur Belegtes; Belege in website/_werkbank/pruefung/, Werkzeuge aus ihren Lieferungen) ----------
 import datetime as _dt
 GEPRUEFT = [
     ('Die Website', 'seite', ['Alle Seiten in der Technik von Safari und von Chrome, am Handy und am Rechner: nichts läuft seitlich über, kein Skriptfehler, kein kaputtes Bild.',
-                              'Auf vier- und sechsfach gebremster Rechenleistung gemessen, wie auf einem schwachen Gerät: Das Scrollen bleibt flüssig.',
-                              'Jede Angabe kommt aus einer Stelle mit Quelle: Termine, Zeiten, Adresse, Menüs und Preise.']),
+                              'In vier Breiten angesehen, vom Handy bis zum großen Bildschirm.',
+                              'Jede Angabe kommt aus einer Stelle mit Quelle: Zeiten, Adresse, Telefon, DJ-Abende und Preise.']),
     ('Die Karten', 'karte', ['Jede Karte aus euren Angaben gelesen, nicht abgetippt.',
                              'Was ihr klären müsst, steht gesondert in der Liste der offenen Punkte.']),
     ('Die Werkzeuge', 'schloss', ['Jedes der sieben Werkzeuge in einem eigenen Durchgang gebaut und Knopf für Knopf bedient, nur mit erfundenen Daten.',
                                   'Kein Werkzeug verschickt etwas von selbst, keines öffnet ein Mailprogramm.']),
 ]
 GEPRUEFT_PUNKTE = [
-    ('Die Website', 'Jede Seite einmal am Handy und einmal am Rechner, in Safari und in Chrome. Auch ein älteres Gerät scrollt ruhig durch, nichts rutscht zur Seite.'),
-    ('Die Karten', 'Gelesen aus euren eigenen Angaben, nicht abgeschrieben. Jeder Gang und jeder Drink steht so, wie ihr ihn angekündigt habt.'),
+    ('Die Website', 'Jede Seite am Handy und am Rechner, in vier Breiten. Nichts rutscht zur Seite, kein Bild fehlt.'),
+    ('Die Karten', 'Gelesen aus euren eigenen Angaben, nicht abgeschrieben. Jeder Drink und jeder Preis steht so, wie ihr ihn angekündigt habt.'),
     ('Die Werkzeuge', 'Jedes der sieben in seinem eigenen Durchgang bedient, mit erfundenen Gästen und Zahlen. Keines schickt von sich aus eine Nachricht.'),
-    ('Eure Daten', 'Gäste bekommen keine Kekse in den Browser. Was sie buchen oder auf die Warteliste schreiben, landet bei euch, und im Entwurf nie beim echten Haus.'),
+    ('Eure Daten', 'Gäste bekommen keine Kekse in den Browser. Was sie reservieren oder anfragen, landet bei euch, und im Entwurf nie bei der echten Bar.'),
 ]
-GEPRUEFT_TRIO = [(bild('pass'), 1.6, (.5, .5), 'Am Pass'), (bild('klaeren'), 1.6, (.5, .5), 'An der Bar'), (bild('schildnacht'), 1.6, (.5, .5), 'An der Ecke')]
+GEPRUEFT_TRIO = [(bild('wf-theke'), 1.6, (.5, .5), 'An der Theke'), (bild('rueckbar'), 1.6, (.5, .5), 'Die Rückbar'), (bild('pl-ecke'), 1.6, (.5, .5), 'An der Ecke')]
 GEPRUEFT_OFFEN = 'Ein paar Fragen könnt nur ihr beantworten: wer Vertragspartner ist und ins Impressum kommt, wer an welchem Foto und Plakat die Rechte hat und wer welches Werkzeug bekommt.'
 GEPRUEFT_EIN = 'Hier steht in einfachen Worten, was an Website, Karten und Werkzeugen angesehen und ausprobiert wurde, und was danach noch bei euch liegt.'
 GEPRUEFT_NAV = ['Website', 'Karten', 'Werkzeuge', 'Daten', 'Offen']
 GEPRUEFT_MEHR = [
-    ('Die Website', 'seite', 'Neun Seiten: sieben für eure Gäste von der Startseite bis Dirty Chicken, dazu Impressum und Datenschutz.', [
+    ('Die Website', 'seite', 'Acht Seiten: sechs für eure Gäste von der Startseite bis zum Besuch, dazu Impressum und Datenschutz.', [
         'Jede Seite in Safari und in Chrome geöffnet, auf dem Handy und auf dem Rechner. Nichts verrutscht zur Seite, kein Bild fehlt, kein Skript bricht ab.',
-        'Mit vier- und sechsfach gebremstem Rechner gescrollt, wie auf einem älteren Gerät. Die Seiten laufen ruhig, beim Laden springt nichts.',
-        'Termine, Zeiten, Adresse, Menüs und Preise stehen an genau einer Stelle, mit ihrer Quelle, und jede Seite liest von dort.']),
-    ('Die Karten', 'karte', 'Die Karte jedes Abends: Menü in Rudis Zeilen und Momos Drinks.', [
+        'In vier Breiten angesehen, von 390 bis 1440 Pixel. Beim Laden springt nichts.',
+        'Zeiten, Adresse, Telefon, DJ-Abende und Preise stehen an genau einer Stelle, mit ihrer Quelle, und jede Seite liest von dort.']),
+    ('Die Karten', 'karte', 'Die Karten der Bar: Momos Drinks mit Zutaten und Preis.', [
         'Gelesen aus euren Beiträgen und Unterlagen, nicht abgeschrieben.',
         'Neu gesetzt im Kleid der neuen Seite, die Schriften fest eingebettet.']),
-    ('Die sieben Werkzeuge', 'schloss', 'Die Werkzeuge, mit denen ihr Termine, Menüs, Plakate und Gäste selbst führt.', [
+    ('Die sieben Werkzeuge', 'schloss', 'Die Werkzeuge, mit denen ihr Karte, DJ-Abende, Plakate und Gäste selbst führt.', [
         'Jedes Werkzeug in seinem eigenen Durchgang gebaut und Schritt für Schritt bedient, mit erfundenen Gästen und Zahlen.',
         'Kein Werkzeug schickt etwas von sich aus und keines öffnet ein Mailprogramm. Antworten an Gäste bleiben als Entwurf im Werkzeug, bis jemand sie selbst verschickt.']),
     ('Eure Daten und die eurer Gäste', 'schild', 'Was gespeichert wird und was nicht.', [
         'Gäste bekommen keine Cookies. Im Entwurf werden keine Besuche gezählt; ' + _nf.klein(_werkzeugname('besuche')) + ' zeigt erfundene Zahlen.',
-        'Buchung und Warteliste laufen im Entwurf nur zur Probe; es fließt kein Geld, und nichts davon erreicht das echte Haus.',
+        'Reservieren und Feiern anfragen laufen im Entwurf nur zur Probe; nichts davon erreicht die echte Bar.',
         'Suchmaschinen sehen den Entwurf nicht, bis ihr ihn freigebt.']),
     ('Was offen bleibt', 'auge', 'Das könnt nur ihr entscheiden.', [
-        'Wer Vertragspartner ist und im Impressum steht, und wie Culinarium und die Bar zueinander stehen.',
+        'Wer Vertragspartner ist und im Impressum steht, und unter welcher E-Mail-Adresse die Bar erreichbar sein soll.',
         'Wer an welchem Foto und an den Plakaten die Rechte hat.',
         'Im Entwurf öffnen sich die Werkzeuge ohne Anmeldung. Zum Umzug bekommt jede Person ihren eigenen Zugang.'])]
-PRUEFDATUM = _dt.date(2026, 10, 30)
-STEMPEL_TEXT = f'GEPRÜFT · CULINARIUM · {PRUEFDATUM:%d.%m.%Y} ·'
-GEPRUEFT_BILD = bild('pass')
+PRUEFDATUM = _dt.date(2026, 10, 31)
+STEMPEL_TEXT = f'GEPRÜFT · WILD SIDE · {PRUEFDATUM:%d.%m.%Y} ·'
+GEPRUEFT_BILD = bild('wf-theke')
 
 # ================================================================ Bausteine (Vorlage Schäfli, kopiert und umgeschrieben; Kit unverändert)
 import sys as _sys
@@ -343,23 +340,22 @@ FLAECHE.update(brief='fl--papier tapete-hell', vergleich='fl--nacht tapete-leich
 CSS += '''
 /* ---------- Leichte Tapete: das feine Raster der Website auf jeder dunklen Fläche ---------- */
 .tapete-leicht{background-image:linear-gradient(var(--tl),var(--tl)),var(--muster);background-size:auto,var(--musterb) auto;background-position:0 0,50% 0}
-.fl--nacht.tapete-leicht{--tl:rgba(22,21,26,.35)}
-.fl--blau.tapete-leicht{--tl:rgba(58,56,69,.3)}
-.fl--tief.tapete-leicht{--tl:rgba(28,27,33,.35)}
-.tapete-hell{background-image:url(/assets/zeichen/tapete-hell.svg);background-size:224px auto;background-position:50% 0}
-/* ---------- Titel wie auf der Website: Fraunces mit weichen Enden, leicht, normale Schreibung, Betonung nur über die Farbe, nie fett, nie kursiv ---------- */
-.zt,.t1,.t2,.t3,.wfen__t,.ins-t h3,.rgw .wfa__texte h3,.sbf-text h3,.hs2-ww+small{font-weight:340!important;font-variation-settings:"SOFT" 100,"WONK" 0}
+.fl--nacht.tapete-leicht{--tl:rgba(19,14,13,.35)}
+.fl--blau.tapete-leicht{--tl:rgba(51,40,31,.3)}
+.fl--tief.tapete-leicht{--tl:rgba(28,21,19,.35)}
+.tapete-hell{background-image:url(/werkbank/eigen/tapete-hell.svg);background-size:150px auto;background-position:50% 0}
+/* ---------- Titel wie auf der Website: Prata, eine Stärke, normale Schreibung, Betonung nur über die Farbe, nie fett, nie kursiv ---------- */
+.zt,.t1,.t2,.t3,.wfen__t,.ins-t h3,.rgw .wfa__texte h3,.sbf-text h3,.hs2-ww+small{font-weight:400!important}
 .zt{text-transform:none;letter-spacing:-.012em}
 .zt em,em{font-style:normal}
 .kap--k .kap__geist{display:none}.kap--z span,.kap--k>span{font-family:var(--mono)!important;font-weight:400!important;font-size:12px!important;letter-spacing:.2em;text-transform:uppercase}
 .wfen__t{text-transform:none;letter-spacing:-.01em}
-h2,h3,.wege__t,.gb-blatt header h3,.rgw .wfa__texte h3,.fbz__n{font-weight:340!important;font-variation-settings:"SOFT" 100,"WONK" 0}
+h2,h3,.wege__t,.gb-blatt header h3,.rgw .wfa__texte h3,.fbz__n{font-weight:400!important}
 b,strong{font-weight:500}
 .gb-blatt header h3{font-family:var(--serif);text-transform:uppercase;letter-spacing:.135em}
 .wf .wege__t{font-family:var(--serif);text-transform:none;letter-spacing:-.01em;font-size:clamp(2rem,3.6vw,3.4rem)!important;line-height:1.1}
-/* Rudis Zeilen: Versalien mit Schrägstrich, Urbanist wie die Zeile mit dem kleinen i */
-@font-face{font-family:'Urbanist';font-style:normal;font-weight:100 900;font-display:swap;src:url('/assets/schrift/urbanist.woff2') format('woff2')}
-.rz{font-family:'Urbanist',var(--sans);font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+/* Etiketten der Bar: Hanken 500, gesperrt, Versalien (wie .etikett der Website) */
+.rz{font-family:var(--sans);font-weight:500;letter-spacing:.17em;text-transform:uppercase}
 '''
 
 import marke_werkbank as _mw  # noqa: E402
@@ -389,7 +385,7 @@ if _ff.BEREIT:
     CSS += _ff.CSS
 CSS += '''
 /* Dateien: Fotos ohne Polaroid-Rand und ohne Bildzeile, ungleich groß, ohne Drehung */
-#material .streu .abzug{padding:0!important;background:none!important;border-radius:clamp(10px,1vw,14px);overflow:hidden;--r:0deg!important;--r0:0deg!important;box-shadow:0 30px 40px -26px rgba(8,7,10,.6),0 10px 16px -10px rgba(8,7,10,.35)!important}
+#material .streu .abzug{padding:0!important;background:none!important;border-radius:clamp(10px,1vw,14px);overflow:hidden;--r:0deg!important;--r0:0deg!important;box-shadow:0 30px 40px -26px rgba(10,7,6,.6),0 10px 16px -10px rgba(10,7,6,.35)!important}
 #material .streu .abzug span{display:none!important}
 #material .streu .abzug img{display:block;width:100%;height:100%;object-fit:cover;border-radius:0!important}
 @media(min-width:760px){#material .streu{align-items:center}#material .streu .abzug:nth-child(3){transform:scale(1.18);z-index:2}#material .streu .abzug:nth-child(2),#material .streu .abzug:nth-child(4){transform:scale(1.04);z-index:1}}
@@ -398,7 +394,7 @@ CSS += '''
 html.cv-alle main>section.fl:not(#brief){content-visibility:visible}
 @media(min-width:760px){.vh-wahl>:first-child,#seiten .wahl>:first-child{margin-left:auto}.vh-wahl>:last-child,#seiten .wahl>:last-child{margin-right:auto}}
 @media(max-width:480px){.kn{max-width:100%;height:auto;min-height:54px;padding-top:9px;padding-bottom:9px;white-space:normal;line-height:1.35;text-align:left}.kn i{flex:none}.kn-reihe{max-width:100%}}
-.schluss .zt,.schluss .lauf p,.schluss .kap span{text-shadow:0 1px 2px rgba(8,7,10,.9),0 2px 16px rgba(8,7,10,.8),0 0 42px rgba(8,7,10,.55)}
+.schluss .zt,.schluss .lauf p,.schluss .kap span{text-shadow:0 1px 2px rgba(10,7,6,.9),0 2px 16px rgba(10,7,6,.8),0 0 42px rgba(10,7,6,.55)}
 '''
 
 
@@ -461,7 +457,7 @@ def nach_bau():
         _fl.mach()
     import sb_farbe
     sb_farbe.anwenden()
-    # Das Zeichen in Kerze als Datei für die Karte «Ein Vorschlag.» (als <img> wäre currentColor schwarz)
+    # Das Zeichen (Wortmarke) in Gold als Datei für die Karte «Ein Vorschlag.» (als <img> wäre currentColor schwarz)
     vb, innen = ZEICHEN
     open(os.path.join(_WB, 'eigen', 'zeichen-kerze.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" fill="{FARBEN["messing"]}">{innen}</svg>')
     open(os.path.join(_WB, 'eigen', 'zeichen-c.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" fill="#000">{innen}</svg>')   # Maske für Schmuck im CSS (Listen, Namenszug)
@@ -483,18 +479,20 @@ def nach_bau():
     text_mitte.anwenden(ROOT)
     import bild_mass   # Bilder in der gezeigten Grösse, damit der Tab in WebKit nicht am Speicher scheitert (Abnahme-Tor 4, 30.10.2026)
     bild_mass.anwenden(ROOT)
+    import kleid_wild   # zuletzt: Schriftfamilien des Kits auf Prata und Hanken, Reste der Vorlage im Kleid der Bar (Wild Side 31.10.2026)
+    kleid_wild.anwenden(ROOT)
 
 
-TITEL_NEU = {   # eigene Überschriften von Culinarium (Werkbank-Regel 14), keine gleich wie beim Schäfli oder Schlössli
+TITEL_NEU = {   # eigene Überschriften des Wild Side (Werkbank-Regel 14), keine gleich wie bei Culinarium, Schäfli oder Schlössli
     ('Schön, dass Sie', 'hereinschauen.'): ('Schön, dass', 'ihr da seid.'),
-    ('Ihre Website,', 'Seite für Seite.'): ('Heute im Netz,', 'morgen eine Seite.'),
+    ('Ihre Website,', 'Seite für Seite.'): ('Heute ein Profil,', 'morgen eine Seite.'),
     ('Die Ideen', 'hinter der Seite.'): ('Zwölf Stellen,', 'zwölf Gedanken.'),
-    ('Wie alles', 'zusammenhängt.'): ('Was hinter', 'dem Abend steht.'),
-    ('Alle Seiten zum', 'Durchblättern.'): ('Von der Tafel', 'bis Dirty Chicken.'),
-    ('Vorschläge für', 'Ihre Gäste.'): ('Bevor der Gast', 'Platz nimmt.'),
-    ('Ihre Unterlagen,', 'im selben Stil.'): ('Eure Karten,', 'Abend für Abend.'),
-    ('Ein paar Ideen', 'für Papier.'): ('Für Tafel', 'und Theke.'),
-    ('Ein Feed', 'für Instagram.'): ('Ein Feed,', 'der nach Abend aussieht.'),
+    ('Wie alles', 'zusammenhängt.'): ('Was hinter', 'der Theke steht.'),
+    ('Alle Seiten zum', 'Durchblättern.'): ('Von der Ecke', 'bis zur Empore.'),
+    ('Vorschläge für', 'Ihre Gäste.'): ('Bevor der Gast', 'an der Ecke steht.'),
+    ('Ihre Unterlagen,', 'im selben Stil.'): ('Eure Karten,', 'neu gesetzt.'),
+    ('Ein paar Ideen', 'für Papier.'): ('Für Theke', 'und Tür.'),
+    ('Ein Feed', 'für Instagram.'): ('Ein Feed,', 'der nach Nacht aussieht.'),
     ('Alles liegt für', 'Sie bereit.'): ('Alle Dateien', 'an einem Ort.'),
     ('Alles geprüft,', 'bevor Sie es sehen.'): ('Ausprobiert,', 'Stück für Stück.'),
 }

@@ -7,9 +7,9 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Wann ist der nächste Abend?",
+  "frage": "Wann habt ihr heute offen?",
   "buchung": true,
-  "antwort": "Der nächste Termin steht noch nicht fest. Wer auf der Warteliste steht, erfährt ihn zuerst.\n- Freitag: ab 19 Uhr\n- Samstag: ab 17 Uhr\n- Plätze: wenige, an einer Tafel",
+  "antwort": "Donnerstag bis Samstag ab 19 Uhr.\n- Donnerstag: 19 bis 1 Uhr\n- Freitag und Samstag: 19 bis 2 Uhr\n- Sonntag bis Mittwoch: geschlossen",
   "thema": ""
  },
  {
@@ -20,8 +20,8 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Was kostet ein Abend?",
-  "antwort": "Zuletzt kostete ein Abend 89,00 EUR, am 25. und 26. September 2026.\n- Darin: drei Gänge, fünf Drinks, Tasting und Schulung\n- Tickets: nur im Vorverkauf",
+  "frage": "Was kostet ein Drink bei euch?",
+  "antwort": "Ein Signature Drink kostet 12 Euro.\n- Alkoholfreie Drinks: 11 Euro\n- Longdrinks: 10 Euro\n- Wein und Spritz: 8 Euro, Bier 4 Euro",
   "thema": "",
   "buchung": false
  },
@@ -33,8 +33,8 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Was ist Fatwashing?",
-  "antwort": "Die Spirituose nimmt den Geschmack eines Fetts an; kalt gestellt, wird das Fett wieder abgehoben. Momo erklärt jeden Drink am Tisch.",
+  "frage": "Was ist Milk Washing?",
+  "antwort": "Milch bindet die Trübstoffe und wird wieder abgefiltert. Was bleibt, ist klar wie Wasser und weich wie Sahne.",
   "thema": "",
   "buchung": false
  },
@@ -46,9 +46,9 @@
   ],
   "sprache": "de",
   "belegt": false,
-  "thema": "Nussallergie",
-  "frage": "Ich habe eine Nussallergie, geht das?",
-  "antwort": "Dazu steht nichts in meinen Unterlagen; Rudi in der Küche klärt es mit dir. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @culinarium_hannover",
+  "thema": "Hund",
+  "frage": "Darf ich meinen Hund mitbringen?",
+  "antwort": "Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @walkonthewildside_hannover",
   "buchung": false
  },
  {
@@ -59,8 +59,8 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Kann ich mein Ticket zurückgeben?",
-  "antwort": "Tickets werden nicht rückerstattet, weil die Plätze an der Tafel begrenzt sind.",
+  "frage": "Wann ist der nächste DJ-Abend?",
+  "antwort": "Samstags legt rund einmal im Monat jemand auf, von 21 bis 1 Uhr. Den nächsten Abend kündigt die Bar auf Instagram an.\n- Eintritt: keiner\n- Zuletzt: Ghazouani Brothers am 17.10.2026",
   "thema": "",
   "buchung": false
  },
@@ -72,8 +72,8 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Wo ist das genau?",
-  "antwort": "Im Walk on the Wild Side in Linden.\n- Adresse: Haasemannstraße 13, 30449 Hannover\n- Ecke: Haasemannstraße, Ecke Rampenstraße\n- Plus Code: 9PC7+49 Hannover",
+  "frage": "Wie komme ich zu euch?",
+  "antwort": "Mit der Stadtbahn bis Am Küchengarten, dann zwei Minuten zu Fuss.\n- Adresse: Haasemannstraße 13, 30449 Hannover-Linden\n- Ecke: Haasemannstraße, Ecke Rampenstraße\n- Bahn: Linien 9 und 17",
   "thema": "",
   "buchung": false
  },
@@ -85,9 +85,9 @@
   ],
   "sprache": "de",
   "belegt": false,
-  "thema": "Alkoholfrei",
-  "frage": "Gibt es den Abend auch alkoholfrei?",
-  "antwort": "Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @culinarium_hannover",
+  "thema": "Nussallergie beim Dinner",
+  "frage": "Kocht Rudi beim Dinner auch ohne Nüsse?",
+  "antwort": "Dazu steht nichts in meinen Unterlagen; beim Privaten Dinner klärt Rudi das mit dir. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @walkonthewildside_hannover",
   "buchung": false
  },
  {
@@ -98,8 +98,8 @@
   ],
   "sprache": "en",
   "belegt": true,
-  "frage": "What time does the evening start?",
-  "antwort": "On Fridays from 7 pm, on Saturdays from 5 pm. Culinarium takes place on single weekends, usually a Friday and the Saturday after.",
+  "frage": "Do you have non-alcoholic drinks?",
+  "antwort": "Yes, made with the same care: shrub, soda, herbs, clear juice. Alcohol-free drinks are 11 euros.",
   "thema": "",
   "buchung": false
  },
@@ -111,8 +111,8 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Wann gibt es wieder Dirty Chicken?",
-  "antwort": "Dirty Chicken gibt es nur an einzelnen Tagen; die Termine stehen auf Instagram bei @dirtychicken.hannover.",
+  "frage": "Was kostet die ganze Bar für eine Feier?",
+  "antwort": "Ab dreissig Gästen gehört euch die ganze Bar von 19 bis 2 Uhr, mit einem Preis pro Gast.\n- Kategorie 1: Bier, Wein, Spritz, 49 €\n- Kategorie 2: dazu Longdrinks, 59 €\n- Kategorie 3: dazu fünf Signature Cocktails, 79 €",
   "thema": "",
   "buchung": false
  },
@@ -124,8 +124,8 @@
   ],
   "sprache": "de",
   "belegt": true,
-  "frage": "Kann ich die lange Tafel für meinen Geburtstag haben?",
-  "antwort": "Ja, die lange Tafel gibt es auch für eure eigene Feier.\n- Reservieren: bei der Bar per Nachricht oder Telefon\n- Telefon der Bar: +49 163 3909578",
+  "frage": "Kann ich mit 15 Leuten Geburtstag feiern?",
+  "antwort": "Ja, zehn bis zwanzig Gäste feiern an der langen Tafel auf der Empore.\n- Dauer: vier Stunden, unten läuft die Bar weiter\n- Drinks: ihr legt vorher ein Budget fest\n- Anfragen: auf der Seite Feiern",
   "thema": "",
   "buchung": false
  }

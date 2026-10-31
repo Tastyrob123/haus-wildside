@@ -1,19 +1,19 @@
-// Aufnahmen für die Werkbank von Culinarium (28.10.2026, Vorlage Schäfli): Ideen (Rechner 1440 × 900) und Gäste-Funktionen (Rechner + Handy 390 × 844).
+// Aufnahmen für die Werkbank des Walk on the Wild Side (31.10.2026, Vorlage Culinarium 28.10.2026, Vorlage Schäfli): Ideen (Rechner 1440 × 900) und Gäste-Funktionen (Rechner + Handy 390 × 844).
 //   node _werkbank/sb_ideen.js [name …]  →  _werkbank/ansichten/Ideen/<name>.jpg, ansichten/Gaeste/<name>.jpg und <name>-h.jpg
 // Jede Stelle: Seite, Anker (Abschnitt oben an den Rand), Verschiebung in px, optional ein Klick vor der Aufnahme. Nichts wird abgeschickt.
 const path = require('path'), fs = require('fs');
 const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
 const HIER = __dirname, B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
 const IDEEN = [
-  ['start', 'index.html', null, 0], ['ebenen', 'index.html', '#ebenen', 0], ['ablauf', 'index.html', '#ablauf', 0],
-  ['glas', 'index.html', '#glas', 0], ['gaenge', 'index.html', '#gaenge', 0], ['plakate', 'index.html', '#plakate', 0],
-  ['chronik', 'index.html', '#chronik', 0], ['haus', 'index.html', '#haus', 0], ['dirty', 'index.html', '#dirty-chicken', 0],
-  ['vitrinen', 'abende.html', '.jahre', 0], ['team', 'leute.html', '.v-lt-koepfe', 0], ['weg', 'weg.html', '.v-weg-abends', 0],
+  ['start', 'index.html', null, 0], ['bar', 'index.html', '#bar', 0], ['gespraech', 'index.html', '#drinks', 0],
+  ['gewoelbe', 'index.html', '.gewoelbe', 0], ['chronik', 'index.html', '#seit2017', 0], ['lauter', 'index.html', '#lauter', 0],
+  ['tafel', 'index.html', '#tafel', 0], ['imhaus', 'index.html', '#imhaus', 0], ['technik', 'drinks.html', '#technik', 0],
+  ['plakate', 'programm.html', '#session', 0], ['raum', 'haus.html', '#raum', 0], ['licht', 'besuch.html', null, 0],
 ];
 const GAESTE = [   // name, Seite, Anker, Verschiebung, Klick (Selektor) oder null
-  ['buchen', 'abend.html', '#termine-buchen', 0, null], ['warteliste', 'abend.html', '#warteliste', 0, null],
-  ['menue', 'abend.html', '.menuekarte', 0, null], ['zeiten', 'abend.html', '.termine', 0, null],
-  ['fragen', 'index.html', '#fragen', 0, null], ['weg', 'weg.html', '.v-weg-abends', 0, null],
+  ['reservieren', 'besuch.html', '#reservieren', 0, null], ['wann', 'besuch.html', '#wann', 0, null],
+  ['feiern', 'tafel.html', '#wieviele', 0, null], ['woche', 'programm.html', '#woche', 0, null],
+  ['fragen', 'besuch.html', '#fragen', 0, null], ['wo', 'besuch.html', '#wo', 0, null],
 ];
 const nur = process.argv.slice(2);
 async function stelle(p, seite, anker, dy, klick) {

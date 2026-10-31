@@ -1,0 +1,53 @@
+[
+ {
+  "key": "welle-1",
+  "titel": "Wellen 1",
+  "quelle": "welle",
+  "schrift": false,
+  "schlagworte": {
+   "thema": "SESSION",
+   "farbe": "Rot und Creme"
+  },
+  "akzent": "#1a00aa",
+  "kopf_frei": true,
+  "kopf_farbe": "#1a00aa",
+  "rueck_farbe": "#1a00aa",
+  "ganz": null,
+  "kopf_box": null,
+  "ganz_kopf_box": null
+ },
+ {
+  "key": "welle-2",
+  "titel": "Wellen 2",
+  "quelle": "welle",
+  "schrift": false,
+  "schlagworte": {
+   "thema": "SESSION",
+   "farbe": "Rot und Creme"
+  },
+  "akzent": "#1a00aa",
+  "kopf_frei": true,
+  "kopf_farbe": "#1a00aa",
+  "rueck_farbe": "#1a00aa",
+  "ganz": null,
+  "kopf_box": null,
+  "ganz_kopf_box": null
+ },
+ {
+  "key": "welle-3",
+  "titel": "Wellen 3",
+  "quelle": "welle",
+  "schrift": false,
+  "schlagworte": {
+   "thema": "SESSION",
+   "farbe": "Rot und Creme"
+  },
+  "akzent": "#1a00aa",
+  "kopf_frei": true,
+  "kopf_farbe": "#1a00aa",
+  "rueck_farbe": "#1a00aa",
+  "ganz": null,
+  "kopf_box": null,
+  "ganz_kopf_box": null
+ }
+]

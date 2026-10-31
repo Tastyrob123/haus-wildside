@@ -56,8 +56,8 @@
       /* Le Livre nennt die Grösse des Originals; gedruckt wird die Datei unter dem Weg «fl» des Markenbuchs, deren Mass in marke.json steht.
          Mit dem Original rechnete die Druckprüfung zu viele dpi (haus-winter: 186 statt 88 dpi auf A3). */
       const px = Object.fromEntries(M.bilder.map(b => [b.key, b]));
-      const culinarium = /Culinarium/.test(L.haus || '');
-      if (culinarium) {   // Das Markenbuch des Culinarium (Chat «culinarium-livre»): die Bereiche nennt es selbst in livre.json; die Dateien liegen dort, wohin «fl» und «fs» zeigen
+      const culinarium = false;   // Sonderweg des Culinarium-Markenbuchs, hier nicht gebraucht
+      if (culinarium) {   // Das Markenbuch des Wild Side (Chat «wildside-livre»): die Bereiche nennt es selbst in livre.json; die Dateien liegen dort, wohin «fl» und «fs» zeigen
       }
       M.bilder = L.fotos.filter(f => !(M.raus || []).includes(f.k) && f.art !== 'ki').map(f => ({ key: f.k, alt: (f.t && (f.t.de || Object.values(f.t)[0])) || f.k, w: (px[f.k] || f).w, h: (px[f.k] || f).h, gruppe: DS.LIVRE_TEXT.b[f.b] || 'Haus',
         bereich: f.b, saison: f.s, format: f.f, herkunft: f.art, ki: !!f.ki, quelle: f.q, fl: f.fl, fs: f.fs }));
@@ -108,7 +108,7 @@
     const reihe = (STUFEN.find(r => r[0] === +ms[1]) || [+ms[1]]).filter(w => w <= +ml[2]), ziel = breite * 1.6;
     return DS.livreUrl(ml[1] + '-' + (reihe.find(w => w >= ziel) || +ml[2]) + '.webp');
   };
-  DS.livreSeite = () => location.port === '9087' ? 'http://127.0.0.1:9085/_werkzeuge/livre/' : DS.ALLEIN ? 'https://culinarium-hannover-entwurf.vercel.app/werkzeuge/livre/' : DS.LIVRE;
+  DS.livreSeite = () => location.port === '9087' ? 'http://127.0.0.1:9085/_werkzeuge/livre/' : DS.LIVRE;
   /* Logo, Logo quer und Wortmarke aus Le Livre: Bildschirm SVG, Blatt und PDF PNG (bis 3000 px, mit Transparenz) */
   DS.livreDateien = M => (M.livre ? M.livre.dateien : []).filter(d => ['logo', 'quer', 'wortmarke'].includes(d.k) && d.var).flatMap(d => {
     const vb = (d.vb || '0 0 4 3').split(' ').map(Number), N = { logo: 'Logo', quer: 'Logo quer', wortmarke: 'Wortmarke' }[d.k];
@@ -122,7 +122,9 @@
       const r = await fetch(DS.LIVRE + 'livre.json');   // der Server sagt no-cache; so trifft der Abruf das Vorladen in index.html (30.10.)
       if (!r.ok || !(r.headers.get('content-type') || '').includes('json')) return null;
       const L = await r.json();
-      if (!/Culinarium/.test(L.haus || '')) throw new Error('Markenbuch eines anderen Hauses');
+      /* Wild Side (31.10.2026): die Plakatwerkstatt arbeitet mit ihrer eigenen Kopie der Fotos (haeuser/wildside/, bau.py aus website/assets/bild);
+         das Markenbuch liefert nur dann Fotos, wenn es ausdrücklich dieses Haus nennt und dieselben Schlüssel kennt */
+      if (!/Wild Side/.test(L.haus || '') || !L.plakatwerkstatt) throw new Error('Markenbuch eines anderen Hauses');
       return L && Array.isArray(L.fotos) && L.fotos.length ? L : null;
     } catch (e) { return null; }
   };

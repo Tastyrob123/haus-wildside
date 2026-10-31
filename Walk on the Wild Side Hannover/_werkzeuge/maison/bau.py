@@ -180,8 +180,8 @@ SCHIRME = {'bureau': ['bureau', 'bureau-2'], 'carte': ['carte'], 'imprimerie': [
 # ganze Höhe, Die Besucherliste als Zahlenzeile unter dem Titel. Je Foto: Lage am Desktop (hohe Säule) und am Handy (flaches Band), so gewählt, dass das
 # Motiv steht: der Blick von der Strasse durchs Fenster (Website = Schaufenster), Momo giesst (Karte), die NEGRONI-Glühbirnen (Schrift, Plakate),
 # zwei Gäste an der Bar (Gästebuch), das Eckschild mit der Wortmarke (Markenbuch).
-FENSTER = {'bureau': ('fenster', '50% 50%', '50% 46%'), 'carte': ('momo-giesst', '58% 50%', '50% 30%'), 'imprimerie': ('negroni', '30% 50%', '50% 22%'),
-           'reception': ('freundinnen', '52% 50%', '50% 30%'), 'livre': ('schild', '50% 50%', '50% 24%')}
+FENSTER = {'bureau': ('fenster', '50% 50%', '50% 46%'), 'carte': ('momo-giesst', '58% 50%', '50% 30%'), 'imprimerie': ('negroni', '30% 50%', '50% 78%'),
+           'reception': ('freundinnen', '52% 50%', '50% 30%'), 'livre': ('schild', '50% 50%', '50% 88%')}
 FARBE = {}   # Platzhalter in der Motivfarbe statt Schwarz (Fund Oberchef 29.10.2026)
 
 

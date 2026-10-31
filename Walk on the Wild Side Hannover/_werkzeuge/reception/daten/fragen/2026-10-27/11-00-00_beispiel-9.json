@@ -1,0 +1,13 @@
+{
+ "zeit": "2026-10-27T11:00:00+01:00",
+ "frage": "Was kostet die ganze Bar für eine Feier?",
+ "antwort": "Ab dreissig Gästen gehört euch die ganze Bar von 19 bis 2 Uhr, mit einem Preis pro Gast.\n- Kategorie 1: Bier, Wein, Spritz, 49 €\n- Kategorie 2: dazu Longdrinks, 59 €\n- Kategorie 3: dazu fünf Signature Cocktails, 79 €",
+ "belegt": true,
+ "thema": "",
+ "gruppe": "Tickets & Preise",
+ "sprache": "de",
+ "buchung": false,
+ "mappe": false,
+ "anfrage": "",
+ "beispiel": true
+}

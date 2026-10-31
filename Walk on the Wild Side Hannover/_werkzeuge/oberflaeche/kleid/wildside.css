@@ -145,3 +145,10 @@ h1,h2,h3,h4,figcaption{text-wrap:balance}
 .rdg-karte h3,.wo-zw,.wo-sb__h{text-wrap:balance}
 /* Messlauf 29.10.2026 (Regel reihe): wo die Kacheltitel neben dem Pfeil umbrechen (schmale Spalten), reserviert jeder Titel zwei Zeilen, damit die Reihe auf einer Linie steht */
 @media (min-width:901px) and (max-width:1365px){.wo-ber .wo-bk__t b{min-height:2.4em}}
+
+/* Handy (31.10.2026, Tresen): der Knopf «Bereiche» im dunklen Kopf ist ein Nebenweg wie am Eckschild (Nacht mit Gold-Haarlinie, Schild 14 px), keine goldene Pille */
+@media (max-width:900px){
+  [data-wo-rahmen] .wo-kopf__ber{border-radius:14px;font-family:var(--wo-etikett);font-weight:500;color:#F2E9DC;
+    background:linear-gradient(180deg,#2E2420 0%,#1C1513 52%,#130E0D 100%);box-shadow:inset 0 0 0 1px rgba(216,178,100,.6),inset 0 1px 0 rgba(255,240,220,.12),0 8px 18px -10px rgba(0,0,0,.8)}
+  [data-wo-rahmen] .wo-kopf__ber .wo-ic{color:#D8B264}
+}

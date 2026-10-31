@@ -1,0 +1,36 @@
+{
+ "zeit": "2026-10-30T20:05:00+01:00",
+ "art": "reservieren",
+ "name": "Jonas Albers",
+ "kontakt": "+49 170 5550123",
+ "datum": "Samstag, 7. November 2026",
+ "personen": 2,
+ "anliegen": "Platz reservieren: Samstag, 7. November 2026, 21 Uhr, 2 Plätze",
+ "sprache": "de",
+ "gespraech": "beispiel-2",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Über ein Formular der Website (Seite Besuch): Abend: Samstag, 7. November 2026\nUhrzeit: 21 Uhr\nPlätze: 2"
+  }
+ ],
+ "status": "gelesen",
+ "beispiel": true,
+ "an": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
+ "abteilung": "Reservieren",
+ "seite": "/besuch.html#reservieren",
+ "seite_name": "Besuch",
+ "web": true,
+ "nachricht": "Abend: Samstag, 7. November 2026\nUhrzeit: 21 Uhr\nPlätze: 2",
+ "formular": "reservieren",
+ "uhrzeit": "21 Uhr",
+ "platz": "Theke",
+ "entwurf": {
+  "betreff": "Dein Platz an der Theke am Samstag",
+  "text": "Hallo Jonas,\n\ndanke für deine Reservierung. Für Samstag, den 7. November, ab 21 Uhr halten wir dir zwei Plätze frei [Platz prüfen]; wir bestätigen dir den Abend per Nachricht.\n\nAm besten sitzt ihr an der Theke: Da ist Momo am nächsten dran, fragt, was ihr mögt, und mixt daraus euren Drink.\n\nBis bald an der Ecke\n\nDerya und Momo\nWalk on the Wild Side",
+  "team": "Grundlage: Besuch («Ein Platz für euch.», «Die Bar bestätigt per Nachricht.»), Das Haus («An der Theke»).\nOffen: ob zwei Plätze an der Theke frei sind.",
+  "vorlage": "",
+  "absender": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
+  "zeit": "2026-10-30T20:05:00+01:00"
+ }
+}

@@ -20,46 +20,46 @@
 
   var CSS = '' +
     '.rdg-kegel{position:fixed;left:0;top:0;z-index:2147483000;border-radius:18px;pointer-events:none;' +
-      'box-shadow:0 0 0 3px #EF7649,0 0 0 9px rgba(239,118,73,.35),0 0 40px 10px rgba(239,118,73,.35),0 0 0 200vmax rgba(22,21,26,.76)}' +
+      'box-shadow:0 0 0 3px #D8B264,0 0 0 9px rgba(216,178,100,.35),0 0 40px 10px rgba(216,178,100,.35),0 0 0 200vmax rgba(19,14,13,.76)}' +
     '.rdg-sperre{position:fixed;inset:0;z-index:2147482999}' +
     '.rdg-karte{position:fixed;left:0;top:0;z-index:2147483001;width:370px;max-width:calc(100vw - 32px);box-sizing:border-box;' +
-      'padding:24px 26px 22px;border-radius:22px;color:#26242D;background:linear-gradient(180deg,#FFFCFB,#efe8dc);' +
-      'box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(28,27,33,.3),0 30px 60px -24px rgba(22,21,26,.65),0 10px 22px -12px rgba(22,21,26,.45);' +
+      'padding:24px 26px 22px;border-radius:22px;color:#1C1513;background:linear-gradient(180deg,#FFFBF5,#efe8dc);' +
+      'box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(28,21,19,.3),0 30px 60px -24px rgba(19,14,13,.65),0 10px 22px -12px rgba(19,14,13,.45);' +
       'font:15px/1.55 "Instrument Sans",system-ui,sans-serif;animation:rdg-auf .42s cubic-bezier(.2,.8,.2,1) both}' +
     '@keyframes rdg-auf{from{transform:translate3d(var(--rx,0),calc(var(--ry,0px) + 14px),0)}to{transform:translate3d(var(--rx,0),var(--ry,0),0)}}' +
     '.rdg-karte{transform:translate3d(var(--rx,0),var(--ry,0),0)}' +
-    '.rdg-zier{display:flex;align-items:center;gap:10px;font:500 10px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#3A3845}' +
-    '.rdg-zier i{flex:1;height:1px;background:linear-gradient(90deg,#EF7649,rgba(239,118,73,0))}' +
-    '.rdg-karte h3{margin:12px 0 6px;font:340 25px/1.15 Fraunces,Georgia,serif;color:#1C1B21;letter-spacing:0}' +
-    '.rdg-karte p{margin:0;color:rgba(38,36,45,.78)}' +
+    '.rdg-zier{display:flex;align-items:center;gap:10px;font:500 10px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#261E1A}' +
+    '.rdg-zier i{flex:1;height:1px;background:linear-gradient(90deg,#D8B264,rgba(216,178,100,0))}' +
+    '.rdg-karte h3{margin:12px 0 6px;font:340 25px/1.15 Fraunces,Georgia,serif;color:#1C1513;letter-spacing:0}' +
+    '.rdg-karte p{margin:0;color:rgba(28,21,19,.78)}' +
     '.rdg-fuss{display:flex;align-items:center;gap:14px;margin-top:20px}' +
-    '.rdg-karte .rdg-weg{display:flex;gap:5px;flex:1 1 auto;min-width:64px}.rdg-karte .rdg-weg b{display:block;height:3px;flex:1 1 0;min-width:6px;max-width:26px;border-radius:2px;background:rgba(38,36,45,.14)}.rdg-karte .rdg-weg b.da{background:#B15736}' +
-    '.rdg-karte .rdg-zu{flex:none;margin:0;border:0;background:none;padding:6px 2px;font:500 10px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#3A3845;cursor:pointer}' +
-    '.rdg-karte .rdg-zu:hover{color:#26242D}' +
+    '.rdg-karte .rdg-weg{display:flex;gap:5px;flex:1 1 auto;min-width:64px}.rdg-karte .rdg-weg b{display:block;height:3px;flex:1 1 0;min-width:6px;max-width:26px;border-radius:2px;background:rgba(28,21,19,.14)}.rdg-karte .rdg-weg b.da{background:#7A5C24}' +
+    '.rdg-karte .rdg-zu{flex:none;margin:0;border:0;background:none;padding:6px 2px;font:500 10px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#261E1A;cursor:pointer}' +
+    '.rdg-karte .rdg-zu:hover{color:#1C1513}' +
     '.rdg-karte .rdg-los,.rdg-schild .rdg-los{flex:none;margin:0;display:inline-flex;align-items:center;gap:12px;height:42px;padding:0 6px 0 18px;border:0;border-radius:999px;cursor:pointer;' +
-      'font:500 10px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:#FFFCFB;' +
-      'background:linear-gradient(180deg,#3A3845,#1C1B21 46%,#0F0E13);box-shadow:0 1px 0 rgba(255,255,255,.26) inset,0 -3px 0 rgba(0,0,0,.5) inset,0 10px 18px -10px rgba(22,21,26,.8)}' +
-    '.rdg-karte .rdg-los i,.rdg-schild .rdg-los i{display:grid;margin:0;place-items:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(180deg,#FBD9CB,#EF7649);' +
+      'font:500 10px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:#FFFBF5;' +
+      'background:linear-gradient(180deg,#261E1A,#1C1513 46%,#0B0807);box-shadow:0 1px 0 rgba(255,255,255,.26) inset,0 -3px 0 rgba(0,0,0,.5) inset,0 10px 18px -10px rgba(19,14,13,.8)}' +
+    '.rdg-karte .rdg-los i,.rdg-schild .rdg-los i{display:grid;margin:0;place-items:center;width:30px;height:30px;border-radius:50%;background:linear-gradient(180deg,#F1E2BE,#D8B264);' +
       'box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 -2px 0 rgba(0,0,0,.22) inset;transition:transform .2s}' +
-    '.rdg-karte .rdg-los svg,.rdg-schild .rdg-los svg{width:14px;height:14px;fill:none;stroke:#26242D;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
+    '.rdg-karte .rdg-los svg,.rdg-schild .rdg-los svg{width:14px;height:14px;fill:none;stroke:#1C1513;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}' +
     '.rdg-los:hover i{transform:translateX(2px)}' +
-    '.rdg-los:focus-visible,.rdg-zu:focus-visible{outline:2px solid #B15736;outline-offset:3px}' +
+    '.rdg-los:focus-visible,.rdg-zu:focus-visible{outline:2px solid #7A5C24;outline-offset:3px}' +
     '@media (max-width:700px){.rdg-karte{left:16px!important;right:16px;top:auto!important;bottom:16px;width:auto;--rx:0!important;--ry:0!important}}' +
     '@media (prefers-reduced-motion:reduce){.rdg-karte{animation:none}}';
   var SCHILD_CSS = '' +
     '.rdg-schild{position:fixed;right:24px;bottom:24px;z-index:2147482990;display:flex;align-items:center;gap:14px;box-sizing:border-box;' +
-      'padding:10px 10px 10px 20px;border-radius:999px;color:#26242D;background:linear-gradient(180deg,#FFFCFB,#efe8dc);' +
-      'box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(28,27,33,.32),0 18px 34px -16px rgba(22,21,26,.6),0 6px 14px -8px rgba(22,21,26,.4);' +
+      'padding:10px 10px 10px 20px;border-radius:999px;color:#1C1513;background:linear-gradient(180deg,#FFFBF5,#efe8dc);' +
+      'box-shadow:0 1px 0 #fff inset,0 0 0 1px rgba(28,21,19,.32),0 18px 34px -16px rgba(19,14,13,.6),0 6px 14px -8px rgba(19,14,13,.4);' +
       'transform:translate3d(0,0,0);transition:transform .55s cubic-bezier(.2,.8,.2,1);animation:rdg-schild-auf .7s cubic-bezier(.2,.9,.25,1.15) both}' +
     '@keyframes rdg-schild-auf{from{transform:translate3d(0,calc(100% + 40px),0)}to{transform:translate3d(0,0,0)}}' +
     '.rdg-schild.weg{animation:none;transform:translate3d(0,calc(100% + 60px),0)}' +
     '.rdg-schild__t{display:flex;flex-direction:column;gap:4px;line-height:1}' +
-    '.rdg-schild__t small{font:500 9px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#3A3845}' +
-    '.rdg-schild__t b{font:340 18px/1 Fraunces,Georgia,serif;color:#1C1B21}' +
+    '.rdg-schild__t small{font:500 9px/1 "DM Mono",ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#261E1A}' +
+    '.rdg-schild__t b{font:340 18px/1 Fraunces,Georgia,serif;color:#1C1513}' +
     '.rdg-schild .rdg-los{height:38px;padding:0 5px 0 15px;font-size:9.5px}.rdg-schild .rdg-los i{width:28px;height:28px}' +
-    '.rdg-schild__zu{flex:none;width:26px;height:26px;margin:0 2px 0 -4px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;color:#3A3845;font:16px/1 system-ui}' +
+    '.rdg-schild__zu{flex:none;width:26px;height:26px;margin:0 2px 0 -4px;padding:0;border:0;border-radius:50%;background:none;cursor:pointer;color:#261E1A;font:16px/1 system-ui}' +
     '.rdg-schild__zu{display:grid;place-items:center}.rdg-schild__zu svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}' +   /* kein «×» (Robert 30.10.2026): Zurück-Pfeil wie «Verwerfen» */
-    '.rdg-schild__zu:hover{color:#26242D}' +
+    '.rdg-schild__zu:hover{color:#1C1513}' +
     '@media (max-width:700px){.rdg-schild{right:16px;left:auto}}' +
     '@media (prefers-reduced-motion:reduce){.rdg-schild{animation:none;transition:none}}';
   var PFEIL = '<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></i>';

@@ -1,0 +1,73 @@
+{
+ "ziel": "dishes-in-love",
+ "art": "satz",
+ "key": "dishes-in-love",
+ "name": "Dishes in Love",
+ "unter": "Valentinstag 2026 · mit Rudi",
+ "gruppe": "Weitere Karten",
+ "ab": "2026-02-14",
+ "plakat": "",
+ "foto": "k30-leopard",
+ "titel": "Dishes in Love",
+ "datum": "Valentinstag · 14. Februar 2026",
+ "mit": "Kleine Dishes zum Teilen, mit Rudi",
+ "rubriken": [
+  {
+   "titel": "Wild Side Temptation",
+   "eintraege": [
+    {
+     "name": "Bergamotten Schaumwein",
+     "zutaten": "Auster | Granita",
+     "preis": "15"
+    }
+   ]
+  },
+  {
+   "titel": "Sharing Dishes for Love Birds & Friends",
+   "eintraege": [
+    {
+     "name": "Sauerteigbrot",
+     "zutaten": "Butter | Maldon",
+     "preis": "6"
+    },
+    {
+     "name": "Kichererbsen Hummus",
+     "zutaten": "geräucherte Paprika | Oliven Öl",
+     "preis": "8"
+    },
+    {
+     "name": "Stracciatella Creme",
+     "zutaten": "Dill Öl | dunkle Trauben | Basilikum Pesto",
+     "preis": "8"
+    },
+    {
+     "name": "Rosa gegarte Entenbrust",
+     "zutaten": "Teriyaki Jus | Pak Choi",
+     "preis": "12"
+    },
+    {
+     "name": "Bœuf Bourguignon",
+     "zutaten": "Kartoffel Mousseline | eingelegte Paprika | Schmand",
+     "preis": "12"
+    },
+    {
+     "name": "Geschmorter Hokkaido",
+     "zutaten": "Süsskartoffel Honig | Kartoffel Mousseline | Wirsing",
+     "preis": "11"
+    }
+   ]
+  },
+  {
+   "titel": "The Sweet End",
+   "eintraege": [
+    {
+     "name": "Dunkle Schokolade",
+     "zutaten": "Oliven Öl | Maldon",
+     "preis": "8"
+    }
+   ]
+  }
+ ],
+ "hinweis": "",
+ "quelle": "_quelle/ig/2026-02-03_walkonthewildside_hannover_DUT3HDnCMo1-3.jpg (Beitrag der Bar vom 03.02.2026, Bild 3)"
+}

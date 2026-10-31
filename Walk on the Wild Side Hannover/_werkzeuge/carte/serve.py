@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""La Carte · Culinarium Hannover — eigener Server (28.10.2026, Kopie aus der Tafel im Schäfli, dort aus Schlössli, Ruedihus,
+"""Die Pairing-Karte · Walk on the Wild Side Hannover (Vorlage: Pairing-Karte im Culinarium) — eigener Server (28.10.2026, Kopie aus der Tafel im Schäfli, dort aus Schlössli, Ruedihus,
 Waldhotel Doldenhorn und La Carte des Carlton-Europe). python3 _werkzeuge/carte/serve.py [port]   (Standard 9083)
 
 Liefert das Werkzeug (/_werkzeuge/carte/, darin auch Satz, Schriften und Fotos der Karte; die Werkzeug-Oberfläche kommt aus dem Haus unter
@@ -13,7 +13,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 HIER = os.path.dirname(os.path.realpath(__file__))   # realpath: sonst liefert ein Projekt hinter einem Verweis (z. B. /var → /private/var) jede Datei als 404
 WURZEL = os.path.dirname(os.path.dirname(HIER))   # Ordner, in dem _werkzeuge/ liegt
-# Culinarium: die Website liegt in website/ neben _werkzeuge/
+# Die Website liegt in website/ neben _werkzeuge/
 PROJ = os.path.join(WURZEL, 'website')
 OBERFLAECHE = os.path.join(WURZEL, '_werkzeuge', 'oberflaeche')   # gemeinsamer Rahmen der Werkzeuge, bis Station 14 ihn nach website/assets/ legt
 sys.path.insert(0, HIER)
@@ -171,7 +171,7 @@ class Weg(BaseHTTPRequestHandler):
                     return self._webseite(q)
                 if was == 'export':
                     b = json.dumps(carte.export(), ensure_ascii=False, indent=1).encode('utf-8')
-                    name = time.strftime('la-carte-culinarium-hannover-%Y-%m-%d.json')
+                    name = time.strftime('pairing-karte-wildside-hannover-%Y-%m-%d.json')
                     self._kopf(200, 'application/json; charset=utf-8', len(b), {'Cache-Control': 'no-store', 'Content-Disposition': f'attachment; filename="{name}"'})
                     return self.wfile.write(b)
                 return self._json(200, carte.get(was, q, *self._wer()))
@@ -200,8 +200,8 @@ class Weg(BaseHTTPRequestHandler):
         return self._json(200, d)
 
     def _webseite(self, q):
-        """Ansicht «Website» (C07): die Seite der Website, wie sie heute gebaut ist (abende.html zeigt die Menükarte im Fenster des Abends; das Werkzeug
-        öffnet dort den Abend der Karte). Die Website liest La Carte erst mit dem Einbau von karten.json in ihren Bau (web.py, offen); bis dahin zeigt
+        """Ansicht «Website» (C07): die Seite der Website, wie sie heute gebaut ist (drinks.html zeigt die Klassiker, tafel.html
+        die Preise der Bar). Die Website liest La Carte erst mit dem Einbau von karten.json in ihren Bau (web.py, offen); bis dahin zeigt
         die Ansicht den Stand der Website, der Entwurf steht in der Ansicht «Karte»."""
         z, seite = (q.get('z') or [''])[0], (q.get('seite') or [''])[0]
         carte._ziel(z)
@@ -281,5 +281,5 @@ if __name__ == '__main__':
         carte.fehler_log(f'Sicherung beim Start: {e!r}')
     srv = ThreadingHTTPServer(('127.0.0.1', PORT), Weg)
     srv.daemon_threads = True
-    print(f'La Carte · Culinarium Hannover: http://127.0.0.1:{PORT}/_werkzeuge/carte/', flush=True)
+    print(f'Die Pairing-Karte · Walk on the Wild Side Hannover: http://127.0.0.1:{PORT}/_werkzeuge/carte/', flush=True)
     srv.serve_forever()

@@ -1,6 +1,6 @@
-/* La Réception (Team hinter dem Gäste-Chat) · Culinarium Hannover (28.10.2026, Kopie aus dem Gastgeber der Taverne zum Schäfli). Food-Pairing-Abende an der langen Tafel.
-   Eingang: die Warteliste der Website («Dein Platz an der Tafel.») und Anfragen aus dem Chat (Platz am Abend, eigene Feier, Nachricht), mit Allergien
-   und Hinweisen (kein Culinarium-Tag, Termin steht noch nicht fest, mehr als vierzehn Plätze, Bar geschlossen, Ticket zurückgeben) und einem Antwortentwurf im Ton der Website.
+/* Das Gästebuch (Team hinter dem Gäste-Chat) · Walk on the Wild Side Hannover (31.10.2026, Kopie aus dem Culinarium Hannover, dort aus dem Gastgeber der Taverne zum Schäfli).
+   Eingang: «Platz reservieren» auf Besuch, die Anfrage «Euer Abend» auf Feiern und Anfragen aus dem Chat (Reservieren, Privates Dinner, Feier, Nachricht), mit Allergien
+   und Hinweisen (Bar geschlossen, ab zehn Gästen die lange Tafel, Format passt nicht zur Zahl, Rudi fragen, Anzahlung) und einem Antwortentwurf im Ton der Website.
    Das wurde gefragt: jede Frage an den Chat, nach Themen; wo der Chat keine Antwort hatte, trägt das Team sie einmal nach, ab dann antwortet er damit.
    Server-Teil: server.py und reception.py (/_werkzeuge/reception/api/…). Hier wird nichts verschickt. */
 'use strict';
@@ -10,11 +10,11 @@ const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&a
 const PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>';
 // Schliessen ohne «×» (Robert 30.10.2026: kein X auf der Seite): der Zurück-Pfeil wie «Verwerfen» in der Pairing-Karte
 const ZU = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 9.67 2.67 6.33 6 3M2.67 6.33h7.33a3.33 3.33 0 0 1 0 6.67h-2"/></svg>';
-const ZEICHEN = '<img src="zeichen-haus.svg" width="393" height="414" alt="">';
-/* Gestaltung 28.10.2026: Briefkopf = Rudis Original (Wortmarke mit Zeile, Kopie von _werkzeuge/livre/dateien/culinarium-hannover-logo-schiefer.svg), ein einziges Logo je Brief, kein Siegel unten */
-const MARKE = '<img class="brief__marke" src="marke-haus.svg" width="365" height="67" alt="Culinarium · A unique experience by Momo x Rudi">';
+const ZEICHEN = '<img src="zeichen-haus.svg" width="1296" height="1600" alt="">';
+/* Briefkopf = die Wortmarke der Bar (WALK / ON THE / WILD SIDE, nachgezogen wie kleid/wildside-marke.svg), in Rot, ein einziges Logo je Brief, kein Siegel unten */
+const MARKE = '<img class="brief__marke" src="marke-haus.svg" width="1296" height="1600" alt="Walk on the Wild Side">';
 const telNb = t => t.replace(/\+\d[\d ]{6,}\d/g, m => m.replace(/ /g, '\u00a0'));   // Telefonnummer nie mitten in der Zahl umbrechen
-const KOPF_EIGEN = (G, k) => !!(G && G[k] && typeof G[k].t === 'string' && G[k].t.trim() && G[k].t !== GKOPF[k]);   // Hausname und Zeile nur, wenn jemand sie selbst geschrieben hat   // das «C» der Wortmarke (Kopie von _werkzeuge/oberflaeche/kleid/wildside-zeichen.svg)
+const KOPF_EIGEN = (G, k) => !!(G && G[k] && typeof G[k].t === 'string' && G[k].t.trim() && G[k].t !== GKOPF[k]);   // Hausname und Zeile nur, wenn jemand sie selbst geschrieben hat   // die Wortmarke der Bar (Kopie von _werkzeuge/oberflaeche/kleid/wildside-zeichen.svg)
 /* Lokal läuft jedes Werkzeug auf seinem eigenen Server (WO_HAUS.ports): Wege zu den anderen Werkzeugen im Kopf mit voller Adresse 127.0.0.1:<port>, nie relativ
    (sonst öffnet z. B. die Zentrale auf 9084 ohne ihren Server) und nie localhost (Fehlerbuch 10a). Online bleiben die Wege relativ. */
 (() => { const H = window.WO_HAUS || {}, P = H.ports || {}, W = H.wege || {};
@@ -29,20 +29,20 @@ const SYM = {
   post: '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="m2.5 4.5 5.5 4 5.5-4"/></svg>',
   haken: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg>',
   pruef: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8 13 3.8v3.7c0 3-2.1 5.4-5 6.7-2.9-1.3-5-3.7-5-6.7V3.8z"/><path d="m5.6 8 1.7 1.7 3.2-3.4"/></svg>' };
-const ART = { warteliste: 'Warteliste', abend: 'Platz am Abend', feier: 'Eigene Feier', nachricht: 'Nachricht' };
+const ART = { reservieren: 'Reservieren', dinner: 'Privates Dinner', feier: 'Feier', nachricht: 'Nachricht' };
 const SPRACHE = { de: 'Deutsch', en: 'Englisch', fr: 'Französisch', it: 'Italienisch', zh: 'Chinesisch', ko: 'Koreanisch', ar: 'Arabisch' };
-/* Culinarium hat keine eigene Mail-Adresse; im Eingang ordnet die Art der Arbeit: Warteliste, Plätze an einem Abend, eigene Feiern an der langen Tafel, Nachrichten */
-const ABTEILUNGEN = [['Warteliste', 'Wer den nächsten Abend zuerst erfahren will'], ['Abende', 'Plätze und Tickets für einen Abend'], ['Feiern', 'Die lange Tafel für eine eigene Feier'], ['Gutscheine', 'Einen Abend verschenken'], ['Nachrichten', 'Alles andere']];
-const FORMULAR = { warteliste: 'Dein Platz an der Tafel (Warteliste)', vormerken: 'Vormerken im Fuss', allgemein: 'Anfrage-Fenster' };
-const abt = a => a.abteilung || ({ warteliste: 'Warteliste', abend: 'Abende', feier: 'Feiern', gutschein: 'Gutscheine' }[a.art] || 'Nachrichten');
+/* Die Bar hat keine belegte Mail-Adresse; im Eingang ordnet die Art der Arbeit: Reservieren an der Theke, Privates Dinner, Feiern (lange Tafel, ganze Bar, grosse Events), Nachrichten */
+const ABTEILUNGEN = [['Reservieren', 'Ein Platz an der Theke oder am Tisch'], ['Dinner', 'Privates Dinner für 10 bis 14 Gäste'], ['Feiern', 'Die lange Tafel, die ganze Bar, grosse Events'], ['Nachrichten', 'Alles andere']];
+const FORMULAR = { reservieren: 'Ein Platz für euch (Reservieren)', feiern: 'Euer Abend (Anfrage Feiern)', allgemein: 'Anfrage-Fenster' };
+const abt = a => a.abteilung || ({ reservieren: 'Reservieren', dinner: 'Dinner', feier: 'Feiern' }[a.art] || 'Nachrichten');
 const S0 = (() => { try { return sessionStorage.getItem('re-ws-abt') || 'alle'; } catch (e) { return 'alle'; } })();
 const S = { ue: null, ansicht: 'start', anfragen: null, fragen: null, nachgetragen: null, wahl: '', filter: 'alle', abt: S0, schreibt: {}, bearbeiten: '', wissen: null, wissenDa: false, such: '', offen: {}, verlauf: {} };
-const ART_LANG = { warteliste: 'Warteliste', abend: 'Plätze am Abend', feier: 'Eigene Feier', nachricht: 'Nachrichten' };
-/* Je Art ein Foto des Hauses (website/assets/bild, Register BILD in website/bau.py): Anstossen an der Tafel, das Glas, die Leute vor der Bar, das Schild bei Nacht */
-const ARTBILD = { warteliste: 'anstossen-640', abend: 'glaeser-640', feier: 'trio-640', nachricht: 'schildnacht-640' };
+const ART_LANG = { reservieren: 'Reservieren', dinner: 'Privates Dinner', feier: 'Feiern', nachricht: 'Nachrichten' };
+/* Je Art ein Foto des Hauses (website/assets/bild, Register BILD in website/bau.py): die Theke, die gedeckte Tafel auf der Empore, Anstossen, das Schild an der Ecke */
+const ARTBILD = { reservieren: 'pl-theke-480', dinner: 'an-empore-tafel-480', feier: 'feste-anstossen-480', nachricht: 'schild-ecke-480' };
 /* Kein Foto zweimal untereinander in der Liste (Fehlerbuch 10a): je Art mehrere Fotos des Hauses, je Anfrage fest eines (aus ihrer Kennung) */
-const ARTBILDER = { warteliste: ['anstossen-640', 'tafelleer-640', 'kerze2-640', 'toast-640'], abend: ['glaeser-640', 'glas-640', 'pass-640', 'service-640'],
-  feier: ['trio-640', 'lachen-640', 'theke-640'], nachricht: ['schildnacht-640', 'fassade-640', 'flur-640', 'ecke-640'] };
+const ARTBILDER = { reservieren: ['pl-theke-480', 'theke-480', 'glas-kerze-480', 'voll-480'], dinner: ['an-empore-tafel-480', 'pl-empore-480', 'pl-tisch-480'],
+  feier: ['feste-anstossen-480', 'anstossen-480', 'silvester-480', 'freundinnen-480'], nachricht: ['schild-ecke-480', 'pl-ecke-480', 'fenster-480', 'tuer-rot-480'] };
 const artBild = (art, id) => { const l = ARTBILDER[art] || [ARTBILD[art] || ARTBILD.nachricht]; let h = 0; for (const c of String(id || '')) h = (h * 31 + c.charCodeAt(0)) >>> 0; return l[h % l.length]; };
 const bild = (art, kl, id) => `<span class="${kl}" aria-hidden="true"><img src="/assets/bild/${artBild(art, id)}.webp" alt="" width="900" height="675" decoding="async"></span>`;
 const uhr = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr'; };
@@ -87,9 +87,9 @@ const mal = (n, eins, viele) => n === 1 ? eins : n + ' ' + viele;
 const TITEL = { start: 'Übersicht', eingang: 'Eingang', gefragt: 'Das wurde gefragt', nachgetragen: 'Vom Team nachgetragen', wissen: 'Das weiss der Chat' };
 /* Werkzeug-Oberfläche «Die Bühne» (oberflaeche.py) */
 /* Kopf, Rand, Leiste und Startbild aus dem Paket der Werkzeuge des Hauses (assets/oberflaeche, Rahmen «Die Bühne», kleid/wildside.*):
-   gleich wie in den anderen Werkzeugen des Culinarium. Ids, data-gehe und Handler bleiben (UMSTELLUNG.md). */
+   gleich wie in den anderen Werkzeugen der Bar. Ids, data-gehe und Handler bleiben (UMSTELLUNG.md). */
 const WEGE = { anleitung: 'anleitung.html', pruefung: 'pruefung.html' };
-const SB_FOTO = { eingang: 'kerze2', gefragt: 'kerze1', nachgetragen: 'karte', wissen: 'schildnah' };   // Bühne je Ansicht, Fotos des Hauses
+const SB_FOTO = { eingang: 'theke', gefragt: 'momo-lacht', nachgetragen: 'rueckbar', wissen: 'decke-raum' };   // Bühne je Ansicht, Fotos des Hauses
 /* Knöpfe in Startbild und Bühne im Stil des Pakets (gleiche Ids und data-Attribute) */
 const woKn = h => String(h || '').replace(/class="kn kn--(gold|linie)( glanz-kn)?"/g, (m, a) => `class="wo-kn wo-kn--${a === 'gold' ? 'gold' : 'hell'}"`)
   .replace(/class="kn"/g, 'class="wo-kn wo-kn--hell"').replace(/(<(?:a|button) class="wo-kn[^"]*"[^>]*>)([^<]+)<i>/g, '$1<span>$2</span><i>')
@@ -111,8 +111,8 @@ function rand() {
     { titel: 'Für das Team', eintraege: [e('eingang', 'Eingang', u.anfragen_neu), e('gefragt', 'Das wurde gefragt', u.ohne_antwort), e('nachgetragen', 'Vom Team nachgetragen')]
       .concat(S.wissenDa ? [e('wissen', 'Das weiss der Chat', S.wissenNeu || 0)] : []) }], WEGE);
   const w = $('#rand .wo-rand__wege'), pf = WO.ic('pfeil');
-  if (w) {   // Wege: die Warteliste auf der Website, Anleitung, Prüfung, die Zentrale; dazu «Chat ausprobieren» fürs Handy
-    w.insertAdjacentHTML('afterbegin', `<a href="/abend.html#warteliste" target="_blank" rel="noopener">Warteliste auf der Website${pf}</a><a href="/abend.html" target="_blank" rel="noopener">Der Abend auf der Website${pf}</a>`);
+  if (w) {   // Wege: Reservieren und Feiern auf der Website, Anleitung, Prüfung, die Zentrale; dazu «Chat ausprobieren» fürs Handy
+    w.insertAdjacentHTML('afterbegin', `<a href="/besuch.html#reservieren" target="_blank" rel="noopener">Reservieren auf der Website${pf}</a><a href="/tafel.html" target="_blank" rel="noopener">Feiern auf der Website${pf}</a>`);
     w.insertAdjacentHTML('beforeend', `<a href="${STUBE}">${esc(WO.name('zentrale'))}${pf}</a><button class="wo-rand__probe" type="button" data-probe>Chat ausprobieren${WO.ic('chat')}</button>`);
   }
   $$('#rand [data-gehe]').forEach(b => b.onclick = () => gehe(b.dataset.gehe));
@@ -130,7 +130,7 @@ function leiste() {
 }
 function kopf(mono, titel, satz, knoepfe = '', foto = '') {   // Bühne jeder Ansicht = Startbild «buehne» des Pakets mit dem Foto der Ansicht
   return WO.startbild({ werkzeug: 'gaeste', art: 'buehne', zier: esc(WO.name('gaeste') + ' · ' + mono), h1: titel, satz, knoepfe: woKn(knoepfe),
-    foto: '/assets/bild/' + (foto || SB_FOTO[S.ansicht] || 'fassade') + '-1000.webp' });
+    foto: '/assets/bild/' + (foto || SB_FOTO[S.ansicht] || 'schild-ecke') + '-960.webp' });
 }
 function gehe(ziel, wahl = '') {
   wartendesSichern();   // was im Brief noch wartet, vor dem Wechsel sichern (Abnahme 17.10.2026)
@@ -183,7 +183,7 @@ function start() {
   const u = S.ue, gruss = WO.gruss();
   const neueste = S.anfragen.slice(0, 4), fragen = S.fragen.slice(0, 5);
   return WO.startbild({ werkzeug: 'gaeste', art: 'voll', h1: `${gruss} <em>Wer hat geschrieben?</em>`,
-    satz: 'Hier landet, was Gäste über die Website und im Chat schreiben: wer auf die Warteliste für den nächsten Abend will, wer einen Platz an der Tafel sucht, wer die lange Tafel für eine eigene Feier möchte. Jede Anfrage liegt im Eingang, mit den Wünschen des Gastes, den Hinweisen zum Abend und einem vorbereiteten Brief für deine Antwort. Verschickt wird nur, was du selbst schickst.',
+    satz: 'Hier landet, was Gäste über die Website und im Chat schreiben: wer einen Platz an der Theke reservieren will, wer ein Privates Dinner plant, wer auf der Empore oder in der ganzen Bar feiern möchte. Jede Anfrage liegt im Eingang, mit den Wünschen des Gastes, den Hinweisen zum Abend und einem vorbereiteten Brief für deine Antwort. Verschickt wird nur, was du selbst schickst.',
     knoepfe: WO.knopf('Anleitung', 'buch', 'gold', { href: 'anleitung.html', neu: true }) }) +
     `<div class="wo-lage">
       <div class="wo-lg"><i class="wo-lg__z">${WO.ic('mail')}</i><span class="wo-mk">Eingang</span><b>${u.anfragen_neu ? mal(u.anfragen_neu, 'Eine neue Anfrage', 'neue Anfragen') : u.anfragen_offen ? mal(u.anfragen_offen, 'Eine offen', 'offen') : 'Nichts Neues'}</b><p>${u.anfragen_gesamt ? mal(u.anfragen_gesamt, 'Eine Anfrage', 'Anfragen') + ' aus Chat und Website bisher.' : 'Sobald ein Gast über die Website oder im Chat etwas anfragt, steht es hier.'}</p><button class="wo-lk" type="button" data-gehe="eingang">Zum Eingang</button></div>
@@ -194,7 +194,7 @@ function start() {
     <div class="re-start">
       <section class="re-start__sp"><h2 class="wo-zw">Zuletzt <em>angefragt</em></h2>
         ${neueste.length ? `<div class="re-liste">${neueste.map((a, i) => karteAnfrage(a, i + 1)).join('')}</div><button class="link re-mehr" type="button" data-gehe="eingang">Alle ${S.anfragen.length} Anfragen im Eingang</button>`
-          : `<div class="re-leer platte">${ZEICHEN}<b>Der Eingang ist leer.</b><p>Trägt sich ein Gast auf die Warteliste ein oder fragt im Chat nach einem Platz, liegt die Anfrage hier.</p></div>`}
+          : `<div class="re-leer platte">${ZEICHEN}<b>Der Eingang ist leer.</b><p>Reserviert ein Gast auf der Website oder fragt im Chat nach einem Platz oder einer Feier, liegt die Anfrage hier.</p></div>`}
       </section>
       <section class="re-start__sp"><h2 class="wo-zw">Zuletzt <em>gefragt</em></h2>
         ${fragen.length ? `<div class="re-liste re-qliste">${fragen.slice(0, 4).map(frageKarte).join('')}</div><button class="link re-mehr" type="button" data-gehe="gefragt">Alle ${S.fragen.length} Fragen ansehen</button>`
@@ -204,23 +204,28 @@ function start() {
 }
 /* «Zuletzt gefragt» als Karten wie die Anfragen (Robert 15.10.2026: «übersichtlicher … schöner»): Foto des Themas, Sprache als Goldmarke,
    Frage gross, Antwort des Chats in einer Zeile, Stand rechts */
-const THEMABILD = { 'Allergien & Unverträglichkeiten': 'lauch-640', 'Termine & Warteliste': 'tafelleer-640', 'Tickets & Preise': 'karte-640', 'Eigene Feier & Gruppen': 'trio-640',
-  'Drinks & Menü': 'klaeren-640', 'Dirty Chicken': 'dc_burger-640', 'Die Bar': 'theke-640', 'Anfahrt': 'ecke-640', 'Team': 'rudi-640', 'Weitere Fragen': 'kerze3-640' };
+const THEMABILD = { 'Feiern & Dinner': 'an-empore-tafel-480', 'Essen & Allergien': 'pl-tisch-480', 'DJ-Abende & Konzerte': 'konzert-480', 'Drinks & Preise': 'glas-negroni-480',
+  'Zeiten & Reservieren': 'pl-theke-480', 'Anfahrt': 'pl-ecke-480', 'Das Haus & Team': 'momo-lacht-480', 'Weitere Fragen': 'fenster-480' };
 /* Bilder in jeder Liste (Robert 19.10.2026: «in allen Tools Bilder dazu»): jedes Thema, jede Angabe, jeder Nachtrag mit einem Foto des Hauses (website/assets/bild) */
 const IMG = (n, kl) => `<span class="${kl}" aria-hidden="true"><img src="/assets/bild/${n}.webp" alt="" width="640" height="800" loading="lazy" decoding="async"></span>`;
-const THEMA_RE = [['Allergien & Unverträglichkeiten', /allerg|gluten|laktose|zöliak|unverträg|nuss|nüss|senf|krusten|sellerie|vegan|vegetar|celiac|nuts/i],
-  ['Termine & Warteliste', /termin|nächste[nr]? abend|wann|warteliste|vormerk|datum|wochenende|freitag|samstag|uhr\b|beginn|next|when/i], ['Tickets & Preise', /ticket|preis|kost|euro|eur\b|€|paypal|vorverkauf|zurückgeb|rückerstat|storn|ausgebucht|price|refund/i],
-  ['Eigene Feier & Gruppen', /feier|geburtstag|hochzeit|firmen|gruppe|privat|party\b|birthday|wedding|group/i], ['Drinks & Menü', /drink|cocktail|alkohol|menü|menu|gang|gänge|essen|teller|fatwash|milkwash|enzym|tasting|schulung/i],
-  ['Dirty Chicken', /dirty|chicken|sandwich|pop-?up|pommes|krautsalat/i], ['Die Bar', /bar\b|wild side|theke|öffnung|geöffnet|offen|konzert|dj\b|session|reservier/i],
-  ['Anfahrt', /anfahrt|anreise|weg\b|adresse|bahn|tram|bus\b|auto|park|fahrrad|haasemann|where|address/i], ['Team', /rudi|momo|derya|koch|team\b/i]];
+const THEMA_RE = [['Feiern & Dinner', /feier|geburtstag|hochzeit|firmen|gruppe|privat|dinner|tafel|empore|ganze bar|pauschale|budget|jga|junggesell|weihnachtsfeier|party\b|event|birthday|wedding|group|private/i],
+  ['Essen & Allergien', /allerg|gluten|laktose|zöliak|unverträg|nuss|nüss|vegan|vegetar|essen|hunger|snack|küche|food|eat|nuts|dairy|celiac/i],
+  ['DJ-Abende & Konzerte', /\bdj|session|konzert|live|musik|programm|eintritt|auflegen|gastschicht|tanz|music|concert/i],
+  ['Drinks & Preise', /drink|cocktail|karte|negroni|paloma|mexikaner|preis|kost|euro|eur\b|€|alkohol|milk|fat|enzym|signature|bier|wein|price|cost|menu/i],
+  ['Zeiten & Reservieren', /öffnung|geöffnet|offen|wann|uhr\b|heute|reservier|platz|plätze|tisch|donnerstag|freitag|samstag|sonntag|montag|open|when|book|table/i],
+  ['Anfahrt', /anfahrt|anreise|adresse|wo ist|wo seid|komme ich|bahn|tram|bus\b|auto|park|fahrrad|haasemann|küchengarten|where|address/i],
+  ['Das Haus & Team', /momo|derya|team\b|falstaff|decke|gewölbe|draussen|terrasse|hund|barrierefrei|rollstuhl|wheelchair|who/i]];
 const themaVon = t => (THEMA_RE.find(([, re]) => re.test(t || '')) || ['Weitere Fragen'])[0];
 /* Angaben im Wissen: je Zeile ein passendes Foto (Personen mit ihrem Porträt), sonst das Foto des Bereichs */
-const ZEILENBILD = [[/^Derya/, 'kopf_derya-640'], [/^Momo|Die Drinks/, 'kopf_momo-640'], [/^Rudi|^Wer$/, 'kopf_rudi-640'], [/Rudis Zeilen/, 'lauch-640'], [/Gemüse/, 'beete-640'],
-  [/Fatwashing|Milkwashing|Enzyme|Tasting/, 'klaeren-640'], [/^Aperitif/, 'toast-640'], [/^Drei Gänge|Das Menü/, 'anrichten-640'], [/^Fünf Drinks/, 'glaeser-640'],
-  [/^Adresse|^Ecke/, 'ecke-640'], [/Plus Code/, 'schildnacht-640'], [/^Die Bar$|^Geöffnet|^Ohne Karte/, 'theke-640'], [/Eigene Feier/, 'trio-640'], [/^Seit/, 'barlicht-640'],
-  [/Warteliste|Eintragen|^Termin/, 'tafelleer-640'], [/Vorverkauf|Zurückgeben|^Zuletzt|^Darin/, 'karte-640'], [/^Plakate/, 'plakatwand-640'], [/^Instagram|^Culinarium$/, 'schildnah-640'],
-  [/^Opening/, 'dn_salat-640']];
-const zeilenBild = p => (ZEILENBILD.find(([re]) => re.test(p.was || '')) || [, BER_BILD[p.bereich] || 'fassade-640'])[1];
+const ZEILENBILD = [[/^Derya/, 'derya-480'], [/^Momo|^Das Gespräch/, 'momo-giesst-480'], [/^Wer$/, 'an-team-480'], [/^Die Karte/, 'karte-dishes-480'],
+  [/Milk Washing|Fat Washing|^Enzyme/, 'dg-abseihen-480'], [/^Negroni/, 'glas-negroni-480'], [/^Paloma/, 'paloma-480'], [/^Mexikaner/, 'fe-probe-480'], [/^Ohne Alkohol|^Alkoholfreie/, 'glas-zwei-480'],
+  [/^Signature|^Longdrinks|^Wein/, 'glas-sour-480'], [/^Essen/, 'pl-tisch-480'], [/^Falstaff|^Gäste$/, 'decke-bar-480'],
+  [/^Donnerstag$/, 'saengerin-480'], [/^Freitag$/, 'momo-flaschen-480'], [/^Samstag$|^Zuletzt|^Der nächste/, 'p-1710-480'], [/^Eintritt|^Gastschichten/, 'konzert-480'],
+  [/^Silvester/, 'silvester-480'], [/^Geburtstag|^Tanz/, 'feste-anstossen-480'], [/^Valentinstag/, 'valentin-480'],
+  [/^Privates Dinner/, 'an-empore-tafel-480'], [/^Die lange Tafel|^Budget/, 'pl-empore-480'], [/^Die ganze Bar|^Kategorie|^Länger/, 'voll-480'], [/^Musik/, 'konzert-love-480'],
+  [/^An der Theke|^Lohnt|^So geht es$/, 'pl-theke-480'], [/^Am Tisch/, 'glas-kerze-480'], [/^Draussen/, 'terrasse-480'],
+  [/^Adresse|^Ecke/, 'pl-ecke-480'], [/^Bahn/, 'fb-fenster-aussen-480'], [/^Telefon|^Instagram|^E-Mail/, 'schild-480'], [/^Culinarium/, 'culinarium-tafel-480'], [/^Dirty/, 'dirty-chicken-480']];
+const zeilenBild = p => (ZEILENBILD.find(([re]) => re.test(p.was || '')) || [, BER_BILD[p.bereich] || 'schild-ecke-480'])[1];
 /* Antworten des Chats lesbar setzen (Robert 20.10.2026: «Die Antwortfelder des Chats bitte schöner gestalten»): Zeilen mit «- » werden eine Liste, der Rest Absätze */
 function antwortHTML(t) {
   const z = String(t || '').split('\n'); let h = '', liste = [];
@@ -231,12 +236,12 @@ function frageKarte(f) {
   const offen = !f.belegt && !f.erledigt, d = new Date(f.zeit);
   const wann = isNaN(d) ? '' : d.toLocaleDateString('de-DE', { day: 'numeric', month: 'short' }) + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   return `<button class="re-a re-q${offen ? ' re-q--offen' : ''}" type="button" data-gehe="gefragt"${offen ? ' data-wahl="luecke"' : ''}>
-    <span class="re-a__bild" aria-hidden="true"><img src="/assets/bild/${THEMABILD[f.gruppe] || 'kerze3-640'}.webp" alt="" width="900" height="675" decoding="async"></span>
+    <span class="re-a__bild" aria-hidden="true"><img src="/assets/bild/${THEMABILD[f.gruppe] || 'fenster-480'}.webp" alt="" width="900" height="675" decoding="async"></span>
     <span class="re-a__n"><span class="re-a__k"><i class="re-q__sp">${esc((f.sprache || '').toUpperCase())}</i>${esc(f.gruppe || 'Weitere Fragen')}</span><b dir="auto">${esc(f.frage)}</b><small dir="auto">${offen ? 'Dazu stand nichts auf der Website. Einmal nachtragen, dann antwortet der Chat selbst.' : esc(String(f.antwort || '').replace(/\s+/g, ' '))}</small></span>
     <span class="re-a__st">${offen ? 'Ohne Antwort' : 'Beantwortet'}<small>${esc(wann)}</small></span></button>`;
 }
 function arten() {   // die Arten als Kacheln mit Foto (wo-aufg des Pakets), wie viele Anfragen je Art im Eingang liegen
-  const Z = { warteliste: 'uhr', abend: 'blatt', feier: 'siegel', nachricht: 'mail' };
+  const Z = { reservieren: 'uhr', dinner: 'blatt', feier: 'siegel', nachricht: 'mail' };
   return `<h2 class="wo-zw">Nach <em>Art</em></h2><div class="wo-aufg">${Object.keys(ART).map(k => { const l = S.anfragen.filter(a => a.art === k), o = l.filter(a => a.status !== 'erledigt').length;
     return `<button class="wo-ag" type="button" data-gehe="eingang"><span class="wo-ag__b"><img src="/assets/bild/${ARTBILD[k] || ARTBILD.nachricht}.webp" alt="" width="900" height="675" decoding="async"></span><span class="wo-ag__t"><i class="wo-ag__z">${WO.ic(Z[k] || 'mail')}</i><b>${ART_LANG[k]}</b><span>${l.length ? mal(l.length, 'eine Anfrage', 'Anfragen') + (o ? ' · ' + o + ' offen' : '') : 'noch keine'}</span></span></button>`; }).join('')}</div>`;
 }
@@ -266,13 +271,13 @@ function eingang() {
   const zahl = k => k === 'neu' ? alle.filter(a => a.status === 'neu').length : k === 'offen' ? alle.filter(a => a.status !== 'erledigt').length : k === 'erledigt' ? alle.filter(a => a.status === 'erledigt').length : alle.length;
   const offenIn = n => jede.filter(a => a.status !== 'erledigt' && (n === 'alle' || abt(a) === n)).length;
   return kopf('Eingang', 'Anfragen <em>aus Chat und Website.</em>',
-    'Die Warteliste der Website, Plätze an einem Abend, eigene Feiern an der langen Tafel und Nachrichten, die Gäste über die Website oder im Chat geschickt haben. Wünsche zur Küche und Hinweise zum Abend (Termin, Tag, Plätze an der Tafel) stehen bei jeder Anfrage. Zu jeder schreibt der Assistent einen Brief im Ton der Website, auf Grundlage dessen, was Culinarium selbst schreibt. Du liest, änderst und schickst selbst.') +
+    'Reservierungen der Website, Private Dinner, Feiern an der langen Tafel und in der ganzen Bar und Nachrichten, die Gäste über die Website oder im Chat geschickt haben. Wünsche und Hinweise zum Abend (Tag, Zahl der Gäste, Format, Anzahlung) stehen bei jeder Anfrage. Zu jeder schreibt der Assistent einen Brief im Ton der Website, auf Grundlage dessen, was die Bar selbst schreibt. Du liest, änderst und schickst selbst.') +
     (jede.length ? `<div class="re-eingang"><div class="re-spalte">
         <div class="re-abt" role="group" aria-label="Abteilung">${[['alle', 'Alle', 'Jede Abteilung']].concat(ABTEILUNGEN.map(([k, s]) => [k, k, s])).map(([k, n, s]) => `<button type="button" data-abt="${k}" aria-pressed="${S.abt === k}" title="${esc(s)}"><span>${esc(n)}</span><i${offenIn(k) ? ' class="da"' : ''}>${offenIn(k)}</i></button>`).join('')}</div>
         <div class="wahl2 re-filter" role="group" aria-label="Auswahl">${[['alle', 'Alle'], ['neu', 'Neu'], ['offen', 'Offen'], ['erledigt', 'Erledigt']].map(([k, t]) => `<button type="button" data-filter="${k}" aria-pressed="${f === k}">${t}<i>${zahl(k)}</i></button>`).join('')}</div>
         <div class="re-liste">${tage.map(g => `<p class="re-tag"><span>${esc(g.t)}</span></p>${g.l.map(x => karteAnfrage(x, n++)).join('')}`).join('') || '<p class="re-tag"><span>Nichts in dieser Auswahl</span></p>'}</div></div>
         <div class="re-detail" id="detail">${a ? detail(a) : ''}</div></div>`
-      : `<div class="re-leer platte">${ZEICHEN}<b>Der Eingang ist leer.</b><p>Sobald ein Gast im Chat etwas anfragt und Name und Kontakt nennt, oder sich auf der Website auf die Warteliste setzt, steht die Anfrage hier.</p></div>`);
+      : `<div class="re-leer platte">${ZEICHEN}<b>Der Eingang ist leer.</b><p>Sobald ein Gast im Chat etwas anfragt und Name und Kontakt nennt, oder auf der Website reserviert oder eine Feier anfragt, steht die Anfrage hier.</p></div>`);
 }
 function kontaktLink(k) {
   const t = String(k || '').trim();
@@ -301,18 +306,18 @@ function textBrief(a, e, rtl) {   // «Als Text»: Betreff und Text als Felder (
    vergrössern, verkleinern, direkt in dem Feld drin»). Jeder Teil des Briefs ist ein Baustein (data-b): einmal klicken wählt ihn (Rahmen mit Ecken und Leiste),
    ziehen verschiebt, Ecken skalieren die Schrift, Seiten ändern die Breite, Doppelklick oder zweiter Klick schreibt hinein. Anordnung je Brief in entwurf.gestalt,
    Text in entwurf.text/betreff; gesichert wird von selbst. Verschoben wird nur über transform. */
-const GKOPF = { haus: 'Culinarium', zeile: 'A UNiQUE EXPERiENCE BY MOMO X RUDI · Walk on the Wild Side', fuss: 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover\nTelefon der Bar +49 163 3909578 · Instagram @culinarium_hannover' };   // Adresse und Telefon: Fuss der Website; Zeile: die Plakate («A UNiQUE EXPERiENCE BY MOMO X RUDI»); keine Mail-Adresse (fakten.json)
-/* Fotos des Hauses zum Einfügen in den Brief (website/assets/bild/<k>-640|1000.webp, Register BILD in website/bau.py) */
-const BRIEFBILDER = [['tafelleer', 'Die lange Tafel'], ['anstossen', 'Anstossen bei Kerzen'], ['glaeser', 'Zwei Gläser'], ['glas', 'Ein Drink von Momo'],
-  ['klaeren', 'Ein Drink wird geklärt'], ['pass', 'Am Pass'], ['anrichten', 'Von Hand angerichtet'], ['lauch', 'Lauch / Blumenkohl / Chipotle'],
-  ['spag', 'Spaghetti-Eis'], ['kerze2', 'Gäste an der Tafel'], ['theke', 'Die Theke'], ['schildnacht', 'Das Schild bei Nacht'], ['fassade', 'Die Fenster der Bar'], ['ecke', 'Die Hausecke']];
+const GKOPF = { haus: 'Walk on the Wild Side', zeile: 'Eure Nachbarschafts-Mixology-Bar · Hannover-Linden', fuss: 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover-Linden\nTelefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover' };   // Adresse und Telefon: Fuss der Website und Feiern; Zeile: die weissen Plakate der Bar («Eure Nachbarschafts-Mixology-Bar»); keine Mail-Adresse (nicht belegt)
+/* Fotos des Hauses zum Einfügen in den Brief (website/assets/bild/<k>-480|960.webp, Register BILD in website/bau.py) */
+const BRIEFBILDER = [['an-empore-tafel', 'Die lange Tafel'], ['anstossen', 'Anstossen'], ['glas-negroni', 'Ein Negroni'], ['momo-giesst', 'Momo mixt'],
+  ['glas-coupe', 'Ein Drink von Momo'], ['dg-siphon', 'Schaum aus dem Siphon'], ['theke', 'Die Theke'], ['decke-raum', 'Das Gewölbe'],
+  ['negroni', 'Negroni / Glühbirnen'], ['voll', 'Ein voller Abend'], ['konzert', 'Live am Donnerstag'], ['schild-ecke', 'Das Schild an der Ecke'], ['fenster', 'Die Fenster der Bar'], ['pl-ecke', 'Die Hausecke']];
 const SCHRIFT = { serif: 'font-family:var(--serif)', sans: 'font-family:var(--sans)', mono: 'font-family:var(--mono)', cinzel: 'font-family:var(--caps)', versal: 'font-family:var(--caps);letter-spacing:.16em;text-transform:uppercase' };
-const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', versal: 'text-transform:uppercase;letter-spacing:.06em' };   // Culinarium: nie kursiv, nie fett; Versalien wie Rudis Zeilen
+const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', versal: 'text-transform:uppercase;letter-spacing:.06em' };   // Wild Side: nie kursiv, nie fett; Versalien wie die Etiketten der Website
 /* Hauspalette, gleich in La Carte, La Réception und L’Imprimerie (Absprache 16.10.2026) */
-const HFARBE = { navy: '#1b1514', blau: '#483835', tinte: '#2f2422', papier: '#f7f0e6', creme: '#eee6d8', weiss: '#fcf9f2', sand: '#d5af63', gold: '#e7ce97', messing: '#b28835', taupe: '#665754', rot: '#c79635' };
-const HNAME = { navy: 'Nacht', blau: 'Schiefer', tinte: 'Tinte', papier: 'Warmweiss tief', creme: 'Warmweiss gedeckt', weiss: 'Warmweiss', sand: 'Kerze', gold: 'Kerze hell', messing: 'Kerze tief', taupe: 'Leise', rot: 'Rot' };
-/* Hauspalette des Culinarium (Farbwelt A «Plakat», Werte wie _werkzeuge/oberflaeche/kleid/wildside.css, aus website/assets/culinarium.css): abgeschrieben, weil La Réception das Markenbuch nicht lädt */
-const LFARBE = { taupe: 'rgba(213,175,99,.55)', gold: '#d5af63', navy: '#483835' };
+const HFARBE = { navy: '#130E0D', blau: '#261E1A', tinte: '#1C1513', papier: '#EFE6D8', creme: '#F2E9DC', weiss: '#FFFBF5', sand: '#D8B264', gold: '#E4C88A', messing: '#7A5C24', taupe: '#5E524A', rot: '#F0323F' };
+const HNAME = { navy: 'Nacht', blau: 'Platte', tinte: 'Tinte', papier: 'Papier', creme: 'Creme', weiss: 'Weiss', sand: 'Gold', gold: 'Gold hell', messing: 'Gold tief', taupe: 'Leise', rot: 'Rot' };
+/* Hauspalette der Bar (Werte wie _werkzeuge/oberflaeche/kleid/wildside.css, aus website/assets/wild.css): abgeschrieben, weil das Gästebuch das Markenbuch nicht lädt */
+const LFARBE = { taupe: 'rgba(216,178,100,.55)', gold: '#D8B264', navy: '#261E1A' };
 const GNAME = { linie1: 'Linie unter dem Kopf', linie2: 'Linie über dem Betreff', linie3: 'Linie über der Fusszeile', zeichen: 'Zeichen', haus: 'Hausname', zeile: 'Unterzeile', an: 'Empfänger', von: 'Absender', betreff: 'Betreff', fuss: 'Fusszeile' };
 const gName = k => GNAME[k] || (/^p\d+$/.test(k) ? 'Absatz ' + (+k.slice(1) + 1) : 'Foto');
 function gStil(g, bild = false) {
@@ -346,7 +351,7 @@ function gestaltBrief(a, e, rtl) {
   const bk = (k, cls, inhalt, schreib = true, extra = '') => `<div class="gs ${cls}" data-b="${k}"${schreib ? ' data-schreib' : ''}${extra}${gStil(G[k], cls === 'gs--bild' || cls === 'gs--linie')}>${inhalt}</div>`;
   const linie = k => (G[k] && G[k].aus) ? '' : bk(k, 'gs--linie', '<i></i>', false);
   const kt = k => feldHTML((G[k] && typeof G[k].t === 'string') ? G[k].t : GKOPF[k]);
-  const fotos = nach => bilder.filter(b => b.nach === nach).map(b => bk(b.id, 'gs--bild', `<img src="/assets/bild/${esc(b.k)}-1000.webp" alt="${esc(b.n || '')}" draggable="false">`, false)).join('');
+  const fotos = nach => bilder.filter(b => b.nach === nach).map(b => bk(b.id, 'gs--bild', `<img src="/assets/bild/${esc(b.k)}-960.webp" alt="${esc(b.n || '')}" draggable="false">`, false)).join('');
   return `<div class="gs-flaeche"><div class="gs-werk" role="toolbar" aria-label="Brief gestalten">
           <div class="gs-werk__grp"><button class="gs-werk__k" type="button" data-w="zurueck" aria-label="Rückgängig" data-tip="Rückgängig (⌘Z)"><svg viewBox="0 0 16 16"><path d="M5.5 4 2.5 7l3 3M2.8 7H10a3.5 3.5 0 0 1 0 7H8"/></svg></button><button class="gs-werk__k" type="button" data-w="vor" aria-label="Wiederholen" data-tip="Wiederholen (⇧⌘Z)"><svg viewBox="0 0 16 16"><path d="M10.5 4l3 3-3 3M13.2 7H6a3.5 3.5 0 0 0 0 7h2"/></svg></button></div>
           <div class="gs-werk__grp gs-werk__schrift" role="group" aria-label="Schrift"><button class="gs-werk__k gs-sel" type="button" data-g="f-serif" data-tip="Schrift Antiqua"><b style="font-family:var(--serif);font-size:17px">Aa</b></button><button class="gs-werk__k gs-sel" type="button" data-g="f-cinzel" data-tip="Schrift Versalien"><b style="font-family:var(--caps);font-size:13px">Aa</b></button><button class="gs-werk__k gs-sel" type="button" data-g="f-sans" data-tip="Schrift Grotesk"><b style="font-family:var(--sans);font-size:14px">Aa</b></button></div>
@@ -402,7 +407,7 @@ function briefMail(a, e) {
   const t = x => esc(x).replace(/\n/g, '<br>');
   const kt = k => t((G[k] && typeof G[k].t === 'string') ? G[k].t : GKOPF[k]);
   const fotos = nach => bilder.filter(b => b.nach === nach).map(b => { const g = G[b.id] || {}; const w = Math.round(Math.min(560, (g.w || 560) * (g.s || 1)));
-    return `<tr><td style="padding:6px 0 18px;${g.al ? 'text-align:' + g.al : 'text-align:center'}"><img src="${basis}assets/bild/${b.k}-1000.webp" width="${w}" alt="${esc(b.n || '')}" style="display:inline-block;width:${w}px;max-width:100%;height:auto;border:0"></td></tr>`; }).join('');
+    return `<tr><td style="padding:6px 0 18px;${g.al ? 'text-align:' + g.al : 'text-align:center'}"><img src="${basis}assets/bild/${b.k}-960.webp" width="${w}" alt="${esc(b.n || '')}" style="display:inline-block;width:${w}px;max-width:100%;height:auto;border:0"></td></tr>`; }).join('');
   const mLinie = (k, pad) => { const g = G[k] || {}; if (g.aus) return ''; const w = g.w ? Math.min(504, g.w) + 'px' : '100%', al = g.al || 'center', farbe = { taupe: '#e3d4be', gold: '#cb9c3d', navy: '#271d1b' }[g.fb || 'taupe'] || HFARBE[g.fb];
     return `<tr><td style="padding:${pad};text-align:${al}"><div style="display:inline-block;width:${w};height:${g.st || 1}px;background:${farbe};line-height:1px;font-size:1px">&nbsp;</div></td></tr>`; };
   const serif = "font-family:Prata,Georgia,serif;color:#201918";
@@ -411,7 +416,7 @@ function briefMail(a, e) {
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:#f8f3ed;border-radius:22px;overflow:hidden">
 <tr><td style="padding:0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-<tr><td style="background:#271d1b;text-align:center;padding:34px 20px 4px"><img src="${wz}marke-haus-weiss.png" width="${Math.round(250 * ((G.zeichen || {}).s || 1))}" alt="Culinarium" style="height:auto;border:0"></td></tr>
+<tr><td style="background:#271d1b;text-align:center;padding:34px 20px 4px"><img src="${wz}marke-haus-weiss.png" width="${Math.round(120 * ((G.zeichen || {}).s || 1))}" alt="Walk on the Wild Side" style="height:auto;border:0"></td></tr>
 ${KOPF_EIGEN(G, 'haus') ? `<tr><td style="background:#271d1b;${st('haus', 15, "text-align:center;letter-spacing:.2em;text-transform:uppercase;font-weight:400;font-family:Prata,Georgia,'Times New Roman',serif;color:#f8f3ed;padding-top:12px")}">${kt('haus')}</td></tr>` : ''}
 ${KOPF_EIGEN(G, 'zeile') ? `<tr><td style="background:#271d1b;${st('zeile', 10.5, "text-align:center;letter-spacing:.24em;text-transform:uppercase;font-family:'Hanken','Helvetica Neue',Helvetica,Arial,sans-serif;color:#cc9e41;padding:8px 20px 30px")}">${kt('zeile')}</td></tr>` : '<tr><td style="background:#271d1b;padding:0 0 30px;font-size:1px;line-height:1px">&nbsp;</td></tr>'}
 <tr><td style="padding:34px 40px 30px">
@@ -595,7 +600,7 @@ function verbindeBrief(a) {
         fensterZu(); const alt = schnapp(), o = G._orig; e.text = o.text; e.betreff = o.betreff; G = e.gestalt = { _orig: o }; merke(alt); neu(true); quit('Zurück auf der Vorlage', '', [], false, 3000); });
     if (w === 'foto') {
       return fenster(`<h2>Foto <em>einfügen.</em></h2><p>Ein Foto des Hauses für diesen Brief. Es kommt unter ${wahl && /^p\d+$/.test(wahl.dataset.b) ? 'den gewählten Absatz' : 'den Text vor dem Gruss'}; danach kannst du es verschieben und an den Ecken grösser oder kleiner ziehen.</p>
-        <div class="gs-fotos">${BRIEFBILDER.map(([k, n]) => `<button type="button" data-foto="${k}" data-name="${esc(n)}"><img src="/assets/bild/${k}-640.webp" alt="" loading="lazy"><span class="re-gl-r re-gl--strich">${glieder(n.split(' / ').map(esc))}</span></button>`).join('')}</div>`, false);
+        <div class="gs-fotos">${BRIEFBILDER.map(([k, n]) => `<button type="button" data-foto="${k}" data-name="${esc(n)}"><img src="/assets/bild/${k}-480.webp" alt="" loading="lazy"><span class="re-gl-r re-gl--strich">${glieder(n.split(' / ').map(esc))}</span></button>`).join('')}</div>`, false);
     }
   });
   document.addEventListener('click', S.fotoKlick || (S.fotoKlick = ev => {
@@ -658,10 +663,10 @@ function verbindeBrief(a) {
     let h = `<header><span class="gs-gruppe__t">Gestalten</span><h2>${esc(gName(k))}</h2><button class="gs-seite__zu" type="button" data-s="zu" data-v="" aria-label="Schliessen">${ZU}</button></header><div class="gs-seite__inhalt">`;
     if (text) {
       const fam = g.f === 'versal' ? 'cinzel' : (g.f || (k === 'haus' ? 'cinzel' : k === 'zeile' || k === 'fuss' ? 'mono' : 'serif'));
-      h += gruppe('Schriftart', seg([['serif', 'Prata', 'var(--serif)'], ['cinzel', 'Versalien', 'var(--caps)'], ['sans', 'Hanken', 'var(--sans)'], ['mono', 'Hanken', 'var(--mono)']].map(([v, n, f]) => kn('f', v, `<span style="font-family:${f}">${n}</span>`, fam === v)).join(''), ' gs-seg--schrift'));
+      h += gruppe('Schriftart', seg([['serif', 'Prata', 'var(--serif)'], ['cinzel', 'Versalien', 'var(--caps)'], ['sans', 'Hanken', 'var(--sans)'], ['mono', 'Etikett', 'var(--mono)']].map(([v, n, f]) => kn('f', v, `<span style="font-family:${f}">${n}</span>`, fam === v)).join(''), ' gs-seg--schrift'));
       const ta = g.ta || (g.f === 'versal' || /uppercase/.test(cs.textTransform) ? 'versal' : 'normal');
       h += gruppe('Schriftgrösse', groesse('pt', pt, 4, 72, .5, 'pt') + regler('pt', pt, 4, 72, .5, pt.toString().replace('.', ',') + ' pt'));
-      h += gruppe('Textart', seg([['normal', 'Normal'], ['versal', 'Versalien']].map(([v, n]) => kn('ta', v, n, ta === v)).join(''))   /* Culinarium: nie kursiv */);
+      h += gruppe('Textart', seg([['normal', 'Normal'], ['versal', 'Versalien']].map(([v, n]) => kn('ta', v, n, ta === v)).join(''))   /* Wild Side: nie kursiv */);
       h += gruppe('Farbe', farben('c', g.c, ''));
       h += gruppe('Ausrichtung', ausr());
       h += gruppe('Abstände', `<div class="gs-lage gs-lage--zwei"><label><span>Davor</span><input type="number" data-s="mt" min="-60" max="200" step="2" value="${g.mt || 0}"></label><label><span>Danach</span><input type="number" data-s="mb" min="-60" max="200" step="2" value="${g.mb || 0}"></label><em>px</em></div>`);
@@ -771,13 +776,13 @@ async function deutschHolen(a) {
   delete S.deLaedt[a.id];
   if (S.ansicht === 'eingang' && S.wahl === a.id) neuDetail(a);
 }
-/* Hinweise fürs Team (Server: reception.hinweise): kein Culinarium-Tag, Bar geschlossen, Termin steht noch nicht fest, mehr als die Tafel, Allergien, Ticket. Nur aus Angaben des Hauses gerechnet. */
-const HINW_ZEICHEN = { ruhetag: 'uhr', termin: 'uhr', gruppe: 'haus', allergie: 'blatt', ticket: 'karte' };
+/* Hinweise fürs Team (Server: reception.hinweise): Bar geschlossen, ab zehn Gästen die Tafel, Format passt nicht zur Zahl, Allergien, Anzahlung. Nur aus Angaben des Hauses gerechnet. */
+const HINW_ZEICHEN = { ruhetag: 'uhr', gruppe: 'haus', allergie: 'blatt', anzahlung: 'karte' };
 function hinweise(a) {
   const h = a.hinweise || [];
   return h.length ? `<ul class="re-hinw" aria-label="Hinweise">${h.map(x => `<li class="re-hinw__p re-hinw--${esc(x.art)}">${WO.ic(HINW_ZEICHEN[x.art] || 'mail')}<span>${esc(x.text)}</span></li>`).join('')}</ul>` : '';
 }
-const hinwKurz = a => (a.hinweise || []).map(x => ({ ruhetag: 'Anderer Tag', termin: 'Termin offen', gruppe: 'Viele Plätze', allergie: 'Küche fragen', ticket: 'Ticket' }[x.art])).filter(Boolean);
+const hinwKurz = a => (a.hinweise || []).map(x => ({ ruhetag: 'Bar sonst zu', gruppe: 'Format prüfen', allergie: 'Rudi fragen', anzahlung: 'Anzahlung' }[x.art])).filter(Boolean);
 function detail(a) {
   const e = a.entwurf, laeuft = S.schreibt[a.id], bearb = S.bearbeiten === a.id, offen = e ? (e.text.match(KLAMMER) || []).length : 0;
   /* Robert 20.10.2026: «super unübersichtlich … nicht richtig formatiert»: drei ruhige Gruppen statt einer Wand aus Feldern (Wann und wie viele · Gast · Woher) */
@@ -941,7 +946,7 @@ function gefragt() {
   const gruppen = {};
   liste.forEach(f => { (gruppen[f.gruppe] = gruppen[f.gruppe] || []).push(f); });
   const reihe = Object.keys(gruppen).sort((x, y) => gruppen[y].filter(f => !f.belegt && !f.erledigt).length - gruppen[x].filter(f => !f.belegt && !f.erledigt).length || gruppen[y].length - gruppen[x].length);
-  const frage = f => `<div class="re-f${!f.belegt && !f.erledigt ? ' luecke' : ''}${f.erledigt ? ' erledigt' : ''}" data-id="${esc(f.id)}">${IMG(THEMABILD[f.gruppe] || 'kerze3-640', 're-f__bild')}
+  const frage = f => `<div class="re-f${!f.belegt && !f.erledigt ? ' luecke' : ''}${f.erledigt ? ' erledigt' : ''}" data-id="${esc(f.id)}">${IMG(THEMABILD[f.gruppe] || 'fenster-480', 're-f__bild')}
       <div class="re-f__k"><span class="mono">${esc(zeit(f.zeit))} · ${esc(SPRACHE[f.sprache] || f.sprache)}${f.anfrage ? ' · wurde zur Anfrage' : ''}${f.buchung ? ' · mit Buchungsmaske' : ''}</span>
         ${!f.belegt ? `<em>${f.erledigt ? 'nachgetragen' : 'ohne Antwort'}${f.thema ? ' · ' + esc(f.thema) : ''}</em>` : ''}</div>
       <p class="re-f__q" dir="auto">${esc(f.frage)}</p>
@@ -990,7 +995,7 @@ function nachgetragenS() {
     'Antworten, die dein Team auf Fragen ohne Antwort geschrieben hat. Der Chat nutzt sie wie die Website. Ändere oder entferne sie hier, wenn sich etwas ändert.',
     `<button class="kn kn--linie" type="button" id="n-neu">Antwort ohne Frage anlegen<i>${PF}</i></button>`) +
     (l.length ? `<div class="re-nliste">${l.slice().reverse().map(x => { const d = new Date(x.zeit), tag = isNaN(d) ? '' : d.toLocaleDateString('de-DE', { day: 'numeric', month: 'short', year: 'numeric' });
-      return `<article class="re-n" data-nid="${esc(x.nid)}">${IMG(THEMABILD[themaVon(x.frage)] || 'kerze3-640', 're-n__bild')}
+      return `<article class="re-n" data-nid="${esc(x.nid)}">${IMG(THEMABILD[themaVon(x.frage)] || 'fenster-480', 're-n__bild')}
         <header class="re-n__kopf"><span>Nachgetragen am ${esc(tag)}</span></header>
         <span class="re-n__l">Frage der Gäste</span>
         <h3 class="re-n__q" dir="auto">${zusammen(esc(x.frage))}</h3>
@@ -1000,7 +1005,7 @@ function nachgetragenS() {
         <footer class="re-n__kn"><button class="re-n__k" type="button" data-akt="aendern"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 3.5l2 2L6 12H4v-2z"/></svg>Ändern</button><button class="re-n__k re-n__k--weg" type="button" data-akt="weg"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/></svg>Entfernen</button></footer>
       </article>`; }).join('')}</div>`
       /* M27 (Robert 18.10.2026): nie leer, die Beispiele stehen gleich da (wie Gasterntal). Erfunden ist nur die Frage, die Antwort bleibt die Leerstelle des Teams */
-      : `<div class="re-nliste re-nliste--bsp">${['Gibt es den Abend auch alkoholfrei?', 'Wo kann ich in der Nähe parken?', 'Is the bar wheelchair\u00a0accessible?'].map(q => `<article class="re-n re-n--beispiel">${IMG(THEMABILD[themaVon(q)] || 'kerze3-640', 're-n__bild')}
+      : `<div class="re-nliste re-nliste--bsp">${['Habt ihr eine Garderobe?', 'Wo kann ich in der Nähe parken?', 'Is the bar wheelchair\u00a0accessible?'].map(q => `<article class="re-n re-n--beispiel">${IMG(THEMABILD[themaVon(q)] || 'fenster-480', 're-n__bild')}
         <header class="re-n__kopf"><span>So sähe ein Nachtrag aus</span></header>
         <span class="re-n__l">Frage der Gäste</span>
         <h3 class="re-n__q" dir="auto">${zusammen(esc(q))}</h3>
@@ -1031,9 +1036,9 @@ function verbindeNachgetragen() {
    Alles, was der Chat über das Haus und die Umgebung weiss, nach Bereichen: die Abschnitte der Website und der Unterlagen,
    das Wissen über die Region, was das Team ergänzt hat (selbst geschrieben oder aus einem Link eingelesen) und die nachgetragenen Antworten.
    Ändern wirkt ab der nächsten Frage an den Chat; die Website selbst bleibt, wie sie ist. Server-Teil: _gast/gedaechtnis.py. */
-const BER_BILD = { 'Culinarium': 'tafelleer-640', 'Der Abend & Warteliste': 'anstossen-640', 'Tickets & Preise': 'karte-640', 'Drinks & Küche': 'klaeren-640', 'Kontakt': 'schildnah-640',
-  'Das Haus (Bar)': 'theke-640', 'Team': 'trio-640', 'Der Weg': 'ecke-640', 'Dirty Chicken': 'dc_burger-640', 'Alle Abende': 'plakatwand-640',
-  'Veranstaltungen': 'kerze2-640', 'Fragen & Antworten': 'kerze1-640' };
+const BER_BILD = { 'Die Bar': 'theke-480', 'Zeiten & Reservieren': 'pl-theke-480', 'Drinks & Preise': 'glas-negroni-480', 'Programm': 'konzert-480', 'Feiern': 'an-empore-tafel-480',
+  'Das Haus & Team': 'decke-raum-480', 'Der Weg': 'pl-ecke-480', 'Kontakt': 'schild-480', 'Im selben Haus': 'culinarium-tafel-480',
+  'Veranstaltungen': 'p-1710-480', 'Fragen & Antworten': 'fenster-480' };
 const W_ART = { neu: 'Neu angelegt', geaendert: 'Geändert', aus: 'Ausgeblendet', an: 'Wieder eingeblendet', zurueck: 'Wieder wie auf der Website', link: 'Aus Link übernommen', entfernt: 'Entfernt', nachgetragen: 'Antwort nachgetragen' };
 const LUPE = '<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>';
 const vorTagen = (iso, n) => { const d = new Date(iso); return !isNaN(d) && (Date.now() - d) < n * 864e5; };
@@ -1068,7 +1073,7 @@ function wissenZeilen() {   // alle Zeilen flach, für Suche, Zähler und Fenste
 function wissenPosten() { return wissenZeilen(); }
 /* Keine Namensabfrage (Robert 20.10.2026: «Entfernen diese, wer arbeitet hier? Abfrage», Fehlerbuch 10a): im Protokoll steht ein fester Eintrag,
    die Anmeldung mit Namen kommt erst bei der Auslieferung an das Haus (Master 5.3). */
-const WER = 'Team Culinarium';
+const WER = 'Team Wild Side';
 const meinName = () => WER;
 const nameFeld = () => '';
 function nameAus() { return WER; }
@@ -1104,15 +1109,15 @@ function wissenS() {
   const sb = W.steckbrief || [], bereiche = sb.map(b => b.bereich).concat(['Veranstaltungen', 'Fragen & Antworten']);
   W.eintraege.forEach(e => { if (!bereiche.includes(e.bereich)) bereiche.splice(bereiche.length - 2, 0, e.bereich); });
   return kopf('Das weiss der Chat', 'Alles, was der Chat <em>über dein Haus weiss.</em>',
-    `Der Chat antwortet nur mit dem, was auf der Website, beim Vorverkauf und hier steht. Stimmt eine Angabe nicht mehr, tipp sie an und ändere sie. Der Chat antwortet ab der nächsten Frage damit, die Website selbst bleibt, wie sie ist.${team ? ` <b>${mal(team, 'Eine Angabe stammt', team + ' Angaben stammen')} von deinem Team.</b>` : ''}`,
-    `<button class="kn kn--gold glanz-kn" type="button" id="w-link-auf">Neues Wissen<i>${PF}</i></button><button class="kn kn--linie" type="button" id="w-neu">Angabe hinzufügen<i>${PF}</i></button>`, 'schildnah') +
+    `Der Chat antwortet nur mit dem, was auf der Website und hier steht. Stimmt eine Angabe nicht mehr, tipp sie an und ändere sie. Der Chat antwortet ab der nächsten Frage damit, die Website selbst bleibt, wie sie ist.${team ? ` <b>${mal(team, 'Eine Angabe stammt', team + ' Angaben stammen')} von deinem Team.</b>` : ''}`,
+    `<button class="kn kn--gold glanz-kn" type="button" id="w-link-auf">Neues Wissen<i>${PF}</i></button><button class="kn kn--linie" type="button" id="w-neu">Angabe hinzufügen<i>${PF}</i></button>`, 'decke-raum') +
     `<div class="wi-oben">
       <section class="platte wi-neu" id="w-ein">
         <span class="mono">Neues Wissen</span>
         <h2>Was soll der Chat <em>noch wissen?</em></h2>
-        <p>Schreib es hinein, füg einen Link ein oder leg eine Datei dazu: das Plakat des nächsten Abends, die Karte am Platz als Foto, den Termin eines Dirty-Chicken-Tags. Der Chat übernimmt nur, was dort steht, mit Datum.</p>
+        <p>Schreib es hinein, füg einen Link ein oder leg eine Datei dazu: das Plakat des nächsten DJ-Abends, die neue Karte als Foto, den Termin eines Konzerts. Der Chat übernimmt nur, was dort steht, mit Datum.</p>
         <div class="wi-neu__feld" id="w-feld">
-          <textarea id="w-text" rows="3" placeholder="Etwa: Der nächste Abend ist am [Datum]. Oder einen Link einfügen.">${esc(S.entwurf || '')}</textarea>
+          <textarea id="w-text" rows="3" placeholder="Etwa: Der nächste DJ-Abend ist am [Datum]. Oder einen Link einfügen.">${esc(S.entwurf || '')}</textarea>
           <div class="wi-neu__dateien" id="w-dateien">${dateienS()}</div>
           <div class="wi-neu__leiste">
             <button class="rund" type="button" id="w-doc" data-tip="Dokument dazulegen" aria-label="Dokument dazulegen">${DOK}</button>
@@ -1126,7 +1131,7 @@ function wissenS() {
           <div class="wi-neu__ziehen" aria-hidden="true">Datei hier ablegen</div>
         </div>
         <p class="wi-neu__hinweis">PDF, Word, Text und Fotos bis 20 MB. Eigener Text mit gewähltem Bereich steht sofort im Wissen; Links, Dokumente und Fotos werden im Hintergrund gelesen.</p>
-        ${links.length ? `<div class="wi-links">${links.map(x => `<div class="wi-l wi-l--${x.status}" data-lid="${esc(x.lid)}">${IMG(BER_BILD[x.bereich] || 'kerze1-640', 'wi-l__bild')}<span class="wi-l__z" aria-hidden="true"></span>
+        ${links.length ? `<div class="wi-links">${links.map(x => `<div class="wi-l wi-l--${x.status}" data-lid="${esc(x.lid)}">${IMG(BER_BILD[x.bereich] || 'fenster-480', 'wi-l__bild')}<span class="wi-l__z" aria-hidden="true"></span>
           <div><b>${esc(x.titel || host(x.url) || 'Eigener Text')}</b><small>${x.von ? esc(x.von) + ' · ' : ''}${x.status === 'liest' ? 'Wird gelesen …' : x.status === 'fertig' ? mal(x.wids.length, 'Eine Angabe', 'Angaben') + ' übernommen · ' + zeit(x.fertig) : x.status === 'leer' ? 'Nichts für Gäste gefunden' + (x.meldung ? ': ' + esc(x.meldung) : '') : esc(x.meldung || 'Liess sich nicht lesen.')}</small></div>
           ${x.status === 'liest' ? '' : `<span class="wi-l__kn"><button class="link" type="button" data-akt="neu">Neu einlesen</button><button class="link rot" type="button" data-akt="weg">Entfernen</button></span>`}</div>`).join('')}</div>` : ''}
       </section>
@@ -1139,8 +1144,8 @@ function wissenS() {
         <div class="wi-antwort" id="w-antwort" hidden></div>
       </section>
     </div>
-    ${verlauf.length ? `<section class="platte sb-verlauf"><span class="mono">Zuletzt geändert</span><ol>${verlauf.slice(0, 6).map(v => `<li>${IMG(BER_BILD[v.bereich] || THEMABILD[themaVon(v.titel)] || 'fassade-640', 'sb-verlauf__bild')}<span class="mono">${esc(datum(v.zeit))}</span><b>${esc(W_ART[v.art] || v.art)}${v.wer ? ' · ' + esc(v.wer) : ''}</b><p dir="auto">${esc(v.titel)}</p></li>`).join('')}</ol></section>` : ''}
-    <label class="suche wi-such">${LUPE}<input type="search" id="w-such" placeholder="Suchen: Warteliste, Fatwashing …" value="${esc(S.such)}" autocomplete="off"></label>
+    ${verlauf.length ? `<section class="platte sb-verlauf"><span class="mono">Zuletzt geändert</span><ol>${verlauf.slice(0, 6).map(v => `<li>${IMG(BER_BILD[v.bereich] || THEMABILD[themaVon(v.titel)] || 'fenster-480', 'sb-verlauf__bild')}<span class="mono">${esc(datum(v.zeit))}</span><b>${esc(W_ART[v.art] || v.art)}${v.wer ? ' · ' + esc(v.wer) : ''}</b><p dir="auto">${esc(v.titel)}</p></li>`).join('')}</ol></section>` : ''}
+    <label class="suche wi-such">${LUPE}<input type="search" id="w-such" placeholder="Suchen: Reservieren, Milk Washing …" value="${esc(S.such)}" autocomplete="off"></label>
     <div id="w-ergebnis"${q ? ' class="sucht"' : ''}>${q && !liste.length ? fehltS(S.such.trim()) : !q && (W.offen || []).length ? offenS(W.offen) : ''}
     ${q && !liste.length ? '' : (() => {   /* Geordnet statt versetzt (Robert 16.10.2026: «schräg immer versetzt … unstrukturiert»): links die Bereiche als Inhaltsverzeichnis, rechts der gewählte Bereich in voller Breite. Beim Suchen stehen rechts alle Treffer untereinander. */
       const da = bereiche.filter(b => liste.some(p => p.bereich === b) || (!q && ['Veranstaltungen', 'Fragen & Antworten'].includes(b)));
@@ -1154,7 +1159,7 @@ function wissenS() {
 /* Steht zu einem Suchwort nichts im Wissen: nicht abweisen, sondern zur Antwort führen (Robert 16.10.2026: «lösungsorientiert … eine Anfrage an die verantwortliche Abteilung»).
    Selbst eintragen, oder die zuständige Abteilung fragen: die Frage bleibt im Werkzeug unter «Offen bei deinem Team» (Thema, Abteilung, wer gefragt hat)
    und wird dort beantwortet. Kein Mailprogramm (Robert 17.10.2026: keine Mails, sondern Formulare). */
-const ABTEILUNG = [['Küche (Rudi Napieraj)', 'Küche'], ['Drinks (Momo)', 'Drinks'], ['Die Bar (Derya Ivkin)', 'Bar']];   // Namen und Rollen: Seite «Team» der Website
+const ABTEILUNG = [['Die Bar (Derya Ivkin)', 'Bar'], ['Drinks (Momo Ben Khelifa)', 'Drinks'], ['Küche beim Dinner (Rudi)', 'Küche']];   // Namen und Rollen: Seiten «Das Haus» und «Feiern» der Website
 function fehltS(wort) {
   const thema = wort.charAt(0).toUpperCase() + wort.slice(1), ber = S.wissen.bereiche.filter(b => b !== 'Fragen & Antworten');
   return `<section class="platte sb-fehlt" data-thema="${esc(thema)}">
@@ -1175,7 +1180,7 @@ function fehltS(wort) {
 }
 function offenS(l) {
   return `<section class="platte sb-offen"><span class="mono">Offen bei deinem Team</span>
-    ${l.map(x => `<div class="sb-offen__z" data-oid="${esc(x.oid)}">${IMG(THEMABILD[themaVon(x.thema)] || 'kerze3-640', 'sb-offen__bild')}<div><b>${esc(x.thema)}</b><small>${x.an ? esc(x.an) + ' gefragt' : 'offen'}${x.von ? ' von ' + esc(x.von) : ''} · ${esc(datum(x.zeit))}</small></div>
+    ${l.map(x => `<div class="sb-offen__z" data-oid="${esc(x.oid)}">${IMG(THEMABILD[themaVon(x.thema)] || 'fenster-480', 'sb-offen__bild')}<div><b>${esc(x.thema)}</b><small>${x.an ? esc(x.an) + ' gefragt' : 'offen'}${x.von ? ' von ' + esc(x.von) : ''} · ${esc(datum(x.zeit))}</small></div>
       <button class="kn kn--klein kn--gold" type="button" data-akt="antwort">Antwort eintragen<i>${PF}</i></button><button class="link" type="button" data-akt="weg">Nicht mehr nötig</button></div>`).join('')}</section>`;
 }
 function verbindeFehlt() {
@@ -1368,10 +1373,10 @@ function wachen() {   // solange ein Link gelesen wird, alle drei Sekunden nachs
 }
 
 /* ---------- Chat ausprobieren (Robert 16.10.2026: «landet auf der Website und hat keine Ahnung, was man machen soll») ----------
-   Culinarium (28.10.2026, wie Schäfli und Schlössli): Die Website hat noch keinen Chat. Rechts steht deshalb das Chatfenster selbst, wie ein Gast es auf dem Handy sähe,
+   Wild Side (31.10.2026, wie Culinarium und Schäfli): Die Website hat noch keinen Chat. Rechts steht deshalb das Chatfenster selbst, wie ein Gast es auf dem Handy sähe,
    und fragt denselben Weg wie später die Website (/api/gast). Ohne RECEPTION_KI=1 antwortet es mit Probe-Antworten, beschriftet.
    Anfragen und Fragen aus der Probe markiert der Server als Beispiel (Kopfzeile X-Reception-Probe). */
-const PROBEFRAGEN = ['Wann ist der nächste Abend?', 'Was kostet ein Abend?', 'Was ist Fatwashing?', 'Ich habe eine Nussallergie, geht das?'];
+const PROBEFRAGEN = ['Wann habt ihr offen?', 'Was kostet ein Drink?', 'Kann ich mit 15 Leuten feiern?', 'Darf mein Hund mit?'];
 function probe() {
   let o = $('#probe');
   if (!o) { o = document.createElement('div'); o.id = 'probe'; o.className = 'probe'; document.body.appendChild(o); }
@@ -1383,12 +1388,12 @@ function probe() {
         <h2>So fragt <em>ein Gast.</em></h2>
         <p>Hier siehst du den Chat so, wie Gäste ihn auf dem Handy sehen würden. Tipp eine Frage an oder schreib selbst ins Feld.</p>
         <div class="probe__fragen">${PROBEFRAGEN.map(f => `<button type="button" data-frage="${esc(f)}"><i>${SYM.chat}</i><span>${esc(f)}</span></button>`).join('')}</div>
-        <p class="probe__klein">Möchte der Gast auf die Warteliste oder eine eigene Feier anfragen, fragt der Chat nach Name und Kontakt. Nennst du beides, liegt die Anfrage danach im Eingang.</p>
+        <p class="probe__klein">Möchte der Gast reservieren oder eine Feier anfragen, fragt der Chat nach Name und Kontakt. Nennst du beides, liegt die Anfrage danach im Eingang.</p>
         <div class="probe__kn"><button class="kn kn--gold" type="button" id="probe-eingang">Zurück zum Eingang<i>${PF}</i></button></div>
       </aside>
-      <div class="probe__rechts"><div class="ws-handy" aria-label="Chat von Culinarium">
-        <header class="ws-handy__kopf">${ZEICHEN}<div><b>Culinarium</b><small>Fragen zum Abend</small></div></header>
-        <div class="ws-handy__l" id="probe-l" aria-live="polite"><p class="ws-bl ws-bl--haus">Hallo. Was willst du über Culinarium wissen?</p></div>
+      <div class="probe__rechts"><div class="ws-handy" aria-label="Chat von Walk on the Wild Side">
+        <header class="ws-handy__kopf">${ZEICHEN}<div><b>Wild Side</b><small>Fragen an die Bar</small></div></header>
+        <div class="ws-handy__l" id="probe-l" aria-live="polite"><p class="ws-bl ws-bl--haus">Hallo. Was willst du über die Bar wissen?</p></div>
         <form class="ws-handy__feld" id="probe-form"><textarea id="probe-t" rows="1" maxlength="600" placeholder="Deine Frage" aria-label="Deine Frage"></textarea><button class="rund" type="submit" aria-label="Senden">${PF}</button></form>
       </div></div>
     </div>`;
@@ -1404,7 +1409,7 @@ function probe() {
       const d = await r.json().catch(() => ({}));
       const text = r.ok ? (d.text || '') : 'Der Chat antwortet gerade nicht (' + (d.fehler || r.status) + ').';
       w.textContent = text; w.classList.remove('ws-bl--wartet'); verlauf.push({ role: 'assistant', content: text });
-      if (d.maske) { const k = document.createElement('a'); k.className = 'ws-bl ws-bl--weg'; k.href = '/abend.html#warteliste'; k.target = '_blank'; k.rel = 'noopener'; k.textContent = 'Auf die Warteliste'; liste.appendChild(k); }
+      if (d.maske) { const k = document.createElement('a'); k.className = 'ws-bl ws-bl--weg'; k.href = '/besuch.html#reservieren'; k.target = '_blank'; k.rel = 'noopener'; k.textContent = 'Platz reservieren'; liste.appendChild(k); }
       S.anfragen = null; S.fragen = null;
     } catch (e) { w.textContent = 'Keine Verbindung zum Chat.'; w.classList.remove('ws-bl--wartet'); }
     delete o.dataset.laeuft; liste.scrollTop = liste.scrollHeight;

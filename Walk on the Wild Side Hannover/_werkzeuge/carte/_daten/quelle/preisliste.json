@@ -1,0 +1,93 @@
+{
+ "ziel": "preisliste",
+ "art": "satz",
+ "key": "preisliste",
+ "name": "Die Preise der Bar",
+ "unter": "Für Feiern und Gesellschaften",
+ "gruppe": "Weitere Karten",
+ "ab": "",
+ "plakat": "",
+ "foto": "flaschen",
+ "titel": "Die Preise der Bar",
+ "datum": "Für Feiern im Wild Side",
+ "mit": "Geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr",
+ "rubriken": [
+  {
+   "titel": "Was ein Drink kostet",
+   "eintraege": [
+    {
+     "name": "Signature Drinks",
+     "zutaten": "",
+     "preis": "12,00"
+    },
+    {
+     "name": "Alkoholfreie Drinks",
+     "zutaten": "",
+     "preis": "11,00"
+    },
+    {
+     "name": "Longdrinks",
+     "zutaten": "",
+     "preis": "10,00"
+    },
+    {
+     "name": "Wein und Spritz",
+     "zutaten": "",
+     "preis": "8,00"
+    },
+    {
+     "name": "Sekt auf Eis",
+     "zutaten": "",
+     "preis": "6,00"
+    },
+    {
+     "name": "Bier",
+     "zutaten": "",
+     "preis": "4,00"
+    },
+    {
+     "name": "Alkoholfreie Getränke",
+     "zutaten": "",
+     "preis": "3,00"
+    }
+   ]
+  },
+  {
+   "titel": "Pauschale pro Person",
+   "eintraege": [
+    {
+     "name": "Kategorie 1 · Bier, Wein, Spritz",
+     "zutaten": "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+     "preis": "49,00"
+    },
+    {
+     "name": "Kategorie 2 · Dazu Longdrinks",
+     "zutaten": "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+     "preis": "59,00"
+    },
+    {
+     "name": "Kategorie 3 · Dazu fünf Signature Cocktails",
+     "zutaten": "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+     "preis": "79,00"
+    }
+   ]
+  },
+  {
+   "titel": "Budget",
+   "eintraege": [
+    {
+     "name": "Service und Raum",
+     "zutaten": "",
+     "preis": "500,00"
+    },
+    {
+     "name": "Euer Budget für Drinks",
+     "zutaten": "Lässt sich nach oben frei anpassen",
+     "preis": "ab 1.000,00"
+    }
+   ]
+  }
+ ],
+ "hinweis": "Alle Preise in Euro, brutto. Ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.",
+ "quelle": "website/unter.py PREISE, PAUSCHALE und tafel() (Angebotsmappe der Bar, _quelle/angebote-pdf/Wild Side Angebote.pdf)"
+}

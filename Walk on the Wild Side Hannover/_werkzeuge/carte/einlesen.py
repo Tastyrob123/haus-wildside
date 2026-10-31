@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""La Carte · Culinarium Hannover: liest die Menükarten der Abende einmal als Daten ein (28.10.2026, C17).
-Kopie von einlesen.py der Tafel im Schäfli (dort aus Schlössli, Gasterntal, Ruedihus, Doldenhorn).
+"""Die Pairing-Karte · Walk on the Wild Side Hannover: liest die Karten der Bar einmal als Daten ein (31.10.2026, C17).
+Kopie von einlesen.py der Pairing-Karte im Culinarium (dort aus der Tafel im Schäfli, Schlössli, Gasterntal, Ruedihus, Doldenhorn).
 
-Nichts wird abgetippt. karten_lesen.py liest die Menükarten aus der Website (_daten/quelle/<karte>.json, Wort für Wort gegen
-website/abende_info.py und gegen die gebaute Seite abende.html geprüft), satz_bau.py setzt sie im Kleid des Culinarium nach satz/u-<karte>.html.
-Dieses Skript zerlegt den Satz in einen Baum: Elemente (Tag, Merkmale, Kinder), Texte (das, was das Haus ändert) und feste Teile (Wortmarke).
-Aus diesem Baum setzt satz/satz.js dasselbe HTML Zeichen für Zeichen wieder (python3 _werkzeuge/carte/pruefe.py rund).
+Nichts wird abgetippt. karten_lesen.py liest die Karten aus Website und Kundenmaterial (_daten/quelle/<karte>.json, gegen die Quelle und die gebaute
+Website geprüft), satz_bau.py setzt sie im Kleid der Bar nach satz/u-<karte>.html. Dieses Skript zerlegt den Satz in einen Baum: Elemente (Tag,
+Merkmale, Kinder), Texte (das, was das Haus ändert) und feste Teile (Wortmarke). Aus diesem Baum setzt satz/satz.js dasselbe HTML Zeichen für
+Zeichen wieder (python3 _werkzeuge/carte/pruefe.py rund).
 
-«Der nächste Abend» (C08/C24 in der Form des Hauses: Gänge mit Rudis Teller und Momos Drink, Datum, Preis) wird als Abend angelegt, jedes Feld
-wörtlich aus _daten/quelle/abend.json; satz.js setzt daraus das Blatt (A4 hoch wie die anderen Menükarten).
+«Die Karte» (C08/C24 in der Form des Hauses: die wechselnde Karte mit Momos Drinks, Name und Zutaten, gültig ab, Preis je Drink) wird als Karte der
+Art «abend» angelegt, jedes Feld wörtlich aus _daten/quelle/abend.json; satz.js setzt daraus das Blatt (A4 hoch wie die anderen Karten).
 
-Geschrieben wird nur in _werkzeuge/carte/ (_daten/, bilder/z/, bilder/fotos.json).
+Geschrieben wird nur in _werkzeuge/carte/ (_daten/, bilder/z/, bilder/g/, bilder/fotos.json).
 
     python3 _werkzeuge/carte/einlesen.py            nur wo noch kein Stand liegt (ein Stand des Hauses wird nie überschrieben)
     python3 _werkzeuge/carte/einlesen.py --grund    nur den Grundstand neu (_daten/grundstand/), für den Rundlauf und «Ursprünglicher Stand»
@@ -19,17 +19,18 @@ import datetime, html, json, os, re, shutil, sys
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 _WURZEL = os.path.dirname(os.path.dirname(HIER))
-PROJ = os.path.join(_WURZEL, 'website')   # Culinarium: Website in website/
+PROJ = os.path.join(_WURZEL, 'website')   # Website in website/
 QD = os.path.join(HIER, '_daten', 'quelle')
 DATEN = os.environ.get('CARTE_DATEN') or os.path.join(HIER, '_daten')
 sys.path.insert(0, HIER)
 
-# Karten, die La Carte pflegt: Kennung = Satz satz/u-<kennung>.html = Name der PDF (je Abend eine Menükarte, karten_lesen.py)
+# Karten, die die Pairing-Karte pflegt: Kennung = Satz satz/u-<kennung>.html = Name der PDF (karten_lesen.py); Reihenfolge wie im Rand
+REIHE = ['klassiker', 'drunk-in-love', 'dishes-in-love', 'preisliste']
 KARTEN = {}
-for _f in sorted(os.listdir(QD)):
-    if _f.startswith('abend-') and _f.endswith('.json'):
-        _q = json.load(open(os.path.join(QD, _f), encoding='utf-8'))
-        KARTEN[_q['ziel']] = dict(name=_q['name'], unter=_q['unter'], gruppe=_q['gruppe'], quelle=_q['quelle'], ab=_q['ab'], plakat=_q['plakat'], key=_q['key'])
+for _z in REIHE + sorted(f[:-5] for f in os.listdir(QD) if f.endswith('.json') and f[:-5] not in REIHE + ['abend', 'pruefung']):
+    if os.path.isfile(os.path.join(QD, _z + '.json')):
+        _q = json.load(open(os.path.join(QD, _z + '.json'), encoding='utf-8'))
+        KARTEN[_q['ziel']] = dict(name=_q['name'], unter=_q['unter'], gruppe=_q['gruppe'], quelle=_q['quelle'], ab=_q['ab'], plakat=_q['plakat'], key=_q['key'], foto=_q['foto'])
 LEER_TAG = {'img', 'br', 'hr', 'meta', 'link', 'input', 'wbr', 'col', 'source'}
 A, Z = '', ''          # Platzhalter für feste Teile (Bilder als data:, Zeichen als svg) im Baum
 TOKEN = re.compile(r'<!--.*?-->|<svg\b.*?</svg>|</?([a-zA-Z][\w-]*)((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>', re.S)
@@ -118,41 +119,50 @@ def _schreib(p, d):
 
 
 # Fotos des Hauses für Liste und Kacheln (Bildregister BILD in website/bau.py, ausgeliefert unter website/assets/bild/<schlüssel>-<breite>.webp):
-# je Abend sein Plakat (p_<Beitrags-ID>), ohne Plakat das erste Bild des Abends; «Der nächste Abend» die Tafel der Bar (Schlüssel aus BILD, nicht geraten)
-FOTO_NAECHSTER = 'tafelleer'
+# je Karte ihr Bild aus _daten/quelle/<karte>.json (foto), «Die Karte» Momo, der giesst (Schlüssel aus BILD, nicht geraten)
+FOTO_NAECHSTER = 'momo-giesst'
 
 
-def foto_von(k):
-    if k.get('plakat'):
-        return 'p_' + k['plakat']
-    return 'ab_%s_0' % k['key'].replace('-', '_')
+def _breiten(nm):
+    b = []
+    for f in os.listdir(os.path.join(PROJ, 'assets', 'bild')):
+        m = re.match(re.escape(nm) + r'-(\d+)\.webp$', f)
+        if m:
+            b.append(int(m.group(1)))
+    if not b:
+        raise SystemExit(f'Bild fehlt: website/assets/bild/{nm}-*.webp')
+    return sorted(b)
 
 
 def vorschaubilder():
-    """Kleine Bilder für die Liste und die Kacheln (112 × 112 px aus der kleinsten Liefergrösse der Website); fotos.json: Karte → Schlüssel."""
+    """Kleine Bilder für die Liste und die Kacheln (112 × 112 px) und je ein grosses für das Startbild (bis 1100 px breit, bilder/g/);
+    fotos.json: Karte → Schlüssel."""
     from PIL import Image
-    ziel = os.path.join(HIER, 'bilder', 'z')
-    os.makedirs(ziel, exist_ok=True)
-    fotos = {k: foto_von(v) for k, v in KARTEN.items()}
+    ziel, gross = os.path.join(HIER, 'bilder', 'z'), os.path.join(HIER, 'bilder', 'g')
+    for o in (ziel, gross):
+        shutil.rmtree(o, ignore_errors=True)
+        os.makedirs(o, exist_ok=True)
+    fotos = {k: v['foto'] for k, v in KARTEN.items()}
     fotos['abend'] = FOTO_NAECHSTER
     for nm in sorted(set(fotos.values())):
-        q = os.path.join(PROJ, 'assets', 'bild', nm + '-640.webp')
-        if not os.path.isfile(q):
-            raise SystemExit(f'Bild fehlt: {q}')
-        im = Image.open(q).convert('RGB'); w, h = im.size; k = min(w, h)
+        b = _breiten(nm)
+        im = Image.open(os.path.join(PROJ, 'assets', 'bild', '%s-%d.webp' % (nm, b[0]))).convert('RGB'); w, h = im.size; k = min(w, h)
         im.crop(((w - k) // 2, (h - k) // 2, (w - k) // 2 + k, (h - k) // 2 + k)).resize((112, 112), Image.LANCZOS).save(os.path.join(ziel, nm + '.webp'), 'WEBP', quality=80)
+        g = max([x for x in b if x <= 1100] or [b[0]])
+        im = Image.open(os.path.join(PROJ, 'assets', 'bild', '%s-%d.webp' % (nm, g))).convert('RGB')
+        im.save(os.path.join(gross, nm + '.webp'), 'WEBP', quality=80)
     _schreib(os.path.join(HIER, 'bilder', 'fotos.json'), fotos)
     return len(set(fotos.values()))
 
 
-GAENGE = ('amuse', 'aperitif', 'vorspeise', 'haupt', 'dessert', 'absacker')   # Gänge eines Abends (satz.js ABEND, karten_lesen.py GAENGE)
+GAENGE = ('d1', 'd2', 'd3', 'd4', 'd5', 'd6')   # Plätze der Karte «Die Karte» (satz.js ABEND, karten_lesen.py GAENGE)
 
 
 def abend():
-    """«Der nächste Abend» (C08/C24 in der Form des Hauses): jedes Feld wörtlich aus _daten/quelle/abend.json (Beispiel, bis das Haus einträgt)."""
+    """«Die Karte» (C08/C24 in der Form des Hauses): jedes Feld wörtlich aus _daten/quelle/abend.json (Beispiel, bis das Haus einträgt)."""
     d = json.load(open(os.path.join(QD, 'abend.json'), encoding='utf-8'))
     t = d['abend']['tage'][0]
-    assert all(g in t and g + '_z' in t for g in GAENGE), ('Abend hat eine andere Form als erwartet', list(t))
+    assert all(g in t and g + '_z' in t for g in GAENGE), ('Die Karte hat eine andere Form als erwartet', list(t))
     return dict(art='abend', ziel='abend', name=d['name'], unter=d['unter'], gruppe=d['gruppe'], quelle=d['quelle'],
                 schema=1, format=[210, 297], abend=d['abend'], seiten=[], teile=[])
 

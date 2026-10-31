@@ -1,5 +1,5 @@
 {
- "_hinweis": "Knopf-Namen der Tafeln «So geht’s» je Werkzeug, erst nach der Lieferung aus dem Code des Werkzeugs gelesen (M20). Leer bis dahin.",
+ "_hinweis": "Knopf-Namen der Tafeln «So geht’s» je Werkzeug, aus dem Code des Werkzeugs gelesen und beim Bau dagegen geprüft (M20). Texte für Walk on the Wild Side (31.10.2026).",
  "bureau": [
   [
    "stift",
@@ -8,8 +8,8 @@
   ],
   [
    "uhr",
-   "Einen Abend ankündigen",
-   "Unter Termine mit «Neuer Abend» Datum, Uhrzeit und Plätze eintragen. Ist er vorbei oder ausgebucht: «Von der Seite nehmen»."
+   "Einen DJ-Abend ankündigen",
+   "Unter DJ-Abende mit «Neuer Abend» Datum, DJ und Stil eintragen. Ist er vorbei: «Von der Seite nehmen»."
   ],
   [
    "waage",
@@ -21,12 +21,12 @@
   [
    "blase",
    "Gäste fragen im Chat",
-   "Auf jeder Seite der Website können Gäste fragen. Mit «Chat ausprobieren» siehst du, was der Chat antwortet, wenn ein Gast nach Plätzen oder Unverträglichkeiten fragt."
+   "Auf jeder Seite der Website können Gäste fragen. Mit «Chat ausprobieren» siehst du, was der Chat antwortet, wenn ein Gast nach Zeiten, einem Tisch oder dem nächsten DJ-Abend fragt."
   ],
   [
    "eingang",
    "Anfragen beantworten",
-   "Im «Eingang» steht jede Anfrage mit einem Brief im Ton des Culinarium. «Text kopieren» oder «Als PDF speichern», verschickt wird nur, was du selbst schickst."
+   "Im «Eingang» steht jede Anfrage, ein Tisch für den Freitag oder eine Feier auf der Empore, mit einem Brief im Ton der Bar. «Text kopieren» oder «Als PDF speichern», verschickt wird nur, was du selbst schickst."
   ],
   [
    "liste",
@@ -37,30 +37,30 @@
  "carte": [
   [
    "stift",
-   "Den nächsten Abend anlegen",
-   "Mit «Nächsten Abend anlegen» entsteht die Karte des Abends; jeder Gang steht mit seinem Drink daneben, ein weiterer kommt mit «Neuer Eintrag» dazu."
+   "Die Karte schreiben",
+   "Mit «Nächsten Abend anlegen» entsteht eine neue Fassung der Karte; jeder Drink steht mit Zutaten und Preis in einer Zeile, ein weiterer kommt mit «Neuer Eintrag» dazu."
   ],
   [
    "pdf",
    "Erst ansehen",
-   "«Probe-PDF» zeigt die Karte genau so, wie sie am Platz liegt. «Vorher, nachher» vergleicht mit dem letzten Stand."
+   "«Probe-PDF» zeigt die Karte genau so, wie sie auf dem Tresen liegt. «Vorher, nachher» vergleicht mit dem letzten Stand."
   ],
   [
    "zurueck",
    "Speichern und zeigen",
-   "«Speichern» legt den Entwurf ab, «Veröffentlichen» setzt die PDF neu. Unter «Frühere Fassungen» liegt jeder frühere Abend bereit."
+   "«Speichern» legt den Entwurf ab, «Veröffentlichen» setzt die PDF neu. Unter «Frühere Fassungen» liegt jede frühere Karte bereit."
   ]
  ],
  "imprimerie": [
   [
    "satz",
    "Den Abend beschreiben",
-   "Unter «Abend beschreiben» Thema, Konzept, Gastkoch und Wochenende eintragen, drei, vier oder fünf Vorschläge wählen und «Vorschläge anlegen»."
+   "Unter «Abend beschreiben» DJ, Datum und Stil eintragen, drei, vier oder fünf Vorschläge wählen und «Vorschläge anlegen»."
   ],
   [
    "fuenf",
    "Neue Plakate, eigene Ideen",
-   "Jeder Vorschlag ist ein ganz neues Plakat im Stil von Rudis Plakaten, mit eigener Bildidee, vorn und hinten. Den passenden mit «Diesen bearbeiten» öffnen und im Editor fertig machen. Rudis Illustrationen liegen unter «Plakat-Motive»."
+   "Jeder Vorschlag ist ein ganz neues Plakat in der Sprache der Bar, mit eigener Bildidee, vorn und hinten. Den passenden mit «Diesen bearbeiten» öffnen und im Editor fertig machen. Motive liegen unter «Plakat-Motive»."
   ],
   [
    "druck",

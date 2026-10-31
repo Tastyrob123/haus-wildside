@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""L’Imprimerie · Culinarium Hannover, eigener Prüfserver:  python3 serve.py [port]   (Standard 9087) → http://127.0.0.1:9087/_werkzeuge/imprimerie/
+"""L’Imprimerie · Walk on the Wild Side Hannover, eigener Prüfserver:  python3 serve.py [port]   (Standard 9087) → http://127.0.0.1:9087/_werkzeuge/imprimerie/
 Bildet die Wege des Hauses nach (Vorlage: Prüfserver der Werkstatt der Taverne zum Schäfli, dort nur gelesen), damit L’Imprimerie hier genau so läuft wie unter /_werkzeuge/imprimerie/
 und online (/werkzeuge/imprimerie/): Le Livre liegt daneben unter /_werkzeuge/livre/, die Fotos der Website unter /assets/bild/, das Oberflächen-Paket unter
-/assets/oberflaeche/ (_werkzeuge/oberflaeche/, Chat «culinarium-maison»), Schriften und Zeichen der Website unter /assets/schrift/ und /assets/zeichen/. Alles nur lesend, nur diese Wege.
+/assets/oberflaeche/ (_werkzeuge/oberflaeche/, Chat «wildside-maison»), Schriften und Zeichen der Website unter /assets/schrift/ und /assets/zeichen/. Alles nur lesend, nur diese Wege.
 
 KI: Ohne ausdrückliches IMPRIMERIE_KI=1 antwortet /api/entwurf mit einer Probe-Antwort aus den Vorlagen des Hauses (kostet nichts, Regel 54).
 Ein Schlüssel wird nie aus dem Vault gelesen; nur ANTHROPIC_API_KEY aus der Umgebung, und nur zusammen mit IMPRIMERIE_KI=1.
@@ -13,7 +13,7 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import unquote
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-DH = os.path.dirname(os.path.dirname(HIER))                   # Culinarium Hannover (Projektordner)
+DH = os.path.dirname(os.path.dirname(HIER))                   # Walk on the Wild Side Hannover (Projektordner)
 WEB = os.path.join(DH, 'website')                              # die Website des Hauses (nur gelesen)
 LIVRE = os.path.join(DH, '_werkzeuge', 'livre')
 sys.path.insert(0, os.path.join(HIER, 'api'))
@@ -28,7 +28,7 @@ NUR_LESEN = {   # Weg → Ordner, nur diese Dateiarten
     '/_werkzeuge/livre/dateien/': (os.path.join(LIVRE, 'dateien'), r'\.(png|svg|webp|jpg|css|json|ase|zip|ttf|woff2?)$'),
     '/_werkzeuge/livre/fotos/': (os.path.join(LIVRE, 'fotos'), r'\.(webp|jpg|png)$'),
     '/assets/bild/': (os.path.join(WEB, 'assets', 'bild'), r'\.(webp|jpg|png|svg)$'),
-    # Werkzeug-Oberfläche «Die Bühne» des Hauses: _werkzeuge/oberflaeche/ (einziger Schreiber Chat «culinarium-maison»), solange es website/assets/oberflaeche/ nicht gibt
+    # Werkzeug-Oberfläche «Die Bühne» des Hauses: _werkzeuge/oberflaeche/ (einziger Schreiber Chat «wildside-maison»), solange es website/assets/oberflaeche/ nicht gibt
     '/assets/oberflaeche/': (os.path.join(WEB, 'assets', 'oberflaeche') if os.path.isdir(os.path.join(WEB, 'assets', 'oberflaeche')) else os.path.join(DH, '_werkzeuge', 'oberflaeche'), r'\.(css|js|svg)$'),
     '/assets/schrift/': (os.path.join(WEB, 'assets', 'schrift'), r'\.(woff2?|ttf)$'),
     '/assets/zeichen/': (os.path.join(WEB, 'assets', 'zeichen'), r'\.svg$'),
@@ -52,12 +52,12 @@ def menue_kommt(ueber):
 
 def probe(daten):
     """Nachgestellte Antwort im Format der KI, gebaut aus den geprüften Vorlagen des Hauses (Wörter des Auftrags gegen Titel und Text)."""
-    if str(daten.get('haus') or 'culinarium') != 'culinarium':
+    if str(daten.get('haus') or 'wildside') != 'wildside':
         raise ValueError('Unbekanntes Haus')
     if daten.get('bildtext'):
         return {'bildtext': {'text': '[Bildtext der KI] · Probe ohne KI: ' + str(daten['bildtext'].get('art') or 'Beitrag'), 'hashtags': ['#Hannover', '#Linden'],
                              'hinweise': ['Beispiel: So sieht der Bildtext aus; mit eingeschalteter KI schreibt das Studio ihn zum Bild.'], 'sprache': daten['bildtext'].get('sprache', 'de')}, 'verbrauch': {}}
-    if str(daten.get('haus') or 'culinarium') != 'culinarium':   # wie api/entwurf.py: nur das eigene Haus
+    if str(daten.get('haus') or 'wildside') != 'wildside':   # wie api/entwurf.py: nur das eigene Haus
         raise ValueError('Unbekanntes Haus')
     auftrag = str(daten.get('auftrag') or '').strip()[:1500]
     if len(auftrag) < 4:
@@ -71,7 +71,7 @@ def probe(daten):
     trifft = lambda w, t: w in t or (len(w) > 6 and (w[:-1] in t or w[:-2] in t))
     dc = 'dirty chicken' in a_low or 'dirty-chicken' in a_low   # Dirty-Chicken-Aufträge nehmen immer die Dirty-Chicken-Marke (Ton «dc», Zeichen 3)
     beste = []
-    for f in glob.glob(os.path.join(HIER, 'haeuser', 'culinarium', 'vorlagen', '*.json')):
+    for f in glob.glob(os.path.join(HIER, 'haeuser', 'wildside', 'vorlagen', '*.json')):
         if f.endswith('index.json'):
             continue
         d = json.load(open(f, encoding='utf-8'))
@@ -164,7 +164,7 @@ def entwurf_antwort(kopf, ip, roh):
         return 502, {'fehler': str(e)}
 
 
-DOK_VB = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'haeuser', 'culinarium', 'vorschau-dok')   # fertige Vorschaubilder der Galerien (29.10.)
+DOK_VB = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'haeuser', 'wildside', 'vorschau-dok')   # fertige Vorschaubilder der Galerien (29.10.)
 VB_INDEX = os.path.join(DOK_VB, 'index.json')
 import threading  # noqa: E402
 VB_SPERRE = threading.Lock()
@@ -365,5 +365,5 @@ class H(SimpleHTTPRequestHandler):
 
 if __name__ == '__main__':
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 9087
-    print(f'L’Imprimerie · Culinarium Hannover: http://127.0.0.1:{port}{WEG}  (KI: {"echt" if KI else "Probe, ohne Kosten"})')
+    print(f'L’Imprimerie · Walk on the Wild Side Hannover: http://127.0.0.1:{port}{WEG}  (KI: {"echt" if KI else "Probe, ohne Kosten"})')
     ThreadingHTTPServer(('127.0.0.1', port), H).serve_forever()

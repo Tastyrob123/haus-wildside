@@ -2,7 +2,7 @@
    Demo-Video mit Kapiteln, Tastenkürzel. Alles jederzeit über «Hilfe» oben wieder aufrufbar. */
 (function () {
   const $ = s => document.querySelector(s);
-  const HAUS = new URLSearchParams(location.search).get('haus') || 'culinarium';
+  const HAUS = new URLSearchParams(location.search).get('haus') || 'wildside';
   const GESEHEN = `ds-${HAUS}-willkommen`;
   const merk = () => { try { localStorage.setItem(GESEHEN, '1'); } catch (e) { } };
   const gesehen = () => { try { return localStorage.getItem(GESEHEN) === '1'; } catch (e) { return true; } };

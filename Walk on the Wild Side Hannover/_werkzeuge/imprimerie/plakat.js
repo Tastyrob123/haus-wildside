@@ -1,4 +1,4 @@
-/* Plakatwerkstatt · Culinarium Hannover (28.10.2026, Roberts Idee, zuletzt: «ich will pro Anfrage 3 4 oder 5 (je nachdem was ausgewählt war) an neuen»): zwei Ansichten.
+/* Plakatwerkstatt · Walk on the Wild Side Hannover (28.10.2026, Roberts Idee, zuletzt: «ich will pro Anfrage 3 4 oder 5 (je nachdem was ausgewählt war) an neuen»): zwei Ansichten.
    1. «Plakat-Motive» (#msMotive): die Sammlung der Motive im Stil der Plakate (KI-Motive ohne Schrift und die Illustrationen der echten Plakate),
       Filter nach Jahreszeit, Farbe, Stimmung und Herkunft, Vorschau im Plakat-Rahmen; «Übernehmen» öffnet das Plakat vorn und hinten im Editor.
    2. «Abend beschreiben» (#msAbend): Thema, Konzept, Gastkoch, Freitag des Abends → 3 bis 5 Plakate im Rahmen (Server-Weg api/plakat, lokal Probe aus der
@@ -31,7 +31,7 @@
     const mo = o.meta || MOTIVE.find(m => m.key === o.motiv) || {};   // neu erzeugte Motive bringen ihre Messung mit (o.meta)
     // Kopfzeile nur, wo keine im Bild steht und die Kopfzone frei ist; hinten das eigene Begleitbild, bei Rudis Illustrationen ein ruhiger Grund in ihrer Farbe
     const kr = mo.kopf_rudi || {};   // Kopfzeile wie Rudi: Farbe und Schatten aus dem Motiv (29.10.)
-    const vorn = { bild: o.motiv, ueber: mo.kopf_frei ? 'WALK ON THE WILD SIDE' : '', ueberfarbe: kr.farbe || '', kopfschatten: kr.schatten || '', zeile, akzent: o.akzent || mo.akzent || '#ef7649' };
+    const vorn = { bild: o.motiv, ueber: mo.kopf_frei ? 'WALK ON THE WILD SIDE' : '', ueberfarbe: kr.farbe || '', kopfschatten: kr.schatten || '', zeile, akzent: o.akzent || mo.akzent || '#d8b264' };
     const hinten = { bild: mo.rueck || null, grund: mo.rueck_farbe || 'navy', ueber: 'WALK\nON THE\nWILD SIDE', tag1: pdat(f), zeit1: '19:00 UHR', tag2: pdat(s), zeit2: '17:00 UHR',
       text: '3 GÄNGE MENÜ\n5 SiGNATURE DRiNKS', dunkel: !!mo.rueck_dunkel };
     const name = (o.titel ? o.titel + ' · ' : '') + 'Plakat ' + tage(f);

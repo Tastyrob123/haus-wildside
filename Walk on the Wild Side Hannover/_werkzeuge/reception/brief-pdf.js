@@ -3,14 +3,14 @@
    auf jeder Folgeseite, Fusszeile und Rahmen auf jeder Seite, nie eine fast leere Schlussseite; keine Bearbeitungsspuren, offene Stellen stehen als reiner Text.
    daten = { name, kontakt, absender, betreff, text, gestalt }  (gestalt wie im Werkzeug: Grösse s, Bündigkeit al, Abstand mb, Schrift f, Farbe c, Textart ta, Linien, Fotos, Kopftexte) */
 (function () {
-  const GKOPF = { haus: 'Culinarium', zeile: 'A UNiQUE EXPERiENCE BY MOMO X RUDI · Walk on the Wild Side', fuss: 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover\nTelefon der Bar +49 163 3909578 · Instagram @culinarium_hannover' };   // wie reception.js GKOPF
-  const HFARBE = { navy: '#271d1b', blau: '#523e3a', tinte: '#201918', papier: '#e9e3d9', creme: '#dac7ab', weiss: '#f8f3ed', sand: '#cc9e41', gold: '#e8d19f', messing: '#cb9c3d', taupe: '#94712c', rot: '#c42e13' };
-  const LFARBE = { taupe: 'rgba(148,113,44,.42)', gold: '#cb9c3d', navy: '#271d1b' };
-  const SERIF = "Petrona,Georgia,'Times New Roman',serif", SANS = "'Hanken',system-ui,sans-serif", MONO = "'Hanken',Menlo,monospace";
+  const GKOPF = { haus: 'Walk on the Wild Side', zeile: 'Eure Nachbarschafts-Mixology-Bar · Hannover-Linden', fuss: 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover-Linden\nTelefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover' };   // wie reception.js GKOPF
+  const HFARBE = { navy: '#130E0D', blau: '#261E1A', tinte: '#1C1513', papier: '#EFE6D8', creme: '#F2E9DC', weiss: '#FFFBF5', sand: '#D8B264', gold: '#E4C88A', messing: '#7A5C24', taupe: '#5E524A', rot: '#F0323F' };
+  const LFARBE = { taupe: 'rgba(216,178,100,.55)', gold: '#D8B264', navy: '#261E1A' };
+  const SERIF = "'Prata',Georgia,'Times New Roman',serif", SANS = "'Hanken',system-ui,sans-serif", MONO = "'Hanken',Menlo,monospace";
   const SCHRIFT = { serif: `font-family:${SERIF}`, sans: `font-family:${SANS}`, mono: `font-family:${MONO}`, cinzel: `font-family:${SERIF}`, versal: `font-family:${SERIF};letter-spacing:.16em;text-transform:uppercase` };
   const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', kursiv: 'font-style:normal', versal: 'text-transform:uppercase;letter-spacing:.16em', medium: 'font-weight:500' };
   const PX = 0.2646, BREITE_BILDSCHIRM = 500;   // Breite einer verschobenen Linie oder eines Fotos am Bildschirm (px) im Verhältnis zur Textbreite
-  const ZEICHEN = 'zeichen-haus.svg', MARKE = 'marke-haus.svg';   /* Gestaltung 28.10.2026: Kopf = Rudis Original (Wortmarke mit Zeile), ein Logo je Brief, kein Siegel */
+  const ZEICHEN = 'zeichen-haus.svg', MARKE = 'marke-haus.svg';   /* Kopf = die Wortmarke der Bar (WALK / ON THE / WILD SIDE) in Rot, ein Logo je Brief, kein Siegel */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const zeilen = t => esc(t).replace(/\n/g, '<br>');
   const el = (html, cls) => { const d = document.createElement('div'); d.className = cls || ''; d.innerHTML = html; return d; };

@@ -1,7 +1,7 @@
 /* Drucksachen-Studio · Oberfläche: Entwerfen (KI), Vorlagen, Fotos, Ablage, Bearbeiten wie auf dem Papier, druckfertig speichern. */
 (function () {
   const DS = window.DS;
-  const HAUS = new URLSearchParams(location.search).get('haus') || 'culinarium';
+  const HAUS = new URLSearchParams(location.search).get('haus') || 'wildside';
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const B = DS.B;
   const ST = { M: null, doc: null, seite: 0, sel: null, S: 3, zoom: 1, hist: [], zukunft: [], modus: null, urform: {}, seitePanel: false };
@@ -226,7 +226,7 @@
       h += `<div class="gruppe gestalten"><label>Schrift</label><div class="segment segment--schrift">${SCHRIFTEN.filter(([k]) => M.schriften[k]).map(([k, t]) => `<button data-rolle="${k}" class="${(el.rolle === 'kursiv' ? 'text' : el.rolle) === k ? 'an' : ''}" style="font-family:'DS-${k}'">${esc(M.schriften[k].familie || t).replace(/ (\S+)$/, '\u00a0$1')}</button>`).join('')}</div></div>
         <div class="gruppe"><label>Grösse</label><div class="groesse"><button data-grschritt="-1" aria-label="Kleiner">−</button><input type="number" min="4" max="400" step="0.5" data-grpt="1" value="${r2(el.gr * PT)}"><span>pt</span><button data-grschritt="1" aria-label="Grösser">+</button></div>
           ${regler('gr', el.gr, .8, Math.max(40, el.gr), .05, r2(el.gr * PT) + ' pt')}</div>
-        <div class="gruppe"><label>Textart</label><div class="segment">${[['normal', 'Normal'], ['kursiv', 'Betont'], ['versal', 'Versalien gesperrt']].map(([k, t]) => `<button data-textart="${k}" class="${textart(el) === k ? 'an' : ''}" ${k === 'kursiv' && !kursivGeht(el) ? 'disabled title="Kursiv gibt es in der Hausschrift nur für Instrument Sans"' : ''}>${t}</button>`).join('')}</div></div>
+        <div class="gruppe"><label>Textart</label><div class="segment">${[['normal', 'Normal'], ['kursiv', 'Betont'], ['versal', 'Versalien gesperrt']].map(([k, t]) => `<button data-textart="${k}" class="${textart(el) === k ? 'an' : ''}" ${k === 'kursiv' && !kursivGeht(el) ? 'disabled title="Kursiv gibt es in der Hausschrift nur für Hanken Grotesk"' : ''}>${t}</button>`).join('')}</div></div>
         <div class="gruppe"><label>Farbe</label>${farbKnoepfe(el.farbe, 'el')}</div>
         <div class="gruppe"><label>Ausrichtung</label><div class="segment">${[['l', 'Links'], ['c', 'Mitte'], ['r', 'Rechts']].map(([k, t]) => `<button data-ausr="${k}" class="${(el.ausr || 'l') === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>
         <div class="gruppe"><label>Abstände</label><label class="unter">Sperrung</label>${regler('sperr', el.sperr || 0, -.03, .45, .01, (el.sperr || 0).toFixed(2))}

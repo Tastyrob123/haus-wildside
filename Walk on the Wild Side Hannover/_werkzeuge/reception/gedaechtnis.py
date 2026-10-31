@@ -1,7 +1,7 @@
-"""Das weiss der Chat · La Réception, Culinarium Hannover (28.10.2026, Kopie aus der Taverne zum Schäfli, dort aus dem Schlössli und Ruedihus) (Robert 16.10.2026: «so eine Art Gehirn, was man sich anschauen kann»).
+"""Das weiss der Chat · Das Gästebuch, Walk on the Wild Side Hannover (31.10.2026, Kopie aus dem Culinarium Hannover, dort aus der Taverne zum Schäfli) (Robert 16.10.2026: «so eine Art Gehirn, was man sich anschauen kann»).
 
 Alles, was die Rezeption im Chat über das Haus und die Umgebung weiss, an einem Ort, für das Team lesbar und korrigierbar:
-  Grundlage    gast_wissen.txt (Seiten und Unterlagen der Website des Hauses, _bau/culinarium_wissen.py) und gast_umgebung.txt (Lage, Anreise, Geschichte),
+  Grundlage    gast_wissen.txt (Seiten der Website des Hauses, _bau/wildside_wissen.py) und gast_umgebung.txt (Lage, Anreise, Geschichte),
                in Abschnitte zerlegt (Seite → Überschrift; Unterlagen ohne Überschriften nach Seiten der PDF). Diese Dateien bleiben
                unverändert, das Team legt Berichtigungen darüber: einen Abschnitt neu fassen, ausblenden oder zurück auf die Website.
   Ergänzt      Einträge des Teams (Bereich, Titel, Text, gültig bis) und Einträge aus Links (Veranstaltung, Seite eines Anbieters):
@@ -17,17 +17,17 @@ Speicher: _gast/daten/gedaechtnis/ (korrekturen.json · eintraege.json · links.
 import base64, datetime, hashlib, html, ipaddress, json, os, re, shutil, socket, threading, time, urllib.error, urllib.parse, urllib.request
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-WEB = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website')   # die Website des Culinarium (Überschriften der Seiten)
-WISSEN_DIR = os.path.join(HIER, 'gast')    # gast_wissen.txt und gast_umgebung.txt (_bau/culinarium_wissen.py)
+WEB = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website')   # die Website der Bar (Überschriften der Seiten)
+WISSEN_DIR = os.path.join(HIER, 'gast')    # gast_wissen.txt und gast_umgebung.txt (_bau/wildside_wissen.py)
 DATEN = os.path.join(os.environ.get('RECEPTION_DATEN') or os.environ.get('REZEPTION_DATEN') or os.path.join(HIER, 'daten'), 'gedaechtnis')
 SCHLOSS = threading.RLock()
 QUELLEN = (('gast_wissen.txt', 'WISSEN'), ('gast_umgebung.txt', 'TALWISSEN'))
-BEREICHE = ['Culinarium', 'Der Abend & Warteliste', 'Tickets & Preise', 'Drinks & Küche', 'Kontakt', 'Das Haus (Bar)', 'Team', 'Der Weg', 'Dirty Chicken',
-            'Alle Abende', 'Veranstaltungen', 'Fragen & Antworten']
+BEREICHE = ['Die Bar', 'Zeiten & Reservieren', 'Drinks & Preise', 'Programm', 'Feiern', 'Das Haus & Team', 'Der Weg', 'Kontakt', 'Im selben Haus',
+            'Veranstaltungen', 'Fragen & Antworten']
 # Seite bzw. Teil des Wissens → Bereich (Kopfzeile im Wissen: «=== Seite: … (Website: x.html; …) ===», in der Umgebung «=== Tickets … ===», «=== Kontakt … ===», «=== Lage … ===»)
-SEITE_BEREICH = [(r'Website: index\.html', 'Culinarium'), (r'Website: abend\.html', 'Der Abend & Warteliste'), (r'Website: abende\.html', 'Alle Abende'),
-                 (r'Website: bar\.html', 'Das Haus (Bar)'), (r'Website: leute\.html', 'Team'), (r'Website: weg\.html', 'Der Weg'),
-                 (r'Website: dirty-chicken\.html', 'Dirty Chicken'), (r'Fuss jeder Seite', 'Culinarium'), (r'Tickets für einen Abend', 'Tickets & Preise'),
+SEITE_BEREICH = [(r'Website: index\.html', 'Die Bar'), (r'Website: drinks\.html', 'Drinks & Preise'), (r'Website: programm\.html', 'Programm'),
+                 (r'Website: tafel\.html', 'Feiern'), (r'Website: haus\.html', 'Das Haus & Team'), (r'Website: besuch\.html', 'Zeiten & Reservieren'),
+                 (r'Fuss jeder Seite', 'Im selben Haus'), (r'^Anzahlung', 'Feiern'),
                  (r'^Kontakt', 'Kontakt'), (r'^Lage', 'Der Weg'), (r'^Talwissen', 'Der Weg')]
 UNTERLAGE_NAME = {}
 PREISZEILE = re.compile(r'^\s*Alle Preise in EUR', re.I)
@@ -358,15 +358,15 @@ def _hole(url):
                 continue
     return roh.decode('utf-8', 'replace')
 
-AUSZUG = """Du hilfst dem Team von Culinarium in Hannover-Linden (Food-Pairing-Abende an der langen Tafel in der Bar Walk on the Wild Side, dazu das Pop-up Dirty Chicken), das Wissen des Chats auf der Website aktuell zu halten. Das Team gibt dir neues Material:
+AUSZUG = """Du hilfst dem Team von Walk on the Wild Side in Hannover-Linden (Nachbarschafts-Mixology-Bar mit DJ-Abenden, Konzerten und Feiern), das Wissen des Chats auf der Website aktuell zu halten. Das Team gibt dir neues Material:
 eigenen Text, Seiten aus Links (Veranstaltung, Angebot eines Anbieters in der Region), Dokumente (zum Beispiel eine neue Karte, ein Programm) oder Fotos
-(zum Beispiel das Plakat eines Abends, ein Aushang, die Karte am Platz). Zieh daraus heraus, was ein Gast von Culinarium wissen will, und gib es als Einträge zurück.
+(zum Beispiel das Plakat eines DJ-Abends, ein Aushang, die neue Karte). Zieh daraus heraus, was ein Gast der Bar wissen will, und gib es als Einträge zurück.
 
 Regeln:
 - Nur, was wörtlich im Material steht oder auf dem Foto lesbar ist. Nichts ergänzen, nichts schätzen, kein Wissen von ausserhalb. Fehlt eine Angabe (Uhrzeit, Preis), lässt du sie weg. Unleserliches lässt du weg.
 - Schreibt das Team selbst etwas (TEXT DES TEAMS), gilt das als Angabe des Hauses, auch wenn es kurz ist.
 - Je Veranstaltung, Angebot oder Thema ein Eintrag. Höchstens 12 Einträge; bei langen Programmen oder Karten die für Gäste wichtigsten, Karten als ein Eintrag je Abschnitt mit den Preisen.
-- titel: kurz, wie ein Gast danach fragen würde («Der Abend im November», «Dirty Chicken im Dezember»).
+- titel: kurz, wie ein Gast danach fragen würde («DJ-Abend im November», «Silvester ab mittags»).
 - text: auf Deutsch, wie die Website schreibt (ss statt ß, Namen wie Haasemannstraße bleiben), zwei bis sechs ganze Sätze, sachlich, mit Datum, Uhrzeit, Ort, Preis, Anmeldung und Ansprechstelle, soweit vorhanden. Keine Werbesprache.
 - bereich: einer aus der Liste. Veranstaltungen mit Datum sind «Veranstaltungen». Wählt das Team einen Bereich (BEREICH DES TEAMS), nimm ihn.
 - gueltig_bis: bei Veranstaltungen und befristeten Angaben der letzte Tag (JJJJ-MM-TT), sonst null. Jahr nur, wenn es dasteht oder eindeutig folgt; sonst null.

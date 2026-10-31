@@ -1,0 +1,51 @@
+{
+ "zeit": "2026-10-26T21:15:00+01:00",
+ "art": "reservieren",
+ "name": "Emma Clarke",
+ "kontakt": "emma.clarke@example.com",
+ "datum": "Thursday",
+ "personen": 2,
+ "anliegen": "Visiting Hannover with her partner and would like two seats on Thursday.",
+ "sprache": "en",
+ "gespraech": "beispiel-7",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Hi, we are in Hannover next week and would love to come by on Thursday, two of us. Can we book?"
+  },
+  {
+   "rolle": "assistant",
+   "text": "Yes, the quickest way is «Platz reservieren» on the Besuch page. Could you give me your name and an email address, and I will pass it on?"
+  },
+  {
+   "rolle": "user",
+   "text": "Emma Clarke, emma.clarke@example.com"
+  },
+  {
+   "rolle": "assistant",
+   "text": "Thank you. This is a draft by Tasty Studios: your request does not go to the team, it is only kept for viewing in the host tool."
+  }
+ ],
+ "status": "gelesen",
+ "beispiel": true,
+ "abteilung": "Reservieren",
+ "entwurf": {
+  "betreff": "Two seats on Thursday",
+  "text": "Hi Emma,\n\nthank you for your message. On Thursdays we are open from 7 pm to 1 am, and we will keep two seats for you [Platz prüfen]; we confirm by message.\n\nThere is no fixed answer to what you will drink: the menu changes, and at the bar you tell Momo what you like.\n\nSee you at the corner\n\nDerya und Momo\nWalk on the Wild Side",
+  "team": "Grundlage: Besuch («Wann», Donnerstag 19 bis 1 Uhr), Drinks («an der Bar sagst du, was du magst»).\nOffen: Uhrzeit, Platz.",
+  "vorlage": "",
+  "absender": "Telefon der Bar +49 163 3909578 · Instagram @culinarium_hannover",
+  "zeit": "2026-10-26T21:15:00+01:00",
+  "deutsch": {
+   "betreff": "Zwei Plätze am Donnerstag",
+   "text": "Hallo Emma,\n\ndanke für deine Nachricht. Donnerstags haben wir von 19 bis 1 Uhr offen, und wir halten euch zwei Plätze frei [Platz prüfen]; wir bestätigen per Nachricht.\n\nWas du trinkst, steht nicht fest: Die Karte wechselt, und an der Bar sagst du Momo, was du magst.\n\nBis bald an der Ecke\n\nDerya und Momo\nWalk on the Wild Side",
+   "quelle": "6cbffe00b1f4"
+  }
+ },
+ "verlauf_de": [
+  "Hallo, wir sind nächste Woche in Hannover und würden gern am Donnerstag zu zweit vorbeikommen. Kann man reservieren?",
+  "Ja, mit «Platz reservieren» auf der Seite Besuch geht es am schnellsten. Magst du mir deinen Namen und eine E-Mail-Adresse geben, dann gebe ich es weiter?",
+  "Emma Clarke, emma.clarke@example.com",
+  "Danke. Dies ist ein Entwurf von Tasty Studios: Die Anfrage geht nicht an das Team, sie liegt nur zur Ansicht im Gästebuch."
+ ]
+}

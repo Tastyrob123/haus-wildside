@@ -92,7 +92,7 @@ def mit_claude(thema, konzept, gast, zahl, farbwelten, modell, schluessel_wert):
                         'witz': {'type': 'string', 'description': 'Art des Bildwitzes: Massstab, Fremdkörper, Tier als Gast, Bühne, Reise …'},
                         'bild': {'type': 'string', 'description': 'die Bildidee auf Englisch für das Bildmodell, zwei bis drei Elemente, ruhiger Grund'},
                         'rueck': {'type': 'string', 'description': 'ruhiges Begleitbild der Rückseite zum selben Konzept, auf Englisch'}}}}}}}
-    auftrag = (f'Entwirf {zahl} Bildkonzepte für die Plakate eines Abends im Culinarium Hannover (Tafel mit Menü und Signature Drinks). '
+    auftrag = (f'Entwirf {zahl} Bildkonzepte für die Plakate eines Abends im Walk on the Wild Side Hannover (Tafel mit Menü und Signature Drinks). '
                f'Thema: {thema or "-"}. Gerichte und Drinks: {konzept or "-"}. Gastkoch: {gast or "keiner"}.\n'
                f'Stil (Korridor, nicht kopieren): {STIL_EN}\n'
                f'Diese Motive gibt es schon, keines davon wiederholen oder abwandeln: {"; ".join(BESTAND)}.\n'

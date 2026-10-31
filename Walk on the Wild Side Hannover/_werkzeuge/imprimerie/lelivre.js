@@ -195,7 +195,7 @@
     const m = j.messung || { toene: [] }, k = j.ki || {}, pr = x => Math.round((x || 0) * 100);
     const reihe = { passt_nicht: 0, achten: 1, passt: 2 };
     const punkte = (k.punkte || []).slice().sort((a, b) => (reihe[a.urteil] ?? 1) - (reihe[b.urteil] ?? 1));
-    const sonder = [m.schwarz > .01 ? `Reines Schwarz auf ${pr(m.schwarz)} % der Fläche. Geschrieben wird in Tinte #26242D.` : '', m.tuerkis > .01 ? `Türkis auf ${pr(m.tuerkis)} % der Fläche.` : '', m.rot > .02 ? `Rot auf ${pr(m.rot)} % der Fläche, nur sparsam.` : ''].filter(Boolean);
+    const sonder = [m.schwarz > .01 ? `Reines Schwarz auf ${pr(m.schwarz)} % der Fläche. Geschrieben wird in Tinte #1c1513.` : '', m.tuerkis > .01 ? `Türkis auf ${pr(m.tuerkis)} % der Fläche.` : '', m.rot > .02 ? `Rot auf ${pr(m.rot)} % der Fläche, nur sparsam.` : ''].filter(Boolean);
     if (!platte) { platte = document.createElement('aside'); platte.className = 'lp'; $('.studio').appendChild(platte); platte.addEventListener('click', e => { const b = e.target.closest('[data-lp]'); if (!b) return; if (b.dataset.lp === 'zu') platte.hidden = true; if (b.dataset.lp === 'nochmal') pruefen(); }); }
     const zahl = { passt: 0, achten: 0, passt_nicht: 0 }; punkte.forEach(p => zahl[p.urteil] = (zahl[p.urteil] || 0) + 1);
     platte.innerHTML = `<div class="lp__kopf"><div><p class="mono">Markenprüfung · Das Markenbuch${k.art ? ' · ' + esc(k.art) : ''}</p><h3>Ergebnis</h3></div><button class="rund rund--klein" data-lp="zu" aria-label="Schliessen">${IC.zu}</button></div>

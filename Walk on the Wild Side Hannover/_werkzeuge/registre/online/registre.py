@@ -1,7 +1,7 @@
-"""Das Besucherbuch (Le Registre) · Culinarium Hannover online (Vercel-Funktion /api/registre, 28.10.2026). Kopie der Taverne zum Schäfli, dort nach Schlössli und Berghotel Gasterntal
-(_werkzeuge/registre/online/registre.py, dort nach Doldenhorn und Carlton-Europe, nur kopiert), Vorbild Grand Beau-Rivage api/registre.py (dort nur gelesen).
+"""Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover online (Vercel-Funktion /api/registre, 31.10.2026). Kopie der Besucherliste des Culinarium Hannover
+(_werkzeuge/registre/online/registre.py, dort aus den früheren Häusern übernommen, nur kopiert).
 GET   ?tage=30            Vorführ-Betrieb: Beispielwerte (registre.ablage_heute, dieselbe Rechnung wie das Werkzeug ohne Server-Teil und die Stube)
-      &k=<Schlüssel>      echte Werte (Prüfsumme unten; Schlüssel nur in ~/Desktop/Website-Projekte/_Schluessel/culinarium-hannover.txt)
+      &k=<Schlüssel>      echte Werte (Prüfsumme unten; Schlüssel nur in ~/Desktop/Website-Projekte/_Schluessel/wildside-hannover.txt)
 POST                      eine Zeile von assets/js/messung.js (Website, Quelle vorschlag/messung.js); ?fehler=1 Skriptfehler des Werkzeugs, nur ins Protokoll
 Speicher: nur ein EIGENER privater Blob-Speicher mit REGISTRE_READ_WRITE_TOKEN (Master 4.6: damit Le Registre die anderen Werkzeuge nicht scharf
 schaltet und nie in deren Speicher schreibt). Fehlt er: Ordner unter /tmp (nichts hält), echte Werte gibt es dann keine.
@@ -18,12 +18,12 @@ if os.environ.get('REGISTRE_READ_WRITE_TOKEN'):
     os.environ.pop('BLOB_LOKAL', None)
 else:   # nie in den gemeinsamen Speicher der anderen Werkzeuge
     os.environ['BLOB_READ_WRITE_TOKEN'] = ''
-    os.environ['BLOB_LOKAL'] = '/tmp/culinarium-hannover-registre-demo'
+    os.environ['BLOB_LOKAL'] = '/tmp/wildside-hannover-registre-demo'
 os.environ['REGISTRE_GEHEIM'] = hashlib.sha256(('registre|' + os.environ.get('REGISTRE_READ_WRITE_TOKEN', 'ohne')).encode()).hexdigest()
 import _speicher as SP  # noqa: E402
 
 VORFUEHRUNG = True
-SCHLUESSEL = 'f04c5cb0b86365e3510f65ef03e89c959d16338e9d8717a0c6f9fcb57638b8b7'   # SHA-256 des eigenen Schlüssels von Culinarium (wie anschluss.py, G09)
+SCHLUESSEL = '0e1c66b961145521b712860ae5066963064a5cfae89c499fcca5df22155387fd'   # SHA-256 des eigenen Schlüssels von Walk on the Wild Side (wie anschluss.py, G09)
 GRENZE = {'GET': 600, 'POST': 120}
 
 import importlib.util  # noqa: E402

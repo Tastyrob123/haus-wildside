@@ -1,7 +1,7 @@
-"""La Carte · Culinarium Hannover — Server-Teil (28.10.2026). Kopie der Tafel im Schäfli (dort aus dem Schlössli, Gasterntal, Ruedihus, Waldhotel
-Doldenhorn, La Carte des Carlton-Europe und mission_control.py des Grand Beau-Rivage), auf die Menükarten des Culinarium umgeschrieben: je Abend eine
-Karte (Gänge mit Rudis Teller und Momos Drink; Satz aus den Daten der Website, karten_lesen.py → satz_bau.py → einlesen.py) und «Der nächste Abend»
-als Abend mit festen Gängen (C08/C24 in der Form des Hauses). Eingehängt in _werkzeuge/carte/serve.py unter /_werkzeuge/carte/api/.
+"""Die Pairing-Karte · Walk on the Wild Side Hannover — Server-Teil (31.10.2026). Kopie der Pairing-Karte im Culinarium (dort aus der Tafel im
+Schäfli, dem Schlössli, Gasterntal, Ruedihus, Waldhotel Doldenhorn, La Carte des Carlton-Europe und mission_control.py des Grand Beau-Rivage), auf die
+Karten der Bar umgeschrieben: die Klassiker, die Sonderkarten zum Valentinstag und die Preise für Feiern (Satz aus Website und Kundenmaterial,
+karten_lesen.py → satz_bau.py → einlesen.py) und «Die Karte», die wechselnde Karte mit Momos Drinks (C08/C24 in der Form des Hauses, Kennung «abend»). Eingehängt in _werkzeuge/carte/serve.py unter /_werkzeuge/carte/api/.
 
 Ablage (_daten/, nur dieses Werkzeug schreibt dort):
   stand/<karte>.json        was veröffentlicht ist (die Wahrheit der Karte, eingelesen mit einlesen.py)
@@ -23,26 +23,30 @@ import datetime, html, json, os, re, shutil, subprocess, tarfile, threading, tim
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 _WURZEL = os.path.dirname(os.path.dirname(HIER))
-PROJ = os.path.join(_WURZEL, 'website')   # Culinarium: Website in website/
+PROJ = os.path.join(_WURZEL, 'website')   # Website in website/
 K = os.environ.get('CARTE_DATEN') or os.path.join(HIER, '_daten')
 SCHEMA = 1
 # Demo vor dem Auftrag (Demo-Check 21.10.2026): liegt die Datei DEMO neben carte.py, schreibt das Werkzeug nie in die Website (Anschluss gesperrt, Meldung «Demo»)
 DEMO = os.path.exists(os.path.join(HIER, 'DEMO')) and not os.environ.get('CARTE_ECHT')
-# «Der nächste Abend» und je früherem Abend mit überlieferter Karte eine Menükarte (karten_lesen.py legt sie in _daten/quelle/ an, neueste zuerst)
-ZIELE = ['abend'] + sorted((f[:-5] for f in os.listdir(os.path.join(HIER, '_daten', 'quelle')) if f.startswith('abend-') and f.endswith('.json')), reverse=True)
-ROLLEN = {'kueche': 'Küche', 'service': 'Service', 'direktion': 'Direktion'}
+# «Die Karte» (wechselnd) und die übrigen Karten der Bar (karten_lesen.py legt sie in _daten/quelle/ an), Reihenfolge wie im Rand
+_REIHE = ['klassiker', 'drunk-in-love', 'dishes-in-love', 'preisliste']
+_QF = [f[:-5] for f in os.listdir(os.path.join(HIER, '_daten', 'quelle')) if f.endswith('.json') and f[:-5] not in ('abend', 'pruefung')]
+ZIELE = ['abend'] + [z for z in _REIHE if z in _QF] + sorted(z for z in _QF if z not in _REIHE)
+ROLLEN = {'kueche': 'Bar', 'service': 'Service', 'direktion': 'Direktion'}   # Schlüssel «kueche» aus der Vorlage, im Haus die Bar
 RECHTE = {   # wer darf welchen Weg (Lesen dürfen alle)
     'entwurf': {'kueche', 'service', 'direktion'}, 'verwerfen': {'kueche', 'service', 'direktion'}, 'probe': {'kueche', 'service', 'direktion'},
     'veroeffentlichen': {'direktion'}, 'zurueckholen': {'direktion'}, 'einstellungen': {'direktion'}, 'reparatur': {'direktion'},
 }
-# Culinarium: keine Speise-, Wein- oder Spa-Karte (C19 betrifft nicht), sondern Menükarten je Abend. Küche (Rudi) und Service (Momo, Bar) ändern
-# alle Karten und drucken Proben; die Karte des nächsten Abends darf die Küche auch veröffentlichen (sie wechselt jeden Abend), die früheren die Direktion.
+# Wild Side: keine Spa-Karte (C19 betrifft nicht). Bar (Rolle «Küche» aus der Vorlage) und Service ändern alle Karten und drucken Proben; «Die Karte»
+# darf die Bar auch selbst veröffentlichen (sie wechselt), die übrigen die Direktion.
 NUR = {}
 KUECHE_LIVE = {'abend'}   # was die Küche selbst veröffentlichen darf
 _SCHLOSS = threading.RLock()
 BAU = {'laeuft': False, 'ziel': '', 'schritt': '', 'schritte': [], 'fehler': '', 'fertig': '', 'start': 0, 'ende': 0, 'bericht': {}}
 START = time.time()
-NODE_PW = os.path.join(os.path.expanduser('~'), 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright')
+NODE_PW = next((p for p in (os.path.join(os.path.expanduser('~'), 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'),
+                           os.path.join(_WURZEL, '..', 'node_modules', 'playwright'), '/usr/lib/node_modules/playwright', '/usr/local/lib/node_modules/playwright', '/opt/node22/lib/node_modules/playwright', '/opt/node-tools/node_modules/playwright')
+               if os.path.isdir(p)), '')
 PORT_STD = '9083'
 
 
@@ -248,8 +252,8 @@ def _knoten_ok(n, wo, B, tiefe=0):
 LAGE_ZAHL = {'x': (-400, 400), 'y': (-400, 400), 's': (0.2, 5), 't': (0.2, 6), 'z': (0.5, 4), 'mt': (-40, 100), 'mb': (-40, 100), 'b': (0.5, 450), 'd': (0.05, 5), 'h': (3, 150)}
 # Schäfli 21.10.2026: Schriften und Farben genau die von satz/satz.js (SCHRIFT, FARBE). Im Schlössli standen hier noch die des Gasterntal: jede Farbe
 # und die Titelschrift aus «Gestalten» wurde beim Speichern abgewiesen (PRUEF). Prüfung: pruef/gleich.js speichert eine Gestaltung.
-# Culinarium 28.10.2026: Schriften und Farben genau die von satz/satz.js (SCHRIFT, FARBE); nie fett, nie kursiv (Textart nur normal oder Versalien).
-LAGE_WAHL = {'f': {'titel', 'zeile', 'instrument', 'etikett', 'mono'}, 'c': {'nacht', 'schiefer', 'tinte', 'leise', 'kerze', 'kerzet', 'kerzeh', 'papier', 'weiss'},
+# Wild Side 31.10.2026: Schriften und Farben genau die von satz/satz.js (SCHRIFT, FARBE); nie fett, nie kursiv (Textart nur normal oder Versalien).
+LAGE_WAHL = {'f': {'titel', 'lauf'}, 'c': {'nacht', 'platte', 'leise', 'gold', 'golddunkel', 'rot', 'creme', 'weiss'},
              'a': {'normal', 'versal'}, 'al': {'links', 'mitte', 'rechts'}}
 
 
@@ -311,16 +315,16 @@ def pruefe(d, z):
     if art == 'abend':
         w = d.get('abend')
         if not isinstance(w, dict) or not re.fullmatch(r'\d{4}-\d\d-\d\d', str(w.get('ab', ''))) or not isinstance(w.get('tage'), list) or len(w['tage']) != 1:
-            return 'Datum oder Menü des Abends fehlen.'
+            return 'Datum oder Drinks der Karte fehlen.'
         for i, t in enumerate(w['tage']):
             for k, v in t.items():
                 if k not in GAENGE_FELDER + ('zu', 'hinweis'):
-                    return f'Menü: unbekanntes Feld «{k}».'
-                f = _text_ok(v, 'Menü')
+                    return f'Karte: unbekanntes Feld «{k}».'
+                f = _text_ok(v, 'Karte')
                 if f or not isinstance(v, (str, bool)):
-                    return f or 'Menü: falsche Angabe.'
+                    return f or 'Karte: falsche Angabe.'
         if set(w) - {'ab', 'titel', 'motto', 'mit', 'preis', 'zusatz', 'hinweis', 'fuss', 'tage', 'beispiel', 'lage'}:
-            return 'Der Abend hat ein unbekanntes Feld.'
+            return 'Die Karte hat ein unbekanntes Feld.'
         for k in ('titel', 'motto', 'mit', 'preis', 'zusatz', 'hinweis', 'fuss'):
             f = _text_ok(w.get(k, ''), k)
             if f:
@@ -379,8 +383,8 @@ def status():
     return dict(karten=aus, bau=dict(BAU), einstellungen=einstellungen(), rollen=ROLLEN, rechte={k: sorted(v) for k, v in RECHTE.items()})
 
 
-# Gänge eines Abends (satz.js ABEND): Feld = Rudis Teller, Feld_z = Momos Drink dazu
-GAENGE_FELDER = ('amuse', 'amuse_z', 'aperitif', 'aperitif_z', 'vorspeise', 'vorspeise_z', 'haupt', 'haupt_z', 'dessert', 'dessert_z', 'absacker', 'absacker_z')
+# Plätze der Karte «Die Karte» (satz.js ABEND): dN = Name des Drinks, dN_z = Zutaten
+GAENGE_FELDER = ('d1', 'd1_z', 'd2', 'd2_z', 'd3', 'd3_z', 'd4', 'd4_z', 'd5', 'd5_z', 'd6', 'd6_z')
 
 
 def _tag_leer(t):
@@ -655,9 +659,9 @@ def _veroeffentlichen(z, e, s, wer, rolle):
 
 
 # Wo die Website die PDF der Karte zeigen würde: website/unterlagen/pdf/<karte>.pdf, eine Quelle für Werkzeug, Website und PDF (Robert 17.10.2026:
-# «La Carte ist die eine Quelle der Speisekarten»). Die Website des Culinarium verlinkt heute keine Karten-PDF; sie zeigt die Menükarte im Abend
-# (abende.html) aus website/abende_info.py KARTEN. Mit Anschluss liest sie die Karten aus karten.json (C27, Einbau in website/ offen, Revier der Website).
-WEBSITE_PDF = {z: (None, None) for z in ZIELE}   # kein Feld «… als PDF» in der Website des Culinarium
+# «La Carte ist die eine Quelle der Speisekarten»). Die Website der Bar verlinkt heute keine Karten-PDF; sie zeigt Klassiker und Preise aus
+# website/unter.py. Mit Anschluss liest sie die Karten aus karten.json (C27, Einbau in website/ offen, Revier der Website).
+WEBSITE_PDF = {z: (None, None) for z in ZIELE}   # kein Feld «… als PDF» in der Website der Bar
 
 
 def website_pdfs(z):
@@ -823,7 +827,7 @@ def pruefung():
 def werkzeugname():
     """Name des Werkzeugs aus der einen Stelle (_werkzeuge/oberflaeche/kleid/wildside.js, WO_HAUS.namen.karten); Ersatz der Arbeitsname"""
     try:
-        with open(os.path.join(_WURZEL, '_werkzeuge', 'oberflaeche', 'kleid', 'culinarium.js'), encoding='utf-8') as f:
+        with open(os.path.join(_WURZEL, '_werkzeuge', 'oberflaeche', 'kleid', 'wildside.js'), encoding='utf-8') as f:
             m = re.search(r"namen:\s*\{[^}]*?karten:\s*'([^']+)'", f.read())
         return m.group(1) if m else 'La Carte'
     except OSError:
@@ -839,7 +843,7 @@ def export():
                              verlauf={x['datei']: version(z, x['datei']) for x in verlauf(z)})
         except Fehler as e:
             karten[z] = dict(fehler=e.text)
-    return dict(werkzeug=f'{werkzeugname()} · Culinarium Hannover', zeit=_jetzt(), schema=SCHEMA, karten=karten, einstellungen=einstellungen(), protokoll=protokoll_lesen(10000))
+    return dict(werkzeug=f'{werkzeugname()} · Walk on the Wild Side Hannover', zeit=_jetzt(), schema=SCHEMA, karten=karten, einstellungen=einstellungen(), protokoll=protokoll_lesen(10000))
 
 
 def reparatur(d, wer, rolle):

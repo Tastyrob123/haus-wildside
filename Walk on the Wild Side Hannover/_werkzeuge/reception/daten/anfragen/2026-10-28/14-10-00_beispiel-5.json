@@ -1,0 +1,27 @@
+{
+ "zeit": "2026-10-28T14:10:00+01:00",
+ "art": "feier",
+ "name": "Tim Becker",
+ "kontakt": "tim.becker@example.com",
+ "datum": "Freitag, 4. Dezember 2026",
+ "personen": 24,
+ "anliegen": "Weihnachtsfeier der Firma, 24 Personen.",
+ "sprache": "de",
+ "gespraech": "beispiel-5",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Über ein Formular der Website (Seite Feiern): Format: Die lange Tafel\nDatum: Freitag, 4. Dezember 2026\nWie viele: 24\nAnlass: Weihnachtsfeier\nMusik dazu: Ohne\nWas habt ihr vor?: Weihnachtsfeier unseres Büros, gern mit Drinks für alle."
+  }
+ ],
+ "status": "gelesen",
+ "beispiel": true,
+ "an": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
+ "abteilung": "Feiern",
+ "seite": "/tafel.html#anfragen",
+ "seite_name": "Feiern",
+ "web": true,
+ "nachricht": "Format: Die lange Tafel\nDatum: Freitag, 4. Dezember 2026\nWie viele: 24\nAnlass: Weihnachtsfeier\nMusik dazu: Ohne\nWas habt ihr vor?: Weihnachtsfeier unseres Büros, gern mit Drinks für alle.",
+ "formular": "feiern",
+ "entwurf": null
+}

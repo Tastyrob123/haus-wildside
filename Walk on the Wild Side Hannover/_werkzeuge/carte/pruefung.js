@@ -6,15 +6,15 @@
   var $ = function (s) { return document.querySelector(s); };
   var h = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var zeile = function (t, wert, ok) { return '<div><span>' + h(t) + '</span><b class="' + (ok === true ? 'ja' : ok === false ? 'nein' : '') + '">' + h(wert) + '</b></div>'; };
-  var NAME = {};   // Namen der Karten kommen vom Server (Abende des Culinarium)
+  var NAME = {};   // Namen der Karten kommen vom Server (Karten der Bar)
   var W = { node: 'Druck der PDF', playwright: 'Druckprogramm', pdftotext: 'Prüfung der PDF', speicher: 'Speicher', druck: 'Druck der PDF', pdfpruefung: 'Prüfung der PDF' };
-  var wer = 'Team Culinarium', rolle = 'direktion', lokal = [];   // Robert 20.10.2026: keine Abfrage «Wer arbeitet hier?», fester Eintrag bis zur Auslieferung
+  var wer = 'Team Wild Side', rolle = 'direktion', lokal = [];   // Robert 20.10.2026: keine Abfrage «Wer arbeitet hier?», fester Eintrag bis zur Auslieferung
   try { lokal = JSON.parse(localStorage.getItem('lc-fehler') || '[]'); } catch (e) { /* ohne Speicher */ }
 
   var sp = true; try { localStorage.setItem('lc-probe', '1'); localStorage.removeItem('lc-probe'); } catch (e) { sp = false; }
   $('#p-browser').innerHTML = zeile('Verbindungen (fetch)', typeof fetch === 'function' ? 'vorhanden' : 'fehlt', typeof fetch === 'function') +
     zeile('Speicher im Browser (Ansicht)', sp ? 'in Ordnung' : 'gesperrt, das Werkzeug merkt sich nichts', sp) +
-    zeile('Eintrag im Protokoll', 'Team Culinarium · Direktion (ohne Anmeldung bis zur Auslieferung)', true) +
+    zeile('Eintrag im Protokoll', 'Team Wild Side · Direktion (ohne Anmeldung bis zur Auslieferung)', true) +
     zeile('Fenster', innerWidth + ' × ' + innerHeight + ' px', true);
 
   function lade() {

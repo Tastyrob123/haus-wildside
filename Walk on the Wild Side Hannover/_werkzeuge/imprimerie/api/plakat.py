@@ -7,7 +7,7 @@ POST /_werkzeuge/imprimerie/api/plakat  {…, nr, durchgang, geraet}            
 
 - Live (Schlüssel nur auf dem Server: ~/.config/tasty/higgsfield.env oder Umgebung HF_API_KEY_ID / HF_API_KEY_SECRET; nie im Browser): je Vorschlag ein
   eigener Bildauftrag (Thema, Konzept, Gastkoch, Hausstil, freie Kopfzone) an Higgsfield, Vorderseite 4:3 mit Kopfzonen-Prüfung (einmal neu bei Befund),
-  Rückseite 1:1 mit Schriftfarbe nach Kontrast. Die Bilder legt der Server in haeuser/culinarium/bilder/ ab, der Browser bindet sie als Fotos ein.
+  Rückseite 1:1 mit Schriftfarbe nach Kontrast. Die Bilder legt der Server in haeuser/wildside/bilder/ ab, der Browser bindet sie als Fotos ein.
 - Grenzen (GRENZEN, eine Stelle): je Gerät 3 Durchgänge am Tag, gesamt 40 Bilder am Tag. Fehler, leeres Guthaben oder Grenze → Rückfall auf passende
   Motive der Sammlung mit Hinweis.
 - Gespeicherte Antworten (_qa/abend-roh/abende.json): schon erzeugte Abende (Roberts Sommerabend 28.10.) kommen ohne neue Kosten wieder.
@@ -16,7 +16,7 @@ import hashlib, io, json, os, re, sys, threading, time, urllib.error, urllib.req
 from datetime import date
 
 HIER = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HAUS = os.path.join(HIER, 'haeuser', 'culinarium')
+HAUS = os.path.join(HIER, 'haeuser', 'wildside')
 MOTIVE = os.path.join(HAUS, 'motive.json')
 ABENDE = os.path.join(HIER, '_qa', 'abend-roh')
 SCHLUESSEL = os.path.expanduser('~/.config/tasty/higgsfield.env')
@@ -177,7 +177,7 @@ def vorschlaege(daten):
     titel = (thema or konzept.split('.')[0])[:40]
     aus = []
     for i, m in enumerate(gewaehlt):
-        aus.append(dict(motiv=m['key'], titel=titel, akzent=m.get('akzent') or '#ef7649', schrift=bool(m.get('schrift')),
+        aus.append(dict(motiv=m['key'], titel=titel, akzent=m.get('akzent') or '#d8b264', schrift=bool(m.get('schrift')),
                         bildauftrag=bildauftrag(thema, konzept, gast, i),
                         treffer=treffer(m),
                         warum=f"Motiv «{m['titel']}» · {m['schlagworte'].get('jahreszeit', '')} · {m['schlagworte'].get('stimmung', '')}"))
@@ -397,7 +397,7 @@ def _metadaten(vorn, hinten, vk, hk, titel, auftrag, rauftrag, quelle):
         if stand:
             _zwischen_merken('kopf:' + vk, {'stand': stand, 'k': {'farbe': k.get('farbe'), 'frei': bool(k.get('frei'))}, 'r': {'dunkel': bool(r.get('dunkel'))}, 'kr': {'farbe': kr['farbe'], 'schatten': kr['schatten']}})
     return dict(motiv=vk, rueck=hk, kopf_farbe=k.get('farbe') or 'weiss', kopf_frei=bool(k.get('frei')), rueck_dunkel=bool(r.get('dunkel')), kopf_rudi=dict(farbe=kr['farbe'], schatten=kr['schatten']),
-                akzent='#ef7649', titel=titel, bildauftrag=auftrag, rueckauftrag=rauftrag, warum=quelle)
+                akzent='#d8b264', titel=titel, bildauftrag=auftrag, rueckauftrag=rauftrag, warum=quelle)
 
 
 def neu_vorschlag(daten):

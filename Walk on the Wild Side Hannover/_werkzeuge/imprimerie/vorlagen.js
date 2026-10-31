@@ -466,148 +466,90 @@
   };
 
 
-  /* ---------- Culinarium Hannover (28.10.2026): die Plakat-Sprache der echten Plakate seit 2023 und die Menükarte am Tisch ----------
-     Ausgemessen an den Plakaten in _quelle/extern/ig/ (DFqbLG2s_dc, 1440 × 1432): warmweisser Rand 4 % seitlich und 2,6 % oben, Bildfeld bis 74,5 %,
-     darunter der Kasten mit der Wortmarke CULINARIUM (75,2–91,4 %, Wortmarke 75 % der Breite) und das Band mit der Zeile (92,3–98,7 %),
-     beide mit feiner grauer Linie. Rückseite (…-2.jpg): Bild randlos, oben links «WALK / ON THE / WILD SIDE», unten die Daten «25 / 09 / 26» mit Uhrzeit,
-     rechts daneben «3 GÄNGE MENÜ / 5 SiGNATURE DRiNKS», alles warmweiss in der Plakatschrift. Jeder Abend trägt seine Akzentfarbe (i.akzent):
-     als Linie unter der Kopfzeile (vorn); die Rückseite bleibt wie die echten ohne Linie. Alle Masse in Anteilen der Breite, damit dasselbe Plakat
-     als Instagram-Quadrat, als A3-Aushang und als Story stimmt. Wortmarke = zweites Zeichen (el.z = 2, Rudis Original-Logo). */
-  STIL.plakat = { zeile: 1.22, sperr: .08 };   // Sperrung höchstens .08 em, sonst zerfallen die Wörter im PDF (Fehlerbuch 10a, pdftotext)
-  STIL.kopf = { zeile: 1, sperr: .005, gross: true };   // Kopfzeile wie Rudi (Anton): eine Zeile, Versalien, kaum gesperrt; auch beim Wechsel der Schriftart im Editor
-  const PL_LINIE = '#bdb8b8';                  // graue Linie der Kästen, gemessen (190,186,186 / 180,178,183)
+  /* ---------- Walk on the Wild Side (31.10.2026): die Plakat-Sprache der Bar ----------
+     Zwei Plakate, abgelesen an den echten Plakaten (website/assets/bild/p-*, _quelle/ig, _quelle/facebook):
+     1. SESSION (DJ-Abende, seit September 2025): Plakatcreme-Rand rund 5 %, darin die rot-cremefarbenen Wellen, oben links «SESSION» in breiten, sehr fetten
+        Versalien (Ultramarin #1A00AA), darunter «SIP & / SOUNDS», das Gesicht des Abends in Schwarzweiss, rechts der Name, unten rechts das Datum «17|10»
+        mit der Uhrzeit, im Fuss links die Wortmarke in Rot, rechts «HAASEMANNSTR. 13 / 30449 HANNOVER». Schrift: Rammetto One (OFL), Rolle «plakat».
+     2. Das weisse Plakat «Eure Nachbarschafts-Mixology-Bar» (Relaunch 01.12.2023, Silvester, Tanz in den Mai): Bild oben, darunter die rote Wortmarke,
+        die Zeile, der Titel in Versalien, Datum «31 | 12 | 25» mit Uhrzeit und die Angaben, unten die Adresse; alles linksbündig auf einer Kante.
+     Alle Masse in Anteilen der Breite, damit dasselbe Plakat als Instagram-Beitrag, A3-Aushang und Story stimmt. */
+  STIL.plakat = { zeile: 1.02, sperr: .02, gross: true };   // Sperrung höchstens .08 em (Fehlerbuch 10a, PDF)
+  STIL.plakatfett = { zeile: 1.02, sperr: .02, gross: true };
+  STIL.kopf = { zeile: 1, sperr: .01, gross: true };
   const plMass = (c, el, breite, hoehe) => {   // Text so gross setzen, dass er die Breite füllt, aber nicht höher als «hoehe» wird
     const m = DS.mess(Object.assign({}, el, { gr: 10, w: 100000 })).bw || 1;
     el.gr = +Math.min(10 * breite / m, hoehe).toFixed(2); el.h = DS.mess(el).h; return el;
   };
-  /* Kopfzeile wie Rudi (Robert 29.10.2026: «auf den Plakaten von Rudi ist der Schriftzug Walk on the Wild Side immer … in dicken Buchstaben, wir arbeiten
-     aber nur mit so einer weissen hässlichen Schrift»). Abgelesen an Rudis acht Plakaten mit gemalter Kopfzeile: sehr fett und schmal, Versalien, mittig,
-     70–85 % der Motivbreite, 2–7 % unter der Oberkante, fast immer Rot (auf Rot und Pink Ton in Ton, auf dunkler Bühne leuchtend), leichter Schatten,
-     kein Strich darunter. Schrift: Anton (OFL), Rolle «kopf». Farbe und Schatten je Bild aus der Kopfzone (kopfzone.rudi_kopf → kopf_rudi im Bild bzw. Motiv);
-     eine ausdrückliche Hex-Farbe geht vor, die alten Namen 'weiss'/'navy' gelten nicht mehr. Baustein für alle Aufbauten: DS.kopfzeileRudi(c, text, o). */
-  DS.kopfRudi = (M, bild, farbe, schatten) => {
-    if (/^#/.test(farbe || '')) return { farbe, schatten: schatten || 'dunkel' };
-    const b = (M.bildIndex || {})[bild], mo = window.DSPlakat && DSPlakat.motive ? DSPlakat.motive().find(x => x.key === bild || x.ganz === bild) : null;
-    return (b && b.kopf_rudi) || (mo && mo.kopf_rudi) || { farbe: '#d6262b', schatten: 'dunkel' };
-  };
-  DS.kopfzeileRudi = (c, text, o) => {   // o: { x, y, w, h } = Motivfeld; bild, farbe, schatten, anteil (Breite, Standard 0,8)
-    const k = DS.kopfRudi(c.M, o.bild, o.farbe, o.schatten);
-    const t = tx(c, 'kopf', String(text || '').toUpperCase(), o.w, o.h * .16, k.farbe, { slot: o.slot || 'ueber', zeile: 1, sperr: .005, x: o.x });
-    plMass(c, t, o.w * (o.anteil || .8), o.h * .16);
-    t.y = +(o.y + o.h * .035 - t.gr * .06).toFixed(2); t.schatten = k.schatten;
-    return t;
-  };
+  const WS_FUSS = 'HAASEMANNSTR. 13\n30449 HANNOVER';
   V.plakat = {
-    name: 'Plakat des Abends', wofuer: 'Plakat je Abend in der Sprache der Culinarium-Plakate: Bild oben, Wortmarke im Kasten, Band mit der Zeile, Akzentfarbe des Abends',
-    slots: ['bild*', 'ueber', 'zeile'],
+    name: 'SESSION-Plakat', wofuer: 'DJ-Abend wie die SESSION-Plakate der Bar: rot-cremefarbene Wellen, Ultramarin-Schrift, das Gesicht des Abends in Schwarzweiss, Datum und Uhrzeit, Wortmarke und Adresse',
+    slots: ['bild', 'grundbild', 'ueber', 'unter', 'name', 'tag*', 'zeit', 'fuss'],
     bau(c, i, seite) {
-      const dunkel = c.ton === 'dunkel', u = c.w, B = DS.B;
-      grund(c, seite, dunkel ? 'navy' : 'weiss', dunkel ? 'dunkel' : null);
-      const sx = u * .0415, top = Math.min(u, c.h) * .0275;
-      const yBand1 = c.h - u * .013, yBand0 = c.h - u * .0775, yBox1 = c.h - u * .0855, yBox0 = c.h - u * .248, yBild = c.h - u * .2565;
-      foto(c, i.bild, sx, top, u - 2 * sx, yBild - top);
-      if (i.ueber) c.el.push(DS.kopfzeileRudi(c, i.ueber, { x: sx, y: top, w: u - 2 * sx, h: yBild - top, bild: i.bild, farbe: i.ueberfarbe, schatten: i.kopfschatten }));   // wie Rudi, ohne Strich darunter (29.10.)
-      const linie = dunkel ? 'gold' : PL_LINIE, st = Math.max(.25, u * .0035);
-      c.el.push({ id: neueId(), typ: 'rahmen', x: sx, y: yBox0, w: u - 2 * sx, h: yBox1 - yBox0, staerke: st, r: 0, farbe: linie, deck: dunkel ? .7 : 1 });
-      c.el.push({ id: neueId(), typ: 'rahmen', x: sx, y: yBand0, w: u - 2 * sx, h: yBand1 - yBand0, staerke: st, r: 0, farbe: linie, deck: dunkel ? .7 : 1 });
-      const Z2 = c.M.zeichen2, farbe = dunkel ? 'weiss' : (Z2 ? Z2.farben.zeichen : 'tanne');
-      if (Z2) {
-        const zw = u * .75, zh = zw * Z2.verh;
-        c.el.push({ id: neueId(), typ: 'zeichen', z: 2, x: (u - zw) / 2, y: +((yBox0 + yBox1 - zh) / 2).toFixed(2), w: zw, farbe, deck: 1 });
-      } else {
-        const t = tx(c, 'titel', 'CULINARIUM', u * .75, u * .09, farbe, { slot: null }); t.y = (yBox0 + yBox1 - t.h) / 2; c.el.push(t);
+      const u = c.w, H = c.h, quadrat = H < u * 1.12;
+      grund(c, seite, 'creme', null);
+      const rx = +Math.max(u * .052, DS.SICHER + 1).toFixed(2), fussH = +Math.max(u * .075, 7).toFixed(2);
+      const fy0 = rx, fy1 = +(H - rx * .55 - fussH).toFixed(2), fw = u - 2 * rx, fh = fy1 - fy0;
+      foto(c, i.grundbild || 'welle-1', rx, fy0, fw, fh, { slot: 'grundbild' });
+      if (i.bild) {
+        const b = (c.M.bildIndex || {})[i.bild] || { w: 3, h: 4 }, ia = b.w / b.h;
+        const ph = +(fh * (quadrat ? .7 : H > u * 1.6 ? .56 : .66)).toFixed(2), pw = +Math.min(fw * (quadrat ? .5 : .66), ph * Math.max(.72, Math.min(1.1, ia))).toFixed(2);
+        foto(c, i.bild, +(rx + fw * .06).toFixed(2), +(fy1 - ph).toFixed(2), pw, ph, { slot: 'bild' });
       }
-      const z = tx(c, 'plakatfett', i.zeile || c.M.zeile || '', u - 2 * sx - u * .02, u * .03, farbe, { slot: 'zeile', zeile: 1, sperr: .06 });   // Feld so breit wie das Band, damit eine längere Zeile (Gastkoch) nie umbricht
-      plMass(c, z, u * .84, (yBand1 - yBand0) * .5);   /* wie auf den echten Plakaten: fett, das Band fast in voller Breite */ z.y = +((yBand0 + yBand1 - z.h) / 2 + z.gr * .04).toFixed(2); c.el.push(z);
-      void B;
+      const blau = 'blau', x0 = rx + fw * .035, w0 = fw * .93;
+      const t = tx(c, 'plakat', i.ueber || 'SESSION', w0, u * .14, blau, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1 });
+      plMass(c, t, w0 * .97, u * .2); t.y = +(fy0 + fh * .035).toFixed(2); c.el.push(t);
+      let y = t.y + t.h * .92;
+      if (i.unter) { const s = tx(c, 'plakat', i.unter, fw * .5, t.gr * .3, blau, { slot: 'unter', ausr: 'l', x: x0 + t.gr * .02, zeile: 1.15 }); s.y = +y.toFixed(2); c.el.push(s); }
+      const xr = rx + fw * .965, wr = fw * .55;
+      const zt = i.zeit ? tx(c, 'plakat', i.zeit, wr, t.gr * .3, blau, { slot: 'zeit', ausr: 'r', x: xr - wr, zeile: 1 }) : null;
+      const dt = tx(c, 'plakat', i.tag || '', wr, t.gr * .78, blau, { slot: 'tag', ausr: 'r', x: xr - wr, zeile: 1 });
+      if (zt) plMass(c, zt, wr * .92, t.gr * .3);
+      plMass(c, dt, wr * .95, t.gr * .78);
+      let yb = fy1 - fh * .045;
+      if (zt) { zt.y = +(yb - zt.h).toFixed(2); c.el.push(zt); yb = zt.y + zt.h * .06; }
+      dt.y = +(yb - dt.h).toFixed(2); c.el.push(dt);
+      if (i.name) { const n = tx(c, 'plakat', i.name, fw * .4, t.gr * .2, blau, { slot: 'name', ausr: 'r', x: xr - fw * .4, zeile: 1.12 }); n.y = +(fy0 + fh * (quadrat ? .5 : .47)).toFixed(2); c.el.push(n); }
+      const Z = c.M.zeichen2 || c.M.zeichen, zh = fussH * .92, zw = +(zh / Z.verh).toFixed(2);
+      c.el.push({ id: neueId(), typ: 'zeichen', z: 2, x: rx, y: +(fy1 + (H - fy1 - zh) / 2).toFixed(2), w: zw, farbe: 'logo', deck: 1 });
+      const f = tx(c, 'mono', i.fuss || WS_FUSS, fw * .5, Math.max(1.5, u * .016), blau, { slot: 'fuss', ausr: 'r', x: rx + fw * .5, zeile: 1.45, sperr: .08 });
+      f.y = +(fy1 + (H - fy1 - f.h) / 2).toFixed(2); c.el.push(f);
     },
   };
-  /* Plakat des Abends in hohen Formaten (Abnahme-Tor 29.10.: in A3 und Story stand das Motiv klein in der Mitte, oben und unten leere Farbfläche).
-     Wie das Plakat, nur hoch: Papiergrund, das Motiv in voller Breite und ganz (Seitenverhältnis des Bilds, nichts angeschnitten), darauf die Kopfzeile wie Rudi,
-     darunter Wortmarke im Kasten und das Band, dann die Daten des Abends in den Buchstaben der Rückseiten. Die übrige Höhe teilt sich gleich auf die Abstände
-     (höchstens 2,4 Textzeilen, sonst Loch); was dann noch frei ist, macht die Daten grösser. */
-  V.plakathoch = {
-    name: 'Plakat des Abends, hoch', wofuer: 'Plakat je Abend in hohen Formaten (A3, A4, A5, Story, 4:5): Motiv gross und ganz, Wortmarke, Band und die Daten des Abends',
-    slots: ['bild*', 'ueber', 'zeile', 'tag1', 'zeit1', 'tag2', 'zeit2', 'text'],
-    formate: ['a6h', 'a5h', 'a4h', 'a3h', 'insta', 'story', 'dlh'],   // hohe Formate; plakat.js setzt ihn selbst nur bis Seitenverhältnis 1,9 (dlh nur über den Reiter «Vorlagen»)
-    bau(c, i, seite) {
-      /* Ohne Daten des Abends (das Plakat aus dem Reiter «Vorlagen» in Story oder A3) bliebe ein Drittel leer (Abnahme-Tor 29.10.): dann stehen die Daten
-         aus dem Beispiel darin, als Felder zum Überschreiben, wie auf jedem Plakat, das die Werkstatt für einen Abend anlegt */
-      if (!i.tag1 && !i.text && DS.BEISPIEL && DS.BEISPIEL.plakathoch) { const B0 = DS.BEISPIEL.plakathoch; i = Object.assign({ tag1: B0.tag1, zeit1: B0.zeit1, tag2: B0.tag2, zeit2: B0.zeit2, text: B0.text }, i); }
-      const dunkel = c.ton === 'dunkel', u = c.w, CAP = .72;
-      grund(c, seite, dunkel ? 'navy' : 'weiss', dunkel ? 'dunkel' : null);
-      const sx = Math.max(u * .0415, DS.SICHER + .5), bw = u - 2 * sx, b = (c.M.bildIndex || {})[i.bild] || { w: 5, h: 4 };
-      const digital = (Object.values(DS.FORMATE).find(F => F.b === c.w && F.h === c.h) || {}).digital;
-      const mw = +Math.min(bw, digital || !b.w || b.w < 50 ? bw : b.w / 152 * 25.4).toFixed(2), mx = +((u - mw) / 2).toFixed(2);   // im Druck nie unter 152 dpi: Rudis Bilder gibt es nur in Instagram-Grösse
-      const mh = +(mw * b.h / b.w).toFixed(2), farbe = dunkel ? 'weiss' : 'tinte', linie = dunkel ? 'gold' : PL_LINIE, st = Math.max(.25, u * .0035);
-      const boxH = u * .163, bandH = u * .0645, Z2 = c.M.zeichen2, zFarbe = dunkel ? 'weiss' : (Z2 ? Z2.farben.zeichen : 'tanne');
-      const daten = (f) => {   // Daten des Abends, mittig, fett wie auf den Rückseiten
-        const z = [], gT = u * .042 * f / CAP, gS = u * .026 * f / CAP;
-        [[i.tag1, i.zeit1, 1], [i.tag2, i.zeit2, 2]].filter(d => d[0]).forEach(([tag, zeit, n]) => z.push(tx(c, 'plakatfett', tag + (zeit ? '  ·  ' + zeit : ''), bw, gT, farbe, { slot: 'tag' + n, zeile: 1.05, sperr: .04 })));
-        if (i.text) z.push(tx(c, 'plakatfett', String(i.text).replace(/\n/g, '  ·  '), bw, gS, farbe, { slot: 'text', zeile: 1.1, sperr: .04 }));
-        z.forEach(t => plMass(c, t, bw * .94, t.gr)); return z;   // etwas Luft, sonst bricht die Sperrung die Zeile um
-      };
-      let f = 1, d = daten(f);
-      const hoehe = () => mh + boxH + bandH + d.reduce((m, t) => m + t.h, 0) + Math.max(0, d.length - 1) * u * .012;
-      const zeile = ((DS.STIL && (DS.STIL.mindestgrade_mm || {})[c.M && c.formatKey] || {}).text || 3) * 1.35, cap = 2.4 * Math.max(zeile, u * .03);
-      const luecken = 4, frei = () => c.h - 2 * sx - hoehe();
-      while (frei() / luecken > cap && f < 1.8) { f += .1; d = daten(f); }
-      const g = Math.max(u * .015, Math.min(cap, frei() / luecken));
-      let y = sx + Math.max(0, (frei() - g * luecken) / 2);
-      foto(c, i.bild, mx, +y.toFixed(2), mw, mh);
-      if (i.ueber) c.el.push(DS.kopfzeileRudi(c, i.ueber, { x: mx, y, w: mw, h: mh, bild: i.bild, farbe: i.ueberfarbe, schatten: i.kopfschatten }));
-      y += mh + g;
-      c.el.push({ id: neueId(), typ: 'rahmen', x: sx, y: +y.toFixed(2), w: bw, h: +boxH.toFixed(2), staerke: st, r: 0, farbe: linie, deck: dunkel ? .7 : 1 });
-      if (Z2) { const zw = bw * .78, zh = zw * Z2.verh; c.el.push({ id: neueId(), typ: 'zeichen', z: 2, x: +((u - zw) / 2).toFixed(2), y: +(y + (boxH - zh) / 2).toFixed(2), w: zw, farbe: zFarbe, deck: 1 }); }
-      y += boxH + u * .008;
-      c.el.push({ id: neueId(), typ: 'rahmen', x: sx, y: +y.toFixed(2), w: bw, h: +bandH.toFixed(2), staerke: st, r: 0, farbe: linie, deck: dunkel ? .7 : 1 });
-      const zl = tx(c, 'plakatfett', i.zeile || c.M.zeile || '', bw - u * .02, u * .03, zFarbe, { slot: 'zeile', zeile: 1, sperr: .06 });
-      plMass(c, zl, bw * .9, bandH * .5); zl.y = +(y + (bandH - zl.h) / 2 + zl.gr * .04).toFixed(2); c.el.push(zl);
-      y += bandH + g;
-      d.forEach((t, k) => { t.y = +y.toFixed(2); c.el.push(t); y += t.h + (k < d.length - 1 ? u * .012 : 0); });
-    },
-  };
+  V.plakathoch = Object.assign({}, V.plakat, { name: 'SESSION-Plakat, hoch' });
   V.plakatrueck = {
-    name: 'Plakat, Rückseite mit Daten', wofuer: 'Rückseite des Abend-Plakats wie die echten Rückseiten: ruhiger, satter Grund in der Farbwelt der Vorderseite (oder ein Bild randlos), «WALK / ON THE / WILD SIDE» oben links, Daten mit Uhrzeit unten links, Gänge und Drinks rechts, fette runde Versalien, keine Linie, kein Schleier',
-    slots: ['bild', 'ueber', 'tag1', 'zeit1', 'tag2', 'zeit2', 'text'],
-    /* Ausgemessen an den echten Rückseiten (DPwlqcfiKcA-2, DJw8OqGMY1G-2, DVjkofijp6R-2, DbYnkdkjrNy-2, 900 px breit): Rand links 3,3 %, «WALK» oben bei 6,7 %,
-       Versalhöhe 3,6 %, Zeilenschritt 7,8 %; Daten Versalhöhe 3,7 %, Uhrzeit 1,9 %, unterste Zeile 4,5 % über dem Rand; rechte Spalte ab 58,7 %, Versalhöhe 2,8 %,
-       Zeilenschritt 4,7 %. Kein Schleier, keine Titelzeile: das Bild ist ein eigenes, sattes Begleitmotiv. Schrift weiss, auf hellem Bild dunkel (i.dunkel). */
+    name: 'Weisses Plakat der Bar', wofuer: 'Fest oder Ankündigung wie die weissen Plakate der Bar (Relaunch, Silvester, Tanz in den Mai): Bild oben, rote Wortmarke, «Eure Nachbarschafts-Mixology-Bar», Titel in Versalien, Datum, Angaben, Adresse',
+    slots: ['bild*', 'ueber', 'titel*', 'tag', 'zeit', 'text', 'fuss'],
     bau(c, i, seite) {
-      const u = c.w, B = DS.B, CAP = .72;   // Versalhöhe von Urbanist in Teilen der Schriftgrösse
-      grund(c, seite, i.grund || 'navy', null);   // ohne Bild: ruhiger Grund in der Farbwelt der Illustration vorn (Roberts Entscheid 28.10.: keine KI-Bilder)
-      if (i.bild) foto(c, i.bild, -B, -B, c.w + 2 * B, c.h + 2 * B);
-      const farbe = i.dunkel ? 'tinte' : 'weiss', x0 = Math.max(u * .033, DS.SICHER + .5), R = 'plakatfett';   // nie näher als der sichere Rand (Abnahme-Tor 29.10.: A3 rechts unter 4 mm)
-      if (i.ueber) {
-        const t = tx(c, R, i.ueber, u * .6, u * .036 / CAP, farbe, { slot: 'ueber', ausr: 'l', x: x0, zeile: (u * .078) / (u * .036 / CAP), sperr: .02 });
-        t.y = +(u * .067 - (u * .036 / CAP) * .16).toFixed(2); c.el.push(t);
-      }
-      const gT = u * .037 / CAP, gZ = u * .019 / CAP, unten = c.h - u * .045;
-      const daten = [[i.tag1, i.zeit1, 1], [i.tag2, i.zeit2, 2]].filter(d => d[0]);
-      // von unten nach oben setzen, damit die unterste Uhrzeit wie auf den Plakaten 4,5 % über dem Rand steht
-      const bloecke = daten.map(([tag, zeit, n]) => {
-        const t = tx(c, R, tag, u * .5, gT, farbe, { slot: 'tag' + n, ausr: 'l', x: x0, zeile: 1.02, sperr: .04 });
-        const z = zeit ? tx(c, R, zeit, u * .4, gZ, farbe, { slot: 'zeit' + n, ausr: 'l', x: x0 + u * .003, zeile: 1.1, sperr: .04 }) : null;
-        return { t, z };
-      });
-      let y = unten;
-      for (let k = bloecke.length - 1; k >= 0; k--) {
-        const { t, z } = bloecke[k];
-        if (z) { y -= z.h; z.y = +y.toFixed(2); y -= u * .012; }
-        y -= t.h; t.y = +y.toFixed(2); y -= u * .028;
-      }
-      const yOben = bloecke.length ? bloecke[0].t.y : unten - u * .2;
-      bloecke.forEach(({ t, z }) => { c.el.push(t); if (z) c.el.push(z); });
-      if (i.text) {
-        const t = tx(c, R, i.text, u - u * .587 - x0, u * .028 / CAP, farbe, { slot: 'text', ausr: 'l', x: u * .587, zeile: (u * .047) / (u * .028 / CAP), sperr: .03 });
-        plMass(c, t, u - u * .587 - x0, u * .028 / CAP);   // passt in die Spalte bis zum sicheren Rand
-        t.y = +yOben.toFixed(2); c.el.push(t);
-      }
-      void B;
+      const u = c.w, H = c.h, dunkel = c.ton === 'dunkel';
+      grund(c, seite, dunkel ? 'navy' : 'weiss', null);
+      const farbe = dunkel ? 'weiss' : 'tinte', rx = +Math.max(u * .07, DS.SICHER + 1.5).toFixed(2), bw = u - 2 * rx;
+      const b = (c.M.bildIndex || {})[i.bild] || { w: 1, h: 1 }, ia = b.w / b.h;
+      const quadrat = H < u * 1.12;
+      const bh = +Math.min(H * (quadrat ? .5 : H > u * 1.6 ? .5 : .56), bw / Math.max(.75, Math.min(1.35, ia))).toFixed(2);
+      const x0 = rx, items = [];
+      const Z = c.M.zeichen2 || c.M.zeichen, zh = +(u * (quadrat ? .1 : .12)).toFixed(2), zw = +(zh / Z.verh).toFixed(2);
+      const kopf = { id: neueId(), typ: 'zeichen', z: 2, x: x0, y: 0, w: zw, farbe: 'logo', deck: 1 };
+      const zeile = tx(c, 'kapitale', i.ueber || c.M.zeile || '', bw, Math.max(1.6, u * .022), farbe, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1.2, sperr: .02 });
+      const titel = tx(c, 'kapitale', i.titel || '', bw, Math.max(3, u * .052), farbe, { slot: 'titel', ausr: 'l', x: x0, zeile: 1.08, sperr: .01 });
+      plMass(c, titel, bw, u * .056);
+      const datum = [i.tag, i.zeit].filter(Boolean).join('    ');
+      const d = datum ? tx(c, 'kursiv', datum, bw, Math.max(1.8, u * .024), farbe, { slot: 'tag', ausr: 'l', x: x0, zeile: 1.3 }) : null;
+      const t = i.text ? tx(c, 'text', i.text, bw * .92, Math.max(1.8, u * .023), farbe, { slot: 'text', ausr: 'l', x: x0, zeile: 1.42 }) : null;
+      const f = tx(c, 'kursiv', i.fuss || WS_FUSS, bw * .6, Math.max(1.6, u * .02), farbe, { slot: 'fuss', ausr: 'l', x: x0, zeile: 1.35 });
+      const s = c.s8, liste = sauber([kopf, u * .022, zeile, u * .04, titel, u * .032, d, d && u * .024, t]);
+      const yF = H - rx - f.h; f.y = +yF.toFixed(2);
+      const yTop = rx + bh + u * .045, frei = yF - u * .04 - yTop;
+      foto(c, i.bild, rx, rx, bw, bh);
+      stapelMitte(c, liste, yTop, yTop + frei);
+      // die Gruppe beginnt oben unter dem Bild wie auf den echten Plakaten, nicht in der Mitte
+      const grp = c.el.filter(e => liste.includes(e)); const dy = Math.min(...grp.map(e => e.y)) - yTop;
+      if (dy > u * .02) grp.forEach(e => { e.y = +(e.y - dy * .55).toFixed(2); });
+      c.el.push(f); void s;
     },
   };
   V.plakatganz = {
-    name: 'Plakat aus dem Archiv, ganz', wofuer: 'Ein echtes Plakat seit 2023 als ganzes Bild, nichts angeschnitten, mit warmweissem Rand; die Schrift steht schon im Plakat',
+    name: 'Plakat aus dem Archiv, ganz', wofuer: 'Ein echtes Plakat der Bar als ganzes Bild, nichts angeschnitten, mit weissem Rand; die Schrift steht schon im Plakat',
     slots: ['bild*'],
     /* Auftrag Oberchef 28.10.: echte Plakate mit eingebauter Schrift nie als Motiv unter neuer Schrift und nie angeschnitten, nur ganz im Archiv */
     bau(c, i, seite) {
@@ -627,7 +569,7 @@
       const x0 = r + 6 * c.s8, cw = c.w - 2 * x0, Z2 = c.M.zeichen2;
       const kopf = [];
       if (Z2) { const zw = Math.min(cw * .78, 62 * c.s8); kopf.push({ id: neueId(), typ: 'zeichen', z: 2, x: (c.w - zw) / 2, y: 0, w: zw, farbe: dunkel ? 'weiss' : Z2.farben.zeichen, deck: 1 }, 1.6 * c.s8); }
-      kopf.push(tx(c, 'plakat', c.M.zeile || '', cw * .9, 1.5 * c.s8, dunkel ? 'gold' : c.T.mono, { slot: null, zeile: 1 }), 4.5 * c.s8);
+      kopf.push(tx(c, 'kapitale', c.M.zeile || '', cw * .9, 1.5 * c.s8, dunkel ? 'gold' : c.T.mono, { slot: null, zeile: 1 }), 4.5 * c.s8);
       if (i.titel) kopf.push(tx(c, 'titel', i.titel, cw, 7.5 * c.s8, c.T.titel, { slot: 'titel' }), 1.8 * c.s8);
       if (i.ueber) kopf.push(tx(c, 'mono', i.ueber, cw, 1.85 * c.s8, i.akzent || c.T.mono, { slot: 'ueber' }));
       const yK = stapel(c, sauber(kopf), r + 7 * c.s8) + 3.5 * c.s8;
@@ -693,6 +635,6 @@
     };
   };
 
-  /* Beispielinhalte im Wortlaut des Culinarium (geprüft in _qa/vorlagen_culinarium.py, eingesetzt von _qa/culinarium_anpassen.py) */
-  DS.BEISPIEL = {"deckel": {"ueber": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "titel": "Culinarium", "unter": "Walk on the Wild Side · Haasemannstraße 13", "text": "Food-Pairing-Abende im Walk on the Wild Side in Linden: ein Menü mit fünf passenden Drinks an einer langen Tafel für vierzehn Gäste."}, "buehne": {"bild": "tafelleer", "ueber": "Culinarium", "titel": "An der langen Tafel", "text": "Die Abende an der langen Tafel des Walk on the Wild Side: drei Gänge, fünf Drinks, vierzehn Plätze. Und wer dir erklärt, was auf dem Teller und im Glas ist.", "aktion": "Walk on the Wild Side · Haasemannstraße 13"}, "ansicht": {"bild": "barnacht", "titel": "Walk on the Wild Side", "unter": "Hannover-Linden"}, "karte": {"ueber": "Culinarium", "titel": "Vom Pass", "text": "Das Menü wechselt mit jedem Abend. Ein paar Teller und Drinks aus den letzten Ausgaben.", "liste": [{"name": "LAUCH / BLUMENKOHL / CHIPOTLE", "detail": "", "preis": ""}, {"name": "BLUMENKOHL / ROQUEFORT / KAPERN / QUINOA", "detail": "", "preis": ""}, {"name": "HOKKAIDO / KÜRBISKERNÖL / HASELNUSS", "detail": "", "preis": ""}, {"name": "SPAGHETTI-EIS / KIWI / WEISSE SCHOKOLADE", "detail": "", "preis": ""}], "fuss": "Walk on the Wild Side · Haasemannstraße 13"}, "einladung": {"ueber": "Culinarium", "titel": "Ein Abend an der Tafel", "wann": "27.–28. November", "wo": "Walk on the Wild Side · Haasemannstraße 13", "text": "Vierzehn Gäste an einer Tafel, drei Gänge aus der Küche und dazu fünf Signature Drinks, passend zum Essen. Momo erklärt am Tisch, was im Glas ist.", "aktion": "@culinarium_hannover"}, "programm": {"ueber": "Culinarium", "titel": "Die nächsten Abende", "termine": [{"wann": "27.–28. November", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}, {"wann": "18.–19. Dezember", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}]}, "fenster": {"bild": "trio2", "ueber": "Culinarium", "titel": "Immer dieselben Leute", "unter": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "text": "Hinter den Plakaten stehen dieselben Leute, Abend für Abend."}, "geteilt": {"bild": "schaumglas", "ueber": "Am Tisch erklärt", "titel": "Fatwashing", "text": "Die Spirituose nimmt den Geschmack eines Fetts an; kalt gestellt, wird das Fett wieder abgehoben.", "aktion": "Culinarium"}, "gutschein": {"titel": "Dein Platz an der Tafel", "unter": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "wert": "Culinarium", "text": "Die Abende an der langen Tafel des Walk on the Wild Side: drei Gänge, fünf Drinks, vierzehn Plätze."}, "aushang": {"ueber": "Culinarium", "titel": "Heute ausgebucht", "text": "Der Abend ist ausgebucht, bevor er beginnt.", "aktion": "@culinarium_hannover"}, "rueckseite": {"text": "Food-Pairing-Abende im Walk on the Wild Side in Linden: ein Menü mit fünf passenden Drinks an einer langen Tafel für vierzehn Gäste."}, "kartengruss": {"titel": "Walk on the Wild Side", "text": "Und wer dir erklärt, was auf dem Teller und im Glas ist."}, "plakat": {"bild": "pl_CyT32RTMB4d", "ueber": "", "ueberfarbe": "weiss", "zeile": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "akzent": "#13606a"}, "plakatrueck": {"grund": "#0d545d", "ueber": "WALK\nON THE\nWILD SIDE", "tag1": "27 / 11 / 26", "zeit1": "19:00 UHR", "text": "3 GÄNGE MENÜ\n5 SiGNATURE DRiNKS", "tag2": "28 / 11 / 26", "zeit2": "17:00 UHR"}, "menue": {"titel": "Menü", "ueber": "Fr 21. und Sa 22. Februar 2025", "liste": [{"gang": "Apéritif", "name": "Sauerteig | Tomate | Butter", "detail": "Cognac | Toasted Pumpkin Samen | Limette | Champagner"}, {"gang": "Vorspeise", "name": "Miso | Sellerie | Röstzwiebeln", "detail": "Vodka | Tom Yam | Guava | Cocos | Acids | Soda"}, {"gang": "Hauptgang", "name": "Spinat | braune Butter | Parmesan", "detail": "Tequila | lakto-fermentierte Tomate | Agave | Limette"}, {"gang": "Dessert", "name": "Kaffee | Molke | Amaretto", "detail": "Vodka | Cacao | Matcha | Mango"}, {"gang": "Absacker", "name": "", "detail": "Gin | Turmeric | Ingwer"}], "akzent": "#ef7648", "fuss": "Walk on the Wild Side · Haasemannstraße 13"}, "plakathoch": {"bild": "pl_DPwlqcfiKcA", "ueber": "WALK ON THE WILD SIDE", "ueberfarbe": "#d6262b", "kopfschatten": "leuchten", "zeile": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "tag1": "27 / 11 / 26", "zeit1": "19:00 UHR", "tag2": "28 / 11 / 26", "zeit2": "17:00 UHR", "text": "3 GÄNGE MENÜ\n5 SiGNATURE DRiNKS"}};
+  /* Beispielinhalte im Wortlaut des Wild Side (geprüft in bau_vorlagen.py, eingesetzt von bau.py) */
+  DS.BEISPIEL = {"deckel": {"ueber": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "titel": "Culinarium", "unter": "Walk on the Wild Side · Haasemannstraße 13", "text": "Food-Pairing-Abende im Walk on the Wild Side in Linden: ein Menü mit fünf passenden Drinks an einer langen Tafel für vierzehn Gäste."}, "buehne": {"bild": "tafelleer", "ueber": "Culinarium", "titel": "An der langen Tafel", "text": "Die Abende an der langen Tafel des Walk on the Wild Side: drei Gänge, fünf Drinks, vierzehn Plätze. Und wer dir erklärt, was auf dem Teller und im Glas ist.", "aktion": "Walk on the Wild Side · Haasemannstraße 13"}, "ansicht": {"bild": "barnacht", "titel": "Walk on the Wild Side", "unter": "Hannover-Linden"}, "karte": {"ueber": "Culinarium", "titel": "Vom Pass", "text": "Das Menü wechselt mit jedem Abend. Ein paar Teller und Drinks aus den letzten Ausgaben.", "liste": [{"name": "LAUCH / BLUMENKOHL / CHIPOTLE", "detail": "", "preis": ""}, {"name": "BLUMENKOHL / ROQUEFORT / KAPERN / QUINOA", "detail": "", "preis": ""}, {"name": "HOKKAIDO / KÜRBISKERNÖL / HASELNUSS", "detail": "", "preis": ""}, {"name": "SPAGHETTI-EIS / KIWI / WEISSE SCHOKOLADE", "detail": "", "preis": ""}], "fuss": "Walk on the Wild Side · Haasemannstraße 13"}, "einladung": {"ueber": "Culinarium", "titel": "Ein Abend an der Tafel", "wann": "27.–28. November", "wo": "Walk on the Wild Side · Haasemannstraße 13", "text": "Vierzehn Gäste an einer Tafel, drei Gänge aus der Küche und dazu fünf Signature Drinks, passend zum Essen. Momo erklärt am Tisch, was im Glas ist.", "aktion": "@walkonthewildside_hannover"}, "programm": {"ueber": "Culinarium", "titel": "Die nächsten Abende", "termine": [{"wann": "27.–28. November", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}, {"wann": "18.–19. Dezember", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}]}, "fenster": {"bild": "trio2", "ueber": "Culinarium", "titel": "Immer dieselben Leute", "unter": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "text": "Hinter den Plakaten stehen dieselben Leute, Abend für Abend."}, "geteilt": {"bild": "schaumglas", "ueber": "Am Tisch erklärt", "titel": "Fatwashing", "text": "Die Spirituose nimmt den Geschmack eines Fetts an; kalt gestellt, wird das Fett wieder abgehoben.", "aktion": "Culinarium"}, "gutschein": {"titel": "Dein Platz an der Tafel", "unter": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "wert": "Culinarium", "text": "Die Abende an der langen Tafel des Walk on the Wild Side: drei Gänge, fünf Drinks, vierzehn Plätze."}, "aushang": {"ueber": "Culinarium", "titel": "Heute ausgebucht", "text": "Der Abend ist ausgebucht, bevor er beginnt.", "aktion": "@walkonthewildside_hannover"}, "rueckseite": {"text": "Food-Pairing-Abende im Walk on the Wild Side in Linden: ein Menü mit fünf passenden Drinks an einer langen Tafel für vierzehn Gäste."}, "kartengruss": {"titel": "Walk on the Wild Side", "text": "Und wer dir erklärt, was auf dem Teller und im Glas ist."}, "plakat": {"bild": "pl_CyT32RTMB4d", "ueber": "", "ueberfarbe": "weiss", "zeile": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "akzent": "#13606a"}, "plakatrueck": {"grund": "#0d545d", "ueber": "WALK\nON THE\nWILD SIDE", "tag1": "27 / 11 / 26", "zeit1": "19:00 UHR", "text": "3 GÄNGE MENÜ\n5 SiGNATURE DRiNKS", "tag2": "28 / 11 / 26", "zeit2": "17:00 UHR"}, "menue": {"titel": "Menü", "ueber": "Fr 21. und Sa 22. Februar 2025", "liste": [{"gang": "Apéritif", "name": "Sauerteig | Tomate | Butter", "detail": "Cognac | Toasted Pumpkin Samen | Limette | Champagner"}, {"gang": "Vorspeise", "name": "Miso | Sellerie | Röstzwiebeln", "detail": "Vodka | Tom Yam | Guava | Cocos | Acids | Soda"}, {"gang": "Hauptgang", "name": "Spinat | braune Butter | Parmesan", "detail": "Tequila | lakto-fermentierte Tomate | Agave | Limette"}, {"gang": "Dessert", "name": "Kaffee | Molke | Amaretto", "detail": "Vodka | Cacao | Matcha | Mango"}, {"gang": "Absacker", "name": "", "detail": "Gin | Turmeric | Ingwer"}], "akzent": "#d8b264", "fuss": "Walk on the Wild Side · Haasemannstraße 13"}, "plakathoch": {"bild": "pl_DPwlqcfiKcA", "ueber": "WALK ON THE WILD SIDE", "ueberfarbe": "#d6262b", "kopfschatten": "leuchten", "zeile": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "tag1": "27 / 11 / 26", "zeit1": "19:00 UHR", "tag2": "28 / 11 / 26", "zeit2": "17:00 UHR", "text": "3 GÄNGE MENÜ\n5 SiGNATURE DRiNKS"}};
 })();

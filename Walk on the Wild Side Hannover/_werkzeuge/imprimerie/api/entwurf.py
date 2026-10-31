@@ -202,7 +202,7 @@ _SYS = {}
 
 
 def entwurf(daten):
-    haus = str(daten.get('haus') or 'culinarium')
+    haus = str(daten.get('haus') or 'wildside')
     if not haus.replace('-', '').isalnum() or not os.path.exists(os.path.join(DATEN, haus + '.json')):
         raise ValueError('Unbekanntes Haus')
     if haus not in _SYS:

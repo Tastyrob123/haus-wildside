@@ -1,7 +1,7 @@
-// La Réception · Brief als PDF (A4) mit Chromium: node brief_pdf.js <port> <daten.json> <ziel.pdf>
+// Das Gästebuch · Brief als PDF (A4) mit Chromium: node brief_pdf.js <port> <daten.json> <ziel.pdf>
 // Öffnet brief-pdf.html auf dem eigenen Server, setzt den Brief (BRIEF_SETZEN) und druckt ohne Ränder; Hintergrund und Farben immer mit. Letzte Zeile: Bericht als JSON.
 const path = require('path'), fs = require('fs');
-const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
+const { chromium } = (() => { try { return require('playwright'); } catch (e) { return require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright')); } })();
 const [port, datei, aus] = process.argv.slice(2);
 (async () => {
   const b = await chromium.launch();

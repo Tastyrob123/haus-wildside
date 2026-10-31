@@ -1,0 +1,43 @@
+{
+ "ziel": "drunk-in-love",
+ "art": "satz",
+ "key": "drunk-in-love",
+ "name": "Drunk in Love",
+ "unter": "Valentinstag 2026",
+ "gruppe": "Weitere Karten",
+ "ab": "2026-02-14",
+ "plakat": "",
+ "foto": "k30-coupe",
+ "titel": "Drunk in Love",
+ "datum": "Valentinstag · 14. Februar 2026",
+ "mit": "Wild Side goes in love",
+ "rubriken": [
+  {
+   "titel": "Cupid’s Signature Drinks",
+   "eintraege": [
+    {
+     "name": "Frensh 26",
+     "zutaten": "Gin | Bergamotte | Nori | Schaumwein",
+     "preis": "12"
+    },
+    {
+     "name": "Whey Bramble",
+     "zutaten": "Gin | Lemon Shrub | Vetiver | Whey Berry Soda",
+     "preis": "12"
+    },
+    {
+     "name": "Pink Lady",
+     "zutaten": "Kakaobutter-Fat-Washed Rum | Himbeerpüree | Agave | Limette",
+     "preis": "12"
+    },
+    {
+     "name": "Karamella",
+     "zutaten": "Havana 7 Jahre | Portwein | Johannisbeere | Karamell | schwarze Walnüsse | Limette",
+     "preis": "12"
+    }
+   ]
+  }
+ ],
+ "hinweis": "",
+ "quelle": "website/unter.py drinks() karte (vom Plakat der Valentinskarte, Beitrag der Bar vom 03.02.2026)"
+}

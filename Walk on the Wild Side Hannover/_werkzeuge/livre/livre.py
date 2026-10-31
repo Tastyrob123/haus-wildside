@@ -216,7 +216,7 @@ Regeln: Nacht und Platte tragen die dunklen Flächen, Creme (die weissen Plakate
 
 Schriften: Prata für Titel, eine Stärke, nie fett, nie kursiv. Hanken Grotesk 400 für den Lesetext, Hanken 500 in Versalien, gesperrt, für Etiketten und Knöpfe, Zahlen mit gleich breiten Ziffern. Keine anderen Schriften.
 
-Zeichen: Die Wortmarke ist das Logo der Bar in drei Zeilen WALK / ON THE / WILD SIDE, schmale fette Grotesk, als Datei eingesetzt, nie als Schrift nachgebaut. In Rot #F0323F auf Nacht oder Creme, in Creme auf Nacht; gerade, unverzerrt, ohne Schatten oder Leuchten, nie auf einem unruhigen Foto.
+Zeichen: Die Wortmarke ist das Logo der Bar: WILD SIDE in schmaler fetter Grotesk, ausgespart aus einer leicht schrägen Fläche; als Datei eingesetzt, nie als Schrift nachgebaut. In Rot #F0323F auf Nacht oder Creme, in Creme auf Nacht; gerade, unverzerrt, ohne Schatten oder Leuchten, nie auf einem unruhigen Foto.
 
 Form: das Eckschild. Platten mit 18 px Radius und Gold-Haarlinie innen, Kacheln 14 px, Knöpfe als Schild mit rundem Knauf (Rot mit Creme-Knauf für den Hauptweg, Nacht mit Goldlinie für den Nebenweg). Keine Tickets, keine Platzkarten, keine Leuchtschrift-Optik, keine Sticker, keine Polaroids, keine Pillen-Reihen.
 

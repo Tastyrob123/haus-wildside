@@ -346,7 +346,7 @@ def dateien(fa):
     F = {k: h for k, n, h, r, g, w in fa}
     liste, render = [], []
     inhalt = logo_inhalt()
-    # Die Wortmarke: drei Zeilen WALK / ON THE / WILD SIDE, nachgezogen aus dem Logo der Bar; Rot als Hauptform, Creme auf Nacht, Nacht auf Creme
+    # Die Wortmarke: WILD SIDE ausgespart aus der schrägen Fläche, nachgezogen aus dem Logo der Bar; Rot als Hauptform, Creme auf Nacht, Nacht auf Creme
     var = []
     for k, farbe, grund in (('rot', F['rot'], 'dunkel'), ('creme', F['creme'], 'dunkel'), ('nacht', F['dunkel'], 'hell')):
         s = f'{SCHLUESSEL}-wortmarke-{k}.svg'; p = s[:-4] + '.png'
@@ -474,7 +474,7 @@ def beispiel(F):
     kk['punkte'] = farb + [
         dict(bereich='farben', urteil='passt_nicht', titel='Neon-Pink und reines Schwarz', text=f'Der Knopf trägt ein Neon-Pink, die Fläche reines Schwarz. Bei Walk on the Wild Side tragen Nacht {F["nacht"]} und Platte {F["platte"]} die dunklen Flächen; Gold {F["gold"]} rahmt, Rot {F["rot"]} steht nur als Punkt.'),
         dict(bereich='schrift', urteil='passt_nicht', titel='Titel in einer fetten Serifenschrift', text='Der Titel steht fett in einer fremden Serifenschrift. Die Bar setzt Titel in Prata, eine Stärke, nie fett; Etiketten und Knöpfe in Hanken Grotesk, Versalien, gesperrt.'),
-        dict(bereich='zeichen', urteil='passt', titel='Die Wortmarke steht richtig', text='Die drei Zeilen WALK / ON THE / WILD SIDE stehen in Rot auf dunklem Grund, ungedreht und mit Luft rundherum.'),
+        dict(bereich='zeichen', urteil='passt', titel='Die Wortmarke steht richtig', text='Das Logo mit WILD SIDE in der schrägen roten Fläche steht auf dunklem Grund, unverzerrt und mit Luft rundherum.'),
         dict(bereich='bild', urteil='passt', titel='Das Foto zeigt einen vollen Abend', text='Gäste an den Tischen vor der Bar, warmes Licht: ein Foto aus dem Bildarchiv, genau der Moment an der Bar, der nach vorn gehört.'),
         dict(bereich='ton', urteil='achten', titel='Du statt Sie', text='Die Bar duzt ihre Gäste, knapp und ein bisschen laut. «Sichern Sie Ihren Tisch» klingt nach Verkauf; die Bar sagt «Platz anfragen» oder einfach, wann es losgeht.'),
     ]

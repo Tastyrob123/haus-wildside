@@ -1,4 +1,4 @@
-/* La Carte · Culinarium Hannover (über die Tafeln des Schäfli, Schlössli, Gasterntal, Ruedihus, Doldenhorn und La Carte des Carlton-Europe): Kopie von studio/schweben.js des Grand Beau-Rivage (16.10.2026). */
+/* Die Pairing-Karte · Walk on the Wild Side Hannover (Vorlage: Pairing-Karte im Culinarium) (über die Tafeln des Schäfli, Schlössli, Gasterntal, Ruedihus, Doldenhorn und La Carte des Carlton-Europe): Kopie von studio/schweben.js des Grand Beau-Rivage (16.10.2026). */
 /* Schweben für die Werkzeuge (Gefühl der Carlton-Seiten, wie in Le Registre). Gehört zu schweben.css.
    Einbinden am Ende der Seite: <script src="../studio/schweben.js" data-wurzel="#ansicht" data-blaetter="…" data-kacheln="…" data-zeilen="…" data-zahlen="…"></script>
    blaetter: einzelne Blätter, kacheln: Reihen von Kacheln (Staffel), zeilen: viele gleiche Zeilen (nur einblenden), zahlen: grosse Zahlen (Zoom).

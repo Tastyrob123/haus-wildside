@@ -1,17 +1,17 @@
 {
- "name": "Culinarium",
+ "name": "Walk on the Wild Side",
  "ort": "Hannover-Linden",
  "tel": "+49 163 3909578",
  "mail": "",
- "kontakt": "der Bar unter +49 163 3909578 oder mit einer Nachricht an @culinarium_hannover auf Instagram",
+ "kontakt": "der Bar am Telefon unter +49 163 3909578 oder +49 174 9916296 oder mit einer Nachricht an @walkonthewildside_hannover auf Instagram",
  "adresse": "Walk on the Wild Side, Haasemannstraße 13, 30449 Hannover",
- "zeiten": "Culinarium an einzelnen Wochenenden, Freitag ab 19 Uhr und Samstag ab 17 Uhr; die Bar Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr",
- "art": "Food-Pairing-Abende an der langen Tafel in der Bar Walk on the Wild Side: drei Gänge, fünf Signature Drinks, vierzehn Plätze",
- "ruhetage": "Culinarium gibt es nur an einzelnen Wochenenden (Freitag ab 19 Uhr, Samstag ab 17 Uhr), der nächste Termin steht noch nicht fest; die Bar hat Sonntag bis Mittwoch geschlossen",
+ "zeiten": "Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr; Sonntag bis Mittwoch geschlossen",
+ "art": "Nachbarschafts-Mixology-Bar in Linden-Mitte: die Karte wechselt, die Drinks entwirft Momo, an der Bar sagst du, was du magst",
+ "ruhetage": "Die Bar hat Sonntag bis Mittwoch geschlossen",
  "fahrplan": "",
  "kategorien": [],
  "orte": [],
- "reservation": "/abend.html#warteliste",
- "reservation_name": "Warteliste",
- "muster": "Frage: Wann ist der nächste Abend?\nAntwort: Der nächste Termin steht noch nicht fest. Wer auf der Warteliste steht, erfährt ihn zuerst.\n- Freitag: ab 19 Uhr\n- Samstag: ab 17 Uhr\n- Plätze: vierzehn an einer Tafel\n\nFrage: Habt ihr einen Kinderstuhl?\nAntwort: Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @culinarium_hannover"
+ "reservation": "/besuch.html#reservieren",
+ "reservation_name": "Platz reservieren",
+ "muster": "Frage: Wann habt ihr offen?\nAntwort: Donnerstag bis Samstag ab 19 Uhr.\n- Donnerstag: 19 bis 1 Uhr\n- Freitag und Samstag: 19 bis 2 Uhr\n- Sonntag bis Mittwoch: geschlossen\n\nFrage: Darf mein Hund mit?\nAntwort: Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @walkonthewildside_hannover"
 }

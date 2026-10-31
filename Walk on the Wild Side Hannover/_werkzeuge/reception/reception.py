@@ -1,13 +1,13 @@
-"""La Réception (Team hinter dem Gäste-Chat) · Culinarium Hannover (28.10.2026, Kopie aus der Taverne zum Schäfli, dort aus dem Schlössli und Ruedihus).
-Culinarium sind Food-Pairing-Abende an der langen Tafel in der Bar Walk on the Wild Side, Hannover-Linden: drei Gänge, fünf Signature Drinks, vierzehn Plätze,
-an einzelnen Wochenenden (Freitag ab 19 Uhr, Samstag ab 17 Uhr). Kein Restaurant mit Tageskarte, keine Zimmer.
+"""Das Gästebuch (Team hinter dem Gäste-Chat) · Walk on the Wild Side Hannover (31.10.2026, Kopie aus dem Culinarium Hannover, dort aus der Taverne zum Schäfli).
+Walk on the Wild Side ist eine Nachbarschafts-Mixology-Bar in Linden-Mitte, Haasemannstraße 13: offen Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr,
+Sonntag bis Mittwoch geschlossen; DJ-Abende samstags, Konzerte donnerstags, Feiern auf der Empore und in der ganzen Bar (website/tafel.html). Kein Restaurant, keine Zimmer.
 
 Zwei Dinge kommen herein:
-  Eingang      Die Warteliste der Website («Dein Platz an der Tafel.» auf Der Abend: Tag, Plätze, Name, E-Mail) und Anfragen aus dem Chat, sobald ein Gast
-               Name und Kontakt nennt (Platz an einem Abend, eigene Feier an der langen Tafel, Nachricht). Das Team bekommt dazu einen Antwortentwurf
-               im Ton der Website (Du, herzlich, knapp), auf Grundlage dessen, was das Haus selbst schreibt (vorlagen/), ändert ihn und schickt ihn selbst.
-               Hier wird nichts verschickt. Zu jeder Anfrage stehen Hinweise dabei: kein Culinarium-Tag, mehr als vierzehn Plätze, Bar geschlossen,
-               Allergien (die Website sagt dazu nichts: Küche fragen), Ticket zurückgeben.
+  Eingang      Das Reservieren der Website («Ein Platz für euch.» auf Besuch: Abend, Uhrzeit, Plätze, Name, Telefon oder E-Mail), die Anfrage «Euer Abend»
+               auf Feiern (Format, Datum, wie viele, Anlass, Musik) und Anfragen aus dem Chat, sobald ein Gast Name und Kontakt nennt (Reservieren,
+               Privates Dinner, Feier, Nachricht). Das Team bekommt dazu einen Antwortentwurf im Ton der Website (Du, herzlich, knapp), auf Grundlage
+               dessen, was das Haus selbst schreibt (vorlagen/), ändert ihn und schickt ihn selbst. Hier wird nichts verschickt. Zu jeder Anfrage stehen
+               Hinweise dabei: Bar geschlossen, Gruppe zu gross für die Theke, Format passt nicht zur Zahl der Gäste, Allergien (Rudi fragen), Anzahlung.
   Gefragt      Jede Frage mit Antwort. Wo der Chat keine Antwort hatte (Werkzeug «nicht_belegt»), trägt das Team sie einmal nach;
                ab dann antwortet der Chat damit (Block «NACHGETRAGEN VOM TEAM» in der Anweisung).
 
@@ -23,12 +23,12 @@ except ImportError:
     gedaechtnis = None
 
 HIER = os.path.dirname(os.path.abspath(__file__))
-WEB = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website')   # die Website des Culinarium (nur gelesen)
+WEB = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website')   # die Website der Bar (nur gelesen)
 DATEN = os.environ.get('RECEPTION_DATEN') or os.environ.get('REZEPTION_DATEN') or os.path.join(HIER, 'daten')
 def _name(teil='gaeste', standard='Das Gästebuch'):
-    """Name eines Werkzeugs aus der einen Stelle (_werkzeuge/oberflaeche/kleid/wildside.js › namen), nie fest im Code (Robert wählt, culinarium-maison trägt ein)."""
+    """Name eines Werkzeugs aus der einen Stelle (_werkzeuge/oberflaeche/kleid/wildside.js › namen), nie fest im Code (Robert wählt, der Tresen trägt ein)."""
     try:
-        s = open(os.path.join(os.path.dirname(HIER), 'oberflaeche', 'kleid', 'culinarium.js'), encoding='utf-8').read()
+        s = open(os.path.join(os.path.dirname(HIER), 'oberflaeche', 'kleid', 'wildside.js'), encoding='utf-8').read()
         m = re.search(r"namen:\s*\{([^}]*)\}", s)
         n = re.search(teil + r":\s*'([^']+)'", m.group(1)) if m else None
         return n.group(1) if n else standard
@@ -41,38 +41,39 @@ NAME_IM = ('im ' + NAME[4:]) if NAME.startswith('Das ') else ('in der ' + NAME[4
 
 SCHLOSS = threading.Lock()
 LOKAL = threading.local()
-ARTEN = {'warteliste': 'Warteliste', 'abend': 'Platz am Abend', 'feier': 'Eigene Feier', 'nachricht': 'Nachricht', 'gutschein': 'Gutschein'}   # gutschein: «Einen Abend verschenken» auf der Website (29.10.2026)   # Abende an der Tafel, keine Zimmer, keine Tageskarte (28.10.2026)
-# Culinarium hat keine eigene Mail-Adresse und kein Telefon (fakten.json, 25.10.2026): Tickets laufen über eine Nachricht an @culinarium_hannover, die Bar
-# hat +49 163 3909578. Die Briefe hier sind Entwürfe; das Team schickt sie auf seinem eigenen Weg. Grundlage ist, was das Haus selbst schreibt:
-# vorlagen/warteliste.txt (Warteliste auf Der Abend), vorlagen/abend.txt («Gut zu wissen» und der Vorverkauf laut Instagram), vorlagen/feier.txt (die lange Tafel für eure eigene Feier).
+ARTEN = {'reservieren': 'Reservieren', 'dinner': 'Privates Dinner', 'feier': 'Feier', 'nachricht': 'Nachricht'}   # Bar ohne Zimmer und ohne Küche an normalen Abenden (31.10.2026)
+# Die Bar hat keine belegte E-Mail-Adresse (die Angebotsmappe nennt die von Culinarium, nicht übernommen): Die Briefe hier sind Entwürfe; das Team
+# schickt sie auf seinem eigenen Weg (Telefon, Nachricht auf Instagram). Grundlage ist, was das Haus selbst schreibt: vorlagen/reservieren.txt
+# (Reservieren und «Gut zu wissen» auf Besuch), vorlagen/dinner.txt (Privates Dinner auf Feiern), vorlagen/feier.txt (lange Tafel, ganze Bar, grosse Events).
 MAIL = ''
 TEL = '+49 163 3909578'
-KONTAKT = 'Telefon der Bar +49 163 3909578 · Instagram @culinarium_hannover'
-VORLAGE = {'warteliste': ('warteliste', KONTAKT), 'abend': ('abend', KONTAKT), 'feier': ('feier', KONTAKT), 'nachricht': ('', KONTAKT)}
-VORLAGEN_DATEIEN = ('warteliste.txt', 'abend.txt', 'feier.txt')
-# Die «Abteilung» ist im Culinarium die Art der Arbeit (wer sich darum kümmert), nicht eine Mail-Adresse.
+TEL2 = '+49 174 9916296'
+KONTAKT = 'Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover'
+VORLAGE = {'reservieren': ('reservieren', KONTAKT), 'dinner': ('dinner', KONTAKT), 'feier': ('feier', KONTAKT), 'nachricht': ('', KONTAKT)}
+VORLAGEN_DATEIEN = ('reservieren.txt', 'dinner.txt', 'feier.txt')
+# Die «Abteilung» ist in der Bar die Art der Arbeit (wer sich darum kümmert), nicht eine Mail-Adresse.
 ABTEILUNG_VON = {}
-ART_ABTEILUNG = {'warteliste': 'Warteliste', 'abend': 'Abende', 'feier': 'Feiern', 'nachricht': 'Nachrichten', 'gutschein': 'Gutscheine'}
-FORMULARE = ('warteliste', 'vormerken', 'allgemein')
-# Allergien: die Website hat kein Feld dafür; ein Baustein-Feld, falls die Warteliste eins bekommt, nimmt diese Namen.
+ART_ABTEILUNG = {'reservieren': 'Reservieren', 'dinner': 'Dinner', 'feier': 'Feiern', 'nachricht': 'Nachrichten'}
+FORMULARE = ('reservieren', 'feiern', 'allgemein')
+# Allergien: die Website hat kein Feld dafür; ein Baustein-Feld nimmt diese Namen (Essen gibt es beim Privaten Dinner und bei Festen mit Buffet).
 ALLERGENE = {k: k for k in ('Gluten', 'Laktose', 'Nüsse', 'Krustentiere', 'Fisch', 'Ei', 'Sellerie', 'Senf')}
-# Wann Culinarium stattfindet (abend.html, index.html «Gut zu wissen»): an einzelnen Wochenenden, Freitag ab 19 Uhr, Samstag ab 17 Uhr; vierzehn Plätze an einer Tafel.
-# Die Bar (bar.html): Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr, Sonntag bis Mittwoch geschlossen. Die Warteliste nimmt 1 bis 6 Plätze (culinarium.js).
-ABEND_TAGE = {4: 'Freitag ab 19 Uhr', 5: 'Samstag ab 17 Uhr'}   # Montag = 0
+# Zeiten der Bar (website/bau.py HAUS, besuch.html): Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr, Sonntag bis Mittwoch geschlossen.
+# Feiern (tafel.html): Privates Dinner 10 bis 14 Gäste, die lange Tafel 10 bis 20 Gäste, die ganze Bar ab 30 Gästen; ab zehn Gästen keine Reservierung an der Theke.
+BAR_TAGE = {3: 'Donnerstag 19 bis 1 Uhr', 4: 'Freitag 19 bis 2 Uhr', 5: 'Samstag 19 bis 2 Uhr'}   # Montag = 0
 BAR_ZU = (6, 0, 1, 2)   # Sonntag bis Mittwoch
 TAG_NAME = {0: 'Montag', 1: 'Dienstag', 2: 'Mittwoch', 3: 'Donnerstag', 4: 'Freitag', 5: 'Samstag', 6: 'Sonntag'}
-TAFEL = 14
+DINNER = (10, 14)
+TAFEL = (10, 20)
+GANZE_BAR = 30
 SPRACHEN = ('de', 'en', 'fr')
 # Themen für «Das wurde gefragt»: Wortlisten in den Sprachen der Gäste, erste passende gewinnt
-THEMEN = [('Allergien & Unverträglichkeiten', r'allerg|gluten|laktose|lactose|zöliak|unverträg|nuss|nüss|erdnuss|sellerie|senf|krusten|vegan|vegetar|intoler|nut\b|nuts|dairy|celiac'),
-          ('Termine & Warteliste', r'termin|nächste[nr]? abend|wann|warteliste|vormerk|datum|wochenende|freitag|samstag|uhr\b|beginn|next|when|date|waiting'),
-          ('Tickets & Preise', r'ticket|preis|kost|euro|eur\b|€|paypal|vorverkauf|zurückgeb|rückerstat|storn|ausgebucht|price|cost|refund'),
-          ('Eigene Feier & Gruppen', r'feier|geburtstag|hochzeit|firmen|gruppe|privat|tafel mieten|jga|party\b|birthday|wedding|group|private'),
-          ('Drinks & Menü', r'drink|cocktail|alkohol|alkoholfrei|menü|menu|gang|gänge|essen|teller|fatwash|milkwash|enzym|tasting|schulung|food'),
-          ('Dirty Chicken', r'dirty|chicken|huhn|hähnchen|sandwich|pop-?up|pommes|krautsalat'),
-          ('Die Bar', r'bar\b|wild side|theke|öffnung|geöffnet|offen|konzert|dj\b|session|reservier'),
-          ('Anfahrt', r'anfahrt|anreise|weg\b|adresse|wo ist|bahn|tram|üstra|bus\b|auto|park|fahrrad|linden|haasemann|where|address'),
-          ('Team', r'rudi|momo|derya|koch|köchin|team|wer kocht|who')]
+THEMEN = [('Feiern & Dinner', r'feier|geburtstag|hochzeit|firmen|gruppe|privat|dinner|tafel|empore|ganze bar|pauschale|budget|jga|junggesell|weihnachtsfeier|party\b|event|birthday|wedding|group|private'),
+          ('Essen & Allergien', r'allerg|gluten|laktose|lactose|zöliak|unverträg|nuss|nüss|vegan|vegetar|essen|hunger|snack|küche|food|eat|nuts|dairy|celiac'),
+          ('DJ-Abende & Konzerte', r'\bdj|session|konzert|live|musik|programm|eintritt|auflegen|gastschicht|tanz|music|concert'),
+          ('Drinks & Preise', r'drink|cocktail|karte|negroni|paloma|mexikaner|preis|kost|euro|eur\b|€|alkohol|milk|fat|enzym|signature|bier|wein|price|cost|menu'),
+          ('Zeiten & Reservieren', r'öffnung|geöffnet|offen|wann|uhr\b|heute|reservier|platz|plätze|tisch|donnerstag|freitag|samstag|sonntag|montag|open|when|book|table'),
+          ('Anfahrt', r'anfahrt|anreise|adresse|wo ist|wo seid|bahn|tram|üstra|bus\b|auto|park|fahrrad|haasemann|küchengarten|where|address'),
+          ('Das Haus & Team', r'momo|derya|team|falstaff|decke|gewölbe|draussen|terrasse|hund|barrierefrei|rollstuhl|wheelchair|who')]
 ABDECKEN = [(re.compile(r'[\w.+-]+@[\w-]+\.[\w.-]+'), '[E-Mail]'), (re.compile(r'(?:\+|00)?\d[\d\s/().-]{7,}\d'), '[Nummer]')]
 
 
@@ -173,7 +174,7 @@ def lege_anfrage(eingabe, gespraech, sprache, verlauf):
 
 
 # ---------------------------------------------------------------- Beispiele im Eingang
-BEISPIEL_STAND = 3   # Culinarium: eigene Beispiele des Hauses ab Stand 3 (28.10.2026)   # 3: deutsche Lesefassungen der fremdsprachigen Briefe (16.10.2026) · 1: fünf Anfragen und neun Fragen (13./14.10.2026) · 2: zwölf Anfragen, 24 Fragen, drei Antworten des Teams, Entwürfe neu geschrieben (15.10.2026)
+BEISPIEL_STAND = 3   # Wild Side: eigene Beispiele des Hauses ab Stand 3 (31.10.2026)   # 3: deutsche Lesefassungen der fremdsprachigen Briefe (16.10.2026) · 1: fünf Anfragen und neun Fragen (13./14.10.2026) · 2: zwölf Anfragen, 24 Fragen, drei Antworten des Teams, Entwürfe neu geschrieben (15.10.2026)
 
 
 def _jetzt():
@@ -204,7 +205,7 @@ def _quelle(e):
     return hashlib.sha1(((e.get('betreff') or '') + '\n' + (e.get('text') or '')).encode('utf-8')).hexdigest()[:12]
 
 
-UEBERSETZEN = """Du übersetzt für das Team von Culinarium (Food-Pairing-Abende in einer Bar) einen Antwortbrief an einen Gast und das Gespräch, das der Gast im Chat geführt hat, ins Deutsche.
+UEBERSETZEN = """Du übersetzt für das Team von Walk on the Wild Side (Nachbarschafts-Mixology-Bar in Hannover-Linden) einen Antwortbrief an einen Gast und das Gespräch, das der Gast im Chat geführt hat, ins Deutsche.
 Die Übersetzung ist nur zum Mitlesen für das Team und wird nie verschickt. Übersetze genau und vollständig, nichts weglassen, nichts hinzufügen,
 Schreibung wie die Website (ss statt ß, Namen wie Haasemannstraße bleiben). Stellen in eckigen Klammern bleiben in eckigen Klammern, übersetzt. Namen, Adressen, Zahlen und Preise bleiben, wie sie sind.
 Antworte ausschliesslich mit JSON: {"betreff": "…", "text": "…", "verlauf": ["…", …]} – «verlauf» hat genau so viele Einträge wie im Eingang, in derselben Reihenfolge."""
@@ -352,39 +353,38 @@ def wissen_block():
 ZUSATZ = """
 
 Anfragen an das Team (Werkzeug anfrage):
-- Möchte ein Gast auf die Warteliste für den nächsten Abend, einen Platz an einem Abend, die lange Tafel für eine eigene Feier oder dem Team etwas schreiben, bietest du an, es an das Team weiterzugeben. Dafür brauchst du den Namen und eine E-Mail-Adresse oder Telefonnummer; frag in einem Satz danach.
-- Sobald Name und Kontakt genannt sind, rufst du das Werkzeug anfrage auf, mit allem, was der Gast gesagt hat (Tag, Plätze, Wünsche). Ohne Kontakt rufst du es nicht auf.
-- Deine Antwort dazu: ein Satz, dass dies ein Entwurf von Tasty Studios ist und die Anfrage deshalb nicht an das Team geht; für eine echte Anfrage hilft die Bar am Telefon oder eine Nachricht an @culinarium_hannover auf Instagram. Sag nie, dass ein Platz reserviert, bestätigt oder weitergegeben ist.
-- Für die Warteliste allein ist das Formular auf der Seite «Der Abend» der schnellste Weg; die Anfrage ist ein Angebot zusätzlich, wenn der Gast Fragen oder Wünsche hat. Der nächste Termin steht noch nicht fest: nenne nie ein Datum, das nicht in WISSEN steht.
-- Allergien und Unverträglichkeiten: Die Website sagt dazu nichts. Nimm sie immer in die Anfrage auf und sag, dass die Küche es mit dem Gast klärt. Ob ein Gang frei davon ist, sagst du nie."""
+- Möchte ein Gast einen Platz reservieren, ein Privates Dinner, eine Feier an der langen Tafel oder in der ganzen Bar anfragen oder dem Team etwas schreiben, bietest du an, es an das Team weiterzugeben. Dafür brauchst du den Namen und eine E-Mail-Adresse oder Telefonnummer; frag in einem Satz danach.
+- Sobald Name und Kontakt genannt sind, rufst du das Werkzeug anfrage auf, mit allem, was der Gast gesagt hat (Abend, Uhrzeit, Plätze, Anlass, Wünsche). Ohne Kontakt rufst du es nicht auf.
+- Deine Antwort dazu: ein Satz, dass dies ein Entwurf von Tasty Studios ist und die Anfrage deshalb nicht an das Team geht; für eine echte Anfrage hilft die Bar am Telefon (+49 163 3909578) oder eine Nachricht an @walkonthewildside_hannover auf Instagram. Sag nie, dass ein Platz reserviert, bestätigt oder weitergegeben ist.
+- Zum Reservieren allein ist das Formular «Platz reservieren» auf der Seite Besuch der schnellste Weg, für Feiern die Anfrage «Euer Abend» auf der Seite Feiern; die Anfrage im Chat ist ein Angebot zusätzlich, wenn der Gast Fragen oder Wünsche hat. Ab zehn Gästen gibt es die lange Tafel, ab dreissig die ganze Bar. Nenne nie ein Datum oder einen Preis, der nicht in WISSEN steht.
+- Allergien und Unverträglichkeiten: An normalen Abenden gibt es kein Essen. Beim Privaten Dinner kocht Rudi; die Website sagt zu Allergien nichts. Nimm sie immer in die Anfrage auf und sag, dass Rudi es mit dem Gast klärt. Ob ein Gang frei davon ist, sagst du nie."""
 
 WERKZEUG = {
     'name': 'anfrage',
-    'description': 'Gibt eine Anfrage des Gastes an das Team von Culinarium weiter (Warteliste für den nächsten Abend, Platz an einem Abend, eigene Feier an der langen Tafel, Nachricht). Nur aufrufen, wenn Name und E-Mail oder Telefon genannt sind.',
+    'description': 'Gibt eine Anfrage des Gastes an das Team von Walk on the Wild Side weiter (Platz reservieren, Privates Dinner, Feier an der langen Tafel oder in der ganzen Bar, Nachricht). Nur aufrufen, wenn Name und E-Mail oder Telefon genannt sind.',
     'strict': True,
     'input_schema': {'type': 'object', 'additionalProperties': False, 'required': ['art', 'name', 'kontakt', 'datum', 'personen', 'anliegen'],
                      'properties': {'art': {'type': 'string', 'enum': list(ARTEN)},
                                     'name': {'type': 'string', 'description': 'Name, wie der Gast ihn nennt'},
                                     'kontakt': {'type': 'string', 'description': 'E-Mail-Adresse oder Telefonnummer, wörtlich'},
-                                    'datum': {'type': ['string', 'null'], 'description': 'Tag oder Datum, wie der Gast ihn nennt (Freitag, Samstag, egal, ein Datum), oder null'},
-                                    'personen': {'type': ['integer', 'null'], 'description': 'Anzahl Plätze oder null'},
-                                    'anliegen': {'type': 'string', 'description': 'Worum es geht, in ein bis drei Sätzen auf Deutsch, mit allen Wünschen des Gastes; Allergien und Unverträglichkeiten immer ausdrücklich'}}}}
+                                    'datum': {'type': ['string', 'null'], 'description': 'Abend oder Datum, wie der Gast ihn nennt (Freitag, Samstag, ein Datum), oder null'},
+                                    'personen': {'type': ['integer', 'null'], 'description': 'Anzahl Plätze oder Gäste oder null'},
+                                    'anliegen': {'type': 'string', 'description': 'Worum es geht, in ein bis drei Sätzen auf Deutsch, mit allen Wünschen des Gastes; Anlass, Format und Allergien immer ausdrücklich'}}}}
 
 DANKE = {'de': f'Danke. Dies ist ein Entwurf von Tasty Studios: Die Anfrage geht nicht an das Team, sie liegt nur zur Ansicht {NAME_IM}.',
          'en': 'Thank you. This is a draft by Tasty Studios: your request does not go to the team, it is only kept for viewing in the host tool.',
          'fr': 'Merci. Ceci est une ébauche de Tasty Studios : votre demande n’est pas transmise à l’équipe, elle est seulement conservée pour être consultée.'}
 
-ANFRAGE_GBR = """Du schreibst im Namen des Teams von Culinarium den Entwurf einer Antwort an einen Gast. Culinarium sind Food-Pairing-Abende an der langen Tafel in der Bar Walk on the Wild Side, Haasemannstraße 13, Hannover-Linden: ein Aperitif, drei Gänge aus der Küche von Rudi Napieraj, fünf Signature Drinks von Momo mit Tasting und einer kleinen Schulung am Tisch, vierzehn Plätze, an einzelnen Wochenenden (Freitag ab 19 Uhr, Samstag ab 17 Uhr). Der Gast hat über die Warteliste der Website oder im Chat geschrieben (Warteliste, Platz an einem Abend, eigene Feier an der langen Tafel, Nachricht).
+ANFRAGE_GBR = """Du schreibst im Namen des Teams von Walk on the Wild Side den Entwurf einer Antwort an einen Gast. Walk on the Wild Side ist eine Nachbarschafts-Mixology-Bar in Linden-Mitte, Haasemannstraße 13, Ecke Rampenstraße, 30449 Hannover: Derya Ivkin führt die Bar, Momo Ben Khelifa entwirft die Drinks, die Karte wechselt immer wieder, und an der Bar sagst du, was du magst. Offen Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr. Feiern: Privates Dinner für 10 bis 14 Gäste mit Rudi in der Küche, die lange Tafel auf der Empore für 10 bis 20 Gäste, die ganze Bar ab 30 Gästen. Der Gast hat über ein Formular der Website oder im Chat geschrieben (Reservieren, Privates Dinner, Feier, Nachricht).
 
 Regeln:
-- Grundlage ist, wo vorhanden, die VORLAGE: was das Haus selbst schreibt (Warteliste: die Sätze auf «Der Abend» und die Bestätigung des Formulars; Platz an einem Abend: «Gut zu wissen» und der Vorverkauf; eigene Feier: die Sätze der Bar-Seite). Übernimm daraus den Inhalt und die Haltung, nicht Satz für Satz. Was für die Antwort fehlt (Tag, Plätze, bei einer Feier Anlass und Datum), erfragst du freundlich am Ende, in einer kurzen Liste. Gibt es keine Vorlage, gilt nur der Ton.
-- Alles, was du an Preisen, Zeiten, Plätzen, Drinks und Gängen nennst, steht wörtlich in WISSEN (Wortlaut der Website). Erfinde nichts. Der nächste Termin steht noch nicht fest: nenne kein Datum, setz dafür [Termin eintragen]. Der letzte Preis war 89,00 EUR; für einen neuen Abend setzt du [Preis bestätigen].
-- Freie Plätze kannst du nicht prüfen: setz dafür [Plätze prüfen]. Mehr als vierzehn Plätze hat die Tafel nicht. Eine eigene Feier an der langen Tafel bestätigt die Bar: [Feier mit der Bar klären]. Tickets gibt es nur im Vorverkauf und sie werden nicht rückerstattet; sag das freundlich, wenn der Gast danach fragt. Was das Team entscheiden muss, steht in eckigen Klammern, kurz und in normaler Schreibung. Das Werkzeug zeigt diese Stellen als offene Felder im Brief.
-- Allergien und Unverträglichkeiten: Nenne jede, die der Gast angibt, ausdrücklich und schreib, dass Rudi in der Küche es mit dem Gast abstimmt [Küche fragen]. Sag nie von dir aus, ein Gang sei frei davon. «Vegetarisch» ist kein Merkmal der Abende; wünscht der Gast es, gehört es zu [Küche fragen].
-- Ton der Website: Du, herzlich, knapp, ein bisschen Linden. Jeder Satz macht den Abend wertvoller: der einzelne Gast, der Platz an der Tafel, das Glas, das Momo erklärt, der Teller, den Rudi von Hand anrichtet. Nie Masse, nie Abfertigung, keine Stückzahlen als Pointe; vierzehn Plätze nur als «wenige Plätze». Keine Werbesprache (nicht «kulinarisches Highlight», «Genuss pur», «unvergesslich»), keine Emojis, kein Fettdruck. Kurze Absätze. Schreibung wie die Website (ss statt ß, Namen wie Haasemannstraße bleiben).
-- Anrede «Hallo [Vorname],» bzw. in der Sprache des Gastes, Gruss «Bis bald an der Tafel» oder «Bis bald in Linden».
+- Grundlage ist, wo vorhanden, die VORLAGE: was das Haus selbst schreibt (Reservieren: «Ein Platz für euch.» und «Gut zu wissen» auf Besuch; Privates Dinner und Feier: die Seite Feiern mit Formaten, Preisen und Ablauf). Übernimm daraus den Inhalt und die Haltung, nicht Satz für Satz. Was für die Antwort fehlt (Abend, Uhrzeit, Plätze, bei einer Feier Anlass, Datum und Format), erfragst du freundlich am Ende, in einer kurzen Liste. Gibt es keine Vorlage, gilt nur der Ton.
+- Alles, was du an Preisen, Zeiten, Plätzen, Drinks und Formaten nennst, steht wörtlich in WISSEN (Wortlaut der Website). Erfinde nichts. Freie Plätze kannst du nicht prüfen: setz dafür [Platz prüfen]. Ein Angebot für eine Feier machen Derya und Momo: [Angebot von Derya und Momo]. Preise für das Private Dinner stehen nicht auf der Website: [Preis klären]. Die Anzahlung bei Feiern: 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn. Was das Team entscheiden muss, steht in eckigen Klammern, kurz und in normaler Schreibung. Das Werkzeug zeigt diese Stellen als offene Felder im Brief.
+- Allergien und Unverträglichkeiten: An normalen Abenden gibt es kein Essen. Nennt der Gast beim Dinner oder bei einer Feier eine Allergie, nenne sie ausdrücklich und schreib, dass Rudi es mit dem Gast abstimmt [Rudi fragen]. Sag nie von dir aus, ein Gang sei frei davon.
+- Ton der Website: Du, herzlich, knapp, ein bisschen Linden. Jeder Satz macht den Abend wertvoller: der einzelne Gast, der Platz an der Theke, das Glas, das Momo nach deinem Geschmack mixt, die Empore, die einer Runde gehört. Nie Masse, nie Abfertigung, keine Stückzahlen als Pointe. Keine Werbesprache (nicht «Highlight», «Genuss pur», «unvergesslich»), keine Emojis, kein Fettdruck. Kurze Absätze. Schreibung wie die Website (ss statt ß, Namen wie Haasemannstraße bleiben). Schreib nie, die Bar habe keine Karte: Die Karte wechselt, und an der Bar sagst du, was du magst.
+- Anrede «Hallo [Vorname],» bzw. in der Sprache des Gastes, Gruss «Bis bald an der Ecke» oder «Bis bald in Linden».
 - Sprache: die Sprache des Gastes (steht bei der Anfrage).
-- Form: Zeile 1 «Betreff: …» (persönlich, mit Anlass oder Tag), dann Leerzeile, dann die Antwort mit Anrede und Gruss, darunter zwei Zeilen: «[Name]» und «Culinarium im Walk on the Wild Side». Adresse und Telefon der Bar stehen schon im Briefkopf, nicht wiederholen.
+- Form: Zeile 1 «Betreff: …» (persönlich, mit Anlass oder Abend), dann Leerzeile, dann die Antwort mit Anrede und Gruss, darunter zwei Zeilen: «[Name]» und «Walk on the Wild Side». Adresse und Telefon der Bar stehen schon im Briefkopf, nicht wiederholen.
 - Nach der Antwort eine Zeile «---» und darunter für das Team, nicht für den Gast: «Grundlage:» mit den Seiten, aus denen die Angaben stammen, und «Offen:» mit dem, was das Team vor dem Senden klären muss.
 
 WISSEN:
@@ -507,36 +507,39 @@ def _datum_aus(text):
 
 def hinweise(a):
     """Hinweise fürs Team zu einer Anfrage, nur aus Angaben des Hauses gerechnet (nicht gespeichert, bei jedem Lesen neu):
-    kein Culinarium-Tag (Abende Freitag ab 19, Samstag ab 17 Uhr), Bar geschlossen (Sonntag bis Mittwoch), mehr als die vierzehn Plätze der Tafel,
-    Allergien (die Website sagt nichts dazu: Küche fragen), Ticket zurückgeben (wird nicht rückerstattet), Termin steht noch nicht fest."""
+    Bar geschlossen (Sonntag bis Mittwoch), ab zehn Gästen die lange Tafel statt der Theke, Format passt nicht zur Zahl der Gäste (Dinner 10 bis 14,
+    Tafel 10 bis 20, ganze Bar ab 30), Allergien (Essen nur beim Dinner und bei Festen: Rudi fragen), Anzahlung bei Feiern (30 % eine Woche vorher)."""
     h = []
     d = _datum_aus(a.get('datum'))
     art = a.get('art')
-    if d:
-        if d.weekday() not in ABEND_TAGE and art in ('warteliste', 'abend'):
-            h.append({'art': 'ruhetag', 'text': f'{TAG_NAME[d.weekday()]}: Culinarium-Abende gibt es freitags ab 19 und samstags ab 17 Uhr'})
-        if d.weekday() in BAR_ZU and art == 'feier':
+    if d and d.weekday() in BAR_ZU:
+        if art == 'reservieren':
             h.append({'art': 'ruhetag', 'text': f'{TAG_NAME[d.weekday()]}: die Bar hat Sonntag bis Mittwoch geschlossen'})
-    elif art in ('warteliste', 'abend'):
-        h.append({'art': 'termin', 'text': 'Der nächste Termin steht noch nicht fest: Gast kommt auf die Warteliste'})
+        elif art in ('dinner', 'feier'):
+            h.append({'art': 'ruhetag', 'text': f'{TAG_NAME[d.weekday()]}: an diesem Tag ist die Bar sonst zu, mit Derya und Momo klären'})
     try:
         p = int(a.get('personen') or 0)
     except (TypeError, ValueError):
         p = 0
-    if p > TAFEL:
-        h.append({'art': 'gruppe', 'text': f'{p} Personen: mehr als die {TAFEL} Plätze an der Tafel'})
-    elif p >= 7 and art in ('warteliste', 'abend'):
-        h.append({'art': 'gruppe', 'text': f'{p} Plätze: die Warteliste nimmt bis 6, bei {p} von {TAFEL} Plätzen den Abend gemeinsam planen'})
+    if art == 'reservieren' and p >= TAFEL[0]:
+        h.append({'art': 'gruppe', 'text': f'{p} Plätze: ab zehn Gästen gibt es die lange Tafel, ab dreissig die ganze Bar (Feiern)'})
+    elif art == 'dinner' and p and not DINNER[0] <= p <= DINNER[1]:
+        h.append({'art': 'gruppe', 'text': f'{p} Gäste: das Private Dinner ist für {DINNER[0]} bis {DINNER[1]} Gäste'})
+    elif art == 'feier' and p and TAFEL[1] < p < GANZE_BAR:
+        h.append({'art': 'gruppe', 'text': f'{p} Gäste: mehr als die lange Tafel (bis {TAFEL[1]}), die ganze Bar ab {GANZE_BAR}'})
+    elif art == 'feier' and p and p < TAFEL[0]:
+        h.append({'art': 'gruppe', 'text': f'{p} Gäste: unter zehn reicht ein reservierter Platz, die Tafel beginnt bei zehn'})
     al = [ALLERGENE.get(x, x) for x in (a.get('allergene') or []) if isinstance(x, str)]
     text = ' '.join(str(a.get(k) or '') for k in ('anliegen', 'nachricht'))
     text = re.sub(r'(?:Wünsche, Allergien|Allergien)\s*:|keine angegeben', ' ', text)   # Feldnamen der Formulare zählen nicht, nur was der Gast schreibt
     frei = re.findall(r'allerg\w*|unverträglich\w*|verträgt keine?\b|zöliak\w*|gluten\w*|laktose\w*|nuss\w*|nüsse|vegetar\w*|vegan\w*', text, re.I)
     if al:
-        h.append({'art': 'allergie', 'text': 'Allergien und Wünsche: ' + ', '.join(al) + ' (Küche fragen)'})
+        h.append({'art': 'allergie', 'text': 'Allergien und Wünsche: ' + ', '.join(al) + (' (Rudi fragen)' if art == 'dinner' else ' (Essen gibt es nur beim Dinner und bei Festen)')})
     elif frei:
-        h.append({'art': 'allergie', 'text': 'Allergie oder Wunsch zur Küche im Text: die Website sagt dazu nichts, Rudi fragen'})
-    if re.search(r'zurückgeb\w*|rückerstatt\w*|stornier\w*|absagen|refund|cancel', text, re.I):
-        h.append({'art': 'ticket', 'text': 'Ticket zurückgeben: Tickets werden nicht rückerstattet (Vorverkauf)'})
+        h.append({'art': 'allergie', 'text': 'Allergie oder Wunsch zum Essen im Text: die Website sagt dazu nichts, Rudi fragen' if art in ('dinner', 'feier')
+                  else 'Allergie oder Wunsch zum Essen: an normalen Abenden gibt es kein Essen'})
+    if art in ('dinner', 'feier'):
+        h.append({'art': 'anzahlung', 'text': 'Anzahlung: 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn'})
     return h
 
 def entwurf(id_, hinweis=''):
@@ -546,7 +549,7 @@ def entwurf(id_, hinweis=''):
         raise ValueError('CHAT · Der Assistent ist noch nicht geladen. Einmal eine Frage im Chat stellen oder server.py neu starten.')
     a = _lies(_pfad(id_), {})
     nr, absender, sp_v, vorlage = vorlage_text(a.get('art'), a.get('sprache', 'de'))
-    absender = KONTAKT   # Culinarium hat keine Mail-Adresse: der Brief nennt die Wege des Hauses (Bar, Instagram)
+    absender = KONTAKT   # die Bar hat keine belegte Mail-Adresse: der Brief nennt die Wege des Hauses (Telefon, Instagram)
     gast = '\n'.join(f"{'Gast' if v.get('rolle') == 'user' else 'Chat des Hauses'}: {v.get('text', '')}" for v in a.get('verlauf') or [])
     mail = (f"Art: {ARTEN.get(a.get('art'), a.get('art'))}\nAbteilung: {a.get('abteilung') or ART_ABTEILUNG.get(a.get('art'), 'Nachrichten')}\nName: {a.get('name')}\nKontakt: {a.get('kontakt')}\nDatum: {a.get('datum') or 'nicht genannt'}\n"
             f"Personen: {a.get('personen') or 'nicht genannt'}\nAnliegen: {a.get('anliegen')}\nSprache des Gastes: {a.get('sprache')}\n\nGESPRÄCH IM CHAT:\n{gast}\n\n"
@@ -585,7 +588,7 @@ def ueberblick():
 # und löscht es danach online. RECEPTION_ONLINE=aus schaltet das Abholen ab (Prüfläufe mit Wegwerf-Daten), eine andere Adresse geht ebenso.
 # Nur das echte Gästebuch (Datenordner daten/) holt von selbst ab. Probe-Kopien mit RECEPTION_DATEN holen nur mit ausdrücklichem RECEPTION_ONLINE,
 # sonst nähmen Prüfläufe echte Einträge der Gäste in ihre Wegwerf-Daten mit (29.10.2026: zwei Proben so verschwunden).
-ONLINE_API = os.environ.get('RECEPTION_ONLINE') or ('https://culinarium-hannover-entwurf.vercel.app/api/anfrage' if DATEN == os.path.join(HIER, 'daten') else 'aus')
+ONLINE_API = os.environ.get('RECEPTION_ONLINE') or 'aus'   # Wild Side: die Website ist ein Entwurf ohne Online-Eingang (nichts online, Nachtbau 31.10.2026)
 ONLINE_SCHLUESSEL = os.path.join(HIER, 'online', 'schluessel.txt')
 ONLINE_STAND = {'zeit': '', 'neu': 0, 'fehler': ''}
 _ONLINE_SCHLOSS = threading.Lock()
@@ -695,7 +698,7 @@ def brief_pdf(id_, port):
             raise ValueError('PDF · Das PDF liess sich nicht setzen. Ist Playwright installiert? ' + (r.stderr or '')[-160:])
         roh = open(ziel, 'rb').read()
     wer = re.sub(r'[\\/:*?"<>|\n\r]+', ' ', a.get('name') or 'Gast').strip()[:60] or 'Gast'
-    return roh, f'Culinarium – {wer} – {datetime.date.today().strftime("%d.%m.%Y")}.pdf'
+    return roh, f'Walk on the Wild Side – {wer} – {datetime.date.today().strftime("%d.%m.%Y")}.pdf'
 
 
 def post(was, d):
@@ -730,7 +733,7 @@ def post(was, d):
                 a['entwurf']['gestalt'] = d['gestalt']
             _schreib(_pfad(id_), a)
         return {'ok': True, 'fassung': (a.get('entwurf') or {}).get('fassung', 0), **ueberblick()}
-    if was == 'formular':           # Formular der Website (baustein/anfrage.js): landet im Eingang, nicht in einem Mailfach (Rivage E12, Ruedihus 17.10.2026, Schlössli 19.10.2026, Schäfli 21.10.2026, Culinarium 28.10.2026)
+    if was == 'formular':           # Formular der Website (baustein/anfrage.js): landet im Eingang, nicht in einem Mailfach (Rivage E12, Ruedihus 17.10.2026, Schlössli 19.10.2026, Schäfli 21.10.2026, Wild Side 31.10.2026)
         if d.get('website'):        # Feld, das Menschen nicht sehen: nur Maschinen füllen es aus
             return {'ok': True}
         name, kontakt = str(d.get('name') or '').strip()[:120], str(d.get('kontakt') or '').strip()[:160]
@@ -741,7 +744,7 @@ def post(was, d):
         art = d.get('art') if d.get('art') in ARTEN else 'nachricht'
         sp = d.get('sprache') if d.get('sprache') in SPRACHEN else 'de'
         try:
-            pers = max(1, min(60, int(d.get('personen'))))   # die Warteliste nimmt 1 bis 6, eine Feier mehr
+            pers = max(1, min(200, int(d.get('personen'))))   # das Reservieren nimmt 1 bis 200 (besuch.html), eine Feier ab 30
         except (TypeError, ValueError):
             pers = None
         anliegen = str(d.get('anliegen') or '').strip()[:300]

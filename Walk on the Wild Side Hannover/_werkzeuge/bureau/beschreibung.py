@@ -69,7 +69,7 @@ def beschreibung():
     website = [
         ('start', 'Startseite', 'Der erste Eindruck: die Ecke bei Nacht, wer die Bar führt, was Momo mixt, die Decke, die DJ-Abende, die lange Tafel und die Nachbarn im Haus.', ['index.html'], 'schild'),
         ('drinks', 'Drinks', 'Was magst du? Das Gespräch an der Bar, wie Momo arbeitet, die Klassiker und die Sonderkarte «Drunk in Love».', ['drinks.html'], 'momo-giesst'),
-        ('programm', 'Programm', 'Die Woche, Gastschichten, die Feste und die Bar unterwegs. Die DJ-Abende selbst pflegst du unter «DJ-Abende».', ['programm.html'], 'konzert'),
+        ('programm', 'Programm', 'Die Woche, Gastschichten, die Feste und die Bar unterwegs. Die DJ-Abende hast du in einer eigenen Ansicht.', ['programm.html'], 'konzert'),
         ('feiern', 'Feiern', 'Private Dinner, die lange Tafel, die ganze Bar mit Pauschalen und Preisliste, Musik und grosse Events, mit Anfrage.', ['tafel.html'], 'an-empore-tafel'),
         ('haus', 'Das Haus', 'Der Raum unter der Decke, Derya und Momo, was bisher geschah und die Auszeichnungen.', ['haus.html'], 'decke-raum'),
         ('besuch', 'Besuch', 'Wann die Bar offen hat, wo sie steht, Reservieren und die Fragen der Gäste.', ['besuch.html'], 'fenster'),

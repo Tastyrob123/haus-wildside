@@ -1,10 +1,10 @@
-/* La Carte · Culinarium Hannover (28.10.2026): Kopie aus der Tafel im Schäfli, dort aus der Wirtschaft am Schlössli, dort aus dem Gasterntal (dort aus dem Ruedihus und Waldhotel Doldenhorn) (dort Kopie von studio/zur-werkbank.js, aus dem Grand Beau-Rivage,
-   16.10.2026), Schlüssel des Hauses «culinarium-wb». Die Wurzel des Hauses wird auch aus _werkzeuge/carte/zur-werkbank.js erkannt. */
+/* Die Pairing-Karte · Walk on the Wild Side Hannover (Vorlage: Pairing-Karte im Culinarium) (28.10.2026): Kopie aus der Tafel im Schäfli, dort aus der Wirtschaft am Schlössli, dort aus dem Gasterntal (dort aus dem Ruedihus und Waldhotel Doldenhorn) (dort Kopie von studio/zur-werkbank.js, aus dem Grand Beau-Rivage,
+   16.10.2026), Schlüssel des Hauses «wildside-wb». Die Wurzel des Hauses wird auch aus _werkzeuge/carte/zur-werkbank.js erkannt. */
 /* «Zur Werkbank» (Robert 12.10.2026): ein Knopf unten links auf jeder Seite, die man aus der Werkbank heraus öffnet.
    Eine Datei für alle Seiten, sie bringt Aussehen und Verhalten selbst mit (eigener Schattenbaum, kein Stylesheet der Seite greift hinein).
 
    In der Werkbank selbst (werkbank/, werkbank/en/ …) zeigt sie nichts, sondern hängt an jeden Link, der hinausführt, die Herkunft:
-   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «culinarium-wb»), nimmt den Zusatz wieder aus der Adresse
+   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «wildside-wb»), nimmt den Zusatz wieder aus der Adresse
    und zeigt den Knopf, auch über alle weiteren Klicks. Ohne diese Herkunft erscheint nichts: ein Gast des Hauses sieht den Knopf nie.
    Eingebettet (Laptop der Werkbank, Vorschau in Le Bureau) erscheint er auch nicht.
 
@@ -50,7 +50,7 @@
   var OHNE_SPRACHE = /^(control|_werkzeuge|studio|mission-control|reception|marke|maison|imprimerie|mails|werkbank\/anleitung)\/|^mappe/;   // gibt es nur deutsch: Sprache der Werkbank gilt
   var FREMD_ZIEL = /^https:\/\/[a-z0-9-]+-analyse\.tastystudios\.ch$|^https:\/\/drucksachen-studio\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):8963$/;   // L’Imprimerie auf eigener Adresse
   var HERKUNFT = /^https:\/\/[a-z0-9-]+\.tastystudios\.ch$|^https:\/\/[a-z0-9-]+\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):\d{2,5}$/;   // von wo eine Werkbank herkommen darf
-  var SCHL = 'culinarium-wb';   // Schlüssel des Hauses, gleich in allen Werkzeugen und La Maison
+  var SCHL = 'wildside-wb';   // Schlüssel des Hauses, gleich in allen Werkzeugen und La Maison
 
   var tag = document.currentScript || document.querySelector('script[src*="zur-werkbank.js"]');
   var src = tag && tag.src || '';
@@ -180,18 +180,18 @@
       ':host{direction:ltr}' +
       'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:999px;' +
       'font:400 11.5px/1 "ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
-      'color:#26242D;background:linear-gradient(180deg,#F3ECEA 0%,#e5dbcc 55%,#d5c8b8 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
-      'box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 #a79986,inset 0 0 0 1px rgba(163,134,92,.55),0 0 0 1px rgba(22,21,26,.28),0 12px 22px -12px rgba(22,21,26,.75);' +
+      'color:#1C1513;background:linear-gradient(180deg,#F3ECEA 0%,#e5dbcc 55%,#d5c8b8 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
+      'box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 #a79986,inset 0 0 0 1px rgba(163,134,92,.55),0 0 0 1px rgba(19,14,13,.28),0 12px 22px -12px rgba(19,14,13,.75);' +
       'transition:transform .55s cubic-bezier(.32,.72,0,1)}' +
       'a::after{content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:38%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.85) 50%,transparent 100%);transform:translateX(-180%) skewX(-18deg);transition:transform 0s}' +
-      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#3A3845,#0F0E13);color:#FAF4F4;' +
-      'box-shadow:inset 0 1px 0 #81644d,inset 0 -2px 0 #120c07,0 0 0 1px rgba(239,118,73,.45);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
+      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#261E1A,#0B0807);color:#F7F1E7;' +
+      'box-shadow:inset 0 1px 0 #81644d,inset 0 -2px 0 #120c07,0 0 0 1px rgba(216,178,100,.45);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
       'svg{display:block;width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}' +
       'span{display:block;padding-top:1px}' +
       ':host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{letter-spacing:.04em;font-size:13px;text-transform:none}' +
       '@media (hover:hover){a:hover{transform:translateY(-2px)}a:hover i{transform:translateX(-2px) scale(1.05)}a:hover::after{transform:translateX(360%) skewX(-18deg);transition:transform 1s cubic-bezier(.16,1,.3,1)}}' +
       'a:active{transform:translateY(1px) scale(.985)}' +
-      'a:focus-visible{outline:2px solid #B15736;outline-offset:3px}' +
+      'a:focus-visible{outline:2px solid #7A5C24;outline-offset:3px}' +
       '@media (max-width:560px){a{height:40px;gap:9px;padding:0 16px 0 4px;font-size:10.5px}i{width:32px;height:32px}:host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{font-size:12px}}' +
       '@media (prefers-reduced-motion:reduce){a,i,a::after{transition:none!important}}' +
       '</style>' +

@@ -1,0 +1,29 @@
+{
+ "zeit": "2026-10-31T09:12:00+01:00",
+ "art": "reservieren",
+ "name": "Lena Hoffmann",
+ "kontakt": "lena.hoffmann@example.com",
+ "datum": "Freitag, 13. November 2026",
+ "personen": 4,
+ "anliegen": "Platz reservieren: Freitag, 13. November 2026, 20 Uhr, 4 Plätze",
+ "sprache": "de",
+ "gespraech": "beispiel-1",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Über ein Formular der Website (Seite Besuch): Abend: Freitag, 13. November 2026\nUhrzeit: 20 Uhr\nPlätze: 4"
+  }
+ ],
+ "status": "neu",
+ "beispiel": true,
+ "an": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
+ "abteilung": "Reservieren",
+ "seite": "/besuch.html#reservieren",
+ "seite_name": "Besuch",
+ "web": true,
+ "nachricht": "Abend: Freitag, 13. November 2026\nUhrzeit: 20 Uhr\nPlätze: 4",
+ "formular": "reservieren",
+ "uhrzeit": "20 Uhr",
+ "platz": "Theke",
+ "entwurf": null
+}

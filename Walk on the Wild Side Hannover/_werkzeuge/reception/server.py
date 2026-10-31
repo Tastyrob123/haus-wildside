@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""La Réception (Team hinter dem Gäste-Chat) · Culinarium Hannover. Am Rechner aus dem Projektordner: python3 _werkzeuge/reception/server.py [port]   (Standard 9084)
-Kopie des Gastgebers der Taverne zum Schäfli (28.10.2026, dort nur gelesen), dort aus dem Schlössli, Ruedihus, Doldenhorn und Carlton-Europe, Funktion wie La Réception des Grand Beau-Rivage.
-Culinarium sind Food-Pairing-Abende an der langen Tafel in der Bar Walk on the Wild Side (Linden): Warteliste für den nächsten Abend, Plätze, eigene Feier, Nachrichten, Allergien.
+"""Das Gästebuch (Team hinter dem Gäste-Chat) · Walk on the Wild Side Hannover. Am Rechner aus dem Hausordner: python3 _werkzeuge/reception/server.py [port]   (Standard 9084)
+Kopie des Gästebuchs des Culinarium Hannover (31.10.2026), dort aus dem Gastgeber der Taverne zum Schäfli; Aufbau und Wege gleich.
+Walk on the Wild Side ist eine Nachbarschafts-Mixology-Bar in Linden-Mitte: Reservieren, Privates Dinner, Feiern an der langen Tafel und in der ganzen Bar, Nachrichten.
 
 Ein Server für drei Dinge:
-  /                               die Website aus website/ des Projekts, nur lesen (Warteliste auf Der Abend, Vormerken im Fuss)
-  /assets/oberflaeche/            das gemeinsame Kleid der Werkzeuge des Culinarium (_werkzeuge/oberflaeche/, nur lesen; einziger Schreiber culinarium-maison)
-  /api/gast                       der Chat («Chat ausprobieren»): gast/gast.py mit dem Wissen des Culinarium, dazu reception.py
+  /                               die Website aus website/ des Hauses, nur lesen (Reservieren auf Besuch, Anfrage auf Feiern)
+  /assets/oberflaeche/            das gemeinsame Kleid der Werkzeuge der Bar (_werkzeuge/oberflaeche/, nur lesen; einziger Schreiber der Tresen)
+  /api/gast                       der Chat («Chat ausprobieren»): gast/gast.py mit dem Wissen der Bar, dazu reception.py
   /_werkzeuge/reception/          La Réception, das Werkzeug des Teams; /_werkzeuge/reception/api/<was> sein Server-Teil,
                                   darunter «formular»: die Formulare der Website (baustein/anfrage.js) legen dort ihre Anfragen ab
 
@@ -22,7 +22,7 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote, quote
 
 HIER = os.path.dirname(os.path.realpath(__file__))
-PROJ = os.path.dirname(os.path.dirname(HIER))   # Projektordner des Culinarium
+PROJ = os.path.dirname(os.path.dirname(HIER))   # Hausordner Walk on the Wild Side
 WEB = os.path.join(PROJ, 'website')            # die Website, nur gelesen
 WERK = os.path.join(PROJ, '_werkzeuge')        # die Werkzeuge des Hauses (hier nur gelesen, ausser reception/daten)
 sys.path.insert(0, HIER)
@@ -98,15 +98,15 @@ def zustand():
     punkt('Brief', 'Ton der Briefe', 'gut' if vl else 'gelb', (f'{len(vl)} Vorlagen aus dem Wortlaut der Website (vorlagen/)' if vl else 'Das Haus hat keine eigenen Mail-Vorlagen; der Brief hält sich an den Ton des Markenbuchs'), '' if vl else 'ENTWURF')
     web = sum(1 for f in glob.glob(os.path.join(d, 'anfragen', '*', '*.json')) if (lambda s: '"web": true' in s and '"beispiel": true' not in s)(open(f, encoding='utf-8', errors='replace').read()))
     try:
-        ein = 'anfrage.js' in open(os.path.join(WEB, 'abend.html'), encoding='utf-8').read()
+        ein = 'anfrage.js' in open(os.path.join(WEB, 'besuch.html'), encoding='utf-8').read()
     except OSError:
         ein = False
-    punkt('Website', 'Formulare der Website', 'gut' if ein else 'gelb', (f'eingebaut, {web} echte Anfragen über die Website (ohne Beispiele)' if ein else f'Warteliste noch nicht angeschlossen (Baustein baustein/anfrage.js, Einbau durch den Website-Chat); {web} echte Anfragen über die Website (ohne Beispiele)'), '' if ein else 'FORMULAR')
+    punkt('Website', 'Formulare der Website', 'gut' if ein else 'gelb', (f'eingebaut, {web} echte Anfragen über die Website (ohne Beispiele)' if ein else f'Formulare noch nicht angeschlossen (Baustein baustein/anfrage.js, Einbau durch den Website-Chat); {web} echte Anfragen über die Website (ohne Beispiele)'), '' if ein else 'FORMULAR')
     o = reception.ONLINE_STAND
     punkt('Website', 'Einträge von der Online-Website', 'gelb' if o['fehler'] or not o['zeit'] else 'gut',
           (f"zuletzt abgeholt {o['zeit'][11:16]} Uhr, {o['neu']} neu" if o['zeit'] and not o['fehler'] else f"Abholen hakt: {o['fehler']}" if o['fehler'] else 'noch nicht abgeholt') + f" (alle {ABHOLEN} s von {reception.ONLINE_API})", 'FORMULAR' if o['fehler'] else '')
     node = shutil.which('node') or next((x for x in ('/opt/homebrew/bin/node', '/usr/local/bin/node') if os.path.exists(x)), None)
-    pw = os.path.exists(os.path.expanduser('~/Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'))
+    pw = os.path.exists(os.path.expanduser('~/Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright')) or bool(node and __import__('subprocess').run([node, '-e', "require.resolve('playwright')"], capture_output=True).returncode == 0)
     punkt('Brief', 'PDF-Satz (node mit Chromium)', 'gut' if node and pw else 'rot', ('node ' + node + (', Playwright da' if pw else ', Playwright fehlt')) if node else 'node fehlt', '' if node and pw else 'PDF')
     punkt('Sicherheit', 'Grenzen je Absender und Minute', 'gut', f"{GRENZEN['alle']} Aufrufe, {GRENZEN['schreiben']} Änderungen, {GRENZEN['pdf']} PDF, {GRENZEN['formular']} Formulare; höchstens 3 MB je Anfrage, 40 MB beim Einlesen, 12 kB je Formular")
     punkt('Sicherheit', 'Anmeldung', 'gelb', 'noch keine (Roberts Wort 15.10.2026), kommt vor der Auslieferung', 'ANMELDUNG')
@@ -129,7 +129,7 @@ def export_zip(daten):
                     continue
                 p = os.path.join(w, f)
                 z.write(p, os.path.join('la-reception', os.path.relpath(p, daten)))
-        z.writestr('la-reception/LIESMICH.txt', reception.NAME + ' · Culinarium Hannover: alle Daten, Stand ' + datetime.datetime.now().strftime('%d.%m.%Y %H:%M') +
+        z.writestr('la-reception/LIESMICH.txt', reception.NAME + ' · Walk on the Wild Side Hannover: alle Daten, Stand ' + datetime.datetime.now().strftime('%d.%m.%Y %H:%M') +
                    '.\nanfragen/: je Anfrage eine Datei mit Brief · fragen/: Fragen an den Chat (12 Monate) · nachgetragen.json: Antworten des Teams · gedaechtnis/: Wissen des Teams.\n')
     return b.getvalue()
 
@@ -162,7 +162,7 @@ def gast():
             p = os.path.join(HIER, 'gast', 'gast.py')
             if not os.path.exists(p):
                 raise ValueError('CHAT · Der Chat fehlt am Rechner. Einmal python3 _werkzeuge/reception/_bau/gast_bau.py laufen lassen.')
-            s = importlib.util.spec_from_file_location('gast_culinarium', p)
+            s = importlib.util.spec_from_file_location('gast_wildside', p)
             g = importlib.util.module_from_spec(s)
             s.loader.exec_module(g)
             if os.environ.get('RECEPTION_KI') != '1':   # Standard: Probe-Antworten, kein Schlüssel, keine Kosten (probe_ki.py); echte KI nur mit RECEPTION_KI=1
@@ -254,7 +254,7 @@ class H(BaseHTTPRequestHandler):
             if rel == '_werkzeuge/reception/api/zustand':   # Prüfseite: ohne den Chat zu laden
                 return self.sende(200, zustand())
             if rel == '_werkzeuge/reception/api/export':    # alle Daten als eine Datei (Prüfseite)
-                name = re.sub(r'[^A-Za-z0-9-]+', '-', reception.NAME.replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue')).strip('-') + '-Culinarium-' + datetime.date.today().isoformat() + '.zip'   # Name aus kleid/wildside.js
+                name = re.sub(r'[^A-Za-z0-9-]+', '-', reception.NAME.replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue')).strip('-') + '-Wild-Side-' + datetime.date.today().isoformat() + '.zip'   # Name aus kleid/wildside.js
                 return self.sende(200, export_zip(reception.DATEN), 'application/zip', {'Content-Disposition': f'attachment; filename="{name}"'})
             if rel == '_werkzeuge/reception/api/anfragen':   # Eingang öffnen: zuerst abholen, was online liegt
                 reception.online_abholen()
@@ -403,5 +403,5 @@ def abholen_lauf():
 if __name__ == '__main__':
     os.makedirs(reception.DATEN, exist_ok=True)
     threading.Thread(target=abholen_lauf, daemon=True).start()   # Anfragen der Website (Vercel, /api/anfrage) in den Eingang
-    print(f'La Réception · Culinarium Hannover: http://127.0.0.1:{PORT}/_werkzeuge/reception/  ·  Website: http://127.0.0.1:{PORT}/' + ('' if os.environ.get('RECEPTION_KI') == '1' else '  ·  Probe ohne KI'), flush=True)
+    print(f'{reception.NAME} · Walk on the Wild Side Hannover: http://127.0.0.1:{PORT}/_werkzeuge/reception/  ·  Website: http://127.0.0.1:{PORT}/' + ('' if os.environ.get('RECEPTION_KI') == '1' else '  ·  Probe ohne KI'), flush=True)
     ThreadingHTTPServer(('127.0.0.1', PORT), H).serve_forever()
