@@ -3994,8 +3994,8 @@
    "k": "nacht",
    "n": "Nacht und Platte",
    "s": "Die dunklen Flächen, so wie die Bar nach 19 Uhr unter der Decke steht. Platten liegen wie das Eckschild auf der Nacht, geschrieben wird in einem warmen Hell.",
-   "bild": "../../assets/bild/schild-1536.webp",
-   "bild_t": "Das Eckschild an der Hausecke bei Nacht. Daraus kommen Nacht, Platte und der Goldrahmen."
+   "bild": "../../assets/bild/pf-schild-1440.webp",
+   "bild_t": "Die beiden Schilder an der Hausecke: schwarz mit Goldrahmen. Daraus kommen Nacht, Platte und das Gold."
   },
   {
    "k": "creme",
@@ -4026,8 +4026,8 @@
   "wildside-hannover-farben.json": 3143,
   "wildside-hannover-instagram-profilbild.jpg": 50762,
   "wildside-hannover-logo-vorlage-2020.png": 22957,
-  "wildside-hannover-marke.zip": 1144654,
-  "wildside-hannover-schriften.zip": 132021,
+  "wildside-hannover-marke.zip": 1144653,
+  "wildside-hannover-schriften.zip": 132020,
   "wildside-hannover-tapete-dunkel.png": 164004,
   "wildside-hannover-tapete-dunkel.svg": 36015,
   "wildside-hannover-tapete-dunkel.webp": 126772,

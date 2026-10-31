@@ -635,3 +635,6 @@ body.li{background:linear-gradient(rgba(239,230,216,.86),rgba(239,230,216,.86)),
 .f-t{font-weight:400;letter-spacing:0}
 .f-e{font-family:var(--etikett);font-weight:500;text-transform:uppercase;letter-spacing:.17em;font-size:clamp(.8rem,1vw,.95rem)!important}
 .f-z{font-family:var(--sans);font-variant-numeric:tabular-nums}
+/* Plakate stehen ganz (Regel 31): contain auf der Plakatfarbe */
+.li-fg__b img[src*="/p-"]{object-fit:contain;background:#EBE2D8}
+.li-fg--bild:has(.li-farbe:nth-child(5)) .li-fg__b img{object-position:50% 38%}

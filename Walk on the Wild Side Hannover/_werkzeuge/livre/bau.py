@@ -79,7 +79,7 @@ GRUPPEN = [('nacht', 'Nacht und Platte', 'Die dunklen Flächen, so wie die Bar n
            ('gold', 'Gold und Rot', 'Gold ist der Rahmen des Eckschilds an der Hausecke: Haarlinie, Etikett, Knauf. Rot ist die Wortmarke, und nur als Punkt.'),
            ('session', 'Die DJ-Abende', 'Die Farben der SESSION-Plakate, gemessen an den Plakaten: rot-cremefarbene Wellen und Ultramarin für die Schrift. Sie gehören nur zu den DJ-Abenden.')]
 # je Gruppe ein eigenes Foto (Fehlerbuch 10a, 20.10.2026: ein Foto je Gruppe, nie wiederholt; Farbfeld ganz). Wege von der Seite des Werkzeugs aus.
-GRUPPE_BILD = {'nacht': ('schild', 'Das Eckschild an der Hausecke bei Nacht. Daraus kommen Nacht, Platte und der Goldrahmen.'),
+GRUPPE_BILD = {'nacht': ('pf-schild', 'Die beiden Schilder an der Hausecke: schwarz mit Goldrahmen. Daraus kommen Nacht, Platte und das Gold.'),
                'creme': ('listen/farbe-creme.webp', 'So steht Creme mit dunkler Schrift auf der Website.'),
                'gold': ('negroni', 'Der NEGRONI-Schriftzug aus Glühbirnen über der Vitrine: das Licht, aus dem Gold und Rot kommen.'),
                'session': ('p-1710', 'Das SESSION-Plakat vom 17. Oktober 2026: Wellen in Plakatrot und Creme, Schrift in Ultramarin.')}
@@ -450,7 +450,7 @@ def beispiel(F):
     y0 = round((foto.height - 860) * .45)
     im.paste(foto.crop(((foto.width - W) // 2, y0, (foto.width - W) // 2 + W, y0 + 860)), (0, 0))
     dr = ImageDraw.Draw(im)
-    titel = _schrift(['DejaVuSerif-Bold.ttf', 'LiberationSerif-Bold.ttf'], 74)
+    titel = _schrift(['DejaVuSerif-Bold.ttf', 'LiberationSerif-Bold.ttf'], 60)
     lese = _schrift(['DejaVuSerif.ttf', 'LiberationSerif-Regular.ttf'], 32)
     knopf = _schrift(['DejaVuSans-Bold.ttf', 'LiberationSans-Bold.ttf'], 26)
     dr.text((72, 910), 'Party-Nacht im Wild Side', font=titel, fill=(255, 255, 255))
