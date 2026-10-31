@@ -99,7 +99,7 @@ SEITEN = [   # alle Seiten, die ein Gast als Seite wahrnimmt, dazu das Rechtlich
     ('besuch.html', 'Besuch', 4, 'Wann die Bar offen hat, die Ecke auf der Karte, einen Platz reservieren und was Gäste vorher fragen.', ''),
     ('impressum.html', 'Rechtliches', 1, 'Impressum und Datenschutz.', 'recht'),
 ]
-LANG = {'Startseite': 'Startseite', 'Rechtliches': 'Impressum und Datenschutz'}
+LANG = {'Startseite': 'Startseite', 'Rechtliches': 'Impressum und Datenschutz'}   # «und Datenschutz» bleibt zusammen (Tor: Einzelwort)
 KURZNAME = {}
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
