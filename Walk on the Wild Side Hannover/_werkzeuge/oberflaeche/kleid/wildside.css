@@ -160,3 +160,8 @@ h1,h2,h3,h4,figcaption{text-wrap:balance}
    bei 1,1 schnitt «overflow:hidden» die Unterlängen ab. Zeile 1,42, dafür die Unterzeile näher heran, der Kopf bleibt gleich hoch. */
 .wo-kopf__mitte b{line-height:1.42}
 .wo-kopf__mitte small{margin-top:0}
+/* Leiste unten am Handy (31.10.2026, Fund Gästebuch): grund.css färbt den Hauptknopf dort gold; im Wild Side bleibt der Hauptweg rot, das Zeichen hell */
+@media (max-width:900px){
+  .wo-leiste .wo-kn--gold{background:linear-gradient(180deg,#F65562 0%,#F0323F 52%,#C8202D 100%);box-shadow:inset 0 1px 0 rgba(255,225,225,.45),0 8px 18px -10px rgba(240,50,63,.6)}
+  .wo-leiste .wo-kn--gold i{color:#FFF6EC}
+}
