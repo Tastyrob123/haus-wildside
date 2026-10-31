@@ -46,3 +46,10 @@ NODE_PATH=$(npm root -g) node _bau/filme.js          neun Kurzfilme der Führung
 - **Silvester 2026, dritter Geburtstag:** Uhrzeiten und Datum nicht angekündigt, stehen nicht auf den Vorlagen.
 - **E-Mail-Adresse der Bar:** nicht belegt, nirgends eingetragen.
 - **Online:** `online.json` vorbereitet, kein Online-Projekt der Bar.
+
+## Geprüft (31.10.2026, schnelles Abnahme-Tor lokal, Chromium, 1440/1280/1000/390)
+
+- `plakatwerkstatt`: 176 Zustände (40 + 40 + 40 + 56), 0 Funde, nichts «nicht erreicht».
+- `plakatwerkstatt-mail`: 170 Zustände (40 + 40 + 40 + 50), 0 Funde, nichts «nicht erreicht».
+- Drucksachen: 20 Stück, Druckprüfung ohne roten Befund, Schriften als CID TrueType eingebettet (`pdffonts`).
+- Mit den Augen: Übersicht, Anlässe, Abteilungen, Hinweise, Newsletter, Fotos, Farben & Schriften, DJ-Abend anlegen, Plakat-Grund, Editor (1440/1000/390), Mail-Baukasten, Prüfseite, Anleitung, alle 20 Drucksachen als Bild.
