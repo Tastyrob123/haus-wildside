@@ -17,7 +17,11 @@
    "k": "tresen",
    "name": "Der Tresen",
    "url": "http://127.0.0.1:9081/_werkzeuge/maison/",
-   "tiefe": 7
+   "tiefe": 7,
+   "startExtra": [
+    "http://127.0.0.1:9081/_werkzeuge/maison/?rundgang"
+   ],
+   "einstiegWarte": ".rdg-karte"
   },
   {
    "k": "schaufenster",
