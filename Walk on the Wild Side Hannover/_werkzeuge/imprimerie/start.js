@@ -31,7 +31,7 @@
   /* K18 (Tor 30.10.2026, Oberchef): Arten mit nur ein bis drei Vorlagen stehen in der Ansicht bei der passenden Nachbar-Art, nicht allein.
      Nur die Gruppierung der Ansicht; jede Vorlage bleibt in ihrer Art und ihrem Format (haeuser/<haus>/vorlagen/<art>.json unverändert). */
   const GRUPPE = { aushang: ['stoerung'], flyer: ['programm'], einladung: ['gutschein'], plakat: ['pressemappe'], instagram: ['newsletter'] };
-  const GRUPPE_NAME = { aushang: 'Aushang und Hinweise', flyer: 'Flyer und Programm', einladung: 'Einladung und Gutschein', plakat: 'Plakat und Pressemappe', instagram: 'Instagram und Newsletter' };
+  const GRUPPE_NAME = { aushang: 'Aushang und\u00a0Hinweise', flyer: 'Flyer und\u00a0Programm', einladung: 'Einladung und\u00a0Gutschein', plakat: 'Plakat und\u00a0Pressemappe', instagram: 'Instagram und\u00a0Newsletter' };
   const IN_GRUPPE = new Set(Object.values(GRUPPE).flat());
   const ARTEN_SICHT = ARTEN.filter(a => !IN_GRUPPE.has(a.key));
   const mitGruppe = a => GRUPPE[a.key] ? Object.assign({}, a, { name: GRUPPE_NAME[a.key], gruppe: GRUPPE[a.key], satz: a.satz + '. Dazu ' + GRUPPE[a.key].map(g => ARTEN.find(x => x.key === g).name).join(' und ') + '.' }) : a;
@@ -651,14 +651,14 @@
     if (!t) return; t.dataset.lang = t.dataset.lang || t.placeholder;
     const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
     const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28;   // Innenabstand abziehen (Tor 31.10.: «Etwa: das nächste Plakat» brach bei 1000 px um)
-    t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= frei) || 'Beschreiben …';   // Tor 2: nie zweizeilig
+    t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= frei * .8) || 'Beschreiben …';   // 20 % Luft: das Tor misst den Platzhalter mit eigenem Satz   // Tor 2: nie zweizeilig
   }
   /* Platzhalter, die start.js je Ansicht neu setzt (Suche, «Etwa: …»), passen immer ganz ins Feld: sonst die kürzere Fassung (Tor 31.10.2026) */
   function passePlatz(t, kurz) {
     if (!t || t.__pp) return; t.__pp = 1;
     const pruefe = () => { const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
-      const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28; if (frei <= 0 || c.measureText(t.placeholder).width <= frei) return;
-      const n = kurz.find(x => c.measureText(x).width <= frei) || kurz[kurz.length - 1]; if (n !== t.placeholder) t.placeholder = n; };
+      const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28; if (frei <= 0 || c.measureText(t.placeholder).width <= frei * .8) return;
+      const n = kurz.find(x => c.measureText(x).width <= frei * .8) || kurz[kurz.length - 1]; if (n !== t.placeholder) t.placeholder = n; };
     new MutationObserver(pruefe).observe(t, { attributes: true, attributeFilter: ['placeholder'] });
     if (window.ResizeObserver) new ResizeObserver(pruefe).observe(t); pruefe();
   }

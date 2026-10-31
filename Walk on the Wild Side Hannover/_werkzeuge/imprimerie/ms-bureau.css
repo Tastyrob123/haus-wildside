@@ -248,3 +248,4 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
 #startWeg .weg__kopf{min-width:0;max-width:100%;box-sizing:border-box}
 @media (max-width:520px){#startWeg .weg__kopf .hwahl-knopf{white-space:normal;max-width:100%}#startWeg .weg__kopf h1,#startWeg .weg__kopf .start__satz{max-width:100%;overflow-wrap:anywhere}}
 @media (max-width:520px){.links .tab>h2,.links .tab>p.leise{padding-left:3px}}
+@media (max-width:520px){.links .tab.an{padding-left:3px}}

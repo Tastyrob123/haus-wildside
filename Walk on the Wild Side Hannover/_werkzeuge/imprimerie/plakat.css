@@ -97,3 +97,5 @@
 .pk-blaetter--eins{justify-content:flex-start}
 .pk-blaetter--eins .pk-vorn{transform:none}
 @media (hover:hover){.pk-karte--eins:hover .pk-vorn{transform:translateY(-6px)}}
+.pk-karte--eins .pk-blaetter--eins{justify-content:center;text-align:center}
+.pk-karte--eins .pk-text{text-align:center}

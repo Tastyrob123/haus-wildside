@@ -499,7 +499,7 @@
       const blau = 'blau', x0 = rx + fw * .035, w0 = fw * .93;
       const t = tx(c, 'plakat', i.ueber || 'SESSION', w0, u * .14, blau, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1 });
       plMass(c, t, w0 * .97, u * .2); t.y = +(fy0 + fh * .035).toFixed(2); c.el.push(t);
-      let y = t.y + t.h + .095 * t.gr;   // Inhaltsfläche der Plakatschrift (1,13 em) ragt über die Zeile: so berühren sich SESSION und SIP & SOUNDS nicht
+      let y = t.y + t.h + .12 * t.gr;   // Inhaltsfläche der Plakatschrift (1,13 em) ragt über die Zeile: so berühren sich SESSION und SIP & SOUNDS nicht
       if (i.unter) { const s = tx(c, 'plakat', i.unter, fw * .5, t.gr * .3, blau, { slot: 'unter', ausr: 'l', x: x0 + t.gr * .02, zeile: 1.15 }); s.y = +y.toFixed(2); c.el.push(s); }
       const xr = rx + fw * .965, wr = fw * .55;
       const zt = i.zeit ? tx(c, 'plakat', i.zeit, wr, t.gr * .3, blau, { slot: 'zeit', ausr: 'r', x: xr - wr, zeile: 1 }) : null;
@@ -614,7 +614,7 @@
       const lang = String(e.text || '').split(/\s+/).sort((a, b) => b.length - a.length)[0] || '';
       if (lang.length < 6) continue;
       const bw = DS.mess(Object.assign({}, e, { text: lang, w: 100000 })).bw || 0;
-      if (bw > e.w * .94) { e.gr = +(e.gr * e.w * .92 / bw).toFixed(2); e.h = DS.mess(e).h; }   // Luft für die Rundung in kleinen Vorschauen
+      if (bw > e.w * .88) { e.gr = +(e.gr * e.w * .86 / bw).toFixed(2); e.h = DS.mess(e).h; }   // Luft für die Rundung in kleinen Vorschauen
     }
     seite.el = c.el;
     return seite;
