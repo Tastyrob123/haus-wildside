@@ -317,6 +317,8 @@
     document.querySelectorAll('#ws-kopf a.wo-kn--gold:not([aria-label])').forEach(function (a) { var t = a.textContent.trim(); if (t) a.setAttribute('aria-label', t); });
   }
   var plan = 0;
-  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); }
+  /* Suche unter «Zeiten & Preise»: das Beispiel des Stamms nennt Hotel-Wörter (Frühstück, CHF, Sauna); hier stehen Wörter, die auf der Website der Bar vorkommen */
+  function suchBeispiel() { var i = document.getElementById('ws-suche'); if (i && /Frühstück|CHF|Sauna/.test(i.placeholder)) i.placeholder = 'zum Beispiel Uhr, EUR, Pauschale'; }
+  function alles() { plan = 0; fest(); ganz(); ohneX(); knaufName(); suchBeispiel(); }
   if (window.MutationObserver) new MutationObserver(function () { if (!plan) plan = requestAnimationFrame(alles); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 })();
