@@ -1,31 +1,30 @@
 #!/usr/bin/env python3
-"""La Carte · Culinarium Hannover: feste Schnitte aus den variablen Schriften der Website (28.10.2026, Muster der Tafel im Schäfli).
+"""Die Pairing-Karte · Walk on the Wild Side Hannover: feste Schnitte für den PDF-Satz (31.10.2026, Muster der Pairing-Karte im Culinarium).
 Chromium bettet variable Schriften im PDF als «Type 3» ein; die Apple-Vorschau zeigt sie dann weich (Fehlerbuch 10a, 21.10.2026). Darum setzt der
-Satz feste Schnitte (TrueType je Stärke, aus der variablen Schrift der Website instanziiert, Lizenz SIL OFL wie das Original).
-Fraunces mit weichen Enden wie die Website (SOFT 100), Titel mit WONK 1 und grosser optischer Grösse, Rudis Zeilen ohne WONK (ruhige Versalien).
-    python3 _werkzeuge/carte/fonts_statisch.py      → fonts/Fraunces-<schnitt>.ttf, fonts/Instrument-<stärke>.ttf, fonts/Urbanist-<stärke>.ttf, fonts/DMMono-400.ttf
+Satz feste Schnitte (TrueType je Stärke, Lizenz SIL OFL wie das Original). Schriften der Website (CHARAKTER.md Abschnitt 4, website/assets/schrift/):
+Titel Prata (eine Stärke), Lauf und Etiketten Hanken Grotesk 400 und 500. Quelle der TrueType-Dateien: das google/fonts-Repository
+(ofl/prata/Prata-Regular.ttf, ofl/hankengrotesk/HankenGrotesk[wght].ttf), dieselben Schriften, aus denen die Website ihre Latin-WOFF2 hat.
+
+    python3 _werkzeuge/carte/fonts_statisch.py <ordner mit Prata-Regular.ttf und HankenGrotesk.ttf>
+        → fonts/Prata-400.ttf, fonts/Hanken-400.ttf, fonts/Hanken-500.ttf
 """
-import os
+import os, shutil, sys
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 F = os.path.join(HIER, 'fonts')
-Q = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website', 'assets', 'schrift')
-SCHNITTE = {
-    'fraunces-soft.woff2': [('Fraunces-titel-340', {'wght': 340, 'opsz': 144, 'SOFT': 100, 'WONK': 1}),
-                            ('Fraunces-zeile-320', {'wght': 320, 'opsz': 48, 'SOFT': 100, 'WONK': 0}),
-                            ('Fraunces-zeile-400', {'wght': 400, 'opsz': 48, 'SOFT': 100, 'WONK': 0})],
-    'instrument.woff2': [('Instrument-400', {'wght': 400}), ('Instrument-500', {'wght': 500})],
-    'urbanist.woff2': [('Urbanist-500', {'wght': 500}), ('Urbanist-600', {'wght': 600})],
-}
+SCHNITTE = [('Hanken-400', {'wght': 400}), ('Hanken-500', {'wght': 500})]
+
 if __name__ == '__main__':
+    Q = sys.argv[1] if len(sys.argv) > 1 else F
     os.makedirs(F, exist_ok=True)
-    for quelle, liste in SCHNITTE.items():
-        for name, achsen in liste:
-            t = TTFont(os.path.join(Q, quelle))
-            s = instancer.instantiateVariableFont(t, achsen, updateFontNames=False)
-            s.flavor = None
-            s.save(os.path.join(F, name + '.ttf'))
-            print(name)
-    t = TTFont(os.path.join(Q, 'dmmono.woff2')); t.flavor = None; t.save(os.path.join(F, 'DMMono-400.ttf')); print('DMMono-400')
+    if os.path.abspath(os.path.join(Q, 'Prata-Regular.ttf')) != os.path.abspath(os.path.join(F, 'Prata-400.ttf')):
+        shutil.copyfile(os.path.join(Q, 'Prata-Regular.ttf'), os.path.join(F, 'Prata-400.ttf'))
+    print('Prata-400')
+    for name, achsen in SCHNITTE:
+        t = TTFont(os.path.join(Q, 'HankenGrotesk.ttf'))
+        s = instancer.instantiateVariableFont(t, achsen, updateFontNames=False)
+        s.flavor = None
+        s.save(os.path.join(F, name + '.ttf'))
+        print(name)

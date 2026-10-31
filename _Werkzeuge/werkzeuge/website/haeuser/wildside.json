@@ -1,0 +1,225 @@
+{
+ "_lies_mich": "Beschreibung des Hauses für das Werkzeug «website» (Das Schaufenster · Website pflegen). Walk on the Wild Side Hannover: Nachbarschafts-Mixology-Bar in Linden-Mitte, nur Deutsch. Jeder Text, jede Zahl, jedes Foto wird aus den gebauten Seiten gelesen (website/ des Projekts). Läuft im Rahmen des Hauses: http://127.0.0.1:9082/_werkzeuge/bureau/ (Walk on the Wild Side Hannover/_werkzeuge/bureau/). Geschrieben von _werkzeuge/bureau/beschreibung.py, nie von Hand ändern.",
+ "seiten": [
+  {
+   "datei": "index.html"
+  },
+  {
+   "datei": "drinks.html"
+  },
+  {
+   "datei": "programm.html"
+  },
+  {
+   "datei": "tafel.html"
+  },
+  {
+   "datei": "haus.html"
+  },
+  {
+   "datei": "besuch.html"
+  },
+  {
+   "datei": "impressum.html",
+   "foto": "negroni"
+  },
+  {
+   "datei": "datenschutz.html",
+   "foto": "rueckbar"
+  }
+ ],
+ "sprachen": [],
+ "kopie": {
+  "unter": "website",
+  "ordner": [
+   "assets"
+  ]
+ },
+ "gesperrt": [],
+ "auslassen": [
+  ".pw-wand",
+  ".kb-gross",
+  ".kb-bogen",
+  "#flyer",
+  ".wo-tafel",
+  ".vk-rueck",
+  ".vi-spiegel"
+ ],
+ "vorschau": {
+  "ohne_skripte": [],
+  "zusatz_css": ".fenster{overflow:clip}@media (hover:none){[data-ws-e],img[data-ws-b]{cursor:pointer}}"
+ },
+ "bereiche": {
+  "zimmer": {
+   "an": false
+  },
+  "preisstufen": {
+   "an": false
+  },
+  "packages": {
+   "an": false
+  },
+  "saele": {
+   "an": false
+  },
+  "unterlagen": {
+   "an": false
+  },
+  "stellen": {
+   "an": false
+  },
+  "gaeste": {
+   "name": "Gastschichten",
+   "satz": "Wer neben Momo hinterm Tresen stand, mit Datum, Name, Satz und Foto, so wie es auf der Seite «Programm» steht. Was nicht mehr gezeigt werden soll, blendest du aus.",
+   "quellen": [
+    {
+     "seite": "programm.html",
+     "jedes": ".vk-reihe article.vk-p",
+     "felder": [
+      {
+       "key": "name",
+       "label": "Gast",
+       "art": "text",
+       "wo": ".vk-satz h3",
+       "titel": true
+      },
+      {
+       "key": "datum",
+       "label": "Datum",
+       "art": "text",
+       "wo": ".vk-satz .etikett"
+      },
+      {
+       "key": "satz",
+       "label": "Satz zum Gast",
+       "art": "text",
+       "wo": ".vk-satz p"
+      },
+      {
+       "key": "bild",
+       "label": "Foto",
+       "art": "bild",
+       "wo": ".vk-bild img",
+       "kann_fehlen": true
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "zahlen": {
+  "muster": "(CHF|Fr\\.|€|\\bEUR\\b|\\bUhr\\b|\\d+\\s?(Minuten|Min\\.|m²|m2|Personen|Pers\\.|Gäste|Nächte?|Nacht|Plätze|Gänge|Drinks|km)|\\d{1,2}[.:]\\d{2}\\s?(?:[–-]|bis)\\s?\\d{1,2}[.:]\\d{2}|\\d{1,2}[.:]\\d{2}\\s?Uhr|\\b\\d{1,2} bis \\d{1,2} Uhr)"
+ },
+ "kleid": {
+  "foto": "schild-ecke"
+ },
+ "website": [
+  {
+   "key": "start",
+   "name": "Startseite",
+   "satz": "Der erste Eindruck: die Ecke bei Nacht, wer die Bar führt, was Momo mixt, die Decke, die DJ-Abende, die lange Tafel und die Nachbarn im Haus.",
+   "seiten": [
+    "index.html"
+   ],
+   "foto": "schild"
+  },
+  {
+   "key": "drinks",
+   "name": "Drinks",
+   "satz": "Was magst du? Das Gespräch an der Bar, wie Momo arbeitet, die Klassiker und die Sonderkarte «Drunk in Love».",
+   "seiten": [
+    "drinks.html"
+   ],
+   "foto": "momo-giesst"
+  },
+  {
+   "key": "programm",
+   "name": "Programm",
+   "satz": "Die Woche, Gastschichten, die Feste und die Bar unterwegs. Die DJ-Abende selbst pflegst du unter «DJ-Abende».",
+   "seiten": [
+    "programm.html"
+   ],
+   "foto": "konzert"
+  },
+  {
+   "key": "feiern",
+   "name": "Feiern",
+   "satz": "Private Dinner, die lange Tafel, die ganze Bar mit Pauschalen und Preisliste, Musik und grosse Events, mit Anfrage.",
+   "seiten": [
+    "tafel.html"
+   ],
+   "foto": "an-empore-tafel"
+  },
+  {
+   "key": "haus",
+   "name": "Das Haus",
+   "satz": "Der Raum unter der Decke, Derya und Momo, was bisher geschah und die Auszeichnungen.",
+   "seiten": [
+    "haus.html"
+   ],
+   "foto": "decke-raum"
+  },
+  {
+   "key": "besuch",
+   "name": "Besuch",
+   "satz": "Wann die Bar offen hat, wo sie steht, Reservieren und die Fragen der Gäste.",
+   "seiten": [
+    "besuch.html"
+   ],
+   "foto": "fenster"
+  },
+  {
+   "key": "recht",
+   "name": "Rechtliches",
+   "satz": "Impressum und Datenschutz im Wortlaut des Hauses.",
+   "seiten": [
+    "impressum.html",
+    "datenschutz.html"
+   ],
+   "foto": "negroni"
+  }
+ ],
+ "angaben": [
+  {
+   "key": "telefon",
+   "label": "Telefon der Bar",
+   "art": "telefon",
+   "wert": "+49 163 3909578",
+   "link": "tel:+491633909578",
+   "quelle": "website/index.html (gebaut aus website/bau.py › HAUS, fuss())"
+  },
+  {
+   "key": "strasse",
+   "label": "Strasse",
+   "art": "text",
+   "wert": "Haasemannstraße 13",
+   "quelle": "website/index.html (gebaut aus website/bau.py › HAUS, fuss())"
+  },
+  {
+   "key": "ort",
+   "label": "PLZ und Ort",
+   "art": "text",
+   "wert": "30449 Hannover-Linden",
+   "quelle": "website/index.html (gebaut aus website/bau.py › HAUS, fuss())"
+  },
+  {
+   "key": "ig-walkonthewildsidehan",
+   "label": "Instagram der Bar",
+   "art": "link",
+   "wert": "https://www.instagram.com/walkonthewildside_hannover/",
+   "quelle": "website/index.html (gebaut aus website/bau.py › HAUS, fuss())"
+  }
+ ],
+ "google": {
+  "an": true
+ },
+ "hochladen": {
+  "an": true,
+  "ordner": "assets/bild"
+ },
+ "funktionen": [
+  "leiste_klar",
+  "team_wer"
+ ],
+ "anleitung": "/_werkzeuge/bureau/anleitung.html"
+}
