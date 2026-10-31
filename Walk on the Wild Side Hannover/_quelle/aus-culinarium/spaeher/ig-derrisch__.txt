@@ -1,0 +1,28 @@
+{
+ "url": "https://www.instagram.com/derrisch__/",
+ "ms": 7196,
+ "meta": [
+  "og:type=profile",
+  "og:image=https://scontent-mnl3-1.cdninstagram.com/v/t51.82787-19/657771207_18429659434137847_38802875393017171_n.jpg?stp=dst-jpg_s100x100_tt6&_nc_cat=104&ccb=7-5&_nc_sid=bf7eb4&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=urwtGt2yV5EQ7kNvwEbfylJ&_nc_oc=AdrPC4Fkvthwyt_N2gAJTltJCMZfqt_-H7gglYsz2r0752JVW35xCHJnPfCEhBUoYOI&_nc_zt=24&_nc_ht=scontent-mnl3-1.cdninstagram.com&_nc_gid=iwN5EyMhdYhvwbRXpYB-_A&_nc_ss=7fa8c&oh=00_AQNKRqe8_IlmUD37l1W-tHu_vZhimh96bzBsE1VpFGLikA&oe=6AE38EB1",
+  "og:title=Derya Ivkin (@derrisch__) • Instagram-Fotos und -Videos",
+  "og:url=https://www.instagram.com/derrisch__/",
+  "og:description=1,220 Follower, 586 gefolgt, 24 Beiträge – Sieh dir Instagram-Fotos und -Videos von Derya Ivkin (@derrisch__) an",
+  "description=1,220 Follower, 586 Gefolgt, 24 Beiträge - Derya Ivkin (@derrisch__) auf Instagram: „👩🏻 30 |📍DE • Hannover | 🌊 TR • ORDU\n👼🏻🪽 2019 | 👶🏻🌈 2024\n🥃 Bar Owner @walkonthewildside_hannover \n🥃 Food Pairing  @culinarium_hannover“",
+  "application-title=Instagram"
+ ],
+ "links": [
+  "https://www.instagram.com/derrisch__/p/Db_pnCsjVEc/",
+  "https://www.instagram.com/derrisch__/p/DSzrNOUDS4R/",
+  "https://www.instagram.com/derrisch__/p/DOvTKuEDcx0/",
+  "https://www.instagram.com/derrisch__/p/DJ7UWEKOwtV/",
+  "https://www.instagram.com/derrisch__/p/DATy5K4u82S/",
+  "https://www.instagram.com/derrisch__/p/C7TdDRIocuG/",
+  "https://www.instagram.com/derrisch__/p/C4QJnVwIAGF/",
+  "https://www.instagram.com/derrisch__/p/C1VOxocIdCo/",
+  "https://www.instagram.com/derrisch__/p/CzXAACyok8q/",
+  "https://www.instagram.com/derrisch__/p/CyokGoNI8F1/",
+  "https://www.instagram.com/derrisch__/p/CyUFvjgIMY-/",
+  "https://www.instagram.com/derrisch__/p/CxtXRBXoa31/"
+ ],
+ "txt": "Anmelden\nRegistrieren\nderrisch__\n1.220 Follower\n557 Gefolgt\nDerya Ivkin\n👩🏻 30 |📍DE • Hannover | 🌊 TR • ORDU\n👼🏻🪽 2019 | 👶🏻🌈 2024\n🥃 Bar Owner @walkonthewildside_hannover\n🥃 Food Pairing... \nmehr\n👕👕👕\n🤱🏽🤱🏽🤱🏽\n💓💓💓\n🍜🍜🍜\n💅🏼💅🏼💅🏼\n🇹🇷🇹🇷🇹🇷\nMehr Beiträge zeigen von derrisch__\nMeta\nInfo\nBlog\nJobs\nHilfe\nAPI\nDatenrichtlinie\nNutzungsbedingungen\nStandorte\nBeliebt\nInstagram Lite\nMeta AI\nMuse\nThreads\nHochladen von Kontakten und Nicht-Nutzer\nMeta Verified\nDeutsch\nAfrikaans\nالعربية\nČeština\nDansk\nDeutsch\nΕλληνικά\nEnglish\nEnglish (UK)\nEspañol (España)\nEspañol\nفارسی\nSuomi\nFrançais\nעברית\nBahasa Indonesia\nItaliano\n日本語\n한국어\nBahasa Melayu\nNorsk\nNederlands\nPolski\nPortuguês (Brasil)\nPortuguês (Portugal)\nРусский\nSvenska\nภาษาไทย\nFilipino\nTürkçe\n中文(简体)\n中文(台灣)\nবাংলা\nગુજરાતી\nहिन्दी\nHrvatski\nMagyar\nಕನ್ನಡ\nമലയാളം\nमराठी\nनेपाली\nਪੰਜਾਬੀ\nසිංහල\nSlovenčina\nதமிழ்\nతెలుగు\nاردو\nTiếng Việt\n中文(香港)\nБългарски\nFrançais (Canada)\nRomână\nСрпски\nУкраїнська\n© 2026 Instagram from Meta"
+}

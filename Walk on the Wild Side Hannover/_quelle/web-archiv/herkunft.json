@@ -1,0 +1,161 @@
+{
+ "html/20171214085421_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20171214085421/https://www.wildside-hannover.de/offline/",
+  "snapshot": "14.12.2017"
+ },
+ "html/20190717061920_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20190717061920/https://www.wildside-hannover.de/offline/",
+  "snapshot": "17.07.2019"
+ },
+ "html/20200629155440_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20200629155440/https://www.wildside-hannover.de/offline/",
+  "snapshot": "29.06.2020"
+ },
+ "html/20211017214453_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20211017214453/https://www.wildside-hannover.de/offline/",
+  "snapshot": "17.10.2021"
+ },
+ "html/20230615101121_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20230615101121/https://www.wildside-hannover.de/offline/",
+  "snapshot": "15.06.2023"
+ },
+ "html/20240723050629_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20240723050629/https://www.wildside-hannover.de/offline/",
+  "snapshot": "23.07.2024"
+ },
+ "html/20250405151622_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20250405151622/https://www.wildside-hannover.de/offline/",
+  "snapshot": "05.04.2025"
+ },
+ "html/20250908023546_offline.html": {
+  "quelle": "https://www.wildside-hannover.de/offline/",
+  "archiv": "https://web.archive.org/web/20250908023546/https://www.wildside-hannover.de/offline/",
+  "snapshot": "08.09.2025"
+ },
+ "css/main_2020.css": {
+  "quelle": "https://www.wildside-hannover.de/offline/main.css",
+  "archiv": "https://web.archive.org/web/20200629155603/https://www.wildside-hannover.de/offline/main.css",
+  "snapshot": "29.06.2020"
+ },
+ "verwandt-11a/html/2020-06_weinbar-cocktailbar.html": {
+  "quelle": "https://www.11a-restaurant.de/weinbar-cocktailbar/",
+  "archiv": "https://web.archive.org/web/20200629094303/https://www.11a-restaurant.de/weinbar-cocktailbar/",
+  "snapshot": "29.06.2020"
+ },
+ "verwandt-11a/html/2020-09_weinbar-cocktailbar.html": {
+  "quelle": "https://www.11a-restaurant.de/weinbar-cocktailbar/",
+  "archiv": "https://web.archive.org/web/20200920050715/https://www.11a-restaurant.de/weinbar-cocktailbar/",
+  "snapshot": "20.09.2020"
+ },
+ "verwandt-11a/html/2020_impressum.html": {
+  "quelle": "https://www.11a-restaurant.de/impressum.php",
+  "archiv": "https://web.archive.org/web/20200629232903/https://www.11a-restaurant.de/impressum.php",
+  "snapshot": "29.06.2020"
+ },
+ "verwandt-11a/html/2020_start.html": {
+  "quelle": "https://www.11a-restaurant.de/",
+  "archiv": "https://web.archive.org/web/20200628015355/https://www.11a-restaurant.de/",
+  "snapshot": "28.06.2020"
+ },
+ "verwandt-11a/html/2022-06_weinbar-cocktailbar.html": {
+  "quelle": "https://www.11a-restaurant.de/weinbar-cocktailbar/",
+  "archiv": "https://web.archive.org/web/20220630230540/https://www.11a-restaurant.de/weinbar-cocktailbar/",
+  "snapshot": "30.06.2022"
+ },
+ "verwandt-11a/html/2022_start.html": {
+  "quelle": "https://www.11a-restaurant.de/",
+  "archiv": "https://web.archive.org/web/20220105121732/https://www.11a-restaurant.de/",
+  "snapshot": "05.01.2022"
+ },
+ "verwandt-11a/html/2023-01_start.html": {
+  "quelle": "https://www.11a-restaurant.de/",
+  "archiv": "https://web.archive.org/web/20230129211358/https://www.11a-restaurant.de/",
+  "snapshot": "29.01.2023"
+ },
+ "verwandt-11a/html/2023-11_start.html": {
+  "quelle": "https://www.11a-restaurant.de/",
+  "archiv": "https://web.archive.org/web/20231101045333/https://www.11a-restaurant.de/",
+  "snapshot": "01.11.2023"
+ },
+ "verwandt-11a/html/20230321012540_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20230321012540/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "21.03.2023"
+ },
+ "verwandt-11a/html/20230529153825_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20230529153825/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "29.05.2023"
+ },
+ "verwandt-11a/html/20230911085038_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20230911085038/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "11.09.2023"
+ },
+ "verwandt-11a/html/20230930130036_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20230930130036/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "30.09.2023"
+ },
+ "verwandt-11a/html/20231129084242_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20231129084242/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "29.11.2023"
+ },
+ "verwandt-11a/html/2023_impressum.html": {
+  "quelle": "https://www.11a-restaurant.de/impressum",
+  "archiv": "https://web.archive.org/web/20230321005145/https://www.11a-restaurant.de/impressum",
+  "snapshot": "21.03.2023"
+ },
+ "verwandt-11a/html/2023_kopie-von-walk-on-the-wildside.html": {
+  "quelle": "https://www.11a-restaurant.de/kopie-von-walk-on-the-wildside",
+  "archiv": "https://web.archive.org/web/20230529142830/https://www.11a-restaurant.de/kopie-von-walk-on-the-wildside",
+  "snapshot": "29.05.2023"
+ },
+ "verwandt-11a/html/20240124175700_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20240124175700/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "24.01.2024"
+ },
+ "verwandt-11a/html/20240304182445_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20240304182445/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "04.03.2024"
+ },
+ "verwandt-11a/html/20240622222033_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20240622222033/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "22.06.2024"
+ },
+ "verwandt-11a/html/20240920235648_walkonthewildside.html": {
+  "quelle": "https://www.11a-restaurant.de/walkonthewildside",
+  "archiv": "https://web.archive.org/web/20240920235648/https://www.11a-restaurant.de/walkonthewildside",
+  "snapshot": "20.09.2024"
+ },
+ "text/11a-restaurant_impressum_chef-gmbh_2020-2023.md": {
+  "quelle": "siehe Kopfzeilen der Datei"
+ },
+ "text/11a-restaurant_startseite_wildside-auszuege_2020-2023.md": {
+  "quelle": "siehe Kopfzeilen der Datei"
+ },
+ "text/11a-restaurant_weinbar-cocktailbar_2020-2022.md": {
+  "quelle": "siehe Kopfzeilen der Datei"
+ },
+ "text/11a-restaurant_wix_walkonthewildside_2023-2024.md": {
+  "quelle": "siehe Kopfzeilen der Datei"
+ },
+ "text/facebook_cocktailbarandprivatedining_info.md": {
+  "quelle": "siehe Kopfzeilen der Datei"
+ },
+ "text/wildside-hannover-de_offline_2017-2025.md": {
+  "quelle": "siehe Kopfzeilen der Datei"
+ },
+ "_hinweis": "Bilder: herkunft.json in logo/, bilder/, verwandt-11a/fremd-11a/. Abgerufen 26.10.2026."
+}

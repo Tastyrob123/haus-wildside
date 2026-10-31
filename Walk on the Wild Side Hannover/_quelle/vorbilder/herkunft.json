@@ -1,0 +1,113 @@
+{
+ "hinweis": "Nur interne Referenz (Vorbilder), nicht veröffentlichen. Cookie-Banner abgelehnt soweit möglich; Höhe bei sehr langen Seiten gekappt (Desktop 12000 px, Handy 9000 px CSS). Public Records (publicrecords.nyc) liess sich in WebKit headless nicht aufnehmen (Screenshot-Timeout) und wurde durch Moebius Milano ersetzt.",
+ "dateien": {
+  "01-bar-tausend-desktop.jpg": {
+   "url": "https://tausendberlin.com/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "01-bar-tausend-handy.jpg": {
+   "url": "https://tausendberlin.com/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "02-krypt-desktop.jpg": {
+   "url": "https://www.krypt.bar/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "02-krypt-handy.jpg": {
+   "url": "https://www.krypt.bar/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "03-brilliant-corners-desktop.jpg": {
+   "url": "https://brilliantcornerslondon.co.uk/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "03-brilliant-corners-handy.jpg": {
+   "url": "https://brilliantcornerslondon.co.uk/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "03b-brilliant-corners-dates-desktop.jpg": {
+   "url": "https://brilliantcornerslondon.co.uk/dates/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "03b-brilliant-corners-dates-handy.jpg": {
+   "url": "https://brilliantcornerslondon.co.uk/dates/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "04-moebius-milano-desktop.jpg": {
+   "url": "https://moebiusmilano.it/eng/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "04-moebius-milano-handy.jpg": {
+   "url": "https://moebiusmilano.it/eng/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "05-double-chicken-please-desktop.jpg": {
+   "url": "https://doublechickenplease.com/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "05-double-chicken-please-handy.jpg": {
+   "url": "https://doublechickenplease.com/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "06-superbueno-desktop.jpg": {
+   "url": "https://www.superbuenonyc.com/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "06-superbueno-handy.jpg": {
+   "url": "https://www.superbuenonyc.com/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "07-velvet-desktop.jpg": {
+   "url": "https://velvet-bar-berlin.de/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "07-velvet-handy.jpg": {
+   "url": "https://velvet-bar-berlin.de/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  },
+  "08-attaboy-desktop.jpg": {
+   "url": "https://attaboy.us/",
+   "datum": "2026-10-26",
+   "breite": 1440,
+   "werkzeug": "Playwright 1.62 WebKit headless"
+  },
+  "08-attaboy-handy.jpg": {
+   "url": "https://attaboy.us/",
+   "datum": "2026-10-26",
+   "breite": 390,
+   "werkzeug": "Playwright 1.62 WebKit headless (iPhone-UA, DPR 2)"
+  }
+ }
+}
