@@ -197,6 +197,19 @@ class Antwort(stamm.Antwort):
         self.end_headers()
         self.wfile.write(roh)
 
+    def _stammskript(self):
+        """website.js des Stamms, beim Ausliefern an zwei Stellen fester gemacht (die Datei des Stamms bleibt unverändert):
+        1. Ein Stand wird nur übernommen, wenn die Antwort einen trägt. Fund der schnellen Prüfung 31.10.2026: das Prüfprogramm beantwortet jede
+           schreibende Anfrage mit {"ok":true}; danach stand «Cannot read properties of undefined (reading 'kennung')» und die Leiste war leer.
+        2. Eine Quittung ohne Zeilen wird nicht gezeichnet (sonst derselbe Fehler mit «was»).
+        Mit BUREAU_SPUR (nur Prüfserver) geht zusätzlich der Stapel jedes gemeldeten Fehlers ins Fehlerprotokoll des Werkzeugs."""
+        roh = (STAMM / 'werkzeuge' / 'website' / 'website.js').read_text(encoding='utf-8')
+        roh = roh.replace('Z.stand = a.stand;', 'if (a && a.stand) Z.stand = a.stand;')
+        roh = roh.replace('function quittung(titel, zeilen, vorherDaten) {\n  const z = zeilen[0];', 'function quittung(titel, zeilen, vorherDaten) {\n  if (!zeilen || !zeilen.length) return;\n  const z = zeilen[0];', 1)
+        if os.environ.get('BUREAU_SPUR'):
+            roh = roh.replace("function fehler(e) {\n", "function fehler(e) {\n  try { fetch('/_werkzeuge/bureau/api/fehler', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: (String((e && (e.fehler || e.message)) || e) + ' @ ' + String((e && e.stack) || new Error().stack)).slice(0, 395), stichwort: 'spur', wo: Z.ansicht + ' ' + innerWidth }) }); } catch (x) {}\n", 1)
+        return roh.encode('utf-8')
+
     def _termine(self, methode, weg):
         """DJ-Abende (termine.py). GET: Lage · GET pruefung · POST speichern / veroeffentlichen / verwerfen / zurueckholen."""
         import json
@@ -321,9 +334,8 @@ class Antwort(stamm.Antwort):
             return self._pruefseite()
         if methode == 'GET' and pfad == '/werkzeuge/website/pruefung.js':
             return self._pruefskript()
-        if methode == 'GET' and pfad == '/werkzeuge/website/website.js' and os.environ.get('BUREAU_SPUR'):   # nur Prüfserver mit Spur: Stapel jedes gemeldeten Fehlers ins Protokoll
-            roh = (STAMM / 'werkzeuge' / 'website' / 'website.js').read_text(encoding='utf-8').replace(
-                "function fehler(e) {\n", "function fehler(e) {\n  try { fetch('/_werkzeuge/bureau/api/fehler', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: (String((e && (e.fehler || e.message)) || e) + ' @ ' + String((e && e.stack) || new Error().stack).replace(/http:[^ )]*\\//g, '')).slice(0, 395), stichwort: 'spur', wo: Z.ansicht + ' ' + innerWidth }) }); } catch (x) {}\n", 1).encode('utf-8')
+        if methode == 'GET' and pfad == '/werkzeuge/website/website.js':
+            roh = self._stammskript()
             self.send_response(200)
             self.send_header('Content-Type', 'application/javascript; charset=utf-8')
             self.send_header('Content-Length', str(len(roh)))

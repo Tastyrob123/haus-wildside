@@ -33,6 +33,7 @@
     return j;
   }
   function uebernehmen(neu, eingabenBehalten) {
+    if (!neu || !Array.isArray(neu.stand)) return;   /* eine Antwort ohne Stand (z. B. ein Prüfprogramm, das jede Anfrage mit {ok:true} beantwortet) ändert nichts */
     L = neu;
     if (!eingabenBehalten) liste = kopie(basis());
   }
