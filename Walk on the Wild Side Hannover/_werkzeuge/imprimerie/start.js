@@ -363,7 +363,7 @@
     const docs = sichtbareDocs().filter(freigabe).sort((a, b) => b.geaendert - a.geaendert);
     const z = $('#fgZahl'); if (z) z.textContent = docs.length;
     box.innerHTML = '';
-    if (!docs.length) { box.innerHTML = '<div class="fg-leer"><p>Noch nichts freigegeben. In «Meine Medien» beim Überfahren einer Drucksache auf das Siegel tippen und die Abteilungen wählen.</p><div class="fg-bsp" aria-hidden="true"><span class="fg-bsp__blatt"><i></i><i></i><i></i></span><span><b>So sieht eine Freigabe aus</b><small>Menükarte am Tisch · frei für Küche und Service</small><em>Jede genannte Abteilung druckt sie ohne Rückfrage.</em></span></div></div>'; return; }
+    if (!docs.length) { box.innerHTML = '<div class="fg-leer"><p>Noch nichts freigegeben. In «Meine Medien» beim Überfahren einer Drucksache auf das Siegel tippen und die Abteilungen wählen.</p><div class="fg-bsp" aria-hidden="true"><span class="fg-bsp__blatt"><i></i><i></i><i></i></span><span><b>So sieht eine Freigabe aus</b><small>Getränkekarte · frei für die Bar</small><em>Jede genannte Abteilung druckt sie ohne Rückfrage.</em></span></div></div>'; return; }
     K.ABTEILUNGEN.forEach(a => {
       const l = docs.filter(d => d.freigabe.abteilungen.includes(a.k)); if (!l.length) return;
       const sek = document.createElement('section'); sek.className = 'fg-abt';
