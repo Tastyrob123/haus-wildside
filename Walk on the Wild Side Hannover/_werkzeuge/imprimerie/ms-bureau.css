@@ -268,3 +268,5 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
 @media (max-width:1320px) and (min-width:1101px){#startAbteilungen>.wo:not(:nth-child(1)):not(:nth-child(7)) .wo__n{grid-template-columns:minmax(0,1fr)}#startAbteilungen>.wo:not(:nth-child(1)):not(:nth-child(7)) .wo__n > i{display:none}}
 /* Kacheln und Startbild, solange das Foto noch lädt (WebKit 31.10.: nach dem Seitenwechsel standen sie kurz als leere Fläche): ruhiger Verlauf der Nachtfarbe statt Fläche */
 #start .wo__k,#start .ws-sb.wo-sb--voll{background-image:linear-gradient(160deg,#3b2c27 0%,#1c1513 55%,#130e0d 100%)}
+/* Knopf im Startfeld: die Beschriftung schrumpft nie weg (WebKit 31.10. bei 1280: nur das Symbol gemessen, 73 px neben der Mitte) */
+@media (min-width:1181px){.wo-sb__kn .ms-feld > button.kn > span:not([class]){flex:none;min-width:max-content}}
