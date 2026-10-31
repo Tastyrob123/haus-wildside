@@ -74,7 +74,8 @@
     var alt = H.fotoAlt || ('Das ' + H.name + ' von aussen');
     if (!m) return '<img src="' + f + '"' + (srcset ? ' srcset="' + srcset + '" sizes="' + (sizes || '50vw') + '"' : '') + ' alt="' + esc(alt) + '" decoding="async"' + lade + farbe + '>';
     /* Stufen der Website (Wild Side 31.10.2026: 480/960/1536, WO_HAUS.fotoStufen; ohne Angabe 640/1000 wie im Stamm): nie eine Stufe, die es nicht gibt */
-    var st = H.fotoStufen && H.fotoStufen.length ? H.fotoStufen.slice(0, 2) : [640, 1000];
+    /* grösste Stufe = die im Weg genannte (die gibt es sicher), kleine = die kleinste Stufe der Website, nur wenn sie kleiner ist (Oberchef 31.10.2026: keine 404) */
+    var st = H.fotoStufen && H.fotoStufen.length ? [H.fotoStufen[0], +m[2]].filter(function (b, i, a) { return i === a.length - 1 || b < a[a.length - 1]; }) : [640, 1000];
     return '<img src="' + m[1] + '-' + st[st.length - 1] + '.webp" srcset="' + st.map(function (b) { return m[1] + '-' + b + '.webp ' + b + 'w'; }).join(', ') + '" sizes="(max-width:900px) 100vw, 46vw" '
       + 'alt="' + esc(alt) + '" decoding="async"' + lade + farbe + '>';
   }
