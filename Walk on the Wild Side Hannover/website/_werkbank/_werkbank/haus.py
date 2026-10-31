@@ -119,7 +119,7 @@ UNTERLAGEN = dict(
     text='Die Karte wechselt immer wieder, die Drinks dafür entwirft Momo. Hier liegen die Karten der Bar neu gesetzt neben dem Blatt, wie es auf dem Tisch lag.',
     seite_text='Die Karten der Bar, neu gesetzt im Kleid der neuen Seite: Momos Drinks mit Zutaten und Preis. Links das Blatt, wie es auf dem Tisch lag, rechts die Idee. Jede neue Karte schreibt ihr ' + _nf.in_(_werkzeugname('karten')) + '.',
     knopf2=('Die Drinks auf der Website', '../drinks.html'))
-FAECHER = [(_z, _n) for _z, _n in (('drunk-in-love', 'Drunk in Love'), ('preisliste', 'Die Preise der Bar'))
+FAECHER = [(_z, _n) for _z, _n in (('drunk-in-love', 'Sonderkarte'), ('preisliste', 'Preisliste'))
            if os.path.exists(os.path.join(ROOT, 'unterlagen', 'pdf', _z + '.pdf'))]   # zwei Karten im Fächer (PDFs von Werkbank Papier, sb_karten.py)
 
 # ---------- Auftakt, Brief ----------
@@ -362,7 +362,7 @@ b,strong{font-weight:500}
 .wf .wege__t{font-family:var(--serif);text-transform:none;letter-spacing:-.01em;font-size:clamp(2rem,3.6vw,3.4rem)!important;line-height:1.1}
 /* Schrift mittig (Abnahme-Tor 31.10.: Prata-Ziffern im Register 2 px zu hoch, «01» im Befund 1 px zu weit links) */
 .rgc-p{padding:9px 10px 5px!important}
-.sbf-z{padding:7px 8.5px 7px 9.5px!important}
+.sbf-z{padding:7.7px 8.5px 6.3px 9.5px!important}
 @media(max-width:600px){.auftakt__fuss .runter i{display:none}.auftakt__fuss .runter{gap:0}}   /* am Handy alle Zeilen auf einer Kante */
 /* Die Wortmarke als Zeichen steht in ihrem Rot (Rot nur als Punkt: Logo), nie in Gold */
 svg:has(> use[href="#hz"]){color:#f0323f!important;fill:#f0323f}

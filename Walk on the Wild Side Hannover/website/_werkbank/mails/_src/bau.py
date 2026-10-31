@@ -287,7 +287,7 @@ html.js .hr.da{{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,
 @media (max-width:760px){{.mb{{flex-basis:calc(100vw - 2 * var(--rand))}}.pfeile{{display:none}}}}
 @media (hover:none){{.pfeile{{display:none}}}}
 /* Hanken sitzt im Knopf von selbst mittig (Tor werkbank-mails 31.10.2026); der Ausgleich aus text_mitte.py ist für DM Mono gemacht */
-.mb-kn>span{{top:0!important}}.pf svg{{transform:none!important}}
+.mb-kn>span{{top:0!important;left:0!important;text-box:trim-both cap alphabetic}}.pf svg{{transform:none!important}}   /* Versalien mittig in Chromium und WebKit (wie knopf_mitte.css) */
 </style></head>
 <body>
 <script>if (!matchMedia('(prefers-reduced-motion:reduce)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
@@ -338,6 +338,10 @@ def main():
         z = os.path.join(MAILS, f['ordner']); os.makedirs(z, exist_ok=True)
         open(os.path.join(z, 'index.html'), 'w', encoding='utf-8').write(mail(f, '../../'))
     open(os.path.join(MAILS, 'index.html'), 'w', encoding='utf-8').write(uebersicht())
+    import sys
+    sys.path.insert(0, os.path.join(ROOT, '_werkbank'))
+    import papier_nach   # Knopfschrift mittig in Chromium und WebKit (knopf_mitte.css/.js des Papier-Teils, 31.10.2026)
+    papier_nach.knopf_mitte(os.path.join(MAILS, 'index.html'))
     json.dump([[f['nr'], f['ordner'], f['name'], f['satz']] for f in FAELLE], open(os.path.join(HIER, 'werkbank.json'), 'w'), ensure_ascii=False, indent=1)
     print(len(FAELLE), 'Mails gebaut:', ', '.join(f['ordner'] for f in FAELLE), '| Angebot', eur(SUMME), '| DJ-Abend', D0, N0)
 

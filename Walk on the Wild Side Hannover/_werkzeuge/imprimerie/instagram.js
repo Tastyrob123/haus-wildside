@@ -138,7 +138,7 @@
         <span class="handy handy--ganz ig-handy${story ? ' ig-handy--story' : ''}" style="width:${W}px;height:${H}px;--rand:${rand}px;--w:${W}px">
           <i class="handy__taste handy__taste--l1"></i><i class="handy__taste handy__taste--l2"></i><i class="handy__taste handy__taste--r"></i>
           <span class="handy__schirm">
-            <span class="handy__status"><b>9:41</b><i class="handy__insel"></i><span class="handy__sym"><i class="balken"></i><i class="welle"></i><i class="akku"></i></span></span>
+            <span class="handy__status" aria-hidden="true"><b class="handy__zeit"></b><i class="handy__insel"></i><span class="handy__sym"><i class="balken"></i><i class="welle"></i><i class="akku"></i></span></span>
             ${story ? '' : `<span class="ig-oben"><b>Beiträge</b></span>
             <span class="handy__kopf"><span class="handy__bild">${DS.zeichenSvg(M, 'currentColor')}</span><span class="handy__wer"><b>${esc(M.name)}</b><small>${esc(M.ort)}</small></span><span class="handy__ic">${IC.mehr}</span></span>`}
             <span class="ig-bilder" style="--sw:${sw}px;height:${story ? '100%' : ph + 'px'}">

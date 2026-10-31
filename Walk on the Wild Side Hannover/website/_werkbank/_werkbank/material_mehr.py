@@ -169,6 +169,8 @@ def du_und_kleid():
     open(p, 'w', encoding='utf-8').write(s)
     ZG.anwenden(ZIEL)
     TM.anwenden(ZIEL)
+    import papier_nach   # danach: Knopfschrift mittig in Chromium und WebKit (knopf_mitte.css/.js des Papier-Teils, 31.10.2026)
+    papier_nach.knopf_mitte(p)
 
 
 def baue():

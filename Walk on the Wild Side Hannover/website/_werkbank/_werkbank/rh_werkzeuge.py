@@ -87,7 +87,7 @@ WERKZEUGE = [
      [('registre', 'Übersicht'), ('registre-2', 'Herkunft und Seiten')], _weg('registre'), '', 'wildside-registre'),
     ('imprimerie', 'Die Plakatwerkstatt', 'Plakate und Papier', 'Jeder DJ-Abend hat sein Plakat. Ihr legt den Abend an, mit Namen und Uhrzeit, und die Werkstatt setzt dafür drei bis fünf SESSION-Plakate mit Wellen und Gesicht. Ihr wählt eins und setzt im Editor Texte, Datum und Farbe.',
      ['«DJ-Abend anlegen»: drei bis fünf SESSION-Plakate', 'Weiße Plakate der Bar mit roter Wortmarke', 'PDF in A3, Bilder für Instagram und die Story'],
-     [('imprimerie', 'Übersicht'), ('imprimerie-2', 'Zweite Ansicht')], _weg('imprimerie'), '', 'wildside-imprimerie'),
+     [('imprimerie', 'Übersicht'), ('imprimerie-2', 'Abteilungen')], _weg('imprimerie'), '', 'wildside-imprimerie'),
 ]
 # Die Namen der sieben Werkzeuge, eine Stelle: das Kleid der Werkzeuge (_werkzeuge/oberflaeche/kleid/wildside.js, WO_HAUS.namen, Schreiber: wildside-maison).
 NAMEN_HAUS = {'maison': 'Der Tresen', 'bureau': 'Das Schaufenster', 'carte': 'Die Pairing-Karte', 'reception': 'Das Gästebuch',

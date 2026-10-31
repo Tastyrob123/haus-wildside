@@ -139,6 +139,8 @@ def mach():
     # dieselben Nacharbeiten wie auf den übrigen Werkbank-Seiten (sonst erst beim nächsten Werkbank-Bau): kein Einzelwort im Titel, Schrift mittig in Knöpfen
     import zeile_ganz as ZG
     ZG.anwenden(F)
+    import papier_nach   # Knopfschrift mittig in Chromium und WebKit (Baustein knopf_mitte.css/.js des Papier-Teils, 31.10.2026)
+    papier_nach.knopf_mitte(seite)
     return n
 
 

@@ -262,10 +262,9 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
   #btnPruefen .pruef__t{position:relative;top:.9px}
   #startHilfe span{position:relative;top:.9px}
 }
-@supports not (interpolate-size:allow-keywords){
-  #start .ms-nav button>span{position:relative;top:.6px}
-}
 /* Abteilungs-Kacheln 761–1180 px: langer Name («Festplakate») lief unter den Pfeil (Auge 31.10.) */
 @media (max-width:1180px) and (min-width:761px){#abListe .wo__n b{font-size:clamp(17px,1.8vw,21px)}}
 /* Start, vier schmale Kacheln 1101–1320 px: Pfeil weg, der Name bekommt die ganze Breite (die Kachel bleibt ganz klickbar) */
 @media (max-width:1320px) and (min-width:1101px){#startAbteilungen>.wo:not(:nth-child(1)):not(:nth-child(7)) .wo__n{grid-template-columns:minmax(0,1fr)}#startAbteilungen>.wo:not(:nth-child(1)):not(:nth-child(7)) .wo__n > i{display:none}}
+/* Kacheln und Startbild, solange das Foto noch lädt (WebKit 31.10.: nach dem Seitenwechsel standen sie kurz als leere Fläche): ruhiger Verlauf der Nachtfarbe statt Fläche */
+#start .wo__k,#start .ws-sb.wo-sb--voll{background-image:linear-gradient(160deg,#3b2c27 0%,#1c1513 55%,#130e0d 100%)}

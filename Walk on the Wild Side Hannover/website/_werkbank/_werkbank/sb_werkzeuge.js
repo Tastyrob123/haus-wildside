@@ -35,7 +35,7 @@ const arg = process.argv.slice(2), alle = arg.includes('--alle'), nur = arg.filt
         if (art === 'Werkzeuge') {
           if (ZWEITE_BILD[k] && fs.existsSync(ZWEITE_BILD[k])) { await p.goto('file://' + ZWEITE_BILD[k]); await p.setViewportSize({ width: 1440, height: 900 }); await p.waitForTimeout(500); }
           else if (ZWEITE[k]) { await p.goto(st.adresse.replace(/\/?$/, '/') + ZWEITE[k], { waitUntil: 'load', timeout: 30000 }); await p.evaluate(() => document.fonts && document.fonts.ready); await p.waitForTimeout(3500); }
-          else { await p.evaluate(() => scrollTo(0, innerHeight * .9)); await p.waitForTimeout(3500); }   // Tresen 30.10.: Zoom und Zählen erst nach 3 s fertig
+          else { await p.evaluate(() => { scrollTo(0, innerHeight * .9); const f = [...document.querySelectorAll('*')].filter(x => x.scrollHeight > x.clientHeight + 200 && /auto|scroll/.test(getComputedStyle(x).overflowY) && x.clientHeight > 300).sort((a, b) => b.clientHeight - a.clientHeight)[0]; if (f) f.scrollTop = f.clientHeight * .85; }); await p.waitForTimeout(3500); }   // Werkzeuge mit eigener Scrollfläche (Plakatwerkstatt) rollen innen   // Tresen 30.10.: Zoom und Zählen erst nach 3 s fertig
           await p.screenshot({ path: path.join(HIER, 'ansichten', art, k + '-2.jpg'), quality: 88 });
           if (DRITTE_BILD[k] && fs.existsSync(DRITTE_BILD[k])) { await p.goto('file://' + DRITTE_BILD[k]); await p.waitForTimeout(500); await p.screenshot({ path: path.join(HIER, 'ansichten', art, k + '-3.jpg'), quality: 88 }); }
         }

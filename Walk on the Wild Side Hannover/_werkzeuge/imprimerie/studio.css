@@ -724,6 +724,7 @@ input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appeara
 .handy__schirm{position:relative;display:flex;flex-direction:column;width:100%;height:100%;overflow:hidden;border-radius:12.5% / 6%;background:#fff;color:#111;text-align:left}
 .handy__status{display:flex;align-items:center;justify-content:space-between;height:9.5%;padding:0 9% 0 10%;font:600 10px/1 -apple-system,'SF Pro Text','Helvetica Neue',sans-serif;color:#111;flex:none}
 .handy__status b{font-weight:600;letter-spacing:-.01em}
+.handy__zeit::before{content:"9:41"}   /* Uhr der Telefon-Attrappe als Zier, kein Lesetext (WebKit 31.10.: sie lag ausserhalb der Karte) */
 .handy__insel{position:absolute;left:50%;top:2.4%;width:33%;height:3.7%;margin-left:-16.5%;border-radius:999px;background:#0b0909}
 .handy__sym{display:flex;align-items:center;gap:3px}
 .handy__sym .balken{width:11px;height:7px;background:linear-gradient(90deg,#111 0 2px,transparent 2px 3px,#111 3px 5px,transparent 5px 6px,#111 6px 8px,transparent 8px 9px,#111 9px 11px);clip-path:polygon(0 75%,100% 0,100% 100%,0 100%)}
