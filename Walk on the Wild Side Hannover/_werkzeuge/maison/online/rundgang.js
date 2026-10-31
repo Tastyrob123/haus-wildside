@@ -15,7 +15,7 @@
     maison: { name: 'Der Tresen', schritte: [
       { ziel: ['.m-f5__titel', '#oben'], oben: true, titel: 'Das ist Der Tresen',
         text: 'Der Eingang zu allen Werkzeugen der Bar. Von hier aus pflegst du Website, die wechselnde Karte, Plakate, den Chat und die Marke selbst.' },
-      { ziel: ['.hz-z:first-child a', '.hz-tafel'], titel: 'Ein Fenster je Werkzeug',
+      { ziel: ['.hz-z:first-child a', '.hz-tafel'], titel: 'Ein Fenster je Werkzeug',
         text: 'Das Schaufenster, Die Pairing-Karte, Die Plakatwerkstatt, Das Gästebuch, Das Markenbuch, Die Besucherliste. Darunter steht, was dort gerade ansteht.' },
       { ziel: ['.m-f5__zeile'], titel: 'Heute auf der Website',
         text: 'Wer heute auf der Website war und wer von dort weiter zum Reservieren oder Feiern ging. Ein Klick öffnet die ganze Liste.' },

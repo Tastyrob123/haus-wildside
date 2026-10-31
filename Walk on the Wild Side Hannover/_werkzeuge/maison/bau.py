@@ -329,14 +329,14 @@ def schirm(n, k, leiste, alt, i=0, sizes='(max-width:1000px) 92vw, 60vw'):
                 f'<small>Platzhalter, nur lokal</small></div></figure>')
     b = BILDER[name]
     return (f'<figure class="m-schirm" data-r="schweb" style="--i:{i}"><div class="m-schirm__leiste" aria-hidden="true"><span>{e(leiste)}</span></div>'
-            f'<img src="img/{name}.webp" srcset="img/{name}-s.webp 1200w, img/{name}.webp {b[0]}w" sizes="{sizes}" width="{b[0]}" height="{b[1]}" alt="{e(alt)}" loading="lazy" decoding="async"></figure>')
+            f'<img src="img/{name}.webp" srcset="img/{name}-s.webp 1200w, img/{name}.webp {b[0]}w" sizes="{sizes}" width="{b[0]}" height="{b[1]}" alt="{e(alt)}" loading="eager" decoding="sync"></figure>')
 
 
 def stueck_bild(name, alt, cls='', i=0):
     if name not in BILDER:
         return ''
     w, h = BILDER[name]
-    return f'<figure class="m-stueck {cls}" data-r="schweb" style="--i:{i}"><img src="img/{name}.webp" width="{w}" height="{h}" alt="{e(alt)}" loading="lazy" decoding="async"></figure>'
+    return f'<figure class="m-stueck {cls}" data-r="schweb" style="--i:{i}"><img src="img/{name}.webp" width="{w}" height="{h}" alt="{e(alt)}" loading="eager" decoding="sync"></figure>'
 
 
 def stuecke(k):
@@ -370,7 +370,7 @@ def knopf(t, href, cls='', neu=False):
     if not href:
         return f'<span class="m-hinweis">{e(t.replace("öffnen", "folgt"))}, sobald es vorliegt.</span>'
     z = ' target="_blank" rel="noopener"' if neu else ''
-    return f'<a class="knopf {cls}" href="{e(href)}"{z}>{e(t)}<i>{PF}</i></a>'
+    return f'<a class="knopf {cls}" href="{e(href)}"{z}><span>{e(t)}</span><i>{PF}</i></a>'
 
 
 def saal_kopf(k, nr):
@@ -565,15 +565,15 @@ def seite(online, v):
 <script src="fehler.js?v={v['fehler.js']}"></script>
 </head>
 <body class="ma">
-<div class="m-tuer" id="tuer" role="alert" hidden><p class="m-tuer__t">{e(ZENTRALE)} startet nicht.</p><p id="tuer-t">&nbsp;</p>{pruef}<a class="knopf knopf--klein" href="">Neu laden<i>{PF}</i></a></div>
+<div class="m-tuer" id="tuer" role="alert" hidden><p class="m-tuer__t">{e(ZENTRALE)} startet nicht.</p><p id="tuer-t">&nbsp;</p>{pruef}<a class="knopf knopf--klein" href=""><span>Neu laden</span><i>{PF}</i></a></div>
 
 <header class="m-oben">
-  <a class="knopf knopf--klein m-oben__ecke m-oben__ecke--l" href="#fuss">Anleitungen<i>{PF}</i></a>
+  <a class="knopf knopf--klein m-oben__ecke m-oben__ecke--l" href="#fuss"><span>Anleitungen</span><i>{PF}</i></a>
   <nav class="m-insel" aria-label="Werkzeuge">
     <a class="m-ecke" href="#oben"><span class="m-ecke__ring">{lamm("m-ecke__z")}</span><span class="m-ecke__t"><b>{e(ZENTRALE)}</b><small>Alle Werkzeuge · Wild Side</small></span></a>
     <span class="m-insel__wege">{insel}</span>
   </nav>
-  <a class="knopf knopf--klein knopf--rot m-oben__ecke" href="{web}" target="_blank" rel="noopener">Website ansehen<i>{PF}</i></a>
+  <a class="knopf knopf--klein knopf--rot m-oben__ecke" href="{web}" target="_blank" rel="noopener"><span>Website ansehen</span><i>{PF}</i></a>
 </header>
 
 <main>
@@ -654,7 +654,7 @@ def rundgang():
     maison: {{ name: '{ZENTRALE}', schritte: [
       {{ ziel: ['.m-f5__titel', '#oben'], oben: true, titel: 'Das ist {ZENTRALE}',
         text: 'Der Eingang zu allen Werkzeugen der Bar. Von hier aus pflegst du Website, die wechselnde Karte, Plakate, den Chat und die Marke selbst.' }},
-      {{ ziel: ['.hz-z:first-child a', '.hz-tafel'], titel: 'Ein Fenster je Werkzeug',
+      {{ ziel: ['.hz-z:first-child a', '.hz-tafel'], titel: 'Ein Fenster je\u00a0Werkzeug',
         text: '{namen}. Darunter steht, was dort gerade ansteht.' }},
       {{ ziel: ['.m-f5__zeile'], titel: 'Heute auf der Website',
         text: 'Wer heute auf der Website war und wer von dort weiter zum Reservieren oder Feiern ging. Ein Klick öffnet die ganze Liste.' }},
