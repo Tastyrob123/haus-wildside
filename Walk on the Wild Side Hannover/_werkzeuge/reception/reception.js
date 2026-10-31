@@ -44,7 +44,7 @@ const ARTBILD = { reservieren: 'pl-theke-480', dinner: 'an-empore-tafel-480', fe
 const ARTBILDER = { reservieren: ['pl-theke-480', 'theke-480', 'glas-kerze-480', 'voll-480'], dinner: ['an-empore-tafel-480', 'pl-empore-480', 'pl-tisch-480'],
   feier: ['feste-anstossen-480', 'anstossen-480', 'silvester-480', 'freundinnen-480'], nachricht: ['schild-ecke-480', 'pl-ecke-480', 'fenster-480', 'tuer-rot-480'] };
 const artBild = (art, id) => { const l = ARTBILDER[art] || [ARTBILD[art] || ARTBILD.nachricht]; let h = 0; for (const c of String(id || '')) h = (h * 31 + c.charCodeAt(0)) >>> 0; return l[h % l.length]; };
-const bild = (art, kl, id) => `<span class="${kl}" aria-hidden="true"><img src="/assets/bild/${artBild(art, id)}.webp" alt="" width="900" height="675" decoding="async"></span>`;
+const bild = (art, kl, id) => `<span class="${kl}" aria-hidden="true"><img src="/assets/bild/${artBild(art, id)}.webp" alt="" width="900" height="675" decoding="sync"></span>`;
 const uhr = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr'; };
 
 /* ---------- Server ---------- */
@@ -207,7 +207,9 @@ function start() {
 const THEMABILD = { 'Feiern & Dinner': 'an-empore-tafel-480', 'Essen & Allergien': 'pl-tisch-480', 'DJ-Abende & Konzerte': 'konzert-480', 'Drinks & Preise': 'glas-negroni-480',
   'Zeiten & Reservieren': 'pl-theke-480', 'Anfahrt': 'pl-ecke-480', 'Das Haus & Team': 'momo-lacht-480', 'Weitere Fragen': 'fenster-480' };
 /* Bilder in jeder Liste (Robert 19.10.2026: «in allen Tools Bilder dazu»): jedes Thema, jede Angabe, jeder Nachtrag mit einem Foto des Hauses (website/assets/bild) */
-const IMG = (n, kl) => `<span class="${kl}" aria-hidden="true"><img src="/assets/bild/${n}.webp" alt="" width="640" height="800" loading="lazy" decoding="async"></span>`;
+/* Bilder in Listen: sofort laden und beim Malen entschlüsseln (Cloud-Fund WebKit 31.10.2026: Karten unterhalb des ersten Bildschirms blieben leer, weil WebKit
+   träge bzw. asynchron entschlüsselte Bilder erst im Bild malt). Die Fotos sind klein (480 px). */
+const IMG = (n, kl) => `<span class="${kl}" aria-hidden="true"><img src="/assets/bild/${n}.webp" alt="" width="640" height="800" decoding="sync"></span>`;
 const THEMA_RE = [['Feiern & Dinner', /feier|geburtstag|hochzeit|firmen|gruppe|privat|dinner|tafel|empore|ganze bar|pauschale|budget|jga|junggesell|weihnachtsfeier|party\b|event|birthday|wedding|group|private/i],
   ['Essen & Allergien', /allerg|gluten|laktose|zöliak|unverträg|nuss|nüss|vegan|vegetar|essen|hunger|snack|küche|food|eat|nuts|dairy|celiac/i],
   ['DJ-Abende & Konzerte', /\bdj|session|konzert|live|musik|programm|eintritt|auflegen|gastschicht|tanz|music|concert/i],
@@ -236,14 +238,14 @@ function frageKarte(f) {
   const offen = !f.belegt && !f.erledigt, d = new Date(f.zeit);
   const wann = isNaN(d) ? '' : d.toLocaleDateString('de-DE', { day: 'numeric', month: 'short' }) + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
   return `<button class="re-a re-q${offen ? ' re-q--offen' : ''}" type="button" data-gehe="gefragt"${offen ? ' data-wahl="luecke"' : ''}>
-    <span class="re-a__bild" aria-hidden="true"><img src="/assets/bild/${THEMABILD[f.gruppe] || 'fenster-480'}.webp" alt="" width="900" height="675" decoding="async"></span>
+    <span class="re-a__bild" aria-hidden="true"><img src="/assets/bild/${THEMABILD[f.gruppe] || 'fenster-480'}.webp" alt="" width="900" height="675" decoding="sync"></span>
     <span class="re-a__n"><span class="re-a__k"><i class="re-q__sp">${esc((f.sprache || '').toUpperCase())}</i>${esc(f.gruppe || 'Weitere Fragen')}</span><b dir="auto">${esc(f.frage)}</b><small dir="auto">${offen ? 'Dazu stand nichts auf der Website. Einmal nachtragen, dann antwortet der Chat selbst.' : esc(String(f.antwort || '').replace(/\s+/g, ' '))}</small></span>
     <span class="re-a__st">${offen ? 'Ohne Antwort' : 'Beantwortet'}<small>${esc(wann)}</small></span></button>`;
 }
 function arten() {   // die Arten als Kacheln mit Foto (wo-aufg des Pakets), wie viele Anfragen je Art im Eingang liegen
   const Z = { reservieren: 'uhr', dinner: 'blatt', feier: 'siegel', nachricht: 'mail' };
   return `<h2 class="wo-zw">Nach <em>Art</em></h2><div class="wo-aufg">${Object.keys(ART).map(k => { const l = S.anfragen.filter(a => a.art === k), o = l.filter(a => a.status !== 'erledigt').length;
-    return `<button class="wo-ag" type="button" data-gehe="eingang"><span class="wo-ag__b"><img src="/assets/bild/${ARTBILD[k] || ARTBILD.nachricht}.webp" alt="" width="900" height="675" decoding="async"></span><span class="wo-ag__t"><i class="wo-ag__z">${WO.ic(Z[k] || 'mail')}</i><b>${ART_LANG[k]}</b><span>${l.length ? mal(l.length, 'eine Anfrage', 'Anfragen') + (o ? ' · ' + o + ' offen' : '') : 'noch keine'}</span></span></button>`; }).join('')}</div>`;
+    return `<button class="wo-ag" type="button" data-gehe="eingang"><span class="wo-ag__b"><img src="/assets/bild/${ARTBILD[k] || ARTBILD.nachricht}.webp" alt="" width="900" height="675" decoding="sync"></span><span class="wo-ag__t"><i class="wo-ag__z">${WO.ic(Z[k] || 'mail')}</i><b>${ART_LANG[k]}</b><span>${l.length ? mal(l.length, 'eine Anfrage', 'Anfragen') + (o ? ' · ' + o + ' offen' : '') : 'noch keine'}</span></span></button>`; }).join('')}</div>`;
 }
 /* ---------- Eingang ---------- */
 /* Glieder einer Zeile (Tor 3, K12, 30.10.2026): jedes Glied bleibt ganz, der Trennpunkt steht vor dem Glied und wird am Zeilenanfang abgeschnitten
@@ -600,7 +602,7 @@ function verbindeBrief(a) {
         fensterZu(); const alt = schnapp(), o = G._orig; e.text = o.text; e.betreff = o.betreff; G = e.gestalt = { _orig: o }; merke(alt); neu(true); quit('Zurück auf der Vorlage', '', [], false, 3000); });
     if (w === 'foto') {
       return fenster(`<h2>Foto <em>einfügen.</em></h2><p>Ein Foto des Hauses für diesen Brief. Es kommt unter ${wahl && /^p\d+$/.test(wahl.dataset.b) ? 'den gewählten Absatz' : 'den Text vor dem Gruss'}; danach kannst du es verschieben und an den Ecken grösser oder kleiner ziehen.</p>
-        <div class="gs-fotos">${BRIEFBILDER.map(([k, n]) => `<button type="button" data-foto="${k}" data-name="${esc(n)}"><img src="/assets/bild/${k}-480.webp" alt="" loading="lazy"><span class="re-gl-r re-gl--strich">${glieder(n.split(' / ').map(esc))}</span></button>`).join('')}</div>`, false);
+        <div class="gs-fotos">${BRIEFBILDER.map(([k, n]) => `<button type="button" data-foto="${k}" data-name="${esc(n)}"><img src="/assets/bild/${k}-480.webp" alt="" decoding="sync"><span class="re-gl-r re-gl--strich">${glieder(n.split(' / ').map(esc))}</span></button>`).join('')}</div>`, false);
     }
   });
   document.addEventListener('click', S.fotoKlick || (S.fotoKlick = ev => {
@@ -1097,7 +1099,7 @@ function wissenS() {
     const leer = b === 'Veranstaltungen' ? 'Noch keine. Füg oben den Link einer Veranstaltung ein, dann kennt der Chat sie.' : 'Noch keine Antwort des Teams. Fragen ohne Antwort stehen unter «Das wurde gefragt».';
     const n = l.filter(p => !p.beispiel).length;
     return `<section class="platte sb-t" data-bereich="${esc(b)}">
-      <header class="sb-t__k">${BER_BILD[b] ? `<span class="sb-t__bild" aria-hidden="true"><img src="/assets/bild/${BER_BILD[b]}.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></span>` : ''}
+      <header class="sb-t__k">${BER_BILD[b] ? `<span class="sb-t__bild" aria-hidden="true"><img src="/assets/bild/${BER_BILD[b]}.webp" alt="" width="900" height="675" decoding="sync"></span>` : ''}
         <h2>${paar(esc(b))}</h2><small>${n ? mal(n, 'eine Angabe', 'Angaben') : 'noch leer'}</small>
         <button class="rund sb-t__neu" type="button" data-neu="${esc(b)}" data-tip="Hinzufügen" aria-label="Zu ${esc(b)} hinzufügen"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg></button></header>
       ${gruppen.length ? gruppen.map(g => `<div class="sb-g"><p class="sb-g__n mono">${esc(g.n)}</p>${g.l.map(zeile).join('')}</div>`).join('') : `<p class="wi__leer">${leer}</p>`}
@@ -1152,7 +1154,7 @@ function wissenS() {
       const da = bereiche.filter(b => liste.some(p => p.bereich === b) || (!q && ['Veranstaltungen', 'Fragen & Antworten'].includes(b)));
       if (!da.includes(S.bereich)) S.bereich = da[0] || '';
       const idx = da.map(b => { const n = liste.filter(p => p.bereich === b && !p.beispiel).length, t = liste.filter(p => p.bereich === b && (p.geaendert || p.aus || p.typ === 'eintrag' || (p.typ === 'antwort' && !p.beispiel))).length;
-        return `<button class="sb-i" type="button" data-bereich="${esc(b)}"${!q && S.bereich === b ? ' aria-current="true"' : ''}>${BER_BILD[b] ? `<span class="sb-i__bild" aria-hidden="true"><img src="/assets/bild/${BER_BILD[b]}.webp" alt="" width="900" height="675" decoding="async"></span>` : ''}
+        return `<button class="sb-i" type="button" data-bereich="${esc(b)}"${!q && S.bereich === b ? ' aria-current="true"' : ''}>${BER_BILD[b] ? `<span class="sb-i__bild" aria-hidden="true"><img src="/assets/bild/${BER_BILD[b]}.webp" alt="" width="900" height="675" decoding="sync"></span>` : ''}
           <span class="sb-i__n"><b>${paar(esc(b))}</b><small>${n ? mal(n, 'eine Angabe', 'Angaben') : 'noch leer'}${t ? ' · ' + t + ' vom Team' : ''}</small></span></button>`; }).join('');
       return `<div class="sb"><nav class="platte sb-idx" aria-label="Bereiche des Wissens">${idx}</nav><div class="sb-rechts">${q ? da.map(tafel).join('') : tafel(S.bereich)}</div></div>`;
     })()}</div>`;
