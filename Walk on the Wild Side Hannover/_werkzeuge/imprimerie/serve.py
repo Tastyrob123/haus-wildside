@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """L’Imprimerie · Walk on the Wild Side Hannover, eigener Prüfserver:  python3 serve.py [port]   (Standard 9087) → http://127.0.0.1:9087/_werkzeuge/imprimerie/
-Bildet die Wege des Hauses nach (Vorlage: Prüfserver der Werkstatt der Taverne zum Schäfli, dort nur gelesen), damit L’Imprimerie hier genau so läuft wie unter /_werkzeuge/imprimerie/
+Bildet die Wege des Hauses nach (Vorlage: Prüfserver der Plakatwerkstatt des Stammhauses), damit L’Imprimerie hier genau so läuft wie unter /_werkzeuge/imprimerie/
 und online (/werkzeuge/imprimerie/): Le Livre liegt daneben unter /_werkzeuge/livre/, die Fotos der Website unter /assets/bild/, das Oberflächen-Paket unter
 /assets/oberflaeche/ (_werkzeuge/oberflaeche/, Chat «wildside-maison»), Schriften und Zeichen der Website unter /assets/schrift/ und /assets/zeichen/. Alles nur lesend, nur diese Wege.
 
@@ -65,10 +65,10 @@ def probe(daten):
     woerter = {w for w in re.findall(r'[a-zäöüé]{4,}', a_low)}
     # Abnahme-Tor 29.10.: Wortstamm statt nur ganzes Wort («Platzkarten» findet «Platzkarte»), Arten auch über ihre Alltagsnamen
     ART_WORT = {'tischkarte': ('platzkarte', 'tischkarte', 'namensschild', 'tischnummer'), 'menuekarte': ('menükarte', 'menuekarte', 'speisekarte'),
-                'abendplakat': ('plakat des abends',), 'plakat': ('plakat', 'aushang an der wand'), 'flyer': ('flyer',), 'story': ('story',), 'instagram': ('instagram', 'beitrag'),
+                'abendplakat': ('session', 'dj-abend', 'dj abend', 'auflegen'), 'getraenke': ('getränkekarte', 'karte', 'drinks', 'preise'), 'plakat': ('plakat', 'aushang an der wand'), 'flyer': ('flyer',), 'story': ('story',), 'instagram': ('instagram', 'beitrag'),
                 'gutschein': ('gutschein',), 'einladung': ('einladung',), 'aushang': ('aushang',), 'hinweiskarte': ('hinweis',), 'newsletter': ('newsletter', 'e-mail')}
     trifft = lambda w, t: w in t or (len(w) > 6 and (w[:-1] in t or w[:-2] in t))
-    dc = 'dirty chicken' in a_low or 'dirty-chicken' in a_low   # Dirty-Chicken-Aufträge nehmen immer die Dirty-Chicken-Marke (Ton «dc», Zeichen 3)
+    dc = False   # keine Sondermarke im Wild Side (Dirty Chicken ist ein eigenes Haus)
     beste = []
     for f in glob.glob(os.path.join(HIER, 'haeuser', 'wildside', 'vorlagen', '*.json')):
         if f.endswith('index.json'):
@@ -76,7 +76,7 @@ def probe(daten):
         d = json.load(open(f, encoding='utf-8'))
         if daten.get('format') and d['format'] != daten['format']:
             continue
-        art = os.path.basename(f)[:-5]   # nennt der Auftrag die Art («Flyer», «Plakat», «Platzkarten» …), geht diese vor (Demo-Check Schlössli 21.10.2026)
+        art = os.path.basename(f)[:-5]   # nennt der Auftrag die Art («Flyer», «Plakat», «Platzkarten» …), geht diese vor (Demo-Check 21.10.2026)
         art_bonus = 3 if art in a_low or any(x in a_low for x in ART_WORT.get(art, ())) else 0
         for v in d['vorlagen']:
             if v['vorlage'] == 'menue' and menue_kommt(v['inhalt'].get('ueber', '')):
@@ -94,7 +94,7 @@ def probe(daten):
         if vorlage == v['vorlage']:
             return v['inhalt']
         i = dict(text_inhalt); i.pop('liste', None) if vorlage not in ('karte', 'menue', 'programm') else None
-        if v['inhalt'].get('bild') and not (str(v['inhalt']['bild']).startswith(('pl_', 'po_')) and text_inhalt.get('bild')): i['bild'] = v['inhalt']['bild']   # Rudis Illustrationen gibt es nur klein: in grossen Fotoaufbauten das Foto der Textvorlage
+        if v['inhalt'].get('bild') and not (str(v['inhalt']['bild']).startswith(('p-', 'wp-', 'uw-pl-')) and text_inhalt.get('bild')): i['bild'] = v['inhalt']['bild']   # ganze Plakate nie als Foto in anderen Aufbauten
         return i
     NAMEN = ['Lena Brandt', 'Jonas Albers', 'Mira Okafor', 'Paul Wendt', 'Sophie Krüger']   # Platzkarten mit Namen: je Entwurf ein Beispielname
     def seite(vorlage, ton, n=0):
@@ -108,9 +108,9 @@ def probe(daten):
         grund = dict(v.get('stil') or {})
         def mstil(ausr, rahmen): return dict(grund, ausr=ausr, rahmen=rahmen)
         def mseite(ton, st): return {'vorlage': 'menue', 'ton': 'dc' if dc else ton, 'inhalt': v['inhalt'], 'stil': st}
-        A = {'l': 'links', 'c': 'mittig'}; R = {'ohne': 'ohne Rahmen', 'einfach': 'mit Rahmen'}; T = {'hell': 'Warmweiss', 'creme': 'Plakatpapier', 'dunkel': 'Nacht'}
+        A = {'l': 'links', 'c': 'mittig'}; R = {'ohne': 'ohne Rahmen', 'einfach': 'mit Rahmen'}; T = {'hell': 'Weiss', 'creme': 'Creme', 'dunkel': 'Nacht'}
         # Abnahme-Tor 30.10.2026: die fünf waren fast gleich (der Aufbau «menue» setzt Ausrichtung und Rahmen selbst). Jetzt verschieden in Aufbau, Gewichtung
-        # und Satz, immer derselbe Abend: Menükarte, Menükarte im anderen Ton, Teller und Drinks als Liste, nur die Drinks, die Teller in Rudis Zeilen
+        # und Satz, immer derselbe Abend: Menükarte, Menükarte im anderen Ton, Teller und Drinks als Liste, nur die Drinks, eine zweite Menükarte
         mi = v['inhalt']; L = [e for e in mi.get('liste', []) if e.get('name') or e.get('detail')]
         def kseite(ton, inhalt): return {'vorlage': 'karte', 'ton': 'dc' if dc else ton, 'inhalt': dict(inhalt, fuss=mi.get('fuss', ''), akzent=mi.get('akzent'))}
         teller = [e for e in L if e.get('name')]
@@ -122,11 +122,11 @@ def probe(daten):
                          liste=[dict(name=e.get('gang', ''), detail=e['detail'], preis='') for e in L if e.get('detail')]))]}
                      if sum(1 for e in L if e.get('detail')) >= 3 else
                      {'titel': 'Menükarte, ' + ('Violett' if dc else T['creme' if v['ton'] != 'creme' else 'hell']), 'seiten': [mseite('creme' if v['ton'] != 'creme' else 'hell', grund)]}]
-        rudi = teller and all('|' in e['name'] and len(e['name']) <= 44 and all(len(x.strip()) <= 22 for x in e['name'].split('|')) for e in teller)   # nur kurze Zeilen wie Rudis eigene
+        rudi = False   # Versalzeilen mit «/» gibt es im Wild Side nicht
         if not rudi:
             varianten.append({'titel': 'Menükarte, ' + ('Violett' if dc else T['creme' if v['ton'] != 'creme' else 'hell']), 'seiten': [mseite('creme' if v['ton'] != 'creme' else 'hell', grund)]})
-        else:   # Rudis Zeilen: Versalien mit «/» (Hausregel)
-            varianten.append({'titel': 'Die Teller in Rudis Zeilen, ' + ('Violett' if dc else T['dunkel']), 'seiten': [kseite('dunkel', dict(ueber=mi.get('ueber', ''), titel='Vom Pass',
+        else:
+            varianten.append({'titel': 'Die Drinks in Versalien, ' + ('Violett' if dc else T['dunkel']), 'seiten': [kseite('dunkel', dict(ueber=mi.get('ueber', ''), titel='Vom Pass',
                 liste=[dict(name=' / '.join(x.strip() for x in re.split(r'\s*[|·]\s*', e['name'])).upper(), detail=e.get('detail', ''), preis='') for e in teller]))]})   # mit dem Drink darunter, sonst bleibt unten ein Loch
         return {'entwuerfe': {'name': v['titel'], 'format': fmt, 'varianten': varianten, 'hinweise': hinweis}, 'verbrauch': {}}
     if daten.get('varianten'):
@@ -136,15 +136,15 @@ def probe(daten):
             if len(varianten) == 5:
                 break
             if (a, t) != (v['vorlage'], v['ton']) and not (dc and a == v['vorlage']) and (a not in ('buehne', 'fenster', 'geteilt') or v['inhalt'].get('bild') or text_inhalt.get('bild')):
-                varianten.append({'titel': {'buehne': 'Foto gross', 'fenster': 'Ruhig im Rahmen', 'geteilt': 'Foto und Text', 'aushang': 'Nur Schrift', 'deckel': 'Titelblatt'}[a] + ', ' + ('Violett' if dc else {'dunkel': 'Nacht', 'creme': 'Plakatpapier', 'hell': 'Warmweiss'}[t]), 'seiten': [seite(a, t, len(varianten))]})
+                varianten.append({'titel': {'buehne': 'Foto gross', 'fenster': 'Ruhig im Rahmen', 'geteilt': 'Foto und Text', 'aushang': 'Nur Schrift', 'deckel': 'Titelblatt'}[a] + ', ' + ('Violett' if dc else {'dunkel': 'Nacht', 'creme': 'Creme', 'hell': 'Weiss'}[t]), 'seiten': [seite(a, t, len(varianten))]})
         schon = {(x['seiten'][0]['vorlage'], x['seiten'][0]['ton']) for x in varianten}   # auffüllen ohne Doppel: Titelblatt und Nur Schrift in den Tönen, die noch fehlen
         for a, t in [('deckel', 'hell'), ('deckel', 'dunkel'), ('aushang', 'creme'), ('aushang', 'hell'), ('deckel', 'creme')]:
             if len(varianten) == 5: break
             if (a, 'dc' if dc else t) in schon: continue
             schon.add((a, 'dc' if dc else t))
-            varianten.append({'titel': {'aushang': 'Nur Schrift', 'deckel': 'Titelblatt'}[a] + ', ' + ('Violett' if dc else {'dunkel': 'Nacht', 'creme': 'Plakatpapier', 'hell': 'Warmweiss'}[t]), 'seiten': [seite(a, t, len(varianten))]})
+            varianten.append({'titel': {'aushang': 'Nur Schrift', 'deckel': 'Titelblatt'}[a] + ', ' + ('Violett' if dc else {'dunkel': 'Nacht', 'creme': 'Creme', 'hell': 'Weiss'}[t]), 'seiten': [seite(a, t, len(varianten))]})
         while len(varianten) < 5:
-            varianten.append({'titel': 'Titelblatt, ' + ('Violett' if dc else 'Warmweiss'), 'seiten': [seite('deckel', 'hell', len(varianten))]})
+            varianten.append({'titel': 'Titelblatt, Weiss', 'seiten': [seite('deckel', 'hell', len(varianten))]})
         return {'entwuerfe': {'name': v['titel'], 'format': fmt, 'varianten': varianten, 'hinweise': hinweis}, 'verbrauch': {}}
     return {'entwurf': {'name': v['titel'], 'format': fmt, 'seiten': [seite(v['vorlage'], v['ton'])], 'hinweise': hinweis}, 'verbrauch': {}}
 

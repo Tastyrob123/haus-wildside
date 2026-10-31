@@ -5,7 +5,7 @@
   DS.B = 3;          // Beschnitt
   DS.SICHER = 4;     // Abstand vom Rand, in dem Text sicher bleibt
 
-  /* Tiefe der Kopfzeile wie Rudis gedruckter Schriftzug (Robert 29.10.2026: «ist das unscharf …?»): scharfe Buchstabenkante, darunter ein harter, leicht
+  /* Tiefe der Kopfzeile wie ein gedruckter Schriftzug (Robert 29.10.2026: «ist das unscharf …?»): scharfe Buchstabenkante, darunter ein harter, leicht
      versetzter Schatten in einem dunkleren Ton der Schriftfarbe, ohne Weichzeichner. Leuchten nur auf dunklem Grund (Bühne, Nacht) und nur ausserhalb der Kante:
      ein weiter, schwacher Hof, den die Schrift darüber vollständig deckt. Gilt gleich für Bildschirm (satz.js), PNG und PDF (druck.js). */
   DS.kopfTiefe = (hex, art, gr) => {
@@ -56,14 +56,14 @@
       /* Le Livre nennt die Grösse des Originals; gedruckt wird die Datei unter dem Weg «fl» des Markenbuchs, deren Mass in marke.json steht.
          Mit dem Original rechnete die Druckprüfung zu viele dpi (haus-winter: 186 statt 88 dpi auf A3). */
       const px = Object.fromEntries(M.bilder.map(b => [b.key, b]));
-      const culinarium = false;   // Sonderweg des Culinarium-Markenbuchs, hier nicht gebraucht
-      if (culinarium) {   // Das Markenbuch des Wild Side (Chat «wildside-livre»): die Bereiche nennt es selbst in livre.json; die Dateien liegen dort, wohin «fl» und «fs» zeigen
+      const sonderweg = false;   // Sonderweg eines anderen Markenbuchs, hier nicht gebraucht
+      if (sonderweg) {   // Das Markenbuch des Wild Side (Chat «wildside-livre»): die Bereiche nennt es selbst in livre.json; die Dateien liegen dort, wohin «fl» und «fs» zeigen
       }
       M.bilder = L.fotos.filter(f => !(M.raus || []).includes(f.k) && f.art !== 'ki').map(f => ({ key: f.k, alt: (f.t && (f.t.de || Object.values(f.t)[0])) || f.k, w: (px[f.k] || f).w, h: (px[f.k] || f).h, gruppe: DS.LIVRE_TEXT.b[f.b] || 'Haus',
         bereich: f.b, saison: f.s, format: f.f, herkunft: f.art, ki: !!f.ki, quelle: f.q, fl: f.fl, fs: f.fs }));
       /* Fotos, die nur diese Kopie kennt (Gastbetriebe im Haus, Hunde, Packages …), bleiben als «Weitere Fotos» dabei */
       const da = new Set(M.bilder.map(b => b.key)), mehr = Object.values(px).filter(b => !da.has(b.key) && !(M.raus || []).includes(b.key));
-      if (culinarium && mehr.length) { DS.LIVRE_TEXT.b = Object.assign({ motive: 'Plakat-Motive' }, DS.LIVRE_TEXT.b, { weitere: 'Weitere Fotos' }); M.bilder = M.bilder.concat(mehr.filter(b => b.gruppe !== 'Plakat-Motive').map(b => Object.assign({}, b, { gruppe: 'Weitere Fotos', bereich: 'weitere', herkunft: 'haus', ki: false })), mehr.filter(b => b.gruppe === 'Plakat-Motive').map(b => Object.assign({}, b, { bereich: 'motive', herkunft: 'haus', ki: false })));   /* Robert 29.10.: Fotos zuerst, Plakate nur unter «Plakat-Motive» */ }
+      if (sonderweg && mehr.length) { DS.LIVRE_TEXT.b = Object.assign({ motive: 'Plakat-Motive' }, DS.LIVRE_TEXT.b, { weitere: 'Weitere Fotos' }); M.bilder = M.bilder.concat(mehr.filter(b => b.gruppe !== 'Plakat-Motive').map(b => Object.assign({}, b, { gruppe: 'Weitere Fotos', bereich: 'weitere', herkunft: 'haus', ki: false })), mehr.filter(b => b.gruppe === 'Plakat-Motive').map(b => Object.assign({}, b, { bereich: 'motive', herkunft: 'haus', ki: false })));   /* Robert 29.10.: Fotos zuerst, Plakate nur unter «Plakat-Motive» */ }
     }
     M.bildIndex = Object.fromEntries(M.bilder.map(b => [b.key, b]));
     /* Druckfassungen (_qa/druckfassungen.py): dasselbe Foto in mehr Pixeln, nur für PDF/Bild und Druckprüfung, nicht für den Bildschirm */

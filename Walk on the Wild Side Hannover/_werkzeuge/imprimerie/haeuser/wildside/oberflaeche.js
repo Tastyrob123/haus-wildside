@@ -1,4 +1,4 @@
-/* L’Imprimerie des Walk on the Wild Side Hannover (28.10.2026, Hausschicht der Taverne zum Schäfli übernommen, dort nur gelesen; Weg der Wirtschaft am Schlössli und des Berghotel Gasterntal): Werkzeug-Oberfläche «Die Bühne».
+/* L’Imprimerie des Walk on the Wild Side Hannover (28.10.2026, Hausschicht übernommen): Werkzeug-Oberfläche «Die Bühne».
    Gleicher Weg wie die Plakatwerkstatt des Landgasthof Ruedihus (haeuser/ruedihus/oberflaeche.js dort, nur gelesen und übernommen).
    Die Plakatwerkstatt hat ein eigenes Gerüst (Übersicht #start mit .ms-leiste/.ms-kopf, Arbeitsfläche mit header.kopf/aside.links); der Kern
    (_Drucksachen-Studio, über Carlton und Doldenhorn) bleibt unberührt. Diese Hausschicht legt nur an, was in allen Werkzeugen des Hauses gleich ist:

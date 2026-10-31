@@ -1,6 +1,6 @@
 /* L’Imprimerie des Walk on the Wild Side Hannover: Bühne über jeder Ansicht und Knopf zurück zu La Maison (Robert 15.10.2026).
    «Heroes richtig schön, geil, luxuriös, edel», Vorbild Le Bureau der Häuser: blaue Tafel mit Tapete, Goldrahmen innen,
-   Foto des Hauses rechts mit weichem Übergang, Titel links. Gleiche Sprache wie Grand Beau-Rivage/website/studio/buehne.js.
+   Foto des Hauses rechts mit weichem Übergang, Titel links. Gleiche Sprache wie die Bühne der übrigen Werkzeuge.
    «In allen Tools zurück in die Maison kommen» → runder Knopf mit Haus in beiden Kopfzeilen.
    Nur für dieses Haus geladen (index.html, HAUS_STIL). Entfernen = vorheriger Stand. */
 (function () {

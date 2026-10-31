@@ -1,4 +1,4 @@
-/* Plakatwerkstatt · Walk on the Wild Side Hannover (31.10.2026, Form der Plakatwerkstatt des Culinarium übernommen): zwei Ansichten.
+/* Plakatwerkstatt · Walk on the Wild Side Hannover (31.10.2026, Form der Plakatwerkstatt des Stammhauses): zwei Ansichten.
    1. «Plakat-Grund» (#msMotive): die rot-cremefarbenen Wellen der SESSION-Plakate und die Gesichter in Schwarzweiss, jedes gleich als SESSION-Plakat;
       «Als Plakat öffnen» öffnet es im Editor.
    2. «DJ-Abend anlegen» (#msAbend): Name, Stil, Samstag und Uhrzeit → drei bis fünf SESSION-Plakate in verschiedenen Wellen und Gesichtern, sofort und ohne KI;

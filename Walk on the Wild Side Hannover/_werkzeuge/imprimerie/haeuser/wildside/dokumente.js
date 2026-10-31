@@ -1,4 +1,4 @@
-/* Die Plakatwerkstatt des Walk on the Wild Side Hannover (Satz übernommen vom Culinarium 29.10.2026): Satz der Dokumente (29.10.2026, Auftrag Oberchef nach Roberts «Alle Dokumente müssen nochmal
+/* Die Plakatwerkstatt des Walk on the Wild Side Hannover (Satz des Stammhauses, 29.10.2026): Satz der Dokumente (29.10.2026, Auftrag Oberchef nach Roberts «Alle Dokumente müssen nochmal
    … schöner gemacht werden»). Ersetzt für dieses Haus einzelne Aufbauten aus vorlagen.js; jedes andere Haus behält den Kern (ALT).
    Regeln stehen in STILBLATT-DRUCKSACHEN.md und stilblatt.json im selben Ordner:
    - Komposition als Einheit: Zeichen und Inhalt bilden eine Gruppe, die Gruppe steht auf der optischen Mitte (leicht über der geometrischen).

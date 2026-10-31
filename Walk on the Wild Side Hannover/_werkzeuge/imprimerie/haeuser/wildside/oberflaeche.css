@@ -1,4 +1,4 @@
-/* L’Imprimerie des Walk on the Wild Side Hannover (21.10.2026, Weg der Werkstatt der Wirtschaft am Schlössli, dort nur gelesen): Anschluss an die Werkzeug-Oberfläche «Die Bühne» (Nachtrag Chef-Chat 17.10.2026, oberflaeche.js daneben;
+/* L’Imprimerie des Walk on the Wild Side Hannover (21.10.2026, Weg der Plakatwerkstatt des Stammhauses): Anschluss an die Werkzeug-Oberfläche «Die Bühne» (Nachtrag Chef-Chat 17.10.2026, oberflaeche.js daneben;
    gleicher Weg wie die Werkstatt des Landgasthof Ruedihus, dort nur gelesen).
    Kopf, Marke, runde Knöpfe, Rand und Startbilder sehen aus wie in den anderen Werkzeugen des Hauses (Werte aus grund.css, rahmen-buehne.css,
    kleid/wildside.css); die Arbeitsfläche (Blatt, Werkzeugleiste, rechte Spalte) bleibt, wie sie ist. Nur transform und opacity bewegen. */
@@ -81,7 +81,7 @@ button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:l
   .art:hover .art__bild,.art:focus-visible .art__bild{transform:translateY(-5px)}
 }
 @media (prefers-reduced-motion:reduce){.wo__k,.mk__k,.vk__bild,.art__bild,.wv__bild{transition:none!important}}
-/* Handy (Fund 21.10.2026, Schäfli 390 px): das Zeichen in der Marke fiel auf 0 px zusammen (leerer Kreis) und «Neu» ragte mit seinem Knauf 28 px über den Rand.
+/* Handy (Fund 21.10.2026, 390 px): das Zeichen in der Marke fiel auf 0 px zusammen (leerer Kreis) und «Neu» ragte mit seinem Knauf 28 px über den Rand.
    Grund: die Regel «unter 600 px nur das Zeichen» blendete jedes span der Marke aus, auch das Zeichen (im Kleid des Hauses ein span). Marke und «Neu» schrumpfen nicht, die Suche nimmt den Rest */
 @media (max-width:600px){.ms-kopf .ws-marke{flex:none}.ms-kopf .ms-kn-neu{flex:none}.ms-kopf .ms-suche{min-width:0;flex:1 1 0}}
 .kopf .wo-marke-w .wo-zeichen{flex:none}
@@ -89,7 +89,7 @@ button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:l
 @media (max-width:600px){.ms-kopf .ms-kn-neu{flex:none;width:36px;padding:0;justify-content:center}.ms-kopf .ms-kn-neu>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 /* «Übersicht» im Rand ist immer die dunkle Startpille; die Regel für Einträge (Schrift in Tinte) färbte ihr Wort dunkel auf dunkel (Fund 21.10.2026, Fehlerbuch «Titel auf dunklem Grund hell») */
 #start .ms-nav>button[data-ansicht="start"]:not(.an) span{color:var(--wo-weiss)}
-/* Aus dem Demo-Check der Wirtschaft am Schlössli (21.10.2026, DEMOCHECK.md dort), hier nachgezogen:
+/* Aus dem Demo-Check (21.10.2026), hier nachgezogen:
    Anlässe mit nur einem Anlass im Monat: das Foto blieb nicht in seiner Spalte und deckte Titel und Text zu */
 .ev-raster .wo--breit .wo__k{width:100%;min-width:0}
 /* Handy: Leiste unter dem Blatt in einer Zeile, Zoom ganz sichtbar; «Zurück zur Drucksache» als runder Knopf mit Pfeil statt leerem Kreis; 320 px: Suche gibt nach */
@@ -97,5 +97,5 @@ button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:l
   .ms-kopf .start__zu{flex:none;width:36px;padding:0;justify-content:center}.ms-kopf .start__zu svg{flex:none}}
 @media (max-width:360px){#start .ms-kopf .ms-suche{flex:1 1 0;min-width:36px;padding-left:10px;padding-right:6px;gap:6px}#start .ms-kopf .ms-suche input{min-width:0;width:100%}}
 
-/* Demo-Check Schäfli 21.10.2026: Zahl im gewählten (dunklen) Eintrag des Rands war fast unsichtbar (dunkelgrau auf dunkler Fläche) */
+/* Demo-Check 21.10.2026: Zahl im gewählten (dunklen) Eintrag des Rands war fast unsichtbar (dunkelgrau auf dunkler Fläche) */
 #start .ms-nav button.an em{color:rgba(245,243,239,.66)}

@@ -81,13 +81,7 @@
   ],
   "sperr_max": 0.1,
   "rollen_fremd": "jede Rolle ausser titel, kapitale, text, kursiv, mono, plakat, plakatfett, detail, kopf",
-  "schriften_fremd": [
-   "Fraunces",
-   "Urbanist",
-   "Instrument Sans",
-   "DM Mono",
-   "Anton"
-  ]
+  "schriften_fremd": "nur Prata, Hanken Grotesk und Rammetto One; jede andere Schrift ist fremd"
  },
  "trenner": {
   "menue": " | ",
@@ -111,7 +105,7 @@
    "plakatrueck",
    "programm"
   ],
-  "ausnahme_zeitleiste": "Elemente mit ausr 'l' in Paaren (Uhrzeit DM Mono | Schritt) duerfen links stehen, wenn der Block als Ganzes mittig ist",
+  "ausnahme_zeitleiste": "Elemente mit ausr 'l' in Paaren (Uhrzeit Hanken 500 | Schritt) duerfen links stehen, wenn der Block als Ganzes mittig ist",
   "ausnahmen_quer": [
    "fenster",
    "geteilt",
