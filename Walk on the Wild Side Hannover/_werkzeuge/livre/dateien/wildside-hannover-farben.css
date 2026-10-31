@@ -1,0 +1,18 @@
+/* Walk on the Wild Side Hannover · Farben der Marke (31.10.2026), Werte der Website und der Plakate */
+:root{
+  --nacht:#130E0D; /* Nacht: Grund der dunklen Flächen: die Bar nach 19 Uhr */
+  --platte:#1C1513; /* Platte: Platten und Karten auf Nacht, wie das Eckschild */
+  --platte-hell:#261E1A; /* Platte hell: gehobene Platte, Kachel auf Platte */
+  --holz:#33281F; /* Holz: tiefste Kante, Fugen zwischen Fotos */
+  --text:#EDE4D8; /* Schrift auf Nacht: Lesetext auf dunklem Grund, nie reines Weiss */
+  --creme:#F2E9DC; /* Creme: die weissen Plakate der Bar: Grund der hellen Kapitel */
+  --creme-2:#E7DCCB; /* Creme 2: Fläche auf Creme, Kachel im hellen Kapitel */
+  --creme-3:#D9CBB6; /* Creme 3: Linie und Rand auf Creme */
+  --dunkel:#1B1512; /* Schrift auf Creme: Lesetext und Titel auf Creme, nie reines Schwarz */
+  --gold:#D8B264; /* Gold: der Rahmen des Eckschilds: nur Haarlinie, Etikett, Knauf */
+  --gold-tief:#A07F3A; /* Gold tief: Etikett auf Creme, wo Gold zu hell steht */
+  --rot:#F0323F; /* Rot: die Farbe der Wortmarke: nur als Punkt, Hauptknopf und Logo */
+  --ultramarin:#1A00AA; /* Ultramarin: die Schrift der SESSION-Plakate, nur bei den DJ-Abenden */
+  --plakatrot:#D21C0A; /* Plakatrot: die Wellen der SESSION-Plakate, nur bei den DJ-Abenden */
+  --plakatcreme:#EBE2D8; /* Plakatcreme: der Grund der SESSION-Plakate */
+}

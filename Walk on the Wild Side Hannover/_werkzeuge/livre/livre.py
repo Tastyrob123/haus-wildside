@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Le Livre · Culinarium Hannover, Server-Teil (Nachbau von livre.py der Taverne zum Schäfli, dort nur gelesen). Aufgerufen von
+"""Das Markenbuch · Walk on the Wild Side Hannover, Server-Teil (Kopie von livre.py aus dem Markenbuch von Culinarium Hannover, umgestellt auf die Bar). Aufgerufen von
 server.py (lokal) und online/livre_online.py (Vercel) unter …/api/<was>:
 
    GET  bild?k=<foto>&f=instagram|story|web|druck[&x=0..1][&y=0..1]   das Foto in fertiger Grösse als Download
-   GET  stand                                                           Zahlen für La Maison (Fotos, Dateien) und welche Fotos kein Original haben
+   GET  stand                                                           Zahlen für den Tresen (Fotos, Dateien) und welche Fotos kein Original haben
    POST pruefen  {name, typ, daten (data-URL), sprache}                 Markenprüfung eines Entwurfs
    POST fehler   {zeit, art, text, wo, seite, browser}                  Skriptfehler aus dem Browser (R03)
 
-Farben werden ohne KI gemessen (gegen die Palette aus livre.json, gebaut aus website/assets/culinarium.css, Abstand nach CIEDE2000). Bild, Schrift, Zeichen und Ton
+Farben werden ohne KI gemessen (gegen die Palette aus livre.json, gebaut aus website/assets/wild.css, Abstand nach CIEDE2000). Bild, Schrift, Zeichen und Ton
 beurteilt Claude, aber nur mit LIVRE_KI=1 (Regel 54: der Schlüssel ist gesperrt, ohne Roberts Wort kein Aufruf). Ohne den Schalter antwortet eine
 Probe-Antwort in derselben Form, gerechnet aus der Messung und überall als Probe beschriftet. Gespeichert wird nichts: der Entwurf lebt nur im
 Arbeitsspeicher und in einem Zwischenordner, der nach der Antwort gelöscht wird."""
@@ -18,18 +18,18 @@ from PIL import Image, ImageOps, ImageFile, ImageFilter, ImageChops
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 Image.MAX_IMAGE_PIXELS = None
 HIER = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website')   # die Website von Culinarium (Werkzeug liegt in _werkzeuge/livre/)
+ROOT = os.path.join(os.path.dirname(os.path.dirname(HIER)), 'website')   # die Website der Bar (Werkzeug liegt in _werkzeuge/livre/)
 PROJEKTE = os.path.dirname(os.path.dirname(ROOT))
 LIVRE_JSON = next((x for x in (os.environ.get('LIVRE_JSON'), os.path.join(HIER, 'livre.json')) if x and os.path.exists(x)), os.path.join(HIER, 'livre.json'))
 QUELLEN_JSON = os.path.join(HIER, '_quellen.json')       # nur lokal: wo das Original je Foto liegt (geht nie online)
 FEHLER_LOG = os.environ.get('LIVRE_FEHLER') or os.path.join(HIER, '_qa', 'fehler.jsonl')
 WEB_WURZEL = os.environ.get('LIVRE_WEB') or ROOT          # online: Ordner mit assets/bild (Vercel legt die Website neben die Funktion)
 HOECHST_PIXEL = 120_000_000
-SCHLUESSEL = 'culinarium-hannover'
+SCHLUESSEL = 'wildside-hannover'
 MODELL = 'claude-sonnet-5-5'
 FORMATE = {'instagram': (1080, 1350, 'Instagram 1080 × 1350'), 'story': (1080, 1920, 'Story 1080 × 1920'),
            'web': (2000, None, 'Web, längste Seite 2000 px'), 'druck': (None, None, 'Druck, volle Auflösung')}
-PAPIER = (245, 243, 239)
+PAPIER = (242, 233, 220)
 try:   # lokal: überarbeitete Fassungen gehen dem Original vor (ki_quelle.py der Website); online gibt es keine Quellen
     sys.path.insert(0, ROOT)
     _roh = Image.open
@@ -205,28 +205,24 @@ def farben(im, n=28):
 # ---------------------------------------------------------------- Regeln für die Beurteilung (aus der Website und dem Markenbuch buch.html)
 def regeln():
     L = _livre()
-    pal = '\n'.join(f"- {f['n']} {f['h']} ({f['r']})" for f in L['farben'] if f.get('g') != 'abende')
-    abende = ', '.join(f"{f['n']} {f['h']} ({f['r']})" for f in L['farben'] if f.get('g') == 'abende')
-    return f'''MARKE CULINARIUM HANNOVER (Hausregeln, Oktober 2026)
+    pal = '\n'.join(f"- {f['n']} {f['h']} ({f['r']})" for f in L['farben'])
+    return f'''MARKE WALK ON THE WILD SIDE HANNOVER (Hausregeln, Oktober 2026)
 
-Was Culinarium ist: Food-Pairing-Abende «Momo x Rudi» in der Bar Walk on the Wild Side, Haasemannstraße 13, Hannover-Linden. Rudi kocht ein Menü, Momo stellt fünf Signature Drinks dazu und erklärt jeden; wenige Plätze an einer langen Tafel, Kerzenlicht. Jeder Abend hat sein eigenes Plakat in einer eigenen Farbe. Dazu Rudis zweite Küche Dirty Chicken (Fried Chicken, Sandwiches) mit eigenem violettem Logo.
+Was die Bar ist: eine Nachbarschafts-Mixology-Bar in Linden-Mitte, Haasemannstraße 13, Ecke Rampenstraße, 30449 Hannover. Derya Ivkin führt die Bar, Mohamed «Momo» Ben Khelifa entwirft die Drinks; die Karte wechselt, an der Bar sagst du, was du magst. Offen Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr. Samstags DJ-Abende («SESSION»), dazu Konzerte, Feiern und Private Dinner auf der Empore. Falstaff Bar Guide 2027: 91 Punkte. Über dem Raum die bedruckte Gewölbe-Decke, über der Vitrine der NEGRONI-Schriftzug aus Glühbirnen, an der Hausecke das beleuchtete Eckschild.
 
-Farben (aus der Gestaltung der Website, culinarium.css; Farbwelt «Plakat»):
+Farben (aus der Gestaltung der Website, wild.css):
 {pal}
-Farben der Abende (je Plakat eine, gemessen an der Illustration): {abende}
-Regeln: Nacht, Strasse, Bar, Tafel und Schiefer tragen die dunklen Flächen, so wie die Bar am Abend. Warmweiss trägt den Lesetext, geschrieben in Tinte, nie in reinem Schwarz. Kerze ist die Farbe des Abends: sie betont (Schrägstrich in Rudis Zeilen, Knauf am Knopf, Linien), schreibt nie den Lesetext. Ein Plakat darf die Farbe seines Abends tragen. Violett gehört nur zu Dirty Chicken, nie zu den Abenden von Culinarium.
+Regeln: Nacht und Platte tragen die dunklen Flächen, Creme (die weissen Plakate der Bar) die hellen. Gold nur als Haarlinie, Etikett und Knauf, wie der Rahmen des Eckschilds. Rot nur als Punkt: die Wortmarke und der Hauptknopf, nie zwei grosse Flächen in Rot. Ultramarin und Plakatrot gehören nur zu den DJ-Abenden und ihren SESSION-Plakaten. Geschrieben wird nie in reinem Schwarz oder reinem Weiss.
 
-Schriften: Fraunces mit weichen Enden (SOFT 100), leicht (Titel 340, Rudis Zeilen 300 in Versalien), nie fett, nie kursiv. Rudis Zeilen in Versalien mit Schrägstrich: «LAUCH / BLUMENKOHL / CHIPOTLE». Urbanist für Etiketten und Knöpfe in Versalien, gesperrt. Instrument Sans für den Lesetext. DM Mono für Zeiten, Daten und Preise. Keine anderen Schriften.
+Schriften: Prata für Titel, eine Stärke, nie fett, nie kursiv. Hanken Grotesk 400 für den Lesetext, Hanken 500 in Versalien, gesperrt, für Etiketten und Knöpfe, Zahlen mit gleich breiten Ziffern. Keine anderen Schriften.
 
-Zeichen: Die Wortmarke ist Rudis Original: CULINARIUM in einer breiten Display-Schrift der 70er mit tropfenförmigen Enden, darunter linksbündig «A UNiQUE EXPERiENCE» (das i klein). Sie steht in Schiefer auf Warmweiss oder in Warmweiss auf Dunkel, gerade, unverzerrt, nie neu gesetzt, nie mit Schatten oder Leuchten, nie auf einem unruhigen Foto. Das C der Wortmarke ist das Zeichen. Das Logo von Dirty Chicken (das D mit dem Hühnerfuss) steht nur im Original auf Violett.
+Zeichen: Die Wortmarke ist das Logo der Bar in drei Zeilen WALK / ON THE / WILD SIDE, schmale fette Grotesk, als Datei eingesetzt, nie als Schrift nachgebaut. In Rot #F0323F auf Nacht oder Creme, in Creme auf Nacht; gerade, unverzerrt, ohne Schatten oder Leuchten, nie auf einem unruhigen Foto.
 
-Tapete: Gitter aus der doppelten Linie der Plakate, das C in jedem Feld, Ton in Ton, auf Nacht und auf Warmweiss. Nie ein freies Motiv.
+Form: das Eckschild. Platten mit 18 px Radius und Gold-Haarlinie innen, Kacheln 14 px, Knöpfe als Schild mit rundem Knauf (Rot mit Creme-Knauf für den Hauptweg, Nacht mit Goldlinie für den Nebenweg). Keine Tickets, keine Platzkarten, keine Leuchtschrift-Optik, keine Sticker, keine Polaroids, keine Pillen-Reihen.
 
-Bilder: zeigen, was ein Gast an einem Abend erlebt: Teller und Glas, die Tafel bei Kerzenlicht, die Bar, Rudi und Momo bei der Arbeit. Warmes Licht bleibt warm. Nie ein erzeugtes Bild als ersten Eindruck, keine Fotos der Bar ohne ihre Freigabe, keine Gäste aus Instagram, nie hineinzoomen, bis es unscharf wird.
+Bilder: die Menschen und der Moment an der Bar (Momo mit dem Glas, Gäste, DJs), gerahmt vom Raum (Decke, Glühbirnen, Eckschild). Warmes Licht bleibt warm. Nie ein Teller als Hauptbild (das ist Culinarium), nie hineinzoomen, bis es unscharf wird.
 
-Bausteine: Knopf als dunkle Platte mit rundem Knauf in Kerze, Urbanist in Versalien. Keine Einkerbungen, keine Pillen-Reihen, kein gerahmtes Schild auf einem Foto.
-
-Ton der Texte: Du, herzlich, knapp, ein bisschen Strasse; nie Werbesprache. Jeder Satz wertet auf: Sorgfalt, Handarbeit, der einzelne Gast. Zahlen nur als Exklusivität (wenige Plätze), nie als Menge. Wörter des Hauses: {', '.join(L['ton']['eigene_worte'])}. Nicht: {', '.join(L['ton']['nicht'])}. Keine Emojis, keine Superlative. Lieber eine echte Angabe (Tag, Ort, Preis) als ein Adjektiv.'''
+Ton der Texte: Du, knapp, nachts ein bisschen laut, nie Werbesprache. Die Karte wechselt (nie «keine Karte» schreiben). Wörter des Hauses: {', '.join(L['ton']['eigene_worte'])}. Nicht: {', '.join(L['ton']['nicht'])}. Lieber eine echte Angabe (Tag, Uhrzeit, DJ) als ein Adjektiv.'''
 
 
 SPRACHE = {'de': 'Deutsch (Deutschland, mit ß), im Du'}   # die Website spricht Deutsch; weitere Sprachen erst mit Schritt 15a
@@ -273,7 +269,7 @@ Regeln: 5 bis 9 Punkte, je Bereich höchstens zwei. Nur, was im Bild wirklich zu
             'ton': {'type': 'array', 'items': {'type': 'object', 'required': ['stelle', 'vorschlag'], 'properties': {
                 'stelle': {'type': 'string', 'description': 'wörtlich aus dem Entwurf'}, 'vorschlag': {'type': 'string', 'description': 'Fassung im Ton des Hauses'}}}}}}}
     koerper = {'model': MODELL, 'max_tokens': 4000, 'tools': [werkzeug], 'tool_choice': {'type': 'tool', 'name': 'rueckmeldung'},
-               'system': 'Du bist die Markenprüfung im Markenbuch von Culinarium Hannover. Du beurteilst Entwürfe von Agenturen und vom Team ruhig, konkret und Punkt für Punkt gegen diese Regeln. Sprich von Culinarium oder von der Marke, nie von «Le Livre» oder vom Werkzeug.\n\n' + regeln(),
+               'system': 'Du bist die Markenprüfung im Markenbuch von Walk on the Wild Side Hannover. Du beurteilst Entwürfe von Agenturen und vom Team ruhig, konkret und Punkt für Punkt gegen diese Regeln. Sprich von der Bar oder von der Marke, nie von «Le Livre» oder vom Werkzeug.\n\n' + regeln(),
                'messages': [{'role': 'user', 'content': inhalt}]}
     req = urllib.request.Request('https://api.anthropic.com/v1/messages', data=json.dumps(koerper).encode('utf-8'), method='POST',
                                  headers={'content-type': 'application/json', 'x-api-key': os.environ['ANTHROPIC_API_KEY'], 'anthropic-version': '2023-06-01',
@@ -314,7 +310,7 @@ def _probe(messung, seiten, groesse):
     titel = {'passt': f'{pr}\u00a0% in den Farben des Hauses', 'achten': 'Farben teils fremd', 'passt_nicht': 'Farben fremd'}[urteil]
     punkte = [dict(bereich='farben', urteil=urteil, titel=titel, text=text)]
     if messung['schwarz'] > .01:
-        punkte.append(dict(bereich='farben', urteil='passt_nicht', titel='Reines Schwarz', text=f'Auf {round(messung["schwarz"] * 100)}\u00a0% der Fläche steht reines Schwarz. Geschrieben wird in Tinte #2A2833, dunkle Flächen sind Nacht #16151A.'))
+        punkte.append(dict(bereich='farben', urteil='passt_nicht', titel='Reines Schwarz', text=f'Auf {round(messung["schwarz"] * 100)}\u00a0% der Fläche steht reines Schwarz. Geschrieben wird auf Creme in #1B1512, dunkle Flächen sind Nacht #130E0D.'))
     satz = {'passt': f'Die Farben sind gemessen und liegen zu {pr}\u00a0% in der Palette des Hauses.',
             'achten': 'Die Farben sind gemessen: ein Teil liegt ausserhalb der Palette des Hauses.',
             'passt_nicht': 'Die Farben sind gemessen und passen nicht zum Haus.'}[urteil]

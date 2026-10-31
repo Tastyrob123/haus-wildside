@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-"""Le Livre (Marke) · Culinarium Hannover: baut die Marke zum Arbeiten aus der Website und dem Markenbuch der Station 05 (Farbwelt A «Plakat»,
-Robert 26.10.2026: «a»). Nachbau von Le Livre der Taverne zum Schäfli (jüngstes Vorbild, dort nur gelesen). Die Website wird nie angefasst und nie
-importiert (Falle 9): gelesen werden BILD in website/bau.py (register.py, per ast), website/assets/bild/meta.json, website/assets/culinarium.css,
-assets/zeichen/, assets/schrift/, _quelle/logo/original/ (Rudis Logo, 28.10.2026), _quelle/dirty-chicken/logo/original/, _quelle/**/herkunft.json,
-_kette/05-markenbauer/marke.json und marke/. Geschrieben wird nur in diesen Ordner.
+"""Das Markenbuch (Le Livre, Marke) · Walk on the Wild Side Hannover: baut die Marke der Bar zum Arbeiten aus der Website und dem Charakterblatt.
+Kopie des Markenbuchs von Culinarium Hannover (28.10.2026, von Robert abgenommen), umgekleidet und mit den Hauswerten der Bar (Nachtbau 31.10.2026).
+Die Website wird nie angefasst und nie importiert (Falle 9): gelesen werden BILDER in website/bilder.py (register.py, per ast), die Merkzettel
+website/assets/bild/<schlüssel>.json, website/assets/wild.css, assets/schrift/, assets/bild/haus-tapete.svg und _quelle/logo/ (nur beim Bau, nie zur Laufzeit).
+Geschrieben wird nur in diesen Ordner.
 
-   python3 _werkzeuge/livre/bau.py   → livre.json, dateien/, original/, _quellen.json (nur lokal), listen/, beispiel/, buch.html, buch/, index.html
+   python3 _werkzeuge/livre/bau.py   → livre.json, dateien/, original/, _quellen.json (nur lokal), listen/, beispiel/, index.html
 
-Farben = die Werte der Website heute (culinarium.css); jede wird dort gesucht, der Bau bricht ab, wenn eine fehlt. Herkunft je Foto: haus (Rudis
-Dateien, Instagram von Culinarium, Rudi und Momo, Dirty Chicken), fremd (Instagram der Bar Walk on the Wild Side: die Bar gehört nicht zu Culinarium,
-Freigabe offen), ki (mit KI verändert). Geschärfte Fotos (Chat culinarium-bilder, Pfad _quelle/ki/geschaerft/) zeigen «Vorher»: die Quelle aus
-_register-vor-schaerfen.json (Stand des Registers vor dem Schärfen, 28.10.2026)."""
+Farben = die Werte der Website heute (wild.css); jede wird dort gesucht, der Bau bricht ab, wenn eine fehlt (ausser den Plakatfarben, die am Plakat
+gemessen sind, CHARAKTER.md 3). Herkunft je Foto: haus (Kanäle der Bar: Instagram, Facebook, erste Website, Angebotsmappe, von der Bar geschickt),
+fremd (Google-Eintrag, Gäste und Partner auf Instagram, Presse, Portale, Rudis Fotos der Culinarium-Abende in der Bar)."""
 import base64, hashlib, html, io, json, os, re, shutil, struct, subprocess, sys, time, zipfile
 import numpy as np
 from PIL import Image, ImageOps, ImageDraw, ImageFile, ImageFont
@@ -18,35 +17,29 @@ from PIL import Image, ImageOps, ImageDraw, ImageFile, ImageFont
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 Image.MAX_IMAGE_PIXELS = None
 HIER = os.path.dirname(os.path.abspath(__file__))
-PROJEKT = os.path.dirname(os.path.dirname(HIER))              # …/Culinarium Hannover
+PROJEKT = os.path.dirname(os.path.dirname(HIER))              # …/Walk on the Wild Side Hannover
 ROOT = os.path.join(PROJEKT, 'website')                        # die Website, nur gelesen; ausgeliefert unter / (server.py)
 PROJEKTE = os.path.dirname(PROJEKT)
 QUELLE = os.path.join(PROJEKT, '_quelle')
-MARKE = os.path.join(PROJEKT, '_kette', '05-markenbauer')
 BILDER = os.path.join(ROOT, 'assets', 'bild')
-CSS = os.path.join(ROOT, 'assets', 'culinarium.css')
+CSS = os.path.join(ROOT, 'assets', 'wild.css')
 FONTS = os.path.join(ROOT, 'assets', 'schrift')
-ZEICHEN = os.path.join(ROOT, 'assets', 'zeichen')
-LOGO = os.path.join(QUELLE, 'logo', 'original')
-DC_LOGO = os.path.join(QUELLE, 'dirty-chicken', 'logo', 'original')
+LOGO = os.path.join(QUELLE, 'logo')
 DAT = os.path.join(HIER, 'dateien')
 ORIG = os.path.join(HIER, 'original')
 e = html.escape
-HAUS = 'Culinarium Hannover'
+HAUS = 'Walk on the Wild Side Hannover'
 STAND = time.strftime('%d.%m.%Y')
-SCHLUESSEL = 'culinarium-hannover'
-MJ = json.load(open(os.path.join(MARKE, 'marke.json'), encoding='utf-8'))
-NODE = dict(os.environ, NODE_PATH=os.path.expanduser('~/Aussen-Pruefung/node_modules'))
-KLEID = os.path.join(PROJEKT, '_werkzeuge', 'oberflaeche', 'kleid', 'culinarium.js')
-PLATZHALTER = {'zentrale': 'La Maison', 'website': 'Le Bureau', 'karten': 'La Carte', 'gaeste': 'La Réception', 'marke': 'Le Livre', 'besuche': 'Le Registre', 'druck': 'L’Imprimerie'}   # nur falls das Kleid fehlt; gilt ist kleid/wildside.js
+SCHLUESSEL = 'wildside-hannover'
+KLEID = os.path.join(PROJEKT, '_werkzeuge', 'oberflaeche', 'kleid', 'wildside.js')
+PLATZHALTER = {'zentrale': 'Der Tresen', 'website': 'Das Schaufenster', 'karten': 'Die Pairing-Karte', 'gaeste': 'Das Gästebuch', 'marke': 'Das Markenbuch', 'besuche': 'Die Besucherliste', 'druck': 'Die Plakatwerkstatt'}   # nur falls das Kleid fehlt
 sys.path.insert(0, HIER)
 import register  # noqa: E402
 
 
 def namen_aus_kleid():
-    """Sichtbare Namen der Werkzeuge: eine Stelle für alle, WO_HAUS.namen im gemeinsamen Kleid (gehört dem Chat culinarium-maison)."""
+    """Sichtbare Namen der Werkzeuge: eine Stelle für alle, WO_HAUS.namen im gemeinsamen Kleid."""
     if not os.path.exists(KLEID):
-        print('Hinweis: Kleid fehlt noch, Arbeitsnamen als Platzhalter:', KLEID)
         return dict(PLATZHALTER)
     m = re.search(r'namen:\s*\{([^}]*)\}', open(KLEID, encoding='utf-8').read())
     if not m:
@@ -62,29 +55,34 @@ def rgb(h):
     h = h.lstrip('#'); return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-# ---------------------------------------------------------------- Farben: so wie culinarium.css sie trägt (Farbwelt A «Plakat», Abendfarbe Orange)
-# (Schlüssel, Name, Wert der Website, Rolle, Gruppe)
+# ---------------------------------------------------------------- Farben: so wie wild.css sie trägt (CHARAKTER.md 4)
+# (Schlüssel, Name, Wert, Rolle, Gruppe, Herkunft)
 FARBEN = [
-    ('nacht', 'Nacht', '#16151A', 'Grund der dunklen Flächen: die Bar bei Nacht', 'nacht'),
-    ('nacht-tief', 'Nacht tief', '#0F0E13', 'die tiefste Fläche, unter Bildern und im Fuss', 'nacht'),
-    ('strasse', 'Strasse', '#1C1B21', 'dunkle Fläche beim Ankommen, draussen kühl', 'nacht'),
-    ('bar', 'Bar', '#222028', 'dunkle Fläche drinnen, einen Ton wärmer', 'nacht'),
-    ('tafel', 'Tafel', '#26252E', 'dunkle Fläche an der Tafel im Kerzenlicht', 'nacht'),
-    ('schiefer', 'Schiefer', '#3A3845', 'die Farbe der Wortmarke auf jedem Plakat: Schrift auf Warmweiss und Flächen', 'nacht'),
-    ('weiss', 'Warmweiss', '#FAF4F4', 'Grund der hellen Flächen und Schrift auf Dunkel: das Band unter jedem Plakat', 'hell'),
-    ('tinte', 'Tinte', '#2A2833', 'Lesetext auf Warmweiss, nie reines Schwarz', 'hell'),
-    ('leise', 'Leise', '#5B5763', 'zweite Zeile auf Warmweiss', 'hell'),
-    ('kerze', 'Kerze', '#EF7649', 'die Farbe des Abends: Schrägstrich in Rudis Zeilen, Knauf, Linien auf Dunkel', 'kerze'),
-    ('kerze-hell', 'Kerze hell', '#F5A689', 'leise Betonung auf Dunkel', 'kerze'),
-    ('kerze-tief', 'Kerze tief', '#B15736', 'Betonung auf Warmweiss, wo Kerze zu hell steht', 'kerze'),
-    ('dc', 'Dirty-Chicken-Violett', '#8953A9', 'nur für Dirty Chicken, Rudis zweite Küche: Flächen und Tapete', 'dc'),
-    ('dc-hell', 'Dirty-Chicken-Hell', '#FFF7EF', 'Schrift auf Violett', 'dc'),
+    ('nacht', 'Nacht', '#130E0D', 'Grund der dunklen Flächen: die Bar nach 19 Uhr', 'nacht', 'css'),
+    ('platte', 'Platte', '#1C1513', 'Platten und Karten auf Nacht, wie das Eckschild', 'nacht', 'css'),
+    ('platte-hell', 'Platte hell', '#261E1A', 'gehobene Platte, Kachel auf Platte', 'nacht', 'css'),
+    ('holz', 'Holz', '#33281F', 'tiefste Kante, Fugen zwischen Fotos', 'nacht', 'css'),
+    ('text', 'Schrift auf Nacht', '#EDE4D8', 'Lesetext auf dunklem Grund, nie reines Weiss', 'nacht', 'css'),
+    ('creme', 'Creme', '#F2E9DC', 'die weissen Plakate der Bar: Grund der hellen Kapitel', 'creme', 'css'),
+    ('creme-2', 'Creme 2', '#E7DCCB', 'Fläche auf Creme, Kachel im hellen Kapitel', 'creme', 'css'),
+    ('creme-3', 'Creme 3', '#D9CBB6', 'Linie und Rand auf Creme', 'creme', 'css'),
+    ('dunkel', 'Schrift auf Creme', '#1B1512', 'Lesetext und Titel auf Creme, nie reines Schwarz', 'creme', 'css'),
+    ('gold', 'Gold', '#D8B264', 'der Rahmen des Eckschilds: nur Haarlinie, Etikett, Knauf', 'gold', 'css'),
+    ('gold-tief', 'Gold tief', '#A07F3A', 'Etikett auf Creme, wo Gold zu hell steht', 'gold', 'css'),
+    ('rot', 'Rot', '#F0323F', 'die Farbe der Wortmarke: nur als Punkt, Hauptknopf und Logo', 'gold', 'css'),
+    ('ultramarin', 'Ultramarin', '#1A00AA', 'die Schrift der SESSION-Plakate, nur bei den DJ-Abenden', 'session', 'css'),
+    ('plakatrot', 'Plakatrot', '#D21C0A', 'die Wellen der SESSION-Plakate, nur bei den DJ-Abenden', 'session', 'css'),
+    ('plakatcreme', 'Plakatcreme', '#EBE2D8', 'der Grund der SESSION-Plakate', 'session', 'plakat'),
 ]
-GRUPPEN = [('nacht', 'Nacht und Schiefer', 'Die dunklen Flächen, so wie die Bar am Abend: draussen kühl, drinnen mit jedem Schritt wärmer. Schiefer ist die Farbe der Wortmarke.'),
-           ('hell', 'Warmweiss', 'Das Warmweiss des Bandes, das unter jedem Plakat liegt. Darauf wird gelesen, in Tinte, nie in reinem Schwarz.'),
-           ('kerze', 'Kerze', 'Das Licht des Abends: Orange vom Plakat im Februar 2025, nah am Licht im Flur der Bar. Es betont, es schreibt nie den Lesetext.'),
-           ('dc', 'Dirty Chicken', 'Das Violett aus dem Logo von Dirty Chicken. Es gehört nur dorthin, nie zu den Abenden von Culinarium.'),
-           ('abende', 'Die Farben der Abende', 'Jeder Abend hat sein Plakat und seine eigene Farbe. Gemessen an der Illustration, je Plakat ein Ton.')]
+GRUPPEN = [('nacht', 'Nacht und Platte', 'Die dunklen Flächen, so wie die Bar nach 19 Uhr unter der Decke steht. Platten liegen wie das Eckschild auf der Nacht, geschrieben wird in einem warmen Hell.'),
+           ('creme', 'Creme', 'Das Creme der weissen Plakate der Bar. Es trägt die hellen Kapitel; darauf wird in einem warmen Dunkel gelesen.'),
+           ('gold', 'Gold und Rot', 'Gold ist der Rahmen des Eckschilds an der Hausecke: Haarlinie, Etikett, Knauf. Rot ist die Wortmarke, und nur als Punkt.'),
+           ('session', 'Die DJ-Abende', 'Die Farben der SESSION-Plakate, gemessen an den Plakaten: rot-cremefarbene Wellen und Ultramarin für die Schrift. Sie gehören nur zu den DJ-Abenden.')]
+# je Gruppe ein eigenes Foto (Fehlerbuch 10a, 20.10.2026: ein Foto je Gruppe, nie wiederholt; Farbfeld ganz). Wege von der Seite des Werkzeugs aus.
+GRUPPE_BILD = {'nacht': ('schild', 'Das Eckschild an der Hausecke bei Nacht. Daraus kommen Nacht, Platte und der Goldrahmen.'),
+               'creme': ('listen/farbe-creme.webp', 'So steht Creme mit dunkler Schrift auf der Website.'),
+               'gold': ('negroni', 'Der NEGRONI-Schriftzug aus Glühbirnen über der Vitrine: das Licht, aus dem Gold und Rot kommen.'),
+               'session': ('p-1710', 'Das SESSION-Plakat vom 17. Oktober 2026: Wellen in Plakatrot und Creme, Schrift in Ultramarin.')}
 
 
 def css_text():
@@ -93,54 +91,45 @@ def css_text():
 
 def farben_liste():
     s = css_text().upper(); aus = []
-    for k, n, h, r, g in FARBEN:
-        if h.upper() not in s:
-            raise SystemExit(f'Farbe {n} {h} steht nicht in culinarium.css, erst klären')
-        woher = 'Wert der Website (culinarium.css)'
-        fa = next(w for w in MJ['farbwelten'] if w['kennung'] == 'a')
-        if h.upper() in [x.upper() for x in list(fa['css'].values()) + fa['flaechen']]:
-            woher = 'Farbwelt «Plakat» der Hausregeln, unverändert auf der Website'
+    for k, n, h, r, g, w in FARBEN:
+        if w == 'css' and h.upper() not in s:
+            raise SystemExit(f'Farbe {n} {h} steht nicht in wild.css, erst klären')
+        woher = 'Wert der Website (wild.css)' if w == 'css' else 'gemessen an den SESSION-Plakaten der Bar'
         aus.append((k, n, h, r, g, woher))
-    for a in MJ['abendfarben']:                                   # Plakat-Farben: gemessen an den Plakaten (Markenbuch), nicht auf der Website als Fläche
-        aus.append(('abend-' + a['kennung'], a['name'], a['hex'], f'Plakat {a["plakat"]}, {a["motiv"]}', 'abende', f'gemessen am Plakat {a["plakat"]}'))
     return aus
 
 
 # ---------------------------------------------------------------- Bildarchiv
-REG, ABENDE = register.lesen()
-META = json.load(open(os.path.join(BILDER, 'meta.json'), encoding='utf-8'))
-VOR_SCHAERFEN = json.load(open(os.path.join(HIER, '_register-vor-schaerfen.json'), encoding='utf-8'))['quelle']
-BEREICH = {
-    'ort': ['fassade', 'schildnacht', 'barnacht', 'schildtag', 'ecke', 'flur', 'fensterdraussen', 'loch', 'schildnah', 'barlicht', 'barneg', 'flaschen', 'kanister', 'theke', 'theke2'],
-    'tafel': ['tafelleer', 'toast', 'kerze1', 'kerze2', 'kerze3', 'anstossen', 'glaeser', 'lachen', 'karte', 'kartglas', 'service', 'rudi']
-             + ['t%02d' % i for i in range(1, 15)],
-    'teller': ['tarte', 'lauch', 'roq1', 'roq2', 'hok1', 'hok2', 'spag', 'beete', 'baiser', 'm4', 'm5'] + ['r%02d' % i for i in range(1, 12)],
-    'drinks': ['momo', 'glas', 'tablett', 'g1', 'g2', 'g3', 'g4', 'g5', 'd1', 'd2', 'd3', 'klaeren', 'schaum', 'schaumglas', 'coupe', 'glasnacht', 'bar', 'm3', 'm7', 'beeteglas'],
-    'pass': ['anrichten', 'm1', 'm2', 'm6', 'm8', 'kueche', 'pass', 'pass2', 'pass3', 'pass4', 'w7'],
-    'team': ['trio', 'trio2', 'team_alle', 'kopf_momo', 'kopf_derya', 'kopf_rudi', 'momo_hoch', 'w1', 'w2', 'w3', 'w4', 'w5', 'w6'],
-}
-BEREICHE = ['ort', 'tafel', 'teller', 'drinks', 'pass', 'team', 'plakate', 'abende', 'dc', 'wildside']
-B_VON = {k: b for b, ks in BEREICH.items() for k in ks}
-
-
-def bereich(k):
-    if k in B_VON:
-        return B_VON[k]
-    if k.startswith('ws'):
-        return 'wildside'
-    if k.startswith(('dc_', 'dn_')):
-        return 'dc'
-    if k.startswith('p_') or k in ('pop23', 'pl23', 'plakatwand'):
-        return 'plakate'
-    if k.startswith(('ab_', 'abr_')):
-        return 'abende'
-    return None
-
-
-# Mit KI hochgerechnet (Vermerk im Register, website/bau.py Zeile «Hero Team»): Vorlage für «Vorher»
-HOCHGERECHNET = {'team_alle': ('_quelle/dirty-chicken/ig/2026-06-03_dirtychicken.hannover_DZIjZWNCGZT-2.jpg',
-                               'Mit KI auf 4K geschärft. Die KI verändert Gesichter leicht; für Druck und Werbung das Original beim Fotografen anfragen')}
+REG = register.lesen()
+BEREICHE = ['raum', 'drinks', 'leute', 'musik', 'tafel', 'plakate', 'unterwegs', 'jahre', 'nachbarn']
 MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+
+
+def bereich(k, alt):
+    if k.startswith(('p-', 'uw-pl-', 'karte-')) or k in ('ja-2025', 'valentin'):
+        return 'plakate'
+    if k.startswith('uw-'):
+        return 'unterwegs'
+    if k.startswith(('culinarium-', 'dirty-', 'nb-')) or k == 'pf-momo-rudi':
+        return 'nachbarn'
+    if k.startswith(('ja-', 'alt-')) or k in ('decke-2017', 'fb-2020-bar', 'fb-2023-negroni', 'fw-a12'):
+        return 'jahre'
+    if k.startswith(('an-empore', 'tf-', 'tafel-')) or k in ('an-dinner', 'an-loge', 'fw-tafel', 'fw-a9', 'pl-empore'):
+        return 'tafel'
+    if k.startswith(('saengerin', 'konzert')) or k in ('an-dj', 'an-party', 'an-party-sw', 'silvester', 'fw-a58'):
+        return 'musik'
+    if k.startswith(('momo-', 'gast-', 'ft-')) or k in ('derya', 'fw-derya', 'freundinnen', 'anstossen', 'an-team', 'voll', 'feste-anstossen', 'terrasse', 'pl-theke'):
+        return 'leute'
+    if k.startswith(('glas-', 'fe-', 'wf-', 'dg-')) or k in ('schaum', 'paloma', 'an-sour', 'an-sours', 'an-negroni', 'an-glaeser', 'fw-highballs', 'fw-sour'):
+        return 'drinks'
+    if k.startswith('fw-'):
+        a = alt.lower()
+        if re.search(r'gast|gäste|zwei an|bartender|sonne|sommerabend|im raum|in der bar|am tisch|am abend|tresen|bar wird', a):
+            return 'leute'
+        if re.search(r'flaschen|regal|rückbar', a):
+            return 'raum'
+        return 'drinks'
+    return 'raum'
 
 
 def datum(s):
@@ -149,7 +138,7 @@ def datum(s):
 
 
 def hk(rel):
-    """Eintrag aus der herkunft.json im Ordner der Quelle (oder darüber); Schlüssel = Weg ab dem Ordner oder Dateiname."""
+    """Eintrag aus der herkunft.json im Ordner der Quelle (oder darüber)."""
     p = os.path.join(PROJEKT, rel); d = os.path.dirname(p)
     while d.startswith(QUELLE):
         f = os.path.join(d, 'herkunft.json')
@@ -161,72 +150,70 @@ def hk(rel):
             for key in (os.path.relpath(p, d), os.path.basename(p)):
                 if isinstance(j, dict) and isinstance(j.get(key), dict):
                     return j[key]
-            if isinstance(j, dict) and isinstance(j.get('dateien'), dict) and isinstance(j['dateien'].get(os.path.basename(p)), dict):
-                return j['dateien'][os.path.basename(p)]
         d = os.path.dirname(d)
     return {}
 
 
 def beitrag(rel):
-    """(Datum, Adresse) eines Instagram-Bildes aus dem Dateinamen JJJJ-MM-TT_konto_KENNUNG-n.jpg."""
+    """(Datum, Konto, Adresse) eines Instagram-Bildes aus dem Dateinamen JJJJ-MM-TT_konto_KENNUNG-n.jpg."""
     b = os.path.basename(rel)
-    m = re.match(r'(\d{4}-\d{2}-\d{2})_[A-Za-z0-9_.]+?_([A-Za-z0-9_-]{9,12})-\d+\.\w+$', b)
-    return (datum(m.group(1)), f'https://www.instagram.com/p/{m.group(2)}/') if m else (datum(b[:10]), '')
+    m = re.match(r'(\d{4}-\d{2}-\d{2})_([A-Za-z0-9_.]+?)_([A-Za-z0-9_-]{9,12})-\d+(?:-[a-z-]+)?\.\w+$', b)
+    return (datum(m.group(1)), m.group(2), f'https://www.instagram.com/p/{m.group(3)}/') if m else (datum(b[:10]), '', '')
 
 
-def herkunft(k, rel):
-    """(art, Quelle als Satz, Adresse) für die Quelle rel (relativ zum Projektordner)."""
+PORTALE = {'stadtwohnungenlinden': 'Stadtwohnungen Linden', 'enprimeurclub': 'En Primeur Club'}
+
+
+def herkunft(k, q):
+    """(art, Quelle als Satz, Adresse) für die Quelle q (relativ zu _quelle/, wie in website/bilder.py)."""
+    rel = os.path.normpath(os.path.join('_quelle', q))
     h = hk(rel)
-    if k in HOCHGERECHNET:
-        d, u = beitrag(HOCHGERECHNET[k][0])
-        return 'haus', f'Instagram von Dirty Chicken (@dirtychicken.hannover), Beitrag vom {d}. {HOCHGERECHNET[k][1]}', u
-    if rel.startswith('_quelle/vom-kunden/'):
-        return 'haus', 'Foto von Rudi, aus seinen Dateien für Culinarium (Oktober 2026)', ''
-    if rel.startswith('website/_zuschnitt/plakatwand'):
-        return 'haus', 'Alle Plakate von Culinarium, für die Website nebeneinander an eine dunkle Wand gesetzt (keine eigene Aufnahme)', ''
-    if rel.startswith('website/_zuschnitt/'):
-        return 'haus', 'Ausschnitt aus einem Foto von Rudi (das Team vor der Bar), für die Website zugeschnitten', ''
-    if rel.startswith('_quelle/extern/ig/'):
-        d, u = beitrag(rel)
-        plakat = k.startswith('p_')
-        return 'haus', f'Instagram von Culinarium (@culinarium_hannover), Beitrag vom {d}' , h.get('adresse') or u
-    if rel.startswith(('_quelle/extern/ig-highlights/', '_quelle/extern/ig-zuschnitt-2/')):
-        hh = hk('_quelle/extern/ig-highlights/' + os.path.basename(rel)) if 'zuschnitt' in rel else h
-        d = datum(os.path.basename(rel))
-        if '_culinarium_hannover_' in rel:
-            dd, u = beitrag(rel)
-            return 'haus', f'Instagram von Culinarium (@culinarium_hannover), Beitrag vom {dd}, für die Website ohne Schrift zugeschnitten', u
-        return 'haus', f'Instagram von Culinarium, Story vom {d}' + (', für die Website ohne Namen und Schrift zugeschnitten' if 'zuschnitt' in rel else ''), hh.get('adresse', '')
-    if rel.startswith('_quelle/extern/ig-team/'):
-        d, u = beitrag(rel)
-        wer = 'Rudi (@rudi__san)' if '_rudi__san_' in rel else 'Momo (@momo012027)' if '_momo012027_' in rel else 'dem Team'
-        return 'haus', f'Instagram von {wer}, Beitrag vom {d}', u
-    if rel.startswith('_quelle/dirty-chicken/vom-kunden'):
-        return 'haus', 'Foto von Rudi für Dirty Chicken (27. Oktober 2026)', ''
-    if rel.startswith('_quelle/dirty-chicken/logo/'):
-        return 'haus', 'Logo von Dirty Chicken, Original von Rudi (28. Oktober 2026)', ''
-    if rel.startswith('_quelle/dirty-chicken/ig/'):
-        d, u = beitrag(rel)
-        foto = ', Foto von @focusonbiz_hannover' if 'focusonbiz' in (h.get('text') or '') else ''
-        return 'haus', f'Instagram von Dirty Chicken (@dirtychicken.hannover), Beitrag vom {d}{foto}', h.get('adresse') or u
-    if rel.startswith('_quelle/walk-on-the-wild-side/'):
-        d, u = beitrag(rel)
-        return 'fremd', (f'Instagram der Bar Walk on the Wild Side (@walkonthewildside_hannover), Beitrag vom {d}. Die Bar ist der Ort der Abende, '
-                         'gehört aber nicht zu Culinarium'), h.get('adresse') or u
-    return 'fremd', 'offen: Herkunft nicht in den Unterlagen', ''
+    if q.startswith('ig/'):
+        d, _, u = beitrag(q)
+        return 'haus', f'Instagram der Bar (@walkonthewildside_hannover), Beitrag vom {d}', h.get('adresse') or u
+    if q.startswith('facebook/'):
+        return 'haus', f'Facebook der Bar, Beitrag vom {datum(os.path.basename(q))}', h.get('adresse', '') if str(h.get('adresse', '')).startswith('http') else ''
+    if q.startswith('web-archiv/'):
+        return 'haus', 'Foto der ersten Website der Bar (wildside-hannover.de, aus dem Webarchiv)', ''
+    if q.startswith('angebote-pdf/'):
+        return 'haus', 'Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)', ''
+    if q.startswith('kunde-2026-10-30/'):
+        return 'haus', 'Von der Bar geschickt (30. Oktober 2026)', ''
+    if q.startswith('ki/'):
+        return 'haus', 'Facebook der Bar, Beitrag vom 4. März 2024', ''
+    if q.startswith('google-maps/'):
+        return 'fremd', 'Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen', ''
+    if q.startswith(('ig-dritte/', 'neu-2026-10/')):
+        d, konto, u = beitrag(q)
+        return 'fremd', f'Instagram von @{konto}, Beitrag vom {d}; die Rechte liegen beim Fotografen', h.get('adresse') or u
+    if q.startswith('presse/'):
+        if '_np_' in q:
+            return 'fremd', 'Neue Presse, 11. Januar 2024, Foto: Ilona Hottmann', ''
+        if 'vimeo' in q:
+            return 'fremd', 'Standbild aus einem Film von Niemand Gin über die Bar (Vimeo, September 2018)', ''
+        return 'fremd', f'Presse, {datum(os.path.basename(q))}', ''
+    if q.startswith('portale/'):
+        n = next((v for x, v in PORTALE.items() if x in q), 'einem Portal')
+        return 'fremd', f'Foto von {n}; die Rechte liegen dort', ''
+    if 'dirty-chicken' in q:
+        return 'fremd', 'Foto von Dirty Chicken, Rudis Pop-up im selben Haus', ''
+    if q.startswith('valentin/'):
+        return 'fremd', 'Momo und Rudi am Valentinsabend 2026, Foto von Culinarium', ''
+    if 'Culinarium Hannover' in q or q.startswith(('aus-culinarium/', '../website/_varianten/')):
+        return 'fremd', 'Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium', ''
+    return 'fremd', 'Foto aus den Unterlagen der Bar', ''
 
 
-def geschaerft(rel):
-    return '/ki/geschaerft/' in rel or '/hochgerechnet/' in rel
+# Nachgeschärft (Vermerk in website/bilder.py, Robert 30.10.2026): Vorlage für «Vorher»
+GESCHAERFT = {'konzert-scharf': 'facebook/2024-03-04_fb_816535553821520.jpg'}
 
 
-def dateien_von(k):
-    """(gross, mittel, klein) in website/assets/bild als Weg von der Seite des Werkzeugs aus; klein die kleinste Stufe, mittel höchstens 1600."""
-    st = META[k]['stufen']
-    gr = max(st); kl = min(st); mi = max([b for b in st if b <= 1600] or [kl])
-    if not os.path.exists(os.path.join(BILDER, f'{k}-{gr}.webp')):
-        return None, None, None
-    return (f'../../assets/bild/{k}-{gr}.webp', f'../../assets/bild/{k}-{mi}.webp', f'../../assets/bild/{k}-{kl}.webp')
+def quelle_pfad(q):
+    p = os.path.normpath(os.path.join(QUELLE, q))
+    if os.path.exists(p):
+        return p
+    alt = os.path.normpath(os.path.join('/tmp/culinarium', q.replace('../../', ''))) if 'Culinarium Hannover' in q else ''
+    return alt if alt and os.path.exists(alt) else None
 
 
 def signatur(pfad):
@@ -237,48 +224,46 @@ def signatur(pfad):
 
 def katalog():
     aus, quellen, zusammen, gesehen = [], {}, {}, {}
-    for k, (rel, _pos, alt) in REG.items():
-        if k not in META:
+    for k, (q, alt) in REG.items():
+        mj = os.path.join(BILDER, k + '.json')
+        if not os.path.exists(mj):
             print('nicht auf der Website gebaut:', k); continue
-        if rel in gesehen:                                         # Fehlerbuch 10a 19.10.2026: doppelte Einträge zusammenführen
-            zusammen[k] = gesehen[rel]; continue
-        gesehen[rel] = k
-        fl, fm, fs = dateien_von(k)
-        p = os.path.join(PROJEKT, rel)
-        if not fl or not os.path.exists(p):
+        if q in gesehen:                                           # Fehlerbuch 10a 19.10.2026: doppelte Einträge zusammenführen
+            zusammen[k] = gesehen[q]; continue
+        gesehen[q] = k
+        m = json.load(open(mj))
+        st = [s for s in m['stufen'] if os.path.exists(os.path.join(BILDER, s[1]))]
+        if not st:
             print('nicht im Archiv:', k); continue
-        vor = None
-        if geschaerft(rel):
-            vor = HOCHGERECHNET[k][0] if k in HOCHGERECHNET else VOR_SCHAERFEN.get(k)
-            if vor == rel:
-                vor = None
-        art, q, u = herkunft(k, vor if (vor and k not in HOCHGERECHNET) else rel)
-        if vor and k not in HOCHGERECHNET:
-            q += '. Licht und Schärfe mit KI nachgeschärft'
-        with Image.open(p) as im0:
-            w, h = ImageOps.exif_transpose(im0).size
+        gr = max(st)[1]; kl = min(st)[1]; mi = max([s for s in st if s[0] <= 1600] or [min(st)])[1]
+        art, satz, u = herkunft(k, q)
+        vor = GESCHAERFT.get(k)
+        if vor:
+            satz += '. Licht und Schärfe mit KI nachgeschärft'
+        w, h = m['w'], m['h']
         f = 'hoch' if h > w * 1.04 else 'quer' if w > h * 1.04 else 'quadrat'
-        b = bereich(k)
-        if b is None:
-            raise SystemExit(f'Foto {k} hat keinen Bereich, erst in BEREICH eintragen')
-        aus.append(dict(k=k, t={'de': alt}, b=b, s='jahr', f=f, w=w, h=h, art=art, q=q, u=u, ue=bool(vor), alt=False, vn=False, fl=fl, fm=fm, fs=fs))
-        quellen[k] = dict(druck=p, ausschnitt=None, original=os.path.join(PROJEKT, vor) if vor else None)
-    # gleiche Fotos unter verschiedenen Quellen (Bildvergleich, Abstand der Signaturen unter 0,08): ein Eintrag
+        aus.append(dict(k=k, t={'de': alt}, b=bereich(k, alt), s='jahr', f=f, w=w, h=h, art=art, q=satz, u=u, ue=bool(vor), alt=False, vn=False,
+                        fl=f'../../assets/bild/{gr}', fm=f'../../assets/bild/{mi}', fs=f'../../assets/bild/{kl}'))
+        quellen[k] = dict(druck=quelle_pfad(q), ausschnitt=None, original=quelle_pfad(vor) if vor else None)
+    # gleiche Fotos unter verschiedenen Quellen (Bildvergleich, Abstand der Signaturen unter 0,08): ein Eintrag; das nachgeschärfte bleibt
     sigs = {d['k']: signatur(os.path.join(ROOT, d['fs'][6:])) for d in aus}
     weg = set()
     for i, a in enumerate(aus):
         for b in aus[i + 1:]:
             if b['k'] in weg or a['k'] in weg:
                 continue
+            if a['k'].startswith('p-') and b['k'].startswith('p-'):   # Plakate verschiedener Abende sehen sich ähnlich, bleiben aber eigene Einträge
+                continue
             if np.mean(sigs[a['k']] != sigs[b['k']]) < .08 and a['art'] == b['art'] and a['f'] == b['f']:
-                weg.add(b['k']); zusammen[b['k']] = a['k']
+                bleibt, geht = (b, a) if b['ue'] and not a['ue'] else (a, b)
+                weg.add(geht['k']); zusammen[geht['k']] = bleibt['k']
     aus = [d for d in aus if d['k'] not in weg]
-    for d in aus:
-        doppelt = [x for x, z in zusammen.items() if z == d['k']]
-        if doppelt:
-            d['q'] += '. Auf der Website auch unter ' + ', '.join(f'«{x}»' for x in doppelt)
     for x in weg:
         quellen.pop(x, None)
+    for x, z in list(zusammen.items()):                            # Ketten auflösen
+        while z in zusammen:
+            z = zusammen[z]
+        zusammen[x] = z
     return aus, quellen, zusammen
 
 
@@ -325,17 +310,16 @@ def svg_png(paare):
         s = open(svg, encoding='utf-8').read()
         vb = [float(x) for x in re.search(r'viewBox="([^"]+)"', s).group(1).split()]
         liste.append([svg, png, breite, round(breite * vb[3] / vb[2])])
-    subprocess.run(['node', js, json.dumps(liste)], check=True, env=NODE, timeout=240, cwd=HIER)
+    subprocess.run(['node', js, json.dumps(liste)], check=True, timeout=240, cwd=HIER)
     os.remove(js)
 
 
-def logo_pfade():
-    """Rudis Original (aus dem PDF gelöst, Pfade unverändert): Wortmarke, Zeile und ihre Rahmen."""
-    s = open(os.path.join(LOGO, 'culinarium-logo-original.svg'), encoding='utf-8').read()
-    d = {k: re.search(r'<path id="%s"[^>]* d="([^"]+)"' % k, s).group(1) for k in ('wm', 'zeile')}
-    vb = {'wmz': re.search(r'viewBox="([^"]+)"', s).group(1), 'wm': re.search(r'data-wm="([^"]+)"', s).group(1), 'zeile': re.search(r'data-zeile="([^"]+)"', s).group(1)}
-    farbe = re.search(r'<path id="wm" fill="(#[0-9A-Fa-f]{6})"', s).group(1)
-    return d, vb, farbe
+def logo_inhalt():
+    """Die nachgezogene Wortmarke (potrace, _quelle/logo/wildside-logo-nachgezogen.svg): der Inhalt ohne Kopf, Farbe einsetzbar."""
+    s = open(os.path.join(LOGO, 'wildside-logo-nachgezogen.svg'), encoding='utf-8').read()
+    s = re.sub(r'<\?xml.*?\?>|<!DOCTYPE[^>]*>|<metadata>.*?</metadata>', '', s, flags=re.S)
+    inner = re.search(r'<svg[^>]*>(.*)</svg>', s, flags=re.S).group(1)
+    return re.sub(r'\s+', ' ', inner).strip()
 
 
 def ase(farben):
@@ -347,30 +331,12 @@ def ase(farben):
     return b'ASEF' + struct.pack('>HHI', 1, 0, len(farben)) + bl
 
 
-def wert(name):
-    """Ein einfacher Textwert aus website/bau.py, gelesen ohne die Datei auszuführen."""
-    import ast
-    for n in ast.parse(open(os.path.join(ROOT, 'bau.py'), encoding='utf-8').read()).body:
-        if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == name for t in n.targets):
-            return ast.literal_eval(n.value)
-    raise SystemExit(f'{name} fehlt in website/bau.py')
-
-
-def zeile_rudi():
-    import ast
-    for n in ast.parse(open(os.path.join(ROOT, 'bau.py'), encoding='utf-8').read()).body:
-        if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'ZEILEN' for t in n.targets):
-            return ' '.join(ast.literal_eval(n.value)[0][0])
-    raise SystemExit('ZEILEN fehlt in website/bau.py')
-
-
 SCHRIFTEN = [
-    ('t', 'Fraunces', 'fraunces-soft.woff2', 'Titel und Rudis Zeilen', '340 für Titel, 300 für Rudis Zeilen in Versalien, weiche Enden (SOFT 100); nie fett, nie kursiv', zeile_rudi(), 300),
-    ('e', 'Urbanist', 'urbanist.woff2', 'Etiketten und Knöpfe', '600 bis 700, Versalien, 0,12 em gesperrt', 'A UNiQUE EXPERiENCE', 700),
-    ('s', 'Instrument Sans', 'instrument.woff2', 'Lesetext', '400, 17 px, Zeilenabstand 1,62', next(w for w in MJ['ton']['eigene_worte'] if w.startswith('Momo wird')) + '.', 400),
-    ('m', 'DM Mono', 'dmmono.woff2', 'Zeiten, Daten, Preise', '400, Versalien, 13 px, 0,06 em gesperrt', 'Haasemannstraße 13 · 30449 Hannover', 400),
+    ('t', 'Prata', 'prata-latin.woff2', 'Titel', '400, eine Stärke; nie fett, nie kursiv', 'Du sagst, was du magst.', 400),
+    ('s', 'Hanken Grotesk', 'hanken-latin.woff2', 'Lesetext', '400, 17 px, Zeilenabstand 1,6', 'An der Bar sagst du, was du magst, und Momo macht dir einen Drink daraus.', 400),
+    ('e', 'Hanken Grotesk', 'hanken-latin.woff2', 'Etiketten und Knöpfe', '500, 11,5 px, Versalien, 0,17 em gesperrt', 'DONNERSTAG BIS SAMSTAG AB 19 UHR', 500),
+    ('z', 'Hanken Grotesk', 'hanken-latin.woff2', 'Zeiten, Daten, Preise', 'Tage in Hanken, Uhrzeiten in Prata wie im Fuss der Website; Preise und Listen mit gleich breiten Ziffern', 'Donnerstag 19 bis 1 Uhr', 400),
 ]
-LIZENZ = {'Fraunces': 'OFL-fraunces.txt', 'Urbanist': 'OFL-urbanist.txt'}
 
 
 def dateien(fa):
@@ -379,50 +345,36 @@ def dateien(fa):
     os.makedirs(DAT)
     F = {k: h for k, n, h, r, g, w in fa}
     liste, render = [], []
-    d, vb, farbe_orig = logo_pfade()
-    # Rudis Logo: das Original unverändert (Farbe #383944 wie im PDF), dazu einfarbig in Schiefer und Warmweiss, wie das Markenbuch es erlaubt («Umgefärbt»: nur diese zwei). Einfarbiger Vektor: umfärben erlaubt
-    # (Falle 9 Schäfli betrifft nur Logos mit farbigem Zeichen); jede Datei wird als Tafel angesehen (pruefung/dateien_pruef.py).
-    def svg(name, box, pfad, farbe, titel):
-        open(os.path.join(DAT, name), 'w', encoding='utf-8').write(
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{box}"><title>{e(titel)}</title><path fill="{farbe}" d="{pfad}"/></svg>\n')
-    for gruppe, box, pfad, wort, breite in (('logo', vb['wmz'], d['wm'] + d['zeile'], 'Culinarium · A UNiQUE EXPERiENCE', 2400),
-                                            ('wortmarke', vb['wm'], d['wm'], 'Culinarium', 2400),
-                                            ('zeile', vb['zeile'], d['zeile'], 'A UNiQUE EXPERiENCE', 1800)):
-        var = []
-        farben = (('original', farbe_orig, 'hell'),) if gruppe == 'logo' else ()
-        for k, farbe, grund in farben + (('schiefer', F['schiefer'], 'hell'), ('weiss', F['weiss'], 'dunkel')):
-            s = f'{SCHLUESSEL}-{gruppe}-{k}.svg'; p = s[:-4] + '.png'
-            svg(s, box, pfad, farbe, wort)
-            render.append((os.path.join(DAT, s), os.path.join(DAT, p), breite))
-            var.append(dict(k=k, grund=grund, dateien=[s, p]))
-        if gruppe == 'logo':                                        # Rudis PDF dazu, Byte für Byte
-            n = f'{SCHLUESSEL}-logo-original-rudi.pdf'
-            shutil.copyfile(os.path.join(LOGO, 'culinarium-logo-original-rudi-2026-10-28.pdf'), os.path.join(DAT, n))
-            var[0]['dateien'].append(n)
-        liste.append(dict(k=gruppe, var=var))
-    # Dirty Chicken: Rudis Originale (PNG aus dem PDF, Original-Pixel, und die PDF), nie umgefärbt, nie nachgezeichnet
+    inhalt = logo_inhalt()
+    # Die Wortmarke: drei Zeilen WALK / ON THE / WILD SIDE, nachgezogen aus dem Logo der Bar; Rot als Hauptform, Creme auf Nacht, Nacht auf Creme
     var = []
-    for k, png, pdf in (('dc-logo', 'dirtychicken-logo-lila-1440.png', 'dirtychicken-logo-lila-original-rudi-2026-10-28.pdf'),
-                        ('dc-d', 'dirtychicken-d-lila-original.png', 'dirtychicken-d-lila-original-rudi-2026-10-28.pdf')):
-        n = f'{SCHLUESSEL}-{k}.png'; m = f'{SCHLUESSEL}-{k}.pdf'
-        shutil.copyfile(os.path.join(DC_LOGO, png), os.path.join(DAT, n)); shutil.copyfile(os.path.join(DC_LOGO, pdf), os.path.join(DAT, m))
-        var.append(dict(k=k, grund='dc' if k == 'dc-logo' else 'hell', dateien=[n, m], px=list(Image.open(os.path.join(DAT, n)).size)))   # das D ist violett auf durchsichtigem Grund
-    liste.append(dict(k='dc', var=var))
-    # Tapeten der Website: Gitter aus der doppelten Linie der Plakate, das C in jedem Feld, Ton in Ton; dazu die Tapete von Dirty Chicken
+    for k, farbe, grund in (('rot', F['rot'], 'dunkel'), ('creme', F['creme'], 'dunkel'), ('nacht', F['dunkel'], 'hell')):
+        s = f'{SCHLUESSEL}-wortmarke-{k}.svg'; p = s[:-4] + '.png'
+        open(os.path.join(DAT, s), 'w', encoding='utf-8').write(
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1296 1600"><title>Walk on the Wild Side</title>'
+            + inhalt.replace('fill="#111111"', f'fill="{farbe}"').replace('fill="#000000"', f'fill="{farbe}"') + '</svg>\n')
+        render.append((os.path.join(DAT, s), os.path.join(DAT, p), 1600))
+        var.append(dict(k=k, grund=grund, dateien=[s, p]))
+    liste.append(dict(k='logo', var=var))
+    # Die Vorlage: das Logo der früheren Seite wildside-hannover.de (2020), unverändert, und das Profilbild auf Instagram
+    n = f'{SCHLUESSEL}-logo-vorlage-2020.png'
+    shutil.copyfile(os.path.join(LOGO, 'wildside-logo-webarchiv-2020.png'), os.path.join(DAT, n))
+    m = f'{SCHLUESSEL}-instagram-profilbild.jpg'
+    shutil.copyfile(os.path.join(LOGO, 'wildside-profilbild-1080.jpg'), os.path.join(DAT, m))
+    liste.append(dict(k='website', var=[dict(k='vorlage', grund='hell', dateien=[n], px=list(Image.open(os.path.join(DAT, n)).size)),
+                                        dict(k='heute', grund='hell', dateien=[m], px=list(Image.open(os.path.join(DAT, m)).size))]))
+    # Tapete: das Sternmuster der Website (assets/bild/haus-tapete.svg, die Rippen des Gewölbes), Gold auf Nacht und Gold tief auf Creme
+    t_ = open(os.path.join(BILDER, 'haus-tapete.svg'), encoding='utf-8').read()
+    kachel = re.search(r'<svg[^>]*>(.*)</svg>', t_, flags=re.S).group(1)
     var = []
-    for k, grund, quelle, farbe in (('dunkel', 'dunkel', 'tapete-dunkel.svg', F['nacht']), ('hell', 'hell', 'tapete-hell.svg', F['weiss']), ('dc', 'dc', 'tapete-dc.svg', F['dc'])):
+    for k, grund, flaeche, linie in (('dunkel', 'dunkel', F['nacht'], F['gold']), ('hell', 'hell', F['creme'], F['gold-tief'])):
         s = f'{SCHLUESSEL}-tapete-{k}.svg'; p = s[:-4] + '.png'; w = s[:-4] + '.webp'
-        shutil.copyfile(os.path.join(ZEICHEN, quelle), os.path.join(DAT, s))
-        t_ = open(os.path.join(DAT, s), encoding='utf-8').read()   # Tor 3, 30.10.2026: das Zeichen des Hauses ist das C, das x an den Kreuzungen fällt weg
-        open(os.path.join(DAT, s), 'w', encoding='utf-8').write(re.sub(r'<svg [^>]*viewBox="0 0 224 228"[^>]*>.*?</svg>', '', t_, flags=re.S))
-        vbw = re.search(r'viewBox="([^"]+)"', open(os.path.join(DAT, s), encoding='utf-8').read()).group(1).split()
-        render.append((os.path.join(DAT, s), os.path.join(DAT, p), int(float(vbw[2]))))
-        var.append(dict(k=k, grund=grund, dateien=[p, s, w], farbe=farbe))
+        k4 = ''.join(f'<g transform="translate({x * 150} {y * 150})">{kachel.replace("#D8B264", linie)}</g>' for x in range(4) for y in range(4))
+        open(os.path.join(DAT, s), 'w', encoding='utf-8').write(
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><title>Tapete Walk on the Wild Side</title><rect width="600" height="600" fill="{flaeche}"/>{k4}</svg>\n')
+        render.append((os.path.join(DAT, s), os.path.join(DAT, p), 1200))
+        var.append(dict(k=k, grund=grund, dateien=[p, s, w], farbe=flaeche))
     liste.append(dict(k='tapete', var=var))
-    # So zeigt sich Culinarium heute auf Instagram: das Profilbild, unverändert, zum Nachschlagen
-    n = f'{SCHLUESSEL}-instagram-profilbild.jpg'
-    shutil.copyfile(os.path.join(QUELLE, 'logo', 'culinarium-profilbild-1080.jpg'), os.path.join(DAT, n))
-    liste.append(dict(k='website', var=[dict(k='heute', grund='hell', dateien=[n], px=list(Image.open(os.path.join(DAT, n)).size))]))
     svg_png(render)
     for g in liste:
         for v in g['var']:
@@ -430,30 +382,31 @@ def dateien(fa):
             if png and 'px' not in v:
                 v['px'] = list(Image.open(os.path.join(DAT, png)).size)
     for v in next(g for g in liste if g['k'] == 'tapete')['var']:
-        Image.open(os.path.join(DAT, v['dateien'][0])).save(os.path.join(DAT, v['dateien'][2]), 'WEBP', lossless=True)
+        Image.open(os.path.join(DAT, v['dateien'][0])).convert('RGB').save(os.path.join(DAT, v['dateien'][2]), 'WEBP', quality=90)
     # Farben als Datei: CSS, JSON und ASE
     css = ':root{\n' + ''.join(f'  --{k}:{h}; /* {n}: {r} */\n' for k, n, h, r, g, w in fa) + '}\n'
     open(os.path.join(DAT, f'{SCHLUESSEL}-farben.css'), 'w', encoding='utf-8').write(f'/* {HAUS} · Farben der Marke ({STAND}), Werte der Website und der Plakate */\n' + css)
     json.dump([dict(name=n, hex=h, rgb=list(rgb(h)), rolle=r, gruppe=g, woher=w) for k, n, h, r, g, w in fa], open(os.path.join(DAT, f'{SCHLUESSEL}-farben.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     open(os.path.join(DAT, f'{SCHLUESSEL}-farben.ase'), 'wb').write(ase([(n, h) for k, n, h, r, g, w in fa]))
     liste.append(dict(k='farben', var=[dict(k='alle', grund='hell', dateien=[f'{SCHLUESSEL}-farben.css', f'{SCHLUESSEL}-farben.json', f'{SCHLUESSEL}-farben.ase'])]))
-    # Schriften: die Dateien der Website, dazu als ZIP mit TTF und Lizenz
+    # Schriften: die Dateien der Website, dazu als ZIP mit TTF und Lizenz (SIL Open Font License 1.1, Urheber aus der Schrift selbst)
     from fontTools.ttLib import TTFont
+    ofl = open(os.path.join(HIER, '_ofl-vorlage.txt'), encoding='utf-8').read()
     with zipfile.ZipFile(os.path.join(DAT, f'{SCHLUESSEL}-schriften.zip'), 'w', zipfile.ZIP_DEFLATED) as z:
-        for s_ in SCHRIFTEN:
-            z.write(os.path.join(FONTS, s_[2]), 'web/' + s_[2])
-            f = TTFont(os.path.join(FONTS, s_[2])); f.flavor = None
-            b = io.BytesIO(); f.save(b); z.writestr('programme/' + s_[2].replace('.woff2', '.ttf'), b.getvalue())
-        for fam, l in LIZENZ.items():
-            z.write(os.path.join(MARKE, 'marke', 'schriften', l), 'lizenz/' + l)
+        for datei in sorted({s_[2] for s_ in SCHRIFTEN}):
+            z.write(os.path.join(FONTS, datei), 'web/' + datei)
+            f = TTFont(os.path.join(FONTS, datei)); recht = f['name'].getDebugName(0); fam = f['name'].getDebugName(1)
+            f.flavor = None
+            b = io.BytesIO(); f.save(b); z.writestr('programme/' + datei.replace('.woff2', '.ttf'), b.getvalue())
+            z.writestr('lizenz/OFL-' + fam.lower().replace(' ', '-') + '.txt', recht + '\n' + ofl)
         z.writestr('LIESMICH.txt', f'''{HAUS} · Schriften der Marke ({STAND})
 
-Fraunces mit weichen Enden (SOFT 100): Titel 340, Rudis Zeilen in Versalien 300. Nie fett, nie kursiv.
-Urbanist 600 bis 700: Etiketten und Knöpfe in Versalien, 0,12 em gesperrt.
-Instrument Sans 400: Lesetext, 17 px, Zeilenabstand 1,62.
-DM Mono 400: Zeiten, Daten und Preise in Versalien.
+Prata 400: Titel. Eine Stärke, nie fett, nie kursiv.
+Hanken Grotesk 400: Lesetext, 17 px, Zeilenabstand 1,6.
+Hanken Grotesk 500: Etiketten und Knöpfe in Versalien, 0,17 em gesperrt.
+Zeiten, Daten und Preise in Hanken Grotesk mit gleich breiten Ziffern (tabular-nums).
 
-Alle stehen unter der SIL Open Font License 1.1 (frei für Druck, Website und Programme, auch gewerblich; nicht als Schrift allein verkaufen).
+Beide stehen unter der SIL Open Font License 1.1 (frei für Druck, Website und Programme, auch gewerblich; nicht als Schrift allein verkaufen).
 web/        die Dateien der Website
 programme/  dieselben Schriften als TTF zum Installieren
 lizenz/     Lizenztexte
@@ -467,10 +420,20 @@ lizenz/     Lizenztexte
 
 
 # ---------------------------------------------------------------- Beispiel für die Markenprüfung
+def _schrift(namen, gr):
+    for n in namen:
+        for d in ('/usr/share/fonts/truetype/dejavu', '/usr/share/fonts/truetype/liberation', '/usr/share/fonts/truetype', '/usr/share/fonts'):
+            p = os.path.join(d, n)
+            if os.path.exists(p):
+                return ImageFont.truetype(p, gr)
+    r = subprocess.run(['fc-match', '-f', '%{file}', namen[0].split('.')[0]], capture_output=True, text=True)
+    return ImageFont.truetype(r.stdout, gr) if r.stdout and os.path.exists(r.stdout) else ImageFont.load_default(gr)
+
+
 def beispiel(F):
-    """Ein eigens gezeichneter Entwurf, wie ihn eine Agentur schicken könnte: ein guter Instagram-Beitrag mit einem Foto von Rudi und der Wortmarke,
-    aber in einer fremden Schrift (Baskerville), mit Gold und reinem Schwarz statt Nacht und Kerze, und dem Wort «Sie». Geprüft mit der Prüfung selbst ohne
-    Claude (LIVRE_KI=0); die Farben bleiben gemessen, Schrift, Zeichen, Bild und Ton bekommen Beispiel-Urteile zu genau diesem Entwurf, beschriftet."""
+    """Ein eigens gezeichneter Entwurf, wie ihn eine Agentur schicken könnte: ein Beitrag für einen DJ-Abend mit einem Foto der Bar und der Wortmarke,
+    aber in einer fremden Schrift (eine Serifenschrift fett), mit Neon-Pink und reinem Schwarz statt Nacht, Creme und Gold, und dem Wort «Sie».
+    Geprüft mit der Prüfung selbst ohne Claude (LIVRE_KI=0); die Farben bleiben gemessen, Schrift, Zeichen, Bild und Ton bekommen Beispiel-Urteile, beschriftet."""
     os.environ['LIVRE_KI'] = '0'
     import livre as LV
     LV._livre.cache_clear()
@@ -479,58 +442,48 @@ def beispiel(F):
         shutil.rmtree(zb)
     os.makedirs(zb)
     W, H = 1080, 1350
-    GOLD, SCHWARZ = (0xC9, 0xA2, 0x4A), (0, 0, 0)
+    PINK, SCHWARZ = (0xFF, 0x2E, 0xB8), (0, 0, 0)
     im = Image.new('RGB', (W, H), SCHWARZ)
-    k = 'anstossen'
-    foto = Image.open(os.path.join(BILDER, f'{k}-{max(META[k]["stufen"])}.webp')).convert('RGB')
-    sk = max(W / foto.width, 880 / foto.height); foto = foto.resize((round(foto.width * sk), round(foto.height * sk)), Image.LANCZOS)
-    y0 = round((foto.height - 880) * .4)
-    im.paste(foto.crop(((foto.width - W) // 2, y0, (foto.width - W) // 2 + W, y0 + 880)), (0, 0))
+    m = json.load(open(os.path.join(BILDER, 'voll.json')))
+    foto = Image.open(os.path.join(BILDER, max(m['stufen'])[1])).convert('RGB')
+    sk = max(W / foto.width, 860 / foto.height); foto = foto.resize((round(foto.width * sk), round(foto.height * sk)), Image.LANCZOS)
+    y0 = round((foto.height - 860) * .45)
+    im.paste(foto.crop(((foto.width - W) // 2, y0, (foto.width - W) // 2 + W, y0 + 860)), (0, 0))
     dr = ImageDraw.Draw(im)
-    try:
-        titel = ImageFont.truetype('/System/Library/Fonts/Supplemental/Baskerville.ttc', 78)
-        lese = ImageFont.truetype('/System/Library/Fonts/Supplemental/Baskerville.ttc', 34)
-        knopf = ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc', 26)
-    except OSError:
-        titel = lese = knopf = ImageFont.load_default()
-    dr.text((72, 930), 'Ein Abend mit Momo x Rudi', font=titel, fill=(255, 255, 255))
-    dr.text((72, 1046), 'Drei Gänge und fünf Drinks an einer Tafel.', font=lese, fill=(225, 225, 225))
-    dr.text((72, 1092), 'Haasemannstraße 13 · Hannover-Linden', font=lese, fill=(225, 225, 225))
-    dr.rectangle((72, 1190, 492, 1262), fill=GOLD)
-    dr.text((104, 1212), 'SICHERN SIE IHREN PLATZ', font=knopf, fill=SCHWARZ)
-    logo = Image.open(os.path.join(DAT, f'{SCHLUESSEL}-logo-weiss.png')).convert('RGBA'); logo.thumbnail((360, 120), Image.LANCZOS)
-    dunkel = Image.new('RGBA', (W, 240), (0, 0, 0, 0)); dd = ImageDraw.Draw(dunkel)
-    for i in range(240):
-        dd.line((0, i, W, i), fill=(0, 0, 0, int(130 * (1 - i / 240))))
-    im.paste(dunkel, (0, 0), dunkel); im.paste(logo, (64, 56), logo)
+    titel = _schrift(['DejaVuSerif-Bold.ttf', 'LiberationSerif-Bold.ttf'], 74)
+    lese = _schrift(['DejaVuSerif.ttf', 'LiberationSerif-Regular.ttf'], 32)
+    knopf = _schrift(['DejaVuSans-Bold.ttf', 'LiberationSans-Bold.ttf'], 26)
+    dr.text((72, 910), 'Party-Nacht im Wild Side', font=titel, fill=(255, 255, 255))
+    dr.text((72, 1020), 'Samstag ab 21 Uhr: DJ, Drinks und gute Laune.', font=lese, fill=(225, 225, 225))
+    dr.text((72, 1066), 'Haasemannstraße 13 · Hannover-Linden', font=lese, fill=(225, 225, 225))
+    dr.rectangle((72, 1170, 520, 1242), fill=PINK)
+    dr.text((100, 1192), 'SICHERN SIE IHREN TISCH', font=knopf, fill=SCHWARZ)
+    logo = Image.open(os.path.join(DAT, f'{SCHLUESSEL}-wortmarke-rot.png')).convert('RGBA'); logo.thumbnail((200, 250), Image.LANCZOS)
+    dunkel = Image.new('RGBA', (W, 340), (0, 0, 0, 0)); dd = ImageDraw.Draw(dunkel)
+    for i in range(340):
+        dd.line((0, i, W, i), fill=(0, 0, 0, int(150 * (1 - i / 340))))
+    im.paste(dunkel, (0, 0), dunkel); im.paste(logo, (64, 52), logo)
     im.save(os.path.join(zb, 'entwurf.png'), optimize=True)
     b = io.BytesIO(); im.save(b, 'PNG')
-    j = LV.pruefen(dict(name='Beispiel-Entwurf «Ein Abend mit Momo x Rudi», Instagram-Beitrag', typ='image/png', daten='data:image/png;base64,' + base64.b64encode(b.getvalue()).decode(), sprache='de'))
+    j = LV.pruefen(dict(name='Beispiel-Entwurf «Party-Nacht im Wild Side», Instagram-Beitrag', typ='image/png', daten='data:image/png;base64,' + base64.b64encode(b.getvalue()).decode(), sprache='de'))
     j['beispiel'] = True
     kk = j.setdefault('ki', {})
     farb = [x for x in kk.get('punkte', []) if x.get('bereich') == 'farben']
     for x in farb:
         x['text'] = x['text'].replace('Gemessen ohne KI: ', 'Gemessen: ')
     kk['punkte'] = farb + [
-        dict(bereich='farben', urteil='achten', titel='Gold und reines Schwarz', text=f'Der Knopf trägt ein Gold, die Fläche reines Schwarz. Bei Culinarium tragen Nacht {F["nacht"]} und Schiefer {F["schiefer"]} die dunklen Flächen, betont wird mit Kerze {F["kerze"]}, der Farbe des Abends.'),
-        dict(bereich='schrift', urteil='passt_nicht', titel='Titel in Baskerville', text='Der Titel steht in einer klassischen Antiqua. Culinarium setzt Titel in Fraunces mit weichen Enden, leicht, nie fett; Etiketten und Knöpfe in Urbanist, Versalien, gesperrt.'),
-        dict(bereich='zeichen', urteil='passt', titel='Die Wortmarke steht richtig', text='Rudis Wortmarke mit der Zeile «A UNiQUE EXPERiENCE» steht in Warmweiss auf dunklem Grund, ungedreht und mit Luft rundherum.'),
-        dict(bereich='bild', urteil='passt', titel='Das Foto zeigt einen Abend', text='Anstossen über der Tafel bei Kerzenlicht: ein Foto von Rudi aus dem Bildarchiv, genau das, was ein Gast an einem Abend erlebt.'),
-        dict(bereich='ton', urteil='achten', titel='Du statt Sie', text='Culinarium spricht seine Gäste mit Du an, herzlich und knapp. «Sichern Sie Ihren Platz» klingt nach Verkauf; die Abende kündigen sich mit «nur 14 Plätze pro Abend» an.'),
+        dict(bereich='farben', urteil='passt_nicht', titel='Neon-Pink und reines Schwarz', text=f'Der Knopf trägt ein Neon-Pink, die Fläche reines Schwarz. Bei Walk on the Wild Side tragen Nacht {F["nacht"]} und Platte {F["platte"]} die dunklen Flächen; Gold {F["gold"]} rahmt, Rot {F["rot"]} steht nur als Punkt.'),
+        dict(bereich='schrift', urteil='passt_nicht', titel='Titel in einer fetten Serifenschrift', text='Der Titel steht fett in einer fremden Serifenschrift. Die Bar setzt Titel in Prata, eine Stärke, nie fett; Etiketten und Knöpfe in Hanken Grotesk, Versalien, gesperrt.'),
+        dict(bereich='zeichen', urteil='passt', titel='Die Wortmarke steht richtig', text='Die drei Zeilen WALK / ON THE / WILD SIDE stehen in Rot auf dunklem Grund, ungedreht und mit Luft rundherum.'),
+        dict(bereich='bild', urteil='passt', titel='Das Foto zeigt einen vollen Abend', text='Gäste an den Tischen vor der Bar, warmes Licht: ein Foto aus dem Bildarchiv, genau der Moment an der Bar, der nach vorn gehört.'),
+        dict(bereich='ton', urteil='achten', titel='Du statt Sie', text='Die Bar duzt ihre Gäste, knapp und ein bisschen laut. «Sichern Sie Ihren Tisch» klingt nach Verkauf; die Bar sagt «Platz anfragen» oder einfach, wann es losgeht.'),
     ]
-    kk['gesamt'] = ('Ein guter Entwurf: Foto, Wortmarke und Satz passen zu einem Abend bei Culinarium. Schrift, Gold und Schwarz kommen nicht aus der Marke; '
-                    'mit Fraunces, Nacht und Kerze wird daraus ein Beitrag, der aussieht wie die Website.')
-    kk['ton'] = [dict(stelle='SICHERN SIE IHREN PLATZ', vorschlag='Platz anfragen')]
+    kk['gesamt'] = ('Ein guter Anfang: Foto und Wortmarke passen zu einem Abend im Wild Side. Schrift, Pink und Schwarz kommen nicht aus der Marke; '
+                    'mit Prata, Nacht, Creme und einer Goldlinie wird daraus ein Beitrag, der aussieht wie die Website.')
+    kk['ton'] = [dict(stelle='SICHERN SIE IHREN TISCH', vorschlag='Platz anfragen')]
     j['probe'] = False
     json.dump(j, open(os.path.join(zb, 'pruefung.json'), 'w', encoding='utf-8'), ensure_ascii=False)
     return j
-
-
-# Bilder zu den Farbgruppen (Fehlerbuch 10a, 20.10.2026: ein Foto je Gruppe, nie wiederholt; Farbfeld ganz). Abendfarben: je Farbe ihr Plakat.
-GRUPPE_BILD = {'nacht': ('buch/bilder/schild-nacht.jpg', 'Das Schild der Bar in der Nacht. Daraus kommen die dunklen Flächen.'),
-               'hell': ('listen/farbe-hell.webp', 'So steht Warmweiss mit Tinte auf der Website.'),
-               'kerze': ('buch/bilder/flur.jpg', 'Der Flur zur Bar im Licht der Hängelampe. So nah liegt Kerze am Licht des Hauses.'),
-               'dc': ('listen/farbe-dc.webp', 'Das Logo von Dirty Chicken, Rudis Original. Daraus kommt das Violett.')}
 
 
 def listen_bilder():
@@ -538,15 +491,19 @@ def listen_bilder():
     if os.path.isdir(z):
         shutil.rmtree(z)
     os.makedirs(z)
-    seiten = [os.path.join(ROOT, n) for n in ('index.html', 'abend.html', 'abende.html', 'leute.html') if os.path.exists(os.path.join(ROOT, n))]
-    r = subprocess.run(['node', os.path.join(HIER, 'listen_bilder.js'), z] + seiten, env=NODE, timeout=420, capture_output=True, text=True)
+    port = 9085
+    seiten = [f'http://127.0.0.1:{port}/{n}' for n in ('index.html', 'drinks.html', 'haus.html', 'besuch.html')]
+    r = subprocess.run(['node', os.path.join(HIER, 'listen_bilder.js'), z] + seiten, timeout=420, capture_output=True, text=True)
     print(r.stdout.strip())
     if r.returncode:
         raise SystemExit('listen_bilder.js: ' + r.stderr[-600:])
-    Image.open(os.path.join(DC_LOGO, 'dirtychicken-logo-lila-1440.png')).convert('RGB').save(os.path.join(z, 'farbe-dc.png'))
     for n in os.listdir(z):
         im = Image.open(os.path.join(z, n)).convert('RGB'); im.thumbnail((1200, 800), Image.LANCZOS)
         im.save(os.path.join(z, n[:-4] + '.webp'), 'WEBP', quality=84, method=5); os.remove(os.path.join(z, n))
+
+
+TON = dict(eigene_worte=['Nachbarschafts-Mixology-Bar', 'Du sagst, was du magst', 'Good Drinks, Good Music, Good Energy', 'Let’s go wild', 'Momos sexy Drinks', 'Wild Side Tradition'],
+           nicht=['Sie', 'keine Karte', 'einmal im Jahr eine Karte', 'Cocktail-Lounge', 'exklusiv', 'Event-Location', 'Superlative'])
 
 
 def main():
@@ -557,14 +514,12 @@ def main():
     n_orig = originale(aus, quellen)
     liste = dateien(fa)
     groessen = {f: os.path.getsize(os.path.join(DAT, f)) for f in sorted(os.listdir(DAT))}
-    abend_bild = {'abend-' + a['kennung']: 'buch/bilder/' + os.path.basename(a['bild']) for a in MJ['abendfarben']}
     daten = dict(haus=HAUS, ort='Hannover-Linden', fotos=aus, dateien=liste,
-                 farben=[dict(k=k, n=n, h=h.upper(), rgb=list(rgb(h)), r=r, g=g, woher=w, **({'b': abend_bild[k]} if k in abend_bild else {})) for k, n, h, r, g, w in fa],
+                 farben=[dict(k=k, n=n, h=h.upper(), rgb=list(rgb(h)), r=r, g=g, woher=w) for k, n, h, r, g, w in fa],
                  gruppen=[dict(k=k, n=n, s=s) for k, n, s in GRUPPEN], glanz=[], groessen=groessen,
                  bereiche=[b for b in BEREICHE if any(f['b'] == b for f in aus)],
                  schriften=[dict(k=k, n=fam, d=d, r=r, e=ein, p=p, w=w) for k, fam, d, r, ein, p, w in SCHRIFTEN],
-                 namen=NAMEN, zusammen=zusammen,
-                 ton=dict(eigene_worte=MJ['ton']['eigene_worte'], nicht=MJ['ton']['nicht']),
+                 namen=NAMEN, zusammen=zusammen, ton=TON,
                  stand=dict(fotos=len(aus), haus=sum(1 for x in aus if x['art'] == 'haus'), frei=sum(1 for x in aus if x['art'] == 'frei'),
                             ki=sum(1 for x in aus if x['art'] == 'ki'), fremd=sum(1 for x in aus if x['art'] == 'fremd'), partner=0,
                             ue=sum(1 for x in aus if x['ue']), vn=n_orig, original=sum(1 for v in quellen.values() if v['druck'] and os.path.exists(v['druck'])),
@@ -573,22 +528,27 @@ def main():
     json.dump({k: dict(druck=v['druck'] and os.path.relpath(v['druck'], PROJEKTE), ausschnitt=v['ausschnitt'],
                        original=v['original'] and os.path.relpath(v['original'], PROJEKTE)) for k, v in quellen.items()},
               open(os.path.join(HIER, '_quellen.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
-    import buch
-    buch.aus_station5(os.path.join(MARKE, 'marke'), ROOT, daten)
     beispiel(F)
-    listen_bilder()
+    if '--ohne-listen' not in sys.argv:
+        listen_bilder()
+    fotos = {f['k']: f for f in aus}
     for g in daten['gruppen']:
-        if g['k'] in GRUPPE_BILD:
-            g['bild'], g['bild_t'] = GRUPPE_BILD[g['k']]
+        b, satz = GRUPPE_BILD[g['k']]
+        g['bild'] = b if '/' in b else fotos[b]['fm']
+        g['bild_t'] = satz
     for s_ in daten['schriften']:
         s_['bild'] = f'listen/schrift-{s_["k"]}.webp'
-    for f_ in [*GRUPPE_BILD.values()] + [(x['bild'], '') for x in daten['schriften']] + [(b, '') for b in abend_bild.values()]:
-        if not os.path.exists(os.path.join(HIER, f_[0])):
-            raise SystemExit('Bild fehlt: ' + f_[0])
+    for g in daten['gruppen']:
+        p = os.path.join(ROOT, g['bild'][6:]) if g['bild'].startswith('../../') else os.path.join(HIER, g['bild'])
+        if not os.path.exists(p):
+            raise SystemExit('Bild fehlt: ' + g['bild'])
+    for s_ in daten['schriften']:
+        if not os.path.exists(os.path.join(HIER, s_['bild'])):
+            print('Hinweis: Schriftbild fehlt', s_['bild']); s_.pop('bild')
     json.dump(daten, open(os.path.join(HIER, 'livre.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     seite(F)
     st = daten['stand']
-    print(f'livre.json: {len(aus)} Fotos ({st["haus"]} Haus, {st["ki"]} KI, {st["fremd"]} fremde Rechte, {st["ue"]} nachgeschärft, '
+    print(f'livre.json: {len(aus)} Fotos ({st["haus"]} von der Bar, {st["fremd"]} fremde Rechte, {st["ue"]} nachgeschärft, '
           f'{n_orig} mit Vorher, {st["original"]} mit Original) · {len(zusammen)} doppelte zusammengeführt · {len(groessen)} Dateien · {time.time() - t0:.0f} s')
 
 
@@ -607,15 +567,14 @@ def seite(F):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{NAME} · Culinarium Hannover</title>
-<meta name="description" content="{NAME}, die Marke von Culinarium Hannover zum Arbeiten: Bildarchiv mit fertigen Grössen, Rudis Wortmarke, Dirty Chicken, Tapeten und Farben als Dateien, Markenprüfung für Entwürfe, Hausregeln.">
+<title>{NAME} · Walk on the Wild Side Hannover</title>
+<meta name="description" content="{NAME}, die Marke von Walk on the Wild Side zum Arbeiten: Bildarchiv mit fertigen Grössen, die Wortmarke, Tapete und Farben als Dateien, Markenprüfung für Entwürfe, Hausregeln.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="{F['nacht']}">
 <link rel="icon" href="/assets/oberflaeche/kleid/wildside-zeichen.svg" type="image/svg+xml">
 <script src="/assets/oberflaeche/kleid/wildside.js?v={v_von('../oberflaeche/kleid/wildside.js')}"></script>
-<link rel="preload" href="../../assets/schrift/fraunces-soft.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../../assets/schrift/instrument.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../../assets/schrift/dmmono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/schrift/prata-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/schrift/hanken-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="livre.json?v={v}" as="fetch" crossorigin>
 <link rel="stylesheet" href="/assets/oberflaeche/grund.css?v={v_von('../oberflaeche/grund.css')}">
 <link rel="stylesheet" href="/assets/oberflaeche/rahmen-buehne.css?v={v_von('../oberflaeche/rahmen-buehne.css')}">
@@ -639,4 +598,7 @@ def seite(F):
 
 
 if __name__ == '__main__':
-    main()
+    if sys.argv[1:] == ['seite']:
+        seite({k: h for k, n, h, r, g, w in farben_liste()})
+    else:
+        main()

@@ -1,0 +1,182 @@
+[
+ {
+  "name": "Nacht",
+  "hex": "#130E0D",
+  "rgb": [
+   19,
+   14,
+   13
+  ],
+  "rolle": "Grund der dunklen Flächen: die Bar nach 19 Uhr",
+  "gruppe": "nacht",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Platte",
+  "hex": "#1C1513",
+  "rgb": [
+   28,
+   21,
+   19
+  ],
+  "rolle": "Platten und Karten auf Nacht, wie das Eckschild",
+  "gruppe": "nacht",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Platte hell",
+  "hex": "#261E1A",
+  "rgb": [
+   38,
+   30,
+   26
+  ],
+  "rolle": "gehobene Platte, Kachel auf Platte",
+  "gruppe": "nacht",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Holz",
+  "hex": "#33281F",
+  "rgb": [
+   51,
+   40,
+   31
+  ],
+  "rolle": "tiefste Kante, Fugen zwischen Fotos",
+  "gruppe": "nacht",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Schrift auf Nacht",
+  "hex": "#EDE4D8",
+  "rgb": [
+   237,
+   228,
+   216
+  ],
+  "rolle": "Lesetext auf dunklem Grund, nie reines Weiss",
+  "gruppe": "nacht",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Creme",
+  "hex": "#F2E9DC",
+  "rgb": [
+   242,
+   233,
+   220
+  ],
+  "rolle": "die weissen Plakate der Bar: Grund der hellen Kapitel",
+  "gruppe": "creme",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Creme 2",
+  "hex": "#E7DCCB",
+  "rgb": [
+   231,
+   220,
+   203
+  ],
+  "rolle": "Fläche auf Creme, Kachel im hellen Kapitel",
+  "gruppe": "creme",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Creme 3",
+  "hex": "#D9CBB6",
+  "rgb": [
+   217,
+   203,
+   182
+  ],
+  "rolle": "Linie und Rand auf Creme",
+  "gruppe": "creme",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Schrift auf Creme",
+  "hex": "#1B1512",
+  "rgb": [
+   27,
+   21,
+   18
+  ],
+  "rolle": "Lesetext und Titel auf Creme, nie reines Schwarz",
+  "gruppe": "creme",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Gold",
+  "hex": "#D8B264",
+  "rgb": [
+   216,
+   178,
+   100
+  ],
+  "rolle": "der Rahmen des Eckschilds: nur Haarlinie, Etikett, Knauf",
+  "gruppe": "gold",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Gold tief",
+  "hex": "#A07F3A",
+  "rgb": [
+   160,
+   127,
+   58
+  ],
+  "rolle": "Etikett auf Creme, wo Gold zu hell steht",
+  "gruppe": "gold",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Rot",
+  "hex": "#F0323F",
+  "rgb": [
+   240,
+   50,
+   63
+  ],
+  "rolle": "die Farbe der Wortmarke: nur als Punkt, Hauptknopf und Logo",
+  "gruppe": "gold",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Ultramarin",
+  "hex": "#1A00AA",
+  "rgb": [
+   26,
+   0,
+   170
+  ],
+  "rolle": "die Schrift der SESSION-Plakate, nur bei den DJ-Abenden",
+  "gruppe": "session",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Plakatrot",
+  "hex": "#D21C0A",
+  "rgb": [
+   210,
+   28,
+   10
+  ],
+  "rolle": "die Wellen der SESSION-Plakate, nur bei den DJ-Abenden",
+  "gruppe": "session",
+  "woher": "Wert der Website (wild.css)"
+ },
+ {
+  "name": "Plakatcreme",
+  "hex": "#EBE2D8",
+  "rgb": [
+   235,
+   226,
+   216
+  ],
+  "rolle": "der Grund der SESSION-Plakate",
+  "gruppe": "session",
+  "woher": "gemessen an den SESSION-Plakaten der Bar"
+ }
+]
