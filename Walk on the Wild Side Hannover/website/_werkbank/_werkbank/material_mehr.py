@@ -160,6 +160,9 @@ def du_und_kleid():
         s = s.replace(a, b)
     s = DG.attribute(DG.text_teile(s, DG.umformen))
     s = re.sub(r'<a class="kn [^"]*" href="mailto:[^"]*"[^>]*>.*?</a>', '', s, flags=re.S)   # nichts verschicken: kein mailto auf der Seite
+    # lange Namen (Plakatwerkstatt mit Format) zerfallen in zwei schmalen Spalten: unter 1400 px eine Spalte (Tor werkbank-material 31.10.2026)
+    s = re.sub(r'<style id="material-wild">.*?</style>', '', s, flags=re.S)
+    s = s.replace('</head>', '<style id="material-wild">@media (max-width:1400px){.dateien--2{grid-template-columns:minmax(0,1fr)}}.dateien a span{text-wrap:balance}</style></head>', 1)
     for a, b in KW.TAUSCH:
         s = s.replace(a, b)
     s = KW._farben(s)

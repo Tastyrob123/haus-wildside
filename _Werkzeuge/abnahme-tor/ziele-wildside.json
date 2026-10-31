@@ -162,6 +162,21 @@
    "url": "http://127.0.0.1:9088/untersetzer/index.html"
   },
   {
+   "k": "werkbank-sticker",
+   "name": "Die Werkbank · Sticker",
+   "url": "http://127.0.0.1:9088/sticker/index.html"
+  },
+  {
+   "k": "werkbank-postkarten",
+   "name": "Die Werkbank · Postkarten",
+   "url": "http://127.0.0.1:9088/postkarten/index.html"
+  },
+  {
+   "k": "werkbank-beigaben",
+   "name": "Die Werkbank · Beigaben",
+   "url": "http://127.0.0.1:9088/beigaben/index.html"
+  },
+  {
    "k": "werkbank-feed",
    "name": "Die Werkbank · Feed",
    "url": "http://127.0.0.1:9088/feed/index.html"
