@@ -36,7 +36,7 @@ status: aktiv
 
 ## Offen (mit Grund)
 
-- **Dateien des Stamms:** `_Werkzeuge/haeuser/wildside/haus.json` und `_Werkzeuge/werkzeuge/website/haeuser/wildside.json` liegen ausserhalb des Reviers; der Server legt sie beim Start selbst an (`beschreibung.anlegen()`), einchecken kann sie der Oberchef.
+- **Dateien des Stamms:** `_Werkzeuge/haeuser/wildside/haus.json` und `_Werkzeuge/werkzeuge/website/haeuser/wildside.json` liegen ausserhalb des Reviers (vom Oberchef eingecheckt); der Server schreibt sie beim Start nur neu, wenn `beschreibung.py` etwas anderes ergibt. Die Probe-Kopie `_probe/wildside/` ist nicht in Git (`_probe*/` ignoriert) und entsteht beim Start.
 - **Plakat eines neuen DJ-Abends:** wählbar sind die Plakate, die die Website schon hat (acht SESSION-Plakate). Ein neues Plakat kommt mit dem nächsten Seitenbau dazu (Bildregister `website/bilder.py`, Stufen in `website/assets/bild/`); bis dahin nimmt der neue Abend eines der vorhandenen.
 - **Startbild des gemeinsamen Rahmens** fragt Fotostufen 640/1000 (Culinarium); die Website der Bar hat 480/960/1536. Der Server des Schaufensters bildet das ab; im Rahmen selbst (`oberflaeche/oberflaeche.js`, Revier Tresen) wäre es an einer Stelle zu lösen.
 - **Online:** nur lokal; Veröffentlichen schreibt in die Probe-Kopie, nie in `website/`.

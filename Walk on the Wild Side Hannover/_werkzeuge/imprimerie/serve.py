@@ -122,8 +122,8 @@ def probe(daten):
                          liste=[dict(name=e.get('gang', ''), detail=e['detail'], preis='') for e in L if e.get('detail')]))]}
                      if sum(1 for e in L if e.get('detail')) >= 3 else
                      {'titel': 'Menükarte, ' + ('Violett' if dc else T['creme' if v['ton'] != 'creme' else 'hell']), 'seiten': [mseite('creme' if v['ton'] != 'creme' else 'hell', grund)]}]
-        rudi = False   # Versalzeilen mit «/» gibt es im Wild Side nicht
-        if not rudi:
+        versalzeilen = False   # Versalzeilen mit «/» gibt es im Wild Side nicht
+        if not versalzeilen:
             varianten.append({'titel': 'Menükarte, ' + ('Violett' if dc else T['creme' if v['ton'] != 'creme' else 'hell']), 'seiten': [mseite('creme' if v['ton'] != 'creme' else 'hell', grund)]})
         else:
             varianten.append({'titel': 'Die Drinks in Versalien, ' + ('Violett' if dc else T['dunkel']), 'seiten': [kseite('dunkel', dict(ueber=mi.get('ueber', ''), titel='Vom Pass',
