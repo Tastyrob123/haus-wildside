@@ -1,9 +1,9 @@
 [
  {
-  "ziel": "abend-2025-02-21",
-  "quelle": "_werkbank/heute/abend-2025-02-21.pdf",
-  "name": "Karte Februar 2025",
-  "gruppe": "Die Abende",
+  "ziel": "drunk-in-love",
+  "quelle": "_werkbank/heute/drunk-in-love.pdf",
+  "name": "Drunk in Love",
+  "gruppe": "Die Karten",
   "seiten": 0,
   "b": 210,
   "h": 297,
@@ -11,10 +11,32 @@
   "fehlt": ""
  },
  {
-  "ziel": "abend-2023-09-15",
-  "quelle": "_werkbank/heute/abend-2023-09-15.pdf",
-  "name": "Karte September 2023",
-  "gruppe": "Die Abende",
+  "ziel": "dishes-in-love",
+  "quelle": "_werkbank/heute/dishes-in-love.pdf",
+  "name": "Dishes in Love",
+  "gruppe": "Die Karten",
+  "seiten": 0,
+  "b": 210,
+  "h": 297,
+  "dazu": "",
+  "fehlt": ""
+ },
+ {
+  "ziel": "preisliste",
+  "quelle": "_werkbank/heute/preisliste.pdf",
+  "name": "Die Preise der Bar",
+  "gruppe": "Die Karten",
+  "seiten": 0,
+  "b": 210,
+  "h": 297,
+  "dazu": "",
+  "fehlt": ""
+ },
+ {
+  "ziel": "angebot-feiern",
+  "quelle": "_werkbank/heute/angebot-feiern.pdf",
+  "name": "Angebot für Feiern",
+  "gruppe": "Feiern",
   "seiten": 0,
   "b": 210,
   "h": 297,

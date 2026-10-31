@@ -1,36 +1,99 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium, Kapitel IV «Karten und Unterlagen»: die Karten von La Carte neben der Karte, wie sie heute auf dem Tisch lag (Werkbank-Chat 28.10.2026).
-Culinarium hat keine Speisekarte, sondern zu jedem Abend eine gedruckte Karte am Platz. La Carte (Chat culinarium-carte, Lieferung 28.10.2026) setzt sie neu;
-die PDFs kommen aus _werkzeuge/carte/pruef/aus/abend-<datum>.pdf (feste Schriften, kein Type 3). «Heute» ist das Foto der gedruckten Karte, nur wo es eines
-aus dem eigenen Profil gibt (keine Story mit Gäste-Namen im Bild): September 2023 (Beitrag CxQg56AItz6) und Februar 2025 (Highlight vom 22.02.2025).
-   python3 _werkbank/sb_karten.py  → unterlagen/pdf/<ziel>.pdf, _werkbank/heute/<ziel>.pdf, _werkbank/unterlagen.json (danach Kit unterlagen.py)"""
-import json, os, shutil
+"""Werkbank Walk on the Wild Side, Seite «Unterlagen» (Werkbank Papier, 31.10.2026; Bauart wie sb_karten.py des Culinarium).
+Die Karten der Bar, neu gesetzt mit der Pairing-Karte (_werkzeuge/carte, Druck über carte/drucke.js auf dem Werkzeug-Server 9083, feste Schnitte
+Prata und Hanken, kein Type 3), jede neben dem Blatt, wie es heute aussieht (Beitrag der Bar vom 03.02.2026, Angebotsmappe der Bar).
+Dazu das Angebot für Feiern: die zwei Angebotsblätter der Plakatwerkstatt neben den Seiten «Modell 3» und «Modell 1» der Angebotsmappe.
+Das Heute-Material kommt aus _quelle/ (nur in dieser Sitzung vorhanden) und wird als PDF nach _werkbank/heute/ kopiert, damit die Seite auch ohne _quelle baut.
+   python3 _werkbank/sb_karten.py            → unterlagen/pdf/<ziel>.pdf, _werkbank/heute/<ziel>.pdf, _werkbank/unterlagen.json
+   PYTHONPATH=<Kit>:_werkbank python3 _werkbank/sb_karten.py --seite   → unterlagen/index.html (Kit unterlagen.py mit den Fächern aus unterlagen.json, Du-Form)"""
+import json, os, re, shutil, subprocess, sys, tempfile
 from PIL import Image
 
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
 PROJ = os.path.dirname(os.path.dirname(ROOT))
-CARTE = os.path.join(PROJ, '_werkzeuge', 'carte', 'pruef', 'aus')
-KARTEN = [  # Ziel, Abend (La Carte), Name, Foto der gedruckten Karte
-    ('abend-2025-02-21', 'abend-2025-02-21', 'Februar 2025', '_quelle/extern/ig-highlights/2025-02-22_highlight-4865-06.jpg'),
-    ('abend-2023-09-15', 'abend-2023-09-15', 'September 2023', '_quelle/extern/ig/2023-09-16_culinarium_hannover_CxQg56AItz6-2.jpg'),
+CARTE = os.path.join(PROJ, '_werkzeuge', 'carte')
+PW = os.path.join(PROJ, '_werkzeuge', 'imprimerie', 'haeuser', 'wildside', 'drucksachen')
+ANGEBOTE = os.path.join(PROJ, '_quelle', 'angebote-pdf', 'Wild Side Angebote.pdf')
+IG = os.path.join(PROJ, '_quelle', 'ig', '2026-02-03_walkonthewildside_hannover_DUT3HDnCMo1-{}.jpg')
+# Ziel, Name, Gruppe, Idee (carte-Karte oder PDFs der Plakatwerkstatt), Heute (Bilder oder Seiten der Angebotsmappe)
+KARTEN = [
+    ('drunk-in-love', 'Drunk in Love', 'Die Karten', ('carte', 'drunk-in-love'), ('bild', [IG.format(2)])),
+    ('dishes-in-love', 'Dishes in Love', 'Die Karten', ('carte', 'dishes-in-love'), ('bild', [IG.format(3)])),
+    ('preisliste', 'Die Preise der Bar', 'Die Karten', ('carte', 'preisliste'), ('seiten', [3])),
+    ('angebot-feiern', 'Angebot für Feiern', 'Feiern', ('pw', ['feiern-lange-tafel.pdf', 'feiern-pauschale.pdf']), ('seiten', [4, 2])),
 ]
+
+
+def heute_pdf(art, was, ziel):
+    if art == 'bild':
+        bilder = [Image.open(b).convert('RGB') for b in was]
+        bilder[0].save(ziel, 'PDF', resolution=150, save_all=True, append_images=bilder[1:])
+        return
+    with tempfile.TemporaryDirectory() as tmp:
+        teile = []
+        for s in was:
+            t = os.path.join(tmp, f'{s}.pdf')
+            subprocess.run(['pdfseparate', '-f', str(s), '-l', str(s), ANGEBOTE, t], check=True)
+            teile.append(t)
+        if len(teile) == 1:
+            shutil.copy2(teile[0], ziel)
+        else:
+            subprocess.run(['pdfunite', *teile, ziel], check=True)
 
 
 def bau():
     os.makedirs(os.path.join(ROOT, 'unterlagen', 'pdf'), exist_ok=True); os.makedirs(os.path.join(W, 'heute'), exist_ok=True)
     plan = []
-    for ziel, quelle, name, foto in KARTEN:
-        q = os.path.join(CARTE, quelle + '.pdf')
-        if not os.path.exists(q):
-            print('fehlt', q); continue
-        shutil.copy2(q, os.path.join(ROOT, 'unterlagen', 'pdf', ziel + '.pdf'))
+    for ziel, name, gruppe, (ia, iw), (ha, hw) in KARTEN:
+        aus = os.path.join(ROOT, 'unterlagen', 'pdf', ziel + '.pdf')
+        if ia == 'carte':
+            r = subprocess.run(['node', os.path.join(CARTE, 'drucke.js'), iw, 'stand', aus], capture_output=True, text=True, timeout=240)
+            if r.returncode:
+                print('Pairing-Karte nicht erreichbar, bleibt:', ziel, r.stderr[-200:])
+        else:
+            subprocess.run(['pdfunite', *[os.path.join(PW, p) for p in iw], aus], check=True)
         h = os.path.join(W, 'heute', ziel + '.pdf')
-        Image.open(os.path.join(PROJ, foto)).convert('RGB').save(h, 'PDF', resolution=150)
-        plan.append(dict(ziel=ziel, quelle=os.path.relpath(h, ROOT), name='Karte ' + name, gruppe='Die Abende', seiten=0, b=210, h=297, dazu='', fehlt=''))
+        if os.path.exists(ANGEBOTE):
+            heute_pdf(ha, hw, h)
+        if not (os.path.exists(aus) and os.path.exists(h)):
+            print('fehlt', ziel); continue
+        plan.append(dict(ziel=ziel, quelle=os.path.relpath(h, ROOT), name=name, gruppe=gruppe, seiten=0, b=210, h=297, dazu='', fehlt=''))
     json.dump(plan, open(os.path.join(W, 'unterlagen.json'), 'w'), ensure_ascii=False, indent=1)
-    print('Karten:', ', '.join(p['ziel'] for p in plan))
+    print('Unterlagen:', ', '.join(p['ziel'] for p in plan))
+
+
+DU = [('Ihre Unterlagen,', 'Eure Unterlagen,'),
+      ('Wählen Sie eine Unterlage und blättern Sie mit den Pfeilen. Links steht Ihre heutige Fassung, rechts die Idee im Stil der neuen Seite.',
+       'Wählt eine Unterlage und blättert mit den Pfeilen. Links steht das Blatt, wie es heute aussieht, rechts die Idee im Stil der neuen Seite.'),
+      ('keine offiziellen Unterlagen des Hauses', 'keine offiziellen Unterlagen der Bar')]
+
+
+def seite():
+    import kern as K
+    import unterlagen as U
+    plan = json.load(open(os.path.join(W, 'unterlagen.json'), encoding='utf-8'))
+    K.H.FAECHER = [(p['ziel'], p['name']) for p in plan][:4]
+    U.baue()
+    p = os.path.join(ROOT, 'unterlagen', 'index.html')
+    t = open(p, encoding='utf-8').read()
+    for a, b in DU:
+        t = t.replace(a, b)
+    t = t.replace(' loading="lazy"', '')
+    open(p, 'w', encoding='utf-8').write(t)
+    # Vorschaubild für das Kapitel Papier der Werkbank
+    q = os.path.join(ROOT, 'unterlagen', 'img', f'n-{plan[0]["ziel"]}-01.webp')
+    im = Image.open(q); im.thumbnail((1200, 1200)); im.save(os.path.join(ROOT, 'unterlagen', 'img', 'vorschau.webp'), 'WEBP', quality=86)
+    # alte Seitenbilder, die zu keiner Unterlage mehr gehören
+    ids = {x['ziel'] for x in plan}
+    for f in os.listdir(os.path.join(ROOT, 'unterlagen', 'img')):
+        m = re.match(r'[nh]-(.+)-\d\d\.webp$', f)
+        if m and m.group(1) not in ids:
+            os.remove(os.path.join(ROOT, 'unterlagen', 'img', f))
+    for f in os.listdir(os.path.join(ROOT, 'unterlagen', 'pdf')):
+        if f[:-4] not in ids:
+            os.remove(os.path.join(ROOT, 'unterlagen', 'pdf', f))
 
 
 if __name__ == '__main__':
-    bau()
+    seite() if '--seite' in sys.argv else bau()
