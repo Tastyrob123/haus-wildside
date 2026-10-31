@@ -170,7 +170,7 @@ HAUS = [
 ABTEILUNGEN = [
     {"k": "plakate", "t": "Plakate der Bar", "satz": "Jedes Plakat der Bar ganz, wie es war: SESSION, Silvester, Tanz in den Mai, Relaunch.", "foto": "p-1710", "vorlagen": abt_plakate},
     {"k": "session", "t": "SESSION-Plakate", "satz": "Jeder DJ-Abend sein Plakat: rot-cremefarbene Wellen, Ultramarin, das Gesicht des Abends in Schwarzweiss.", "foto": "an-dj", "vorlagen": abt_session},
-    {"k": "feste", "t": "Feste und Gäste", "satz": "Die weissen Plakate der Bar: Silvester, Tanz in den Mai, der Geburtstag, Konzerte und Gastschichten.", "foto": "konzert-love", "vorlagen": FESTE},
+    {"k": "feste", "t": "Festplakate", "satz": "Die weissen Plakate der Bar: Silvester, Tanz in den Mai, der Geburtstag, Konzerte und Gastschichten.", "foto": "konzert-love", "vorlagen": FESTE},
     {"k": "karte", "t": "Karte & Drinks", "satz": "Die Valentinskarte, die Klassiker, die Preise der Bar und wie Momo arbeitet.", "foto": "glas-coupe", "vorlagen": KARTE},
     {"k": "feiern", "t": "Feiern im Wild Side", "satz": "Privates Dinner, die lange Tafel, die ganze Bar: die Angebote der Bar mit Preisen.", "foto": "an-empore-tafel", "vorlagen": FEIERN},
     {"k": "haus", "t": "Das Haus", "satz": "Die Bar an der Ecke, die Zeiten, der Weg, Derya und Momo, Falstaff.", "foto": "schild", "vorlagen": HAUS},

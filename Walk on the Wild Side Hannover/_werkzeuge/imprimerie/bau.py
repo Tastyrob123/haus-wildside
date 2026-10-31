@@ -149,6 +149,15 @@ def schriften(S):
     from fontTools.ttLib import TTFont
     from fontTools import subset
     os.makedirs(S, exist_ok=True)
+    # Rammetto One trägt sehr hohe Zeilenmasse (1,69 em Inhaltsfläche): Zeilen der SESSION-Plakate stehen eng wie auf den echten Plakaten,
+    # die Inhaltsfläche überlappte dabei die nächste Zeile (Tor 31.10.2026). Ober- und Unterlänge auf die Glyphen gesetzt (Versalien 1642, Unterlänge −555 von 2048).
+    r = os.path.join(S, 'RammettoOne-400.ttf')
+    if os.path.exists(r):
+        f = TTFont(r)
+        if f['hhea'].ascent != 1760:
+            f['hhea'].ascent, f['hhea'].descent, f['hhea'].lineGap = 1760, -560, 0
+            o = f['OS/2']; o.sTypoAscender, o.sTypoDescender, o.sTypoLineGap, o.usWinAscent, o.usWinDescent = 1760, -560, 0, 1760, 560
+            f.save(r)
     U = list(range(0x20, 0x7f)) + list(range(0xa0, 0x250)) + list(range(0x2000, 0x2070)) + [0x20ac, 0x2122, 0x2190, 0x2192, 0x2212, 0xfb01, 0xfb02]
     for f in sorted(glob.glob(os.path.join(S, '*.ttf'))):
         o = subset.Options(); o.flavor = 'woff2'; o.layout_features = ['*']; o.name_IDs = ['*']; o.notdef_outline = True; o.legacy_kern = True

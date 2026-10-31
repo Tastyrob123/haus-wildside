@@ -638,7 +638,7 @@
     const g = getComputedStyle(t), lh = parseFloat(g.lineHeight) || parseFloat(g.fontSize) * 1.25, pad = parseFloat(g.paddingTop) + parseFloat(g.paddingBottom);
     let zeilen = 1;
     if (t.value) { t.style.height = 'auto'; zeilen = Math.max(1, Math.round((t.scrollHeight - pad) / lh)); }
-    else { const c = (passeFeld.c = passeFeld.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`; zeilen = Math.max(1, Math.ceil(c.measureText(t.placeholder).width / Math.max(40, t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 4))); }
+    else { const c = (passeFeld.c = passeFeld.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`; zeilen = Math.max(1, Math.ceil(c.measureText(t.placeholder).width / Math.max(40, t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28))); }
     t.style.height = Math.ceil(zeilen * lh + pad) + 'px';
     if (!t.dataset.feld) {
       t.dataset.feld = 1; t.addEventListener('input', () => passeFeld(t));
@@ -650,14 +650,14 @@
   function kurzPlatz(t) {
     if (!t) return; t.dataset.lang = t.dataset.lang || t.placeholder;
     const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
-    const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 6;   // Innenabstand abziehen (Tor 31.10.: «Etwa: das nächste Plakat» brach bei 1000 px um)
+    const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28;   // Innenabstand abziehen (Tor 31.10.: «Etwa: das nächste Plakat» brach bei 1000 px um)
     t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= frei) || 'Beschreiben …';   // Tor 2: nie zweizeilig
   }
   /* Platzhalter, die start.js je Ansicht neu setzt (Suche, «Etwa: …»), passen immer ganz ins Feld: sonst die kürzere Fassung (Tor 31.10.2026) */
   function passePlatz(t, kurz) {
     if (!t || t.__pp) return; t.__pp = 1;
     const pruefe = () => { const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
-      const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 6; if (frei <= 0 || c.measureText(t.placeholder).width <= frei) return;
+      const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28; if (frei <= 0 || c.measureText(t.placeholder).width <= frei) return;
       const n = kurz.find(x => c.measureText(x).width <= frei) || kurz[kurz.length - 1]; if (n !== t.placeholder) t.placeholder = n; };
     new MutationObserver(pruefe).observe(t, { attributes: true, attributeFilter: ['placeholder'] });
     if (window.ResizeObserver) new ResizeObserver(pruefe).observe(t); pruefe();
