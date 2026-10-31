@@ -136,6 +136,9 @@ def mach():
     # Profilbild: das echte Profilbild der Bar (statt des gerenderten Zeichens aus dem Kit)
     if os.path.exists(PROFILBILD):
         Image.open(PROFILBILD).convert('RGB').resize((640, 640), Image.LANCZOS).save(os.path.join(F, 'avatar.jpg'), quality=90)
+    # dieselben Nacharbeiten wie auf den übrigen Werkbank-Seiten (sonst erst beim nächsten Werkbank-Bau): kein Einzelwort im Titel, Schrift mittig in Knöpfen
+    import zeile_ganz as ZG
+    ZG.anwenden(F)
     return n
 
 
@@ -147,7 +150,10 @@ def kleid(t):
         t = t.replace(a, b)
     t = KW._farben(t)
     t = t.replace('svg.ce{width:74px;height:auto;color:var(--gold);', 'svg.ce{width:74px;height:auto;color:#F0323F;')   # die Wortmarke in Rot, wie an der Ecke
-    t = re.sub(r'<p class="kap"><b style="font-weight:400">0+</b><i></i>', '<p class="kap">', t)   # keine Kapitelnummer «00» (der Feed ist keine Kapitel-Seite)
+    t = re.sub(r'<p class="kap"><b style="font-weight:400">0+</b><i></i>', '<p class="kap">', t)
+    # Hanken sitzt im Knopf von selbst mittig (gemessen, Tor werkbank-feed 31.10.2026); der Ausgleich von text_mitte.py ist für DM Mono gemacht
+    if 'id="feed-mitte"' not in t:
+        t = t.replace('</head>', '<style id="feed-mitte">.kn>.tm{top:0!important}</style>\n</head>', 1)   # keine Kapitelnummer «00» (der Feed ist keine Kapitel-Seite)
     return t
 
 

@@ -180,7 +180,7 @@ def seite():
     PS.etiketten()
     p = os.path.join(os.path.dirname(W), 'sticker', 'index.html')
     t = open(p, encoding='utf-8').read()
-    t = t.replace('und Ihre Unterlagen im selben Stil', 'und eure Unterlagen im selben Stil').replace('Originalgrösse', 'Originalgröße').replace(' loading="lazy"', '')
+    t = t.replace('und Ihre Unterlagen im selben Stil', 'und eure Unterlagen im selben Stil').replace('Originalgrösse', 'Originalgröße').replace(' loading="lazy"', '').replace('Dreissig', 'Dreißig').replace('dreissig', 'dreißig')
     open(p, 'w', encoding='utf-8').write(t)
     from PIL import Image
     im = Image.open(os.path.join(os.path.dirname(W), 'sticker', 'img', 's04.webp')); im.save(os.path.join(os.path.dirname(W), 'sticker', 'img', 'vorschau.webp'), 'WEBP', quality=86)

@@ -490,7 +490,7 @@
     Object.entries(attr).forEach(([k, v]) => b.dataset[k] = v);
     const bu = document.createElement('span'); bu.className = 'stueck__buehne'; bu.style.height = Math.ceil(H + 36) + 'px';
     const sa = document.createElement('span'); sa.className = 'stueck__satz'; blaetter.forEach(x => x && sa.appendChild(x)); bu.appendChild(sa); b.appendChild(bu);
-    b.insertAdjacentHTML('beforeend', `<b class="zl__name">${esc(name)}</b><em class="stueck__format">${esc(info)}</em>${nimm ? `<small class="stueck__satztext stueck__nimm">${esc(nimm)}</small>` : ''}`);
+    b.insertAdjacentHTML('beforeend', `<b class="zl__name">${esc(name).replace(/ (\S+)$/, '\u00a0$1')}</b><em class="stueck__format">${esc(info)}</em>${nimm ? `<small class="stueck__satztext stueck__nimm">${esc(nimm)}</small>` : ''}`);
     return b;
   }
   function leerStueck(attr, f, basis, info) {

@@ -286,6 +286,8 @@ html.js .hr.da{{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,
 @media (prefers-reduced-motion:reduce){{html.js .hr{{opacity:1;transform:none;transition:none}}}}
 @media (max-width:760px){{.mb{{flex-basis:calc(100vw - 2 * var(--rand))}}.pfeile{{display:none}}}}
 @media (hover:none){{.pfeile{{display:none}}}}
+/* Hanken sitzt im Knopf von selbst mittig (Tor werkbank-mails 31.10.2026); der Ausgleich aus text_mitte.py ist für DM Mono gemacht */
+.mb-kn>span{{top:0!important}}.pf svg{{transform:none!important}}
 </style></head>
 <body>
 <script>if (!matchMedia('(prefers-reduced-motion:reduce)').matches && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
