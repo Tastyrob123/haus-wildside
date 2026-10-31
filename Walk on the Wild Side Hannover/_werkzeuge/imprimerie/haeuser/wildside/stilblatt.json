@@ -17,7 +17,10 @@
    "rolle": [
     "kapitale"
    ],
-   "schrift": "Hanken",
+   "schrift": [
+    "Hanken",
+    "Hanken Grotesk"
+   ],
    "versalien": true,
    "sperr_max": 0.08,
    "nur_bei": [
@@ -48,7 +51,10 @@
    "rolle": [
     "mono"
    ],
-   "schrift": "Hanken",
+   "schrift": [
+    "Hanken",
+    "Hanken Grotesk"
+   ],
    "schnitt": "Hanken Grotesk 500",
    "versalien": true,
    "sperr": [
