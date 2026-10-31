@@ -249,5 +249,5 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
 @media (max-width:520px){#startWeg .weg__kopf .hwahl-knopf{white-space:normal;max-width:100%}#startWeg .weg__kopf h1,#startWeg .weg__kopf .start__satz{max-width:100%;overflow-wrap:anywhere}}
 
 @media (max-width:520px){.links .tab.an{padding-left:23px}}
-@media (max-width:1180px){.ms-feld--klein .kn>span{display:none}.ms-feld--klein .kn{padding:0 6px;gap:0;width:auto}}
+@media (max-width:1180px) and (min-width:761px){.ms-feld--klein .kn>span{display:none}.ms-feld--klein .kn{padding:0 6px;gap:0;width:auto}}
 .ms-feld--klein textarea{min-width:0;overflow-wrap:normal}

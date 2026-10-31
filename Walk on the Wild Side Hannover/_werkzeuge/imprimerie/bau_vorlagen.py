@@ -305,7 +305,7 @@ def neu(art, titel, bereich, x, fmt=None):
 
 
 for x in abt_session[:9]:
-    neu('abendplakat', x["n"].replace('SESSION · ', 'SESSION mit '), 'SESSION', x)
+    neu('abendplakat', x["n"].replace('SESSION · ', ''), 'SESSION', x)
 for x in abt_session[9:11]:
     neu('abendplakat', x["n"], 'SESSION', x, x["format"])
 for x in FESTE:
@@ -321,7 +321,7 @@ for x in [KARTE[4], KARTE[5], KARTE[7], HINWEISE[3], HINWEISE[4]]:
 for x in [KARTE[6], HAUS[2], HAUS[3], FEIERN[5], abt_session[11]] + [m for k in ('oktoberfest-2026', 'geburtstag', 'silvester-2026', 'mai-2027') for m in MOTIVE[k] if m["n"] == 'Beitrag']:
     neu('instagram', x["n"], 'Instagram', x)
 for t, u in [('Reserviert', 'Die Empore'), ('Reserviert', 'An der Theke'), ('Die lange Tafel', 'Feiern im Wild Side'), ('Willkommen', 'Walk on the Wild Side')]:
-    neu('tischkarte', t + ' · ' + u, 'Feiern', v(t, '', 'a7q', 'deckel', 'dunkel' if len(BIB['tischkarte']) % 2 else 'creme', {"ueber": u, "titel": t, "unter": "", "text": ""}))
+    neu('tischkarte', t + ' · ' + u if len((t + u).split()) <= 3 else u, 'Feiern', v(t, '', 'a7q', 'deckel', 'dunkel' if len(BIB['tischkarte']) % 2 else 'creme', {"ueber": u, "titel": t, "unter": "", "text": ""}))
 for x in [HINWEISE[1], HINWEISE[2], HINWEISE[5], HAUS[5]]:
     neu('hinweiskarte', x["n"], 'Hinweise', x)
 for x in [HINWEISE[0]]:
@@ -336,7 +336,7 @@ for x in NEWSLETTER:
     neu('newsletter', x["n"], 'Newsletter', x, x["format"])
 neu('einladung', 'Einladung · Die ganze Bar', 'Feiern', v('Einladung', '', 'q148', 'einladung', 'dunkel', BEISPIEL["einladung"]))
 neu('einladung', 'Einladung · Privates Dinner', 'Feiern', v('Einladung', '', 'q148', 'einladung', 'creme', {"ueber": "Mit Rudi und Momo", "titel": "Privates Dinner", "wann": "10 bis 14 Gäste", "wo": ADR, "text": "Ein exklusiver Abend an der langen Tafel, mit Rudi in der Küche und Momo an der Bar.", "aktion": TEL}))
-neu('gutschein', FEIERN[6]["n"], 'Feiern', FEIERN[6])
+neu('gutschein', 'Ein Abend an der Bar', 'Feiern', FEIERN[6])
 neu('gutschein', 'Gutschein · hell', 'Feiern', v('Gutschein', '', 'dlq', 'gutschein', 'hell', FEIERN[6]["inhalt"], FEIERN[6]["rueck"]))
 
 
