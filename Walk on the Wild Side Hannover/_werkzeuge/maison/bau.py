@@ -170,46 +170,31 @@ def web_bild(k, gross=(2400, 1600, 1000, 640)):
     raise SystemExit('Foto fehlt in der Website: ' + k)
 
 
-# Ruhe-Ansicht: die Fenster der Bar am Abend (wie das Startbild der Werkzeuge), hochkant genug für die Bühne neben zwei Reihen Plakaten (5 : 4)
-RUHE = 'fassade'
-
-
-def ruhe_crop():
-    from PIL import Image
-    w, h = Image.open(web_bild(RUHE)).size
-    ch = min(h, round(w * 4 / 5)); cw = round(ch * 5 / 4)
-    x0 = (w - cw) // 2; y0 = round((h - ch) * pos_y(RUHE))
-    return (x0, y0, x0 + cw, y0 + ch)
-
-
-# Foto des Hauses je Werkzeug (Plakat im Empfang), aus den Bildern der Website, 4 : 3 geschnitten
-RAUM = {'bureau': 'ecke', 'carte': 'lauch', 'imprimerie': 'pl23', 'reception': 'kerze2', 'livre': 'theke', 'registre': 'flur'}
-RAUM_G = (800, 600)
-# Fotos aus dem Bereich «Fotos» des Markenbuchs für dessen Saal (nur Fotos des Hauses, keine Menschen angeschnitten, nichts vom Schwesterhaus)
-ARCHIV = ['tafelleer', 'g1', 'pass', 'anstossen', 'kanister', 'roq1']
+# Fotos aus dem Bereich «Fotos» des Markenbuchs für dessen Saal (nur Fotos der Bar aus dem Bildregister der Website, keine Plakate, nichts vom Culinarium)
+ARCHIV = ['decke-raum', 'theke', 'rueckbar', 'glas-coupe', 'voll', 'momo-lacht']
 SCHIRME = {'bureau': ['bureau', 'bureau-2'], 'carte': ['carte'], 'imprimerie': ['imprimerie'], 'reception': ['reception'],
            'livre': ['livre-fotos', 'livre-marke'], 'registre': ['registre', 'registre-herkunft']}
 
 
-# Empfang wie die Zentrale des Grand Beau-Rivage (Robert 29.10.2026: «kannst du das machen wie beim Rivage?»): fünf hohe Fenster, je Werkzeug ein Foto
-# des Abends über die ganze Höhe, Die Besucherliste als Zahlenzeile unter dem Titel. Je Foto: Lage am Desktop (hohe Säule) und am Handy (flaches Band),
-# so gewählt, dass das Motiv steht (Fenster der Bar, Rudi am Tisch, die gedeckte Tafel in der Mitte unter dem Titel, Anstossen an der Tafel, Momo vor der Bar; Momo mit dem Shaker vor den Flaschen war gedrosselt zu schwer).
-FENSTER = {'bureau': ('barlicht', '50% 50%', '50% 74%'), 'carte': ('rudi', '50% 40%', '50% 24%'), 'imprimerie': ('tafelleer', '50% 50%', '50% 52%'),
-           'reception': ('anstossen', '42% 50%', '50% 30%'), 'livre': ('momo_hoch', '50% 50%', '50% 20%')}
+# Empfang wie beim Culinarium (dort nach der Zentrale des Grand Beau-Rivage, Robert 29.10.2026): fünf hohe Fenster, je Werkzeug ein Foto der Bar über die
+# ganze Höhe, Die Besucherliste als Zahlenzeile unter dem Titel. Je Foto: Lage am Desktop (hohe Säule) und am Handy (flaches Band), so gewählt, dass das
+# Motiv steht: der Blick von der Strasse durchs Fenster (Website = Schaufenster), Momo giesst (Karte), die NEGRONI-Glühbirnen (Schrift, Plakate),
+# zwei Gäste an der Bar (Gästebuch), das Eckschild mit der Wortmarke (Markenbuch).
+FENSTER = {'bureau': ('fenster', '50% 50%', '50% 46%'), 'carte': ('momo-giesst', '58% 50%', '50% 30%'), 'imprimerie': ('negroni', '30% 50%', '50% 22%'),
+           'reception': ('freundinnen', '52% 50%', '50% 30%'), 'livre': ('schild', '50% 50%', '50% 24%')}
 FARBE = {}   # Platzhalter in der Motivfarbe statt Schwarz (Fund Oberchef 29.10.2026)
 
 
 def bilder(ziel):
     BILDER.clear(); FEHLT.clear()
     from PIL import Image
-    webp(ziel, 'ruhe', web_bild(RUHE), 1800, 1000, 80, ruhe_crop())
     for k, (f, pos, pos_h) in FENSTER.items():
         q = web_bild(f); w, h = Image.open(q).size
         px, py = (float(x.rstrip('%')) / 100 for x in pos.split()); hy = float(pos_h.split()[1].rstrip('%')) / 100
         # Fenster am Desktop: nur der sichtbare Streifen (Breite : Höhe = 0,36 wie ein Fenster bei 1440 × 900 bis 1920 × 1080), 600 und 900 px breit (Oberchef 29.10.2026)
         cw = min(w, round(h * .36)); x0 = round((w - cw) * px)
         for b in (600, 900):
-            webp(ziel, f'fenster-{k}-{b}', q, b, None, 72, (x0, 0, x0 + cw, h))
+            webp(ziel, f'fenster-{k}-{b}', q, b, None, 74, (x0, 0, x0 + cw, h))
         # am Handy ein flaches Band (2,6 : 1) an der Stelle, wo das Motiv steht
         bh = min(h, round(w / 2.6)); y0 = round((h - bh) * hy)
         webp(ziel, f'fenster-{k}-band', q, 800, None, 74, (0, y0, w, y0 + bh))
@@ -221,26 +206,7 @@ def bilder(ziel):
                 FEHLT.append(n)
                 continue
             webp(ziel, 'schirm-' + n, q, 2400, 1200, 84)
-    from PIL import Image
-    for k, rk in RAUM.items():
-        q = web_bild(rk, (1600, 1000, 2400, 640))
-        for name, (bw, bh) in ((f'raum-{k}', RAUM_G), (f'raum-{k}-s', (480, 360))):
-            z = os.path.join(ziel, 'img', name + '.webp')
-            if not os.path.exists(z) or os.path.getmtime(z) < max(os.path.getmtime(q), os.path.getmtime(__file__)):
-                im = Image.open(q).convert('RGB')
-                if k == 'imprimerie':   # Plakate nie anschneiden (Oberchef/Robert 28.10.2026): das ganze Plakat mit Innenrand und weichem Schatten auf hellem Grund
-                    from PIL import ImageFilter
-                    rand = round(bh * .09); ph = bh - 2 * rand; im = im.resize((round(im.width * ph / im.height), ph), Image.LANCZOS)
-                    grund = Image.new('RGB', (bw, bh), (243, 236, 234)); x = (bw - im.width) // 2
-                    sch = Image.new('L', (bw, bh), 0); sch.paste(150, (x + 4, rand + round(bh * .03), x + im.width - 4, rand + ph + round(bh * .03)))
-                    grund.paste((120, 105, 108), (0, 0), sch.filter(ImageFilter.GaussianBlur(round(bh * .035))))
-                    grund.paste(im, (x, rand)); grund.save(z, quality=82, method=6)
-                    continue
-                sk = max(bw / im.width, bh / im.height)
-                im = im.resize((round(im.width * sk), round(im.height * sk)), Image.LANCZOS)
-                x = (im.width - bw) // 2; y = min(max(0, round(im.height * pos_y(rk) - bh * .5)), im.height - bh)
-                im.crop((x, y, x + bw, y + bh)).save(z, quality=80, method=6)
-    # Stücke der Säle: Karten (roh/karten/*.png aus den PDF von La Carte), Drucksachen (roh/druck/*.png), Fotos aus dem Markenbuch
+    # Stücke der Säle: Karten (roh/karten/*.png aus der Pairing-Karte), Drucksachen (roh/druck/*.png aus der Plakatwerkstatt), Fotos aus dem Markenbuch
     if geliefert('imprimerie'):
         for q in sorted(glob.glob(os.path.join(ROH, 'druck', '*.png'))):
             webp(ziel, 'druck-' + os.path.basename(q)[:-4], q, 1000, None, 84)
@@ -249,19 +215,13 @@ def bilder(ziel):
             webp(ziel, 'karte-' + os.path.basename(q)[:-4], q, 1000, None, 84)
     if geliefert('livre'):
         for k in ARCHIV:
-            webp(ziel, 'archiv-' + k, web_bild(k, (1000, 1600, 640)), 900, None, 80)
+            webp(ziel, 'archiv-' + k, web_bild(k, (960, 1200, 1536, 1600)), 900, None, 80)
     for n in ('reception-chat',):
         q = os.path.join(ROH, n + '.png')
         if os.path.exists(q) and geliefert('reception'):
             webp(ziel, 'schirm-' + n, q, 2400, 1200, 84)
-    # Tapeten der Website als gerechnetes Bild (quelle/tapete.js, doppelte Dichte): ein SVG-Muster kostete am Handy beim ersten Scrollen ein Bild über 33 ms
-    for art, svg in (('dunkel', 'tapete-dunkel.svg'), ('hell', 'tapete-hell.svg')):
-        q = os.path.join(QUELLE, f'tapete-{art}@2x.png')
-        if not os.path.exists(q) or os.path.getmtime(q) < os.path.getmtime(os.path.join(WEB, 'assets', 'zeichen', svg)):
-            raise SystemExit('Tapete der Website ist neuer: node _werkzeuge/maison/quelle/tapete.js')
-        Image.open(q).save(os.path.join(ziel, 'img', f'tapete-{art}.webp'), lossless=True, method=6)
     os.makedirs(os.path.join(ziel, 'schrift'), exist_ok=True)
-    for f in ('fraunces-soft.woff2', 'instrument.woff2', 'urbanist.woff2', 'dmmono.woff2'):
+    for f in ('prata-latin.woff2', 'hanken-latin.woff2'):
         shutil.copyfile(os.path.join(WEB, 'assets', 'schrift', f), os.path.join(ziel, 'schrift', f))
 
 
@@ -298,23 +258,23 @@ def ui(t, k=''):
 # erst nach der Lieferung aus dem Code des Werkzeugs gelesen und beim Bau dagegen geprüft.
 TAFEL_ALLG = {
     'bureau': [('stift', 'Text oder Foto ändern', 'Den Bereich wählen, in der Vorschau auf den Text oder das Foto klicken und ändern.'),
-               ('uhr', 'Die nächsten Abende', 'Datum, Uhrzeit und freie Plätze eines Abends stehen an einer Stelle. Einmal ändern, jede Seite der Website folgt.'),
+               ('uhr', 'Zeiten und DJ-Abende', 'Öffnungszeiten und die nächsten DJ-Abende stehen an einer Stelle. Einmal ändern, jede Seite der Website folgt.'),
                ('waage', 'Erst Entwurf, dann online', 'Gespeichert ist erst ein Entwurf. Vorher und nachher nebeneinander ansehen, dann veröffentlichen.')],
-    'carte': [('stift', 'Einen Gang ändern', 'Den Abend wählen, den Gang anklicken und seine Zeile überschreiben. Daneben steht sofort die Karte, wie sie am Platz liegt.'),
-              ('liste', 'Den Drink dazu', 'Zu jedem Gang gehört sein Drink. Name und Zutaten stehen gleich daneben, so bleibt das Paar zusammen.'),
-              ('pdf', 'Die Karte drucken', 'Vorab eine Probe ansehen, dann veröffentlichen: die PDF wird neu gesetzt, die Website zeigt das neue Menü.')],
-    'imprimerie': [('satz', 'Den Abend beschreiben', 'Unter «Abend beschreiben» Thema, Konzept, Gastkoch und Wochenende eintragen, drei, vier oder fünf Vorschläge wählen und «Vorschläge anlegen».'),
-                   ('fuenf', 'Neue Plakate, eigene Ideen', 'Jeder Vorschlag ist ein ganz neues Plakat im Stil von Rudis Plakaten, mit eigener Bildidee, vorn und hinten. Den passenden mit «Diesen bearbeiten» öffnen und im Editor fertig machen. Rudis Illustrationen liegen unter «Plakat-Motive».'),
+    'carte': [('stift', 'Einen Drink ändern', 'Die Karte wählen, den Drink anklicken und seine Zeile überschreiben. Daneben steht sofort die Karte, wie sie auf dem Tresen liegt.'),
+              ('liste', 'Klassiker und Sonderkarten', 'Neben der wechselnden Karte stehen die Klassiker und die Sonderkarten, etwa zum Valentinstag, jede mit ihren Preisen.'),
+              ('pdf', 'Die Karte drucken', 'Vorab eine Probe ansehen, dann veröffentlichen: die PDF wird neu gesetzt, die Website zeigt die neue Karte.')],
+    'imprimerie': [('satz', 'Den Abend beschreiben', 'DJ, Datum und Stil eintragen und Vorschläge anlegen lassen.'),
+                   ('fuenf', 'Neue Plakate, eigene Ideen', 'Jeder Vorschlag ist ein ganz neues Plakat in der Sprache der Bar. Den passenden im Editor fertig machen.'),
                    ('druck', 'Drucken', 'Druckfertig als PDF speichern, für die Druckerei oder als Beitrag.')],
-    'reception': [('blase', 'Gäste fragen im Chat', 'Auf jeder Seite der Website können Gäste fragen. Der Chat antwortet aus deinen Seiten, zu Abenden, Plätzen und dem Weg in die Bar.'),
-                  ('eingang', 'Anfragen beantworten', 'Ein Platz an der Tafel, eine Unverträglichkeit, ein Abend für eine Gruppe: jede Anfrage steht im Eingang, mit einem Entwurf für deine Antwort. Verschickt wird nur, was du selbst schickst.'),
+    'reception': [('blase', 'Gäste fragen im Chat', 'Auf jeder Seite der Website können Gäste fragen. Der Chat antwortet aus deinen Seiten, zu Zeiten, Plätzen, Feiern und DJ-Abenden.'),
+                  ('eingang', 'Anfragen beantworten', 'Ein Tisch für den Freitag, eine Feier auf der Empore: jede Anfrage steht im Eingang, mit einem Entwurf für deine Antwort. Verschickt wird nur, was du selbst schickst.'),
                   ('liste', 'Lücken schliessen', 'Wusste der Chat etwas nicht, steht die Frage in einer eigenen Liste. Einmal nachtragen, ab dann antwortet er selbst.')],
     'livre': [('foto', 'Ein Foto holen', 'Ein Foto anklicken und die Grösse wählen: für Instagram, die Website oder den Druck.'),
               ('datei', 'Wortmarke weitergeben', 'Wortmarke, Farben und Schriften liegen als Dateien bereit, für Agentur oder Druckerei.'),
-              ('farbe', 'Einen Entwurf prüfen', 'Plakat oder Flyer einer Agentur hineinziehen. Es sagt Punkt für Punkt, was zum Culinarium passt.')],
+              ('farbe', 'Einen Entwurf prüfen', 'Plakat oder Flyer einer Agentur hineinziehen. Es sagt Punkt für Punkt, was zur Bar passt.')],
     'registre': [('karte', 'Woher die Gäste kommen', 'Länder und Orte der Besuche, ohne Cookies und nie mit Namen.'),
-                 ('liste', 'Was sie sich ansehen', 'Welche Abende und Seiten gefragt sind, und wie lange die Gäste bleiben.'),
-                 ('uhr', 'Weiter zum Platz', 'Wie oft ein Besuch zum Platz führt: gebucht oder auf der Warteliste.')],
+                 ('liste', 'Was sie sich ansehen', 'Welche Seiten gefragt sind, die Drinks, das Programm, Feiern, und wie lange die Gäste bleiben.'),
+                 ('uhr', 'Weiter zum Tisch', 'Wie oft ein Besuch zum Reservieren oder zur Anfrage für eine Feier führt.')],
 }
 
 
@@ -337,18 +297,20 @@ class Bau:
     online = False
 
 
-WM_VB = '0 0 364.78 40.36'
-WM = re.search(r'<symbol id="wm"[^>]*>(.*?)</symbol>', open(os.path.join(WEB, 'assets', 'zeichen', 'marke.svg'), encoding='utf-8').read(), re.S).group(1)
-# Stufen des Wegs zur Buchung im Saal von Le Registre: Namen wie im Besucherbuch des Hauses (Fehlerbuch 10a, Stube Schäfli), sobald es vorliegt
-# (registre/stufen.json); bis dahin die Wege der Website (Abend ansehen → Platz buchen oder Warteliste → Platz bestätigt).
+WM_VB, WM = svg_innen(os.path.join(WZ, 'oberflaeche', 'kleid', 'wildside-marke.svg'))   # die Wortmarke der Bar (wie website/bau.py LOGO, Farbe über currentColor)
+WM = re.sub(r'^<symbol[^>]*>|</symbol>$', '', WM)
+# Stufen des Wegs zum Tisch im Saal der Besucherliste: Namen wie in der Besucherliste des Hauses (Fehlerbuch 10a), sobald sie vorliegt
+# (registre/stufen.json → maison); bis dahin die Wege der Website (Besuch ansehen → reservieren oder Feier anfragen → an der Bar).
 try:
-    STUFE = json.load(open(os.path.join(WZ, 'registre', 'stufen.json'), encoding='utf-8'))['maison']
+    _st = json.load(open(os.path.join(WZ, 'registre', 'stufen.json'), encoding='utf-8'))
+    STUFE = _st['maison']; STUFE_SEITE = _st.get('seite') or 'besuch.html'
 except (OSError, ValueError, KeyError):
-    STUFE = ['«Der Abend» geöffnet', 'Platz gebucht oder auf der Warteliste', 'dabei', 'zählt das Team am Abend, nicht die Website']   # Le Registre 28.10.2026
+    STUFE = ['«Bis 2 Uhr» geöffnet', 'reserviert oder Feier angefragt', 'an der Bar', 'zählt das Team am Abend, nicht die Website']   # Wege der Website: besuch.html → Reservieren / Feiern anfragen
+    STUFE_SEITE = 'besuch.html'
 
 
 def wortmarke(c):
-    return f'<svg class="{c}" viewBox="{WM_VB}" aria-label="Culinarium" role="img">{WM}</svg>'
+    return f'<svg class="{c}" viewBox="{WM_VB}" aria-label="{e(NAME)}" role="img" fill="currentColor">{WM}</svg>'
 
 
 def lamm(c):
@@ -444,22 +406,8 @@ def seite(online, v):
     auf = {k: A[k]['auf'] for k in REIHE}
     web = '/index.html' if online else '/index.html'      # lokal liefert server.py die Website in der Wurzel aus
 
-    rb = BILDER['ruhe']
-    vorschau = (f'<img class="hz-bild hz-bild--ruhe an" data-vorschau="ruhe" src="img/ruhe.webp" srcset="img/ruhe-s.webp 1000w, img/ruhe.webp {rb[0]}w" '
-                f'sizes="(max-width:1000px) 100vw, 46vw" width="{rb[0]}" height="{rb[1]}" alt="{e(BILDER_W[RUHE]["alt"])}" decoding="async" fetchpriority="high">')
-    unter = f'<span data-vorschau="ruhe" class="an">{e(NAME)} · {e(STRASSE)}</span>'
-    for i, k in enumerate(REIHE):
-        n = 'schirm-' + SCHIRME[k][0]
-        if n in BILDER:
-            vorschau += (f'<img class="hz-bild hz-bild--schirm" data-vorschau="{i}" src="img/{n}.webp" srcset="img/{n}-s.webp 1200w, img/{n}.webp {BILDER[n][0]}w" '
-                         f'sizes="(max-width:1000px) 100vw, 46vw" width="{BILDER[n][0]}" height="{BILDER[n][1]}" alt="Vorschau: {e(W[k]["name"])}" decoding="async" loading="lazy">')
-            unter += f'<span data-vorschau="{i}">Vorschau · {e(W[k]["name"])}</span>'
-        elif not online:
-            vorschau += (f'<div class="hz-platz" data-vorschau="{i}" data-platz="{e(k)}"><div>{lamm("m-saal__z")}<b>{e(W[k]["name"])}</b>'
-                         f'Die Vorschau folgt, sobald das Werkzeug vorliegt.<small>Platzhalter, nur lokal</small></div></div>')
-            unter += f'<span data-vorschau="{i}">{e(W[k]["name"])} · Vorschau folgt</span>'
     insel = ''.join(f'<a class="m-insel__p" href="#{k}"><span class="rl">{e(W[k]["name"])}</span></a>' for k in REIHE)
-    band = ''.join(f'<li>{e(t)}</li><li class="p" aria-hidden="true"></li>' for t in [W[k]['name'] for k in REIHE] + [NAME, 'Momo x Rudi', BAR, STRASSE, ORT])
+    band = ''.join(f'<li>{e(t)}</li><li class="p" aria-hidden="true"></li>' for t in [W[k]['name'] for k in REIHE] + [NAME, BAR, STRASSE, ORT, 'Falstaff Bar Guide 2027 · 91 Punkte'])
 
     fb = farben()
     farbreihe = (f'<ul class="m-farben" aria-label="Die Farben des Hauses" style="--n:{len(fb)}">' +
@@ -575,29 +523,6 @@ def seite(online, v):
 
     # Kennzahlen im Textfluss (nicht flex): Zahl und Wort stehen so auf einer Grundlinie; getrennt mit «·» wie auf der Website (Kopf 29.10.2026)
     pkt = '<span class="rw-pkt" aria-hidden="true">·</span>'
-    zeile_heute = (f'<p class="m-zeile"><span>Heute</span> <span><b data-stand="registre-heute">–</b>Besuche</span>{pkt}<span><b data-stand="registre-buchung">–</b>zum Platz</span>{pkt}'
-                   + (f'<a href="{e(reg_auf)}">{e(W["registre"]["name"])} öffnen</a>' if reg_auf else f'<span>{e(W["registre"]["name"])} folgt</span>') + '</p>')
-    hilfe = '<p class="m-hilfe">Ein Klick oder die Taste <kbd>1</kbd> bis <kbd>6</kbd> öffnet das Werkzeug. Darunter stellt sich jedes einzeln vor.</p>'
-    rahmen = f'<figure class="hz-rahmen">{vorschau}<figcaption class="hz-unter" aria-live="polite">{unter}</figcaption></figure>'
-    zt = ZENTRALE.split(' ', 1)
-    titel = f'{e(zt[0])} <em>{e(zt[1])}</em>' if len(zt) == 2 else e(zt[0])
-    # Kopf (neu 29.10.2026, Robert: «der header sieht scheiße aus»; M22 sinngemäss, kompakt wie bisher): links eine Zeile Wortmarke · Bar · Ort, darunter
-    # «Der Tresen» als Hauptsache; rechts ein Block Datum, Gruss, Kennzahlen, dessen letzte Zeile auf der Grundlinie des Titels steht. Keine «x»-Zierden,
-    # die Linie schlicht; «Beispiel» leise in der Datumszeile, nicht in den Zahlen.
-    kopf = (f'<div class="rw-kopf"><div class="rw-kopf__l"><p class="rw-kopf__ort">{wortmarke("rw-kopf__wm")}{pkt}<span>{e(BAR)}</span>{pkt}<span>{e(ORT)}</span></p><h1 class="rw-titel">{titel}</h1></div>'
-            f'<div class="rw-kopf__r"><p class="rw-datum"><span id="datum">&nbsp;</span><span class="rw-kopf__bsp" hidden>{pkt}Besuchszahlen als Beispiel</span></p>'
-            f'<p class="rw-gruss"><span id="gruss">Guten Tag.</span> Womit fangen wir heute an?</p>{zeile_heute}</div></div>'
-            f'<div class="rw-linie" aria-hidden="true"></div>')
-
-    # Jedes Plakat der Wand trägt eine Abendfarbe aus den echten Plakaten (marke.json → abendfarben, gemessen), in der Reihenfolge der Abende
-    def gefach(i, k):
-        rk = RAUM[k]
-        af = ABENDFARBEN[i % len(ABENDFARBEN)]
-        return (f'<li class="hz-z rw-g" style="--i:{i};--pk:{af["hex"]};--pa:{af["toene"]["akzent"]}" data-abend="{e(af["name"])}"><a href="{e(auf[k] or "#" + k)}" data-taste="{i + 1}">'
-                f'<span class="rw-b"><img src="img/raum-{k}.webp" srcset="img/raum-{k}-s.webp 480w, img/raum-{k}.webp {RAUM_G[0]}w" sizes="(max-width:700px) 46vw, (max-width:1000px) 30vw, 16vw" '
-                f'width="{RAUM_G[0]}" height="{RAUM_G[1]}" alt="{e(BILDER_W[rk]["alt"])}" decoding="async"></span>'
-                f'<span class="rw-t"><small class="rw-nr">N° {i + 1} · {e(ROLLE_K[k])}</small><b class="rw-name">{e(W[k]["name"])}</b>'
-                f'<span class="rw-stand" data-stand="{k}-kurz">{e(KURZ[k])}</span></span><span class="hz-ring" aria-hidden="true">{PF}</span></a></li>')
 
     def fenster(i, k):
         f, pos, pos_h = FENSTER[k]; b = BILDER['fenster-' + k + '-900']
@@ -611,11 +536,11 @@ def seite(online, v):
     # Empfang wie beim Grand Beau-Rivage: die Fenster, darüber in der Mitte der Kopf (Wortmarke · Bar · Ort, «Der Tresen» gross, Gruss, Datum) und die
     # Zahlenzeile der Besucherliste (Taste 6). Keine «x», getrennt mit «·»; «Beispiel» leise in der Datumszeile.
     reg = auf['registre']
-    zeile = (f'<p class="m-f5__zeile"><span>Heute</span><b data-stand="registre-heute">–</b>Besuche{pkt}<b data-stand="registre-buchung">–</b>zum Platz{pkt}'
+    zeile = (f'<p class="m-f5__zeile"><span>Heute</span><b data-stand="registre-heute">–</b>Besuche{pkt}<b data-stand="registre-buchung">–</b>zum Tisch{pkt}'
              + (f'<span class="hz-z"><a href="{e(reg)}" data-taste="6">{e(W["registre"]["name"])} öffnen{PF}</a></span>' if reg else f'<span class="hz-z"><a href="#registre" data-taste="6">{e(W["registre"]["name"])}{PF}</a></span>') + '</p>')
     empfang = (f'<section class="m-empfang m-f5" id="oben">'
                f'<nav class="m-f5__reihe" aria-label="Alle Werkzeuge"><ol class="hz-tafel">{"".join(fenster(i, k) for i, k in enumerate(REIHE[:5]))}</ol></nav>'
-               f'<div class="m-f5__oben"><p class="m-f5__ort">{wortmarke("m-f5__wm")}{pkt}<span>{e(BAR)}</span>{pkt}<span>{e(ORT)}</span></p>'
+               f'<div class="m-f5__oben">{wortmarke("m-f5__wm")}<p class="m-f5__ort"><span>{e(BAR)}</span>{pkt}<span>{e(STRASSE)}</span>{pkt}<span>{e(ORT)}</span></p>'
                f'<h1 class="m-f5__titel">{e(ZENTRALE)}</h1>'
                f'<p class="m-f5__gruss"><span id="gruss">Guten Tag.</span> Womit fangen wir heute an?</p>'
                f'<p class="m-f5__datum"><span id="datum">&nbsp;</span><span class="rw-kopf__bsp" hidden>{pkt}Besuchszahlen als Beispiel</span></p>'
@@ -630,9 +555,9 @@ def seite(online, v):
 <meta charset="utf-8">
 {'' if online else ZUR_STUBE}<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{e(ZENTRALE)} · {e(NAME)}</title>
-<meta name="description" content="Alle Werkzeuge des {e(NAME)} an einem Ort: {', '.join(W[k]['name'] for k in REIHE)}.">
+<meta name="description" content="Alle Werkzeuge von {e(NAME)} an einem Ort: {', '.join(W[k]['name'] for k in REIHE)}.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#16151A">
+<meta name="theme-color" content="#130E0D">
 <link rel="icon" href="img/zeichen.svg" type="image/svg+xml">
 <link rel="stylesheet" href="maison.css?v={v['maison.css']}">
 {vorladen}
@@ -644,10 +569,10 @@ def seite(online, v):
 <header class="m-oben">
   <a class="knopf knopf--klein m-oben__ecke m-oben__ecke--l" href="#fuss">Anleitungen<i>{PF}</i></a>
   <nav class="m-insel" aria-label="Werkzeuge">
-    <a class="m-ecke" href="#oben"><span class="m-ecke__ring">{lamm("m-ecke__z")}</span><span class="m-ecke__t"><b>{e(ZENTRALE)}</b><small>Alle Werkzeuge · {e(NAME)}</small></span></a>
+    <a class="m-ecke" href="#oben"><span class="m-ecke__ring">{lamm("m-ecke__z")}</span><span class="m-ecke__t"><b>{e(ZENTRALE)}</b><small>Alle Werkzeuge · Wild Side</small></span></a>
     <span class="m-insel__wege">{insel}</span>
   </nav>
-  <a class="knopf knopf--klein m-oben__ecke" href="{web}" target="_blank" rel="noopener">Website ansehen<i>{PF}</i></a>
+  <a class="knopf knopf--klein knopf--rot m-oben__ecke" href="{web}" target="_blank" rel="noopener">Website ansehen<i>{PF}</i></a>
 </header>
 
 <main>
@@ -659,14 +584,15 @@ def seite(online, v):
 
 <footer class="m-fuss tapete" id="fuss">
   <div class="m-fuss__platte" data-r>
-    <div class="m-fuss__marke">{wortmarke("m-fuss__wm")}<b>Momo x Rudi</b></div>
-    <div class="m-fuss__spalte"><p class="m-fuss__k">Die Abende</p><p>{e(NAME)} in der Bar <span class="m-nb">{e(BAR)}</span></p><p>{e(STRASSE)}, <span class="m-nb">{e(PLZ_ORT)}</span></p><a href="{web}" target="_blank" rel="noopener">Website ansehen</a></div>
+    <div class="m-fuss__marke">{wortmarke("m-fuss__wm")}</div>
+    <div class="m-fuss__spalte"><p class="m-fuss__k">Die Bar</p><p>{e(NAME)}, <span class="m-nb">{e(BAR)}</span></p><p>{e(STRASSE)}, <span class="m-nb">{e(PLZ_ORT)}</span></p><a href="{web}" target="_blank" rel="noopener">Website ansehen</a></div>
     <div class="m-fuss__spalte"><p class="m-fuss__k">Anleitungen</p>{anleitungen}</div>
     <div class="m-fuss__spalte"><p class="m-fuss__k">Fragen</p><p>Robert Reff · Tasty Studios</p><p>robert@tasty-studios.de</p></div>
   </div>
 </footer>
 
 <script type="application/json" id="maison-wege">{json.dumps({k: A[k]['stand'] for k in REIHE})}</script>
+<script type="application/json" id="maison-stufe">{json.dumps(STUFE_SEITE)}</script>
 <script type="application/json" id="maison-beispiel">{json.dumps([k for k in REIHE if (stand_wege().get(k) or {}).get('beispiel')])}</script>
 <script src="maison.js?v={v['maison.js']}"></script>
 <script src="zur-werkbank.js?v={v['zur-werkbank.js']}" defer data-zw></script>
@@ -705,10 +631,10 @@ def knoepfe():
 
 
 FEHLER_JS = r'''document.documentElement.classList.add('js');   /* Bewegung nur mit Skript; als Datei statt eingebettet (Sicherheitsregel online) */
-/* Fehlermelder (R03), vor allem anderen: Skriptfehler in den Browser (culinarium_werkzeuge_fehler) und an den Server-Teil (studio/api/fehler, wenn es ihn gibt).
+/* Fehlermelder (R03), vor allem anderen: Skriptfehler in den Browser (wildside_werkzeuge_fehler) und an den Server-Teil (studio/api/fehler, wenn es ihn gibt).
    Netzfehler nie melden, höchstens 20 je Seite, eigener Fehlschlag wird nicht erneut gemeldet. */
 (function(){var zahl=0;function merk(t){t=String(t);window.MAISON_FEHLER=t;if(++zahl>20||/Load failed|access control|abort|NetworkError|Failed to fetch/i.test(t))return;
-try{var a=JSON.parse(localStorage.getItem('culinarium_werkzeuge_fehler')||'[]');a.unshift({zeit:new Date().toISOString(),art:'maison',text:('Zentrale: '+t).slice(0,400),ort:location.pathname});localStorage.setItem('culinarium_werkzeuge_fehler',JSON.stringify(a.slice(0,30)))}catch(e){}
+try{var a=JSON.parse(localStorage.getItem('wildside_werkzeuge_fehler')||'[]');a.unshift({zeit:new Date().toISOString(),art:'maison',text:('Zentrale: '+t).slice(0,400),ort:location.pathname});localStorage.setItem('wildside_werkzeuge_fehler',JSON.stringify(a.slice(0,30)))}catch(e){}
 try{fetch('/studio/api/fehler',{method:'POST',headers:{'Content-Type':'application/json','X-Studio':'1'},body:JSON.stringify({text:('Zentrale · '+t).slice(0,600)}),keepalive:true}).catch(function(){})}catch(e){}}
 window.addEventListener('error',function(e){if(e.target&&e.target.tagName==='SCRIPT'){window.MAISON_FEHLER='Die Datei '+e.target.getAttribute('src').split('?')[0]+' liess sich nicht laden.';return}merk((e.message||'Fehler')+' · '+(e.filename||'').split('/').pop()+':'+(e.lineno||''))},true);
 window.addEventListener('unhandledrejection',function(e){merk('Versprechen: '+((e.reason&&e.reason.message)||e.reason))});
@@ -726,31 +652,33 @@ def rundgang():
     gang = f'''  var GAENGE = {{
     maison: {{ name: '{ZENTRALE}', schritte: [
       {{ ziel: ['.m-f5__titel', '#oben'], oben: true, titel: 'Das ist {ZENTRALE}',
-        text: 'Der Eingang zu allen Werkzeugen des Culinarium. Von hier aus pflegst du Website, Menüs mit Drinks, Plakate, den Chat und die Marke selbst.' }},
+        text: 'Der Eingang zu allen Werkzeugen der Bar. Von hier aus pflegst du Website, die wechselnde Karte, Plakate, den Chat und die Marke selbst.' }},
       {{ ziel: ['.hz-z:first-child a', '.hz-tafel'], titel: 'Ein Fenster je Werkzeug',
         text: '{namen}. Darunter steht, was dort gerade ansteht.' }},
       {{ ziel: ['.m-f5__zeile'], titel: 'Heute auf der Website',
-        text: 'Wer heute auf der Website war und wer von dort weiter zur Reservierung ging. Ein Klick öffnet die ganze Liste.' }},
+        text: 'Wer heute auf der Website war und wer von dort weiter zum Reservieren oder Feiern ging. Ein Klick öffnet die ganze Liste.' }},
       {{ ziel: ['.m-insel', '.m-oben'], oben: true, titel: 'Immer erreichbar',
         text: 'Ein Klick auf diese Leiste bringt dich von überall zurück zu den Werkzeugen. Aus jedem Werkzeug kommst du hierher zurück.' }},
       {{ ziel: ['#bureau .m-saal__kopf', '#bureau'], titel: 'Jedes Werkzeug stellt sich vor',
-        text: 'Weiter unten zeigt jedes Werkzeug, was es für das Culinarium tut, mit Bildern aus dem Werkzeug selbst.' }}
+        text: 'Weiter unten zeigt jedes Werkzeug, was es für die Bar tut, mit Bildern aus dem Werkzeug selbst.' }}
     ] }}
   }};'''
     s = s[:a] + gang + s[b:]
-    s = s.replace("'rundgang-bg-'", "'rundgang-culinarium-'")
-    s = s.replace('font:600 26px/1.1 "Barlow Semi","Arial Narrow",sans-serif', 'font:340 27px/1.12 Fraunces,Georgia,serif')
-    s = s.replace('font:600 18px/1 "Barlow Semi","Arial Narrow",sans-serif', 'font:340 18px/1 Fraunces,Georgia,serif')
-    s = s.replace('"Barlow Semi","Arial Narrow",sans-serif', 'Fraunces,Georgia,serif')
-    for alt, neu in (('#2c3136', '#1C1B21'), ('#485056', '#3A3845'), ('#1d2224', '#16151A'), ('#7c8386', '#8a8592'), ('#e9ecec', '#FAF4F4'),
-                     ('#d6bb96', '#F5A689'), ('#b7a27a', '#EF7649'), ('#e3cd98', '#F5A689'), ('227,205,152', '245,166,137'), ('#f7e9c6', '#FBD9CB'),
-                     ('#b99a5c', '#EF7649'), ('#fffdf9', '#FFFCFB'), ('#f7f1e5', '#FAF4F4'), ('#f4ecdc', '#FAF4F4'), ('210,191,152', '245,166,137'),
-                     ('130,108,53', '177,87,54'), ('10,12,22', '15,14,19'), ('10,13,26', '15,14,19'), ('26,29,40', '22,21,26'), ('27,32,51', '22,21,26')):
+    s = s.replace("'rundgang-bg-'", "'rundgang-wildside-'")
+    s = s.replace('font:600 26px/1.1 "Barlow Semi","Arial Narrow",sans-serif', 'font:400 27px/1.14 Prata,Georgia,serif')
+    s = s.replace('font:600 18px/1 "Barlow Semi","Arial Narrow",sans-serif', 'font:400 18px/1 Prata,Georgia,serif')
+    s = s.replace('"Barlow Semi","Arial Narrow",sans-serif', 'Prata,Georgia,serif')
+    s = s.replace('"Instrument Sans",system-ui,sans-serif', 'Hanken,"Helvetica Neue",Arial,sans-serif').replace('"DM Mono",ui-monospace,monospace', 'Hanken,"Helvetica Neue",Arial,sans-serif')
+    # Farben der Vorlage → Eckschild (Nacht #130E0D/#1C1513/#261E1A, Creme #F2E9DC, Gold #D8B264, Gold tief #7A5C24)
+    for alt, neu in (('#2c3136', '#1C1513'), ('#485056', '#7A5C24'), ('#1d2224', '#130E0D'), ('#7c8386', '#8C7F72'), ('#e9ecec', '#F2E9DC'),
+                     ('#d6bb96', '#D8B264'), ('#b7a27a', '#D8B264'), ('#e3cd98', '#E4C88A'), ('227,205,152', '216,178,100'), ('#f7e9c6', '#F1E2BE'),
+                     ('#b99a5c', '#D8B264'), ('#fffdf9', '#FFFBF5'), ('#f7f1e5', '#F7F1E7'), ('#f4ecdc', '#F2E9DC'), ('210,191,152', '216,178,100'),
+                     ('130,108,53', '122,92,36'), ('10,12,22', '19,14,13'), ('10,13,26', '19,14,13'), ('26,29,40', '28,21,19'), ('27,32,51', '28,21,19')):
         s = s.replace(alt, neu)
     s = re.sub(r'^/\*[^\n]*\*/\n', '', s, count=1)
-    if re.search(r'Barlow|Cormorant|Cinzel|Gasterntal|Fenster ist|#2c3136|#485056', s):
+    if re.search(r'Barlow|Cormorant|Cinzel|Gasterntal|Fenster ist|#2c3136|#485056|Instrument|DM Mono|Fraunces', s):
         raise SystemExit('rundgang.js: Angabe der Vorlage übrig')
-    return f'/* Rundgang (R18, M11): Kopie des Werkzeugs der Häuser, Gang für {ZENTRALE} des {NAME}; gebaut von _werkzeuge/maison/bau.py */\n' + s
+    return f'/* Rundgang (R18, M11): Kopie des Werkzeugs der Häuser, Gang für {ZENTRALE} von {NAME}; gebaut von _werkzeuge/maison/bau.py */\n' + s
 
 
 def zur_werkbank():
@@ -758,9 +686,16 @@ def zur_werkbank():
     s = re.sub(r'^/\*[^\n]*Gasterntal[^\n]*\*/\n', '', s)
     if "var SCHL = 'bg-wb';" not in s:
         raise SystemExit('zur-werkbank.js: Schlüssel nicht gefunden')
-    s = s.replace("var SCHL = 'bg-wb';", "var SCHL = 'culinarium-wb';").replace('«bg-wb»', '«culinarium-wb»')
-    s = s.replace('linear-gradient(180deg,#485056,#1d2224)', 'linear-gradient(180deg,#3A3845,#16151A)')
-    return f'/* «Zur Werkbank» (R19) · {ZENTRALE} des {NAME}: Kopie des Bausteins der Häuser, Schlüssel des Hauses «culinarium-wb». Gebaut von bau.py. */\n' + s
+    s = s.replace("var SCHL = 'bg-wb';", "var SCHL = 'wildside-wb';").replace('«bg-wb»', '«wildside-wb»')
+    s = s.replace('linear-gradient(180deg,#485056,#1d2224)', 'linear-gradient(180deg,#261E1A,#130E0D)')
+    s = s.replace('"ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,', 'Hanken,"Helvetica Neue",Arial,')
+    s = re.sub(r"'@font-face\{font-family:\"ZW Mono\".*?\}' \+\n", "'@font-face{font-family:\"Hanken\";font-weight:300 700;font-display:swap;src:url(\"/assets/schrift/hanken-latin.woff2\") format(\"woff2\")}' +\n", s, count=1)
+    s = s.replace('font:400 11.5px/1 Hanken', 'font:500 11.5px/1 Hanken').replace('border-radius:999px;', 'border-radius:14px;')
+    for alt, neu in (('#121c3c', '#1C1513'), ('linear-gradient(180deg,#fdf9f1 0%,#f1e6d1 46%,#dccaa6 100%)', 'linear-gradient(180deg,#FFFBF5 0%,#F2E9DC 52%,#E5DACA 100%)'),
+                     ('rgba(130,108,53,.32)', 'rgba(122,92,36,.30)'), ('rgba(176,147,79,.62)', 'rgba(216,178,100,.70)'), ('rgba(9,17,39,', 'rgba(19,14,13,'),
+                     ('#f7efdd', '#D8B264'), ('rgba(190,206,255,.4)', 'rgba(255,240,220,.18)'), ('rgba(230,210,162,.45)', 'rgba(216,178,100,.6)')):
+        s = s.replace(alt, neu)
+    return f'/* «Zur Werkbank» (R19) · {ZENTRALE} von {NAME}: Kopie des Bausteins der Häuser, Schlüssel des Hauses «wildside-wb». Gebaut von bau.py. */\n' + s
 
 
 def ohne_fremde(t):
@@ -784,7 +719,7 @@ def baue():
         ziel = os.path.join(HIER, 'online') if online else HIER
         os.makedirs(ziel, exist_ok=True)
         bilder(ziel)
-        open(os.path.join(ziel, 'img', 'zeichen.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{LAMM_VB}"><rect x="-3" y="-3" width="46" height="48" rx="10" fill="#16151A"/>{LAMM.replace("<path ", "<path fill=\'#EF7649\' ")}</svg>')
+        open(os.path.join(ziel, 'img', 'zeichen.svg'), 'w', encoding='utf-8').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{LAMM_VB}">{LAMM.replace("<path ", "<path fill=\'#F0323F\' ")}</svg>')
         for n, t in teile.items():
             open(os.path.join(ziel, n), 'w', encoding='utf-8').write(ohne_fremde(t) if n != 'zur-werkbank.js' else t)
         s = ohne_fremde(seite(online, v))

@@ -1,9 +1,9 @@
-/* «Zur Werkbank» (R19) · Der Tresen des Culinarium: Kopie des Bausteins der Häuser, Schlüssel des Hauses «culinarium-wb». Gebaut von bau.py. */
+/* «Zur Werkbank» (R19) · Der Tresen von Walk on the Wild Side: Kopie des Bausteins der Häuser, Schlüssel des Hauses «wildside-wb». Gebaut von bau.py. */
 /* «Zur Werkbank» (Robert 12.10.2026): ein Knopf unten links auf jeder Seite, die man aus der Werkbank heraus öffnet.
    Eine Datei für alle Seiten, sie bringt Aussehen und Verhalten selbst mit (eigener Schattenbaum, kein Stylesheet der Seite greift hinein).
 
    In der Werkbank selbst (werkbank/, werkbank/en/ …) zeigt sie nichts, sondern hängt an jeden Link, der hinausführt, die Herkunft:
-   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «culinarium-wb»), nimmt den Zusatz wieder aus der Adresse
+   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «wildside-wb»), nimmt den Zusatz wieder aus der Adresse
    und zeigt den Knopf, auch über alle weiteren Klicks. Ohne diese Herkunft erscheint nichts: ein Gast des Hauses sieht den Knopf nie.
    Eingebettet (Laptop der Werkbank, Vorschau in Le Bureau) erscheint er auch nicht.
 
@@ -46,7 +46,7 @@
   var OHNE_SPRACHE = /^(control|_werkzeuge|studio|mission-control|reception|marke|maison|imprimerie|mails|werkbank\/anleitung)\/|^mappe/;   // gibt es nur deutsch: Sprache der Werkbank gilt
   var FREMD_ZIEL = /^https:\/\/[a-z0-9-]+-analyse\.tastystudios\.ch$|^https:\/\/drucksachen-studio\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):8963$/;   // L’Imprimerie auf eigener Adresse
   var HERKUNFT = /^https:\/\/[a-z0-9-]+\.tastystudios\.ch$|^https:\/\/[a-z0-9-]+\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):\d{2,5}$/;   // von wo eine Werkbank herkommen darf
-  var SCHL = 'culinarium-wb';
+  var SCHL = 'wildside-wb';
 
   var tag = document.currentScript || document.querySelector('script[src*="zur-werkbank.js"]');
   var src = tag && tag.src || '';
@@ -145,7 +145,7 @@
        Im Stylesheet bleiben nur die Schrift und der Druck. */
     var lage = document.createElement('style');
     lage.textContent =
-      '@font-face{font-family:"ZW Mono";font-style:normal;font-weight:400;font-display:swap;src:local("DM Mono"),url("' + (tag && tag.getAttribute('data-schrift') || (WURZEL || basis) + 'assets/schrift/DMMono-normal-400.woff2') + '")}' +
+      '@font-face{font-family:"Hanken";font-weight:300 700;font-display:swap;src:url("/assets/schrift/hanken-latin.woff2") format("woff2")}' +
       '@media print{#zur-werkbank{display:none!important}}';
     document.head.appendChild(lage);
     var setz = function (k, v) { wirt.style.setProperty(k, v, 'important'); };
@@ -172,14 +172,14 @@
     baum.innerHTML =
       '<style>' +
       ':host{direction:ltr}' +
-      'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:999px;' +
-      'font:400 11.5px/1 "ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
-      'color:#121c3c;background:linear-gradient(180deg,#fdf9f1 0%,#f1e6d1 46%,#dccaa6 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
-      'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(130,108,53,.32),inset 0 0 0 1px rgba(176,147,79,.62),0 0 0 1px rgba(9,17,39,.28),0 12px 22px -12px rgba(9,17,39,.6);' +
+      'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:14px;' +
+      'font:500 11.5px/1 Hanken,"Helvetica Neue",Arial,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
+      'color:#1C1513;background:linear-gradient(180deg,#FFFBF5 0%,#F2E9DC 52%,#E5DACA 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
+      'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(122,92,36,.30),inset 0 0 0 1px rgba(216,178,100,.70),0 0 0 1px rgba(19,14,13,.28),0 12px 22px -12px rgba(19,14,13,.6);' +
       'transition:transform .55s cubic-bezier(.32,.72,0,1)}' +
       'a::after{content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:38%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.85) 50%,transparent 100%);transform:translateX(-180%) skewX(-18deg);transition:transform 0s}' +
-      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#3A3845,#16151A);color:#f7efdd;' +
-      'box-shadow:inset 0 1px 0 rgba(190,206,255,.4),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(230,210,162,.45);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
+      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#261E1A,#130E0D);color:#D8B264;' +
+      'box-shadow:inset 0 1px 0 rgba(255,240,220,.18),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(216,178,100,.6);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
       'svg{display:block;width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}' +
       'span{display:block;padding-top:1px}' +
       ':host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{letter-spacing:.04em;font-size:13px;text-transform:none}' +

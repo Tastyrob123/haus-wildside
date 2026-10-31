@@ -1,4 +1,4 @@
-/* La Maison · Culinarium Hannover (28.10.2026). Quelle für bau.py, nicht die Ausgabe. Vorlage: La Maison der Häuser.
+/* Der Tresen · Walk on the Wild Side Hannover (Nachtbau 31.10.2026), Kopie des Tresens des Culinarium. Quelle für bau.py, nicht die Ausgabe. Vorlage: La Maison der Häuser.
    Gruss, Datum, Empfang «Die Plakatwand» (Vorschau statt Foto, M23), Auftritte, Leiste und der Stand je Werkzeug.
    Stand nur aus den Werkzeugen selbst (nichts geschätzt): Wege als Daten in der Seite (#maison-wege); ein Weg darf eine Liste sein
    (antwortet der erste nicht, gilt der nächste). Werte gehen nur als Zahl in die Seite. Antwortet ein Werkzeug nicht: Satz ohne Zahl. */
@@ -193,7 +193,7 @@
     var e = k.filter(function (x) { return x && x.entwurf; }).length;
     zahl('karten', k.length); zahl('entwurf', e);
     setze('carte-kurz', e ? '<b>' + e + ' im Entwurf</b>' : k.length + (k.length === 1 ? '\u00a0Karte, veröffentlicht' : '\u00a0Karten, alle\u00a0veröffentlicht'));
-  }).catch(function () { setze('carte-kurz', 'Menü und Drinks je Abend'); });
+  }).catch(function () { setze('carte-kurz', 'Die wechselnde Karte von Momo'); });
 
   /* L’Imprimerie: Liste der Vorlagen [{art, zahl}] (M17) */
   hole('imprimerie').then(function (l) {
@@ -225,9 +225,9 @@
     if (u.anfragen_neu) t.push('<b>' + u.anfragen_neu + (u.anfragen_neu === 1 ? '\u00a0neue Anfrage' : '\u00a0neue Anfragen') + '</b>');
     else if (u.anfragen_offen) t.push(u.anfragen_offen + (u.anfragen_offen === 1 ? '\u00a0Anfrage offen' : '\u00a0Anfragen offen'));
     if (u.ohne_antwort) t.push('<b>' + u.ohne_antwort + (u.ohne_antwort === 1 ? '\u00a0Frage ohne Antwort' : '\u00a0Fragen ohne\u00a0Antwort') + '</b>');
-    var kurz = t.length ? t.join(' · ') : 'Nichts offen';
+    var kurz = t.length ? t.join('<br>') : 'Nichts offen';   /* zwei Angaben stehen untereinander: nie ein «·» am Zeilenende */
     setze('reception-kurz', kurz);   /* Gestaltung 28.10.2026: Probe-Kennzeichnung nur einmal, in der Zeile oben, nicht in jeder Kachel */
-    setze('reception', t.length ? kurz : 'Nichts offen · ' + u.fragen_gesamt + (u.fragen_gesamt === 1 ? ' Frage' : ' Fragen') + ' bisher');
+    setze('reception', t.length ? t.join(' · ') : 'Nichts offen · ' + u.fragen_gesamt + (u.fragen_gesamt === 1 ? ' Frage' : ' Fragen') + ' bisher');
   }).catch(function () { setze('reception-kurz', 'Chat auf der Website'); setze('reception', '&nbsp;'); });
 
   /* Le Livre: stand:{fotos, dateien, ki, ue} */
@@ -252,9 +252,10 @@
     zahl('reg-besuche', bs ? n(bs) : '–'); zahl('reg-seiten', ganz(u.seiten) ? n(u.seiten) : '–'); zahl('reg-laender', ganz(u.laender) ? n(u.laender) : '–');
     /* Der Weg zur Buchung (Weg des Gastes): Besuche → Abend angesehen → Platz gebucht oder Warteliste → dabei. Rechnung und Namen wie im Besucherbuch
        des Hauses (registre.js trichter, Fehlerbuch 10a): abbruch.von = erste Stufe, davon ohne Abbruch = zweite; booking.zahl = direkt gebucht */
-    /* Culinarium (Le Registre, 28.10.2026): Stufe 2 = «Der Abend» geöffnet = Aufrufe von abend.html (höchstens die Besuche), Stufe 3 = zum Platz
-       (gebucht oder Warteliste, summe.buchung, höchstens Stufe 2); Anteil je Stufe an der davor, nie über 100 % */
-    var ab = (m.seiten || []).filter(function (x) { return x && x.s === 'abend.html'; })[0], fen = Math.min(bs, ganz(ab && ab.n)), wei = Math.min(fen, ganz(u.buchung)), bk = 0;
+    /* Wild Side: Stufe 2 = Aufrufe der Seite aus registre/stufen.json (sonst besuch.html, «Bis 2 Uhr» mit Reservieren), höchstens die Besuche; Stufe 3 = zum Tisch
+       (reserviert oder Feier angefragt, summe.buchung, höchstens Stufe 2); Anteil je Stufe an der davor, nie über 100 % */
+    var stufe = (function () { try { return JSON.parse($('#maison-stufe').textContent) || 'besuch.html'; } catch (e) { return 'besuch.html'; } })();
+    var ab = (m.seiten || []).filter(function (x) { return x && x.s === stufe; })[0], fen = Math.min(bs, ganz(ab && ab.n)), wei = Math.min(fen, ganz(u.buchung)), bk = 0;
     var ant = function (t, g) { return g ? Math.round(100 * t / g) + ' % davon' : ''; };
     $$('[data-wg]').forEach(function (el) {
       var k = el.getAttribute('data-wg');

@@ -4,11 +4,7 @@
   "adresse": "http://127.0.0.1:9082/_werkzeuge/bureau/",
   "stand": "/_werkzeuge/bureau/api/ueberblick",
   "anleitung": "http://127.0.0.1:9082/_werkzeuge/bureau/anleitung.html",
-  "pruefung": "http://127.0.0.1:9082/werkzeuge/website/pruefung.html?haus=culinarium",
-  "code": [
-   "~/Desktop/Website-Projekte/Culinarium Hannover/_werkzeuge/bureau",
-   "~/Desktop/Website-Projekte/_Werkzeuge/werkzeuge/website"
-  ]
+  "pruefung": "http://127.0.0.1:9082/werkzeuge/website/pruefung.html?haus=wildside"
  },
  "carte": {
   "adresse": "http://127.0.0.1:9083/_werkzeuge/carte/",
@@ -17,7 +13,7 @@
  },
  "imprimerie": {
   "adresse": "http://127.0.0.1:9087/_werkzeuge/imprimerie/",
-  "stand": "/_werkzeuge/imprimerie/haeuser/culinarium/vorlagen/index.json",
+  "stand": "/_werkzeuge/imprimerie/haeuser/wildside/vorlagen/index.json",
   "anleitung": "http://127.0.0.1:9087/_werkzeuge/imprimerie/hilfe/index.html"
  },
  "reception": {
