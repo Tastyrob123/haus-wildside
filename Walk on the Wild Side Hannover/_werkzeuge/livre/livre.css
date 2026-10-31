@@ -662,3 +662,6 @@ body.li{background:linear-gradient(rgba(239,230,216,.86),rgba(239,230,216,.86)),
 @media (max-width:760px){.li-farben>.li-farbe,.li-farbe{flex:0 0 212px!important}}
 @container (max-width:277px){.li-farben>.li-farbe{flex:0 0 212px!important}}
 @media (max-width:700px){.li-rahmen::after{top:auto!important;bottom:10px}}
+/* Cloud-Prüfung WebKit 31.10.2026: Startbild zwischen 901 und 1240 px mit breiterer Textspalte und etwas kleinerem Titel (3–4 Zeilen statt 7) */
+@media (min-width:901px) and (max-width:1240px){.li .wo-sb--voll .wo-sb__text{max-width:min(80%,520px)}.li .wo-sb--voll .wo-sb__h{font-size:clamp(32px,3.5vw,40px);line-height:1.1}}
+@media (min-width:901px) and (max-width:1240px){.li .wo-sb--voll .wo-sb__text>p:not(.wo-sb__zier){max-width:min(100%,370px)}}
