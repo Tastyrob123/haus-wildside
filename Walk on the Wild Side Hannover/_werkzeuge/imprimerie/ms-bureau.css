@@ -170,7 +170,7 @@ a.ms-lnk{color:var(--taupe-tief)}
 
 /* Fundliste Gestaltung 29.10. — 01: der gewählte Eintrag bleibt ganz lesbar (17 statt 19 px, der längste Name «Newsletter & E-Mail» passt).
    02: nichts in der Leiste schrumpft auf 0 («Neu erstellen» fiel bei 1280 × 800 zusammen); auf niedrigen Bildschirmen rücken die Einträge enger, der Fuss passt */
-#start .ms-leiste .ms-nav button.an span{font-size:17px;white-space:nowrap}
+#start .ms-leiste .ms-nav button.an span{font-size:17.5px;white-space:nowrap}   /* 17,5 px: Versalhöhe der Prata genau 14 px, der beschnittene Text liegt ohne Rundung mittig (WebKit 31.10.: 0,6 px zu hoch) */
 .start.ms .ms-leiste>*{flex-shrink:0}
 @media (min-width:821px) and (max-height:860px){
   .start.ms .ms-nav{gap:1px}

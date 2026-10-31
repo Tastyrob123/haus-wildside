@@ -109,7 +109,7 @@
     h.innerHTML = `<i class="handy__taste handy__taste--l1"></i><i class="handy__taste handy__taste--l2"></i><i class="handy__taste handy__taste--r"></i>
       <span class="handy__schirm">
         <span class="handy__status" aria-hidden="true"><b class="handy__zeit"></b><i class="handy__insel"></i><span class="handy__sym"><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg><svg viewBox="0 0 16 12"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0z"/><path d="M3.4 6.8a6.5 6.5 0 0 1 9.2 0l-1.5 1.5a4.4 4.4 0 0 0-6.2 0z"/><path d="M1.1 4.5a9.7 9.7 0 0 1 13.8 0l-1.5 1.5a7.6 7.6 0 0 0-10.8 0z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2.2" y="2.2" width="17" height="7.6" rx="1.6"/><path d="M25 4v4a2 2 0 0 0 0-4z" fill-opacity=".45"/></svg></span></span>
-        <span class="handy__kopf"><span class="handy__bild">${DS.zeichenSvg(DS.M, 'currentColor')}</span><span class="handy__wer"><b>${esc(DS.M.name)}</b><small>${esc(DS.M.ort)}</small></span><span class="handy__ic">${IC.mehr}</span></span>
+        <span class="handy__kopf" aria-hidden="true"><span class="handy__bild">${DS.zeichenSvg(DS.M, 'currentColor')}</span><span class="handy__wer handy__wer--zier"><b data-t="${esc(DS.M.name)}"></b><small data-t="${esc(DS.M.ort)}"></small></span><span class="handy__ic">${IC.mehr}</span></span>
         <span class="handy__post"></span>
         <span class="handy__aktionen"><span>${IC.herz}${IC.sprech}${IC.senden}</span>${IC.merken}</span>
         <span class="handy__text"><b>${esc(DS.M.name)}</b> ${esc(text)}</span>
@@ -661,7 +661,7 @@
     if (!t) return; t.dataset.lang = t.dataset.lang || t.placeholder;
     const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
     const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 28;   // Innenabstand abziehen (Tor 31.10.: «Etwa: das nächste Plakat» brach bei 1000 px um)
-    t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= frei * .8) || 'Beschreiben …';   // 20 % Luft: das Tor misst den Platzhalter mit eigenem Satz   // Tor 2: nie zweizeilig
+    t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= frei * .62) || 'Beschreiben …';   // 38 % Luft: WebKit setzt den Platzhalter im Textfeld breiter (Cloud 31.10.: bei 1000 px zweizeilig)   // Tor 2: nie zweizeilig
   }
   /* Platzhalter, die start.js je Ansicht neu setzt (Suche, «Etwa: …»), passen immer ganz ins Feld: sonst die kürzere Fassung (Tor 31.10.2026) */
   function passePlatz(t, kurz) {

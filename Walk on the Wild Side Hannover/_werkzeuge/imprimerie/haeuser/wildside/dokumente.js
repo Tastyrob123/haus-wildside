@@ -141,7 +141,7 @@
     return el;
   }
   const zeichen = (c, zw, farbe, o = {}) => Object.assign({ id: id(), typ: 'zeichen', x: (c.w - zw) / 2, y: 0, w: zw, farbe: farbe || c.T.zeichen, deck: 1 }, o);
-  const linie = (c, L, o = {}) => Object.assign({ id: id(), typ: 'linie', x: (c.w - L) / 2, y: 0, w: L, h: 0, staerke: Math.max(.3, .0024 * c.u), farbe: c.T.linie, deck: 1 }, o);
+  const linie = (c, L, o = {}) => Object.assign({ id: id(), typ: 'linie', x: (c.w - L) / 2, y: 0, w: L, h: 0, staerke: Math.max(.3, (c.ton === 'hell' || c.ton === 'creme' ? .004 : .0024) * c.u), farbe: c.T.linie, deck: 1 }, o);   // auf hellem Grund kräftiger: Gold auf Creme verschwand in der Galerie (Tor 31.10.: Loch zwischen Titel und Text)
   const hoehe = (c, el) => el.typ === 'zeichen' ? el.w * DS.zz(c.M, el).verh : el.typ === 'linie' ? el.staerke : el.h;
   const sauber = items => {
     const out = [];
