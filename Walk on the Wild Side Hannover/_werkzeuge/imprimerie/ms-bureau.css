@@ -216,7 +216,7 @@ a.ms-lnk{color:var(--taupe-tief)}
    Text im eigenen span auf die Versalhöhe beschnitten; zentrierter, gesperrter Text links um die halbe Sperrung ausgeglichen (Chromium hängt die Sperrung
    nach dem letzten Buchstaben an, WebKit nicht) */
 .kn > span:not([class]), #msNav > button > span { text-box: trim-both cap alphabetic }
-#seitenwahl > button { padding-left: calc(14px + .065em) }
+
 
 /* Safari (29.10.2026, «Arten und Vorlagen» 24–43 fps): unter der offenen Übersicht malte WebKit bei jedem Scrollbild die ganze Arbeitsfläche mit
    (Verläufe, Blatt, Schatten), obwohl sie vollständig verdeckt ist (#start deckend, z 21 über 20). Darum unsichtbar, solange die Übersicht offen ist;
@@ -233,12 +233,12 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
 /* Wild Side (31.10.2026, Tor schnell): Hanken Grotesk trägt die Sperrung hinter dem letzten Buchstaben; der Innenabstand links gleicht sie aus,
    damit die Schrift in Knopf und Reiter optisch mittig sitzt (Kriterium 35). Felder mit Verlauf bekommen dieselbe Grundfarbe als Hintergrund,
    damit Platzhalter gegen ihre echte Fläche stehen. Plakate in den Fotos stehen ganz (Kriterium 31). */
-#start #startGruppen button{padding-left:calc(14px + .12em)}
-.ms-chips button{padding-left:calc(16px + .14em)}
-.vb__toene button,#start .vb__toene button{padding-left:calc(14px + .14em)}
-.seitenwahl button:not([data-seite="neu"]),#seitenwahl > button:not([data-seite="neu"]){padding-left:calc(14px + .13em + 1px)}
-#btnPruefen .pruef__t{position:relative;top:.9px}
-#startHilfe span{position:relative;top:.9px}
+
+
+
+
+
+
 .ms-feld,.ms-feld--klein{background-color:#fffbf5}
 .start__direkt{background-color:#fffbf5}
 #fotoRaster .fo[data-gruppe="Plakate"]{background:#ebe2d8}
@@ -251,3 +251,17 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
 @media (max-width:520px){.links .tab.an{padding-left:23px}}
 @media (max-width:1180px) and (min-width:761px){.ms-feld--klein .kn>span{display:none}.ms-feld--klein .kn{padding:0 6px;gap:0;width:auto}}
 .ms-feld--klein textarea{min-width:0;overflow-wrap:normal}
+
+/* Sperrung hinter dem letzten Buchstaben (31.10.2026, Cloud-Prüfung WebKit): WebKit hängt keinen Sperrabstand an, Chromium schon. Grundform symmetrisch
+   (WebKit, Safari); den Ausgleich bekommt nur Chromium (@supports interpolate-size kennt nur Chromium), wie die Pairing-Karte. */
+@supports (interpolate-size:allow-keywords){
+  #start #startGruppen button{padding-left:calc(14px + .12em)}
+  .ms-chips button{padding-left:calc(16px + .14em)}
+  .vb__toene button,#start .vb__toene button{padding-left:calc(14px + .14em)}
+  .seitenwahl button:not([data-seite="neu"]),#seitenwahl > button:not([data-seite="neu"]){padding-left:calc(14px + .13em + 1px)}
+  #btnPruefen .pruef__t{position:relative;top:.9px}
+  #startHilfe span{position:relative;top:.9px}
+}
+@supports not (interpolate-size:allow-keywords){
+  #start .ms-nav button>span{position:relative;top:.6px}
+}

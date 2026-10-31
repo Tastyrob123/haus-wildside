@@ -264,7 +264,8 @@
 .ml-f textarea.ml-zeile{resize:none;overflow:hidden;display:block}
 .ml-f textarea{overflow:hidden}
 /* Chips und Gruppen: halbe Sperrung links ausgleichen, das Wort steht optisch mittig */
-.ml-chips button,#mlFotoGruppen button,.ml-eintraege .kn{text-indent:.12em}
+.ml-chips button,#mlFotoGruppen button,.ml-eintraege .kn{text-indent:0}
+@supports (interpolate-size:allow-keywords){.ml-chips button,#mlFotoGruppen button,.ml-eintraege .kn{text-indent:.12em}}
 .ml-einfuegen button>span{text-box:trim-both cap alphabetic}   /* Wort ohne Leerraum unter der Grundlinie: Zeichen und Wort stehen als Gruppe mittig */
 /* Gemessener Ausgleich je Zeichen (Messlauf text-mitte, 30.10.2026): die Zeichen tragen oben unterschiedlich viel Luft im Raster, die Gruppe rückt um so viel hoch */
 .ml-einfuegen button{padding-top:calc(12px - var(--h,0px));padding-bottom:calc(12px + var(--h,0px))}
@@ -294,11 +295,11 @@
 .ml-kapitel p{text-wrap:balance}   /* M-D (Tor 2): «Hauses» nie allein in der letzten Zeile */
 /* Tor 2, Maschinenlauf 13:09: «PREISLISTE» bei schmaler Platte mit Luft zum Rand; «WEBSITE» in Safari mittig */
 @media (max-width:1180px) and (min-width:981px){#mlEinfuegen button span{letter-spacing:0;font-size:7.6px}}
-@supports (font:-apple-system-body){.ml-chips button{text-indent:.06em}}
+
 /* Tor 2, F1 (K13): Kacheln im Fenster «Fotos des Hauses» im Seitenverhältnis der Vorschaubilder (520 × 402), Plakate werden nicht beschnitten */
 .ml-fotos__raster img{aspect-ratio:520/402}
 /* Tor 2, F2 (K35): «Eintrag hinzufügen» und «Alle» in Safari optisch mittig, wie die Chips */
-@supports (font:-apple-system-body){#mlFotoGruppen button,.ml-eintraege .kn{text-indent:.06em}}
+
 /* Wild Side (31.10.2026, Tor schnell): Kopf passt bei 1440 (Name der Mail steht rechts unter «Die E-Mail»), Schrift in Bausteinen und Navigation optisch mittig */
 @media (max-width:1560px){.ml-name{display:none}}
 .ml-einfuegen button{text-indent:.02em}
@@ -309,3 +310,7 @@
 .ml-pruef__liste button>span{flex:1;min-width:0;overflow-wrap:anywhere}
 @media (max-width:600px){.ml-pruef__liste{position:fixed;left:16px;right:16px;top:132px;width:auto;z-index:60}}
 .ml-einfuegen [data-neu=knopf]{--h:3.7px}
+.ml-fotos__raster span{padding:0 8px}
+/* Handy: der Posteingang bricht um statt seitlich herauszuragen (Cloud-Prüfung WebKit 390 px) */
+@media (max-width:600px){.ml-posteingang,.ml-posteingang>div{min-width:0;max-width:100%}.ml-posteingang b,#mlBetreff,#mlVorschau{white-space:normal;overflow-wrap:anywhere}}
+@media (max-width:980px){.ml-mitte,.ml-buehne,.ml-posteingang{box-sizing:border-box;max-width:100%;min-width:0}.ml-posteingang>div{flex:1 1 0;min-width:0}#mlBuehne iframe{max-width:100%}}
