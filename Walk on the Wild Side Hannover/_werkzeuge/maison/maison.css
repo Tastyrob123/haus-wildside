@@ -194,7 +194,7 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 .m-stueck img{width:100%;height:auto}
 .m-stueck--blatt{border-radius:4px}
 .m-stueck--quer{border-radius:4px;margin-bottom:clamp(20px,3vw,46px)}
-.m-stueck--foto{aspect-ratio:3/4}
+.m-stueck--foto{aspect-ratio:3/4;background:var(--schiefer)}   /* bis das Foto da ist: Nacht statt weisser Fläche */
 .m-stueck--foto img{height:100%;object-fit:cover}
 .m-stuecke--fotos .m-stueck:nth-child(odd){margin-bottom:clamp(14px,1.6vw,26px)}
 @media (max-width:700px){.m-stuecke{padding-left:0;margin-top:16px}.m-stuecke--eins .m-schirm{width:100%}.m-stuecke--fotos{grid-template-columns:repeat(3,minmax(0,1fr))}}
