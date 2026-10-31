@@ -76,7 +76,7 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
 .cu-pl img{display:block;width:100%;height:100%;object-fit:contain}   /* das echte Plakat steht ganz (Kriterium 31), nie angeschnitten */
 .cu-t__felder{min-width:0;display:grid;gap:12px}
 .cu-t__kopf{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.cu-t__wann{margin:0;font:400 24px/1.15 var(--wo-titel);color:var(--wo-tief)}
+.cu-t__wann{margin:0;font:400 24px/1.15 var(--wo-titel);color:var(--wo-tief);text-wrap:balance}
 .cu-t__marke{font:400 10px/1 var(--wo-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--wo-akzent);border-top:1px solid var(--wo-akzent);border-bottom:1px solid var(--wo-akzent);padding:4px 0}
 .cu-t__reihe{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:12px;align-items:end}
 .cu-f{display:grid;gap:6px;min-width:0}

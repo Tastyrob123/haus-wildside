@@ -367,6 +367,11 @@
       i.setAttribute('src', alt.replace('-480.webp', '-960.webp'));
     });
   }
-  function alles() { plan = 0; fest(); aendernZeichen(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
+  /* Angaben des Hauses: der Satz des Stamms nennt E-Mail und Öffnungstage; die Bar führt hier Telefon, Adresse und Instagram (eine E-Mail der Bar ist nicht belegt) */
+  function angabenSatz() {
+    var m = document.querySelector('#ws-mitte[data-ws-ansicht="angaben"]'); if (!m) return;
+    m.querySelectorAll('p, span').forEach(function (e) { if (!e.children.length && /^Telefon, E-Mail, Adresse, Öffnungstage und die wichtigsten Links\./.test(e.textContent)) e.textContent = e.textContent.replace(/^Telefon, E-Mail, Adresse, Öffnungstage und die wichtigsten Links\./, 'Telefon, Adresse und der Link zu Instagram.'); });
+  }
+  function alles() { plan = 0; angabenSatz(); fest(); aendernZeichen(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
   if (window.MutationObserver) new MutationObserver(function () { if (!plan) plan = requestAnimationFrame(alles); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 })();
