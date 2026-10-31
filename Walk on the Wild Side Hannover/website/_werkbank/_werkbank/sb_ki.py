@@ -165,7 +165,7 @@ def ki_seite(t):
     geraete()
     from PIL import Image
     import haus as _H
-    q = _H.bild('trio', 1200)
+    q = _H.bild('an-team', 1200)
     if os.path.exists(q):
         Image.open(q).convert('RGB').save(os.path.join(WB, 'img', 'ki-team.webp'), quality=82)
     m0, m1 = t.find('<main id="oben">'), t.find('</main>')

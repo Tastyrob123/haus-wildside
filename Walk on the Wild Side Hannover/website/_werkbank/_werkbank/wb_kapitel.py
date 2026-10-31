@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium in Kapiteln (Werkbank-Chat Culinarium, 28.10.2026). Aufbau und Technik aus wb_kapitel.py der Taverne zum Schäfli (dort aus dem
-Schlössli und dem Ruedihus), nur kopiert und umgeschrieben; Kleid und Worte von Culinarium. Läuft als Nachbau-Schritt nach dem Kit (haus.nach_bau) und stellt werkbank/index.html um:
+"""Werkbank Wild Side in Kapiteln (Nachtbau 31.10.2026; Vorlage Werkbank des Culinarium, 28.10.2026). Aufbau und Technik aus wb_kapitel.py der Taverne zum Schäfli (dort aus dem
+Schlössli und dem Ruedihus), nur kopiert und umgeschrieben; Kleid und Worte des Walk on the Wild Side. Läuft als Nachbau-Schritt nach dem Kit (haus.nach_bau) und stellt werkbank/index.html um:
 
   Auftakt · Brief · Worum es geht (Rechner, einmal) · Register
   I Was wir gefunden haben   die vier stärksten Funde aus dem Befund des Spähers, heute nur Instagram (sb_befund.py)
@@ -28,8 +28,8 @@ PF, LI, RE = K.PF, K.LI, K.RE
 STAND = datetime.date.today().strftime('%d.%m.%Y')
 _ZVB = __import__('re').search(r'viewBox="([^"]+)"', open(__import__('os').path.join(__import__('os').path.dirname(__import__('os').path.abspath(__file__)), '..', '..', '..', '_werkzeuge', 'oberflaeche', 'kleid', 'wildside-zeichen.svg'), encoding='utf-8').read()).group(1)   # viewBox des «C» (29.10.)
 ZEICHEN = f'<svg class="kap__z" viewBox="{_ZVB}" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg>'   # das «C» der Wortmarke
-VERTRAUEN = ('Ein Entwurf von Robert Reff, Tasty Studios, Hamburg, nicht die offizielle Website von Culinarium. Wer den Link nicht hat, findet die Seite nicht, '
-             'in keiner Suchmaschine. Fotos, Plakate, Zeichen und Texte gehören Culinarium, dem Walk on the Wild Side und den jeweiligen Fotografen.')
+VERTRAUEN = ('Ein Entwurf von Robert Reff, Tasty Studios, Hamburg, nicht die offizielle Website des Walk on the Wild Side. Wer den Link nicht hat, findet die Seite nicht, '
+             'in keiner Suchmaschine. Fotos, Plakate, Zeichen und Texte gehören dem Walk on the Wild Side und den jeweiligen Fotografen.')
 LUPE = os.path.expanduser('~/Desktop/Website-Projekte/_Befund-Vorschlaege/lupe/EINBAU.md')
 M, VORAB = {}, {}
 
@@ -141,7 +141,7 @@ def papier_mails(z):
     karten = ''.join(f'<a class="bogenb mlp" href="../mails/{x[1]}/index.html" target="_blank" rel="noopener" data-a="schweb" style="left:{l}%;top:{tp}%;width:{w}%;--r:{r}deg;--r0:{r * 3}deg;--i:{i}">{bild("ml-" + x[0], "Mail: " + x[2])}</a>'
                      for i, (x, (l, tp, w, r)) in enumerate(zip(ml, orte)))
     return (f'<div class="pk pk--mail" data-a="kipp" style="--i:2"><div class="pk__b">{karten}</div><h3>{str(ZAHLWORT.get(len(ml), len(ml))).capitalize()} Mails</h3>'
-            f'<p>Was ein Gast nach seiner Buchung, seinem Eintrag auf der Warteliste und vor dem Abend im Postfach findet. Namen und Daten darin sind ausgedacht.</p>'
+            f'<p>Was ein Gast nach seiner Reservierung, seiner Anfrage für eine Feier und vor dem Abend im Postfach findet. Namen und Daten darin sind ausgedacht.</p>'
             f'{K.kn("Mails ansehen", "../mails/index.html", neu=True)}</div>') if ml else ''
 
 
@@ -161,9 +161,9 @@ def schluss():
   {bild('sb-schluss', klasse='schluss__b')}
   <div class="in">
     <p class="kap kap--z" data-a="auf">{ZEICHEN}<span>Bis Montag</span></p>
-    {K.titel(['Die Kerzen', 'brennen schon.'], 'h2', 't1')}
+    {K.titel(['Das Licht', 'geht an.'], 'h2', 't1')}
     <div class="lauf">
-      <p data-a="worte">Was hier liegt, ist für Culinarium gemacht: die Seite, die Werkzeuge, jedes Blatt. Öffnet es, so oft ihr mögt, und sagt mir, wo es noch nicht nach euren Abenden aussieht.</p>
+      <p data-a="worte">Was hier liegt, ist für das Wild Side gemacht: die Seite, die Werkzeuge, jedes Blatt. Öffnet es, so oft ihr mögt, und sagt mir, wo es noch nicht nach eurer Bar aussieht.</p>
     </div>
     <div class="rh-gruss" data-a="auf"><p class="rh-gruss__t">Bis Montag<span class="rh-gruss__b">{bild('robert', 'Robert Reff')}</span></p>
       <p class="rh-gruss__n"><img class="rh-gruss__sig" src="img/unterschrift.webp" width="{M['unterschrift'][0]}" height="{M['unterschrift'][1]}" alt="Unterschrift Robert Reff" loading="lazy" decoding="async"><span>Robert Reff · Tasty Studios</span></p></div>
@@ -178,7 +178,7 @@ def fuss_wege():
     w = {x[0]: x for x in WK.WERKZEUGE}
     wege = [('website', 'Die neue Website', '../index.html')]
     wege += [(k, w[k][1], w[k][6]) for k in ('maison', 'bureau', 'carte', 'reception', 'livre', 'registre', 'imprimerie') if w[k][6]]
-    wege += [('gaeste', 'Für eure Gäste', '../abend.html')]
+    wege += [('gaeste', 'Für eure Gäste', '../besuch.html')]
     wege += [x for x in (('unterlagen', 'Eure Karten', '../unterlagen/index.html'), ('drucksachen', 'Drucksachen', '../drucksachen/index.html'), ('etiketten', 'Untersetzer', '../untersetzer/index.html'), ('postkarten', 'Postkarten', '../postkarten/index.html'), ('sticker', 'Sticker', '../sticker/index.html'), ('beigaben', 'Beigaben', '../beigaben/index.html'))
              if os.path.exists(os.path.normpath(os.path.join(ZIEL, x[2])))]
     if os.path.exists(os.path.join(ROOT, 'feed', 'index.html')):
@@ -222,9 +222,9 @@ def anwenden(pfad):
     SA.bilder(lambda q, n, b, qu, schnitt=None, lage=(.5, .5): webp(q, n, b, qu, schnitt, lage), haus)
     BE.kopiere_analyse()
     AN_ = os.path.join(W, 'ansichten')
-    for n, q in (('gpm-website', os.path.join(AN_, 'Rechner', 'Startseite.jpg')), ('gpm-karten', os.path.join(ROOT, 'unterlagen', 'img', 'n-abend-01.webp')),
-                 ('gpm-werkzeuge', os.path.join(AN_, 'Werkzeuge', 'bureau.jpg')), ('gpm-daten', os.path.join(AN_, 'Gaeste', 'warteliste.jpg')),
-                 ('gpm-suche', os.path.join(AN_, 'Rechner', 'Der Weg.jpg')), ('gpm-offen', haus(K.H.bild('m7')))):
+    for n, q in (('gpm-website', os.path.join(AN_, 'Rechner', 'Startseite.jpg')), ('gpm-karten', (sorted(__import__('glob').glob(os.path.join(ROOT, 'unterlagen', 'img', 'n-*.webp'))) or [''])[0]),
+                 ('gpm-werkzeuge', os.path.join(AN_, 'Werkzeuge', 'bureau.jpg')), ('gpm-daten', os.path.join(AN_, 'Gaeste', 'reservieren.jpg')),
+                 ('gpm-suche', os.path.join(AN_, 'Rechner', 'Besuch.jpg')), ('gpm-offen', haus(K.H.bild('rueckbar')))):
         if os.path.exists(q):
             webp(q, n, 1040, 80, 16 / 9, (.5, 0))
     webp(haus(K.H.SCHLUSS['bild']), 'sb-schluss', 1920, 80)   # die Bar bei Nacht von draußen (kein Foto zweimal auf der Werkbank)
@@ -246,7 +246,7 @@ def anwenden(pfad):
     auftakt = nimm('auftakt').replace('Diese Werkbank ist', 'Diese Seite ist')
     brief = nimm('brief')
     worum = SW.blatt(k)
-    register = KP.register(kopf(0, 'Register', ['Acht Kapitel,', 'ein Abend.'], 'Vom Befund, wie Culinarium heute im Netz steht, bis zum Vorschlag am Ende. Jedes Kapitel lässt sich direkt öffnen.'))
+    register = KP.register(kopf(0, 'Register', ['Acht Kapitel,', 'eine Bar.'], 'Vom Befund, wie das Wild Side heute im Netz steht, bis zum Vorschlag am Ende. Jedes Kapitel lässt sich direkt öffnen.'))
     k1 = BE.abschnitt(k, kopfk)
     hs = kapitel('k2', nimm('handschrift'))
     livre = [w for w in WK.WERKZEUGE if w[0] == 'livre'][0]
@@ -273,14 +273,14 @@ def anwenden(pfad):
     gp = kapitel('k7', nimm('geprueft'))
     k8 = SA.angebot(k)
 
-    folge = [auftakt, brief, register, k1, hs, vergleich, nimm('ideen'), nimm('gefuege'), nimm('seiten'), nimm('gaeste', False), un,
+    folge = [auftakt, brief, worum, register, k1, hs, vergleich, nimm('ideen'), nimm('gefuege'), nimm('seiten'), nimm('gaeste', False), un,
              fen_haus, wk, pa, nimm('feed', False), material, gp, fen_tisch, k8, schluss()]
     t = t[:a] + vor_main + '\n'.join(x for x in folge if x) + '\n' + t[b:]
 
     t = re.sub(r'<nav aria-label="Abschnitte">.*?</nav>', '<nav aria-label="Kapitel">' + KP.leiste() + '</nav>', t, count=1, flags=re.S)
-    t = t.replace('<b>CULINARIUM</b><span>Werkbank</span>', '<b>CULINARIUM</b><span>Entwurf</span>')
-    t = re.sub(r'<title>[^<]*</title>', '<title>Alles auf einen Blick · Culinarium</title>', t, count=1)
-    t = re.sub(r'(<meta property="og:title" content=")[^"]*', r'\1Alles auf einen Blick · Culinarium', t)
+    t = t.replace('<span>Werkbank</span>', '<span>Entwurf</span>', 1)
+    t = re.sub(r'<title>[^<]*</title>', '<title>Alles auf einen Blick · Walk on the Wild Side</title>', t, count=1)
+    t = re.sub(r'(<meta property="og:title" content=")[^"]*', r'\1Alles auf einen Blick · Walk on the Wild Side', t)
 
     fi, fj = t.index('<nav class="in wege wf"'), t.index('<div class="in fuss__u">')
     t = t[:fi] + FU.abschnitt(fuss_wege()).replace('<nav class="in wege wf"', '<nav class="in wege wf" id="uebersicht"', 1) + '\n' + t[fj:]
@@ -299,7 +299,7 @@ def anwenden(pfad):
     neu = K.faerbe(KP.CSS + VT.CSS + SW.CSS + WK.CSS + SB.CSS + BE.CSS + SA.CSS + OK.CSS)
     neu = re.sub(r'url\(\.\./assets/img/tapete\.webp\) 50% 0/\d+px auto', 'var(--muster) 50% 0/var(--musterb) auto', neu)
     import sb_farbe as _sf
-    open(os.path.join(ZIEL, 'kapitel.css'), 'w', encoding='utf-8').write('/* Kapitel der Werkbank Culinarium (wb_kapitel.py), eigene Datei */\n' + _sf.ohne_fett(_sf.faerbe(neu + EIGEN_CSS)))
+    open(os.path.join(ZIEL, 'kapitel.css'), 'w', encoding='utf-8').write('/* Kapitel der Werkbank Wild Side (wb_kapitel.py), eigene Datei */\n' + _sf.ohne_fett(_sf.faerbe(neu + EIGEN_CSS)))
     t = open(pfad, encoding='utf-8').read()
     if 'kapitel.css' not in t:
         t = re.sub(r'(<link rel="stylesheet" href="werkbank\.css[^"]*">)', lambda m_: m_.group(1) + f'\n<link rel="stylesheet" href="kapitel.css?v={int(datetime.datetime.now().timestamp())}">', t, count=1)
@@ -342,7 +342,7 @@ EIGEN_CSS = '''
 .rh-gruss__n span{font-family:var(--mono);font-size:clamp(9px,2.5vw,10.5px);letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;color:rgba(251,245,234,.82)}
 /* Befund: der Weg zur ganzen Analyse mittig unter der Lupe */
 .lu-weg{justify-content:center;margin-top:clamp(24px,2.6vw,40px)}
-/* Register: Ziffern und Kopf im Kleid von Culinarium */
+/* Register: Ziffern und Kopf im Kleid der Bar */
 .rgw .wfa__texte h3{font-weight:400}
 .kap--k .kap__z{display:block;margin:10px auto 8px}
 '''
@@ -357,7 +357,7 @@ def unterseiten():
             continue
         t = open(p, encoding='utf-8').read()
         t = t.replace('<span>Werkbank</span></a>', '<span>Entwurf</span></a>').replace('<span>Werkbank</span>', '<span>Entwurf</span>')
-        t = t.replace(' · Werkbank Culinarium</title>', ' · Culinarium</title>').replace('Werkbank · Culinarium', 'Alles auf einen Blick · Culinarium')
+        t = t.replace(' · Werkbank Culinarium</title>', ' · Walk on the Wild Side</title>').replace('Werkbank · Culinarium', 'Alles auf einen Blick · Walk on the Wild Side').replace(' · Culinarium</title>', ' · Walk on the Wild Side</title>')
         t = t.replace('>Zurück zur Werkbank<', '>Zurück zu «Alles auf einen Blick»<').replace('>Zur Werkbank<', '>Alles auf einen Blick<')
         t = t.replace('<b>Werkbank zum Entwurf</b>', '<b>Entwurf</b>')
         t = t.replace('Jedes Bild trägt eine Beschreibung', 'Jedes Bild hat eine Beschreibung')
@@ -377,15 +377,15 @@ def unterseiten():
             satz, weg, text = _wz[rel]
             t = t.replace('<section class="ausklang">', f'<section class="ausklang ausklang--werkzeug"><div class="in"><p data-a="auf">{satz}</p><div class="kn-reihe" data-a="auf"><a class="kn" href="{weg}" target="_blank" rel="noopener">{text}{_pf}</div></div></section>\n<section class="ausklang">', 1)
         if rel == 'material':
-            t = t.replace('<title>Material · Culinarium</title>', '<title>Dateien · Culinarium</title>').replace('<span>Material</span>', '<span>Dateien</span>').replace('<b>Material zum Entwurf</b>', '<b>Dateien zum Entwurf</b>')
+            t = t.replace('<title>Material · Culinarium</title>', '<title>Dateien · Walk on the Wild Side</title>').replace('<span>Material</span>', '<span>Dateien</span>').replace('<b>Material zum Entwurf</b>', '<b>Dateien zum Entwurf</b>')
             t = material_nachtragen(t)
             t = t.replace('Ihre Unterlagen als Idee im Stil der neuen Seite, jede als PDF.', 'Eure Karten im neuen Satz, jede als PDF.')
             t = mit_vorschau(t, os.path.join(ROOT, 'material'))
         if rel == 'werkbank/geprueft':
             t = pruef_bilder(t)
-            # Demo-Check Schäfli 21.10.2026: der Kit schreibt jedem Haus Zimmer und Booking in den Prüfbericht; Culinarium sind Abende ohne Zimmer
-            for _a, _b in (('Adresse, Telefon, Buchung, Restaurants und Öffnungszeiten', 'Adresse, Termine, Plätze und Zeiten der Abende'),
-                           ('Ihre Zimmer, Restaurants und Angebote auch wirklich lesen', 'eure Abende, Menüs und Plakate auch wirklich lesen'),
+            # Demo-Check Schäfli 21.10.2026: der Kit schreibt jedem Haus Zimmer und Booking in den Prüfbericht; die Bar hat keine Zimmer
+            for _a, _b in (('Adresse, Telefon, Buchung, Restaurants und Öffnungszeiten', 'Adresse, Telefon, Zeiten und DJ-Abende'),
+                           ('Ihre Zimmer, Restaurants und Angebote auch wirklich lesen', 'eure Drinks, DJ-Abende und Feiern auch wirklich lesen'),
                            ('gleiche Angaben auf Booking, Tripadvisor und den Portalen', 'gleiche Angaben auf Tripadvisor und den Portalen')):
                 t = t.replace(_a, _b)
         open(p, 'w', encoding='utf-8').write(t)

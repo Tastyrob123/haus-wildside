@@ -195,7 +195,7 @@ def mail(f, basis, img='../img/'):
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:{BLATT};border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(216,178,100,.45)">
   <tr><td align="center" style="background:{TIEF};padding:34px 30px 32px;border-bottom:1px solid rgba(216,178,100,.55)">
     <img src="{img}marke.png" width="104" alt="Walk on the Wild Side" style="display:block;border:0;width:104px;height:auto;margin:0 auto">
-    <h1 style="margin:26px 0 0;font:400 clamp(28px,7.4vw,38px)/1.16 {SERIF};color:{CREME}">{e(f['titel'][0])}<br><span style="color:#CBBBA6">{e(f['titel'][1])}</span></h1>
+    <h1 style="margin:26px 0 0;font:400 clamp(28px,7.4vw,38px)/1.16 {SERIF};color:{CREME}">{e(f['titel'][0]).replace(' ', '&nbsp;')}<br><span style="color:#CBBBA6">{e(f['titel'][1]).replace(' ', '&nbsp;')}</span></h1>
   </td></tr>
   <tr><td style="padding:34px clamp(22px,6vw,40px) 8px">{absaetze}</td></tr>
   <tr><td style="padding:6px 28px 6px">{foto}</td></tr>
@@ -205,7 +205,7 @@ def mail(f, basis, img='../img/'):
   <tr><td align="center" style="padding:26px 30px 8px"><a href="{href}" style="display:inline-block;padding:9px 9px 9px 24px;border-radius:14px;background:{ROT};font:500 12px/22px {SANS};letter-spacing:.16em;text-transform:uppercase;color:#FFF6EC;text-decoration:none">{e(f['knopf'][0])}{knauf}</a></td></tr>
   <tr><td style="padding:14px 36px 30px"><p style="margin:0;font:400 15px/1.6 {SANS};color:{LEISE};text-align:center">{e(f['dazu'])}</p>
     <img src="{img}{FUSSBILD}.jpg" width="520" alt="{e(_alt(FUSSBILD))}" style="display:block;border:0;width:100%;max-width:520px;height:auto;margin:26px auto 0;border-radius:16px">
-    <p style="margin:18px 0 0;font:400 19px/1.4 {SERIF};color:{TINTE};text-align:center">Bis bald an der Bar,<br>{e(GRUSS)}</p></td></tr>
+    <p style="margin:18px 0 0;font:400 19px/1.4 {SERIF};color:{TINTE};text-align:center">Bis bald an der Bar,<br>{fest(GRUSS)}</p></td></tr>
   <tr><td align="center" style="background:{TIEF};padding:26px 30px;border-top:1px solid rgba(216,178,100,.55)"><div style="font:400 13px/1.7 {SANS};color:#CBBBA6">{e(ADRESSE)}<br>{e(ZEITEN)}<br>{e(TEL)} · {e(IG)}</div></td></tr>
 </table>
 </td></tr></table>
@@ -220,6 +220,12 @@ def eingebettet(f):
     return t
 
 
+def fest(t):
+    """die letzten zwei Wörter fest verbunden (kein Wort allein in der letzten Zeile)"""
+    a, _, b = t.rpartition(' ')
+    return e(a) + '&nbsp;' + e(b) if a else e(t)
+
+
 ZAHLWORT = {10: 'Zehn', 11: 'Elf', 12: 'Zwölf'}
 
 
@@ -229,7 +235,7 @@ def uebersicht():
     pf = lambda d: f'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="{d}"/></svg>'
     n = ZAHLWORT.get(len(FAELLE), str(len(FAELLE)))
     karten = ''.join(f'''<article class="mb hr" style="--i:{min(i, 4)}">
-  <header class="mb-ueber"><span class="mb-nr">{f['nr']}</span><span class="mb-ueber__t"><b>{e(f['name'])}</b><small><span>Von</span> Walk on the Wild Side</small><small><span>Wann</span> {e(f['wann'])}</small><small><span>Betreff</span> {e(f['betreff'])}</small></span></header>
+  <header class="mb-ueber"><span class="mb-nr">{f['nr']}</span><span class="mb-ueber__t"><b>{fest(f['name'])}</b><small><span>Von</span> Walk on the Wild&nbsp;Side</small><small><span>Wann</span> {fest(f['wann'])}</small><small><span>Betreff</span> {fest(f['betreff'])}</small></span></header>
   <div class="mb-blatt"><div class="mb-in">{eingebettet(f)}</div></div>
   <p class="mb-ganz"><button type="button" class="mb-kn" aria-expanded="false"><span class="a">Ganze Mail</span><span class="z">Weniger zeigen</span><i>{pf('M4 6l4 4 4-4')}</i></button></p>
 </article>''' for i, f in enumerate(FAELLE))
@@ -286,7 +292,7 @@ html.js .hr.da{{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,
 <header class="kopf"><svg class="marke hr" style="--i:0" viewBox="0 0 1296 1600" role="img" aria-label="Walk on the Wild Side"><use href="/assets/oberflaeche/kleid/wildside-marke.svg#wm"/></svg><h1 class="hr" style="--i:1">{n} Mails,<br><em>im Ton der&nbsp;Bar.</em></h1>
 <p class="hr" style="--i:2">Was ein Gast nach der Reservierung, nach einer Anfrage für eine Feier oder vor einem DJ-Abend von euch bekommt, kommt im Kleid der neuen Seite. {n} Fälle als Idee, von der Reservierung bis zur neuen Karte von Momo. Namen, Daten und Nummern der Gäste sind Beispielwerte; Preise, Zeiten, Adresse und Abende sind eure.</p></header>
 <main><div class="band" id="mband" tabindex="0" aria-label="Die {n.lower()} Mails, zum Blättern">{karten}</div>
-<div class="pfeile hr" style="--i:2"><button type="button" class="pf" data-r="-1" aria-label="Vorige Mail">{pf('M10 3 5 8l5 5')}</button><button type="button" class="pf" data-r="1" aria-label="Nächste Mail">{pf('m6 3 5 5-5 5')}</button></div></main>
+<div class="pfeile hr" style="--i:2"><button type="button" class="pf" data-r="-1" aria-label="Vorige Mail">{pf('M10.5 3 5.5 8l5 5')}</button><button type="button" class="pf" data-r="1" aria-label="Nächste Mail">{pf('m5.5 3 5 5-5 5')}</button></div></main>
 <footer class="hr">Entwurf von Robert Reff, Tasty Studios. Stand {STAND}. <a href="../werkbank/index.html#papier">Zurück zu «Alles auf einen Blick»</a></footer>
 <script>
 (function () {{

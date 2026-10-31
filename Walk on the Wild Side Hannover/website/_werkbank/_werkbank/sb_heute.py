@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium: «Heute und neu» ohne heutige Website (Werkbank-Chat 28.10.2026). Culinarium steht heute nur auf Instagram; als «heute»
-dienen die Aufnahmen des Spähers vom 25.10.2026 (_qa/spaeher/, Rechner 1440 × 900 doppelt dicht, ohne Anmeldung, Cookie-Fenster abgelehnt),
+"""Werkbank Wild Side: «Heute und neu» ohne heutige Website (Nachtbau 31.10.2026, Vorlage Culinarium). Das Wild Side steht heute nur auf Instagram; als «heute»
+dient die Aufnahme des Spähers (_quelle/aus-culinarium/spaeher/ig-walkonthewildside_hannover.jpg, kopiert nach _werkbank/heute/, damit der Bau ohne _quelle läuft),
 als «neu» die Aufnahmen der neuen Seite (ansichten/Rechner, ansicht_lang.js). Nichts wird online abgerufen.
    python3 _werkbank/sb_heute.py  → ansichten/Vorher/<slug>-alt.jpg und <slug>-neu.jpg (gelesen von H.VORHER im Kit-Bau)"""
 import os, shutil
 from PIL import Image
 
 W = os.path.dirname(os.path.abspath(__file__))
-SP = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(W))), '_qa', 'spaeher')
+SP = os.path.join(W, 'heute')
 Z = os.path.join(W, 'ansichten', 'Vorher')
-PAARE = [('startseite', 'ig-profil-rechner.jpg', 'Rechner/Startseite.jpg'),
-         ('abend', 'ig-post-DbYnkdkjrNy.jpg', 'Rechner/Der Abend.jpg'),
-         ('abende', 'ig-post-DVjkofijp6R.jpg', 'Rechner/Alle Abende.jpg')]
+PAARE = [('startseite', 'ig-profil-rechner.jpg', 'Rechner/Startseite.jpg')]
 
 
 def bau():

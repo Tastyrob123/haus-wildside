@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Baustein in der Werkbank Culinarium (Werkbank-Chat 28.10.2026), über das Schäfli kopiert; die Herkunft steht darunter wie in der Vorlage.
-Werkbank Culinarium (Vorlage Schäfli, dort Ruedihus; Werkbank-Chat 28.10.2026; Master 5b Punkte 12, 19, 20):
+"""Baustein in der Werkbank Wild Side (Vorlage Werkbank des Nachbarhauses, 28.10.2026), über das Schäfli kopiert; die Herkunft steht darunter wie in der Vorlage.
+Vorlage (Schäfli, dort Ruedihus; Werkbank-Chat 28.10.2026; Master 5b Punkte 12, 19, 20):
 
 1. Zwei Fenster zwischen gleichfarbigen Abschnitten: Bild und Satz stehen, der Ausschnitt wandert. Bauart wie die Fenster der Websites nach dem
    Safari-Befund vom 11.10.2026: niemand beschneidet, Bild und Satz liegen ganz unten (z-index −1), die deckenden Nachbarn verdecken alles ausserhalb.
@@ -21,10 +21,10 @@ VB = _H.ZEICHEN[0]
 FENSTER = [   # id, vor welchem Abschnitt, Bild (Foto der Website, abgedunkelt nach _werkbank/eigen/fen-<id>-*.webp), Zeilen, kleine Zeile, Bildbeschreibung
     dict(id='fenster-haus', vor='papier', bild='theke', zeilen=('Ihr führt die Seite', 'selbst.'), klein='Für Termine, Menüs, Plakate und Gäste gibt es je ein eigenes Werkzeug.',
          alt='Hinter der Theke des Walk on the Wild Side unter dem Negroni-Schriftzug'),
-    dict(id='fenster-tisch', vor='material', bild='kerze3', zeilen=('Ein Abend,', 'ein Auftritt.'), klein='Website, Karten, Werkzeuge und Papier im Kleid von Culinarium.',
-         alt='Blick durch die Tür auf die lange Tafel bei Kerzenlicht'),
+    dict(id='fenster-tisch', vor='material', bild='fenster', zeilen=('Eine Bar,', 'ein Auftritt.'), klein='Website, Karten, Werkzeuge und Papier im Kleid des Wild Side.',
+         alt='Blick durchs Fenster in die Bar des Walk on the Wild Side'),
 ]
-BILDER = [('ab-foto', 'tafelleer', 1200, dict(q=78, schnitt=1.22, lage=(.4, .5)))]
+BILDER = [('ab-foto', 'an-empore-tafel', 1200, dict(q=78, schnitt=1.22, lage=(.4, .5)))]
 
 
 def _mass(bild):
@@ -37,7 +37,7 @@ def fenster_bilder():
     from PIL import Image
     for F in FENSTER:
         im = Image.open(_H.bild(F['bild'])).convert('RGB')
-        im = Image.blend(im, Image.new('RGB', im.size, (22, 21, 26)), .42)
+        im = Image.blend(im, Image.new('RGB', im.size, (19, 14, 13)), .42)
         for br in (1200, 1800, 2400):
             k = im.resize((br, round(im.height * br / im.width)), Image.LANCZOS) if im.width > br else im
             k.save(os.path.join(W, 'eigen', f"fen-{F['id']}-{br}.webp"), 'WEBP', quality=80, method=5)

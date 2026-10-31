@@ -1,0 +1,562 @@
+{
+ "druck": [
+  {
+   "id": "pw-session-ghazouani-brothers",
+   "name": "Ghazouani Brothers, 17.10.2026",
+   "format": "Instagram 4:5 · aus der Plakatwerkstatt",
+   "satz": "Das SESSION-Plakat des letzten DJ-Abends für Instagram: Wellen in Plakatrot und Creme, Schrift in Ultramarin, das Foto in Schwarzweiss.",
+   "titel": [
+    "Ghazouani Brothers,",
+    "17.10.2026."
+   ],
+   "pdf": "wildside-session-ghazouani-brothers.pdf",
+   "karton": [
+    [
+     "pw-session-ghazouani-brothers",
+     64,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-session-ghazouani-brothers": [
+     1000,
+     1250
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-session-aushang-a3",
+   "name": "SESSION · Aushang A3",
+   "format": "A3 hoch · aus der Plakatwerkstatt",
+   "satz": "Dasselbe Plakat in A3 für die Tür und das Fenster an der Ecke.",
+   "titel": [
+    "SESSION",
+    "zum Aushang."
+   ],
+   "pdf": "wildside-session-aushang-a3.pdf",
+   "karton": [
+    [
+     "pw-session-aushang-a3",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-session-aushang-a3": [
+     1000,
+     1414
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-session-story",
+   "name": "SESSION · Story",
+   "format": "Story 9:16 · aus der Plakatwerkstatt",
+   "satz": "Das Plakat im Hochformat 9:16 für die Story am Abend selbst.",
+   "titel": [
+    "SESSION",
+    "als Story."
+   ],
+   "pdf": "wildside-session-story.pdf",
+   "karton": [
+    [
+     "pw-session-story",
+     40,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-session-story": [
+     1000,
+     1778
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-session-programm",
+   "name": "Die DJ-Abende",
+   "format": "A5 hoch · aus der Plakatwerkstatt",
+   "satz": "Alle DJ-Abende auf einem Blatt A5, für den Tresen oder zum Mitnehmen.",
+   "titel": [
+    "Die",
+    "DJ-Abende."
+   ],
+   "pdf": "wildside-session-programm.pdf",
+   "karton": [
+    [
+     "pw-session-programm",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-session-programm": [
+     1000,
+     1419
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-konzert-live-am-donnerstag",
+   "name": "Live am Donnerstag",
+   "format": "A3 hoch · aus der Plakatwerkstatt",
+   "satz": "Das weisse Plakat der Bar für die Konzerte am Donnerstag, ohne Eintritt.",
+   "titel": [
+    "Live am",
+    "Donnerstag."
+   ],
+   "pdf": "wildside-konzert-live-am-donnerstag.pdf",
+   "karton": [
+    [
+     "pw-konzert-live-am-donnerstag",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-konzert-live-am-donnerstag": [
+     1000,
+     1414
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-silvester-fruehshoppen",
+   "name": "Silvester Frühshoppen",
+   "format": "Instagram 4:5 · aus der Plakatwerkstatt",
+   "satz": "Das weisse Plakat «Eure Nachbarschafts-Mixology-Bar» für den Silvester-Frühschoppen.",
+   "titel": [
+    "Silvester",
+    "ab mittags."
+   ],
+   "pdf": "wildside-silvester-fruehshoppen.pdf",
+   "karton": [
+    [
+     "pw-silvester-fruehshoppen",
+     64,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-silvester-fruehshoppen": [
+     1000,
+     1250
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-tanz-in-den-mai",
+   "name": "Tanz in den Mai",
+   "format": "Instagram 4:5 · aus der Plakatwerkstatt",
+   "satz": "Das weisse Plakat für den Tanz in den Mai, im Format für Instagram.",
+   "titel": [
+    "Tanz",
+    "in den Mai."
+   ],
+   "pdf": "wildside-tanz-in-den-mai.pdf",
+   "karton": [
+    [
+     "pw-tanz-in-den-mai",
+     64,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-tanz-in-den-mai": [
+     1000,
+     1250
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-gastschicht-musa",
+   "name": "Gastschicht · Musa",
+   "format": "Instagram 4:5 · aus der Plakatwerkstatt",
+   "satz": "Wenn neben Momo ein Gast aus einer anderen Bar mit eigenen Drinks steht.",
+   "titel": [
+    "Gastschicht",
+    "mit Musa."
+   ],
+   "pdf": "wildside-gastschicht-musa.pdf",
+   "karton": [
+    [
+     "pw-gastschicht-musa",
+     64,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-gastschicht-musa": [
+     1000,
+     1250
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-karte-drunk-in-love",
+   "name": "Drunk in Love · Valentinskarte",
+   "format": "DL hoch · aus der Plakatwerkstatt",
+   "satz": "Die Sonderkarte zum Valentinstag, mit den Preisen vom Plakat.",
+   "titel": [
+    "Drunk",
+    "in Love."
+   ],
+   "pdf": "wildside-karte-drunk-in-love.pdf",
+   "karton": [
+    [
+     "pw-karte-drunk-in-love",
+     40,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-karte-drunk-in-love": [
+     1000,
+     2121
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-karte-preise-der-bar",
+   "name": "Die Preise der Bar",
+   "format": "A5 hoch · aus der Plakatwerkstatt",
+   "satz": "Die Preisliste der Bar auf einem Blatt A5, so wie sie auf der Seite «Feiern» steht.",
+   "titel": [
+    "Die Preise",
+    "der Bar."
+   ],
+   "pdf": "wildside-karte-preise-der-bar.pdf",
+   "karton": [
+    [
+     "pw-karte-preise-der-bar",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-karte-preise-der-bar": [
+     1000,
+     1419
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-karte-klassiker",
+   "name": "Die Klassiker",
+   "format": "DL hoch · aus der Plakatwerkstatt",
+   "satz": "Negroni, Paloma, Mexikaner und ohne Alkohol, als schmale Karte für die Theke.",
+   "titel": [
+    "Die",
+    "Klassiker."
+   ],
+   "pdf": "wildside-karte-klassiker.pdf",
+   "karton": [
+    [
+     "pw-karte-klassiker",
+     40,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-karte-klassiker": [
+     1000,
+     2121
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-untersetzer-was-magst-du",
+   "name": "Was magst du?",
+   "format": "A6 hoch · aus der Plakatwerkstatt",
+   "satz": "Ein Aufsteller A6 mit Momos drei Fragen: der Geschmack, das Glas, was hinein soll.",
+   "titel": [
+    "Was",
+    "magst du?"
+   ],
+   "pdf": "wildside-untersetzer-was-magst-du.pdf",
+   "karton": [
+    [
+     "pw-untersetzer-was-magst-du",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-untersetzer-was-magst-du": [
+     1000,
+     1409
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-tischaufsteller-du-sagst",
+   "name": "Du sagst, was du magst",
+   "format": "A6 hoch · aus der Plakatwerkstatt",
+   "satz": "Ein Aufsteller A6 mit Momo hinter der Theke.",
+   "titel": [
+    "Du sagst,",
+    "was du magst."
+   ],
+   "pdf": "wildside-tischaufsteller-du-sagst.pdf",
+   "karton": [
+    [
+     "pw-tischaufsteller-du-sagst",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-tischaufsteller-du-sagst": [
+     1000,
+     1409
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-flyer-nachbarschafts-mixology-bar",
+   "name": "Flyer der Bar",
+   "format": "A6 hoch · 2 Seiten · aus der Plakatwerkstatt",
+   "satz": "Vorne ein Foto der Bar, hinten die Zeiten und die Adresse, A6.",
+   "titel": [
+    "Der Flyer",
+    "der Bar."
+   ],
+   "pdf": "wildside-flyer-nachbarschafts-mixology-bar.pdf",
+   "karton": [
+    [
+     "pw-flyer-nachbarschafts-mixology-bar",
+     44,
+     "Vorderseite"
+    ],
+    [
+     "pw-flyer-nachbarschafts-mixology-bar-r",
+     44,
+     "Rückseite"
+    ]
+   ],
+   "masse": {
+    "pw-flyer-nachbarschafts-mixology-bar": [
+     1000,
+     1409
+    ],
+    "pw-flyer-nachbarschafts-mixology-bar-r": [
+     1000,
+     1409
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 2
+  },
+  {
+   "id": "pw-aushang-oeffnungszeiten",
+   "name": "Öffnungszeiten",
+   "format": "A4 hoch · aus der Plakatwerkstatt",
+   "satz": "Der Aushang A4 für die Tür: Donnerstag bis Samstag ab 19 Uhr.",
+   "titel": [
+    "Die",
+    "Öffnungszeiten."
+   ],
+   "pdf": "wildside-aushang-oeffnungszeiten.pdf",
+   "karton": [
+    [
+     "pw-aushang-oeffnungszeiten",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-aushang-oeffnungszeiten": [
+     1000,
+     1414
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-instagram-falstaff",
+   "name": "Falstaff Bar Guide 2027",
+   "format": "Instagram 4:5 · aus der Plakatwerkstatt",
+   "satz": "Der Beitrag zu den 91 Punkten im Falstaff Bar Guide.",
+   "titel": [
+    "Falstaff",
+    "Bar Guide 2027."
+   ],
+   "pdf": "wildside-instagram-falstaff.pdf",
+   "karton": [
+    [
+     "pw-instagram-falstaff",
+     64,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-instagram-falstaff": [
+     1000,
+     1250
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-instagram-negroni",
+   "name": "Der Negroni",
+   "format": "Instagram 4:5 · aus der Plakatwerkstatt",
+   "satz": "Ein Beitrag für Instagram zum Negroni, den es an jedem Abend gibt.",
+   "titel": [
+    "Der",
+    "Negroni."
+   ],
+   "pdf": "wildside-instagram-negroni.pdf",
+   "karton": [
+    [
+     "pw-instagram-negroni",
+     64,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-instagram-negroni": [
+     1000,
+     1250
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-feiern-pauschale",
+   "name": "Die ganze Bar · Pauschale",
+   "format": "A5 hoch · aus der Plakatwerkstatt",
+   "satz": "Das Angebotsblatt A5 mit den Pauschalen 49, 59 und 79 Euro.",
+   "titel": [
+    "Die ganze Bar,",
+    "als Pauschale."
+   ],
+   "pdf": "wildside-feiern-pauschale.pdf",
+   "karton": [
+    [
+     "pw-feiern-pauschale",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-feiern-pauschale": [
+     1000,
+     1419
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-feiern-lange-tafel",
+   "name": "Die lange Tafel",
+   "format": "A5 hoch · aus der Plakatwerkstatt",
+   "satz": "Das Angebotsblatt A5 für die Runde auf der Empore.",
+   "titel": [
+    "Die lange",
+    "Tafel."
+   ],
+   "pdf": "wildside-feiern-lange-tafel.pdf",
+   "karton": [
+    [
+     "pw-feiern-lange-tafel",
+     54,
+     ""
+    ]
+   ],
+   "masse": {
+    "pw-feiern-lange-tafel": [
+     1000,
+     1419
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 1
+  },
+  {
+   "id": "pw-gutschein",
+   "name": "Gutschein · Ein Abend an der Bar",
+   "format": "DL quer · 2 Seiten · aus der Plakatwerkstatt",
+   "satz": "Ein Gutschein für einen Abend an der Bar, vorne und hinten, DIN lang quer.",
+   "titel": [
+    "Ein Gutschein",
+    "für einen Abend."
+   ],
+   "pdf": "wildside-gutschein.pdf",
+   "karton": [
+    [
+     "gutschein",
+     84,
+     "Vorderseite"
+    ],
+    [
+     "gutschein-r",
+     84,
+     "Rückseite"
+    ]
+   ],
+   "masse": {
+    "gutschein": [
+     1000,
+     472
+    ],
+    "gutschein-r": [
+     1000,
+     472
+    ]
+   },
+   "schatten": true,
+   "haengt": false,
+   "seiten": 2
+  }
+ ]
+}

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium (Vorlage Schäfli, dort Schlössli und Ruedihus), Abschnitt «Handschrift» als Tafel mit Bewegung (Werkbank-Chat 28.10.2026).
+"""Werkbank Wild Side (Vorlage Culinarium, dort Schäfli), Abschnitt «Handschrift» als Tafel mit Bewegung (Werkbank-Chat 28.10.2026).
 
 Eine helle Tafel mit fünf Zeilen: Zeichen und Name (das C und die Wortmarke auf der Nacht mit dem Raster der Website), vier Schriften mit ihrer Rolle,
-neun Töne und das Violett von Dirty Chicken, woher die Farben kommen (gemessen aus Bildern des Markenbuchs, Station 05), Muster und Knöpfe.
+elf Töne aus dem Markenbuch, woher die Farben kommen (gemessen an Fotos der Website), Muster und Knöpfe.
 Alles kommt in Bewegung an, nur translate, rotate, scale und opacity."""
 import html, os, re
 from PIL import Image
@@ -10,35 +10,39 @@ from PIL import Image
 e = html.escape
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
-MB = os.path.join(os.path.dirname(os.path.dirname(ROOT)), '_kette', '05-markenbauer', 'marke', 'bilder')   # Bilder des Markenbuchs (Station 05), nur gelesen
+WEB = os.path.dirname(ROOT)
+MB = os.path.join(WEB, 'assets', 'bild')   # Fotos der Website (nur gelesen); Farben und Schriften aus dem Markenbuch (_werkzeuge/livre/livre.json)
+_LV = __import__('json').load(open(os.path.join(os.path.dirname(WEB), '_werkzeuge', 'livre', 'livre.json'), encoding='utf-8'))
 
-TEXT = ('Eure Plakate haben schon alles, was eine Marke braucht: die Wortmarke, Warmweiß und Schiefer und je Abend eine eigene Farbe. Die Seite nimmt das auf. '
-        'Dazu kommen Fraunces mit weichen Enden für die großen Zeilen und Rudis Gänge, Instrument Sans zum Lesen und das Orange eurer Plakate für alles, was leuchten soll.')
+TEXT = ('Eure Bar hat schon alles, was eine Marke braucht: die Wortmarke in Rot, das Eckschild mit Goldrahmen, die weißen Plakate und die Wellen der SESSION. '
+        'Die Seite nimmt das auf. Dazu kommen Prata, eine Antiqua mit Glanz, für die großen Zeilen und Hanken Grotesk zum Lesen und für die Etiketten.')
 
-SCHRIFTEN = [('Große Zeilen', 'a', 'Fraunces', 'Aa', 'LAUCH\u00a0/\u00a0CHIPOTLE', 'Weiche Enden wie eure Wortmarke; in Versalien schreibt sie Rudis Gänge.'),
-             ('Kleine Zeilen', 'u', 'Urbanist', 'Aa', 'A UNiQUE EXPERiENCE', 'Für Kapitelzeilen, Bildzeilen und Knöpfe, das i klein wie auf dem Plakat.'),
-             ('Lesetext', 's', 'Instrument Sans', 'Aa', 'Momo erklärt jeden Drink persönlich.', 'Bleibt auch in langen Absätzen ruhig.'),
-             ('Angaben', 'm', 'DM Mono', '19:00', 'Haasemannstraße 13 · 30449 Hannover', 'Zeiten, Preise und Daten.')]
+SCHRIFTEN = [('Große Zeilen', 'a', 'Prata', 'Aa', 'Du sagst, was du magst.', 'Eine Stärke, nie fett, nie kursiv; Glanz wie das Gold am Eckschild.'),
+             ('Lesetext', 's', 'Hanken Grotesk', 'Aa', 'Momo macht dir einen Drink daraus.', 'Bleibt auch in langen Absätzen ruhig.'),
+             ('Etiketten', 'u', 'Hanken Grotesk 500', 'AB 19', 'DONNERSTAG BIS SAMSTAG', 'Gesperrte Versalien für Kapitelzeilen, Knöpfe und Bildzeilen.'),
+             ('Angaben', 'm', 'Hanken Grotesk', '19:00', 'Haasemannstraße 13 · 30449 Hannover', 'Zeiten, Preise und Daten mit gleich breiten Ziffern.')]
 
-GRUPPEN = [  # Gruppe, Töne (Schlüssel, Name, Wert): die Farben der neuen Seite (website/assets/culinarium.css :root), gemessen im Markenbuch (marke.json › farben)
-    ('Von den Plakaten', [('weiss', 'Warmweiß', '#faf4f4'), ('schiefer', 'Schiefer', '#3a3845'), ('rahmen', 'Rahmengrau', '#b1adac')]),
-    ('Die Bar bei Nacht', [('nacht', 'Nacht', '#16151a'), ('strasse', 'Straße', '#1c1b21'), ('warm', 'Warm', '#222028')]),
-    ('Was leuchtet', [('orange', 'Orange', '#ef7649'), ('orangehell', 'Orange hell', '#f5a689'), ('orangetief', 'Orange tief', '#b15736')]),
-    ('Nur bei Dirty Chicken', [('dc', 'Violett', '#8953a9')]),
+_FB = {f['k']: f for f in _LV['farben']}
+GRUPPEN = [  # Gruppe, Töne (Schlüssel, Name, Wert): die Farben aus dem Markenbuch (livre.json › farben), Werte der Website (wild.css)
+    ('Die Bar bei Nacht', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('nacht', 'platte', 'platte-hell')]),
+    ('Die weißen Plakate', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('creme', 'creme-2', 'dunkel')]),
+    ('Eckschild und Wortmarke', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('gold', 'gold-tief', 'rot')]),
+    ('Nur bei den DJ-Abenden', [(k, _FB[k]['n'], _FB[k]['h'].lower()) for k in ('ultramarin', 'plakatrot')]),
 ]
 F = {k: n for _, l in GRUPPEN for k, n, _ in l}
-HERKUNFT = [  # Bild des Markenbuchs, Titel, Töne daraus (marke.json › farben › fundstelle)
-    ('plakat-2026-09', 'Plakat Mondfrau, September 2026', ['weiss', 'schiefer']),
-    ('plakat-2025-02', 'Plakat Panther, Februar 2025', ['orange', 'orangehell', 'orangetief']),
-    ('glas-dunkel', 'Ein Drink bei Nacht', ['nacht', 'strasse', 'warm']),
+HERKUNFT = [  # Foto der Website, Titel, Töne daraus (Markenbuch › gruppen)
+    ('pf-schild-1440', 'Die Schilder an der Hausecke', ['nacht', 'platte', 'gold']),
+    ('negroni-1536', 'NEGRONI aus Glühbirnen', ['gold', 'gold-tief']),
+    ('p-1710-1408', 'SESSION-Plakat, Oktober 2026', ['plakatrot', 'ultramarin', 'creme']),
+    ('decke-raum-1600', 'Der Raum unter der Decke', ['platte-hell', 'creme-2']),
 ]
-LAGE = {'plakat-2026-09': (.5, .3), 'plakat-2025-02': (.5, .3), 'glas-dunkel': (.5, .5)}
-BILDER = [('hs-' + k, os.path.join(MB, k + '.jpg'), 760, dict(schnitt=1, lage=LAGE.get(k, (.5, .5)))) for k, _, _ in HERKUNFT]   # Plakate 28.10.2026: quadratisch wie die Plakate selbst, nie seitlich beschnitten
+LAGE = {'pf-schild-1440': (.5, .4), 'p-1710-1408': (.5, .3), 'negroni-1536': (.5, .5), 'decke-raum-1600': (.5, .45)}
+BILDER = [('hs-' + k, os.path.join(MB, k + '.webp'), 760, dict(schnitt=1, lage=LAGE.get(k, (.5, .5)))) for k, _, _ in HERKUNFT]
 
 
 def streifen(key, n=5):
     """Die Töne eines Fotos, gemessen: Median-Schnitt auf n Farben, nach Helligkeit sortiert, Breite = Anteil im Bild."""
-    p = os.path.join(MB, key + '.jpg')
+    p = os.path.join(MB, key + '.webp')
     im = Image.open(p).convert('RGB'); im.thumbnail((360, 360))
     q = im.quantize(n, method=Image.Quantize.MEDIANCUT)
     pal = q.getpalette()[:n * 3]; ges = im.size[0] * im.size[1]
@@ -65,7 +69,7 @@ def abschnitt(h):
             if 'hs-' + key not in c['m']:
                 continue
             st = ''.join(f'<i style="flex:{max(a, .06):.3f};background:{hx}"></i>' for a, hx in streifen(key))
-            her += f'<figure><div class="hs2-bild{' hs2-bild--plakat' if key.startswith('plakat') else ''}">{bild("hs-" + key, t)}</div><div class="hs2-st">{st}</div><figcaption>{e(t)}<small>daraus: {", ".join(F[k] for k in toene)}</small></figcaption></figure>'
+            her += f'<figure><div class="hs2-bild{' hs2-bild--plakat' if key.startswith('p-') else ''}">{bild("hs-" + key, t)}</div><div class="hs2-st">{st}</div><figcaption>{e(t)}<small>daraus: {", ".join(F[k] for k in toene)}</small></figcaption></figure>'
         kn1, kn2 = HS.get('knoepfe', ('Nur zu', 'Noch einer'))
         return f'''
 <section class="fl {c['fl']} blatt hs2" id="handschrift">
@@ -73,19 +77,19 @@ def abschnitt(h):
     {c['kopf']()}
     <div class="hs2-bogen" data-a="heben">
       <div class="hs2-z hs2-marke">
-        <div class="hs2-tafel">{z}{w}<small>A UNiQUE EXPERiENCE</small></div>
+        <div class="hs2-tafel">{z}{w}<small>Nachbarschafts-Mixology-Bar</small></div>
         <div>
           <p class="hs2-etik"><span>Zeichen und Name</span></p>
           <p>{HS['marke_text']}</p>
-          <dl><dt>Zeichen</dt><dd>das C, erster Buchstabe von Rudis Wortmarke</dd><dt>Name</dt><dd>Rudis Original-Logo, wie auf der Website, mit «A UNiQUE EXPERiENCE»</dd><dt>Auf Dunkel</dt><dd>Warmweiß auf der Nacht der Bar, das C in Orange</dd></dl>
+          <dl><dt>Zeichen</dt><dd>die Wortmarke selbst, drei Zeilen WALK / ON THE / WILD SIDE</dd><dt>Name</dt><dd>das Logo der Bar, nachgezogen, wie auf der Website</dd><dt>Auf Dunkel</dt><dd>Rot oder Creme auf der Nacht der Bar, nie neu gesetzt</dd></dl>
         </div>
       </div>
       <div class="hs2-z">
-        <p class="hs2-etik"><span>Drei Schriften</span><span>jede mit ihrer Rolle</span></p>
+        <p class="hs2-etik"><span>Zwei Schriften</span><span>jede mit ihrer Rolle</span></p>
         <div class="hs2-schriften">{schriften}</div>
       </div>
       <div class="hs2-z">
-        <p class="hs2-etik"><span>Farben</span><span>neun Töne und das Violett von Dirty Chicken</span></p>
+        <p class="hs2-etik"><span>Farben</span><span>elf Töne aus dem Markenbuch</span></p>
         <div class="hs2-band">{band}</div>
       </div>
       <div class="hs2-z">
@@ -107,7 +111,7 @@ def abschnitt(h):
   </div>
 </section>'''
 
-    return dict(key='handschrift', nach='unterlagen', name='Handschrift', zeilen=['Eure Plakate', 'geben den Ton an.'], text=TEXT, bau=bau)
+    return dict(key='handschrift', nach='unterlagen', name='Handschrift', zeilen=['Rot, Gold', 'und die Nacht.'], text=TEXT, bau=bau)
 
 
 CSS = '''
@@ -121,10 +125,10 @@ CSS = '''
 .hs2-etik{display:flex;justify-content:space-between;gap:20px;font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);margin:0 0 clamp(20px,2.4vw,34px)}
 .hs2-etik span:last-child:not(:first-child){color:rgba(42,26,14,.5)}
 .hs2-marke{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,3.4vw,56px);align-items:center}
-.hs2-tafel{border-radius:24px;background:var(--blau) var(--muster) 50% 0/var(--musterb) auto;color:#ef7649;min-height:clamp(280px,26vw,390px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(30px,3vw,48px) 24px;
-  box-shadow:inset 0 1px 0 rgba(255,236,200,.14),inset 0 0 0 1px rgba(201,133,67,.24),0 30px 40px -30px rgba(31,18,9,.8)}
-.hs2-tafel .hs2-zz{width:clamp(70px,6.6vw,104px);height:auto;margin-bottom:clamp(18px,2vw,28px);fill:currentColor;color:#ef7649}
-.hs2-tafel .hs2-ww{width:min(470px,88%);height:auto;color:#fbf5ea}
+.hs2-tafel{border-radius:24px;background:var(--blau) var(--muster) 50% 0/var(--musterb) auto;color:#f0323f;min-height:clamp(280px,26vw,390px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(30px,3vw,48px) 24px;
+  box-shadow:inset 0 1px 0 rgba(255,236,200,.14),inset 0 0 0 1px rgba(216,178,100,.3),0 30px 40px -30px rgba(31,18,9,.8)}
+.hs2-tafel .hs2-zz{width:clamp(70px,6.6vw,104px);height:auto;margin-bottom:clamp(18px,2vw,28px);fill:currentColor;color:#f0323f}
+.hs2-tafel .hs2-zz{display:none}.hs2-tafel .hs2-ww{width:min(230px,52%);height:auto;color:#f0323f}
 .hs2-tafel small{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;opacity:.9}
 .hs2-marke p,.hs2-muster p{margin:0;font-size:1.04rem;line-height:1.66;color:rgba(42,26,14,.84)}
 .hs2-marke dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:22px 0 0;padding-top:20px;border-top:1px solid var(--hl);font-size:1rem}
@@ -137,7 +141,7 @@ CSS = '''
 .hs2-schrift b{font-family:var(--serif);font-weight:700;font-size:1.45rem;line-height:1.15}
 .hs2-schrift span{margin-top:8px;font-size:1.02rem;color:rgba(42,26,14,.84)}
 .hs2-schrift i{font-style:normal;margin-top:10px;padding-top:10px;border-top:1px solid var(--hl);font-size:.95rem;line-height:1.5;color:rgba(42,26,14,.64)}
-.hs2-f-a{font-family:var(--serif);font-weight:340;font-variation-settings:"SOFT" 100}.hs2-f-u{font-family:'Urbanist',var(--sans);font-weight:600;letter-spacing:.14em}.hs2-f-s{font-family:var(--sans)}.hs2-f-m{font-family:var(--mono)}
+.hs2-f-a{font-family:var(--serif);font-weight:400}.hs2-f-u{font-family:var(--sans);font-weight:500;letter-spacing:.17em;text-transform:uppercase}.hs2-f-s{font-family:var(--sans)}.hs2-f-m{font-family:var(--mono)}
 .hs2-schrift span.hs2-f-a{font-size:1.16rem}.hs2-schrift span.hs2-f-m{font-size:.84rem}
 .hs2-band{display:flex;gap:clamp(10px,1.2vw,18px)}
 .hs2-gr{flex:var(--n);min-width:0}
@@ -159,8 +163,8 @@ CSS = '''
 .hs2-her figcaption{text-wrap:balance;margin-top:12px;font-family:var(--serif);font-weight:700;font-size:1.12rem;line-height:1.18}
 .hs2-her figcaption small{display:block;text-wrap:balance;margin-top:5px;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.06em;color:rgba(42,26,14,.6)}
 .hs2-muster{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,3vw,52px);align-items:center}
-.hs2-butzen{width:clamp(150px,15vw,220px);aspect-ratio:1;border-radius:22px;display:grid;place-items:center;background:var(--blau) var(--muster) 50% 50%/var(--musterb) auto;box-shadow:inset 0 0 0 1px rgba(201,133,67,.24),0 24px 30px -24px rgba(31,18,9,.8)}
-.hs2-butzen svg{width:38%;height:auto;margin:0;fill:currentColor;color:#ef7649}
+.hs2-butzen{width:clamp(150px,15vw,220px);aspect-ratio:1;border-radius:22px;display:grid;place-items:center;background:var(--blau) var(--muster) 50% 50%/var(--musterb) auto;box-shadow:inset 0 0 0 1px rgba(216,178,100,.3),0 24px 30px -24px rgba(31,18,9,.8)}
+.hs2-butzen svg{width:38%;height:auto;margin:0;fill:currentColor;color:#f0323f}
 .hs2-kn{padding-left:clamp(22px,3vw,52px);border-left:1px solid var(--hl)}
 .hs2-kn .kn-reihe{margin-top:18px;display:flex;flex-wrap:wrap;gap:12px}
 @media (max-width:1000px){

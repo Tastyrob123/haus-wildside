@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium, Kapitel VIII «Das Angebot» (Werkbank-Chat 28.10.2026; Aufbau aus sb_angebot.py des Schäfli, dort nach dem Schlössli und dem
+"""Werkbank Wild Side, Kapitel VIII «Das Angebot» (Werkbank-Chat 28.10.2026; Aufbau aus sb_angebot.py des Schäfli, dort nach dem Schlössli und dem
 Grand Beau-Rivage, nur gelesen und kopiert): Register → Zusammenfassung → Was dazugehört (steht / läuft / braucht euch / Idee) → Wie es gebaut ist + eure Daten
 → So geht’s weiter → Karte «Ein Vorschlag.» (Eigentum, Betreuung, Wo die KI arbeitet, Link zur Seite «KI und eure Daten», PDF). Nur Belegtes: Zahlen
 gezählt aus dem gebauten Stand, KI-Stellen aus den Werkzeugen. Kein Gang «Der Preis» mehr (Robert 29.10.2026), Betreuung als Gang II.
@@ -11,8 +11,8 @@ W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
 
 BETREUUNG = None   # Robert 28.10.2026 über den Oberchef: «Kein Betrag auf der Werkbank, die Stelle bleibt ohne Zahl.» Kein Platzhalter, der nach fehlender Angabe aussieht
-DATUM = 'Hamburg, 28. Oktober 2026'   # Absender und Ort immer Hamburg, nie der Ort des Hauses (Demo-Check Schäfli 21.10.2026)
-PDF_NAME = 'vorschlag-culinarium.pdf'
+DATUM = 'Hamburg, 31. Oktober 2026'   # Absender und Ort immer Hamburg, nie der Ort des Hauses (Demo-Check Schäfli 21.10.2026)
+PDF_NAME = 'vorschlag-wildside.pdf'
 PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>'
 ORN = '<div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div>'
 
@@ -47,62 +47,62 @@ wort = lambda n: ZAHLWORT.get(n, str(n))
 def inhalt(z):
     Z = zahlen(z)
     teile = [f'die Website mit {wort(Z["seiten"])} Seiten', 'sieben Werkzeuge für euch']
-    if Z['karten']: teile.append(f'{wort(Z["karten"])} Karten für eure Abende' if Z['karten'] > 1 else 'die Karte eines Abends im neuen Satz')
+    if Z['karten']: teile.append(f'{wort(Z["karten"])} Karten für eure Drinks' if Z['karten'] > 1 else 'eure Karte im neuen Satz')
     if Z['druck']: teile.append(f'{wort(Z["druck"])} Ideen für Papier')
     if Z['unter']: teile.append(f'{wort(Z["unter"])} Untersetzer für die Theke')
     if Z['mails']: teile.append(f'{wort(Z["mails"])} Vorlagen für Mails')
     if Z['feed']: teile.append(f'ein Feed mit {Z["feed"]} Beiträgen')
-    zus = [f'Für Culinarium steht hier der ganze Auftritt: {", ".join(teile[:-1])} und {teile[-1]}. Jedes Stück lässt sich hier öffnen.',
-           'Für den Start braucht es euch an drei Stellen: wer Vertragspartner ist und ins Impressum kommt, euer Wort zu Fotos und Plakaten und einen prüfenden Blick auf Abende, Menüs und Preise. Nach sechs Wochen steht die Seite unter eurer eigenen Adresse.',
+    zus = [f'Für das Wild Side steht hier der ganze Auftritt: {", ".join(teile[:-1])} und {teile[-1]}. Jedes Stück lässt sich hier öffnen.',
+           'Für den Start braucht es euch an drei Stellen: wer Vertragspartner ist und ins Impressum kommt, euer Wort zu Fotos und Plakaten und einen prüfenden Blick auf Drinks, DJ-Abende und Preise. Nach sechs Wochen steht die Seite unter eurer eigenen Adresse.',
            'Um Seite, Werkzeuge und KI kümmere ich mich auch danach: Server, Sicherungen und Updates, und ihr hört spätestens am nächsten Werktag von mir.']
-    steht = [f'{wort(Z["seiten"]).capitalize()} Seiten: {wort(Z["gaeste_seiten"])} für eure Gäste, dazu Impressum und Datenschutz', 'Alle Abende seit 2023 mit ihren Plakaten',
-             'Platz buchen und die Warteliste, im Entwurf gespielt']
-    if Z['karten']: steht.append('Die Karte jedes Abends, auch als PDF')
+    steht = [f'{wort(Z["seiten"]).capitalize()} Seiten: {wort(Z["gaeste_seiten"])} für eure Gäste, dazu Impressum und Datenschutz', 'Alle DJ-Abende seit 2025 mit ihren Plakaten',
+             'Platz reservieren und Feiern anfragen, im Entwurf gespielt']
+    if Z['karten']: steht.append('Jede Karte auch als PDF')
     if Z['druck'] or Z['unter']: steht.append(', '.join(x for x in (f'{wort(Z["druck"]).capitalize()} Drucksachen' if Z['druck'] else '', f'{wort(Z["unter"])} Untersetzer' if Z['unter'] else '') if x))
     if Z['mails']: steht.append(f'{wort(Z["mails"]).capitalize()} Mails an eure Gäste')
     if Z['feed']: steht.append(f'{Z["feed"]} Beiträge für Instagram')
     if Z['fotos']: steht.append(f'Das Markenbuch mit {Z["fotos"]} Fotos')
-    steht += ['Der Chat für eure Gäste und die Seite auf Englisch', 'Fünf Beigaben, darunter ein Gutschein für einen Abend']   # online bzw. fertig seit 29.10. (Tor 30.10.); zehn Punkte, zwei gleich lange Spalten   # online seit 29.10. (Tor 30.10.)
+    steht += ['Der Chat für eure Gäste und die Seite auf Englisch', 'Beigaben, darunter ein Gutschein']   # online bzw. fertig seit 29.10. (Tor 30.10.); zehn Punkte, zwei gleich lange Spalten   # online seit 29.10. (Tor 30.10.)
     import rh_werkzeuge as WK
     _n = [w[1] for w in WK.WERKZEUGE]
     laeuft = [_n[0] + ', ' + ', '.join(x[:1].lower() + x[1:] for x in _n[1:-1]) + ' und ' + _n[-1][:1].lower() + _n[-1][1:]]   # ein Satz: kein Trenner am Zeilenanfang (Tor 30.10.)
     umfang = [('Steht, zum Anklicken', steht), ('Läuft im Entwurf, zieht mit um', laeuft),
-              ('Braucht etwas von euch', ['Wer Vertragspartner ist und ins Impressum kommt', 'Euer Wort zu Fotos und Plakaten', 'Die Wahl der Kasse für die Tickets'])]   # «Eine Idee, noch nicht gebaut» entfällt: Chat, Gutschein und /en/ stehen (Tor 30.10.)
+              ('Braucht etwas von euch', ['Wer Vertragspartner ist und ins Impressum kommt', 'Euer Wort zu Fotos und Plakaten', 'Einen prüfenden Blick auf Drinks und Preise'])]   # «Eine Idee, noch nicht gebaut» entfällt: Chat, Gutschein und /en/ stehen (Tor 30.10.)
     return zus, umfang
 
 
 AUFBAU = ['Die Seiten liegen fertig gebaut auf dem Server, darum laden sie schnell.', 'Jedes Werkzeug läuft für sich, mit eigenem Zugang.',
-          'Gebucht wird auf der Seite; welche Kasse dahinter läuft, entscheidet ihr.', 'Ein Abend wird einmal eingetragen und stimmt danach überall auf der Seite.', 'Nichts wird überschrieben, jede alte Fassung lässt sich zurückholen.']
+          'Reservierungen und Anfragen kommen im Werkzeug an, nie als lose Nachricht.', 'Ein DJ-Abend wird einmal eingetragen und stimmt danach überall auf der Seite.', 'Nichts wird überschrieben, jede alte Fassung lässt sich zurückholen.']
 DATEN = ['Die Seite setzt keine Cookies und verfolgt niemanden.', 'Der Chat kennt nur, was auf euren Seiten und Karten steht.', 'Karten- und Zahlungsdaten haben im Chat nichts verloren.',
          'Ab dem Start meldet sich jede Person mit eigenem Passwort an.', 'Bis zum Start findet keine Suchmaschine den Entwurf.']
 
 WOCHEN = [  # «So geht's weiter»: Titel, ein bis zwei Sätze (Robert 29.10.2026: «einfacher fassen und easier», kein Formular, keine Wochen)
-    ('Montag, 2. November, 17\u00a0Uhr', 'Wir setzen uns zusammen und gehen kurz durch, was ihr euch wünscht und wer was beisteuert. Kasse und Zugänge klären wir dabei gleich mit.'),
+    ('Montag, 2. November, 17\u00a0Uhr', 'Wir setzen uns zusammen und gehen kurz durch, was ihr euch wünscht und wer was beisteuert. Zugänge klären wir dabei gleich mit.'),
     ('In Ruhe anschauen', 'Ihr schaut euch alles in Ruhe an. Was euch auffällt, bessere ich am selben Tag nach.'),
-    ('Eure Bilder', 'Fotos und Plakate, die ihr freigebt, kommen rein. So steht jeder Abend mit seinen eigenen Bildern da.'),
+    ('Eure Bilder', 'Fotos und Plakate, die ihr freigebt, kommen rein. So steht jeder DJ-Abend mit seinem eigenen Plakat da.'),
     ('Die Werkzeuge', 'Ich zeige euch die Werkzeuge, jedes kurz und gemeinsam, bis es sich leicht anfühlt.'),
     ('Online', 'Die Seite geht unter eurer Adresse online, Impressum und Datenschutz stehen an ihrem Platz. In den ersten Wochen schaue ich täglich drauf.')]
-WOCHEN_SATZ = 'Kein starrer Plan. Wenn gerade ein Abend ansteht, schieben wir einfach.'
+WOCHEN_SATZ = 'Kein starrer Plan. Wenn gerade ein DJ-Abend oder eine Feier ansteht, schieben wir einfach.'
 
-EIGENTUM = ['Was entsteht, gehört Culinarium: Website, Code, Karten, Drucksachen, Beiträge und Fotos.', 'Domain, Server und Zugänge stehen auf euren Namen.',
+EIGENTUM = ['Was entsteht, gehört dem Walk on the Wild Side: Website, Code, Karten, Drucksachen, Beiträge und Fotos.', 'Domain, Server und Zugänge stehen auf euren Namen.',
             'Die Rechte an Fotos und Plakaten bleiben bei euch und euren Fotografen.', 'Wenn wir uns einmal trennen, geht alles mit euch.']
 PREIS = []   # Robert 29.10.2026: über Geld wird in der Werkbank nicht gesprochen; der Gang «Der Preis» ist gestrichen
 PREIS_FUSS = ''
 DANACH = ['Server und Domain, Sicherungen, Updates, Sicherheit und Datenschutz.', 'Fehler in den sieben Werkzeugen behebe ich; fällt etwas aus, geht das vor.',
-          'Kommt ein Abend dazu oder ändert sich ein Menü, weiß es auch die KI.', 'Ihr hört spätestens am nächsten Werktag von mir. Die Inhalte pflegt ihr.',
-          'Bis zum Start wird geändert, bis ihr zufrieden seid.', 'Druckerei, Fotografen und die Kasse rechnen weiter direkt mit euch ab.']
+          'Kommt ein DJ-Abend dazu oder ändert sich die Karte, weiß es auch die KI.', 'Ihr hört spätestens am nächsten Werktag von mir. Die Inhalte pflegt ihr.',
+          'Bis zum Start wird geändert, bis ihr zufrieden seid.', 'Druckerei und Fotografen rechnen weiter direkt mit euch ab.']
 KI_SATZ = 'An vier Stellen arbeitet KI mit. Sie läuft über ein Konto, das euch gehört, mit einer Grenze je Monat, die ich einrichte. Fällt die KI weg, arbeitet jede Stelle ohne sie weiter. Im Entwurf antworten die Stellen mit beschrifteten Proben.'
 import rh_werkzeuge as _WK
 KI = [  # Titel, Werkzeug, Satz (dieselben Stellen wie auf der Seite «KI und eure Daten», sb_ki.py; kein Betrag hier, Memory «KI-Kosten nur auf KI-Seite»)
-    ('Der Chat für eure Gäste', _WK.NAMEN['reception'], 'Gibt Gästen Auskunft aus euren Seiten und Karten, auch spät am Abend. Ausprobieren lässt er sich im Werkzeug für die Gäste.'),
-    ('Antwort auf eine Anfrage', _WK.NAMEN['reception'], 'Schreibt zu jeder Frage einen Entwurf im Ton von Culinarium. Hinaus geht er erst, wenn jemand von euch ihn gelesen hat.'),
-    ('Neue Plakate für einen Abend', _WK.NAMEN['imprimerie'], 'Malt aus der Beschreibung eines Abends drei bis fünf neue Plakate im Stil eurer bisherigen, vorn und hinten. Ohne KI bleiben Rudis Illustrationen und der Editor.'),
-    ('Eine Markenprüfung', _WK.NAMEN['livre'], 'Legt einen fremden Entwurf neben Farben, Wortmarke und Schriften von Culinarium. Nichts davon wird gespeichert.')]
+    ('Der Chat für eure Gäste', _WK.NAMEN['reception'], 'Gibt Gästen Auskunft aus euren Seiten und Karten, auch spät in der Nacht. Ausprobieren lässt er sich im Werkzeug für die Gäste.'),
+    ('Antwort auf eine Anfrage', _WK.NAMEN['reception'], 'Schreibt zu jeder Frage einen Entwurf im Ton der Bar. Hinaus geht er erst, wenn jemand von euch ihn gelesen hat.'),
+    ('Neue Plakate für einen Abend', _WK.NAMEN['imprimerie'], 'Malt aus der Beschreibung eines Abends drei bis fünf neue Plakate im Stil eurer bisherigen. Ohne KI bleiben eure Vorlagen und der Editor.'),
+    ('Eine Markenprüfung', _WK.NAMEN['livre'], 'Legt einen fremden Entwurf neben Farben, Wortmarke und Schriften des Wild Side. Nichts davon wird gespeichert.')]
 
 
 def bilder(webp, haus):
     import haus as _H
-    webp(haus(_H.bild('fassade')), 'sag-haus', 1400, 80, 1.18, (.3, .5))
+    webp(haus(_H.bild('fenster')), 'sag-haus', 1400, 80, 1.18, (.3, .5))
 
 
 def angebot(k):
@@ -149,7 +149,7 @@ def karte_html():
     return f'''<article class="mn" data-a="heben">
         <header class="mn-kopf">
           <img class="mn-zeichen" src="eigen/zeichen-kerze.svg" alt="" width="72" height="73">
-          <p class="mn-haus">Culinarium · Hannover-Linden</p>
+          <p class="mn-haus">Walk on the Wild Side · Hannover-Linden</p>
           <h3 class="mn-titel">Ein Vorschlag.</h3>
           <p class="mn-unter">Was euch gehört und wer sich danach kümmert. Jeder Punkt ist offen fürs Gespräch.</p>
         </header>
@@ -163,7 +163,7 @@ def karte_html():
 
 
 CSS = '''
-/* ---------- Kapitel VIII «Das Angebot» (sb_angebot.py, 20.10.2026, Aufbau nach dem Rivage, Kleid von Culinarium): helle Blätter auf der Nacht ---------- */
+/* ---------- Kapitel VIII «Das Angebot» (sb_angebot.py, 20.10.2026, Aufbau nach dem Rivage, Kleid der Bar): helle Blätter auf der Nacht ---------- */
 .sag .kopfzeile{margin-bottom:clamp(30px,3.4vw,54px)}
 .sag-reg{display:flex;flex-wrap:wrap;gap:8px clamp(18px,2.6vw,44px);justify-content:center;margin:0 auto clamp(40px,4.6vw,72px);padding-bottom:18px;border-bottom:1px solid rgba(162,182,207,.28)}
 .sag-reg a{display:inline-flex;align-items:baseline;gap:9px;font:400 12.5px/1.2 var(--serif);letter-spacing:.22em;text-transform:uppercase;color:var(--creme);text-decoration:none;opacity:.82;transition:opacity .4s}

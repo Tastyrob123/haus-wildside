@@ -27,7 +27,7 @@ KLEID = os.path.join(PROJ, '_werkzeuge', 'oberflaeche', 'kleid')
 
 def bild(key, hoechstens=2400):
     """Grösste Fassung eines Fotos der Website bis «hoechstens» Pixel Breite (assets/bild/<key>-<breite>.webp) als voller Pfad für K.hausbild."""
-    b = sorted(int(m.group(1)) for p in _glob.glob(os.path.join(WEB, 'assets', 'bild', key + '-*.webp')) if (m := _re.search(r'-(\d+)\.webp$', p)) and int(m.group(1)) <= hoechstens)
+    b = sorted(int(m.group(1)) for p in _glob.glob(os.path.join(WEB, 'assets', 'bild', key + '-*.webp')) if (m := _re.fullmatch(_re.escape(key) + r'-(\d+)\.webp', os.path.basename(p))) and int(m.group(1)) <= hoechstens)
     if not b:
         raise FileNotFoundError(f'Bild {key} fehlt in website/assets/bild')
     return os.path.join(WEB, 'assets', 'bild', f'{key}-{b[-1]}.webp')
