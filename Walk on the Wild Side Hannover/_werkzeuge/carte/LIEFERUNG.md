@@ -31,7 +31,8 @@ Kopie der von Robert abgenommenen Pairing-Karte des Culinarium, umgekleidet und 
 ## Wie geprüft (31.10.2026)
 
 - `pruefe.py alles`: Rundlauf 4/4 Zeichen für Zeichen gleich, Wortlaut jeder gedruckten Karte gegen ihre Quelle 5/5 gleich, Karten in der Form der Website = Quelle 4/4, Schriften aller PDFs nur feste Schnitte (Prata-Regular, HankenGrotesk-Regular), kein Type 3. GESAMT GRÜN.
-- Schnelle Prüfung (`tor-schnell.js`, Chromium, 1440/1280/1000/390): Ergebnis in der Schlussmeldung des Commits.
+- Schnelle Prüfung (`tor-schnell.js`, Chromium, max 40, Tiefe 2, 1440/1280/1000/390): `pairing-karte` 20 Zustände (Stichproben 20/20/29), `pairing-karte-anleitung` 14 Zustände (14/14/19): **0 Funde, nichts «nicht erreicht», keine Browserfehler**. Repariert unterwegs: Titel im Kopf (Prata über der Zeilenhöhe), Schrift in Knöpfen und Rubrik-Wahl optisch mittig, «Website ansehen» als Knauf 901–1240 px, linke Kante im aufgeklappten Rand, Einzelwörter in Fenster- und Seitentiteln, Prüfseite am Handy.
+- Mit den Augen: Zustände 1440/1280/1000/390 (Start, jede Karte, Fortgeschritten, Fenster, Website-Ansicht, Rundgang, Handy) und jede Karte als PDF-Seite.
 
 ## Offen, mit Grund
 
