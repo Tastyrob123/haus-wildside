@@ -25,21 +25,28 @@ KARTEN = [
 ]
 
 
+def a4(im):
+    """Das heutige Blatt ganz auf eine A4-Seite hoch legen (die Seite zeigt Heute und Idee im selben Format; nichts wird angeschnitten).
+    Grund in der Farbe der Bildecke, damit das Blatt wie gedruckt aussieht."""
+    B, H_ = 1240, 1754
+    grund = im.getpixel((2, 2))
+    s = min(B / im.width, H_ / im.height)
+    k = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+    c = Image.new('RGB', (B, H_), grund)
+    c.paste(k, ((B - k.width) // 2, (H_ - k.height) // 2))
+    return c
+
+
 def heute_pdf(art, was, ziel):
     if art == 'bild':
-        bilder = [Image.open(b).convert('RGB') for b in was]
-        bilder[0].save(ziel, 'PDF', resolution=150, save_all=True, append_images=bilder[1:])
-        return
-    with tempfile.TemporaryDirectory() as tmp:
-        teile = []
-        for s in was:
-            t = os.path.join(tmp, f'{s}.pdf')
-            subprocess.run(['pdfseparate', '-f', str(s), '-l', str(s), ANGEBOTE, t], check=True)
-            teile.append(t)
-        if len(teile) == 1:
-            shutil.copy2(teile[0], ziel)
-        else:
-            subprocess.run(['pdfunite', *teile, ziel], check=True)
+        bilder = [a4(Image.open(b).convert('RGB')) for b in was]
+    else:
+        bilder = []
+        with tempfile.TemporaryDirectory() as tmp:
+            for s in was:
+                subprocess.run(['pdftoppm', '-f', str(s), '-l', str(s), '-r', '110', '-png', '-singlefile', ANGEBOTE, os.path.join(tmp, str(s))], check=True)
+                bilder.append(a4(Image.open(os.path.join(tmp, f'{s}.png')).convert('RGB')))
+    bilder[0].save(ziel, 'PDF', resolution=150, save_all=True, append_images=bilder[1:])
 
 
 def bau():

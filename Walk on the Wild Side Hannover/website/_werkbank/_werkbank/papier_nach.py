@@ -37,7 +37,8 @@ def drucksachen(t):
         if a < 0:
             continue
         b = t.find('</section>', a)
-        teil = t[a:b].replace('Als PDF ansehen', 'PDF herunterladen').replace(f'href="pdf/{d["pdf"]}"', f'href="pdf/{d["pdf"]}" download')
+        teil = t[a:b].replace('Als PDF ansehen', 'PDF herunterladen').replace(f'href="pdf/{d["pdf"]}" download', f'href="pdf/{d["pdf"]}"').replace(' download download', '')
+        teil = teil.replace(f'href="pdf/{d["pdf"]}"', f'href="pdf/{d["pdf"]}" download')
         t = t[:a] + teil + t[b:]
     return t
 
