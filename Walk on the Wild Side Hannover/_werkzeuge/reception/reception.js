@@ -981,6 +981,7 @@ function nachtragenFenster(x) {
   /* Frage wächst mit dem Text (Tor 3, 30.10.2026): die ganze Frage steht da, nichts abgeschnitten */
   const fr = $('#f-frage'), wachse = () => { fr.style.height = 'auto'; fr.style.height = (fr.scrollHeight + 2) + 'px'; };
   if (fr) { wachse(); fr.addEventListener('input', wachse); fr.addEventListener('keydown', e => { if (e.key === 'Enter') e.preventDefault(); }); }
+  if (fr && window.ResizeObserver) { let bw = 0; new ResizeObserver(() => { if (fr.clientWidth !== bw) { bw = fr.clientWidth; wachse(); } }).observe(fr); }   // Wild Side 31.10.2026: auch bei anderer Breite (Handy gedreht) passt die Höhe
   setTimeout(() => { if (fr) wachse(); const t = $('#f-antwort'); if (t) t.focus(); }, 60);
 }
 

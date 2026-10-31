@@ -307,10 +307,15 @@ body.lc{min-height:100vh;color:var(--tinte);font-family:var(--sans);font-size:15
 .lc .ansicht button{text-box:trim-both cap alphabetic}
 
 /* Messlauf 30.10.2026 (Kriterium 35): gesperrte Schrift in Knöpfen ohne Knauf optisch mittig (Sperrung nach dem letzten Buchstaben ausgleichen); Etikett «Neu» auf Versalhöhe */
-.kn:not(.kn--klein):not(:has(i)){padding-left:22.9px;padding-right:21.1px}
-@supports (font:-apple-system-body){.kn:not(.kn--klein):not(:has(i)){padding-left:22px;padding-right:22px}}   /* WebKit hängt keine Sperrung an, dort bleibt es symmetrisch */
-.kn--klein:not(:has(i)){padding-left:17.6px;padding-right:15.25px}   /* Wild Side 31.10.2026 (Tor K35): Hanken, Sperrung nach dem letzten Buchstaben ausgeglichen */
-@supports (font:-apple-system-body){.kn--klein:not(:has(i)){padding-left:16px;padding-right:16px}}
+.kn:not(.kn--klein):not(:has(i)){padding-left:22px;padding-right:22px}   /* WebKit hängt keine Sperrung nach dem letzten Buchstaben an: symmetrisch */
+.kn--klein:not(:has(i)){padding-left:16px;padding-right:16px}
+/* Wild Side 31.10.2026 (Cloud-Tor K35, WebKit und Chromium): nur Chromium hängt die Sperrung auch nach dem letzten Buchstaben an; dort rückt die Schrift
+   um die halbe Sperrung nach rechts. Erkannt an einer Eigenschaft, die nur Chromium kennt (interpolate-size); «-apple-system-body» kennt das WebKit unter Linux
+   nicht, darum stand der Ausgleich vorher auch in WebKit (0,9 bis 1,2 px zu weit rechts). */
+@supports (interpolate-size:allow-keywords){
+  .kn:not(.kn--klein):not(:has(i)){padding-left:22.9px;padding-right:21.1px}
+  .kn--klein:not(:has(i)){padding-left:17.6px;padding-right:15.25px}
+}
 .chip{text-box:trim-both cap alphabetic;padding-block:6.85px}
 /* Tor 30.10.2026 (K2, K7): kein Text abgeschnitten, auch nicht mit «…»; Zutaten und Untertitel brechen um, Titel ausgewogen */
 .r__t span{white-space:normal;overflow:visible;text-overflow:clip;text-wrap:pretty}
@@ -351,6 +356,7 @@ aside.wo-rand .modus__t{text-wrap:pretty}   /* Tor 5 30.10.2026 (K7): kein Wort 
 /* Tor K6 (390): im aufgeklappten Rand stehen Protokoll und Zustand auf derselben linken Kante wie «Der Tresen» */
 aside.wo-rand .wo-rand__kopf>button{padding-left:0;padding-right:0;margin-left:0}
 /* Tor K35: Wahl der Rubrik («Neuer Eintrag»): Hanken sass 1,1 px zu hoch, das Bild der Rubrik passt ganz in den Knopf */
-.lc .chips.g-wahl button{height:auto;min-height:48px;padding:6.2px 18px 4px 4px}
+.lc .chips.g-wahl button{height:auto;min-height:48px;padding:5px 18px 4px 4px}   /* WebKit (Cloud-Tor: bei 6,2 px 0,6 px zu tief) */
+@supports (interpolate-size:allow-keywords){.lc .chips.g-wahl button{padding-top:6.2px}}   /* Chromium: Hanken sitzt dort 1,1 px höher */
 /* Tor K7 (390): kein Wort allein in der letzten Zeile der Fenstertitel («Vorher und nachher.») */
 .fenster h2,.fenster__k h2{text-wrap:balance}

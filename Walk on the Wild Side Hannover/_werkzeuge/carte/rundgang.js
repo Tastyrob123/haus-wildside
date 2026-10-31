@@ -150,6 +150,7 @@
     }
     var takt = 0; function neu() { if (!takt) takt = requestAnimationFrame(function () { takt = 0; lege(); }); }
     var zuletzt = '', wacht = setInterval(function () {   /* der Kegel folgt seinem Ziel, solange es sich bewegt oder wächst */
+      var fe = document.getElementById('fenster'); if (fe && !fe.hidden) return ende();   /* Wild Side 31.10.2026: öffnet sich ein Fenster des Werkzeugs, endet der Rundgang (kein Kegel über dem Fenster) */
       if (!ziel) return; var r = ziel.getBoundingClientRect(), k = [r.left, r.top, r.width, r.height].map(Math.round).join();
       if (k !== zuletzt) { zuletzt = k; neu(); }
     }, 120);

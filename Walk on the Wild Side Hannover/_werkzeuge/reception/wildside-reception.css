@@ -430,3 +430,5 @@ html.probe-offen{overflow:visible}
 @media (max-width:700px){#ansicht .sb-t__k h2{font-size:19px}}
 /* Hauptweg im Werkzeug wie das Eckschild (CHARAKTER.md 4): Rot mit Creme-Knauf, helle Schrift; Nebenwege bleiben Nacht mit Goldlinie */
 .kn--gold,.sp.gelb{--o:#F65562;--m:#F0323F;--u:#C8202D;--t:#FFF6EC;--licht:rgba(255,225,225,.45);--kante:rgba(90,10,15,.45);--tf:rgba(19,14,13,.55);--ko:#FFFBF5;--ku:#EFE3D2;--kt:#C8202D;--klicht:rgba(255,240,230,.5)}
+/* Leiste unten am Handy (grund.css färbt den Hauptknopf dort gold): im Wild Side bleibt der Hauptweg rot, das Zeichen hell */
+@media (max-width:900px){.wo-leiste .wo-kn--gold{background:linear-gradient(180deg,#F65562 0%,#F0323F 52%,#C8202D 100%)}.wo-leiste .wo-kn--gold i{color:#FFF6EC}}

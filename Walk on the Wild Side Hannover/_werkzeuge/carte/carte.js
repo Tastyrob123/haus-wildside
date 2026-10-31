@@ -242,7 +242,7 @@ function kopf() {
   const kn = Z === 'abend' && MODUS === 'einfach' ? WO.knopf('Neue Karte anlegen', 'plus', 'gold', { attr: 'data-akt="abend-neu"' }) : MODUS === 'einfach' ? WO.knopf('Neuer Eintrag', 'plus', 'gold', { attr: 'data-akt="neu"' }) : WO.knopf('Daten der Karte', 'pfeil', 'hell', { attr: 'data-akt="daten"' });
   $('#kopf').innerHTML = WO.startbild({ werkzeug: 'karten', art: 'buehne', foto: fotoGross(Z),
     zier: `${h(NAME)} · ${h(k.gruppe || '')}`,   // Tor 5 30.10.2026 (K7/K12): ohne «· Einfach» (stand am Handy allein, «·» am Zeilenende); der Weg steht im Rand
-    h1: `${h(k.name || '')} <em>${h(k.unter || 'Drinks von Momo')}</em>`, satz: h(Z === 'abend' && MODUS === 'einfach' ? SATZ_ABEND : SATZ_KOPF[MODUS === 'frei' ? 'frei' : 'einfach']),
+    h1: `${h(k.name || '').replace(/ (\S+)$/, '&nbsp;$1')} <em>${h(k.unter || 'Drinks von Momo').replace(/ (\S+)$/, '&nbsp;$1')}</em>`,   // Cloud-Tor K7: die letzten zwei Wörter bleiben zusammen («und Gesellschaften») satz: h(Z === 'abend' && MODUS === 'einfach' ? SATZ_ABEND : SATZ_KOPF[MODUS === 'frei' ? 'frei' : 'einfach']),
     knoepfe: kn + (D && D.abend && D.abend.beispiel ? `<p class="kopf__bsp">Beispiel: die Karte «${h(D.abend.motto || D.abend.titel)}» vom ${h(SATZ.ABEND.tagName(D.abend.ab, 0).replace(/^[^,]+, /, ''))}. Mit «Neue Karte anlegen» beginnt die nächste Karte der Bar.</p>` : '') + `<dl class="kopf__zahlen">${zahlen.map(([z, t]) => `<div><dt>${h(t)}</dt><dd>${h(String(z))}</dd></div>`).join('')}</dl>` });
   const sb = $('#kopf .wo-sb'); if (sb && neu) sb.classList.add('auftritt');
   const img = $('#kopf .wo-sb__foto img'); if (img) { img.alt = ''; img.setAttribute('decoding', 'async'); }
@@ -891,7 +891,7 @@ async function gesundFenster() {
   const z = (t, ok) => `<div><span>${h(t)}</span><b class="${ok ? 'ja' : 'nein'}">${ok ? 'in Ordnung' : 'fehlt'}</b></div>`;
   const W = { node: 'Druck der PDF', playwright: 'Druckprogramm', pdftotext: 'Prüfung der PDF', speicher: 'Speicher', druck: 'Druck der PDF', pdfpruefung: 'Prüfung der PDF' };
   const bf = (g.browserfehler || [])[0];
-  fenster(`<h2>Ist alles <em>in Ordnung?</em></h2><p class="satz">Der Zustand des Werkzeugs, direkt vom Server gelesen.${g.vorfuehrung ? ' Vorführ-Betrieb: Gespeichertes hält nicht.' : ''}</p><div class="gesund">${Object.entries(g.karten).map(([k, ok]) => z('Daten ' + ((LISTE.find(x => x.ziel === k) || {}).name || k), ok)).join('')}${Object.entries(g.werkzeug).map(([k, ok]) => z(W[k] || k, ok)).join('')}
+  fenster(`<h2>Ist alles <em>in&nbsp;Ordnung?</em></h2><p class="satz">Der Zustand des Werkzeugs, direkt vom Server gelesen.${g.vorfuehrung ? ' Vorführ-Betrieb: Gespeichertes hält nicht.' : ''}</p><div class="gesund">${Object.entries(g.karten).map(([k, ok]) => z('Daten ' + ((LISTE.find(x => x.ziel === k) || {}).name || k), ok)).join('')}${Object.entries(g.werkzeug).map(([k, ok]) => z(W[k] || k, ok)).join('')}
     <div><span>Speicher des Werkzeugs</span><b>${g.speicher_mb} MB</b></div><div><span>Läuft seit</span><b>${Math.round(g.seit / 60)} Min.</b></div>${g.fehler.length ? `<div><span>Letzter Fehler im Server</span><b class="nein">${h(g.fehler[g.fehler.length - 1].slice(0, 160))}</b></div>` : ''}${bf ? `<div><span>Letzter Fehler im Browser</span><b class="nein">${h(bf.zeit + ' · ' + bf.text.slice(0, 120))}</b></div>` : ''}</div>
     <div class="fenster__kn"><button class="kn kn--hell" type="button" data-zu>Schliessen</button><a class="kn" href="/_werkzeuge/carte/pruefung.html" target="_blank" rel="noopener">Prüfung öffnen<i>${PF}</i></a></div>`);
 }

@@ -292,10 +292,10 @@ INHALT = {
 # ---------------- Bibliothek je Art (vorlagen/<art>.json) ----------------
 ART_FORMAT = {"abendplakat": "insta", "plakat": "a3h", "getraenke": "dlh", "flyer": "a6h", "tisch": "a6h", "instagram": "insta", "tischkarte": "a7q", "hinweiskarte": "a6h",
               "stoerung": "a4h", "pressemappe": "a4h", "story": "story", "aushang": "a4h", "einladung": "q148", "programm": "a5h", "newsletter": "mail", "gutschein": "dlq"}
-GRUPPE_NAME = {"abendplakat": "SESSION-Plakat", "plakat": "Plakat und Pressemappe", "pressemappe": "Plakat und Pressemappe", "getraenke": "Getränkekarte", "flyer": "Flyer und Programm",
-               "programm": "Flyer und Programm", "tisch": "Tischaufsteller", "instagram": "Instagram und Newsletter", "newsletter": "Instagram und Newsletter", "tischkarte": "Tischkarte",
-               "hinweiskarte": "Hinweiskarte", "stoerung": "Aushang und Hinweise", "aushang": "Aushang und Hinweise", "story": "Story", "einladung": "Einladung und Gutschein",
-               "gutschein": "Einladung und Gutschein"}
+GRUPPE_NAME = {"abendplakat": "SESSION-Plakat", "plakat": "Plakat und\u00a0Presse", "pressemappe": "Plakat und\u00a0Presse", "getraenke": "Getränkekarte", "flyer": "Flyer und\u00a0Programm",
+               "programm": "Flyer und\u00a0Programm", "tisch": "Tischaufsteller", "instagram": "Instagram und\u00a0Newsletter", "newsletter": "Instagram und\u00a0Newsletter", "tischkarte": "Tischkarte",
+               "hinweiskarte": "Hinweiskarte", "stoerung": "Aushang und\u00a0Hinweise", "aushang": "Aushang und\u00a0Hinweise", "story": "Story", "einladung": "Einladung und\u00a0Gutschein",
+               "gutschein": "Einladung und\u00a0Gutschein"}
 BIB = {k: [] for k in ART_FORMAT}
 
 

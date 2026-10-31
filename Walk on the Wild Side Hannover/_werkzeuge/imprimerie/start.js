@@ -31,7 +31,7 @@
   /* K18 (Tor 30.10.2026, Oberchef): Arten mit nur ein bis drei Vorlagen stehen in der Ansicht bei der passenden Nachbar-Art, nicht allein.
      Nur die Gruppierung der Ansicht; jede Vorlage bleibt in ihrer Art und ihrem Format (haeuser/<haus>/vorlagen/<art>.json unverändert). */
   const GRUPPE = { aushang: ['stoerung'], flyer: ['programm'], einladung: ['gutschein'], plakat: ['pressemappe'], instagram: ['newsletter'] };
-  const GRUPPE_NAME = { aushang: 'Aushang und\u00a0Hinweise', flyer: 'Flyer und\u00a0Programm', einladung: 'Einladung und\u00a0Gutschein', plakat: 'Plakat und\u00a0Pressemappe', instagram: 'Instagram und\u00a0Newsletter' };
+  const GRUPPE_NAME = { aushang: 'Aushang und\u00a0Hinweise', flyer: 'Flyer und\u00a0Programm', einladung: 'Einladung und\u00a0Gutschein', plakat: 'Plakat und\u00a0Presse', instagram: 'Instagram und\u00a0Newsletter' };
   const IN_GRUPPE = new Set(Object.values(GRUPPE).flat());
   const ARTEN_SICHT = ARTEN.filter(a => !IN_GRUPPE.has(a.key));
   const mitGruppe = a => GRUPPE[a.key] ? Object.assign({}, a, { name: GRUPPE_NAME[a.key], gruppe: GRUPPE[a.key], satz: a.satz + '. Dazu ' + GRUPPE[a.key].map(g => ARTEN.find(x => x.key === g).name).join(' und ') + '.' }) : a;
@@ -803,7 +803,7 @@
      gesetzt, wenn es ins Bild kommt und nicht mehr schnell gescrollt wird; Blöcke weit ausserhalb des Bilds werden geleert und halten nur ihre Höhe. */
   const ALLE = { key: 'alle', name: 'Alle Vorlagen', alle: true, format: 'a5h', formate: [], vorlagen: [] };
   const BEREICHE = ["SESSION", "Feste", "Karte", "Feiern", "Haus", "Instagram", "Story", "Newsletter", "Hinweise", "Hinweise im Haus", "Anlässe & Events"];
-  const PORTION = 12, TON = { dunkel: 'Nacht', hell: 'Warmweiss', creme: 'Plakatpapier', dc: 'Violett' };
+  const PORTION = 12, TON = { dunkel: 'Nacht', hell: 'Weiss', creme: 'Creme', session: 'SESSION' };
   let vFilter = { bereich: 'alle', ton: 'alle', art: 'alle', q: '' }, beobachter = null, fern = null, waechter = null, vAlle = [], vTreffer = [], vDa = 0, vLauf = 0;
   async function ladeAlle() {
     const arten = ARTEN.filter(a => !a.leer), listen = await Promise.all(arten.map(a => ladeBibliothek(a.key)));
@@ -860,7 +860,7 @@
         <label class="start__suche vb__suche"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><input type="search" id="vbSuche" placeholder="In den Vorlagen suchen …" value="${esc(vFilter.q)}"></label></div>
       <div class="vb__wahl">${wahl.alle ? `<label class="start__format vb__feld">Art<select id="vbArt"><option value="alle">Alle Arten</option>${ARTEN.filter(a => arten[a.key]).map(a => `<option value="${a.key}">${esc(a.name)} · ${arten[a.key]}</option>`).join('')}</select></label>` : ''}
         <label class="start__format vb__feld">Bereich des Hauses<select id="vbBereich"></select></label>
-        <div class="vb__toene">${[['alle', 'Jeder Grund'], ['dunkel', 'Nacht'], ['hell', 'Warmweiss'], ['creme', 'Plakatpapier']].map(([k, t]) => `<button data-ton="${k}" class="${vFilter.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>`;
+        <div class="vb__toene">${[['alle', 'Jeder Grund'], ['dunkel', 'Nacht'], ['hell', 'Weiss'], ['creme', 'Creme']].map(([k, t]) => `<button data-ton="${k}" class="${vFilter.ton === k ? 'an' : ''}">${t}</button>`).join('')}</div></div>`;
     zeichneBereiche();
     const su = kopf.querySelector('#vbSuche'); if (su) { let t; su.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { vFilter.q = su.value; filterVorlagen(); }, 140); }); }
     const sa = kopf.querySelector('#vbArt'); if (sa) sa.addEventListener('change', () => { vFilter.art = sa.value; zeichneBereiche(); filterVorlagen(); });
@@ -942,7 +942,7 @@
       if (bl.leer) { const f0 = DS.FORMATE[fk], l = leerStueck({ leer: '1' }, f0, g, f0.name); l._H = groesse(f0, g)[1]; karten.push(l); }
       vTreffer.slice(bl.ab, bl.bis).forEach((x, k) => {
         const F = DS.FORMATE[x.fk], [W2, H2] = groesse(F, g);
-        const b = stueckKarte({ vid: x.v.id }, bl.ab + k + 1, [platzhalter(x, W2, H2)], H2, x.v.titel, wahl.alle ? x.a.name + (x.v.bereich ? ' · ' + x.v.bereich : '') : (x.v.bereich ? x.v.bereich + ' · ' : '') + (TON[x.v.ton] || ''), 'Übernehmen', 'stueck--lazy');
+        const b = stueckKarte({ vid: x.v.id }, bl.ab + k + 1, [platzhalter(x, W2, H2)], H2, x.v.titel, wahl.alle ? x.a.name : (x.v.bereich || TON[x.v.ton] || ''), 'Übernehmen', 'stueck--lazy');   // Tor 31.10.: kurze Unterzeile, die Karte zerfällt sonst in Einzelwörter
         b._x = x; b._v = x.v; b._H = H2; karten.push(b); beobachter.observe(b);
       });
       // Reihen gleich hoch (über alle Arten stehen verschiedene Formate nebeneinander), ohne das Layout zu lesen
@@ -1052,7 +1052,7 @@
       if (d.seiten.length > 1) sa.appendChild(blattDoc(d, GROSS(), 'papier--hinten', 1));
       sa.appendChild(blattDoc(d, GROSS(), 'papier--vorn', 0)); bu.appendChild(sa); b.appendChild(bu);
       const q = d.seiten[0].quelle || {};
-      b.insertAdjacentHTML('beforeend', `<b class="stueck__name">${esc(d.variante || 'Entwurf ' + (i + 1))}</b><em class="stueck__format">${esc(DS.VORLAGEN[q.vorlage]?.name || '')} · ${{ dunkel: 'Nacht', hell: 'Papier', creme: 'Plakatpapier' }[q.ton] || ''}${d.seiten.length > 1 ? ' · ' + d.seiten.length + (DS.FORMATE[d.formatKey]?.digital ? ' Bilder' : ' Seiten') : ''}</em><small class="stueck__satztext">Diesen nehmen</small>`);
+      b.insertAdjacentHTML('beforeend', `<b class="stueck__name">${esc(d.variante || 'Entwurf ' + (i + 1))}</b><em class="stueck__format">${esc(DS.VORLAGEN[q.vorlage]?.name || '')} · ${{ dunkel: 'Nacht', hell: 'Papier', creme: 'Creme' }[q.ton] || ''}${d.seiten.length > 1 ? ' · ' + d.seiten.length + (DS.FORMATE[d.formatKey]?.digital ? ' Bilder' : ' Seiten') : ''}</em><small class="stueck__satztext">Diesen nehmen</small>`);
       box.appendChild(b);
     });
     $('#start .ms-haupt').scrollTo({ top: 0 });
@@ -1172,7 +1172,7 @@
     const k = q.get('foto'), b = DS.M.bildIndex[k]; if (!b) return false;
     const fmt = q.get('art') === 'story' ? 'story' : 'insta', x = Math.min(1, Math.max(0, +q.get('x') || .5)), y = Math.min(1, Math.max(0, +q.get('y') || .5));
     const inh = { bild: k, ueber: DS.M.name, titel: '[Titel]', text: '[Ein Satz zum Bild]', aktion: '', fuss: '' };
-    const arten = [['buehne', 'dunkel', 'Foto gross, Nacht'], ['buehne', 'hell', 'Foto gross, Warmweiss'], ['fenster', 'creme', 'Im Rahmen, Plakatpapier'], ['ansicht', 'dunkel', 'Foto randlos'], ['fenster', 'dunkel', 'Im Rahmen, Nacht']];
+    const arten = [['buehne', 'dunkel', 'Foto gross, Nacht'], ['buehne', 'hell', 'Foto gross, Weiss'], ['fenster', 'creme', 'Im Rahmen, Creme'], ['ansicht', 'dunkel', 'Foto randlos'], ['fenster', 'dunkel', 'Im Rahmen, Nacht']];
     const docs = arten.map(([v, t, titel]) => {
       const d = DS.dokument(DS.M, { name: (fmt === 'story' ? 'Story · ' : 'Beitrag · ') + b.alt, format: fmt, seiten: [{ vorlage: v, ton: t, inhalt: v === 'ansicht' ? { bild: k, titel: DS.M.ort, unter: DS.M.name } : inh }] });
       d.seiten.forEach(s => s.el.forEach(e => { if (e.typ === 'bild' && e.bild === k) { e.fx = x; e.fy = y; } }));
