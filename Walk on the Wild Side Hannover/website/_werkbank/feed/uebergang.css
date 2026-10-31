@@ -1,4 +1,4 @@
-/* Übergang «Euer Feed heute» → «die nächsten 60» (Vorlage Culinarium, Kleid Wild Side 31.10.2026) (Oberchef 29.10.2026, Robert: «dass man sieht, dass es aufeinander aufbaut … wo es dann weitergehen könnte»).
+/* Übergang «Euer Feed heute» → «die nächsten 60» (Kleid Wild Side 31.10.2026) (Oberchef 29.10.2026, Robert: «dass man sieht, dass es aufeinander aufbaut … wo es dann weitergehen könnte»).
    Bausteine für die Feed-Seite und das Handy der Werkbank: .band zwischen neuen und bisherigen Kacheln, .t.alt = bisheriger Beitrag (leicht zurückgenommen),
    .nr = Nummer in der Reihenfolge des Postens, .fw = Schalter «Heute» / «Mit den nächsten 60» und «Nummern». Gesteuert von uebergang.js. */
 #grid .band{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 10px;margin:6px 0;background:#130E0D;

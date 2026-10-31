@@ -1,17 +1,18 @@
-// Bildschirme der sieben Werkzeuge für die Werkbank der Taverne zum Schäfli (21.10.2026, Vorlage Schlössli). Adresse aus _werkbank/werkzeuge.json (Lieferung der Werkzeug-Chats)
+// Bildschirme der sieben Werkzeuge für die Werkbank des Walk on the Wild Side (31.10.2026, Vorlage Culinarium, dort Schäfli). Adresse aus _werkbank/werkzeuge.json (Lieferung der Werkzeug-Chats)
 // (_kette/11-werkbank/werkzeuge/<teil>/stand.json, nur «liegt vor» oder «bestätigt»).   node _werkbank/sb_werkzeuge.js [schlüssel …] [--alle]
 //   → ansichten/Werkzeuge/<schlüssel>.jpg (Rechner 1440 × 900, doppelte Dichte), <schlüssel>-2.jpg (eine Bildschirmhöhe weiter), ansichten/Werkzeuge-Handy/<schlüssel>.jpg (390 × 844)
 // Nur ansehen: nichts wird gespeichert, nichts abgeschickt. --alle nimmt auch Werkzeuge, die noch «läuft» melden (Probebild, nie für die Meldung).
 const path = require('path'), fs = require('fs');
-const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
-const HIER = __dirname, PROJEKT = path.join(HIER, '..', '..', '..');   // Culinarium: _werkbank liegt in website/_werkbank
+let PW; try { PW = require('playwright'); } catch (e) { PW = require('/opt/node-tools/node_modules/playwright'); }
+const { chromium } = PW;
+const HIER = __dirname, PROJEKT = path.join(HIER, '..', '..', '..');   // _werkbank liegt in website/_werkbank
 const TEIL = { maison: 'zentrale', bureau: 'website', carte: 'karten', reception: 'gaeste', livre: 'marke', registre: 'besuche', imprimerie: 'druck' };
-// Culinarium: die zweite Aufnahme zeigt eine eigene Ansicht, wo das Werkzeug eine hat (sonst eine Bildschirmhöhe weiter)
+// die zweite Aufnahme zeigt eine eigene Ansicht, wo das Werkzeug eine hat (sonst eine Bildschirmhöhe weiter)
 const ZWEITE = { bureau: '?ansicht=e:termine' };
 const AUFNAHME = { registre: '?gruss=tag' };   // Rechner 1440 × 932 = Bildschirm des Laptops (geraete/laptop.json); bei 900 schnitt rh_werkzeuge links und rechts je 24 px ab (Tresen-Kacheln am Rand, 30.10.)
 // zweite Ansicht aus der Lieferung des Werkzeugs (das Werkzeug scrollt in einer Fläche, eine Bildschirmhöhe weiter zeigte dasselbe)
-const ZWEITE_BILD = { imprimerie: path.join(process.env.HOME, 'Desktop/Website-Projekte/_Oberchef/zeigen/culinarium/imprimerie/werkbank-2910/abend-1440@2x.png') };   // «Abend beschreiben» mit 3 fertigen Vorschlägen (echte Higgsfield-Plakate, 29.10.; Live-Hinweis mit Preis nicht im Bild)
-const DRITTE_BILD = { imprimerie: path.join(process.env.HOME, 'Desktop/Website-Projekte/_Oberchef/zeigen/culinarium/imprimerie/werkbank-2910/editor-1440@2x.png') };   // Editor mit Vorschlag 1 (29.10.)   // Bilder ohne Tagesgruss (Lieferung des Besucherbuchs)
+const ZWEITE_BILD = {};
+const DRITTE_BILD = {};
 const arg = process.argv.slice(2), alle = arg.includes('--alle'), nur = arg.filter(a => !a.startsWith('--'));
 (async () => {
   for (const d of ['Werkzeuge', 'Werkzeuge-Handy']) fs.mkdirSync(path.join(HIER, 'ansichten', d), { recursive: true });
@@ -27,7 +28,7 @@ const arg = process.argv.slice(2), alle = arg.includes('--alle'), nur = arg.filt
     for (const [art, vp, dsf] of [['Werkzeuge', { width: 1440, height: 932 }, 2], ['Werkzeuge-Handy', { width: 390, height: 844 }, 2]]) {
       const ctx = await b.newContext({ viewport: vp, deviceScaleFactor: dsf, ...(vp.width < 700 ? { isMobile: true, hasTouch: true } : {}) });
       const p = await ctx.newPage(); await p.clock.install({ time: new Date('2026-10-30T18:30:00') });   // ein Abend für alle Werkzeuge: gleicher Gruss im Tresen und in der Werkstatt (30.10.)
-      await p.addInitScript(() => { try { for (const h of ['culinarium']) { localStorage.setItem('ds-' + h + '-willkommen', '1'); localStorage.setItem('ds-' + h + '-rundgang', '1'); for (const w of ['maison', 'bureau', 'carte', 'reception', 'livre', 'registre', 'imprimerie']) localStorage.setItem('rundgang-' + h + '-' + w, '1'); } if (!localStorage.getItem('lc-wer')) { localStorage.setItem('lc-wer', 'Rudi Napieraj'); localStorage.setItem('lc-rolle', 'direktion'); } } catch (e) {} });
+      await p.addInitScript(() => { try { localStorage.setItem('ws-livre-willkommen', '1'); for (const h of ['wildside']) { localStorage.setItem('ds-' + h + '-willkommen', '1'); localStorage.setItem('ds-' + h + '-rundgang', '1'); for (const w of ['maison', 'bureau', 'carte', 'reception', 'livre', 'registre', 'imprimerie']) localStorage.setItem('rundgang-' + h + '-' + w, '1'); } if (!localStorage.getItem('lc-wer')) { localStorage.setItem('lc-wer', 'Derya Ivkin'); localStorage.setItem('lc-rolle', 'direktion'); } } catch (e) {} });
       try {
         await p.goto(st.adresse + (AUFNAHME[k] || ''), { waitUntil: 'load', timeout: 30000 }); await p.evaluate(() => document.fonts && document.fonts.ready); await p.waitForTimeout(3500);
         await p.screenshot({ path: path.join(HIER, 'ansichten', art, k + '.jpg'), quality: 88 });

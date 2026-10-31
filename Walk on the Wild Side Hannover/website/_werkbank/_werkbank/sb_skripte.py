@@ -1,4 +1,4 @@
-"""Werkbank Culinarium: Lade- und Wege-Skripte aus der Werkbank des Schäfli (dort Schlössli und Ruedihus; nur kopiert).
+"""Werkbank Wild Side (Vorlage Culinarium): Lade- und Wege-Skripte aus der Werkbank des Schäfli (dort Schlössli und Ruedihus; nur kopiert).
 VORLADEN_JS Bänder laden vorab · FRUEH_JS Bilder anderthalb Bildschirme früher · WB_JS «Zurück zur Werkbank» an dieselbe Stelle · KARUSSELL_JS Karusselle vorab."""
 VORLADEN_JS = ('<script id="rh-vorladen">(function(){if(!("IntersectionObserver" in window))return;(window.requestIdleCallback||function(f){setTimeout(f,700)})(function(){'
                'var kand=[].slice.call(document.querySelectorAll(".band,.aga-reihe,.vh-felder,.ins-dev,.lu-seiten,[class*=reihe],[class*=zug],[class*=leiste]"));'
@@ -12,7 +12,7 @@ FRUEH_JS = ('<script id="rh-frueh">(function(){if(!("IntersectionObserver" in wi
             '[].forEach.call(document.querySelectorAll("main img[loading=lazy],body>section img[loading=lazy],section img[loading=lazy]"),function(i){io.observe(i)})})();</script>')
 
 WB_JS = r'''<script id="rh-zurueck">(function(){
-var WEB=/^\/(?:(?:index|abend|abende|bar|leute|weg|dirty-chicken|impressum|datenschutz|termine-pflege|404)\.html)?$/;   /* die Seiten der Website von Culinarium: dort nie ein Weg zurück (Memory «Zur Werkbank») */
+var WEB=/^\/(?:(?:index|drinks|programm|tafel|haus|besuch|impressum|datenschutz|konzept|404)\.html)?$/;   /* die Seiten der Website des Wild Side: dort nie ein Weg zurück (Memory «Zur Werkbank») */
 function ziel(a){try{var u=new URL(a.getAttribute('href'),location.href);if(!/^https?:$/.test(u.protocol))return null;
  if(/\.pdf$/i.test(u.pathname))return null;
  if(u.origin===location.origin){if(u.pathname===location.pathname)return null;if(WEB.test(u.pathname))return null;return u}

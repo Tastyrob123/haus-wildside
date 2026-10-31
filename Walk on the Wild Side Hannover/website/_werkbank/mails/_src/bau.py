@@ -112,7 +112,7 @@ FAELLE = [
          karte=('Der Abend', [('Wann', D0_LANG), ('Musik', MUSIK0), ('Am Deck', N0), ('Eintritt', 'frei')]),
          knopf=('Platz reservieren', 'besuch.html#reservieren'), dazu='Den nächsten Abend kündigt die Bar auf Instagram an, mit eigenem Plakat.'),
     dict(nr='07', wann='Nach einem Fest der Bar', ordner='07-rueckblick', name='So war der Geburtstag', satz='Kommt ein paar Tage nach einem Fest: ein Rückblick auf den Geburtstag der Bar und der Weg zu den Fotos auf Instagram.',
-         betreff='So war der zweite Geburtstag der Bar', titel=('So war', 'der Geburtstag.'), foto='feste-anstossen', bsp=False, alt='Gäste stossen am Geburtstag der Bar an',
+         betreff='So war der zweite Geburtstag der Bar', titel=('So war', 'der Geburtstag.'), foto='feste-anstossen', bsp=False,
          text=['Hallo Jonas', 'Am 5. Dezember 2025 ist die neue Wild Side zwei geworden. Danke, dass ihr mitgefeiert habt.',
                'Mit DJs, mit Mexikanern, dem scharfen Shot des Hauses, und einem Drink zur Begrüssung für die ersten Gäste. Ein paar Fotos stehen jetzt auf Instagram, vielleicht findest du dich wieder.'],
          karte=('Der Abend', [('Datum', '5. Dezember 2025'), ('Geburtstag', 'der zweite'), ('Musik', 'DJs'), ('Im Glas', 'Mexikaner, die ganze Nacht')]),

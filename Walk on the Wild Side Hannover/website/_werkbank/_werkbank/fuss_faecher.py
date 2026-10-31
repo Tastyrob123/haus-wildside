@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium (Vorlage Schäfli, dort Schlössli und Ruedihus): Fuss «Alles auf einen Blick» als Fächer mit freigestellten Objekten (12.10.2026, Master 5b Punkt 23).
+"""Werkbank Wild Side (Vorlage Culinarium, dort Schäfli, dort Schlössli und Ruedihus): Fuss «Alles auf einen Blick» als Fächer mit freigestellten Objekten (12.10.2026, Master 5b Punkt 23).
 
 Vorn das gewählte Objekt, je zwei dahinter kleiner und leiser; Pfeile, Tippen, Pfeiltasten, Wischen. Das vordere Objekt und «Öffnen» führen zum Weg.
 Über dem Fächer steht die Überschrift allein, ohne Zeichen (Robert 12.10.2026). Die Objekte kommen aus objekte_bau.py (eigene Stücke des Hauses),
@@ -13,23 +13,23 @@ ROOT = os.path.dirname(W)
 OBJ = os.path.join(W, 'objekte')
 
 WEGE_OBJEKTE = {   # Weg → (Datei in objekte/, Bildbeschreibung, Satz)
-    'website': ('website', 'Ein Laptop mit der neuen Startseite von Culinarium', 'Der Entwurf mit allen Seiten: der Abend, die Plakate, das Haus, die Leute, der Weg und Dirty Chicken.'),
-    'gaeste': ('gaeste', 'Ein Laptop mit «Platz buchen»', 'Platz buchen, die Warteliste, das Menü, die Zeiten, die Fragen und der Weg.'),
-    'unterlagen': ('unterlagen', 'Die Karten der Abende, neu gesetzt', 'Die Karte jedes Abends mit Rudis Gängen und Momos Drinks.'),
-    'drucksachen': ('drucksachen', 'Drucksachen für Tafel und Tür', 'Ideen für Papier, von der Karte am Platz bis zum Briefbogen.'),
-    'etiketten': ('etiketten', 'Vier Untersetzer für die Theke', 'Zwölf Untersetzer für Momos Drinks, im Kleid eurer Plakate.'),
-    'feed': ('feed', 'Ein Laptop mit dem Feed für Instagram', 'Ein Feed aus euren eigenen Fotos und Plakaten, im Raster eigens für Culinarium geplant.'),
+    'website': ('website', 'Ein Laptop mit der neuen Startseite des Wild Side', 'Der Entwurf mit allen Seiten: Drinks, Programm, Feiern, das Haus und der Besuch.'),
+    'gaeste': ('gaeste', 'Ein Laptop mit «Platz reservieren»', 'Reservieren, die Zeiten, Feiern, die Woche, die Fragen und der Weg.'),
+    'unterlagen': ('unterlagen', 'Die Karten der Bar, neu gesetzt', 'Momos Drinks mit Zutaten und Preis, neu gesetzt.'),
+    'drucksachen': ('drucksachen', 'Drucksachen für Theke und Tür', 'Ideen für Papier, von der Karte für die Theke bis zum Plakat für die Tür.'),
+    'etiketten': ('etiketten', 'Vier Untersetzer für die Theke', 'Untersetzer für Momos Drinks, im Kleid eurer Plakate.'),
+    'feed': ('feed', 'Ein Laptop mit dem Feed für Instagram', 'Ein Feed aus euren eigenen Fotos und Plakaten, im Raster eigens für das Wild Side geplant.'),
     'material': ('material', 'Drucksachen und ein Untersetzer', 'Jede Datei dieses Entwurfs in einem Ordner, zum Durchsehen und Laden.'),
     'geprueft': ('geprueft', 'Ein Blatt mit vier Haken und einem Stempel', 'Was durchgegangen wurde, in Alltagssprache, und was offen bleibt.'),
     'maison': ('maison', 'Ein Laptop mit dem Eingang zu den Werkzeugen', 'Der Eingang für euch alle, von dort geht es in jedes Werkzeug.'),
-    'bureau': ('bureau', 'Ein Laptop mit dem Werkzeug für die Website', 'Hier tragt ihr Abende ein und schreibt in die Website, zuerst in der Vorschau.'),
-    'carte': ('carte', 'Ein Laptop mit dem Werkzeug für die Karten', 'Gänge und Drinks je Abend, daraus die Karte am Platz und auf der Website.'),
-    'reception': ('reception', 'Ein Laptop mit dem Werkzeug für die Gäste', 'Buchungen, Warteliste und Fragen an einem Ort, mit einer Antwort zu jeder.'),
+    'bureau': ('bureau', 'Ein Laptop mit dem Werkzeug für die Website', 'Hier tragt ihr DJ-Abende ein und schreibt in die Website, zuerst in der Vorschau.'),
+    'carte': ('carte', 'Ein Laptop mit dem Werkzeug für die Karten', 'Momos wechselnde Karte, Klassiker und Preise, als PDF und auf der Website.'),
+    'reception': ('reception', 'Ein Laptop mit dem Werkzeug für die Gäste', 'Reservierungen, Feiern und Fragen an einem Ort, mit einer Antwort zu jeder.'),
     'livre': ('livre', 'Ein Laptop mit dem Werkzeug für die Marke', 'Fotos, Plakate, Wortmarke und Farben als Dateien, dazu die Hausregeln.'),
     'registre': ('registre', 'Ein Laptop mit dem Werkzeug für die Besuche', 'Woher die Gäste kommen und was sie ansehen, ohne Cookies, hier mit Beispielwerten.'),
-    'imprimerie': ('imprimerie', 'Ein Laptop mit dem Werkzeug für Plakate und Papier', 'Das Plakat für den nächsten Abend, geändert auf dem Blatt, die PDF für die Druckerei.'),
-    'analyse': ('analyse-h', 'Ein Laptop mit dem Befund', 'Wie Culinarium heute im Netz steht, mit allen Punkten und ihren Bildern.'),
-    'vorschlag': ('vorschlag', 'Culinarium auf einem hellen Blatt', 'Ein Vorschlag: was euch gehört, die Betreuung und wo die KI arbeitet.'),
+    'imprimerie': ('imprimerie', 'Ein Laptop mit dem Werkzeug für Plakate und Papier', 'Das Plakat für den nächsten DJ-Abend, geändert auf dem Blatt, die PDF für die Druckerei.'),
+    'analyse': ('analyse-h', 'Ein Laptop mit dem Befund', 'Wie das Wild Side heute im Netz steht, mit allen Punkten und ihren Bildern.'),
+    'vorschlag': ('vorschlag', 'Die Wortmarke auf einem hellen Blatt', 'Ein Vorschlag: was euch gehört, die Betreuung und wo die KI arbeitet.'),
 }
 BEREIT = os.path.exists(os.path.join(OBJ, 'website.png'))
 
@@ -69,9 +69,9 @@ def abschnitt(wege):
                        for i, (n, t, h) in enumerate(wege))
     texte = ''.join(f'<div{" class=\"an\"" if i == 0 else ""}><h3>{e(t)}</h3><p>{e(WEGE_OBJEKTE[n][2])}</p><a class="kn kn--klein" href="{h}" target="_blank" rel="noopener">Öffnen<i>{pf_o}</i></a></div>'
                     for i, (n, t, h) in enumerate(wege))
-    return f"""<nav class="in wege wf" aria-label="Das Wichtigste von Culinarium">
-  <div class="wf__kopf"><b class="wege__t">Das Wichtigste von Culinarium</b></div>
-  <div class="wfa" data-wfa aria-roledescription="Karussell" aria-label="Das Wichtigste von Culinarium">
+    return f"""<nav class="in wege wf" aria-label="Das Wichtigste vom Wild Side">
+  <div class="wf__kopf"><b class="wege__t">Das Wichtigste vom Wild&nbsp;Side</b></div>
+  <div class="wfa" data-wfa aria-roledescription="Karussell" aria-label="Das Wichtigste vom Wild Side">
     <div class="wfa__b">{blaetter}</div>
     <div class="wfa__fuss">
       <button type="button" class="wf__pf" data-f="-1" aria-label="Zurück">{pf_l}</button>

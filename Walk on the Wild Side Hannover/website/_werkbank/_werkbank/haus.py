@@ -40,7 +40,7 @@ HAUSART = 'restaurant'
 PORT = 9088
 DOMAIN = 'Instagram'   # die Bar hat heute keine Website (wildside-hannover.de war nie eine, CHARAKTER.md 9); «heute» ist das Profil auf Instagram
 HEUTE_URL = 'https://www.instagram.com/walkonthewildside_hannover/'
-ANREDE = 'Hallo Derya'
+ANREDE = 'Hallo Derya, hallo Momo'
 RECHTE = 'dem Walk on the Wild Side und den jeweiligen Fotografen.'
 START_MS = 4200
 WAHL = 'body > section, body > header'
@@ -354,6 +354,8 @@ h2,h3,.wege__t,.gb-blatt header h3,.rgw .wfa__texte h3,.fbz__n{font-weight:400!i
 b,strong{font-weight:500}
 .gb-blatt header h3{font-family:var(--serif);text-transform:uppercase;letter-spacing:.135em}
 .wf .wege__t{font-family:var(--serif);text-transform:none;letter-spacing:-.01em;font-size:clamp(2rem,3.6vw,3.4rem)!important;line-height:1.1}
+/* Die Wortmarke als Zeichen steht in ihrem Rot (Rot nur als Punkt: Logo), nie in Gold */
+svg:has(> use[href="#hz"]){color:#f0323f!important;fill:#f0323f}
 /* Etiketten der Bar: Hanken 500, gesperrt, Versalien (wie .etikett der Website) */
 .rz{font-family:var(--sans);font-weight:500;letter-spacing:.17em;text-transform:uppercase}
 '''

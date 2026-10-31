@@ -24,7 +24,7 @@ ERSATZ = [   # (alt, neu) ganze Wendungen, wie sie Kit und Vorlage schreiben (ge
     ('Wenn Sie zu einem Punkt mehr wissen möchten, fragen Sie mich einfach.', 'Wenn ihr zu einem Punkt mehr wissen möchtet, fragt mich einfach.'),
     ('unter Ihrer eigenen Adresse', 'unter eurer eigenen Adresse'),
     ('Was ausserhalb der Website zählt, gehört genauso dazu: der Eintrag bei Google Maps, Ihre Bewertungen und gleiche Angaben auf Tripadvisor, den Restaurantführern und Portalen.',
-     'Was außerhalb der Website zählt, gehört genauso dazu: ein Eintrag bei Google Maps und gleiche Angaben überall, wo Culinarium genannt wird.'),
+     'Was außerhalb der Website zählt, gehört genauso dazu: ein Eintrag bei Google Maps und gleiche Angaben überall, wo das Wild Side genannt wird.'),
 ]
 
 

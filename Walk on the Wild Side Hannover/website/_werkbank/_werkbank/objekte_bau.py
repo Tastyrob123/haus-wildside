@@ -113,8 +113,8 @@ def main():
     lap = lambda s: schatten.backe(laptop(s), rand=.06, tiefe=.02, weich=.03, staerke=.55, farbe=DUNKEL)
     liste = lambda o, pre='': sorted(f for f in os.listdir(os.path.join(ROOT, o)) if f.startswith(pre) and f.endswith('.webp') and not f.endswith('-r.webp')) if os.path.isdir(os.path.join(ROOT, o)) else []
     fertig = [lege([(lap(os.path.join(R, 'Startseite.jpg')), 980, 500, 520, 0, False)], 'website')]
-    if os.path.exists(os.path.join(GA, 'buchen.jpg')):
-        fertig.append(lege([(lap(os.path.join(GA, 'buchen.jpg')), 980, 500, 520, 0, False)], 'gaeste'))
+    if os.path.exists(os.path.join(GA, 'reservieren.jpg')):
+        fertig.append(lege([(lap(os.path.join(GA, 'reservieren.jpg')), 980, 500, 520, 0, False)], 'gaeste'))
     un = [f for f in liste('unterlagen/img', 'n-') if f.endswith('-01.webp')]
     if un:
         orte = {1: [(520, 500, 500, -2)], 2: [(360, 290, 500, -3), (360, 710, 500, 2)]}.get(len(un[:3]), [(300, 170, 500, -3), (300, 500, 500, 2), (300, 830, 500, -2)])   # nebeneinander, mittig, nichts überdeckt (Robert 29.10.2026)

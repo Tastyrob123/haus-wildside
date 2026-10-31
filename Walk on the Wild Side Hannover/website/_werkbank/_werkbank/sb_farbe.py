@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium: letzter Farbgang (28.10.2026, Vorlage sb_farbe.py des Schäfli). Die Bausteine kommen aus den Werkbänken des Schäfli
-(Ochsenblut, Gold, Kalk), des Ruedihus und des Schlössli. Hier wird jede dieser Farben, die noch in den gebauten Seiten steht, auf die Töne der
-Culinarium-Seite umgerechnet (website/assets/culinarium.css :root): dunkel wird Nacht und Schiefer der Bar (#16151A, #222028, #3A3845), die Mitte
-Kerze (#EF7649, #B15736), hell wird Warmweiß der Plakate (#FAF4F4). Helligkeit bleibt. Fotos werden nicht angefasst, nur Text in CSS und HTML. Mehrfach anwendbar."""
+"""Werkbank Wild Side: letzter Farbgang (31.10.2026, Vorlage sb_farbe.py des Culinarium, dort Schäfli). Jede fremde Farbe der Bausteine, die noch in den
+gebauten Seiten steht, wird auf die Töne der Bar umgerechnet (website/assets/wild.css): dunkel wird Nacht und Platte, die Mitte Gold des Eckschilds,
+hell Creme der weissen Plakate. Helligkeit bleibt. Fotos werden nicht angefasst, nur Text in CSS und HTML. Mehrfach anwendbar."""
 import colorsys, glob, os, re
 
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
-FEST = {'#fd9964': '#ef7649', '#e8875a': '#ef7649', '#fec7aa': '#f5a689', '#c42e13': '#b15736', '#a8260f': '#b15736', '#e0a96a': '#ef7649', '#7d433a': '#3a3845', '#e6007e': '#e6007e'}   # Signalfarben der Vorlagen; Magenta ist die Schnittlinie im Druckbogen
-HAUS = {(0x16, 0x15, 0x1a), (0x0f, 0x0e, 0x13), (0x1c, 0x1b, 0x21), (0x22, 0x20, 0x28), (0x26, 0x25, 0x2e), (0x3a, 0x38, 0x45), (0xfa, 0xf4, 0xf4), (0xf2, 0xea, 0xea),
-        (0xff, 0xfb, 0xfa), (0xef, 0x76, 0x49), (0xf5, 0xa6, 0x89), (0xb1, 0x57, 0x36), (0x5b, 0x57, 0x63), (0x26, 0x24, 0x2d), (0x89, 0x53, 0xa9)}
+# Wild Side (31.10.2026): Töne der Bar aus website/assets/wild.css und dem Markenbuch: Nacht #130E0D, Platte #1C1513/#261E1A, Holz #33281F, Creme #F2E9DC,
+# Gold #D8B264 (tief #A07F3A, Messing #B08A43), Rot #F0323F nur als Punkt. Dunkel wird Nacht, die Mitte Gold, hell Creme.
+FEST = {'#fd9964': '#d8b264', '#e8875a': '#d8b264', '#fec7aa': '#e7cf98', '#c42e13': '#a07f3a', '#a8260f': '#a07f3a', '#e0a96a': '#d8b264', '#7d433a': '#33281f', '#e6007e': '#e6007e',
+        '#ef7649': '#d8b264', '#f5a689': '#e7cf98', '#b15736': '#b08a43', '#16151a': '#130e0d', '#16141b': '#130e0d', '#3a3845': '#33281f', '#faf4f4': '#f2e9dc', '#8953a9': '#d8b264'}
+HAUS = {(0x13, 0x0e, 0x0d), (0x1c, 0x15, 0x13), (0x26, 0x1e, 0x1a), (0x33, 0x28, 0x1f), (0xf2, 0xe9, 0xdc), (0xe7, 0xdc, 0xcb), (0xd9, 0xcb, 0xb6), (0xf7, 0xf1, 0xe7),
+        (0xd8, 0xb2, 0x64), (0xa0, 0x7f, 0x3a), (0xb0, 0x8a, 0x43), (0xf0, 0x32, 0x3f), (0x1b, 0x15, 0x12), (0xed, 0xe4, 0xd8), (0x6e, 0x5d, 0x4e), (0x1a, 0x00, 0xaa), (0xd2, 0x1c, 0x0a)}
 
 
 def _ton(r, g, b):
@@ -19,12 +21,12 @@ def _ton(r, g, b):
     grad = h * 360
     if s < .1 or l > .985 or l < .02 or not (grad <= 70 or 195 <= grad <= 248 or grad >= 350):
         return r, g, b
-    if l < .45:          # Nacht und Schiefer der Bar
-        nh, ns = 250 / 360, .1
-    elif l < .86:        # Kerze aus den Abendfotos
-        nh, ns = 16 / 360, .72 if l < .7 else .78
-    else:                # Warmweiß der Plakate
-        nh, ns = 0, .38
+    if l < .45:          # Nacht und Platte der Bar
+        nh, ns = 14 / 360, .19
+    elif l < .86:        # Gold des Eckschilds
+        nh, ns = 40 / 360, .6
+    else:                # Creme der weissen Plakate
+        nh, ns = 36 / 360, .5
     nr, ng, nb = colorsys.hls_to_rgb(nh, l, ns)
     return round(nr * 255), round(ng * 255), round(nb * 255)
 
@@ -70,7 +72,7 @@ def anwenden():
         if a != b:
             open(p, 'w', encoding='utf-8').write(b); n += 1
     seiten = (glob.glob(os.path.join(ROOT, 'werkbank', '**', '*.html'), recursive=True)
-              + [os.path.join(ROOT, d, 'index.html') for d in ('unterlagen', 'drucksachen', 'untersetzer', 'feed', 'material', 'mails')])
+              + [os.path.join(ROOT, d, 'index.html') for d in ('befund',)])   # Wild Side: nur das eigene Revier (die übrigen Seiten bauen andere Agenten)
     for p in seiten:
         if not os.path.exists(p):
             continue

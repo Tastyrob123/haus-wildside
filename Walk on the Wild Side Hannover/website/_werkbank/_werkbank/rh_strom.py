@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium (Vorlage Schäfli, dort Schlössli und Ruedihus), Kapitel «Ihre Werkzeuge»: «Einmal ändern, überall richtig.» als Bühne mit echten Aufnahmen (Werkbank-Chat 17.10.2026;
+"""Werkbank Wild Side (Vorlage Culinarium, dort Schäfli), Kapitel «Ihre Werkzeuge»: «Einmal ändern, überall richtig.» als Bühne mit echten Aufnahmen (Werkbank-Chat 17.10.2026;
 Aufbau, Bewegung und Skript aus dh_strom.py des Waldhotel Doldenhorn, dort aus strom_buehne.py des Carlton-Europe, nur gelesen und kopiert). Links die
 Aufnahme des Werkzeugs mit Siegel, rechts je Ziel eine Bildkachel, goldene Wege dazwischen, ein Licht fliegt darüber. Inhalt nur aus echten Aufnahmen:
 den Lieferungen der Werkzeug-Chats, den Seitenaufnahmen der Werkbank
@@ -10,7 +10,7 @@ from PIL import Image
 e = html.escape
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
-HAUS = 'Culinarium'
+HAUS = 'Wild Side'
 WZB = lambda r: os.path.join(W, 'ansichten', 'Werkzeuge', r)   # Aufnahmen der gelieferten Werkzeuge (sb_werkzeuge.js)
 AN = lambda r: os.path.join(W, 'ansichten', r)
 UN = lambda r: os.path.join(ROOT, 'unterlagen', 'img', r)
@@ -21,32 +21,32 @@ import rh_werkzeuge as _WK
 _N = _WK.NAMEN
 SZENEN = [
     (_N['bureau'], 'Website', (WZB('bureau.jpg'), None), [
-        (WZB('bureau-2.jpg'), None, 'Einen Abend eintragen',
-         'Tag, Beginn, Preis und Plätze an einer Stelle; jeder Abend bekommt sein Plakat. Ebenso ein neuer Satz oder ein Foto.'),
-        (AN('Gaeste/buchen.jpg'), None, 'Auf der Website',
-         'Auf «Der Abend» stehen die nächsten Abende mit ihrem Plakat. Bis zum Veröffentlichen sieht nur ihr die Änderung.'),
-        (AN('Gaeste/buchen-h.jpg'), None, 'Am Handy',
+        (WZB('bureau-2.jpg'), None, 'Einen DJ-Abend eintragen',
+         'Datum, Name und Plakat an einer Stelle; jeder DJ-Abend bekommt sein Plakat. Ebenso ein neuer Satz oder ein Foto.'),
+        (AN('Rechner/Programm 3.jpg'), None, 'Auf der Website',
+         'Auf «Programm» stehen die DJ-Abende mit ihrem Plakat. Bis zum Veröffentlichen sieht nur ihr die Änderung.'),
+        (AN('Handy/Programm 3.jpg'), None, 'Am Handy',
          'Das Handy zeigt danach dieselben Abende, ohne dass jemand sie ein zweites Mal schreibt.')]),
     (_N['carte'], 'Karten', (WZB('carte.jpg'), None), [
-        (WZB('carte-2.jpg'), None, 'Teller und Drink je Gang',
-         'Links die Liste, rechts sofort die Karte am Platz, so wie sie gedruckt wird.'),
-        (UN('n-abend-2025-02-21-01.webp'), None, 'Auf dem Tisch',
-         'Daraus wird das Blatt am Platz, als PDF in A4 für die Druckerei oder den eigenen Drucker.')]),
+        (WZB('carte-2.jpg'), None, 'Drinks mit Zutaten und Preis',
+         'Links die Liste, rechts sofort die Karte, so wie sie gedruckt wird.'),
+        (os.path.join(ROOT, '..', '..', '_werkzeuge', 'maison', 'img', 'karte-1-abend.webp'), None, 'Auf der Theke',
+         'Daraus wird das Blatt für die Theke, als PDF in A4 für die Druckerei oder den eigenen Drucker.')]),
     (_N['livre'], 'Marke', (WZB('livre.jpg'), None), [
-        (WZB('livre-2.jpg'), None, 'Die Fotos der Abende',
-         'Jedes Foto von Tafel, Bar, Tellern und Drinks groß ansehen und in der passenden Größe laden.'),
-        (AN('Rechner/Alle Abende 2.jpg'), None, 'Die Plakate',
-         'Dieselben Farben und Plakate kennt auch das Werkzeug für Drucksachen, darum sieht jedes Blatt nach Culinarium aus.')]),
+        (WZB('livre-2.jpg'), None, 'Die Fotos der Bar',
+         'Jedes Foto von Raum, Drinks, Leuten und Musik groß ansehen und in der passenden Größe laden.'),
+        (AN('Rechner/Programm 4.jpg'), None, 'Die Plakate',
+         'Dieselben Farben und Plakate kennt auch das Werkzeug für Drucksachen, darum sieht jedes Blatt nach dem Wild Side aus.')]),
     (_N['imprimerie'], 'Plakate und Papier', (WZB('imprimerie.jpg'), None), [
-        (os.path.join(ROOT, 'assets', 'bild', 'ill_DbYnkdkjrNy-1300.webp'), None, 'Den Abend beschreiben',   # Bild bis zu neuen Plakaten im gemalten Stil: Rudis Illustration und Plakat (September 2026)
-         'Thema, Konzept, Gastkoch und Wochenende genügen; die Werkstatt malt dafür drei bis fünf neue Plakate im Stil eurer bisherigen, vorn und hinten.'),
-        (os.path.join(ROOT, 'assets', 'bild', 'p_DbYnkdkjrNy-1600.webp'), None, 'Das Plakat des Abends',
-         'Ihr wählt eins und setzt im Editor Texte, Datum und Farbe, vorn und hinten, druckfertig.')]),
+        (os.path.join(ROOT, 'assets', 'bild', 'p-1710-1408.webp'), None, 'Einen DJ-Abend anlegen',
+         'Name und Uhrzeit genügen; die Werkstatt setzt dafür drei bis fünf SESSION-Plakate mit Wellen und Gesicht.'),
+        (os.path.join(ROOT, '..', '..', '_werkzeuge', 'imprimerie', 'haeuser', 'wildside', 'drucksachen', 'session-aushang-a3.jpg'), None, 'Das Plakat des Abends',
+         'Ihr wählt eins und setzt im Editor Texte, Datum und Farbe, druckfertig als PDF in A3.')]),
     (_N['reception'], 'Gäste', (WZB('reception.jpg'), None), [
         (WZB('reception-2.jpg'), None, 'Jede Anfrage nach ihrer Art',
-         'Warteliste, Plätze am Abend, eine eigene Feier und Nachrichten kommen hier an, jede mit einem Brief als Entwurf.'),
-        (AN('Gaeste/warteliste.jpg'), None, 'Woher sie kommen',
-         'Etwa vom Ticket auf der Seite «Der Abend», auf dem sich ein Gast für den nächsten Termin einträgt.')]),
+         'Reservierungen, Private Dinner, Feiern und Nachrichten kommen hier an, jede mit einem Brief als Entwurf.'),
+        (AN('Gaeste/reservieren.jpg'), None, 'Woher sie kommen',
+         'Etwa vom Formular auf der Seite «Besuch», mit dem ein Gast einen Platz reserviert.')]),
     (_N['registre'], 'Besuche', (WZB('registre.jpg'), None), [
         (WZB('registre-2.jpg'), None, 'Woher und wohin',
          'Woher die Gäste kommen und welche Seiten sie ansehen, ohne Cookies gezählt. Im Entwurf sind die Zahlen erfunden.'),

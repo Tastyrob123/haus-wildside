@@ -28,39 +28,34 @@ KOSTEN_OFFEN = 'Nach Verbrauch über euer eigenes Konto. Den Betrag je Aufruf me
 # Aufbau wie ki_seite.py des Grand Beau-Rivage über das Schäfli: Auftakt → Zahlen + Kosten → vier Stellen (Gerät + helle Karte) → Sorge → Fenster → Daten
 # → Ohne KI → In eurer Hand. Kosten stehen nur hier, nicht auf der Karte «Ein Vorschlag.» (Robert 20.10.2026, Memory «KI-Kosten nur auf KI-Seite»).
 AUFTAKT = ('Wo die KI hilft.', 'Und wo eure Daten bleiben.',
-           'In drei Werkzeugen von Culinarium hilft an vier Stellen KI mit: dreimal Claude, das Sprachmodell von Anthropic, und einmal beim Malen neuer Plakate. Für jede Stelle steht hier, was sie macht, welche Daten wohin gehen und was ohne KI bleibt. Im Entwurf antworten alle vier mit beschrifteten Proben; die KI arbeitet erst über euer eigenes Konto.')
-ZAHLEN = [('4', 'Stellen nutzen KI, alles andere arbeitet ohne.'), ('0', 'eurer Daten gehen ins Training des Modells.'),
+           'In zwei Werkzeugen des Wild Side hilft an drei Stellen KI mit, jedes Mal Claude, das Sprachmodell von Anthropic. Für jede Stelle steht hier, was sie macht, welche Daten wohin gehen und was ohne KI bleibt. Im Entwurf antworten alle drei mit beschrifteten Proben; die KI arbeitet erst über euer eigenes Konto.')
+ZAHLEN = [('3', 'Stellen nutzen KI, alles andere arbeitet ohne.'), ('0', 'eurer Daten gehen ins Training des Modells.'),
           ('30', 'Tage, dann löscht der Anbieter jede Eingabe.'), ('12', 'Monate bewahrt ihr Anfragen auf, dann sind sie weg.')]
-BLICK = ('Was es kostet', ['Die KI läuft über ein eigenes Konto von Culinarium beim Anbieter. Ihr zahlt dort direkt nach Verbrauch, ich richte das Konto ein und setze eine Obergrenze je Monat.',
-                           'In der Betreuung ist das nicht enthalten. Die fertigen Vorlagen, das Bildarchiv und alles Übrige kosten nichts.'])
-STELLEN_KOPF = ('Vier Stellen,', 'genau beschrieben.', 'Was die KI dort tut, was dabei zum Anbieter geht, was ihr aufbewahrt und was ohne sie bleibt.')
+BLICK = ('Was es kostet', ['Die KI läuft über ein eigenes Konto des Wild Side beim Anbieter. Ihr zahlt dort direkt nach Verbrauch, ich richte das Konto ein und setze eine Obergrenze je Monat.',
+                           'In der Betreuung ist das nicht enthalten. Die fertigen Vorlagen, das Markenbuch und alles Übrige kosten nichts.'])
+STELLEN_KOPF = ('Drei Stellen,', 'genau beschrieben.', 'Was die KI dort tut, was dabei zum Anbieter geht, was ihr aufbewahrt und was ohne sie bleibt.')
 REIHEN = ('Was sie tut', 'Was zum Anbieter geht', 'Was gespeichert wird', 'Ohne KI')   # ohne Zeile «Kosten» (Robert 29.10.2026)
 import rh_werkzeuge as _WK
 _N = _WK.NAMEN
 STELLEN = [  # Name, Werkzeug, Bildschirm (ansichten/Werkzeuge), tut, an, gespeichert, ohne   (gegen die Lieferungen der Werkzeug-Chats geprüft, siehe LIEFERUNG.md)
     ('Der Chat für eure Gäste', _N['reception'], 'reception',
-     'Beantwortet Fragen von Gästen zu den Abenden, zu Plätzen, Zeiten und Unverträglichkeiten, nur aus euren Seiten und Karten. Im Entwurf steht er im Werkzeug für die Gäste zum Ausprobieren.',
+     'Beantwortet Fragen von Gästen zu Zeiten, Plätzen, Feiern und DJ-Abenden, nur aus euren Seiten und Karten. Im Entwurf steht er im Werkzeug für die Gäste zum Ausprobieren.',
      'Fragen und Antworten des Gesprächs. Name und Kontakt nur, wenn ein Gast selbst etwas anfragt.',
      'Fragen und Antworten im Werkzeug für die Gäste, damit ihr seht, was Gäste wissen wollen; nach zwölf Monaten gelöscht.',
-     'Die Seite «Der Abend», die Fragen und Antworten und die Warteliste stehen wie gewohnt da.'),
+     'Die Seiten Besuch und Feiern, die Fragen und Antworten und das Reservieren stehen wie gewohnt da.'),
     ('Antwort auf eine Anfrage', _N['reception'], 'reception-2',
-     'Schreibt euch einen Antwortentwurf auf eine Frage oder einen Eintrag auf der Warteliste, im Ton von Culinarium.',
+     'Schreibt euch einen Antwortentwurf auf eine Frage, eine Reservierung oder eine Anfrage für eine Feier, im Ton der Bar.',
      'Die Anfrage mit Name, Kontakt und Anliegen.',
      'Anfragen im Werkzeug für die Gäste, nach zwölf Monaten gelöscht, auf Wunsch des Gastes sofort.',
-     'Eingang und Warteliste lassen sich bedienen. Die Antwort schreibt ihr dann selbst. Verschickt wird ohnehin nur, was jemand abschickt.'),
-    ('Neue Plakate für einen Abend', _N['imprimerie'], 'imprimerie-2',   # Bildschirm «Abend beschreiben», Neuaufnahme 29.10. (ohne Modellnamen, ohne Preis)
-     'Malt aus der Beschreibung eines Abends drei bis fünf neue Plakate im Stil eurer bisherigen, vorn und hinten. Ihr wählt eins und setzt im Editor Texte, Datum und Farbe.',
-     'Die Beschreibung des Abends: Thema, Gerichte, Drinks, Gastkoch. Keine Angaben zu Gästen.',
-     'Eure Plakate und eigenen Fotos bleiben im Browser auf eurem Gerät.',
-     'Rudis Illustrationen, der Editor und alle fertigen Plakate laufen weiter. Nur neue Plakate werden dann nicht gemalt.'),
+     'Eingang und Anfragen lassen sich bedienen. Die Antwort schreibt ihr dann selbst. Verschickt wird ohnehin nur, was jemand abschickt.'),
     ('Eine Markenprüfung', _N['livre'], 'livre',
-     'Prüft einen fremden Entwurf, etwa eine Anzeige oder ein Plakat von außen, gegen Farben, Wortmarke und Schrift von Culinarium.',
+     'Prüft einen fremden Entwurf, etwa eine Anzeige oder ein Plakat von außen, gegen Farben, Wortmarke und Schrift des Wild Side.',
      'Die ersten zwei Seiten der Datei als Bild.',
      'Nichts.',
      'Fotos, Dateien und die Messung der Farben laufen weiter. Nur die schriftliche Beurteilung fehlt.')]
 SORGE = ('Und wenn die KI Gästen etwas Falsches sagt?',
          'Die Frage ist richtig. Die KI darf nur wiedergeben, was ihr selbst veröffentlicht habt, und muss sagen, wenn sie etwas nicht weiß; dann nennt sie euren Kontakt. '
-         'Ein Fehler lässt sich bei einer KI nie ganz ausschließen. Verbindlich sind das Ticket und das, was ihr sagt.')
+         'Ein Fehler lässt sich bei einer KI nie ganz ausschließen. Verbindlich ist das, was ihr sagt.')
 FENSTER = ('Die KI macht den Entwurf.', 'Abgeschickt wird von euch.', 'Jede Antwort an einen Gast geht erst hinaus, wenn jemand von euch sie selbst verschickt.')
 DATEN_KOPF = ('Was mit euren Daten', 'geschieht.', 'Der Anbieter des Sprachmodells ist Anthropic. Was er zusagt, steht in seinen Geschäftsbedingungen; was ihr aufbewahrt, bestimmt ihr.')
 ANBIETER = ('Claude', 'Sprachmodell von Anthropic PBC, San Francisco')
@@ -68,17 +63,17 @@ DATEN = [('Nicht zum Lernen', 'Anthropic nutzt, was über euer Konto läuft, nic
          ('Nach 30 Tagen gelöscht', 'Eingaben und Antworten löscht Anthropic innerhalb von 30 Tagen. Länger nur bei Verstößen gegen seine Nutzungsregeln oder wenn ein Gesetz es verlangt.'),
          ('Euer eigener Speicher', 'Was ihr aufbewahrt, liegt im Werkzeug für die Gäste, nur mit Zugang lesbar, und wird nach zwölf Monaten gelöscht.'),
          ('Menschen verschicken', 'Die KI verschickt keine Mails und bucht nichts. Jede Antwort per Mail geht von euch hinaus.'),
-         ('Gebucht wird woanders', 'Plätze und Zahlung laufen über das Ticket auf der Seite. Karten- und Zahlungsdaten gehören nicht in den Chat.'),
-         ('Abschaltbar', 'Jede der vier Stellen lässt sich einzeln abschalten, das Werkzeug arbeitet weiter.')]
+         ('Reserviert wird woanders', 'Plätze und Feiern laufen über die Formulare auf der Seite. Karten- und Zahlungsdaten gehören nicht in den Chat.'),
+         ('Abschaltbar', 'Jede der drei Stellen lässt sich einzeln abschalten, das Werkzeug arbeitet weiter.')]
 OHNE_KOPF = ('Läuft auch', 'ohne KI.', 'Fällt die KI aus, ist die Grenze des Monats erreicht oder schaltet ihr sie ab, arbeiten alle Werkzeuge weiter. Es fehlt nur, was die KI schreibt.')
 HAND_KOPF = ('Ihr entscheidet,', 'wie weit sie geht.')
-HAND = [('Das Konto', 'läuft auf Culinarium. Beim Anbieter seht ihr jeden Aufruf.'),
+HAND = [('Das Konto', 'läuft auf das Wild Side. Beim Anbieter seht ihr jeden Aufruf.'),
         ('Die Obergrenze', 'setze ich je Monat. Ist sie erreicht, laufen die Werkzeuge bis zum nächsten Monat ohne KI weiter.'),
         ('Der Schalter', 'liegt bei euch. Auf euren Wunsch schalte ich die KI ab, die Werkzeuge laufen weiter wie beschrieben.')]
 OFFEN = ('Was ihr noch festlegt', 'Eure Datenschutzerklärung bekommt vor dem Start einen Abschnitt zum Chat. Zwei Punkte entscheidet ihr: die Rechtsgrundlage für die Übermittlung in die USA und wie lange Anfragen aufbewahrt werden.')
 QUELLEN = [('Anthropic: Training mit Daten', 'https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training'),
            ('Anthropic: Aufbewahrung', 'https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data')]
-NAV = ('<nav aria-label="Kapitel"><a href="#ki-blick">KI</a><a href="#ki-zahlen">In Zahlen</a><a href="#ki-stellen">Vier Stellen</a><a href="#ki-daten">Eure Daten</a>'
+NAV = ('<nav aria-label="Kapitel"><a href="#ki-blick">KI</a><a href="#ki-zahlen">In Zahlen</a><a href="#ki-stellen">Drei Stellen</a><a href="#ki-daten">Eure Daten</a>'
        '<a href="#ki-ohne">Ohne KI</a><a href="#ki-hand">In eurer Hand</a><a href="index.html#sag-vorschlag">Zurück zum Vorschlag</a></nav>')
 
 
@@ -129,7 +124,7 @@ def hauptteil():
 </section>
 <section class="wfen" id="ki-fenster" aria-label="{e(f1)} {e(f2)}">
   <div class="wfen__f">
-    <img src="eigen/fen-fenster-tisch-1800.webp" srcset="eigen/fen-fenster-tisch-1200.webp 1200w, eigen/fen-fenster-tisch-1800.webp 1800w, eigen/fen-fenster-tisch-2400.webp 2400w" sizes="100vw" alt="Blick durch die Tür auf die lange Tafel bei Kerzenlicht" loading="lazy" decoding="async">
+    <img src="eigen/fen-fenster-tisch-1800.webp" srcset="eigen/fen-fenster-tisch-1200.webp 1200w, eigen/fen-fenster-tisch-1800.webp 1800w, eigen/fen-fenster-tisch-2400.webp 2400w" sizes="100vw" alt="Blick durchs Fenster in die Bar des Walk on the Wild Side" loading="lazy" decoding="async">
     <div class="wfen__in"><svg class="wfen__z" viewBox="{_ZVB}" fill="currentColor" aria-hidden="true"><use href="#hz"/></svg><h2 class="wfen__t"><span>{e(f1)}</span><span><em>{e(f2)}</em></span></h2><p class="wfen__k">{e(fs)}</p></div>
   </div>
 </section>
@@ -170,7 +165,7 @@ def ki_seite(t):
         Image.open(q).convert('RGB').save(os.path.join(WB, 'img', 'ki-team.webp'), quality=82)
     m0, m1 = t.find('<main id="oben">'), t.find('</main>')
     kopf = t[:m0]
-    kopf = re.sub(r'<title>.*?</title>', '<title>KI und eure Daten · Culinarium</title>', kopf, count=1, flags=re.S)
+    kopf = re.sub(r'<title>.*?</title>', '<title>KI und eure Daten · Walk on the Wild Side</title>', kopf, count=1, flags=re.S)
     kopf = re.sub(r'<nav aria-label="Kapitel">.*?</nav>', NAV, kopf, count=1, flags=re.S)
     import sb_farbe as SF
     kopf = kopf.replace('</head>', SF.ohne_fett(SF.faerbe(open(os.path.join(W, 'sb_ki.css'), encoding='utf-8').read())) + '\n<style>.ki-claude{color:#d97757!important}</style>\n</head>', 1)
@@ -185,7 +180,7 @@ def _kopf(t, titel):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(titel)} · Culinarium</title>
+<title>{e(titel)} · Walk on the Wild Side</title>
 <meta name="robots" content="noindex, nofollow">
 {fonts}
 {css}'''
@@ -212,13 +207,14 @@ body{min-height:100vh;display:flex;justify-content:center;align-items:flex-start
 
 PDF_JS = r'''
 const path = require('path');
-const { chromium } = require(process.env.HOME + '/Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright');
+let PW; try { PW = require('playwright'); } catch (e) { PW = require('/opt/node-tools/node_modules/playwright'); }
+const { chromium } = PW;
 (async () => { const b = await chromium.launch(); const p = await b.newPage();
   await p.goto('http://127.0.0.1:9088/werkbank/karte.html', { waitUntil: 'load' }); await p.evaluate(() => document.fonts && document.fonts.ready);
   // feste TrueType-Schnitte für den Druck (variable Schriften landen sonst als «Type 3» in der PDF, Apple-Vorschau zeichnet sie weich)
-  await p.addStyleTag({ content: "@font-face{font-family:'PDruck';font-weight:100 380;src:url(/_werkbank/fonts/Fraunces-Light.ttf)}@font-face{font-family:'PDruck';font-weight:381 900;src:url(/_werkbank/fonts/Fraunces-Regular.ttf)}" +
-    "@font-face{font-family:'IDruck';font-weight:400;src:url(/_werkbank/fonts/InstrumentSans-Regular.ttf)}@font-face{font-family:'IDruck';font-weight:500;src:url(/_werkbank/fonts/InstrumentSans-Medium.ttf)}@font-face{font-family:'IDruck';font-weight:600 900;src:url(/_werkbank/fonts/InstrumentSans-SemiBold.ttf)}" +
-    "@font-face{font-family:'MDruck';src:url(/_werkbank/fonts/DMMono-Regular.ttf)}:root{--serif:'PDruck',Georgia,serif!important;--sans:'IDruck',Arial,sans-serif!important;--mono:'MDruck',monospace!important}" +
+  await p.addStyleTag({ content: "@font-face{font-family:'PDruck';font-weight:100 900;src:url(/_werkbank/fonts/Prata-Regular.ttf)}" +
+    "@font-face{font-family:'IDruck';font-weight:400;src:url(/_werkbank/fonts/HankenGrotesk-Regular.ttf)}@font-face{font-family:'IDruck';font-weight:500;src:url(/_werkbank/fonts/HankenGrotesk-Medium.ttf)}@font-face{font-family:'IDruck';font-weight:600 900;src:url(/_werkbank/fonts/HankenGrotesk-SemiBold.ttf)}" +
+    "@font-face{font-family:'MDruck';src:url(/_werkbank/fonts/HankenGrotesk-Medium.ttf)}:root{--serif:'PDruck',Georgia,serif!important;--sans:'IDruck',Arial,sans-serif!important;--mono:'MDruck',monospace!important}" +
     "body,body *{font-family:'IDruck',Arial,sans-serif}h1,h2,h3,h4,.mn-haus,.mn-titel,[class*=mn-] b{font-family:'PDruck',Georgia,serif}" });
   await p.evaluate(() => document.fonts && document.fonts.ready); await p.waitForTimeout(800);
   await p.pdf({ path: process.argv[2], format: 'A4', printBackground: true, preferCSSPageSize: true }); await b.close(); console.log('PDF', process.argv[2]); })();

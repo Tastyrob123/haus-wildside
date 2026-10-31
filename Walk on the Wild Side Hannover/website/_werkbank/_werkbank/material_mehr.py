@@ -83,7 +83,7 @@ def plakatwerkstatt():
             continue
         name = x['n'].replace('·', '–')
         h = lege('02 Drucksachen', os.path.join(IMPR, x['pdf']), f"{H.NAME} {re.sub(r'[/:?’]', ' ', name).strip()}.pdf")
-        t = f"{x['n']} · {x['format']}" if x.get('format') and x['format'] not in x['n'] else x['n']
+        t = f"{x['n']} · {x['format']}".replace(' · ' + x['format'], ' · ' + x['format'].replace(' ', ' ')) if x.get('format') and x['format'] not in x['n'] else x['n']   # Format nie auseinander
         zeilen += f'<li data-a="auf" style="--i:{min(6, 5 + k0)}"><a href="{e(h)}" target="_blank" rel="noopener"><span>{e(t)}</span><i>{PF}</i></a></li>'
         k0 += 1
     p = os.path.join(ZIEL, 'index.html'); s = open(p, encoding='utf-8').read()

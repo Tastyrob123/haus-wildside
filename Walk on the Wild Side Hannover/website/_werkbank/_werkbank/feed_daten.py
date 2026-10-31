@@ -58,8 +58,8 @@ SEITE = dict(
     bilder='eure eigenen Fotos, die noch nie gepostet wurden, und eure SESSION-Plakate')
 
 _WELLE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E"
-          "%3Cpath d='M0 60 C90 0 90 120 180 60 S270 0 360 60' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E"
-          "%3Cpath d='M0 180 C90 120 90 240 180 180 S270 120 360 180' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E%3C/svg%3E\") 0 0/360px 240px")
+          "%3Cpath d='M0 60 C60 10 120 10 180 60 S300 110 360 60' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E"
+          "%3Cpath d='M0 180 C60 130 120 130 180 180 S300 230 360 180' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E%3C/svg%3E\") 0 0/360px 240px")   # glatt über die Kachelgrenze (gleiche Steigung bei 0 und 360)
 BOGEN_CSS = (
     "@font-face{font-family:'Prata';src:url('../assets/schrift/prata-latin.woff2') format('woff2');font-weight:400}"
     "@font-face{font-family:'Hanken';src:url('../assets/schrift/hanken-latin.woff2') format('woff2');font-weight:100 900}"
@@ -142,7 +142,7 @@ JAHR = [
     (F('glas-negroni', 'drink', .5, .5), 'Den Negroni gibt es an jedem Abend. Gin, Wermut, Bitter, auf Eis gerührt. Der Schriftzug über der Vitrine ist kein Zufall.'),
     (H(tafel('Jeder Abend ein Plakat.', satz='Rot-cremefarbene Wellen, das Gesicht des Abends in Schwarzweiss.', fuss='SESSION · seit September 2025', ton='w'), 'text'),
      'Seit September 2025 holt das Wild Side DJs an die Bar, und jeder Abend bekommt sein eigenes Plakat: rot-cremefarbene Wellen, das Gesicht des Abends in Schwarzweiss. In den nächsten Wochen zeigen wir sie euch noch einmal, «Aus dem Archiv».'),
-    (F('voll', 'leute', .5, .5), 'Freitag, kurz nach zehn. Alle Tische vor der Bar besetzt, und hinten wird gelacht.'),
+    (F('voll', 'leute', .5, .5), 'Ein voller Abend an den Tischen vor der Bar. Wer zu mehreren kommt, reserviert besser.'),
     (H(zitat('Du sagst mir, was du magst, ich mache dir einen Drink.', 'Momo · an der Theke'), 'text'), 'So läuft es an Momos Theke: erst die Frage, dann das Glas.'),
     (F('schild-ecke', 'bar', .5, .5), 'Haasemannstraße 13, Ecke Rampenstraße. Das Schild an der Ecke leuchtet, zwei Minuten vom Küchengarten.'),
     (H(deckblatt('dg-siphon', 'Wie Momo arbeitet', 'Drei Techniken aus dem Labor', '1 / 4'), 'cover'),
@@ -153,7 +153,7 @@ JAHR = [
     # ---- Dezember 2026
     (H(tafel('Drei Jahre Wild Side.', satz='Mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste.', fuss='Der Geburtstag der Bar', ton='w', kicker='Im Winter'), 'text'),
      'Die neue Wild Side wird drei. Wir feiern mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste. Den Abend kündigen wir hier an.'),
-    (F('feste-anstossen', 'leute', .5, .4), 'So war es letztes Jahr, als wir zwei wurden. Der Mexikaner ging die ganze Nacht.'),
+    (F('feste-anstossen', 'leute', .5, .4), 'Anstossen draussen an der Ecke. So soll es zum Geburtstag wieder aussehen.'),
     (H(tafel('91 Punkte.', satz='Falstaff Bar Guide 2027, Kategorie Cocktailbars. Drinks: 47 von 50.', fuss='Danke an alle an der Bar', kicker='Falstaff Bar Guide 2027'), 'text'),
      'Falstaff Bar Guide 2027: 91 Punkte für das Wild Side, in der Kategorie Cocktailbars. Drinks 47 von 50, Style 18 von 20, Service 18 von 20. Danke an euch alle, die mit uns an der Bar stehen.'),
     (F('glas-coupe', 'drink', .5, .5), 'Im Coupe, mit Schaum, dahinter Kerzen. Für alle, die cremig sagen.'),

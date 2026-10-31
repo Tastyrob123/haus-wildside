@@ -91,12 +91,11 @@ PREIS_FUSS = ''
 DANACH = ['Server und Domain, Sicherungen, Updates, Sicherheit und Datenschutz.', 'Fehler in den sieben Werkzeugen behebe ich; fällt etwas aus, geht das vor.',
           'Kommt ein DJ-Abend dazu oder ändert sich die Karte, weiß es auch die KI.', 'Ihr hört spätestens am nächsten Werktag von mir. Die Inhalte pflegt ihr.',
           'Bis zum Start wird geändert, bis ihr zufrieden seid.', 'Druckerei und Fotografen rechnen weiter direkt mit euch ab.']
-KI_SATZ = 'An vier Stellen arbeitet KI mit. Sie läuft über ein Konto, das euch gehört, mit einer Grenze je Monat, die ich einrichte. Fällt die KI weg, arbeitet jede Stelle ohne sie weiter. Im Entwurf antworten die Stellen mit beschrifteten Proben.'
+KI_SATZ = 'An drei Stellen arbeitet KI mit. Sie läuft über ein Konto, das euch gehört, mit einer Grenze je Monat, die ich einrichte. Fällt die KI weg, arbeitet jede Stelle ohne sie weiter. Im Entwurf antworten die Stellen mit beschrifteten Proben.'
 import rh_werkzeuge as _WK
 KI = [  # Titel, Werkzeug, Satz (dieselben Stellen wie auf der Seite «KI und eure Daten», sb_ki.py; kein Betrag hier, Memory «KI-Kosten nur auf KI-Seite»)
     ('Der Chat für eure Gäste', _WK.NAMEN['reception'], 'Gibt Gästen Auskunft aus euren Seiten und Karten, auch spät in der Nacht. Ausprobieren lässt er sich im Werkzeug für die Gäste.'),
     ('Antwort auf eine Anfrage', _WK.NAMEN['reception'], 'Schreibt zu jeder Frage einen Entwurf im Ton der Bar. Hinaus geht er erst, wenn jemand von euch ihn gelesen hat.'),
-    ('Neue Plakate für einen Abend', _WK.NAMEN['imprimerie'], 'Malt aus der Beschreibung eines Abends drei bis fünf neue Plakate im Stil eurer bisherigen. Ohne KI bleiben eure Vorlagen und der Editor.'),
     ('Eine Markenprüfung', _WK.NAMEN['livre'], 'Legt einen fremden Entwurf neben Farben, Wortmarke und Schriften des Wild Side. Nichts davon wird gespeichert.')]
 
 

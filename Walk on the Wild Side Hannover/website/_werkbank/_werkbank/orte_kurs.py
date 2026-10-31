@@ -16,7 +16,7 @@ def block(art):
 
 
 CSS = """
-/* ---------- «Meine drei Orte» im Kleid des Culinarium (orte_kurs.py, 29.10.2026): Block und Animation aus dem Kit, Farben des Hauses ---------- */
+/* ---------- «Meine drei Orte» im Kleid der Bar (orte_kurs.py, 29.10.2026): Block und Animation aus dem Kit, Farben des Hauses ---------- */
 .karte3.ok{background:var(--navy);color:#fbf5ea;text-align:left;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 0 1px rgba(239,118,73,.26),0 30px 40px -26px rgba(8,7,10,.8)}
 .karte3.ok h3{color:#fbf5ea}
 .karte3.ok p{color:rgba(251,245,234,.76)}
