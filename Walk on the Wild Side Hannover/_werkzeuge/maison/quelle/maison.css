@@ -274,15 +274,16 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 .m-f5{position:relative;display:block;min-height:max(100svh,720px);padding:0;overflow:hidden;background:var(--tief)}
 .m-f5__reihe{position:absolute;inset:0}
 .m-f5__reihe ol{list-style:none;margin:0;padding:0;height:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
-.m-f5__reihe li{min-width:0}
+/* Das Fenster (Link mit Foto) und seine Schrift sind Geschwister im li (Tor, WebKit 1280, 31.10.2026: im Link zählten Foto, Etikett, Name, Stand und Knauf
+   als fünf Zeilen eines «zerfallenen» Textes). Die Schrift liegt über dem Foto, Klicks gehen durch sie hindurch auf den Link; sein Name kommt über aria-labelledby. */
+.m-f5__reihe li{position:relative;min-width:0;animation:m5schweb .8s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i)*100ms)}   /* kurz (Oberchef 29.10.2026): 0,8 s, gestaffelt bis 1,2 s, wartet auf nichts */
 .m-f5__reihe li+li .m-f5__k{border-left:2px solid var(--gold)}   /* Gold-Haarlinie wie der Rahmen des Eckschilds */
-.m-f5__k{position:relative;display:block;height:100%;overflow:hidden;text-decoration:none;color:#fff;background:var(--farbe,var(--dunkel));
-  animation:m5schweb .8s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i)*100ms)}   /* kurz (Oberchef 29.10.2026): 0,8 s, gestaffelt bis 1,2 s, wartet auf nichts */
+.m-f5__k{position:relative;display:block;height:100%;overflow:hidden;text-decoration:none;color:#fff;background:var(--farbe,var(--dunkel))}
 .m-f5__k picture{position:absolute;inset:0}
 .m-f5__k img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity .2s ease}
 .js .m-f5__k img:not(.da){opacity:0}   /* das Foto blendet ein, sobald es geladen ist; davor die Motivfarbe */
 .m-f5__k::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(19,14,13,.92),rgba(19,14,13,.12) 42%,rgba(19,14,13,.24) 60%,rgba(19,14,13,.66) 100%)}
-.m-f5__t{position:absolute;z-index:1;left:clamp(16px,1.8vw,26px);right:clamp(16px,1.8vw,26px);bottom:clamp(28px,4.4vh,44px);
+.m-f5__t{position:absolute;z-index:1;left:clamp(16px,1.8vw,26px);right:clamp(16px,1.8vw,26px);bottom:clamp(28px,4.4vh,44px);color:#fff;pointer-events:none;
   animation:m5auf .7s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(.2s + var(--i)*100ms)}
 .m-f5__w{display:block;font:500 10.5px/1.3 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-h)}
 .m-f5__t b{display:block;margin:8px 0 6px;color:#fff;font:400 clamp(1.5rem,2.1vw,2.15rem)/1.05 var(--titel);letter-spacing:-.01em;text-wrap:balance}
@@ -291,7 +292,7 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 .m-f5__p{display:grid;place-items:center;width:36px;height:36px;margin-top:18px;border-radius:50%;color:var(--tief);background:linear-gradient(180deg,#F1E2BE,var(--gold));
   box-shadow:inset 0 1px 0 rgba(255,246,230,.9),inset 0 -2px 0 rgba(0,0,0,.22),0 6px 12px -6px rgba(0,0,0,.6);transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
 .m-f5__p svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.9}
-@media (hover:hover){.m-f5__k:hover img,.m-f5__k.zeigt img{transform:scale(1.06)}.m-f5__k:hover .m-f5__p,.m-f5__k.zeigt .m-f5__p{transform:translate(2px,-2px) scale(1.06)}}
+@media (hover:hover){.m-f5__k:hover img,.m-f5__k.zeigt img{transform:scale(1.06)}.m-f5__k:hover+.m-f5__t .m-f5__p,.m-f5__k.zeigt+.m-f5__t .m-f5__p{transform:translate(2px,-2px) scale(1.06)}}
 .m-f5__k:focus-visible{outline:2px solid var(--gold-h);outline-offset:-5px}
 .m-f5__oben{position:absolute;z-index:5;left:0;right:0;top:0;padding:clamp(150px,21vh,210px) var(--rand) 120px;text-align:center;color:#fff;pointer-events:none;
   background:radial-gradient(62% 54% at 50% 46%,rgba(19,14,13,.78) 0%,rgba(19,14,13,.52) 46%,rgba(19,14,13,.18) 78%,rgba(19,14,13,0) 100%)}
@@ -301,7 +302,7 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 .m-f5__ort>span{white-space:nowrap}
 .m-f5__wm{display:block;width:clamp(72px,6vw,96px);height:auto;margin:0 auto clamp(16px,2.2vh,24px);color:var(--rot);filter:drop-shadow(0 10px 24px rgba(10,7,6,.75));animation:m5auf .8s cubic-bezier(.16,1,.3,1) both}   /* die Wortmarke der Bar in Rot, wie oben links auf der Website */
 .m-f5 .rw-pkt{color:inherit}
-.m-f5__titel{margin:clamp(18px,2.6vh,30px) 0 0!important;font:400 clamp(3.6rem,8vw,7.6rem)/.92 var(--titel)!important;letter-spacing:-.02em;color:#fff;
+.m-f5__titel{margin:clamp(6px,1.2vh,14px) 0 0!important;font:400 clamp(3.6rem,8vw,7.6rem)/1.16 var(--titel)!important;letter-spacing:-.02em;color:#fff;
   text-shadow:0 0 .12em rgba(10,7,6,.85),0 2px 4px rgba(10,7,6,.9),0 8px 34px rgba(10,7,6,.7);animation:m5auf .8s cubic-bezier(.16,1,.3,1) both .1s}
 .m-f5__gruss{margin-top:clamp(14px,2vh,22px);font:400 clamp(1.1rem,1.4vw,1.35rem)/1.4 var(--lauf);color:rgba(242,233,220,.86);text-wrap:balance;
   text-shadow:0 1px 2px rgba(10,7,6,.95),0 3px 14px rgba(10,7,6,.8);animation:m5auf .8s cubic-bezier(.16,1,.3,1) both .15s}
@@ -327,7 +328,8 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
   .m-f5__reihe{position:relative;inset:auto}
   .m-f5__reihe ol{grid-template-columns:1fr;height:auto}
   .m-f5__reihe li+li .m-f5__k{border-left:0;border-top:2px solid var(--gold)}
-  .m-f5__k{height:150px;animation:none}
+  .m-f5__k{height:150px}
+  .m-f5__reihe li{animation:none}
   .m-f5__k::after{background:linear-gradient(90deg,rgba(19,14,13,.86),rgba(19,14,13,.22) 72%)}
   .m-f5__t{bottom:auto;top:50%;transform:translateY(-50%);animation:none;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:14px;align-items:center}
   .m-f5__t>*{grid-column:1}.m-f5__p{grid-column:2;grid-row:1/4;margin:0}.m-f5__t small{min-height:0}

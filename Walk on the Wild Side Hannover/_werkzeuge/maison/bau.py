@@ -527,12 +527,13 @@ def seite(online, v):
 
     def fenster(i, k):
         f, pos, pos_h = FENSTER[k]; b = BILDER['fenster-' + k + '-900']
-        return (f'<li class="hz-z"><a class="m-f5__k" style="--i:{i};--pos:{pos};--pos-h:{pos_h};--farbe:{FARBE[k]}" href="{e(auf[k] or "#" + k)}" data-taste="{i + 1}">'
+        # Link mit Foto und die Schrift als Geschwister (Tor WebKit 1280, 31.10.2026); der Link heisst wie seine Schrift (aria-labelledby)
+        return (f'<li class="hz-z" style="--i:{i}"><a class="m-f5__k" style="--pos:{pos};--pos-h:{pos_h};--farbe:{FARBE[k]}" href="{e(auf[k] or "#" + k)}" data-taste="{i + 1}" aria-labelledby="f5-{k}">'
                 f'<picture><source media="(max-width:800px)" srcset="img/fenster-{k}-band.webp {BILDER["fenster-" + k + "-band"][0]}w" sizes="100vw">'
                 f'<img src="img/fenster-{k}-900.webp" srcset="img/fenster-{k}-600.webp 600w, img/fenster-{k}-900.webp 900w" sizes="20vw" '
-                f'width="{b[0]}" height="{b[1]}" alt="{e(BILDER_W[f]["alt"])}" decoding="async" fetchpriority="high" onload="this.classList.add(\'da\')"></picture>'
-                f'<span class="m-f5__t"><span class="m-f5__w">{e(ROLLE_K[k])}</span><b>{e(W[k]["name"])}</b><small data-stand="{k}-kurz">{e(KURZ[k])}</small>'
-                f'<i class="m-f5__p" aria-hidden="true">{PF}</i></span></a></li>')
+                f'width="{b[0]}" height="{b[1]}" alt="{e(BILDER_W[f]["alt"])}" decoding="async" fetchpriority="high" onload="this.classList.add(\'da\')"></picture></a>'
+                f'<span class="m-f5__t" id="f5-{k}"><span class="m-f5__w">{e(ROLLE_K[k])}</span><b>{e(W[k]["name"])}</b><small data-stand="{k}-kurz">{e(KURZ[k])}</small>'
+                f'<i class="m-f5__p" aria-hidden="true">{PF}</i></span></li>')
 
     # Empfang wie beim Grand Beau-Rivage: die Fenster, darüber in der Mitte der Kopf (Wortmarke · Bar · Ort, «Der Tresen» gross, Gruss, Datum) und die
     # Zahlenzeile der Besucherliste (Taste 6). Keine «x», getrennt mit «·»; «Beispiel» leise in der Datumszeile.
