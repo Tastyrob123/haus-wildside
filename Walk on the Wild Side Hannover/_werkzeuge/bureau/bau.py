@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fassungsnummern von Le Bureau (Culinarium) aus dem Inhalt setzen (Master Werkzeug-Bau M20: ?v= nie von Hand, nie nach Datum).
+"""Fassungsnummern des Schaufensters (Walk on the Wild Side) aus dem Inhalt setzen (Master Werkzeug-Bau M20: ?v= nie von Hand, nie nach Datum).
    python3 _werkzeuge/bureau/bau.py      nach jeder Änderung an einer Datei, die index.html oder anleitung.html lädt.
 Schreibt nur index.html und anleitung.html dieses Ordners, und nur die Zahl hinter ?v=."""
 import hashlib

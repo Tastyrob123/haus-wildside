@@ -1,4 +1,4 @@
-/* Kurzer Rundgang durch Le Bureau · Culinarium (28.10.2026). Kopie aus Le Bureau des Schäfli (dort aus dem Kartenpult des Schlössli, dem Gasterntal,
+/* Kurzer Rundgang durch das Schaufenster · Walk on the Wild Side (Nachtbau 31.10.2026; Vorlage: Culinarium 28.10.2026, dort Kopie aus Le Bureau des Schäfli (dort aus dem Kartenpult des Schlössli, dem Gasterntal,
    Ruedihus, Doldenhorn, Carlton-Europe; Vorlage assets/js/rundgang.js des Vorbilds). Master Werkzeug-Bau R18, Fehlerbuch 10a:
    Robert 16.10.2026: «einmal ganz kurz zeigen, hier kannst du das machen, da das, damit man weiss, wo man gelandet ist». Erklärt was und wozu, nie die Bedienung.
    Kein Start von selbst: beim ersten Öffnen erscheint unten rechts ein Schild «Kurzer Rundgang», fest über der Leiste (Fehlerbuch 10a, Schlössli 20.10.2026:
@@ -11,17 +11,17 @@
   var IM_SATZ = NAME.replace(/^(Der|Die|Das) /, function (a) { return a.toLowerCase(); });
   var G = { name: NAME, schritte: [
     { ziel: ['#ws-mitte .wo-sb', '#ws-kopf'], titel: 'Das ist ' + IM_SATZ,
-      text: 'Hier pflegst du die Website des Culinariums selbst: jeden Text, jedes Foto, die Zeiten der Bar, Telefon und Adresse, die Texte für Google. Ohne Agentur, ohne Wartezeit.' },
-    { ziel: ['html.wo-rand-auf #ws-rand .wo-rand__g:has([data-ws-nav="e:termine"])', '#ws-rand [data-ws-nav="e:termine"]', '#ws-mitte .wo-aufg > .wo-ag', '#ws-rand'], titel: 'Die nächsten Abende',
-      text: 'Jeder Abend, für den Gäste einen Platz an der Tafel buchen, steht unter «Termine»: Tag, Beginn, Preis und Plätze. Auf der Seite «Der Abend» erscheint er als eigenes Plakat.' },
+      text: 'Hier pflegst du die Website der Bar selbst: jeden Text, jedes Foto, die Öffnungszeiten, Telefon und Adresse, die Texte für Google. Ohne Agentur, ohne Wartezeit.' },
+    { ziel: ['html.wo-rand-auf #ws-rand .wo-rand__g:has([data-ws-nav="e:termine"])', '#ws-rand [data-ws-nav="e:termine"]', '#ws-mitte .wo-aufg > .wo-ag', '#ws-rand'], titel: 'Die DJ-Abende',
+      text: 'Wer samstags an der Bar auflegt, steht unter «DJ-Abende»: Tag, Name und das Plakat des Abends. Daraus hängen Plakatwand und Kontaktbogen auf der Seite «Programm», der neueste liegt als Flyer auf der Startseite.' },
     { ziel: ['#ws-mitte .wo-ber > .wo-bk'], titel: 'Die Website, Bereich für Bereich',
-      text: 'Jede Seite der Website hat hier ihren Platz, von der Startseite bis zu Dirty Chicken. Du änderst direkt auf der Seite, so wie die Gäste sie sehen.' },
+      text: 'Jede Seite der Website hat hier ihren Platz, von der Startseite über Drinks und Feiern bis zum Besuch. Du änderst direkt auf der Seite, so wie die Gäste sie sehen.' },
     { ziel: ['#ws-rand', '[data-wo-rand-knopf]'], titel: 'Einmal ändern, überall richtig',
-      text: 'Telefon, Adresse, die Zeiten der Bar und die Preise stehen auf vielen Seiten. Hier änderst du sie an einer Stelle, und jede Seite stimmt.' },
+      text: 'Telefon, Adresse, die Öffnungszeiten und die Preise stehen auf vielen Seiten. Hier änderst du sie an einer Stelle, und jede Seite stimmt.' },
     { ziel: ['#ws-leiste'], titel: 'Erst Entwurf, dann Website',
       text: 'Was du speicherst, wartet im Entwurf. Auf die Website kommt es erst, wenn du veröffentlichst, und jeder frühere Stand lässt sich zurückholen.' }
   ] };
-  var SCHLUESSEL = 'rundgang-culinarium-bureau';
+  var SCHLUESSEL = 'rundgang-wildside-bureau';
   function gesehen() { try { return localStorage.getItem(SCHLUESSEL) === '1'; } catch (e) { return false; } }
   function merk() { try { localStorage.setItem(SCHLUESSEL, '1'); } catch (e) { } }
 

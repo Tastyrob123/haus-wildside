@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Le Bureau (Website pflegen) · Culinarium Hannover — eigener Server (28.10.2026, nach dem Vorbild des Schäfli). python3 _werkzeuge/bureau/serve.py [port]   (Standard 9082)
+"""Das Schaufenster (Website pflegen, Arbeitsname Le Bureau) · Walk on the Wild Side Hannover — eigener Server (Nachtbau 31.10.2026, Vorlage: Culinarium 28.10.2026). python3 _werkzeuge/bureau/serve.py [port]   (Standard 9082)
 
 Das Werkzeug selbst ist der Schreibtisch des Stamms (~/Desktop/Website-Projekte/_Werkzeuge/werkzeuge/website/, Schicht über den gebauten
-Seiten, Probe-Kopie _probe/culinarium/, Speicher _Werkzeuge/daten/). Dieser Server legt den Rahmen des Hauses darum, wie bei den anderen
-Werkzeugen von Culinarium:
+Seiten, Probe-Kopie _probe/wildside/, Speicher _Werkzeuge/daten/). Dieser Server legt den Rahmen des Hauses darum, wie bei den anderen
+Werkzeugen des Hauses (beim Start legt beschreibung.anlegen() die Beschreibung im Stamm und die Probe-Kopie an, falls sie fehlen):
   /_werkzeuge/bureau/…        Seite des Werkzeugs (index.html, bureau.css) aus diesem Ordner
-  /assets/oberflaeche/…        gemeinsamer Werkzeug-Rahmen des Hauses (_werkzeuge/oberflaeche/, Kleid culinarium)
+  /assets/oberflaeche/…        gemeinsamer Werkzeug-Rahmen des Hauses (_werkzeuge/oberflaeche/, Kleid wildside)
   /assets/…                    Schriften und Fotos der Website (website/assets/, nur gelesen)
-  /_werkzeuge/bureau/api/termine…   Termine der Abende (termine.py): Entwurf, Stand, Verlauf; buchen.js der Probe-Kopie wird mit dem Stand gefüllt
-  /_werkzeuge/bureau/vorschau/…      die Probe-Kopie mit den Terminen des Entwurfs (Vorschau in der Ansicht «Termine»)
+  /_werkzeuge/bureau/api/termine…   DJ-Abende (termine.py): Entwurf, Stand, Verlauf; index.html und programm.html der Probe-Kopie werden mit dem Stand gefüllt
+  /_werkzeuge/bureau/vorschau/…      die Probe-Kopie mit den DJ-Abenden des Entwurfs (Vorschau in der Ansicht «DJ-Abende»)
   alles andere                 wie der Server des Stamms (unterbau/serve.py): /api/…, /stamm/…, /werkzeuge/website/…, /haeuser/…
 Sicherheit (Master Werkzeug-Bau 5.2/5.3, S01–S03): hört nur auf 127.0.0.1, nur Anfragen an diese Adresse (421), schreibende Wege nur von der
 eigenen Seite (403) und nur als JSON, höchstens 3 MB je Anfrage (413), Grenze je Absender und Minute für die Wege des Werkzeugs (429, Retry-After),
@@ -31,7 +31,8 @@ STAMM = Path(os.path.expanduser('~/Desktop/Website-Projekte/_Werkzeuge'))
 sys.path.insert(0, str(STAMM / 'unterbau'))
 import serve as stamm  # noqa: E402  (Server des Stamms: Wege, Speicher, Dateien)
 sys.path.insert(0, str(HIER))
-import termine as T  # noqa: E402  (Termine der Abende, Daten aus website/assets/buchen.js)
+import termine as T  # noqa: E402  (DJ-Abende, Daten aus website/bau.py › LINEUP)
+import beschreibung as B  # noqa: E402  (Beschreibung des Hauses für den Stamm, Probe-Kopie)
 
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get('BUREAU_PORT', '9082'))
 GROSS = 3_000_000
@@ -111,11 +112,11 @@ def fehler_lesen(n=50):
 
 
 class Antwort(stamm.Antwort):
-    server_version = 'Bureau-Culinarium/1'
+    server_version = 'Schaufenster-WildSide/1'
 
     def handle_one_request(self):
         """Leistung (29.10.2026): Antwort erst sammeln, dann Text gepackt senden (wie online, Vercel packt auch) und Schriften sowie Dateien mit ?v=
-        (Fassung aus dem Inhalt) behaltbar machen. Der Server des Stamms bleibt unverändert; nur dieser Rahmen von Culinarium packt."""
+        (Fassung aus dem Inhalt) behaltbar machen. Der Server des Stamms bleibt unverändert; nur dieser Rahmen des Hauses packt."""
         import gzip, io
         echt, puffer = self.wfile, io.BytesIO()
         self.wfile = puffer
@@ -170,9 +171,9 @@ class Antwort(stamm.Antwort):
             return hashlib.sha1(p.read_bytes()).hexdigest()[:10] if p.is_file() else '1'
         ob = OBERFLAECHE
         roh = (STAMM / 'werkzeuge' / 'website' / 'pruefung.html').read_text(encoding='utf-8')
-        roh = roh.replace('<title>Prüfung · Website pflegen</title>', '<title>Prüfung · Website pflegen · Culinarium</title>')
+        roh = roh.replace('<title>Prüfung · Website pflegen</title>', '<title>Prüfung · Website pflegen · Wild Side</title>')
         roh = roh.replace('<link rel="stylesheet" href="/stamm/welt.css">', f'<script src="/assets/oberflaeche/kleid/wildside.js?v={v(ob / "kleid/wildside.js")}"></script>\n<link rel="stylesheet" href="/stamm/welt.css">')
-        roh = roh.replace('<script src="/stamm/welt.js"></script>', '<script src="/stamm/welt.js" data-haus="culinarium"></script>')
+        roh = roh.replace('<script src="/stamm/welt.js"></script>', '<script src="/stamm/welt.js" data-haus="wildside"></script>')
         roh = re.sub(r'(<link rel="stylesheet" href="pruefung\.css\?v=[^"]*">)', lambda m: m.group(1) + f'\n<link rel="stylesheet" href="/assets/oberflaeche/grund.css?v={v(ob / "grund.css")}"><link rel="stylesheet" href="/assets/oberflaeche/kleid/wildside.css?v={v(ob / "kleid/wildside.css")}">'
                      f'\n<link rel="stylesheet" href="/_werkzeuge/bureau/bureau.css?v={v(HIER / "bureau.css")}"><link rel="stylesheet" href="/_werkzeuge/bureau/pruefung-haus.css?v={v(HIER / "pruefung-haus.css")}">', roh, 1)
         roh = roh.replace('<button data-welt-knopf></button>', '')
@@ -185,8 +186,19 @@ class Antwort(stamm.Antwort):
         self.end_headers()
         self.wfile.write(daten)
 
+    def _pruefskript(self):
+        """pruefung.js des Stamms mit dem Du der Bar (die Datei des Stamms kennt nur das Culinarium als Haus, das duzt)."""
+        roh = (STAMM / 'werkzeuge' / 'website' / 'pruefung.js').read_text(encoding='utf-8')
+        roh = roh.replace("const DU = ['culinarium'].includes(HAUS)", "const DU = ['culinarium', 'wildside'].includes(HAUS)").encode('utf-8')
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/javascript; charset=utf-8')
+        self.send_header('Content-Length', str(len(roh)))
+        self.send_header('Cache-Control', 'no-store')
+        self.end_headers()
+        self.wfile.write(roh)
+
     def _termine(self, methode, weg):
-        """Termine der Abende (termine.py). GET: Lage · GET pruefung · POST speichern / veroeffentlichen / verwerfen / zurueckholen."""
+        """DJ-Abende (termine.py). GET: Lage · GET pruefung · POST speichern / veroeffentlichen / verwerfen / zurueckholen."""
         import json
         try:
             if methode == 'GET' and weg == '':
@@ -212,9 +224,9 @@ class Antwort(stamm.Antwort):
 
     def _ueberblick(self):
         """Stand-Weg für La Maison (Master 4.1): {aenderungen, zuletzt:{zeit}, bereiche, seiten}. Texte und Fotos aus dem Stamm
-        (/api/x/website/ueberblick/culinarium), dazu die Termine: was im Entwurf wartet, zählt mit; zuletzt ist die jüngste Veröffentlichung von beidem."""
+        (/api/x/website/ueberblick/wildside), dazu die DJ-Abende: was im Entwurf wartet, zählt mit; zuletzt ist die jüngste Veröffentlichung von beidem."""
         try:
-            status, s = stamm._werkzeug_api('website').bearbeite('GET', ['ueberblick', 'culinarium'], {}, stamm.speicher)
+            status, s = stamm._werkzeug_api('website').bearbeite('GET', ['ueberblick', 'wildside'], {}, stamm.speicher)
         except Exception as e:   # noqa: BLE001  (der Stand-Weg antwortet immer, die Zentrale zeigt dann «antwortet nicht» nicht fälschlich)
             status, s = 500, {'fehler': str(e)[:200], 'stichwort': 'unerwartet'}
         if status != 200:
@@ -225,23 +237,23 @@ class Antwort(stamm.Antwort):
             s = dict(s, aenderungen=int(s.get('aenderungen') or 0) + n, termine={'wartet': n, 'zahl': len(l['entwurf'] if l['entwurf'] is not None else l['stand'])})
             z = (l.get('zuletzt') or {}).get('zeit')
             if z and z > ((s.get('zuletzt') or {}).get('zeit') or ''):
-                s['zuletzt'] = {'zeit': z, 'was': 'Termine'}
+                s['zuletzt'] = {'zeit': z, 'was': 'DJ-Abende'}
         except T.Fehler as e:
             s = dict(s, termine={'fehler': e.text, 'stichwort': e.stichwort})
         return self._json(200, s)
 
     def _probe_datei(self, teil, rest, termine, ordner='_probe'):
-        """Eine Datei der Probe-Kopie; buchen.js gefüllt mit den Terminen des Stands oder des Entwurfs. Pfad nie ausserhalb der Kopie."""
-        wurzel = (Path(os.environ.get('WEBSITE_PROBE') or STAMM / 'werkzeuge' / 'website' / ordner) / 'culinarium' / teil).resolve()
+        """Eine Datei der Probe-Kopie; index.html und programm.html gefüllt mit den DJ-Abenden des Stands oder des Entwurfs. Pfad nie ausserhalb der Kopie."""
+        wurzel = (Path(os.environ.get('WEBSITE_PROBE') or STAMM / 'werkzeuge' / 'website' / ordner) / 'wildside' / teil).resolve()
         ziel = (wurzel / rest).resolve()
         if wurzel not in ziel.parents or not ziel.is_file() or ziel.suffix.lower() not in ENDUNG_OK | {'.mp4', '.woff'} or any(t.startswith('.') for t in Path(rest).parts):
             return self._json(404, {'fehler': 'Nicht gefunden', 'stichwort': 'nicht-gefunden'})
         roh = ziel.read_bytes()
-        if rest == 'assets/buchen.js':
+        if rest in ('index.html', 'programm.html'):
             try:
-                roh = T.ausliefern(roh.decode('utf-8'), termine).encode('utf-8')
+                roh = T.ausliefern(roh.decode('utf-8'), rest, termine).encode('utf-8')
             except T.Fehler:
-                pass   # Quelle unlesbar: die Datei, wie sie ist (die Website zeigt dann ihre eigenen Termine), die Prüfung meldet es
+                pass   # Quelle oder Stelle unlesbar: die Seite, wie sie ist (sie zeigt dann ihre gebauten DJ-Abende), die Prüfung meldet es
         self.send_response(200)
         self.send_header('Content-Type', stamm.mimetypes.guess_type(ziel.name)[0] or 'application/octet-stream')
         self.send_header('Content-Length', str(len(roh)))
@@ -300,13 +312,15 @@ class Antwort(stamm.Antwort):
             return self._termine(methode, pfad[len('/_werkzeuge/bureau/api/termine'):].strip('/'))
         if methode == 'GET' and pfad.startswith('/_werkzeuge/bureau/vorschau/'):
             return self._probe_datei('online', pfad[len('/_werkzeuge/bureau/vorschau/'):] or 'index.html', 'entwurf')
-        m = re.fullmatch(r'/werkzeuge/website/(_probe[\w-]*)/culinarium/online/(assets/buchen\.js)', pfad) if methode == 'GET' else None
-        if m:   # veröffentlichte Termine: buchen.js der Probe-Kopie wird beim Ausliefern mit dem Stand gefüllt (termine.py)
+        m = re.fullmatch(r'/werkzeuge/website/(_probe[\w-]*)/wildside/online/((?:index|programm)\.html)', pfad) if methode == 'GET' else None
+        if m:   # veröffentlichte DJ-Abende: die beiden Seiten der Probe-Kopie werden beim Ausliefern mit dem Stand gefüllt (termine.py)
             return self._probe_datei('online', m.group(2), 'stand', m.group(1))
         if methode == 'GET' and pfad == '/_werkzeuge/bureau/api/fehler':
             return self._json(200, {'fehler': fehler_lesen()})
         if methode == 'GET' and pfad == '/werkzeuge/website/pruefung.html':
             return self._pruefseite()
+        if methode == 'GET' and pfad == '/werkzeuge/website/pruefung.js':
+            return self._pruefskript()
         if methode == 'GET':
             if pfad in ('/', '/_werkzeuge/bureau'):
                 self.send_response(301)
@@ -327,15 +341,37 @@ class Antwort(stamm.Antwort):
                 return
             if pfad.startswith('/assets/oberflaeche/'):
                 return self._datei(OBERFLAECHE, pfad[len('/assets/oberflaeche/'):])
+            m = re.fullmatch(r'/assets/bild/([\w-]+)-(\d+)\.webp', pfad)
+            if m and not (ASSETS / 'bild' / f'{m.group(1)}-{m.group(2)}.webp').is_file():
+                # Das Startbild des gemeinsamen Rahmens fragt die Grössen 640/1000 (Culinarium); die Website der Bar hat 480/960/1536/2400:
+                # die nächstgrössere vorhandene Stufe desselben Fotos (sonst die grösste), nie ein anderes Foto
+                stufen = sorted((int(q.stem.rsplit('-', 1)[1]), q.name) for q in (ASSETS / 'bild').glob(f'{m.group(1)}-*.webp') if q.stem.rsplit('-', 1)[1].isdigit() and q.stem.rsplit('-', 1)[0] == m.group(1))
+                if stufen:
+                    return self._datei(ASSETS / 'bild', next((n for w, n in stufen if w >= int(m.group(2))), stufen[-1][1]))
             if pfad.startswith('/assets/'):
                 return self._datei(ASSETS, pfad[len('/assets/'):])
-            m = re.fullmatch(r'/werkzeuge/website/(_probe[\w-]*)/culinarium/(grundlage|online)/assets/daten/([\w-]+\.json)', pfad)
+            m = re.fullmatch(r'/werkzeuge/website/(_probe[\w-]*)/wildside/(grundlage|online)/assets/daten/([\w-]+\.json)', pfad)
             if m:   # Weindaten der Seiten (assets/daten/wein*.json): der Stamm sperrt jeden Pfad mit «daten» (Schutz seines Speichers), Weinkarte und Weinwelt blieben in der Vorschau leer (Demo-Check 21.10.2026)
-                return self._datei(STAMM / 'werkzeuge' / 'website' / m.group(1) / 'culinarium' / m.group(2) / 'assets' / 'daten', m.group(3))
+                return self._datei(STAMM / 'werkzeuge' / 'website' / m.group(1) / 'wildside' / m.group(2) / 'assets' / 'daten', m.group(3))
         return super()._bedien(methode)
 
 
+def _du():
+    """Die Bar duzt ihr Team (WO_HAUS.anrede = 'du'): Meldungen des Stamm-Servers ebenso (api.py › DU_HAEUSER), ohne die Datei des Stamms zu ändern."""
+    try:
+        m = stamm._werkzeug_api('website')
+        if isinstance(getattr(m, 'DU_HAEUSER', None), set):
+            m.DU_HAEUSER.add(B.HAUS)
+    except Exception as e:   # noqa: BLE001  (ohne Du bleibt das Werkzeug benutzbar)
+        print('Anrede: Stamm nicht geladen,', e)
+
+
 if __name__ == '__main__':
+    try:
+        print('\n'.join(B.anlegen()))   # Beschreibung im Stamm und Probe-Kopie, auch auf einem frischen Rechner (GitHub Actions)
+    except SystemExit as e:
+        print('Beschreibung nicht geschrieben:', e)
     os.chdir(STAMM)
-    print(f'Le Bureau (Culinarium) auf http://127.0.0.1:{PORT}/_werkzeuge/bureau/')
+    _du()
+    print(f'Das Schaufenster (Wild Side) auf http://127.0.0.1:{PORT}/_werkzeuge/bureau/')
     ThreadingHTTPServer(('127.0.0.1', PORT), Antwort).serve_forever()

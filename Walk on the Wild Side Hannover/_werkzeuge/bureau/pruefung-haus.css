@@ -1,4 +1,4 @@
-/* pruefung-haus.css · Prüfseite des Stamms im Kleid von Culinarium (28.10.2026, aus dem Vorbild Schäfli). Werte nur aus kleid/wildside.css;
+/* pruefung-haus.css · Prüfseite des Stamms im Kleid von Walk on the Wild Side (31.10.2026; Vorlage Culinarium, aus dem Vorbild Schäfli). Werte nur aus kleid/wildside.css;
    hier Grund, Kopf und Schrift der Seite, damit sie aussieht wie das Werkzeug des Hauses und nicht wie der Stamm. */
 body.wsp{margin:0;background-color:var(--wo-papier);background-image:none;color:var(--wo-tinte);font:15px/1.55 var(--wo-sans);-webkit-font-smoothing:antialiased}
 .wsp-kopf{background:var(--wo-tapete);color:#fff;border-bottom:1px solid var(--wo-linie-d)}

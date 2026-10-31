@@ -1,4 +1,4 @@
-/* Le Bureau · Culinarium: Kopie von schweben.js aus Le Bureau des Schäfli (28.10.2026; dort aus dem Schlössli, dort aus La Carte des Hauses, ursprünglich studio/schweben.js des Vorbilds). */
+/* Das Schaufenster · Walk on the Wild Side: Kopie von schweben.js aus dem Culinarium (31.10.2026; dort aus Le Bureau des Schäfli 28.10.2026, dort aus dem Schlössli, dort aus La Carte des Hauses, ursprünglich studio/schweben.js des Vorbilds). */
 /* Schweben für die Werkzeuge (Gefühl der Carlton-Seiten, wie in Le Registre). Gehört zu schweben.css.
    Einbinden am Ende der Seite: <script src="../studio/schweben.js" data-wurzel="#ansicht" data-blaetter="…" data-kacheln="…" data-zeilen="…" data-zahlen="…"></script>
    blaetter: einzelne Blätter, kacheln: Reihen von Kacheln (Staffel), zeilen: viele gleiche Zeilen (nur einblenden), zahlen: grosse Zahlen (Zoom).
