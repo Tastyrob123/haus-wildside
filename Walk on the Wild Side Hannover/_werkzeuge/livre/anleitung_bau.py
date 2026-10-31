@@ -52,7 +52,7 @@ THEMEN = [
     '«Als Text kopieren» gibt dir die Rückmeldung für die Mail an die Agentur. «Ergebnis sichern» legt sie als Datei auf deinen Rechner, nur wenn du es willst.'],
    'Das Beispiel ist eigens gezeichnet. Die Farben darin sind wirklich gemessen; die Urteile zu Schrift, Zeichen, Bild und Ton sind ein Beispiel, so wie die Prüfung antwortet.')]),
  ('Nachschlagen', 'Die Hausregeln', [
-  ('k09', 'Hausregeln', 'In den Hausregeln nachschlagen.', 'Die Hausregeln erklären Blatt für Blatt, wie die Bar aussieht: Haltung, Zeichen, Farben, die DJ-Abende, Schrift, das Eckschild als Form, Bilder, Gegenstände, Ton und die Nachbarn im Haus.',
+  ('k09', 'Hausregeln', 'In den Hausregeln lesen.', 'Die Hausregeln erklären Blatt für Blatt, wie die Bar aussieht: Haltung, Zeichen, Farben, die DJ-Abende, Schrift, das Eckschild als Form, Bilder, Gegenstände, Ton und die Nachbarn im Haus.',
    ['Links «Die Hausregeln» oder auf der Übersicht «Die Hausregeln» drücken.', 'Oben in den Hausregeln springst du zu jedem Blatt. «Als PDF sichern» legt sie als PDF ab.'],
    'Die Markenprüfung prüft nach denselben Regeln. Ändert sich etwas an der Marke, wird beides zusammen neu gebaut.')])]
 
