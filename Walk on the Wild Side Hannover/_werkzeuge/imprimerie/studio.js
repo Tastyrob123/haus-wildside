@@ -621,20 +621,20 @@
       box.appendChild(b);
     }
   }
-  const GRUPPEN = ["Eigene Fotos", "Plakat-Motive", "Plakate", "Der Abend & die Tafel", "Teller & Küche", "Drinks & Bar", "Die Leute", "Linden & das Haus", "Dirty Chicken"];
+  const GRUPPEN = ["Eigene Fotos", "Plakate", "Plakat-Grund", "Schwarzweiss", "Drinks & Bar", "Die Leute", "Raum & Decke", "Musik & Feste", "Die lange Tafel", "Linden & die Ecke"];
   const lageVon = b => b.w > b.h * 1.1 ? 'quer' : b.h > b.w * 1.1 ? 'hoch' : 'quadrat';
   function fotoListe() {
     const q = $('#fotoSuche').value.trim().toLowerCase();
     const W = q.split(/\s+/).filter(Boolean), g = ST.fotoGruppe || 'alle', lage = ST.fotoLage || 'alle';
     const T = DS.LIVRE_TEXT, mehr = b => b.saison ? ' ' + T.s[b.saison] + ' ' + T.h[b.herkunft] + (b.ki ? ' ki' : '') : '';
-    return ST.M.bilder.filter(b => (g === 'alle' ? b.bereich !== 'motive' : b.gruppe === g) && (lage === 'alle' || lageVon(b) === lage || (lage === 'hoch' && lageVon(b) === 'quadrat'))
+    return ST.M.bilder.filter(b => (g === 'alle' ? b.gruppe !== 'Plakat-Grund' : b.gruppe === g) && (lage === 'alle' || lageVon(b) === lage || (lage === 'hoch' && lageVon(b) === 'quadrat'))
       && (!W.length || W.every(w => (b.alt + ' ' + b.key + ' ' + (b.gruppe || '') + mehr(b)).toLowerCase().includes(w))));
   }
   function fotoHinweis(n) { return `${n} ${n === 1 ? 'Foto' : 'Fotos'}. ` + (ST.sel && elById(ST.sel)?.typ === 'bild' ? 'Ein Klick tauscht das gewählte Foto.' : 'Ein Klick legt das Foto aufs Blatt.'); }
   function zeichneFotos() {
     const zahl = {}; ST.M.bilder.forEach(b => zahl[b.gruppe] = (zahl[b.gruppe] || 0) + 1);
     const g = ST.fotoGruppe || 'alle';
-    $('#fotoFilter').innerHTML = `<button data-gruppe="alle" class="${g === 'alle' ? 'an' : ''}">Alle Fotos<i>${ST.M.bilder.filter(b => b.bereich !== 'motive').length}</i></button>` +
+    $('#fotoFilter').innerHTML = `<button data-gruppe="alle" class="${g === 'alle' ? 'an' : ''}">Alle Fotos<i>${ST.M.bilder.filter(b => b.gruppe !== 'Plakat-Grund').length}</i></button>` +
       (ST.M.livre ? [DS.eigene.GRUPPE, ...Object.values(DS.LIVRE_TEXT.b), 'Neue Vorschläge'] : [...GRUPPEN, 'Neue Vorschläge']).filter(x => zahl[x]).map(x => `<button data-gruppe="${esc(x)}" class="${g === x ? 'an' : ''}">${esc(x)}<i>${zahl[x]}</i></button>`).join('');
     $$('#fotoLage button').forEach(b => b.classList.toggle('an', b.dataset.lage === (ST.fotoLage || 'alle')));
     const l = fotoListe();
@@ -745,14 +745,14 @@
 
   /* ---------- Entwerfen über die KI ---------- */
   const IDEEN = [
-    'Plakat für den nächsten Abend, vorne die Illustration, hinten die Daten',
-    'Menükarte am Tisch: Gang, Teller und Drink, schmal',
-    'Plakat A3 für die Wand neben der Bar',
-    'Instagram-Beitrag: der Abend ist ausgebucht',
-    'Platzkarten mit Namen für die Tafel',
-    'Story: was Fett, Milch und Enzyme mit einem Drink machen',
-    'Aushang: die lange Tafel ist heute reserviert, A4',
-    'Flyer für das Pop-up Dirty Chicken',
+    'SESSION-Plakat für den nächsten DJ-Abend, Samstag 21 bis 1 Uhr',
+    'Getränkekarte mit vier Drinks, schmal',
+    'Plakat A3: Live am Donnerstag',
+    'Instagram-Beitrag: heute geschlossene Gesellschaft',
+    'Tischkarte «Reserviert» für die Empore',
+    'Story: was Milk Washing, Fat Washing und Enzyme mit einem Drink machen',
+    'Aushang: Öffnungszeiten der Bar, A4',
+    'Flyer: Feiern im Wild Side',
   ];
   async function entwerfen(o = {}) {
     if (o instanceof Event) o = {};
@@ -828,7 +828,7 @@
       <div class="dna__farben">${Object.entries(M.farben).map(([k, v]) => `<div><span style="background:${v}"></span>${esc(M.farbnamen[k])}<br>${v}</div>`).join('')}</div>
       ${Object.entries(M.schriften).map(([k, s]) => `<div class="dna__schrift" style="font-family:'DS-${k}';font-size:${k === 'titel' ? 22 : k === 'mono' ? 12 : 15}px;${k === 'mono' || k === 'kapitale' ? 'text-transform:uppercase;letter-spacing:.16em' : ''}">${esc(M.name)}<small style="font-family:'DS-text';text-transform:none;letter-spacing:0">${esc(s.familie)} · ${esc(s.wofuer)}</small></div>`).join('')}
       <ul>${M.regeln.map(r => DS.regelSichtbar(r)).filter(Boolean).map(r => `<li>${esc(r)}</li>`).join('')}</ul>
-      <p class="klein">${M.bilder.length} Fotos des Hauses mit Beschreibung, dazu der Wortlaut der Website und der Unterlagen (Karten, Treatment-Menü, Veranstaltungen).</p>`;
+      <p class="klein">${M.bilder.length} Fotos des Hauses mit Beschreibung, dazu der Wortlaut der Website, der Plakate und der Angebotsmappe der Bar.</p>`;
   }
 
   /* ---------- Speichern als Datei ---------- */

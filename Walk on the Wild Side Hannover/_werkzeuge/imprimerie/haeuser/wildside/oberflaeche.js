@@ -10,9 +10,9 @@
   var BASIS = 'haeuser/wildside/kopf/';
   /* Kopf-Fotos mit 800er-Fassung (kopf/<name>-800.webp) und Breite des Originals: das Foto steht bei 1440 rund 660, bei 1000 rund 385, am Handy rund 265 px breit,
      die 800er reicht dort; ab rund 1700 px Fensterbreite oder bei doppelter Dichte nimmt der Browser das Original (30.10.2026, Oberchef) */
-  var B800 = { barnacht: 900, barneg: 960, fassade: 960, flur: 900, kartglas: 960, kerze2: 900, klaeren: 900, kueche: 960, lauch: 1200, loch: 900, pass: 1200, schildnacht: 900, tafelleer: 960, theke: 900, trio2: 1200 };
-  var FOTO = { msAbend: 'kerze2', msMotive: 'tafelleer', msEvents: 'anstossen', msAbteilungen: 'tafelleer', msHinweise: 'flur', msNewsletter: 'kerze2', msFotos: 'pass', msMarke: 'schildnacht',
-    msLivre: 'barneg', msMeine: 'theke', msFreigegeben: 'kartglas', msNeu: 'glas' };
+  var B800 = { 'an-empore-tafel': 960, 'decke-raum': 900, fenster: 895, flaschen: 900, 'glas-coupe': 900, 'glas-kerze': 900, 'konzert-love': 961, 'momo-giesst': 900, negroni: 900, rueckbar: 900, 'saengerin-kunde': 960, schild: 900, 'schild-ecke': 900, theke: 900, 'tuer-rot': 900, voll: 900 };
+  var FOTO = { msAbend: 'saengerin-kunde', msMotive: 'konzert-love', msEvents: 'voll', msAbteilungen: 'decke-raum', msHinweise: 'tuer-rot', msNewsletter: 'glas-kerze', msFotos: 'momo-giesst', msMarke: 'negroni',
+    msLivre: 'decke-bar', msMeine: 'theke', msFreigegeben: 'rueckbar', msNeu: 'glas-coupe' };
   var WEBSITE = location.port === '9087' ? 'http://127.0.0.1:' + ((window.WO_HAUS && WO_HAUS.ports && WO_HAUS.ports.website_lokal) || 8766) + '/' : '/';
   var MARKE = function () { return WO.zeichen() + '<span><b>' + WO.esc(WO.name('druck')) + '</b><small>Drucksachen · ' + WO.esc(WO.haus.name) + '</small></span>'; };
 

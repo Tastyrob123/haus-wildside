@@ -4,11 +4,11 @@
    Gleiche Sprache wie Grand Beau-Rivage/website/studio/hell.css. Nur für dieses Haus geladen (index.html, HAUS_STIL),
    nach studio.css und ms-bureau.css; entfernen = vorheriger Stand (Raum Marine). Bühne und Maison-Knopf setzt haeuser/wildside/buehne.js. */
 :root{
-  --raum:#f2e7e7;
-  --platte:linear-gradient(180deg,#fdfbfb,#f8f2f2 60%,#f3e9e9);
-  --platte-s:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(122,92,36,.22),0 1px 0 rgba(142,73,48,.14),0 28px 50px -34px rgba(28,21,19,.38),0 10px 22px -16px rgba(28,21,19,.2);
+  --raum:#f2ede7;
+  --platte:linear-gradient(180deg,#fdfcfb,#f8f5f2 60%,#f3efe9);
+  --platte-s:inset 0 1px 0 #fff,inset 0 0 0 1px rgba(122,92,36,.22),0 1px 0 rgba(142,111,48,.14),0 28px 50px -34px rgba(28,21,19,.38),0 10px 22px -16px rgba(28,21,19,.2);
   --mb-platte:var(--platte);--mb-platte-s:var(--platte-s);
-  --blau-k:radial-gradient(120% 90% at 50% 0%,rgba(216,178,100,.26),transparent 58%),linear-gradient(165deg,#413e52 0%,#131217 46%,#130e0d 100%);
+  --blau-k:radial-gradient(120% 90% at 50% 0%,rgba(216,178,100,.26),transparent 58%),linear-gradient(165deg,#52433e 0%,#130e0d 46%,#130e0d 100%);
   --blau-s:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(228,200,138,.42),inset 0 -3px 0 rgba(0,0,0,.35),0 2px 2px rgba(19,14,13,.12),0 28px 40px -24px rgba(19,14,13,.6);
   --bue-grund:radial-gradient(90% 120% at 0% 0%,rgba(216,178,100,.18),transparent 55%),linear-gradient(rgba(28,21,19,.6),rgba(28,21,19,.6)),url('tapete-ui-dunkel.webp') 0 0/224px auto,#1c1513;
   --bue-s:inset 0 1px 0 rgba(255,255,255,.16),0 0 0 1px rgba(228,200,138,.45),0 36px 60px -36px rgba(28,21,19,.75),0 12px 24px -16px rgba(28,21,19,.35)}
@@ -23,7 +23,7 @@ body{background:var(--raum)}
 /* Editor: Arbeitsfläche als blaue Tafel, Platten links und rechts weiss */
 .flaeche{background:var(--bue-grund);box-shadow:var(--bue-s);transition:box-shadow .5s}
 /* Dunkles Dokument auf heller Fläche, helles auf blauer (buehne.js, grundPruefen) */
-.flaeche.flaeche--hell{background:radial-gradient(90% 70% at 50% 0%,#fefcfc,rgba(254,252,252,0) 70%),linear-gradient(rgba(243,233,233,.86),rgba(243,233,233,.86)),url('tapete-ui-hell.webp') 0 0/224px auto,#f0e1e1;
+.flaeche.flaeche--hell{background:radial-gradient(90% 70% at 50% 0%,#fefcfc,rgba(255,251,245,0) 70%),linear-gradient(rgba(242,233,220,.86),rgba(242,233,220,.86)),url('tapete-ui-hell.webp') 0 0/224px auto,#f0eae1;
   box-shadow:inset 0 2px 8px rgba(28,21,19,.08),inset 0 0 0 1px rgba(122,92,36,.3),0 1px 0 #fff}
 
 /* Newsletter-Baukasten (mail.html): Raum hell */
@@ -31,7 +31,7 @@ body{background:var(--raum)}
 
 /* ---------- Bühne: Kopf jeder Ansicht ---------- */
 .ms-bue{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;
-  margin:0 0 42px;padding:clamp(34px,3.8vw,58px) clamp(28px,3.6vw,58px);min-height:clamp(250px,23vw,340px);border-radius:28px;color:#f4ebeb;
+  margin:0 0 42px;padding:clamp(34px,3.8vw,58px) clamp(28px,3.6vw,58px);min-height:clamp(250px,23vw,340px);border-radius:28px;color:#f2e9dc;
   background:var(--bue-grund);box-shadow:var(--bue-s)}
 .ms-bue::before{content:'';position:absolute;inset:8px;border-radius:21px;border:1px solid rgba(228,200,138,.34);pointer-events:none;z-index:2;animation:bueRahmen 1.4s var(--e1) .25s both}
 .ms-bue__foto{position:absolute;top:0;right:0;bottom:0;width:min(58%,820px);z-index:-1;pointer-events:none;
@@ -40,8 +40,8 @@ body{background:var(--raum)}
 .ms-bue__foto.da img{opacity:1;transform:none}
 .ms-bue__foto::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(19,14,13,.5),transparent 48%),linear-gradient(90deg,rgba(28,21,19,.3),transparent 60%)}
 .ms-bue>:not(.ms-bue__foto){position:relative;z-index:1;max-width:min(60%,720px);animation:bueAuf .9s var(--e1) both}
-#start .ms-bue h1,.start.ms .ms-bue.ms-titel h1,.ms-bue .kd__text h1{margin:0;text-align:left;font:500 clamp(42px,4.3vw,70px)/1.02 var(--serif);color:#f4ebeb;text-shadow:0 2px 26px rgba(0,0,0,.4)}
-.ms-bue p,.ms-bue .ms-leise,.ms-bue .start__satz,#start .ms-bue .start__satz{margin:16px 0 0;max-width:58ch;font-size:16px;line-height:1.6;color:rgba(244,235,235,.84);text-shadow:0 1px 14px rgba(0,0,0,.45);text-align:left}
+#start .ms-bue h1,.start.ms .ms-bue.ms-titel h1,.ms-bue .kd__text h1{margin:0;text-align:left;font:500 clamp(42px,4.3vw,70px)/1.02 var(--serif);color:#f2e9dc;text-shadow:0 2px 26px rgba(0,0,0,.4)}
+.ms-bue p,.ms-bue .ms-leise,.ms-bue .start__satz,#start .ms-bue .start__satz{margin:16px 0 0;max-width:58ch;font-size:16px;line-height:1.6;color:rgba(242,233,220,.84);text-shadow:0 1px 14px rgba(0,0,0,.45);text-align:left}
 @keyframes bueAuf{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes bueRahmen{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
 /* Goldlinie über dem Titel */
@@ -63,7 +63,7 @@ body{background:var(--raum)}
 /* Arten und Vorlagen: Kopf als Tafel, Text links */
 .ms-bue>.start__direkt{max-width:72%!important}
 .ms-tafel.ms-bue .start__direkt{width:min(820px,100%);margin:28px 0 0;box-shadow:0 0 0 1px rgba(228,200,138,.5),0 20px 34px -18px rgba(0,0,0,.7)}
-.ms-tafel.ms-bue .start__fehler{color:#f3c9c3}
+.ms-tafel.ms-bue .start__fehler{color:#f1e2c5}
 #msNeu .ms-tafel{margin-bottom:34px}
 
 /* Vorlagen einer Art: Kopf als Tafel, Format rechts unten auf der Tafel */
@@ -78,7 +78,7 @@ body{background:var(--raum)}
 .kd.ms-bue .kd__wo{color:var(--gold)}
 .kd.ms-bue .kd__zahl{border-top-color:rgba(228,200,138,.3)}
 .kd.ms-bue .kd__zahl b{color:var(--gold)}
-.kd.ms-bue .kd__zahl span{color:rgba(244,235,235,.74)}
+.kd.ms-bue .kd__zahl span{color:rgba(242,233,220,.74)}
 .kd.ms-bue .ms-feld{box-shadow:0 0 0 1px rgba(228,200,138,.5),0 20px 34px -18px rgba(0,0,0,.7)}
 
 /* ---------- Kacheln: blau mit Tiefe (Anlässe, Abteilungen, Newsletter) ---------- */
@@ -86,21 +86,21 @@ body{background:var(--raum)}
 .ms-wochen .wo__k{border-radius:19px}
 .ms-wochen .wo__k::after{inset:8px;border-radius:13px}
 .ms-wochen .wo__n{margin:14px 8px 0 10px}
-.ms-wochen .wo__n b{color:#f4ebeb}
+.ms-wochen .wo__n b{color:#f2e9dc}
 .ms-wochen .wo__n small{color:var(--gold)}
-.ms-wochen .wo__n i{color:#1c1513;background:linear-gradient(180deg,#e7d1d1,#cd8368);box-shadow:inset 0 1px 0 #f8f0f0,inset 0 -2px 0 rgba(53,51,65,.4),0 10px 18px -10px rgba(0,0,0,.6)}
+.ms-wochen .wo__n i{color:#1c1513;background:linear-gradient(180deg,#e7ddd1,#cdab68);box-shadow:inset 0 1px 0 #f8f5f0,inset 0 -2px 0 rgba(58,46,40,.4),0 10px 18px -10px rgba(0,0,0,.6)}
 @media (hover:hover){.ms-wochen .wo:hover{transform:translateY(-4px)}}
 a.wo{text-decoration:none}
 
 /* ---------- Seitenleiste: Übersicht grösser abgesetzt, Einträge reagieren beim Überfahren (Robert 15.10.2026, wie in allen Werkzeugen des Hauses) ---------- */
 /* «Übersicht» immer blau, gewählt mit Goldkante (Robert 15.10.2026, wie in allen Werkzeugen) */
-.start.ms .ms-nav>button[data-ansicht="start"]{height:52px;margin-bottom:8px;padding:0 14px;font-size:20px;border-radius:15px;color:#f4ebeb;background:linear-gradient(180deg,#5f4e53,#131217 55%,#1e1c26);box-shadow:inset 0 1px 0 rgba(255,251,245,.3),inset 0 0 0 1px rgba(228,200,138,.45),0 12px 20px -12px rgba(19,14,13,.7)}
-.start.ms .ms-nav>button[data-ansicht="start"] svg{color:#e5cdcd}
+.start.ms .ms-nav>button[data-ansicht="start"]{height:52px;margin-bottom:8px;padding:0 14px;font-size:20px;border-radius:15px;color:#f2e9dc;background:linear-gradient(180deg,#5e524a,#130e0d 55%,#261e1c);box-shadow:inset 0 1px 0 rgba(255,251,245,.3),inset 0 0 0 1px rgba(228,200,138,.45),0 12px 20px -12px rgba(19,14,13,.7)}
+.start.ms .ms-nav>button[data-ansicht="start"] svg{color:#e5daca}
 .start.ms .ms-nav>button[data-ansicht="start"].an{box-shadow:inset 0 1px 0 rgba(255,251,245,.3),inset 0 0 0 1.5px var(--gold),0 12px 20px -12px rgba(19,14,13,.7)}
 .start.ms .ms-gleiter{border-radius:13px}
 .start.ms .ms-nav button,.start.ms .ms-fuss button{transition:background .35s,box-shadow .35s,transform .45s var(--e2),color .3s}
-@media (hover:hover){.start.ms .ms-nav button:hover:not(.an),.start.ms .ms-fuss button:hover{transform:translateX(5px);background:rgba(196,109,78,.12);color:var(--navy)}
-  .start.ms .ms-nav>button[data-ansicht="start"]:hover:not(.an){color:#f4ebeb;background:linear-gradient(180deg,#534f68,#363444 55%,#22202a)}}
+@media (hover:hover){.start.ms .ms-nav button:hover:not(.an),.start.ms .ms-fuss button:hover{transform:translateX(5px);background:rgba(196,157,78,.12);color:var(--navy)}
+  .start.ms .ms-nav>button[data-ansicht="start"]:hover:not(.an){color:#f2e9dc;background:linear-gradient(180deg,#68554f,#443834 55%,#2a2220)}}
 
 /* ---------- Kopfzeile: zurück zu La Maison (im Editor etwas enger, damit der Name ganz bleibt) ---------- */
 .kopf{gap:16px}.kopf__werk{gap:8px}
@@ -120,7 +120,7 @@ a.wo{text-decoration:none}
 }
 @media (prefers-reduced-motion:reduce){.ms-bue::before,.ms-bue>*{animation:none!important}.ms-bue__foto img{transition:none}}
 /* Anlässe je Monat: Satz der breiten Kachel auf Blau */
-.ms-wochen .wo--breit .wo__satz{color:rgba(244,235,235,.76)}
+.ms-wochen .wo--breit .wo__satz{color:rgba(242,233,220,.76)}
 .ms-wochen .wo--breit .wo__n{padding-left:6px}
 /* Schweben statt Einblenden (Robert 16.10.: nie aus unsichtbar): die alten Auftritte mit Ausblenden fallen weg, schweben.css führt die Teile */
 #start .wo:not([data-sw]),.start.ms #startWahl>div:not([hidden])>*:not([data-sw]),.start.ms.an .ms-leiste,.start.ms.an .ms-kopf,.ms-bue>:not(.ms-bue__foto),.ms-bue::before{animation:none}
@@ -207,6 +207,6 @@ textarea::placeholder,input::placeholder{font-style:normal!important}
 /* Culinarium (28.10.2026): fünf Abteilungen; die Liste steht in gleich breiten Kacheln, die letzte Reihe mittig (Fehlerbuch 10a «keine Karte allein, letzte Reihe mittig») */
 @media (min-width:761px){#abListe{display:flex;flex-wrap:wrap;justify-content:center}#abListe>.wo{flex:0 1 calc((100% - 48px) / 3);min-width:0}}
 /* R06: Wege unten in der Seitenleiste (Zentrale, Website, Prüfung) */
-.ms-fuss .ms-wege{display:block;margin:8px 0 4px;font-size:12.5px;line-height:1.5;color:rgba(38,36,45,.62)}
+.ms-fuss .ms-wege{display:block;margin:8px 0 4px;font-size:12.5px;line-height:1.5;color:rgba(28,21,19,.62)}
 .ms-fuss .ms-wege a{color:#261e1a;text-decoration:none;border-bottom:1px solid rgba(216,178,100,.6)}
 .ms-fuss .ms-wege a:hover,.ms-fuss .ms-wege a:focus-visible{color:#1c1513;border-color:#d8b264}

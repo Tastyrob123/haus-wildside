@@ -17,7 +17,7 @@
    "rolle": [
     "kapitale"
    ],
-   "schrift": "Hanken Grotesk 600",
+   "schrift": "Hanken",
    "versalien": true,
    "sperr_max": 0.08,
    "nur_bei": [
@@ -30,7 +30,8 @@
     "fenster",
     "geteilt"
    ],
-   "quelle": "«EURE NACHBARSCHAFTS-MIXOLOGY-BAR», «SILVESTER FRÜHSHOPPEN», «TANZ IN DEN MAI» auf den weissen Plakaten"
+   "quelle": "«EURE NACHBARSCHAFTS-MIXOLOGY-BAR», «SILVESTER FRÜHSHOPPEN», «TANZ IN DEN MAI» auf den weissen Plakaten",
+   "schnitt": "Hanken Grotesk 600"
   },
   "text": {
    "rolle": [
@@ -47,13 +48,15 @@
    "rolle": [
     "mono"
    ],
-   "schrift": "Hanken Grotesk 500",
+   "schrift": "Hanken",
+   "schnitt": "Hanken Grotesk 500",
    "versalien": true,
    "sperr": [
     0.04,
     0.1
    ],
-   "ziffern": "tabular-nums"
+   "ziffern": "tabular-nums",
+   "quelle": "website/assets/wild.css: Etiketten Hanken 500 gesperrt in Versalien"
   },
   "session": {
    "rolle": [
@@ -61,7 +64,7 @@
     "plakatfett",
     "kopf"
    ],
-   "schrift": "Rammetto One (OFL)",
+   "schrift": "Rammetto One",
    "versalien": true,
    "sperr_max": 0.04,
    "farbe": "Ultramarin #1A00AA",
@@ -87,6 +90,7 @@
   ]
  },
  "trenner": {
+  "menue": " | ",
   "karte": " | ",
   "datum_session": "|",
   "datum_weiss": " | ",

@@ -95,7 +95,7 @@
     const box = $('#lfIn'), M = DS.M;
     if (fachReiter === 'fotos') {
       const B = M.bilder.filter(b => !b.eigen), gr = Object.entries(T().b).filter(([, g]) => B.some(b => b.gruppe === g));
-      box.innerHTML = `<input type="search" id="lfSuche" placeholder="Suchen: Tafel, Drink, Plakat …" autocomplete="off">
+      box.innerHTML = `<input type="search" id="lfSuche" placeholder="Suchen: Drink, Decke, Plakat …" autocomplete="off">
         <div class="lf__chips">${[['alle', 'Alle'], ...gr.map(([, g]) => [g, g])].map(([k, t]) => `<button data-lfgruppe="${esc(k)}" class="${fGruppe === k ? 'an' : ''}">${esc(t)}</button>`).join('')}</div>
         <div class="lf__chips lf__chips--leise">${[['alle', 'Jede Herkunft'], ...Object.entries(T().h)].map(([k, t]) => `<button data-lfherkunft="${k}" class="${fHerkunft === k ? 'an' : ''}">${esc(t)}</button>`).join('')}</div>
         <div class="lf__fotos" id="lfFotos"></div>`;

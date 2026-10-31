@@ -61,7 +61,7 @@
         + `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">` + e.map((x, i) => `<tr><td style="padding:18px 0 ${i === e.length - 1 ? 2 : 18}px;border-top:1px solid ${C.sand}">`
           + (x.wann ? `<div class="mono" style="font-family:${F.mono};font-size:11px;line-height:17px;letter-spacing:2px;text-transform:uppercase;color:${C.tief}">${zeilen(x.wann)}</div>` : '')
           + (x.was ? `<div class="ser" style="margin-top:5px;font-family:${F.serif};font-weight:500;font-size:23px;line-height:28px;color:${C.navy}">${zeilen(x.was)}</div>` : '')
-          + (x.wo ? `<div style="margin-top:4px;font-family:${F.sans};font-size:15px;line-height:22px;color:#4a4b52">${zeilen(x.wo).replace(/ · /g, '&nbsp;·&nbsp;')}</div>` : '')
+          + (x.wo ? `<div style="margin-top:4px;font-family:${F.sans};font-size:15px;line-height:22px;color:#524c4a">${zeilen(x.wo).replace(/ · /g, '&nbsp;·&nbsp;')}</div>` : '')
           + `</td></tr>`).join('') + `</table>`;
     },
     liste(b) {
@@ -69,7 +69,7 @@
       return (b.titel ? `<h2 class="ser" style="margin:0 0 6px;font-family:${F.serif};font-weight:500;font-size:26px;line-height:32px;color:${C.navy}">${zeilen(b.titel)}</h2>` : '')
         + `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">` + e.map((x, i) => `<tr><td valign="top" style="padding:18px 16px ${i === e.length - 1 ? 2 : 18}px 0;border-top:1px solid ${C.sand}">`
           + `<div class="ser" style="font-family:${F.serif};font-weight:500;font-size:22px;line-height:27px;color:${C.navy}">${zeilen(x.name)}</div>`
-          + (x.detail ? `<div style="margin-top:4px;font-family:${F.sans};font-size:15px;line-height:22px;color:#4a4b52">${zeilen(x.detail)}</div>` : '')
+          + (x.detail ? `<div style="margin-top:4px;font-family:${F.sans};font-size:15px;line-height:22px;color:#524c4a">${zeilen(x.detail)}</div>` : '')
           + `</td><td valign="top" align="right" style="padding:22px 0 0;border-top:1px solid ${C.sand};white-space:nowrap"><span class="mono" style="font-family:${F.mono};font-size:12px;line-height:18px;letter-spacing:1px;color:${C.tief}">${zeilen(x.preis)}</span></td></tr>`).join('') + `</table>`;
     },
     trenner(b, o) { return `<img src="${o.basis}haeuser/wildside/mail/_trenner.png" width="190" height="30" alt="" style="display:block;margin:0 auto;width:190px;height:30px;border:0">`; },
@@ -103,8 +103,8 @@
 <img src="${basis}haeuser/wildside/mail/_fuss.png" width="60" height="54" alt="" style="display:block;margin:0 auto 14px;width:60px;height:54px;border:0">
 <div class="mono" style="font-family:${F.mono};font-size:11px;line-height:18px;letter-spacing:3px;text-transform:uppercase;color:${C.gold}">Culinarium</div>
 <div style="margin-top:10px;font-family:${F.sans};font-size:13px;line-height:21px;color:#ebe2d8">Walk on the Wild Side<br>Haasemannstraße 13 &middot; 30449&nbsp;Hannover<br><a href="https://www.instagram.com/walkonthewildside_hannover/" target="_blank" style="color:${C.gold};text-decoration:none">Instagram @walkonthewildside_hannover</a></div>
-${f.text ? `<div style="margin-top:18px;font-family:${F.sans};font-size:12px;line-height:19px;color:#f4c2b0">${zeilen(f.text)}</div>` : ''}
-${abm || v.online ? `<div style="margin-top:18px;font-family:${F.sans};font-size:12px;line-height:19px;color:#f4c2b0">${[v.online && abm ? `<a href="${v.online}" target="_blank" style="color:#f4c2b0;text-decoration:underline">Im Browser ansehen</a>` : '', abm ? `<a href="${v.abmelden}" target="_blank" style="color:#f4c2b0;text-decoration:underline">Vom Newsletter abmelden</a>` : ''].filter(Boolean).join(' &middot; ')}</div>` : ''}
+${f.text ? `<div style="margin-top:18px;font-family:${F.sans};font-size:12px;line-height:19px;color:#eedbb6">${zeilen(f.text)}</div>` : ''}
+${abm || v.online ? `<div style="margin-top:18px;font-family:${F.sans};font-size:12px;line-height:19px;color:#eedbb6">${[v.online && abm ? `<a href="${v.online}" target="_blank" style="color:#eedbb6;text-decoration:underline">Im Browser ansehen</a>` : '', abm ? `<a href="${v.abmelden}" target="_blank" style="color:#eedbb6;text-decoration:underline">Vom Newsletter abmelden</a>` : ''].filter(Boolean).join(' &middot; ')}</div>` : ''}
 </td></tr>`;
 
     const pre = String(doc.vorschau || '').trim();

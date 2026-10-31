@@ -6,8 +6,7 @@
 (function () {
   var BASIS = 'haeuser/wildside/kopf/';
   /* Foto je Ansicht (1200 px, haeuser/wildside/kopf/, gebaut von bau.py) */
-  var FOTO = { msStart: 'fassade', msAbend: 'kerze2', msMotive: 'tafelleer', msEvents: 'anstossen', msAbteilungen: 'tafelleer', msHinweise: 'flur', msNewsletter: 'kerze2',
-    msFotos: 'pass', msMarke: 'schildnacht', msLivre: 'barneg', msMeine: 'theke', msFreigegeben: 'kartglas', msNeu: 'glas', weg: 'barnacht', entwuerfe: 'lauch' };
+  var FOTO = { msStart: 'schild', msAbend: 'saengerin-kunde', msMotive: 'konzert-love', msEvents: 'voll', msAbteilungen: 'decke-raum', msHinweise: 'tuer-rot', msNewsletter: 'glas-kerze', msFotos: 'momo-giesst', msMarke: 'negroni', msLivre: 'decke-bar', msMeine: 'theke', msFreigegeben: 'rueckbar', msNeu: 'glas-coupe', weg: 'schild-ecke', entwuerfe: 'flaschen' };
   /* La Maison des Wild Side: liegt wie die Plakatwerkstatt unter _werkzeuge/ (lokal /_werkzeuge/maison/ auf deren Server :9081, online /maison/) */
   var MAISON = location.port === '9087' ? 'http://127.0.0.1:9081/_werkzeuge/maison/' : /\/_werkzeuge\//.test(location.pathname) ? '../maison/' : '/maison/';
   /* R05: die Website des Hauses (lokal auf ihrem Server :8766 (WO_HAUS.ports.website_lokal), online dieselbe Adresse) */
@@ -16,7 +15,7 @@
   var HAUS = '<svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>';
 
   /* Breite der Kopf-Fotos (px); breitere haben eine 800er-Fassung daneben (kopf/<name>-800.webp, 30.10.2026) */
-  var BREITE = { anstossen: 800, barnacht: 900, barneg: 960, fassade: 960, flur: 900, glas: 800, kartglas: 960, kerze2: 900, klaeren: 900, kueche: 960, lauch: 1200, loch: 900, pass: 1200, schildnacht: 900, tafelleer: 960, theke: 900, trio2: 1200 };
+  var BREITE = { 'an-empore-tafel': 960, 'decke-raum': 900, fenster: 895, flaschen: 900, 'glas-coupe': 900, 'glas-kerze': 900, 'konzert-love': 961, 'momo-giesst': 900, negroni: 900, rueckbar: 900, 'saengerin-kunde': 960, schild: 900, 'schild-ecke': 900, theke: 900, 'tuer-rot': 900, voll: 900 };
   /* Nur das Foto der offenen Ansicht lädt sofort; die Köpfe verborgener Ansichten laden erst, wenn ihre Ansicht aufgeht
      (vorher holte die Werkstatt alle Kopf-Fotos vor dem ersten Knopf, gedrosselt rund 400 KB) */
   var warte = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
@@ -24,7 +23,7 @@
   }) : null;
   function laden(f) {
     var im = f.__im; if (!im || im.src) return;
-    var m = /kopf\/([a-z0-9]+)\.webp$/.exec(f.__src), w = m && BREITE[m[1]];
+    var m = /kopf\/([a-z0-9-]+)\.webp$/.exec(f.__src), w = m && BREITE[m[1]];
     if (w > 800) { im.sizes = '(max-width:760px) 100vw, min(58vw, 820px)'; im.srcset = BASIS + m[1] + '-800.webp 800w, ' + f.__src + ' ' + w + 'w'; }
     im.src = f.__src;
     if (im.complete && im.naturalWidth) f.classList.add('da');
@@ -53,7 +52,7 @@
   function alle() {
     buehne(document.querySelector('#msStart .ms-gruss'), BASIS + FOTO.msStart + '.webp');
     [].forEach.call(document.querySelectorAll('#start .ms-titel'), function (t) {
-      var v = t.closest('[id^="ms"]'); buehne(t, BASIS + (FOTO[v && v.id] || 'fassade') + '.webp', true);
+      var v = t.closest('[id^="ms"]'); buehne(t, BASIS + (FOTO[v && v.id] || 'schild') + '.webp', true);
     });
     var neu = document.getElementById('msNeu');
     if (neu) hebe(neu, [neu.querySelector(':scope>h1'), neu.querySelector(':scope>.start__satz'), neu.querySelector(':scope>.start__direkt'), neu.querySelector(':scope>.start__fehler')], BASIS + FOTO.msNeu + '.webp', 'ms-tafel--mitte');

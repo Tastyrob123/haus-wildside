@@ -18,7 +18,6 @@ WEB = os.path.join(DH, 'website')                              # die Website des
 LIVRE = os.path.join(DH, '_werkzeuge', 'livre')
 sys.path.insert(0, os.path.join(HIER, 'api'))
 import entwurf as E  # noqa: E402
-import plakat as P  # noqa: E402   (Abend beschreiben → Vorschläge, Probe aus der Motiv-Sammlung)
 
 WEG = '/_werkzeuge/imprimerie/'
 KI = os.environ.get('IMPRIMERIE_KI') == '1' and bool(os.environ.get('ANTHROPIC_API_KEY'))
@@ -211,28 +210,6 @@ class H(SimpleHTTPRequestHandler):
         self.send_response(code); self.send_header('content-type', 'application/json; charset=utf-8'); self.send_header('content-length', str(len(b))); self.end_headers()
         self.wfile.write(b)
 
-    def _plakat_mit_lebenszeichen(self, daten):
-        """Antwort sofort beginnen (200), während des Malens Leerzeichen schicken (JSON erlaubt sie vorn), am Ende das Ergebnis oder {fehler}."""
-        import threading
-        erg = {}
-        def arbeit():
-            try:
-                erg['out'] = P.antwort(daten, live=os.environ.get('PLAKAT_KI', '1') != '0')
-            except Exception as e:
-                erg['out'] = {'fehler': str(e)}
-        t = threading.Thread(target=arbeit, daemon=True); t.start()
-        self.close_connection = True
-        try:
-            self.send_response(200); self.send_header('content-type', 'application/json; charset=utf-8'); self.send_header('connection', 'close'); self.end_headers()
-            self.wfile.flush()
-            while t.is_alive():
-                t.join(5)
-                if t.is_alive():
-                    self.wfile.write(b' '); self.wfile.flush()
-            self.wfile.write(json.dumps(erg['out'], ensure_ascii=False).encode('utf-8')); self.wfile.flush()
-        except (BrokenPipeError, ConnectionResetError):
-            t.join()   # Browser weg: fertig malen lassen, die Bilder liegen danach in den Fotos des Hauses
-
     def translate_path(self, path):
         p = unquote(path.split('?')[0].split('#')[0])
         for weg, (ziel, art) in NUR_LESEN.items():
@@ -250,7 +227,7 @@ class H(SimpleHTTPRequestHandler):
         teile = [x for x in unquote(self.path.split('?')[0].split('#')[0]).split('/') if x]
         if teile[:2] == ['_werkzeuge', 'imprimerie']:
             innen = teile[2:]
-            if any(x.startswith('.') or x == '__pycache__' for x in innen) or (innen and innen[0] in ('_qa', 'api', '_archiv-ki-2810')) or (innen and innen[-1].endswith(('.py', '.pyc', '.md'))):
+            if any(x.startswith('.') or x == '__pycache__' for x in innen) or (innen and innen[0] in ('_qa', 'api', '_bau')) or (innen and innen[-1].endswith(('.py', '.pyc', '.md'))):
                 self.send_error(404); return None
         return super().send_head()
 
@@ -262,11 +239,6 @@ class H(SimpleHTTPRequestHandler):
             return self._json(200, {'ok': True, 'modell': E.MODELL, 'schluessel': KI, 'probe': not KI})
         if p == WEG + 'api/vorschau':   # welche Galerie-Vorschauen fertig liegen: {schlüssel: farbe}
             return self._json(200, vb_index())
-        if p == WEG + 'api/plakat':   # alle schon entstandenen Vorschläge für «Abend beschreiben» (Robert 29.10.)
-            try:
-                return self._json(200, P.alle())
-            except Exception as e:
-                return self._json(502, {'fehler': str(e)})
         if self._gezippt():
             return
         return super().do_GET()
@@ -334,17 +306,6 @@ class H(SimpleHTTPRequestHandler):
                 code, b = 502, json.dumps({'fehler': 'LIVRE · Le Livre ist nicht erreichbar (' + str(e)[:80] + ')'}, ensure_ascii=False).encode('utf-8')
             self.send_response(code); self.send_header('content-type', 'application/json; charset=utf-8'); self.send_header('content-length', str(len(b))); self.end_headers()
             return self.wfile.write(b)
-        if p == WEG + 'api/plakat' and '"nr"' in (roh or b'').decode('utf-8', 'replace'):   # ein Vorschlag malt minutenlang: sofort antworten, alle 5 s ein Leerzeichen
-            return self._plakat_mit_lebenszeichen(json.loads(roh or b'{}'))                       # als Lebenszeichen, sonst gibt Safari nach 60 s auf (29.10.)
-        if p == WEG + 'api/plakat':   # Abend beschreiben: neue Motive live, sobald der Schlüssel am Server liegt (Robert 28.10.); PLAKAT_KI=0 schaltet ab
-            try:
-                out, code = P.antwort(json.loads(roh or b'{}'), live=os.environ.get('PLAKAT_KI', '1') != '0'), 200
-            except ValueError as e:
-                out, code = {'fehler': str(e)}, 400
-            except Exception as e:
-                out, code = {'fehler': str(e)}, 502
-            time.sleep(.6)
-            return self._json(code, out)
         if p != WEG + 'api/entwurf':
             return self.send_error(404)
         try:

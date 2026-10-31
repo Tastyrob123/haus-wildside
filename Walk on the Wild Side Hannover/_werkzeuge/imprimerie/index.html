@@ -118,7 +118,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
       <label class="hochladen" id="hochladen"><input type="file" id="fotoDatei" accept="image/*,.heic,.heif" multiple hidden>
         <span class="hochladen__ic"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
         <span><b>Eigene Fotos hochladen</b><small>Klicken oder Fotos hierher ziehen. Sie bleiben in diesem Browser gespeichert.</small></span></label>
-      <input type="search" id="fotoSuche" placeholder="Suchen: Plakat, Menükarte, Tafel …">
+      <input type="search" id="fotoSuche" placeholder="Suchen: Plakat, Drink, Decke …">
       <div class="filter" id="fotoFilter"></div>
       <div class="segment segment--klein" id="fotoLage"><button data-lage="alle" class="an">Alle Formen</button><button data-lage="quer">Quer</button><button data-lage="hoch">Hoch</button></div>
       <p class="leise" id="fotoInfo"></p>
@@ -177,8 +177,8 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
     <nav class="ms-nav ms-nav--haupt" id="msNav"><span class="ms-gleiter" aria-hidden="true"></span>
       <button data-ansicht="start"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Übersicht</span></button>
       <button data-ansicht="events"><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></svg><span>Anlässe & Events</span><em id="evZahl"></em></button>
-      <button data-ansicht="abend"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M14 5h5v5M5 9.5 9.5 5M14.5 19 19 14.5"/></svg><span>Abend beschreiben</span></button>
-      <button data-ansicht="motive"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="1.5"/><path d="M4 14.5h16M7 17.5h10M7 7l3 3 2-2 5 5"/></svg><span>Plakat-Motive</span><em id="pkZahl"></em></button>
+      <button data-ansicht="abend"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M14 5h5v5M5 9.5 9.5 5M14.5 19 19 14.5"/></svg><span>DJ-Abend anlegen</span></button>
+      <button data-ansicht="motive"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="1.5"/><path d="M4 14.5h16M7 17.5h10M7 7l3 3 2-2 5 5"/></svg><span>Plakat-Grund</span><em id="pkZahl"></em></button>
       <button data-ansicht="abteilungen"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01"/></svg><span>Abteilungen</span><em id="abZahl"></em></button>
       <button data-ansicht="hinweise"><svg viewBox="0 0 24 24"><path d="M12 3 2.5 20h19zM12 10v4.5M12 17.5v.1"/></svg><span>Hinweise im Haus</span><em id="hiZahl"></em></button>
       <button data-ansicht="newsletter"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg><span>Newsletter & E-Mail</span><em id="nlZahl"></em></button>
@@ -234,24 +234,24 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
         <div class="vb__alle" id="abAlle"></div>
       </div>
       <div id="msAbend" hidden>
-        <div class="ms-titel"><h1>Abend beschreiben</h1><span class="ms-leise">Thema, Konzept und Gastkoch in ein paar Worten: Die Plakatwerkstatt lässt für jede Anfrage drei bis fünf neue Plakate entstehen, vorn und hinten. Eins wählen und im Editor fertig machen: Texte, Datum, Farbe, Motiv.</span></div>
+        <div class="ms-titel"><h1>DJ-Abend anlegen</h1><span class="ms-leise">Wer legt auf, an welchem Samstag, von wann bis wann: Die Plakatwerkstatt setzt drei bis fünf SESSION-Plakate in den Wellen der Bar, sofort und ohne KI. Eins wählen und im Editor fertig machen: das Gesicht des Abends, Texte, Format.</span></div>
         <form class="pk-form" id="pkForm" autocomplete="off">
-          <label><span>Thema des Abends</span><input id="pkThema" maxlength="120" placeholder="Zum Beispiel: Winterabend"></label>
-          <label><span>Gastkoch (falls einer kommt)</span><input id="pkGast" maxlength="60" placeholder="Zum Beispiel: Christoph"></label>
-          <label class="pk-breit"><span>Konzept</span><textarea id="pkKonzept" maxlength="600" placeholder="Zum Beispiel: Trüffel und Whisky, Kerzenlicht, drei Gänge mit fünf Drinks"></textarea></label>
-          <label><span>Wochenende</span><select id="pkFreitag"></select></label>
+          <label><span>Wer legt auf</span><input id="pkThema" maxlength="60" placeholder="Zum Beispiel: Moury"></label>
+          <label><span>Uhrzeit wie auf dem Plakat</span><input id="pkGast" maxlength="30" placeholder="Zum Beispiel: 9 PM TO 1 AM"></label>
+          <label class="pk-breit"><span>Stil (für die Karte, nicht aufs Plakat)</span><textarea id="pkKonzept" maxlength="200" placeholder="Zum Beispiel: Old-School-Hip-Hop"></textarea></label>
+          <label><span>Samstag</span><select id="pkFreitag"></select></label>
           <div class="pk-unten"><span class="pk-zahl">Vorschläge <button type="button" data-pkzahl="3">3</button><button type="button" data-pkzahl="4" class="an">4</button><button type="button" data-pkzahl="5">5</button></span>
-            <button class="kn knopf--voll glanz-kn" id="pkLos" type="submit"><span>Vorschläge anlegen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button></div>
+            <button class="kn knopf--voll glanz-kn" id="pkLos" type="submit"><span>Plakate anlegen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button></div>
         </form>
         <div class="pk-raster" id="pkVorschlaege"></div>
       </div>
       <div id="msMotive" hidden>
-        <div class="ms-titel"><h1>Plakat-Motive</h1><span class="ms-leise">Rudis Plakat-Illustrationen seit 2023, jede ganz. Steht «WALK ON THE WILD SIDE» schon im Bild, setzt die Plakatwerkstatt keine zweite Kopfzeile darüber; Daten, Gänge und Drinks stehen hinten.</span></div>
+        <div class="ms-titel"><h1>Plakat-Grund</h1><span class="ms-leise">Die rot-cremefarbenen Wellen der SESSION-Plakate und die Gesichter der Bar in Schwarzweiss, jedes gleich als Plakat. Öffnen, Namen und Datum eintragen, fertig.</span></div>
         <div id="pkFilter"></div><p class="pk-motivzahl" id="pkMotivZahl"></p>
         <div class="pk-raster" id="pkMotive"></div>
       </div>
       <div id="msHinweise" hidden>
-        <div class="ms-titel"><h1>Hinweise im Haus</h1><span class="ms-leise">Ausgebucht, Warteliste, Tafel reserviert, Tickets im Vorverkauf: fertig im Stil des Hauses, Daten eintragen und aushängen.</span></div>
+        <div class="ms-titel"><h1>Hinweise im Haus</h1><span class="ms-leise">Geschlossene Gesellschaft, Empore reserviert, Eintritt frei, ab 19 Uhr: fertig im Stil der Bar, aushängen.</span></div>
         <div class="ms-raster" id="hiRaster"></div>
         <div class="vb__alle" id="hiAlle"></div>
       </div>
@@ -259,12 +259,12 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
         <div class="ms-titel"><h1>Newsletter & E-Mail</h1><span class="ms-leise">Echte E-Mails im Stil des Hauses zum Versenden mit Mailchimp, Brevo oder dem eigenen Programm, dazu Kopfbilder und Stories als Bild.</span></div>
         <div class="ms-zeile"><h2>Versendbare E-Mails</h2><a class="ms-lnk" href="mail.html"><span>Newsletter-Baukasten öffnen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
         <div class="ms-wochen ms-wochen--abt">
-          <a class="wo" href="mail.html?vorlage=abend" style="--i:0"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/anstossen.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Der nächste&nbsp;Abend</b><small>An alle Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
-          <a class="wo" href="mail.html?vorlage=warteliste" style="--i:1"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/kerze2.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Warteliste: Platz&nbsp;frei</b><small>An die Warteliste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
-          <a class="wo" href="mail.html?vorlage=rueckblick" style="--i:2"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/tafelleer.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Rückblick auf den&nbsp;Abend</b><small>An alle Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
-          <a class="wo" href="mail.html?vorlage=einladung" style="--i:3"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/kerze3.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Einladung an&nbsp;Stammgäste</b><small>An ausgewählte Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
-          <a class="wo" href="mail.html?vorlage=ticket" style="--i:4"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/fassade.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Dein Platz an der&nbsp;Tafel</b><small>Bestätigungsmail · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
-          <a class="wo" href="mail.html?vorlage=danke" style="--i:5"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/toast.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Danke für den&nbsp;Abend</b><small>Dankesmail · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=abend" style="--i:0"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/an-dj.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Der nächste&nbsp;DJ-Abend</b><small>An alle Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=warteliste" style="--i:1"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/an-empore-tafel.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Feiern im&nbsp;Wild Side</b><small>An Anfragen · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=rueckblick" style="--i:2"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/p-1710.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Jeder Abend ein&nbsp;Plakat</b><small>An alle Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=einladung" style="--i:3"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/konzert-love.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Live am&nbsp;Donnerstag</b><small>An alle Gäste · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=ticket" style="--i:4"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/schild.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Euer Platz ist&nbsp;reserviert</b><small>Bestätigungsmail · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
+          <a class="wo" href="mail.html?vorlage=danke" style="--i:5"><span class="wo__k"><span class="wo__bild" style="background-image:url('haeuser/wildside/mini/anstossen.webp')"></span><span class="wo__licht"></span></span><span class="wo__n"><span><b>Danke für den&nbsp;Abend</b><small>Dankesmail · versendbar</small></span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></span></a>
         </div>
         <div class="ms-zeile"><h2>Als Bild</h2><span class="ms-leise">Kopfbilder, Stories und Mails als Bild in voller Schärfe</span></div>
         <div class="ms-raster" id="nlRaster"></div>
