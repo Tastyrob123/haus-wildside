@@ -2,7 +2,7 @@
  "reihen": 20,
  "stuecke": [
   {
-   "id": "011-DernächsteAben",
+   "id": "011-AusdemArchiv",
    "r": 1,
    "c": 1,
    "w": 1,
@@ -11,16 +11,16 @@
    "bild": ""
   },
   {
-   "id": "012-16Seit2017inLi",
+   "id": "012-ft-raum-abend",
    "r": 1,
    "c": 2,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/ft-raum-abend-2400.webp"
   },
   {
-   "id": "013-RoteBeeteZwieb",
+   "id": "013-EuerAbendEinDi",
    "r": 1,
    "c": 3,
    "w": 1,
@@ -29,25 +29,25 @@
    "bild": ""
   },
   {
-   "id": "021-tafel",
+   "id": "021-glas-kerze",
    "r": 2,
    "c": 1,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-kerze-1536.webp"
   },
   {
-   "id": "022-coupe",
+   "id": "022-flaschen",
    "r": 2,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/coupe-1000.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/flaschen-1536.webp"
   },
   {
-   "id": "023-FilmSignatureD",
+   "id": "023-AusdemArchiv",
    "r": 2,
    "c": 3,
    "w": 1,
@@ -56,16 +56,16 @@
    "bild": ""
   },
   {
-   "id": "031-team_alle",
+   "id": "031-ft-momo-mixt-gast",
    "r": 3,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/team_alle-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/ft-momo-mixt-gast-2400.webp"
   },
   {
-   "id": "032-DirtyChickenDi",
+   "id": "032-JederDrinkeinU",
    "r": 3,
    "c": 2,
    "w": 1,
@@ -74,25 +74,25 @@
    "bild": ""
   },
   {
-   "id": "033-r08",
+   "id": "033-decke-bar",
    "r": 3,
    "c": 3,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/r08-1600.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/decke-bar-1080.webp"
   },
   {
-   "id": "041-hok2",
+   "id": "041-wf-tablett",
    "r": 4,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/hok2-1000.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/wf-tablett-2400.webp"
   },
   {
-   "id": "042-AusgebuchtDank",
+   "id": "042-AusdemArchiv",
    "r": 4,
    "c": 2,
    "w": 1,
@@ -101,16 +101,16 @@
    "bild": ""
   },
   {
-   "id": "043-tafel",
+   "id": "043-tuer-rot",
    "r": 4,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/tuer-rot-1536.webp"
   },
   {
-   "id": "051-MomosDrinkzumD",
+   "id": "051-OhneAlkoholMit",
    "r": 5,
    "c": 1,
    "w": 1,
@@ -119,43 +119,43 @@
    "bild": ""
   },
   {
-   "id": "052-momo_hoch",
+   "id": "052-glas-hand",
    "r": 5,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/momo_hoch-1600.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-hand-1536.webp"
   },
   {
-   "id": "053-r01",
+   "id": "053-14DieBarausser",
    "r": 5,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/r01-2400.webp"
+   "art": "html",
+   "bild": ""
   },
   {
-   "id": "061-16SignatureDri",
+   "id": "061-momo-flaschen",
    "r": 6,
    "c": 1,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/momo-flaschen-1536.webp"
   },
   {
-   "id": "062-EinAbendimSomm",
+   "id": "062-negroni",
    "r": 6,
    "c": 2,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/negroni-1536.webp"
   },
   {
-   "id": "063-tafel",
+   "id": "063-3004TanzindenM",
    "r": 6,
    "c": 3,
    "w": 1,
@@ -164,16 +164,16 @@
    "bild": ""
   },
   {
-   "id": "071-ecke",
+   "id": "071-anstossen",
    "r": 7,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/ecke-1600.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/anstossen-1638.webp"
   },
   {
-   "id": "072-FilmSignatureD",
+   "id": "072-AusdemArchiv",
    "r": 7,
    "c": 2,
    "w": 1,
@@ -182,43 +182,43 @@
    "bild": ""
   },
   {
-   "id": "073-r09",
+   "id": "073-glas-sour",
    "r": 7,
    "c": 3,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/r09-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-sour-2400.webp"
   },
   {
-   "id": "081-HokkaidoKürbis",
+   "id": "081-saengerin",
    "r": 8,
    "c": 1,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/saengerin-1536.webp"
   },
   {
-   "id": "082-service",
+   "id": "082-SESSIONSamstag",
    "r": 8,
    "c": 2,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/service-2400.webp"
-  },
-  {
-   "id": "083-FreitagFreitag",
-   "r": 8,
-   "c": 3,
-   "w": 1,
-   "h": 1,
    "art": "html",
    "bild": ""
   },
   {
-   "id": "091-tafel",
+   "id": "083-fenster",
+   "r": 8,
+   "c": 3,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/fenster-1536.webp"
+  },
+  {
+   "id": "091-FilmGastschich",
    "r": 9,
    "c": 1,
    "w": 1,
@@ -227,43 +227,43 @@
    "bild": ""
   },
   {
-   "id": "092-spag",
+   "id": "092-pl-tisch",
    "r": 9,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/spag-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/pl-tisch-1638.webp"
   },
   {
-   "id": "093-DernächsteAben",
+   "id": "093-konzert",
    "r": 9,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/konzert-1440.webp"
   },
   {
-   "id": "101-dn_tisch",
+   "id": "101-ErstdieFrageda",
    "r": 10,
    "c": 1,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/dn_tisch-2400.webp"
+   "art": "html",
+   "bild": ""
   },
   {
-   "id": "102-trio2",
+   "id": "102-rueckbar",
    "r": 10,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/trio2-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/rueckbar-1536.webp"
   },
   {
-   "id": "103-PopupDirtyChic",
+   "id": "103-AusdemArchiv",
    "r": 10,
    "c": 3,
    "w": 1,
@@ -272,16 +272,16 @@
    "bild": ""
   },
   {
-   "id": "111-anrichten",
+   "id": "111-glas-zwei",
    "r": 11,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/anrichten-1600.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-zwei-2400.webp"
   },
   {
-   "id": "112-WasfüreinAbend",
+   "id": "112-1402Valentinst",
    "r": 11,
    "c": 2,
    "w": 1,
@@ -290,34 +290,34 @@
    "bild": ""
   },
   {
-   "id": "113-tafel",
+   "id": "113-dg-giessen",
    "r": 11,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/dg-giessen-2400.webp"
   },
   {
-   "id": "121-d2",
+   "id": "121-15FeiernimWild",
    "r": 12,
    "c": 1,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/d2-1000.webp"
+   "art": "html",
+   "bild": ""
   },
   {
-   "id": "122-beete",
+   "id": "122-decke-hoch",
    "r": 12,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/beete-1600.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/decke-hoch-2400.webp"
   },
   {
-   "id": "123-Dankefür2026Fü",
+   "id": "123-SESSIONSamstag",
    "r": 12,
    "c": 3,
    "w": 1,
@@ -326,16 +326,16 @@
    "bild": ""
   },
   {
-   "id": "131-t10",
+   "id": "131-freundinnen",
    "r": 13,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/t10-1000.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/freundinnen-1536.webp"
   },
   {
-   "id": "132-tafel",
+   "id": "132-Dankefür2026Fü",
    "r": 13,
    "c": 2,
    "w": 1,
@@ -344,16 +344,16 @@
    "bild": ""
   },
   {
-   "id": "133-rudi",
+   "id": "133-glas-rot",
    "r": 13,
    "c": 3,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/rudi-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-rot-1536.webp"
   },
   {
-   "id": "141-FilmAmPassJede",
+   "id": "141-AusdemArchiv",
    "r": 14,
    "c": 1,
    "w": 1,
@@ -362,25 +362,25 @@
    "bild": ""
   },
   {
-   "id": "142-Samstagausgebu",
+   "id": "142-an-party",
    "r": 14,
    "c": 2,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/an-party-904.webp"
   },
   {
-   "id": "143-glasnacht",
+   "id": "143-theke",
    "r": 14,
    "c": 3,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/glasnacht-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/theke-1200.webp"
   },
   {
-   "id": "151-AubergineKokos",
+   "id": "151-3112Silvestera",
    "r": 15,
    "c": 1,
    "w": 1,
@@ -389,34 +389,34 @@
    "bild": ""
   },
   {
-   "id": "152-schildnacht",
+   "id": "152-glas-coupe",
    "r": 15,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/schildnacht-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-coupe-1536.webp"
   },
   {
-   "id": "153-tarte",
+   "id": "153-FalstaffBarGui",
    "r": 15,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/tarte-2400.webp"
-  },
-  {
-   "id": "161-15TastingundSc",
-   "r": 16,
-   "c": 1,
-   "w": 1,
-   "h": 1,
    "art": "html",
    "bild": ""
   },
   {
-   "id": "162-NocheinAbendin",
+   "id": "161-feste-anstossen",
+   "r": 16,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/feste-anstossen-2400.webp"
+  },
+  {
+   "id": "162-ImWinterDreiJa",
    "r": 16,
    "c": 2,
    "w": 1,
@@ -425,34 +425,34 @@
    "bild": ""
   },
   {
-   "id": "163-18RückblickNov",
+   "id": "163-momo-lacht",
    "r": 16,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/momo-lacht-1536.webp"
   },
   {
-   "id": "171-roq1",
+   "id": "171-an-team",
    "r": 17,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/roq1-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/an-team-1488.webp"
   },
   {
-   "id": "172-anstossen",
+   "id": "172-wf-klar",
    "r": 17,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/anstossen-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/wf-klar-2400.webp"
   },
   {
-   "id": "173-NochdreiPlätze",
+   "id": "173-14WieMomoarbei",
    "r": 17,
    "c": 3,
    "w": 1,
@@ -461,13 +461,13 @@
    "bild": ""
   },
   {
-   "id": "181-momo",
+   "id": "181-schild-ecke",
    "r": 18,
    "c": 1,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/momo-2400.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/schild-ecke-1536.webp"
   },
   {
    "id": "182-Dusagstmirwasd",
@@ -479,61 +479,61 @@
    "bild": ""
   },
   {
-   "id": "183-Freitag271126N",
+   "id": "183-voll",
    "r": 18,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "html",
-   "bild": ""
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/voll-1536.webp"
   },
   {
-   "id": "191-m2",
+   "id": "191-JederAbendeinP",
    "r": 19,
    "c": 1,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/m2-1000.webp"
-  },
-  {
-   "id": "192-tafel",
-   "r": 19,
-   "c": 2,
-   "w": 1,
-   "h": 1,
    "art": "html",
    "bild": ""
   },
   {
-   "id": "193-g1",
+   "id": "192-glas-negroni",
+   "r": 19,
+   "c": 2,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/glas-negroni-2400.webp"
+  },
+  {
+   "id": "193-SESSIONSamstag",
    "r": 19,
    "c": 3,
    "w": 1,
    "h": 1,
-   "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/g1-2400.webp"
-  },
-  {
-   "id": "201-LauchBlumenkoh",
-   "r": 20,
-   "c": 1,
-   "w": 1,
-   "h": 1,
    "art": "html",
    "bild": ""
   },
   {
-   "id": "202-kerze2",
+   "id": "201-decke-raum",
+   "r": 20,
+   "c": 1,
+   "w": 1,
+   "h": 1,
+   "art": "foto",
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/decke-raum-2400.webp"
+  },
+  {
+   "id": "202-momo-giesst",
    "r": 20,
    "c": 2,
    "w": 1,
    "h": 1,
    "art": "foto",
-   "bild": "/Users/robertreff/Desktop/Website-Projekte/Culinarium Hannover/website/assets/bild/kerze2-1000.webp"
+   "bild": "/home/user/haus-wildside/Walk on the Wild Side Hannover/website/assets/bild/momo-giesst-1536.webp"
   },
   {
-   "id": "203-DernächsteAben",
+   "id": "203-WasmagstduDieK",
    "r": 20,
    "c": 3,
    "w": 1,

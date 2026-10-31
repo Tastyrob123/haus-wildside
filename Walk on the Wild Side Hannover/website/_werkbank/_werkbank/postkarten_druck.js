@@ -1,4 +1,4 @@
-// Postkarten drucken und zeigen (Prüfchat Gestaltung 29.10.2026): node _werkbank/postkarten_druck.js "<website/_werkbank>"
+// Postkarten drucken und zeigen (Culinarium 29.10.2026, Wild Side 31.10.2026): node _werkbank/postkarten_druck.js "<website/_werkbank>"
 //   postkarten/pdf/<kurz>-postkarten-druck.pdf (mit Beschnitt), -sammelbogen-a3.pdf; _werkbank/roh/postkarten/pkNN-v|h.png, bogen.png, faecher.png, staender.png
 const path = require('path'), fs = require('fs'), { execFileSync } = require('child_process');
 const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
@@ -35,8 +35,8 @@ for (const d of [ROH, EIN, path.join(ROOT, 'postkarten/pdf')]) fs.mkdirSync(d, {
   // Fächer: alle Vorderseiten übereinander gefächert
   const K = plan.karten, n = K.length, D = {}; for (const k of K) D[k.id] = 'data:image/png;base64,' + fs.readFileSync(path.join(ROH, k.id + '-v.png')).toString('base64');
   const BAR = 'data:image/webp;base64,' + fs.readFileSync(path.join(HIER, 'satz', 'bild', 'barnacht.webp')).toString('base64');
-  // Mondtänzerin (letztes Plakat) in der Mitte oben, die übrigen nach aussen
-  const mitte = K.length - 3, folge = K.map((k, i) => i).filter(i => i !== mitte), pos = []; folge.forEach((i, j) => pos.push([i, (j % 2 ? 1 : -1) * (Math.floor(j / 2) + 1)])); pos.push([mitte, 0]);
+  // das jüngste SESSION-Plakat in der Mitte oben, die übrigen nach aussen
+  const mitte = 0, folge = K.map((k, i) => i).filter(i => i !== mitte), pos = []; folge.forEach((i, j) => pos.push([i, (j % 2 ? 1 : -1) * (Math.floor(j / 2) + 1)])); pos.push([mitte, 0]);
   const stufen = Math.ceil(folge.length / 2), faecher = pos.sort((x, y) => Math.abs(y[1]) - Math.abs(x[1])).map(([i, st]) => `<img src="${D[K[i].id]}" style="position:absolute;left:50%;top:110px;width:270px;margin-left:-135px;transform-origin:50% 230%;transform:rotate(${st * 36 / stufen}deg);box-shadow:0 18px 40px -16px rgba(0,0,0,.55);border-radius:3px">`).join('');
   await p2.setViewportSize({ width: 1400, height: 900 });
   await p2.setContent(`<body style="margin:0;background:transparent"><div id="f" style="position:relative;width:1400px;height:900px">${faecher}</div></body>`); await p2.waitForTimeout(1500);

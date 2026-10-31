@@ -1,206 +1,224 @@
-"""Instagram-Feed von Culinarium als Idee. Das Haus hat ein Profil: @culinarium_hannover, 1.079 Follower, 305 gefolgt, 28 Beiträge
-(abgelesen ohne Anmeldung, _qa/spaeher/ig-profil-handy.txt, Stand 25.10.2026); dort vor allem die Plakate der Abende.
-Fotos: nur die eigenen (Fotos des Hauses aus dem Bildregister der Website website/assets/bild, damit die geschärften Fassungen von selbst
-nachkommen, und Rudis Plakate), keine Gästefotos, keine Fotos Dritter, keine erzeugten Bilder. Texte zu den Beiträgen: Tasty Studios.
+"""Instagram-Feed von Walk on the Wild Side als Idee (Werkbank, Nachtbau 31.10.2026). Bauart und Aufbau aus dem Feed des Culinarium
+(Fassung 3 «Fortsetzung», 29.10.2026): der echte Feed bleibt, darüber die nächsten 60 Beiträge in der Reihenfolge des Postens.
 
-Fassung 2 «Ein Abend in Folgen» (Oberchef 29.10.2026, Robert: «diese gerade Reihe in der Mitte … mit den Plakaten … total monoton und billig …
-mach so … 36 Beiträge … als hätte den so ein richtig professionelles Studio gemacht»). Ersetzt Fassung 1 «Momo x Rudi» (Plakat-Säule in der Mitte,
-Sicherung feed_daten.py.vor-feed-2026-10-29).
-Wie ein Studio plant: keine feste Spalte, jede Reihe anders gemischt. Von oben nach unten erzählt der Feed in Folgen: Ankündigung, Abend,
-Teller, Drink, Menschen, Rückblick, dann wieder von vorn. Dazwischen Rudis Zeilen als reine Schrift (Fraunces 360 auf Nacht oder Warmweiss),
-zwei Stimmen aus dem Haus, Karussell-Deckblätter und Reel-Titel. Neun Plakate (Fassung 2b mit 60 Beiträgen; die ersten 36 unverändert), ganz und nie angeschnitten, verteilt, nie zwei
-neben- oder untereinander. Jedes Foto einmal. Hell und dunkel, warm und kühl, nah und weit wechseln; das «C» aus Rudis Wortmarke ist das
-einzige Zeichen. Echte Gästestimmen mit Wortlaut gibt es in den Quellen nicht; die Zitate sind Momo und Rudi (Website, Team-Seite und Beiträge)."""
+Das Profil: @walkonthewildside_hannover, «Walk on the Wild Side | Nachbarschafts Mixology Bar», 82 Beiträge, 2.680 Follower, 331 gefolgt,
+Bio «Drinks | Events | private Veranstaltungen | Tastings … Do 19:00-01:00 | Fr & Sa 19:00-02:00 … Schreib uns eine DM oder ruf an»
+(_quelle/research_notes/…/programm_zeiten_kooperationen.md, Stand 26.10.2026). Neuester Beitrag: SESSION mit den Ghazouani Brothers (13.10.2026).
+Heute im Profil der Werkbank: die 39 Beiträge mit Bild aus _quelle/ig/ (herkunft.json, beitraege.md), neuester zuerst (feed_leicht.py).
+
+Die nächsten 60 (Robert zum Culinarium: «damit wir jetzt diese 60 Beiträge darauf aufbauen können»): ein Jahr der Bar in Folgen, von November
+2026 an. Drinks von Momo und seine drei Techniken, die SESSION-Abende (samstags 21 bis 1 Uhr, ohne Eintritt; ohne erfundene Namen und Daten),
+Konzerte am Donnerstag, die Decke, Falstaff Bar Guide 2027 mit 91 Punkten, die Feste (Geburtstag der Bar, Silvester ab mittags, Valentinstag
+mit Rudi, Tanz in den Mai), Feiern auf der Empore und in der ganzen Bar, die Bar ausser Haus. Die SESSION-Plakate der Bar kommen «Aus dem Archiv»
+wieder (einzige Ausnahme im Bestandsabgleich, BESTAND_AUSNAHMEN). Alles andere: Fotos aus dem Bildregister der Website (website/assets/bild),
+die noch nicht auf dem Profil stehen (feed_bestand.py im Kit prüft jedes), keine Gästefotos Dritter, keine erzeugten Bilder.
+Kleid: Nacht #130E0D, Creme #F2E9DC wie die weissen Plakate der Bar, Gold nur als Haarlinie und Etikett, Rot nur in der Wortmarke,
+Ultramarin und Plakatrot nur bei SESSION. Titel Prata, Lauf Hanken Grotesk, Etiketten Hanken gesperrt. Texte zu den Beiträgen: Tasty Studios,
+Zitat von Momo aus der Website (drinks.html). Arten für den Nachbar-Abgleich: text, session, plakat, cover, drink, mensch, raum, bar, leute, musik, feier."""
 import glob, os, re
 import feed_bogen
 
 _HIER = os.path.dirname(os.path.abspath(__file__))
-_WEB = os.path.dirname(os.path.dirname(_HIER))
+_WB = os.path.dirname(_HIER)
+_WEB = os.path.dirname(_WB)
+_HAUS = os.path.dirname(_WEB)
 
 
 def quelle(key):
     """Größte Fassung des Fotos im Bildregister der Website (website/assets/bild/<key>-<breite>.webp)."""
-    b = sorted(int(m.group(1)) for p in glob.glob(os.path.join(_WEB, 'assets', 'bild', key + '-*.webp')) if (m := re.search(r'-(\d+)\.webp$', p)))
+    b = sorted(int(m.group(1)) for p in glob.glob(os.path.join(_WEB, 'assets', 'bild', key + '-*.webp')) if (m := re.fullmatch(re.escape(key) + r'-(\d+)\.webp', os.path.basename(p))))
     if not b:
         raise FileNotFoundError(key)
     return os.path.join(_WEB, 'assets', 'bild', f'{key}-{b[-1]}.webp')
 
 
-PROFIL = {'name': 'culinarium_hannover', 'titel': 'Culinarium', 'art': 'Food Pairing',
-          'bio': ['CULINARIUM · a unique experience', 'Ein Menü, fünf passende Drinks, eine lange Tafel. Im Walk on the Wild Side, Linden.'],
-          'link': 'culinarium-hannover.de',
-          'zahlen': {'beitraege': '28', 'follower': '1.079', 'gefolgt': '305'}, 'stand': '25.10.2026'}
-HIGHLIGHTS = [('Abende', quelle('p_DbYnkdkjrNy'), .5), ('Teller', quelle('r01'), .5), ('Drinks', quelle('g2'), .5),
-              ('Tafel', quelle('t07'), .5), ('Linden', quelle('ecke'), .5)]
-TON = (.98, 1.03, 1.0, 1.0)
+# Die Wortmarke der Bar als Bild je Farbe (aus dem Kleid, unverändert; die Tafeln werden über file:// gesetzt, darum Dateien statt Maske)
+_FEED = os.path.join(_WB, 'feed')
+os.makedirs(_FEED, exist_ok=True)
+_MARKE = open(os.path.join(_HAUS, '_werkzeuge', 'oberflaeche', 'kleid', 'wildside-marke.svg'), encoding='utf-8').read()
+for _n, _f in (('rot', '#F0323F'), ('creme', '#F2E9DC'), ('nacht', '#130E0D')):
+    _s = _MARKE.replace('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1296 1600">', f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1296 1600" color="{_f}">', 1)
+    _s = _s.replace('</svg>', '<use href="#wm" xlink:href="#wm" width="1296" height="1600"/></svg>') if '<use' not in _s else _s
+    open(os.path.join(_FEED, f'marke-{_n}.svg'), 'w', encoding='utf-8').write(_s)
+
+PROFIL = {'name': 'walkonthewildside_hannover', 'titel': 'Walk on the Wild Side | Nachbarschafts Mixology\u00a0Bar', 'art': 'Bar',
+          'bio': ['Drinks | Events | private Veranstaltungen | Tastings', 'Do 19 bis 1 Uhr · Fr und Sa 19 bis 2 Uhr', 'Haasemannstraße 13, Linden · Schreib uns eine DM oder ruf\u00a0an'],
+          'link': '+49 163 3909578',
+          'zahlen': {'beitraege': '82', 'follower': '2.680', 'gefolgt': '331'}, 'stand': '26.10.2026'}
+HIGHLIGHTS = [('Zeiten', quelle('schild-ecke'), .5), ('SESSION', quelle('p-1710'), .5), ('Drinks', quelle('glas-coupe'), .5),
+              ('Konzerte', quelle('saengerin-kunde'), .5), ('Feiern', quelle('an-empore'), .5)]
+TON = (.98, 1.03, 1.0, .99)
 REGEL = 'bogen'
 SEITE = dict(
     titel=['Wie es', 'weitergeht.'],
-    text1='Euer Feed bleibt, wie er ist. Darauf bauen die nächsten 60 Beiträge auf, so wie ihr sie nach und nach postet: der Abend im November mit Ankündigung, «Noch drei Plätze» und Danke, der Abend im Dezember, Dirty Chicken und die Abende 2027. Dazwischen Rudis Teller, Momos Gläser, die Leute und die Bar.',
-    text2='Kein Foto, das schon auf eurem Profil steht, kommt nochmal vor; nur eure Plakate zeigen wir gezielt wieder, «Aus dem Archiv». Mit dem Schalter seht ihr euren Feed heute und mit den nächsten 60; die Nummern zeigen die Reihenfolge zum Posten.',
+    text1='Euer Feed bleibt, wie er ist. Darauf bauen die nächsten 60 Beiträge auf, so wie ihr sie nach und nach postet: Momos Drinks und seine Techniken, die SESSION-Abende, die Decke, Falstaff mit 91 Punkten, der Geburtstag der Bar, Silvester ab mittags, Valentinstag, Feiern auf der Empore.',
+    text2='Kein Foto, das schon auf eurem Profil steht, kommt nochmal vor; nur eure SESSION-Plakate zeigen wir gezielt wieder, «Aus dem Archiv». Mit dem Schalter seht ihr euren Feed heute und mit den nächsten 60; die Nummern zeigen die Reihenfolge zum Posten.',
     aufbau='Die nächsten 60 Beiträge über eurem heutigen Feed, nummeriert in der Reihenfolge des Postens',
-    texte='Ideen von mir, Zeilen und Stimmen vom Haus',
-    bilder='eure eigenen Fotos, die noch nie gepostet wurden, und eure Plakate')
+    texte='Ideen von mir, Zeilen von der Bar und von Momo',
+    bilder='eure eigenen Fotos, die noch nie gepostet wurden, und eure SESSION-Plakate')
 
-_C = '<i class="c"></i>'   # das «C» aus Rudis Wortmarke (eigen/zeichen-c.svg als Maske), einziges Zeichen
+_WELLE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E"
+          "%3Cpath d='M0 60 C90 0 90 120 180 60 S270 0 360 60' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E"
+          "%3Cpath d='M0 180 C90 120 90 240 180 180 S270 120 360 180' fill='none' stroke='%23D21C0A' stroke-width='46'/%3E%3C/svg%3E\") 0 0/360px 240px")
 BOGEN_CSS = (
-    "@font-face{font-family:'F';src:url('../assets/schrift/fraunces-soft.woff2') format('woff2');font-weight:100 900}"
-    "@font-face{font-family:'M';src:url('../assets/schrift/dmmono.woff2') format('woff2')}"
-    "@font-face{font-family:'S';src:url('../assets/schrift/instrument.woff2') format('woff2');font-weight:400 600}"
-    '.st{--nacht:#16151A;--weiss:#FAF4F4;--kerze:#EF7649;--hell:#F5A689;--schiefer:#3A3845}'
-    '.n,.w{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px 120px}'
-    '.n{background:var(--nacht) url(../assets/zeichen/tapete-dunkel.svg) 0 0/224px 224px;color:var(--weiss)}'
-    '.w{background:var(--weiss) url(../assets/zeichen/tapete-hell.svg) 0 0/224px 224px;color:var(--nacht)}'
-    '.c{display:block;width:74px;height:78px;background:var(--kerze);-webkit-mask:url(../_werkbank/eigen/zeichen-c.svg) center/contain no-repeat;mask:url(../_werkbank/eigen/zeichen-c.svg) center/contain no-repeat}'
-    '.w .c{background:var(--schiefer)}'
-    '.kop{position:absolute;top:118px;left:0;right:0;display:flex;justify-content:center}'
-    '.fu{position:absolute;bottom:112px;left:0;right:0;font:400 25px/1 M;letter-spacing:.08em;text-transform:uppercase;color:var(--hell)}'
-    '.w .fu{color:#8a5a45}'
-    '.zl{font:360 112px/1.04 F;font-variation-settings:"SOFT" 100,"opsz" 144;text-transform:uppercase;text-wrap:balance;letter-spacing:-.005em}'
-    '.zl span{display:block;white-space:nowrap}.zl b{font-weight:360;color:var(--kerze)}'
-    '.ti{font:360 128px/1.02 F;font-variation-settings:"SOFT" 100,"opsz" 144;text-wrap:balance;letter-spacing:-.01em}'
-    '.zi{font:360 98px/1.1 F;font-variation-settings:"SOFT" 100,"opsz" 144;text-wrap:balance}'
-    '.zi::before{content:"«";color:var(--kerze)}.zi::after{content:"»";color:var(--kerze)}'
-    '.da{margin-top:60px;font:400 33px/1.7 M;letter-spacing:.08em;color:var(--hell)}'
-    '.sa{margin-top:52px;max-width:760px;font:400 38px/1.42 S;text-wrap:balance;opacity:.86}'
-    '.ki2{font:400 26px/1 M;letter-spacing:.1em;text-transform:uppercase;color:var(--hell);margin-bottom:40px}'
-    '.v{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:150px 110px;background:#8953A9 url(../assets/zeichen/tapete-dc.svg) 0 0/224px 224px;color:#FAF4F4}'
-    '.v .ki2,.v .fu{color:#FAF4F4}'
-    '.li{width:110px;height:2px;background:var(--kerze);margin:56px auto 0}'
-    # Plakate ganz, nichts beschnitten, auf der Nacht oder dem Warmweiss der Website
-    '.pl{position:absolute;inset:0;display:grid;place-items:center}'
-    '.pl.n,.pl.w{display:grid;padding:0}'
-    '.pl img{display:block;width:82%;height:auto;box-shadow:0 30px 44px -18px rgba(0,0,0,.6),0 0 0 1px rgba(22,21,26,.08)}'
+    "@font-face{font-family:'Prata';src:url('../assets/schrift/prata-latin.woff2') format('woff2');font-weight:400}"
+    "@font-face{font-family:'Hanken';src:url('../assets/schrift/hanken-latin.woff2') format('woff2');font-weight:100 900}"
+    '.st{--nacht:#130E0D;--platte:#1C1513;--creme:#F2E9DC;--gold:#D8B264;--rot:#F0323F;--ultra:#1A00AA;--plakat:#D21C0A}'
+    '.n,.w,.s{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:170px 130px}'
+    '.n{background:radial-gradient(120% 90% at 50% 0%,#261E1A 0%,#130E0D 62%);color:var(--creme)}'
+    '.w{background:var(--creme);color:var(--nacht)}'
+    '.s{background:var(--creme) ' + _WELLE + ';color:var(--ultra)}'
+    # Eckschild: Gold-Haarlinie innen, das Raster zeigt 3:4, also Abstand zum Rand
+    '.n::before,.w::before{content:"";position:absolute;inset:92px 104px;border:1.5px solid rgba(216,178,100,.7);border-radius:22px;pointer-events:none}'
+    '.w::before{border-color:rgba(122,92,36,.55)}'
+    '.wm{position:absolute;top:150px;left:50%;width:96px;height:auto;transform:translateX(-50%)}'
+    '.ki2{font:500 24px/1.3 Hanken,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:40px}'
+    '.w .ki2{color:#7A5C24}'
+    '.ti{font:400 124px/1.04 Prata,Georgia,serif;text-wrap:balance}'
+    '.zi{font:400 92px/1.12 Prata,Georgia,serif;text-wrap:balance}'
+    '.zi::before{content:"«"}.zi::after{content:"»"}'
+    '.sa{margin-top:52px;max-width:720px;font:400 38px/1.45 Hanken,sans-serif;text-wrap:balance;opacity:.88}'
+    '.fu{position:absolute;bottom:150px;left:150px;right:150px;font:500 22px/1.3 Hanken,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}'
+    '.w .fu{color:#7A5C24}'
+    '.li{width:110px;height:2px;background:var(--gold);margin:56px auto 0}'
+    # SESSION: die Wellen der Plakate in Plakatrot, Schrift in Ultramarin auf einem Schild in Creme
+    '.s .sch{position:relative;padding:70px 80px 74px;background:var(--creme);border-radius:22px;box-shadow:0 0 0 1.5px rgba(26,0,170,.55),0 30px 60px -30px rgba(19,14,13,.5)}'
+    '.s .ki2{color:var(--ultra)}.s .ti{font-size:116px}.s .sa{color:var(--ultra);opacity:1;margin-top:40px}'
+    '.s .se{font:400 150px/1 Prata,Georgia,serif;letter-spacing:.04em;color:var(--ultra);margin-bottom:26px}'
+    # Plakate ganz, nichts beschnitten, auf der Nacht
+    '.pl{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(120% 90% at 50% 0%,#261E1A 0%,#130E0D 62%)}'
+    '.pl img{display:block;width:80%;height:auto;border-radius:6px;box-shadow:0 34px 50px -20px rgba(0,0,0,.7)}'
+    '.pl .fu{bottom:70px}'
     # Karussell-Deckblatt und Reel-Titel: Foto randlos, Titel im unteren Drittel auf einem Verlauf
     '.fo{position:absolute;inset:0}.fo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}'
-    '.fo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,14,19,0) 38%,rgba(15,14,19,.86) 100%)}'
-    '.fo .tx{position:absolute;left:96px;right:96px;bottom:118px;z-index:2;color:var(--weiss);text-align:left}'
-    '.fo .ki{font:400 25px/1 M;letter-spacing:.1em;text-transform:uppercase;color:var(--hell);margin-bottom:26px}'
-    '.fo .ti{font-size:104px;line-height:1.02}'
-    '.fo .wi{position:absolute;top:96px;right:96px;z-index:2;font:400 25px/1 M;letter-spacing:.1em;color:var(--weiss);padding:14px 20px;border:1.5px solid rgba(250,244,244,.6);border-radius:999px}'
+    '.fo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,14,13,0) 36%,rgba(19,14,13,.9) 100%)}'
+    '.fo .tx{position:absolute;left:104px;right:104px;bottom:128px;z-index:2;color:var(--creme);text-align:left}'
+    '.fo .ki{font:500 24px/1.3 Hanken,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}'
+    '.fo .ti{font-size:100px;line-height:1.04}'
+    '.fo .wi{position:absolute;top:104px;right:104px;z-index:2;font:500 22px/1 Hanken,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--creme);padding:16px 22px;border:1.5px solid rgba(216,178,100,.8);border-radius:14px;background:rgba(19,14,13,.45)}'
 )
 
 
-
-def zeile(teile, ton='n', fuss='Rudi · vom Pass'):
-    """Rudis Zeile als reine Schrift, Schrägstriche in Kerze."""
-    z = ''.join(f'<span>{t}{" <b>/</b>" if i < len(teile) - 1 else ""}</span>' for i, t in enumerate(teile))
-    gr = min(116, int(820 / (.68 * (max(len(t) for t in teile) + 2))))   # längstes Wort samt « /» passt in eine Zeile
-    return f'<div class="{ton}"><div class="kop">{_C}</div><p class="zl" style="font-size:{gr}px">{z}</p><p class="fu">{fuss}</p></div>'
+def _marke(ton):
+    return f'<img class="wm" src="marke-{"rot" if ton in ("n", "w") else "creme"}.svg" alt="">'
 
 
-def plakat(pid, ton='n'):
-    return '<div class="pl ' + ton + '"><img src="{bild:' + quelle('p_' + pid) + '}" alt=""></div>'
+def tafel(titel, satz='', fuss='', ton='n', kicker=''):
+    """Schrift-Beitrag auf Nacht (n) oder Creme (w), oben die rote Wortmarke."""
+    return (f'<div class="{ton}">{_marke(ton)}' + (f'<p class="ki2">{kicker}</p>' if kicker else '') + f'<p class="ti">{titel}</p>'
+            + (f'<p class="sa">{satz}</p>' if satz else '') + (f'<p class="fu">{fuss}</p>' if fuss else '') + '</div>')
+
+
+def zitat(satz, wer, ton='w'):
+    return f'<div class="{ton}">{_marke(ton)}<p class="zi">{satz}</p><p class="fu">{wer}</p></div>'
+
+
+def session(titel, satz, kicker='Samstag · 21 bis 1 Uhr'):
+    """SESSION wie auf den Plakaten der Bar: Wellen in Plakatrot, Schrift in Ultramarin."""
+    return f'<div class="s"><div class="sch"><p class="se">SESSION</p><p class="ki2">{kicker}</p><p class="ti">{titel}</p><p class="sa">{satz}</p></div></div>'
+
+
+def plakat(key, fuss='Aus dem Archiv'):
+    return '<div class="pl"><img src="{bild:' + quelle(key) + '}" alt=""><p class="fu">' + fuss + '</p></div>'
 
 
 def deckblatt(key, kicker, titel, wink):
     return '<div class="fo"><img src="{bild:' + quelle(key) + '}" alt=""><span class="wi">' + wink + '</span><div class="tx"><p class="ki">' + kicker + '</p><p class="ti">' + titel + '</p></div></div>'
 
 
-def tafel(titel, satz='', fuss='', ton='n', da='', kicker=''):
-    """Schrift-Beitrag auf Nacht (n), Warmweiss (w) oder im Violett von Dirty Chicken (v, ohne das «C»)."""
-    kop = '' if ton == 'v' else f'<div class="kop">{_C}</div>'
-    return (f'<div class="{ton}">{kop}' + (f'<p class="ki2">{kicker}</p>' if kicker else '') + f'<p class="ti">{titel}</p>'
-            + (f'<p class="da">{da}</p>' if da else '') + (f'<p class="sa">{satz}</p>' if satz else '') + (f'<p class="fu">{fuss}</p>' if fuss else '') + '</div>')
-
-
-def zitat(satz, wer, ton='w'):
-    return f'<div class="{ton}"><div class="kop">{_C}</div><p class="zi">{satz}</p><p class="fu">{wer}</p></div>'
-
-
 F = lambda key, art, fx=.5, fy=.5: dict(art='foto', bild=quelle(key), fx=fx, fy=fy, _art=art)
 H = lambda html, art: dict(art='html', html=html, _art=art)
 
-# Fassung 3 «Fortsetzung» (Oberchef 29.10.2026, Robert: «die werden jetzt nicht ihren gesamten Feed löschen … man muss gucken, was sie an
-# Bildern benutzt haben, damit wir jetzt diese 60 Beiträge darauf aufbauen können … zwischendurch noch so die nächsten Veranstaltungen»).
-# Die 60 Beiträge sind die nächsten, die das Haus nach und nach postet, hier in der Reihenfolge des Postens (1 = zuerst). Kein Foto, das schon
-# auf @culinarium_hannover steht (Abgleich feed_bestand.py im Kit, Bericht feed/bestand.json); Ausnahme: Rudis Plakate, gezielt als
-# «Aus dem Archiv» wieder gepostet. Ein Jahr in Folgen: Abend im November (27./28.11.) und im Dezember (18./19.12., Beispieltermine der
-# Website), Dirty Chicken, dann die Abende 2027, deren Termine noch nicht feststehen ([Datum]). Je Abend: Ankündigung, Countdown,
-# «Noch drei Plätze» (Exklusivität, nie Druck), der Abend, Danke, Rückblick. Darunter stehen im Profil die echten bisherigen Beiträge.
-# Arten für den Nachbar-Abgleich: text, plakat, cover, teller, drink, mensch, tafel, bar, dc.
+# Die nächsten 60, in der Reihenfolge des Postens (1 = zuerst). Daten nur, wo sie feststehen (Silvester, Valentinstag, Tanz in den Mai);
+# SESSION und Geburtstag ohne Datum, die Bar kündigt sie wie bisher auf Instagram an.
 JAHR = [
-    # ---- November 2026: der Abend am 27. und 28. November
-    (H(tafel('Der nächste Abend.', da='27 / 11 / 26 · 19:00 UHR<br>28 / 11 / 26 · 17:00 UHR', fuss='Vierzehn Plätze · eine lange Tafel'), 'text'),
-     'Der nächste Abend an der langen Tafel: Freitag, 27. November, ab 19 Uhr und Samstag, 28. November, ab 17 Uhr. Vierzehn Plätze. Schreib uns, wenn einer davon deiner sein soll.'),
-    (F('kerze2', 'tafel', .5, .45), 'So sieht es aus, kurz bevor der erste Gang kommt. Kerzen an, Gläser bereit, jeder Platz gedeckt.'),
-    (H(zeile(['Lauch', 'Blumenkohl', 'Chipotle'], 'w'), 'text'), 'So schreibt Rudi seine Teller: drei, vier Wörter, und jedes davon zählt.'),
-    (F('g1', 'drink'), 'Schaum, Garnitur, und Momo erklärt dir am Tisch, was im Glas passiert.'),
-    (H(plakat('CzMcqNcMCqG'), 'plakat'), 'Aus dem Archiv: das Plakat zum November 2023, aus den ersten Abenden unter dem Namen Culinarium. Drei Jahre später steht wieder ein November an.'),
-    (F('m2', 'teller'), 'Mit dem Brenner über jeden Teller, einzeln. Am Pass hat nichts Eile.'),
-    (H(deckblatt('kerze3', '27 / 11 / 26', 'Noch eine Woche.', 'Freitag'), 'cover'), 'Noch eine Woche bis zum Abend im November. Die Kerzen sind bestellt, die Karte wird geschrieben.'),
-    (H(zitat('Du sagst mir, was du magst, ich mache dir einen Drink.', 'Momo · hinter der Bar'), 'text'), 'Eine Karte gibt es an Momos Theke nicht. Du erzählst, er mixt.'),
-    (F('momo', 'mensch', .5, .35), 'Momo, hinter der Bar des Walk on the Wild Side. Jeder Drink des Abends geht durch seine Hände.'),
-    (H(tafel('Noch drei Plätze.', satz='Für Samstag, 28. November, ab 17 Uhr.', fuss='Eine lange Tafel · vierzehn Gäste', ton='w'), 'text'),
-     'Für Samstag, 28. November, sind noch drei Plätze an der Tafel frei. Wenn einer davon deiner sein soll, schreib uns eine Nachricht.'),
-    (F('anstossen', 'tafel', .5, .4), 'Heute Abend. Der erste Schluck, und ab hier gehört die Tafel euch.'),
-    (F('roq1', 'teller', .5, .55), 'BLUMENKOHL / ROQUEFORT / KAPERN / QUINOA. Daneben das Glas, das Momo dazu gemixt hat.'),
-    (H(deckblatt('t03', 'Rückblick · November', 'Danke für zwei Abende.', '1 / 8'), 'cover'), 'Danke für Freitag und Samstag. Wisch dich durch die Abende, vom ersten Glas bis zum letzten Teller.'),
-    # ---- Dezember 2026: der letzte Abend des Jahres, 18. und 19. Dezember
-    (H(tafel('Noch ein Abend in diesem Jahr.', da='18 / 12 / 26 · 19:00 UHR<br>19 / 12 / 26 · 17:00 UHR', fuss='Vierzehn Plätze · eine lange Tafel', ton='w'), 'text'),
-     'Noch ein Abend in diesem Jahr: Freitag, 18. Dezember, ab 19 Uhr und Samstag, 19. Dezember, ab 17 Uhr.'),
-    (H(deckblatt('klaeren', 'Tasting und Schulung', 'Was im Glas passiert', '1 / 5'), 'cover'),
-     'Fatwashing, Milkwashing, Klärung mit Enzymen: Wisch dich durch, Momo erklärt dir alle drei. Am Abend selbst zeigt er es dir am Tisch.'),
-    (F('tarte', 'teller', .5, .55), 'Tarte mit roten Früchten und Eis. Zum Schluss etwas Leichtes.'),
-    (F('schildnacht', 'bar', .5, .45), 'Haasemannstraße 13, Ecke Rampenstraße. Am Schild erkennst du die Bar schon von weitem.'),
-    (H(zeile(['Aubergine', 'Kokos', 'Limette', 'Sesam'], 'n'), 'text'), 'Rudis neuester Teller, so wie er ihn schreibt.'),
-    (F('glasnacht', 'drink'), 'Im Stielglas, auf dem dunklen Tisch. Ruhig, klar, für den zweiten Gang.'),
-    (H(tafel('Samstag ausgebucht.', satz='Wird ein Platz frei, erfährt es zuerst, wer auf der Warteliste steht.', fuss='19 / 12 / 26'), 'text'),
-     'Der Samstag ist ausgebucht. Wird ein Platz frei, erfährst du es als Erstes: Schreib uns eine Nachricht, dann stehst du auf der Warteliste. Für Freitag gibt es noch Plätze.'),
-    (H(deckblatt('pass4', 'Am Pass', 'Jeder Teller von Hand angerichtet', 'Film'), 'cover'), 'Ein paar Minuten am Pass, bevor die Teller an die Tafel gehen. Ton an.'),
-    (F('rudi', 'mensch', .5, .4), 'Rudi erklärt dir seinen Teller selbst, am Tisch, bevor du den ersten Bissen nimmst.'),
-    (H(plakat('C17kqAXLfs_', 'w'), 'plakat'), 'Aus dem Archiv: das Plakat zum Januar 2024, Motto «Flashback».'),
-    (F('t10', 'tafel', .5, .4), 'Ein Abend an der langen Tafel. Fremde zu Beginn, Tischnachbarn zum Dessert.'),
-    (H(tafel('Danke für 2026.', satz='Für jeden Platz an der Tafel, für die Gespräche und für die Ruhe zwischen den Gängen.', fuss='Momo · Rudi', ton='w'), 'text'),
-     'Danke für 2026. Wenn du dabei warst, weißt du, was wir meinen. Wir sehen uns im neuen Jahr an der Tafel.'),
-    # ---- Winter: Teller, Glas, Leute
-    (F('beete', 'teller', .5, .55), 'Rote Bete mit Schaum. Gemüse steht bei Rudi oft im Mittelpunkt.'),
-    (F('d2', 'drink'), 'Hell, mit Minze. Für einen Gast, der es frisch mag.'),
-    (H(plakat('DJw8OqGMY1G'), 'plakat'), 'Aus dem Archiv: das Plakat zum Juni 2025, die Gärtnerin.'),
-    (H(zitat('Was für ein Abend!', 'Culinarium · Rückblick'), 'text'), 'Aus einem Rückblick des Hauses: Was für ein Abend! Mit unglaublichen Gästen und einer einzigartigen Atmosphäre im Walk on the Wild Side.'),   # belegt: Recap-Beitrag von @culinarium_hannover (_quelle/extern/ig); ersetzt das Dirty-Chicken-Zitat (Tor 30.10.2026, K20)
-    (F('anrichten', 'teller'), 'Konzentration am Pass. Jeder Teller wird angerichtet, als wäre er der einzige.'),
-    # ---- Frühjahr: Dirty Chicken
-    (H(tafel('Dirty Chicken.', da='WALK ON THE WILD SIDE', kicker='Pop-up', fuss='Fried Chicken · Dirty Drinks · Musik', ton='v'), 'dc'),
-     'Aus demselben Haus: Dirty Chicken kommt wieder in den Walk on the Wild Side, die Termine stehen auf @dirtychicken.hannover. Fried Chicken, das kracht, Pommes, Krautsalat und Dirty Drinks von der Bar.'),
-    (F('trio2', 'mensch', .5, .4), 'Die Leute hinter Culinarium, vor der Bar. Dahinter stehen immer dieselben.'),
-    (F('dn_tisch', 'dc'), 'Dirty Chicken von oben: Sandwich, Chunks, Pommes, Krautsalat. Alles zum Teilen.'),
-    # ---- Frühjahr 2027: der nächste Culinarium-Abend, Termin noch offen
-    (H(tafel('Der nächste Abend.', da='FREITAG · 19:00 UHR<br>SAMSTAG · 17:00 UHR', fuss='Vierzehn Plätze · eine lange Tafel'), 'text'),
-     'Der erste Abend 2027 an der langen Tafel: Freitag ab 19 Uhr und Samstag ab 17 Uhr. Vierzehn Plätze, wer auf der Warteliste steht, erfährt es zuerst.'),
-    (F('spag', 'teller', .5, .55), 'SPAGHETTI-EIS / KIWI / WEISSE SCHOKOLADE. Ein Dessert, das dich anlächelt.'),
-    (H(plakat('DFqbLG2s_dc', 'w'), 'plakat'), 'Aus dem Archiv: das Plakat zum Februar 2025, der Panther auf dem Thron.'),
-    (H(deckblatt('kerze1', 'Freitag · 19:00 Uhr', 'Noch drei Tage.', 'Freitag'), 'cover'), 'Noch drei Tage. Momo stellt die Gläser bereit, Rudi schreibt die Zeilen für die Karte.'),
-    (F('service', 'mensch', .5, .4), 'Der Teller kommt an deinen Platz, und mit ihm der Satz, was darauf liegt.'),
-    (H(zeile(['Hokkaido', 'Kürbiskernöl', 'Haselnuss'], 'n'), 'text'), 'Ein Gang im Glas, und daneben der passende Drink von Momo.'),
-    (F('r09', 'teller'), 'Ein Teller auf Porzellan mit grünem Rand. Rudis Sinn für den Rahmen.'),
-    (H(deckblatt('d3', 'Signature Drinks', 'Durchs Sieb, ins Glas', 'Film'), 'cover'), 'Wie ein Drink von Momo entsteht, in einer Minute.'),
-    (F('ecke', 'bar'), 'Die Hausecke in Linden, Haasemannstraße 13. Hier hat alles angefangen.'),
-    (H(plakat('C8cgYVSouVT'), 'plakat'), 'Aus dem Archiv: das Plakat zum Juli 2024, dem ersten Abend mit «by Momo x Rudi».'),
+    # ---- November 2026
+    (H(tafel('Was magst du?', satz='Die Karte wechselt immer wieder. An der Bar sagst du, was du magst.', fuss='Walk on the Wild Side · Linden'), 'text'),
+     'Was magst du? Die Karte im Wild Side wechselt immer wieder, die Drinks dafür entwirft Momo. Und an der Bar sagst du einfach, was du magst. Donnerstag ab 19 Uhr, Freitag und Samstag bis 2.'),
+    (F('momo-giesst', 'mensch', .6, .4), 'Momo giesst. Vorher hat er gefragt: lieber sauer, süss, bitter oder rauchig?'),
+    (F('decke-raum', 'raum', .5, .3), 'Schau nach oben. Über dem ganzen Raum hängt der Druck eines Kathedralen-Gewölbes, angeleuchtet in Blau, Silber und Gold.'),
+    (H(session('Sip &amp; Sound.', 'Drinks und Musik an einem Abend. Ohne Eintritt.'), 'session'),
+     'Samstag ist wieder SESSION: Drinks und Musik an einem Abend, von 21 bis 1 Uhr, ohne Eintritt. Wer auflegt, steht auf dem Plakat in der Story.'),
+    (F('glas-negroni', 'drink', .5, .5), 'Den Negroni gibt es an jedem Abend. Gin, Wermut, Bitter, auf Eis gerührt. Der Schriftzug über der Vitrine ist kein Zufall.'),
+    (H(tafel('Jeder Abend ein Plakat.', satz='Rot-cremefarbene Wellen, das Gesicht des Abends in Schwarzweiss.', fuss='SESSION · seit September 2025', ton='w'), 'text'),
+     'Seit September 2025 holt das Wild Side DJs an die Bar, und jeder Abend bekommt sein eigenes Plakat: rot-cremefarbene Wellen, das Gesicht des Abends in Schwarzweiss. In den nächsten Wochen zeigen wir sie euch noch einmal, «Aus dem Archiv».'),
+    (F('voll', 'leute', .5, .5), 'Freitag, kurz nach zehn. Alle Tische vor der Bar besetzt, und hinten wird gelacht.'),
+    (H(zitat('Du sagst mir, was du magst, ich mache dir einen Drink.', 'Momo · an der Theke'), 'text'), 'So läuft es an Momos Theke: erst die Frage, dann das Glas.'),
+    (F('schild-ecke', 'bar', .5, .5), 'Haasemannstraße 13, Ecke Rampenstraße. Das Schild an der Ecke leuchtet, zwei Minuten vom Küchengarten.'),
+    (H(deckblatt('dg-siphon', 'Wie Momo arbeitet', 'Drei Techniken aus dem Labor', '1 / 4'), 'cover'),
+     'Milk Washing, Fat Washing, Enzyme: Wisch dich durch. Momo hat Biotechnologie studiert, bevor er hinter die Bar ging, und man schmeckt es.'),
+    (F('wf-klar', 'drink', .5, .55), 'Klar wie Wasser, weich wie Sahne: Milk Washing. Die Milch bindet die Trübstoffe und wird wieder abgefiltert.'),
+    (F('an-team', 'mensch', .5, .5), 'Das Team vor der Rückbar, über allen der NEGRONI-Schriftzug.'),
+    (F('momo-lacht', 'mensch', .55, .45), 'Momo hinter der Bar. Erst fragt er, dann mixt er, und manchmal lacht er dabei.'),
+    # ---- Dezember 2026
+    (H(tafel('Drei Jahre Wild Side.', satz='Mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste.', fuss='Der Geburtstag der Bar', ton='w', kicker='Im Winter'), 'text'),
+     'Die neue Wild Side wird drei. Wir feiern mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste. Den Abend kündigen wir hier an.'),
+    (F('feste-anstossen', 'leute', .5, .4), 'So war es letztes Jahr, als wir zwei wurden. Der Mexikaner ging die ganze Nacht.'),
+    (H(tafel('91 Punkte.', satz='Falstaff Bar Guide 2027, Kategorie Cocktailbars. Drinks: 47 von 50.', fuss='Danke an alle an der Bar', kicker='Falstaff Bar Guide 2027'), 'text'),
+     'Falstaff Bar Guide 2027: 91 Punkte für das Wild Side, in der Kategorie Cocktailbars. Drinks 47 von 50, Style 18 von 20, Service 18 von 20. Danke an euch alle, die mit uns an der Bar stehen.'),
+    (F('glas-coupe', 'drink', .5, .5), 'Im Coupe, mit Schaum, dahinter Kerzen. Für alle, die cremig sagen.'),
+    (H(tafel('Silvester ab mittags.', satz='Frühschoppen an der Bar, und abends geht es weiter.', fuss='Den Mexikaner gibt es die ganze Nacht', kicker='31 · 12'), 'text'),
+     'Silvester sind wir wieder ab mittags da, abends geht es weiter. Den Mexikaner gibt es die ganze Nacht, Wild-Side-Tradition. Reservieren per DM oder unter +49 163 3909578.'),
+    (F('theke', 'bar', .5, .5), 'Die Theke mit dem gelben Licht unter der Kante. Hier wird gefragt, gemixt und erzählt.'),
+    (F('an-party', 'feier', .5, .4), 'Eure Weihnachtsfeier bei uns: Ab dreissig Gästen gehört euch die ganze Bar, von 19 bis 2 Uhr. Alles dazu per DM.'),
+    (H(plakat('p-0906'), 'plakat'), 'Aus dem Archiv: das Plakat zum ersten SESSION-Abend, 6. September 2025, mit Björn vom This Is Social Club.'),
+    # ---- Januar 2027
+    (F('glas-rot', 'drink', .5, .5), 'Rot, im Stielglas, neben Kerzen. Wer bitter sagt, landet oft hier.'),
+    (H(tafel('Danke für 2026.', satz='Für jede Frage an der Theke, jeden Abend unter der Decke und jedes Lied am Samstag.', fuss='Derya · Momo', ton='w'), 'text'),
+     'Danke für 2026. Für jede Frage an der Theke, jeden Abend unter der Decke und jedes Lied am Samstag. Wir sehen uns im neuen Jahr an der Bar.'),
+    (F('freundinnen', 'leute', .5, .45), 'Zu zweit an der Bar. Mehr braucht ein Donnerstag nicht.'),
+    (H(session('Das erste Mal 2027.', 'Wer auflegt, verraten wir in der Story.'), 'session'),
+     'Die erste SESSION 2027: Samstag, 21 bis 1 Uhr, ohne Eintritt. Wer auflegt, verraten wir in der Story.'),
+    (F('decke-hoch', 'raum', .5, .4), 'Von unten nach oben: die Theke mit dem gelben Licht, darüber das Gewölbe.'),
+    (H(deckblatt('an-empore', 'Feiern im Wild Side', 'Eure lange Tafel', '1 / 5'), 'cover'),
+     'Zehn bis zwanzig Gäste, vier Stunden auf der Empore, unten läuft die Bar weiter. Wisch dich durch die Formate, vom Dinner bis zur ganzen Bar.'),
+    (F('dg-giessen', 'drink', .5, .5), 'Durchs Sieb, ins Coupe. Jeder Drink geht durch Momos Hände.'),
+    # ---- Februar 2027
+    (H(tafel('Valentinstag.', satz='Mit Rudi von Culinarium: vier Drinks und Teller zum Teilen, nur an diesem Abend.', fuss='Reservieren erwünscht', kicker='14 · 02'), 'text'),
+     'Valentinstag kocht Rudi von Culinarium bei uns: eine Karte mit vier Drinks und Tellern zum Teilen, die es nur an diesem Abend gibt. Reservieren erwünscht, per DM oder Telefon.'),
+    (F('glas-zwei', 'drink', .5, .5), 'Zwei Gläser, ein Tisch. Für den Abend zu zweit.'),
+    (H(plakat('p-2401'), 'plakat'), 'Aus dem Archiv: SESSION mit Loverence, 24. Januar 2026.'),
+    (F('rueckbar', 'bar', .5, .5), 'Die Rückbar durchs Fenster. Jede Flasche hat ihren Platz, und Momo weiss, wo.'),
+    # ---- März 2027
+    (H(tafel('Erst die Frage, dann das Glas.', satz='Momo fragt nach dem Geschmack, nach dem Glas, nach dem, was drin sein soll.', fuss='So läuft es an der Theke', ton='w'), 'text'),
+     'Erst die Frage, dann das Glas. Momo fragt nach dem Geschmack, nach dem Glas, nach dem, was drin sein soll. Daraus wird ein Drink.'),
+    (F('konzert', 'musik', .5, .5), 'Donnerstags spielt ab und zu jemand live, mitten im Raum. Jazz, Soul, Pop, ohne Eintritt.'),
+    (F('pl-tisch', 'drink', .5, .5), 'Drinks am Holztisch, hinten die Polsterbank. Ein Abend fängt meistens so an.'),
+    (H(deckblatt('dg-coupes', 'Gastschicht', 'Jemand anderes am Shaker', 'Film'), 'cover'),
+     'An manchen Abenden steht neben Momo jemand aus einer anderen Bar, aus Hannover oder Berlin, und bringt eigene Drinks mit. Wer als Nächstes kommt, steht hier.'),
+    (F('fenster', 'bar', .5, .5), 'Von der Strasse durchs Fenster: drinnen die Rückbar, oben spiegelt sich die Decke.'),
+    (H(session('Samstag legt jemand auf.', 'Momo mixt dazu. Ohne Eintritt.'), 'session'),
+     'Samstag legt wieder jemand auf, von 21 bis 1 Uhr. Momo mixt dazu, Eintritt frei. Wer zu mehreren kommt, reserviert besser, die Bar ist klein.'),
+    # ---- April 2027
+    (F('saengerin', 'musik', .5, .4), 'Eine Stimme mitten im Raum. So klingt ein Donnerstag im Wild Side.'),
+    (F('glas-sour', 'drink', .5, .5), 'Ein Sour auf der Theke. Wer sauer sagt, bekommt so etwas.'),
+    (H(plakat('p-2103'), 'plakat'), 'Aus dem Archiv: SESSION mit Moury, 21. März 2026.'),
+    (F('anstossen', 'leute', .5, .45), 'Prost, Linden. Zwei Gläser über dem Tisch.'),
+    (H(tafel('Tanz in den Mai.', satz='Musik, Momo an der Bar, Eintritt frei.', fuss='Wenn es warm ist, stehen die Tische vor der Tür', ton='w', kicker='30 · 04'), 'text'),
+     'Tanz in den Mai: Musik, Momo an der Bar, Eintritt frei. Wenn es warm ist, stehen die Tische vor der Tür an der Ecke.'),
+    (F('negroni', 'bar', .5, .5), 'Die Glühbirnen-Schrift über der Vitrine. Man sieht sie schon von der Tür aus.'),
+    # ---- Mai 2027
+    (F('momo-flaschen', 'mensch', .45, .5), 'Momo zwischen seinen Flaschen.'),
+    (H(deckblatt('an-loge', 'Die Bar ausser Haus', 'Grösser als die Bar', '1 / 4'), 'cover'),
+     'Für grössere Veranstaltungen zieht die Bar um, in externe Locations wie die Loge. Derya und Momo kümmern sich um das ganze Konzept, von der Bar bis zum Ablauf des Abends.'),
+    (F('glas-hand', 'drink', .5, .5), 'In der Hand, kurz vor dem ersten Schluck.'),
+    (H(tafel('Mit derselben Sorgfalt.', satz='Shrub, Soda, Kräuter, klarer Saft.', fuss='Jeder Drink geht auch ohne', kicker='Ohne Alkohol'), 'text'),
+     'Ohne Alkohol, mit derselben Sorgfalt: Shrub, Soda, Kräuter, klarer Saft. Momo baut jeden Drink auch ohne.'),
+    (F('tuer-rot', 'bar', .5, .5), 'Durch die Tür auf den roten Boden. Dahinter wartet die Bar.'),
+    (H(plakat('p-1605'), 'plakat'), 'Aus dem Archiv: SESSION mit Jojo & Reza, Old School, 16. Mai 2026.'),
     # ---- Sommer 2027
-    (H(tafel('Ein Abend im Sommer.', da='FREITAG · 19:00 UHR<br>SAMSTAG · 17:00 UHR', fuss='Vierzehn Plätze · eine lange Tafel', ton='w'), 'text'),
-     'Ein Abend im Sommer an der langen Tafel: Freitag ab 19 Uhr und Samstag ab 17 Uhr. Wer auf der Warteliste steht, erfährt es zuerst.'),
-    (H(deckblatt('glaeser', 'Signature Drinks', 'Fünf Drinks, ein Abend', '1 / 6'), 'cover'),
-     'Fünf Drinks, ein Abend: Wisch dich durch, vom Apéritif bis zum Absacker. Jeder passt zu genau einem Gang.'),
-    (F('r01', 'teller'), 'Blumenkohl mit Kürbis, auf weissem Porzellan. Jeder Teller sieht aus, als hätte er nur auf dich gewartet.'),
-    (F('momo_hoch', 'mensch', .5, .3), 'Momo vor seiner Bar. Hier entsteht jeder der fünf Drinks.'),
-    (H(tafel('Black Pearl', satz='Black Sesam fatwashed Tequila, Guave, Grapefruit, Limette.', fuss='Momo · Signature Drink', kicker='Momos Drink zum Dessert'), 'text'),
-     'Black Pearl, zum Dessert: Tequila, mit schwarzem Sesam fatgewaschen. Wie das geht, erklärt dir Momo am Tisch.'),
-    (H(plakat('DPwlqcfiKcA', 'w'), 'plakat'), 'Aus dem Archiv: das Plakat zum November 2025. Der Freitag war ausverkauft, bevor die Kerzen brannten.'),
-    (H(tafel('Ausgebucht.', satz='Danke an alle, die dabei sind. Für den nächsten Abend gilt wieder: Die Warteliste erfährt es zuerst.', fuss='Freitag und Samstag', ton='w'), 'text'),
-     'Beide Abende im Sommer sind ausgebucht. Danke. Wer nicht dabei ist: Die Warteliste erfährt den nächsten Termin zuerst.'),
-    (F('hok2', 'teller', .5, .55), 'Das Dessert neben seinem Drink. So ist der Abend gedacht: immer beides.'),
-    (F('r08', 'teller'), 'Zwei Knödel mit Kräutern. Einfach klingt anders, wenn Rudi es anrichtet.'),
-    (H(tafel('Dit ist wahre Liebe!', kicker='Dirty Chicken', fuss='Pop-up aus dem Walk on the Wild Side', ton='v'), 'dc'),
-     'Dirty Chicken, Rudis Pop-up mit Fried Chicken, Pommes, Krautsalat und Dirty Drinks. Die nächsten Termine stehen auf @dirtychicken.hannover.'),
-    # ---- Herbst 2027: der nächste Abend, Termin noch offen
-    (F('team_alle', 'mensch'), 'Das ganze Team hinter der Theke. Keiner von ihnen steht zufällig da.'),
-    (H(deckblatt('ws29', 'Signature Drinks', 'Geklärt, Glas für Glas', 'Film'), 'cover'), 'Wie ein Drink klar wird, ohne leiser zu werden. Ton an.'),
-    (F('coupe', 'drink'), 'Ein Drink und ein Dessert auf dem Tresen, für den letzten Moment des Abends.'),
-    (H(plakat('C56bJeds8PF', 'w'), 'plakat'), 'Aus dem Archiv: das Plakat zum April 2024, der erste Abend, an dem Rudi gekocht hat.'),
-    (H(zeile(['Rote Beete', 'Zwiebel', 'Parmesan'], 'w'), 'text'), 'Noch eine von Rudis Zeilen. Gemüse steht bei ihm im Mittelpunkt, und jedes Wort sagt dir, was kommt.'),
-    (H(deckblatt('flur', 'Seit 2017 in Linden', 'Wie es kam', '1 / 6'), 'cover'), 'Von der Bar in Linden bis zum ausgebuchten Abend an der langen Tafel: Wisch dich durch die Geschichte.'),
-    (H(tafel('Der nächste Abend.', da='FREITAG · 19:00 UHR<br>SAMSTAG · 17:00 UHR', fuss='Vierzehn Plätze · eine lange Tafel'), 'text'),   # ohne Platzhalter (Oberchef 30.10.2026): belegter Wochentag und Uhrzeit statt [DATUM]
-     'Der nächste Abend an der langen Tafel: Freitag ab 19 Uhr und Samstag ab 17 Uhr. Vierzehn Plätze. Wer auf der Warteliste steht, erfährt den Termin zuerst.'),
+    (F('wf-tablett', 'drink', .5, .5), 'Eine Reihe heller Drinks auf dem Tablett, gleich gehen sie an den Tisch.'),
+    (F('decke-bar', 'raum', .5, .45), 'Unter der Decke, vor der Rückbar mit dem NEGRONI-Schriftzug.'),
+    (H(tafel('Jeder Drink ein Unikat.', satz='Milk Washing, Fat Washing, Enzyme. Und wer einen Negroni will, bekommt ihn.', fuss='Momos Karte wechselt', ton='w'), 'text'),
+     'Jeder Drink ein Unikat. Momo arbeitet mit Milk Washing, Fat Washing und Enzymen. Und wer einen Negroni will, bekommt ihn.'),
+    (F('ft-momo-mixt-gast', 'mensch', .45, .5), 'Momo schüttelt, daneben wartet der Gast, für den der Drink ist.'),
+    (H(plakat('p-0509'), 'plakat'), 'Aus dem Archiv: SESSION mit Apo, 5. September 2026.'),
+    (F('flaschen', 'bar', .5, .5), 'Flaschen in der Rückbar. Gin, Rum, Mezcal, Whisky, du sagst, was hinein soll.'),
+    (F('glas-kerze', 'drink', .5, .5), 'Ein Drink auf dem dunklen Tisch, dahinter Kerzen.'),
+    (H(tafel('Euer Abend.', satz='Ein Dinner an der langen Tafel, die ganze Bar für eure Gesellschaft, Musik, die zum Abend passt.', fuss='Anfragen per DM oder Telefon'), 'text'),
+     'Euer Abend im Wild Side: ein Dinner an der langen Tafel, die ganze Bar für eure Gesellschaft, Musik, die zum Abend passt. Derya und Momo planen ihn mit euch, vom ersten Drink bis zum letzten Lied.'),
+    (F('ft-raum-abend', 'leute', .5, .5), 'Der Raum am Abend: vorn an der Theke, hinten an den Tischen.'),
+    (H(plakat('p-0310'), 'plakat'), 'Aus dem Archiv: SESSION mit Jojo & Reza, Old-School-Hip-Hop, 3. Oktober 2026.'),
 ]
 assert len(JAHR) == 60, len(JAHR)
 
@@ -210,14 +228,14 @@ FEED = [_RASTER[i:i + 3] for i in range(0, 60, 3)]
 
 
 def nachbarn():
-    """Gleiche Art nie nebeneinander oder untereinander (Schrift, Plakat, Titel, Teller, Glas, Mensch, Tafel, Bar, Dirty Chicken)."""
+    """Gleiche Art nie nebeneinander oder untereinander."""
     art = [[st['_art'] for st, _ in r] for r in FEED]
     return [(r + 1, c + 1, art[r][c]) for r in range(len(art)) for c in range(3)
             if (c < 2 and art[r][c] == art[r][c + 1]) or (r + 1 < len(art) and art[r][c] == art[r + 1][c])]
 
 
-BESTAND_AUSNAHMEN = ('p_', 'pl_', 'ill_', 'po_', 'pr_')   # Rudis Plakate dürfen wieder gepostet werden (Robert 29.10.2026); alles andere nie doppelt
-BESTAND_KANDIDATEN = []   # wird unten aus dem Bildregister der Website gefüllt: der Bericht nennt jedes schon gepostete Foto
+BESTAND_AUSNAHMEN = ('p-',)   # die SESSION-Plakate der Bar dürfen wieder gepostet werden; alles andere nie doppelt
+BESTAND_KANDIDATEN = []
 
 BOGEN = []
 for _r, _reihe in enumerate(FEED):
@@ -226,10 +244,7 @@ for _r, _reihe in enumerate(FEED):
         kurz = (os.path.basename(st['bild']).rsplit('-', 1)[0] if st['art'] == 'foto' else re.sub(r'\W+', '', re.sub(r'<[^>]+>', ' ', st['html']))[:14] or 'tafel')
         BOGEN.append(dict(id=f'{_r + 1:02d}{_c + 1}-{kurz}', r=_r, c=_c, texte=[text], **st))
 P = feed_bogen.p_liste(BOGEN)
-BISHER = 28   # Beiträge auf @culinarium_hannover heute (Profil, 25.10.2026); im Profil der Werkbank stehen sie unter den 60 neuen
+BISHER = 82   # Beiträge auf @walkonthewildside_hannover heute (Profil, 26.10.2026); im Profil der Werkbank stehen die mit Bild unter den 60 neuen
 PROFIL['zahlen']['beitraege'] = str(len(P) + BISHER)   # Gesamtzahl nach dem Nachposten
-BESTAND_KANDIDATEN = sorted({re.sub(r'-\d+\.webp$', '', f) for f in os.listdir(os.path.join(_WEB, 'assets', 'bild')) if f.endswith('.webp')}
-                            - {x for x in ('',)})
-# Instagram-Bestand des Hauses für den Abgleich: alle Beiträge von @culinarium_hannover und der Beitrag von Rudi mit Culinarium als Mitautor
-# (erscheint auch im Profil von Culinarium). Dieselben Beiträge stehen im Profil der Werkbank unter den 60 neuen (feed_leicht.py).
-IG_BESTAND = ['../../_quelle/extern/ig/*.jpg', '../../_quelle/extern/ig-team/*_DLSA60BMwiG-*.jpg']
+# Instagram-Bestand der Bar für den Abgleich: alle Beiträge mit Bild aus _quelle/ig (eigenes Konto)
+IG_BESTAND = ['../../_quelle/ig/2*.jpg']

@@ -75,6 +75,11 @@ def bild(key):
     return os.path.join(BILD, best)
 
 
+def bild_satz(key):
+    """Adresse eines Fotos aus Sicht der Satzdateien (_werkbank/satz/*.html; assets ist im Projekt ein Verweis auf die Website)"""
+    return '../../assets/bild/' + os.path.basename(bild(key))
+
+
 def welle(ident, b, h, farbe_a, farbe_b, winkel=-32, breite=9.0, hub=2.6, laenge=34.0, clip=None):
     """SESSION-Wellen: schräge, gewellte Bänder in zwei Farben (wie die Plakate der DJ-Abende), als Pfade in mm."""
     d = math.hypot(b, h)

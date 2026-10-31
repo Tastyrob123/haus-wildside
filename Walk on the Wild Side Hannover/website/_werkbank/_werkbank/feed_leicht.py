@@ -8,20 +8,23 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 F = os.path.join(ROOT, 'feed')
-IG = os.path.join(ROOT, '..', '..', '_quelle', 'extern')
+IG = os.path.join(ROOT, '..', '..', '_quelle')
+KONTO = 'walkonthewildside_hannover'
+PROFILBILD = os.path.join(IG, 'logo', 'wildside-profilbild-1080.jpg')
 
 
 def bisher():
-    """Die echten bisherigen Beiträge von @culinarium_hannover (neuester zuerst), je das erste Bild, mit ihrem Text; dazu Rudis Beitrag mit
-    Culinarium als Mitautor. Im Profil stehen sie unter den 60 neuen, so wie es nach dem Nachposten aussieht (Oberchef 29.10.2026)."""
+    """Die echten bisherigen Beiträge von @walkonthewildside_hannover mit Bild (_quelle/ig, neuester zuerst), je das erste Bild, mit ihrem Text.
+    Im Profil stehen sie unter den 60 neuen, so wie es nach dem Nachposten aussieht (wie im Culinarium, Oberchef 29.10.2026).
+    Die Bilder werden beim Bau nach feed/posts und feed/thumbs-w kopiert (zur Laufzeit lädt nichts aus _quelle)."""
     posts = {}
-    for ordner in ('ig', 'ig-team'):
+    for ordner in ('ig',):
         try:
             h = json.load(open(os.path.join(IG, ordner, 'herkunft.json'), encoding='utf-8'))
         except OSError:
             continue
         for datei, v in h.items():
-            if v.get('konto') != 'culinarium_hannover' and 'culinarium_hannover' not in (v.get('mitautoren') or []):
+            if v.get('konto') != KONTO:
                 continue
             pid = datei.rsplit('-', 1)[0][-11:]
             if v.get('bild_nr') == 1 or pid not in posts:   # das erste Bild eines Beitrags ist seine Kachel
@@ -67,7 +70,7 @@ def mach():
             r, g, b = Image.open(os.path.join(F, 'thumbs-w', name + '.webp')).convert('RGB').resize((1, 1), Image.BOX).getpixel((0, 0))
             return f'#{r:02x}{g:02x}{b:02x}'
         except OSError:
-            return '#222028'
+            return '#1c1513'
 
     def kachel(m):
         i, label, name = int(m.group(1)), m.group(2), m.group(3)
@@ -92,7 +95,7 @@ def mach():
         kacheln += (f'<button class="t alt" type="button" data-i="{i}" style="--i:{i};background:{farbe(f"{nr:02d}")}" aria-label="Beitrag {nr} öffnen (bisher)">'
                     f'<img src="thumbs-w/{nr:02d}.webp" decoding="async" alt="" loading="lazy"></button>')
     if kacheln:   # dazwischen das Band (Bausteine uebergang.css / uebergang.js)
-        band = '<div class="band"><b>↑</b> Die nächsten 60 · Euer Feed heute <b>↓</b></div>'
+        band = f'<div class="band"><b>↑</b> Die nächsten {n_neu} · Euer Feed heute <b>↓</b></div>'
         k = t2.index('<div class="grid"'); e_ = t2.index('</div>', t2.index('>', k))
         t2 = t2[:e_] + band + kacheln + t2[e_:]
         # Nummer auf jeder neuen Kachel: Reihenfolge des Postens (Beitrag 1 = als Nächstes, unten im neuen Block)
@@ -127,9 +130,25 @@ def mach():
     t2 = re.sub(r'<link rel="preload" as="image" href="thumbs-w/\d+\.webp"[^>]*>\n?', '', t2)
     vor = ''.join(f'<link rel="preload" as="image" href="thumbs-w/{i:02d}.webp" fetchpriority="high">\n' for i in range(1, 13) if os.path.exists(os.path.join(F, 'thumbs-w', f'{i:02d}.webp')))
     t2 = t2.replace('<meta name="viewport"', vor + '<meta name="viewport"', 1) if '<meta name="viewport"' in t2 else t2.replace('</head>', vor + '</head>', 1)
+    t2 = kleid(t2)
     if t2 != t:
         open(seite, 'w', encoding='utf-8').write(t2)
+    # Profilbild: das echte Profilbild der Bar (statt des gerenderten Zeichens aus dem Kit)
+    if os.path.exists(PROFILBILD):
+        Image.open(PROFILBILD).convert('RGB').resize((640, 640), Image.LANCZOS).save(os.path.join(F, 'avatar.jpg'), quality=90)
     return n
+
+
+def kleid(t):
+    """Schriftfamilien des Kits heissen nach dem, was sie sind (Prata, Hanken), Farbreste der Vorlage werden zu den Tönen der Bar
+    (dieselbe Tauschliste wie kleid_wild.py für werkbank/ und befund/)."""
+    import kleid_wild as KW
+    for a, b in KW.TAUSCH + [("'Baskerville CE'", "'Prata'")]:
+        t = t.replace(a, b)
+    t = KW._farben(t)
+    t = t.replace('svg.ce{width:74px;height:auto;color:var(--gold);', 'svg.ce{width:74px;height:auto;color:#F0323F;')   # die Wortmarke in Rot, wie an der Ecke
+    t = re.sub(r'<p class="kap"><b style="font-weight:400">0+</b><i></i>', '<p class="kap">', t)   # keine Kapitelnummer «00» (der Feed ist keine Kapitel-Seite)
+    return t
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium (Vorlage Schäfli, dort Ruedihus), Abschnitt Instagram (12.10.2026, Master 5b Punkt 16): das Handy als Gerät aus Blender in der Mitte,
-ringsum acht Beiträge als Polaroids: Teller, Plakate und Gläser aus dem Feed «Momo x Rudi» (Culinarium, 28.10.2026).
+"""Werkbank Walk on the Wild Side (Vorlage Culinarium, dort Schäfli/Ruedihus), Abschnitt Instagram (Master 5b Punkt 16): das Handy als Gerät in der Mitte,
+ringsum acht Beiträge als Polaroids: Momo, Gläser, die Decke, ein SESSION-Plakat aus den nächsten 60 Beiträgen (feed_daten.py, Nachtbau 31.10.2026).
 
 Bauart des Handys wie beim Grand Beau-Rivage (frontales Gehäuse, der Bildschirm ist ein Rechteck): das Gehäuse hat ein Loch, der Feed liegt als
 Bild darunter. Ein Klick auf den Bildschirm lädt die echte Feed-Seite in dieselbe Fläche, danach scrollt das Rad im Feed; ein kleiner Hinweis
@@ -21,8 +21,8 @@ BILDER = [('feed-geraet', os.path.join(G, 'handy-geraet.png'), 4000, dict(q=88))
 # 17.10.2026: Feed «Stube für Stube, Zimmer für Zimmer» (feed_daten.py, 27 Beiträge, nur echte Fotos). Die Räume tragen ihren Namen im Bild,
 # deshalb steht darunter, was man dort findet.
 # Feed «Ein Horizont» des Feed-Planers (19.10.2026, 21 Beiträge, nur echte Fotos); Auswahl laut seiner Meldung, Bildzeilen von mir
-POLAROIDS = [(15, 'Blumenkohl mit Kürbis', -3, '0'), (37, 'Ein Abend an der Tafel', 3, '0'), (18, 'Plakat, Juli 2024', -2, '0'), (53, 'Du erzählst, er mixt', 3, '0'),
-             (20, 'Durchs Sieb, ins Glas', -3, '0'), (31, 'Am Pass', 2, '0'), (52, 'Momo hinter der Bar', -2, '0'), (59, 'Kurz vor dem ersten Gang', 3, '0')]   # neuer Feed mit 60 Beiträgen (29.10.2026): die stärksten, jeder von anderer Art
+POLAROIDS = [(59, 'Momo giesst', -3, '0'), (58, 'Unter der Decke', 3, '0'), (40, 'Plakat, September 2025', -2, '0'), (44, 'Im Coupe, mit Schaum', 3, '0'),
+             (27, 'Donnerstag, live', -3, '0'), (52, 'Die Ecke, am Abend', 2, '0'), (48, 'Momo hinter der Bar', -2, '0'), (56, 'Der Negroni', 3, '0')]   # Nummern in feed/posts (neuester zuerst), jede von anderer Art
 BLAETTER = set()   # keine Zettel mehr, nur Fotos
 ORTE = [(1, 6), (20.5, 0), (3.5, 52), (22, 47), (62, 2), (80.5, 7), (63.5, 49), (81.5, 54)]   # links, oben in Prozent der Bühne
 HINWEIS = 'Auf den Bildschirm klicken und durch den Feed scrollen'
@@ -48,14 +48,14 @@ def abschnitt(g):
         gw, gh = m['feed-geraet']; sw, sh = m['feed-schirm']
         x, y, b, h_ = LAGE['schirm']
         handy = (f'<div class="fb-h" data-a="schweb" style="--i:0"><div class="fb-h__b" style="aspect-ratio:{gw}/{gh}">'
-                 f'<img class="ld frei fb-h__g" src="img/feed-geraet.webp" width="{gw}" height="{gh}" alt="Das Instagram-Profil von Culinarium als Idee, auf einem Handy" loading="lazy" decoding="async">'
-                 f'<img class="ld fb-h__s" src="img/feed-schirm.webp" width="{sw}" height="{sh}" alt="" loading="lazy" decoding="async" style="left:{x * 100:.3f}%;top:{y * 100:.3f}%;width:{b * 100:.3f}%;height:{h_ * 100:.3f}%">'
+                 f'<img class="ld frei fb-h__g" src="img/feed-geraet.webp" width="{gw}" height="{gh}" alt="Das Instagram-Profil von Walk on the Wild Side als Idee, auf einem Handy" loading="eager" decoding="async">'
+                 f'<img class="ld fb-h__s" src="img/feed-schirm.webp" width="{sw}" height="{sh}" alt="" loading="eager" decoding="async" style="left:{x * 100:.3f}%;top:{y * 100:.3f}%;width:{b * 100:.3f}%;height:{h_ * 100:.3f}%">'
                  f'<div class="fb-h__e" style="left:{x * 100:.3f}%;top:{y * 100:.3f}%;width:{b * 100:.3f}%;height:{h_ * 100:.3f}%">'
                  '<span class="fb-h__k"><span class="a">Zum Scrollen klicken</span><span class="b">Wird geöffnet …</span><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5v14.2l3.9-3.2 2.7 6 2.3-1-2.7-5.9 5.3-.4z"/></svg></i></span>'
                  '</div></div></div>')
         pola = ''.join(
             f'<figure class="fb-p fb-p--{"b" if nr in BLAETTER else "f"}" data-a="schweb" data-drift="{dr}" style="left:{lx}%;top:{ly}%;--i:{n + 1};--r:{r}deg;--r0:{r * 3}deg">'
-            f'<img src="eigen/fpo-{nr:02d}.webp" width="360" height="450" alt="" loading="lazy" decoding="async"><figcaption>{e(name)}</figcaption></figure>'
+            f'<img src="eigen/fpo-{nr:02d}.webp" width="360" height="450" alt="" loading="eager" decoding="async"><figcaption>{e(name)}</figcaption></figure>'
             for n, ((nr, name, r, dr), (lx, ly)) in enumerate(zip(POLAROIDS, ORTE)))
         js = '''<script>(function(){var h=document.querySelector('#feed .fb-h');if(!h||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
 var e=h.querySelector('.fb-h__e'),f=null,warte=0;
@@ -84,7 +84,7 @@ new IntersectionObserver(function(E){if(E[0].isIntersecting)baue();else weg()},{
   </div>
   {js}
 </section>'''
-    return dict(key='feedbuehne', nach='papier', name='Instagram', zeilen=['Ein Feed,', 'der nach Abend aussieht.'], text='', bau=bau)
+    return dict(key='feedbuehne', nach='papier', name='Instagram', zeilen=['Ein Feed,', 'der nach Bar aussieht.'], text='', bau=bau)
 
 
 def _css():
@@ -111,7 +111,7 @@ def _css():
 .fb-h__k{{display:none}}
 .fb-p{{position:absolute;width:16.5%;margin:0;padding:0;background:none;border-radius:14px;overflow:hidden;box-shadow:0 1px 1px rgba(0,0,0,.3),0 30px 40px -22px rgba(0,0,0,.85),0 10px 16px -10px rgba(0,0,0,.5);z-index:1}}
 .fb-p img{{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}}
-.fb-p figcaption{{display:none;padding:.62em 0 .7em;text-align:center;font-family:var(--serif);font-weight:700;font-size:clamp(.72rem,1vw,1rem);line-height:1.2;color:#2a1a0e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.fb-p figcaption{{display:none;padding:.62em 0 .7em;text-align:center;font-family:var(--serif);font-weight:400;font-size:clamp(.72rem,1vw,1rem);line-height:1.2;color:#1C1513;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .fb-hin{{display:none;margin:clamp(10px,1.2vw,18px) auto 0;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;line-height:1.5;text-transform:uppercase;color:var(--gold);z-index:3}}
 .fb-t{{display:grid;gap:clamp(18px,3vw,56px);max-width:1080px;margin:clamp(34px,4vw,64px) auto 0}}
 .fb-t .lauf{{max-width:none;margin:0}}
@@ -123,10 +123,10 @@ def _css():
   .fb-h__e{{cursor:pointer}}.fb-h__e.laedt{{cursor:progress}}.fb-h__e.live{{cursor:auto}}
   .fb-h__k{{position:absolute;left:50%;bottom:9.5%;z-index:2;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:3px 3px 3px 13px;border-radius:999px;pointer-events:none;
     font-family:var(--mono);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;line-height:1;white-space:nowrap;color:var(--tinte);
-    background:linear-gradient(180deg,#fbfcfe 0%,#d0dae7 100%);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(15,54,120,.35),0 0 0 1px rgba(162,182,207,.8),0 12px 22px -8px rgba(0,0,0,.8),0 3px 8px rgba(0,0,0,.4);transition:opacity .3s}}
-  .fb-h__k i{{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#1d4f9e 0%,#0b1d3d 100%);box-shadow:inset 0 1px 0 rgba(255,236,200,.2)}}
-  .fb-h__k svg{{width:12px;height:12px;fill:none;stroke:#e7ecf3;stroke-width:1.7;stroke-linejoin:round}}
+    background:linear-gradient(180deg,#2E2420 0%,#1C1513 52%,#130E0D 100%);color:#F2E9DC;
+    box-shadow:inset 0 1px 0 rgba(255,240,220,.12),inset 0 0 0 1px rgba(216,178,100,.6),0 0 0 1px rgba(19,14,13,.6),0 12px 22px -8px rgba(0,0,0,.8),0 3px 8px rgba(0,0,0,.4);transition:opacity .3s}}
+  .fb-h__k i{{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#F1D79A 0%,#D8B264 55%,#B38D45 100%);box-shadow:inset 0 1px 0 rgba(255,236,200,.2)}}
+  .fb-h__k svg{{width:12px;height:12px;fill:none;stroke:#1C1513;stroke-width:1.7;stroke-linejoin:round}}
   .fb-h__k .b{{display:none}}.fb-h__e.laedt .fb-h__k .a{{display:none}}.fb-h__e.laedt .fb-h__k .b{{display:inline}}
   .fb-h__e.live .fb-h__k{{opacity:0}}
 }}

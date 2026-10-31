@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Werkbank Taverne zum Schäfli, Kapitel «Ihre Werkzeuge» (Vorlage Schlössli) (Station 11, 19.10.2026; Aufbau, Stil und Skript aus rh_werkzeuge.py des Landgasthofs Ruedihus,
-dort aus dem Waldhotel Doldenhorn und dem Carlton-Europe, nur gelesen und kopiert). Ein Laptop für alle sieben: La Maison als Eingang, dann die sechs Werkzeuge
+dort aus dem Waldhotel Doldenhorn und dem Carlton-Europe, nur gelesen und kopiert). Ein Laptop für alle sieben: Der Tresen als Eingang, dann die sechs Werkzeuge
 (Namen aus _werkzeuge/oberflaeche/kleid/wildside.js). Reiter oben und Pfeile; nur der
 Bildschirm blendet über, rechts wechselt der Text. Ein Klick auf den Bildschirm lädt das echte Werkzeug in den Laptop (29.10.2026, über den Werkbank-Server als gleiche Herkunft); gross öffnet es der Knopf daneben.
 
@@ -15,7 +15,7 @@ from PIL import Image
 e = html.escape
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
-PROJEKT = os.path.dirname(os.path.dirname(ROOT))   # Projektordner Culinarium (ROOT ist website/_werkbank)
+PROJEKT = os.path.dirname(os.path.dirname(ROOT))   # Projektordner des Hauses (ROOT ist website/_werkbank)
 GERAET = os.path.join(W, 'geraete', 'laptop-geraet.png')
 _L = json.load(open(os.path.join(W, 'geraete', 'laptop.json'), encoding='utf-8'))
 FOTOS = os.path.join(W, 'ansichten', 'Werkzeuge')
@@ -32,7 +32,7 @@ def stand(key):
 def _weg(key):
     """Adresse des Werkzeugs, wie sein Chat sie gemeldet hat; nur wenn es vorliegt."""
     st = stand(key)
-    if ADRESSEN.get(key):   # Culinarium: die Adresse aus werkzeuge.json (aus den Lieferungen, immer 127.0.0.1) geht vor
+    if ADRESSEN.get(key):   # die Adresse aus werkzeuge.json (aus den Lieferungen, immer 127.0.0.1) geht vor
         st = dict(st, adresse=ADRESSEN[key])
     if st.get('adresse'):   # Fehlerbuch 10a: Wege zwischen Werkzeugen immer 127.0.0.1, nie localhost
         st['adresse'] = st['adresse'].replace('://localhost:', '://127.0.0.1:')
@@ -67,35 +67,34 @@ def quelle(name):
 
 # Schlüssel, Name, Rolle, Satz, Punkte, Ansichten [(Bild, Name)], Öffnen, Anleitung, liefert
 WERKZEUGE = [
-    ('maison', 'La Maison', 'Der Eingang', 'Wer die Werkzeuge öffnet, landet hier: Culinarium, die sechs Werkzeuge und bei jedem, was gerade zu tun ist.',
+    ('maison', 'Der Tresen', 'Der Eingang', 'Wer die Werkzeuge öffnet, landet hier: das Wild Side, die sechs Werkzeuge und bei jedem, was gerade zu tun ist.',
      ['Alle Werkzeuge an einem Ort', 'Bei jedem, was offen ist', 'Ein Rundgang für alle, die neu dazukommen'],
-     [('maison', 'Der Eingang')], _weg('maison'), '', 'culinarium-maison'),
-    ('bureau', 'Le Bureau', 'Website', 'Ein neuer Abend mit Tag, Beginn, Preis, Plätzen und seinem Plakat, ein frischer Satz, ein neues Foto von der Tafel. Alles wartet zuerst im Entwurf; auf die Website kommt es erst mit «Veröffentlichen».',
-     ['Die nächsten Abende pflegen, je Abend mit Plakat', 'Jeden Text und jedes Foto dort ändern, wo es steht', 'Jeder frühere Stand lässt sich zurückholen'],
-     [('bureau', 'Übersicht'), ('bureau-2', 'Termine')], _weg('bureau'), '', 'culinarium-bureau'),
-    ('carte', 'La Carte', 'Karten', 'Zu jedem Abend gehört eine Karte am Platz: Gang für Gang Rudis Teller und Momos Drink, vom Apéritif bis zum Absacker. Was hier steht, steht sofort auf der Karte, so wie sie auf dem Tisch liegt, und als PDF zum Drucken.',
-     ['Teller und Drink je Gang eintragen', 'Die Karte als PDF für den Tisch', 'Frühere Abende mit ihrer Karte'],
-     [('carte', 'Der nächste Abend'), ('carte-2', 'Die Karte')], _weg('carte'), '', 'culinarium-carte'),
-    ('reception', 'La Réception', 'Gäste', 'Wer auf die Warteliste will, einen Platz am Abend sucht, die lange Tafel für eine eigene Feier möchte oder eine Frage hat: Alles kommt hier an, nach Art geordnet, mit einem Brief als Entwurf für die Antwort.',
-     ['Warteliste, Plätze, Feiern und Nachrichten', 'Zu jeder Anfrage ein Antwortbrief als Entwurf', 'Was Gäste im Chat fragen und was der Chat weiß'],
-     [('reception', 'Übersicht'), ('reception-2', 'Nach Art')], _weg('reception'), '', 'culinarium-reception'),
-    ('livre', 'Le Livre', 'Marke', 'Ein Magazin fragt nach einem Foto der Tafel, die Druckerei nach der Wortmarke. Beides liegt hier bereit, zusammen mit Farben, Schriften und den Plakaten.',
-     ['Fotos nach Tafel, Bar, Tellern und Drinks', 'Wortmarke und Farben der Plakate', 'Fremde Entwürfe gegen die Marke prüfen'],
-     [('livre', 'Übersicht'), ('livre-2', 'Arbeiten')], _weg('livre'), '', 'culinarium-livre'),
-    ('registre', 'Le Registre', 'Besuche', 'Wer sieht sich die Seite an, aus Hannover oder von weiter weg? Und welche Seiten lagen vor dem gebuchten Platz? Hier steht es, gezählt ohne Cookies und ohne Namen.',
-     ['Woher die Besuche kommen', 'Welche Seiten vor dem Platz an der Tafel lagen', 'Im Entwurf mit erfundenen Zahlen'],
-     [('registre', 'Übersicht'), ('registre-2', 'Herkunft und Seiten')], _weg('registre'), '', 'culinarium-registre'),
-    ('imprimerie', 'L’Imprimerie', 'Plakate und Papier', 'Jeder Abend hat sein Plakat. Ihr beschreibt den Abend, und die Werkstatt malt dafür drei bis fünf neue Plakate im Stil eurer bisherigen, vorn und hinten. Ihr wählt eins und setzt im Editor Texte, Datum und Farbe.',
-     ['«Abend beschreiben»: drei bis fünf neue Plakate, vorn und hinten', '«Plakat-Motive»: Rudis eigene Illustrationen', 'PDF in A3, Bilder für Instagram und die Story'],
-     [('imprimerie', 'Übersicht'), ('imprimerie-2', 'Abend beschreiben'), ('imprimerie-3', 'Editor')], _weg('imprimerie'), '', 'culinarium-imprimerie'),   # Neuaufnahme 29.10. (Oberchef): Übersicht, Abend mit 3 fertigen Vorschlägen, Editor
+     [('maison', 'Der Eingang')], _weg('maison'), '', 'wildside-maison'),
+    ('bureau', 'Das Schaufenster', 'Website', 'Ein neuer DJ-Abend mit Datum, Namen und Plakat, ein frischer Satz, ein neues Foto von der Theke. Alles wartet zuerst im Entwurf; auf die Website kommt es erst mit «Veröffentlichen».',
+     ['Die DJ-Abende pflegen, je Abend mit Plakat', 'Jeden Text und jedes Foto dort ändern, wo es steht', 'Jeder frühere Stand lässt sich zurückholen'],
+     [('bureau', 'Übersicht'), ('bureau-2', 'DJ-Abende')], _weg('bureau'), '', 'wildside-bureau'),
+    ('carte', 'Die Pairing-Karte', 'Karten', 'Die Karte wechselt, die Drinks dafür entwirft Momo. Hier tragt ihr sie ein, mit Namen, Zutaten und Preis, dazu die Klassiker, Sonderkarten wie «Drunk in Love» und die Preise der Bar. Was hier steht, steht sofort auf der Karte und als PDF zum Drucken.',
+     ['Die wechselnde Karte mit bis zu sechs Drinks', 'Jede Karte als PDF für die Theke', 'Klassiker, Sonderkarten und Preise der Bar'],
+     [('carte', 'Die Karte'), ('carte-2', 'Weitere Karten')], _weg('carte'), '', 'wildside-carte'),
+    ('reception', 'Das Gästebuch', 'Gäste', 'Wer einen Platz an der Theke will, ein Privates Dinner plant, die lange Tafel oder die ganze Bar für eine Feier sucht oder eine Frage hat: Alles kommt hier an, nach Art geordnet, mit einem Brief als Entwurf für die Antwort.',
+     ['Reservieren, Dinner, Feiern und Nachrichten', 'Zu jeder Anfrage ein Antwortbrief als Entwurf', 'Was Gäste im Chat fragen und was der Chat weiß'],
+     [('reception', 'Übersicht'), ('reception-2', 'Nach Art')], _weg('reception'), '', 'wildside-reception'),
+    ('livre', 'Das Markenbuch', 'Marke', 'Ein Magazin fragt nach einem Foto der Bar, die Druckerei nach der Wortmarke. Beides liegt hier bereit, zusammen mit Farben, Schriften und den Hausregeln.',
+     ['Fotos nach Raum, Drinks, Leuten und Musik', 'Wortmarke in Rot, Creme und Nacht, Farben der Bar', 'Fremde Entwürfe gegen die Marke prüfen'],
+     [('livre', 'Übersicht'), ('livre-2', 'Arbeiten')], _weg('livre'), '', 'wildside-livre'),
+    ('registre', 'Die Besucherliste', 'Besuche', 'Wer sieht sich die Seite an, aus Linden oder von weiter weg? Und welche Seiten lagen vor der Reservierung? Hier steht es, gezählt ohne Cookies und ohne Namen.',
+     ['Woher die Besuche kommen', 'Welche Seiten vor der Reservierung lagen', 'Im Entwurf mit erfundenen Zahlen'],
+     [('registre', 'Übersicht'), ('registre-2', 'Herkunft und Seiten')], _weg('registre'), '', 'wildside-registre'),
+    ('imprimerie', 'Die Plakatwerkstatt', 'Plakate und Papier', 'Jeder DJ-Abend hat sein Plakat. Ihr legt den Abend an, mit Namen und Uhrzeit, und die Werkstatt setzt dafür drei bis fünf SESSION-Plakate mit Wellen und Gesicht. Ihr wählt eins und setzt im Editor Texte, Datum und Farbe.',
+     ['«DJ-Abend anlegen»: drei bis fünf SESSION-Plakate', 'Weiße Plakate der Bar mit roter Wortmarke', 'PDF in A3, Bilder für Instagram und die Story'],
+     [('imprimerie', 'Übersicht'), ('imprimerie-2', 'Zweite Ansicht')], _weg('imprimerie'), '', 'wildside-imprimerie'),
 ]
-# Die Namen der sieben Werkzeuge für Culinarium, eine Stelle: das Kleid der Werkzeuge (_werkzeuge/oberflaeche/kleid/wildside.js, WO_HAUS.namen, Schreiber: Chat «culinarium-maison»).
-# Bis Robert gewählt hat, stehen dort die Arbeitsnamen; die Liste hier gilt nur, wenn das Kleid fehlt. Schlüssel, Dateinamen und Adressen bleiben die des Stamms.
-NAMEN_HAUS = {'maison': 'La Maison', 'bureau': 'Le Bureau', 'carte': 'La Carte', 'reception': 'La Réception',
-              'livre': 'Le Livre', 'registre': 'Le Registre', 'imprimerie': 'L’Imprimerie'}
+# Die Namen der sieben Werkzeuge, eine Stelle: das Kleid der Werkzeuge (_werkzeuge/oberflaeche/kleid/wildside.js, WO_HAUS.namen, Schreiber: wildside-maison).
+NAMEN_HAUS = {'maison': 'Der Tresen', 'bureau': 'Das Schaufenster', 'carte': 'Die Pairing-Karte', 'reception': 'Das Gästebuch',
+              'livre': 'Das Markenbuch', 'registre': 'Die Besucherliste', 'imprimerie': 'Die Plakatwerkstatt'}
 try:
     import re as _re
-    _k = open(os.path.join(PROJEKT, '_werkzeuge', 'oberflaeche', 'kleid', 'culinarium.js'), encoding='utf-8').read()
+    _k = open(os.path.join(PROJEKT, '_werkzeuge', 'oberflaeche', 'kleid', 'wildside.js'), encoding='utf-8').read()
     _n = dict(_re.findall(r"(\w+): '([^']+)'", _re.search(r'namen:\s*\{([^}]*)\}', _k).group(1)))
     NAMEN_HAUS.update({k: _n[t] for k, t in TEIL.items() if t in _n})
 except Exception:
@@ -181,7 +180,7 @@ def abschnitt(k, ph):
     return f'''
 <section class="fl fl--navy tapete blatt ins" id="k5" tabindex="-1">
   <div class="in">
-    <span class="k-anker" id="werkzeuge"></span>{k['kopfk']('k5', ['Sieben Werkzeuge', 'für euren Abend.'], f'Ein Abend kommt dazu, ein Menü steht, ein Gast fragt nach einem Platz. Dafür gibt es je ein Werkzeug, und {NF.klein(STUBE)} führt zu allen.')}
+    <span class="k-anker" id="werkzeuge"></span>{k['kopfk']('k5', ['Sieben Werkzeuge', 'für eure Bar.'], f'Ein DJ-Abend kommt dazu, eine neue Karte steht, ein Gast fragt nach einem Platz. Dafür gibt es je ein Werkzeug, und {NF.klein(STUBE)} führt zu allen.')}
     <div class="ins-lauf" style="--nw:{len(WERKZEUGE)}"><div class="ins-stick">
     <div class="ins-leiste" data-a="auf"><div class="ins-reiter" role="tablist" aria-label="Werkzeuge">{reiter}</div>
       <div class="ins-pf"><button type="button" class="ins-zu" aria-label="Voriges Werkzeug">{pf_l}</button><button type="button" class="ins-vor" aria-label="Nächstes Werkzeug">{pf_r}</button></div></div>

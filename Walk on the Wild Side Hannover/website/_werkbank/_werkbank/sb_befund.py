@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Werkbank Culinarium, Kapitel I «Was wir gefunden haben» (Werkbank-Chat 28.10.2026, Bauart wie sb_befund.py des Schäfli).
+"""Werkbank Wild Side, Kapitel I «Was wir gefunden haben» (Nachtbau 31.10.2026, Bauart wie sb_befund.py des Culinarium, dort aus dem Schäfli).
 
-Culinarium hat keine Website und keine Potentialanalyse der Station 04. Die vier Funde kommen aus dem Befund des Spähers (Station 02,
-_kette/02-spaeher/befund.md, abgelesen am 25.10.2026), die Aufnahmen aus _qa/spaeher/ (Instagram ohne Anmeldung, Handy 390 und Rechner 1440).
-Vorn stehen belegbare Punkte für das Haus: gebucht wird über Nachricht und PayPal, es gibt keine Adresse zum Weitergeben, Google zeigt andere
-Betriebe, Regeln und Impressum fehlen. Kein Vorwurf, keine Mutmassung. Eine Bühne, ein Befund im Blick: Pfeile, Ziffern, Wischen, Tasten.
-Der Knopf führt zum ganzen Befund als Kopie unter befund/ (kopiere_analyse), ohne Bauwerkzeuge und ohne mailto."""
+Das Wild Side hat keine Website. Die vier Funde kommen aus dem Charakterblatt (CHARAKTER.md 2, 9) und dem Kundenmaterial (_quelle/: Web-Archiv der alten
+Adresse, Aufnahme des Instagram-Profils, Google Maps, NeoTaste, Falstaff, Angebotsmappe); die Aufnahmen liegen als Kopie in _werkbank/heute/
+(befund_bilder.js, damit der Bau ohne _quelle läuft). Kein Vorwurf, keine Mutmassung. Eine Bühne, ein Befund im Blick: Pfeile, Ziffern, Wischen, Tasten.
+Der Knopf führt zum ganzen Befund als eigene Seite unter befund/ (kopiere_analyse), ohne mailto."""
 import html, json, os, re, shutil
 from PIL import Image, ImageDraw
 
@@ -13,36 +12,36 @@ e = html.escape
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
 PROJ = os.path.dirname(os.path.dirname(ROOT))
-SP = os.path.join(PROJ, '_qa', 'spaeher')
+SP = os.path.join(W, 'heute')
 G = os.path.join(W, 'geraete')
 LI = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>'
 RE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg>'
-ALLE = 7   # so viele Punkte nennt der Befund unter «Was fehlt»
+ALLE = 7   # vier Funde vorn, drei weitere unten
 BEFUNDE = [  # nr, was, wo, für die Gäste, fürs Haus, was wir tun würden, Aufnahme am Handy, Ausschnitt (Datei, Kasten in Pixeln) oder None
-    dict(nr='01', was='Einen Platz bekommt, wer schreibt und per PayPal zahlt.',
-         wo='Beitrag vom 29. Juli 2026: «Tickets ausschließlich per Vorverkauf über PayPal. Schreibt uns hierzu gerne eine Nachricht.» Der Abend war danach ausgebucht.',
-         gaeste='Wer zu einem Abend will, schreibt erst eine Nachricht und wartet auf die Antwort. Einen Beleg zum Ticket gibt es nicht, eine Warteliste auch nicht.',
-         haus='Jede Buchung ist ein Gespräch, das jemand von euch führen muss, oft spät am Abend. Wer nach dem Ausverkauf fragt, geht wieder.',
-         tun='Buchen auf der Seite: Abend wählen, Plätze wählen, zahlen, das Ticket kommt per Mail. Ist ein Abend voll, trägt sich der Gast auf die Warteliste ein.',
-         ganz='ig-p-DbYnkdkjrNy-handy.jpg', nah=None),
-    dict(nr='02', was='Es gibt keine Adresse, die man weitergeben kann.',
-         wo='Profil @culinarium_hannover am 25. Oktober 2026: kein Link in der Bio. Die Adresse culinarium-hannover.de war am 24. Oktober frei.',
-         gaeste='Wer von einem Abend erzählt, kann nur auf Instagram verweisen. Ohne Anmeldung zeigt das Profil die ersten Beiträge, danach ein Anmeldefenster.',
-         haus='Termine, Menü und Preis stehen in Bildunterschriften, ein Kalender fehlt; zwischen zwei Abenden steht nirgends, wann der nächste kommt.',
-         tun='Eine eigene Adresse mit jedem Abend, dem Menü, dem Preis und dem Weg zur Warteliste an einem Ort.',
-         ganz='ig-profil-handy.jpg', nah=('ig-profil-rechner.jpg', (1110, 0, 2391, 559))),
-    dict(nr='03', was='Wer «Culinarium Hannover» sucht, findet andere Betriebe.',
-         wo='Google Maps am 29. Oktober 2026: kein Eintrag für Culinarium; die Suche nach «Culinarium Hannover» zeigt bona’me, Bavarium und weitere Restaurants. Auf Instagram heißt das Profil «Food Pairing | Schulungen | Events | Consulting».',
-         gaeste='Wer euch nach einem Abend wiederfinden will oder eine Empfehlung bekommt, landet leicht bei einem anderen Haus mit ähnlichem Namen.',
-         haus='Der Name, der auf jedem Plakat steht, führt im Netz nicht zu euch.',
-         tun='Eine Seite unter eurem Namen, die Google lesen kann, dazu ein Eintrag als Culinarium im Walk on the Wild Side.',
-         ganz='google-maps-handy.jpg', nah=None),   # Robert 29.10.2026: Bild zeigt die Suche selbst, gerade im Handy wie 01 und 04 (vorher schräg das Instagram-Profil)
-    dict(nr='04', was='Bedingungen und Impressum stehen nirgends zum Nachlesen.',
-         wo='Beitrag vom 7. März 2026 und vom 29. Juli 2026: Tickets werden «nicht rückerstattet». Ein Impressum, Datenschutz oder Bedingungen gibt es zum Profil nicht.',
-         gaeste='Wer im Voraus bezahlt, findet die Regel zur Rückgabe nur im Text eines Beitrags.',
-         haus='Wo Geld fließt, gehören Impressum, Datenschutz und Bedingungen dazu. Sie schützen euch, wenn jemand nachfragt.',
-         tun='Impressum, Datenschutz und eure Bedingungen auf der Seite, sobald feststeht, wer Vertragspartner ist.',
-         ganz='ig-p-DVjkofijp6R-handy.jpg', nah=None),
+    dict(nr='01', was='Es gibt keine eigene Website.',
+         wo='wildside-hannover.de zeigte von 2017 bis 2025 nur «Wir arbeiten gerade an unserer Website» (Web-Archiv). Am 26. Oktober 2026 war die Adresse frei (DENIC).',
+         gaeste='Wer die Bar sucht, findet keine Seite mit Zeiten, Drinks und Weg, nur Portale und ein Profil.',
+         haus='Der Name, der auf jedem Plakat steht, führt im Netz nicht zu einer eigenen Seite. Die alte Adresse könnte jemand anderes nehmen.',
+         tun='Die freie Adresse sichern und eine eigene Seite mit Drinks, DJ-Abenden, Feiern, Haus und Besuch darunter stellen.',
+         ganz='archiv-handy.jpg', nah=None),
+    dict(nr='02', was='Instagram ist die einzige Quelle.',
+         wo='Profil @walkonthewildside_hannover am 25. Oktober 2026: Zeiten in der Bio, dazu «Schreib uns eine DM oder ruf an». Kein Link zu einer Seite.',
+         gaeste='Ohne Anmeldung zeigt das Profil nur die ersten Beiträge. Wann der nächste DJ-Abend ist, steht in einer Bildunterschrift.',
+         haus='Jede Frage nach Platz, Zeiten oder Feiern kommt als Nachricht, oft spät am Abend, und will beantwortet werden.',
+         tun='Zeiten, DJ-Abende und Reservieren an einem Ort, den jeder ohne Anmeldung öffnen kann; Instagram verweist darauf.',
+         ganz='ig-handy.jpg', nah=('ig-profil-rechner.jpg', (1110, 150, 2050, 580))),
+    dict(nr='03', was='Die guten Noten stehen woanders.',
+         wo='Google Maps am 25. Oktober 2026: 4,8 aus 75 Berichten, als Website «Website hinzufügen». NeoTaste 4,8 aus 40. Falstaff Bar Guide 2027: 91 Punkte.',
+         gaeste='Wer euch empfohlen bekommt, liest die Noten in Portalen, die andere führen, mit Fotos, die andere ausgesucht haben.',
+         haus='Die 91 von Falstaff und die 4,8 bei Google stehen nirgends bei euch selbst.',
+         tun='Falstaff, Google und NeoTaste auf der eigenen Seite nennen, mit Quelle, und Google die eigene Adresse geben.',
+         ganz='neotaste.jpg', nah=None),
+    dict(nr='04', was='Feiern stehen in einer PDF.',
+         wo='Die Angebotsmappe der Bar (PDF): Privates Dinner, lange Tafel, ganze Bar mit Preisen. Als Kontakt nennt sie die E-Mail-Adresse von Culinarium.',
+         gaeste='Wer feiern will, muss erst nach der Mappe fragen und dann per Nachricht oder Anruf anfragen.',
+         haus='Anfragen kommen ohne Format, Tag und Zahl der Gäste und landen dort, wo gerade jemand liest.',
+         tun='Die Mappe als Seite «Feiern» mit Preisen und einer Anfrage, die mit Format, Tag und Zahl der Gäste im Werkzeug ankommt.',
+         ganz=None, nah=('mappe-seite1.jpg', (0, 0, 2200, 1238))),
 ]
 
 
@@ -78,21 +77,21 @@ def bilder(webp):
             webp(Image.open(b['nah'][0]).convert('RGB').crop(b['nah'][1]), f'bf-n-{b["nr"]}', 1100, 84)
 
 
-STARK = [  # was der heutige Auftritt gut macht (Befund des Spähers, Abschnitt «Was der Auftritt gut macht»)
-    ('Die Marke ist fertig.', 'Jedes Plakat seit 2023 folgt demselben System: eine wechselnde Illustration, darunter die Wortmarke mit «A UNiQUE EXPERiENCE BY MOMO X RUDI», zwei feste Farben und je Abend eine eigene.'),
-    ('Das Profil sieht aus wie eine Sammlung.', 'Weil jedes Plakat gleich gebaut ist, liest sich das Raster wie Ausgaben eines Magazins.'),
-    ('Rudis Zeilen.', 'Die Gänge in Versalien mit Schrägstrich, «AUBERGINE / KOKOS / LIMETTE / SESAM»: eine Speisekarte, die man wiedererkennt.'),
-    ('Knappheit, die stimmt.', 'Wenige Plätze an einer Tafel, ausgebucht bei der Ankündigung; der September 2026 war voll.'),
+STARK = [  # was der heutige Auftritt gut macht (CHARAKTER.md 2–4, Portale)
+    ('Die Bar hat eine Stimme.', '«Eure Nachbarschafts-Mixology-Bar», «Good Drinks, Good Music, Good Energy», «Du sagst, was du magst»: Sätze, die man der Bar sofort zuordnet.'),
+    ('Die Noten stimmen.', 'Falstaff Bar Guide 2027 mit 91 Punkten, Google 4,8 aus 75, NeoTaste 4,8 aus 40.'),
+    ('Jeder DJ-Abend hat sein Plakat.', 'Seit September 2025 die SESSION-Plakate mit roten Wellen und Ultramarin-Schrift, dazu die weißen Plakate mit roter Wortmarke.'),
+    ('Der Raum erzählt.', 'Das Gewölbe an der Decke, NEGRONI in Glühbirnen, das Eckschild mit Goldrahmen: Bilder, die nur hier entstehen.'),
 ]
-WEITERE = [  # die übrigen Punkte aus «Was fehlt», die vorne nicht stehen
-    ('Ein Kalender.', 'Termine stehen nur in Bildunterschriften; am 25. Oktober war kein nächster Abend angekündigt.'),
-    ('Das Angebot jenseits der Abende.', 'Der Profilname nennt Schulungen, Events und Consulting; belegt ist davon die Schulung als Teil des Abends.'),
-    ('Die Köpfe.', 'Über Momo, Rudi und Derya gibt es außerhalb von Instagram keine Zeile; wer an der Tafel sitzt, lernt sie erst dort kennen.'),
+WEITERE = [  # die übrigen Punkte, die vorne nicht stehen
+    ('Ein Kalender.', 'DJ-Abende, Konzerte und Feste stehen nur in Beiträgen; zwischen zwei Abenden steht nirgends, wann der nächste kommt.'),
+    ('Die Köpfe.', 'Über Derya und Momo gibt es außerhalb von Instagram und zwei Zeitungsartikeln kaum eine Zeile.'),
+    ('Impressum und Datenschutz.', 'Zum Profil gibt es keins; auf einer eigenen Seite stehen sie, sobald feststeht, wer Vertragspartner ist.'),
 ]
 
 
 def kopiere_analyse():
-    """Der ganze Befund als eigene Seite neben der Werkbank (befund/index.html), für Rudi, Momo und Derya geschrieben: was heute stark ist,
+    """Der ganze Befund als eigene Seite neben der Werkbank (befund/index.html), für Derya und Momo geschrieben: was heute stark ist,
     die vier Funde von vorn mit Bild und die übrigen drei. Quelle: Befund des Spähers (Station 02), nichts dazuerfunden. Die interne Seite der Kette
     (Knöpfe «Passt, weiter», Rückfragen) wird nicht kopiert."""
     import kern as K
@@ -108,33 +107,33 @@ def kopiere_analyse():
     stark = ''.join(f'<li><b>{e(t)}</b><span>{e(s)}</span></li>' for t, s in STARK)
     funde = ''
     for b in befunde():
-        bi = ''.join(f'<img src="img/{n}" width="{w}" height="{h}" alt="Aufnahme vom {"29" if b["nr"] == "03" else "25"}. Oktober 2026 zum Fund {b["nr"]}" loading="lazy" decoding="async" class="bfs-{art}">' for n, (w, h), art in bilder_.get(b['nr'], []))
+        bi = ''.join(f'<img src="img/{n}" width="{w}" height="{h}" alt="Aufnahme zum Fund {b["nr"]}" loading="lazy" decoding="async" class="bfs-{art}">' for n, (w, h), art in bilder_.get(b['nr'], []))
         funde += (f'<article class="bfs-f"><div class="bfs-b">{bi}</div><div><p class="bfs-nr">{b["nr"]}</p><h2>{e(b["was"])}</h2><p class="bfs-wo"><b>Wo</b>{e(b["wo"])}</p>'
                   f'<dl><dt>Für eure Gäste</dt><dd>{e(b["gaeste"])}</dd><dt>Für euch</dt><dd>{e(b["haus"])}</dd><dt>Was wir tun würden</dt><dd>{e(b["tun"])}</dd></dl></div></article>')
     weitere = ''.join(f'<li><b>{e(t)}</b><span>{e(s)}</span></li>' for t, s in WEITERE)
     haupt = f'''<section class="fl fl--nacht tapete-leicht bfs"><div class="in">
   <p class="kap kap--z">Der Befund</p>
-  <h1 class="t1 zt"><span class="z"><span>Wie Culinarium</span></span><span class="z"><span><em>heute im Netz steht.</em></span></span></h1>
-  <p class="bfs-lauf">Heute gibt es Culinarium auf Instagram, unter @culinarium_hannover. Angesehen am 25. Oktober 2026, ohne Anmeldung, am Handy und am Rechner.
-  Hier steht zuerst, was schon stark ist, dann, was einem Gast auf dem Weg an eure Tafel fehlt.</p>
+  <h1 class="t1 zt"><span class="z"><span>Wie das Wild Side</span></span><span class="z"><span><em>heute im Netz steht.</em></span></span></h1>
+  <p class="bfs-lauf">Heute gibt es das Wild Side auf Instagram, unter @walkonthewildside_hannover, und in Portalen. Angesehen im Oktober 2026, ohne Anmeldung.
+  Hier steht zuerst, was schon stark ist, dann, was einem Gast auf dem Weg an eure Theke fehlt.</p>
 </div></section>
 <section class="fl fl--papier tapete-hell bfs"><div class="in"><h2 class="bfs-h">Was schon stark ist</h2><ul class="bfs-l">{stark}</ul></div></section>
 <section class="fl fl--nacht tapete-leicht bfs"><div class="in"><h2 class="bfs-h">Vier Punkte von vorn</h2>{funde}</div></section>
 <section class="fl fl--papier tapete-hell bfs"><div class="in"><h2 class="bfs-h">Was sonst noch fehlt</h2><ul class="bfs-l">{weitere}</ul></div></section>'''
     css = ('<style>.bfs .in{max-width:1180px}.bfs-lauf{max-width:62ch;margin:18px auto 0;text-align:center;font-size:clamp(1.05rem,1.3vw,1.25rem);line-height:1.6;color:rgba(250,244,244,.86)}'
-           '.bfs-h{font-family:var(--serif);font-weight:340;font-size:clamp(1.8rem,3vw,2.8rem);margin:0 0 clamp(24px,3vw,44px)}'
+           '.bfs-h{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3vw,2.8rem);margin:0 0 clamp(24px,3vw,44px)}'
            '.bfs-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(18px,2vw,30px)}'
-           '.bfs-l li{display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(38,36,45,.16)}.bfs-l b{font-family:var(--serif);font-weight:340;font-size:1.3rem}.bfs-l span{line-height:1.6}'
+           '.bfs-l li{display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid rgba(38,36,45,.16)}.bfs-l b{font-family:var(--serif);font-weight:400;font-size:1.3rem}.bfs-l span{line-height:1.6}'
            '.bfs-f{display:grid;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(28px,4vw,56px) 0;border-top:1px solid rgba(250,244,244,.14)}'
            '@media(min-width:900px){.bfs-f{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}}'
            '.bfs-b{display:flex;gap:16px;align-items:center;justify-content:center}.bfs-b img{max-width:100%;height:auto}.bfs-h{max-width:none}.bfs-b .bfs-h{width:min(260px,46%)}.bfs-b .bfs-n{width:min(520px,100%);border-radius:12px}'
            '.bfs-b img.bfs-h{width:min(260px,46%);max-height:none}.bfs-b img.bfs-n{width:min(480px,100%)}'
            '.bfs-b img{min-width:0}.bfs-b:has(img+img) img.bfs-h{width:32%;flex:none}.bfs-b:has(img+img) img.bfs-n{width:auto;flex:1 1 0}'   # Gestaltung 28.10.2026: zwei Bilder teilen sich die Spalte, nichts ragt in den Text oder über den Rand
-           '.bfs-nr{margin:0;font-family:var(--serif);font-size:clamp(3rem,6vw,5.6rem);line-height:.9;color:var(--gold)}.bfs-f h2{font-family:var(--serif);font-weight:340;font-size:clamp(1.4rem,2.2vw,2.1rem);margin:12px 0 0}'
+           '.bfs-nr{margin:0;font-family:var(--serif);font-size:clamp(3rem,6vw,5.6rem);line-height:.9;color:var(--gold)}.bfs-f h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.4rem,2.2vw,2.1rem);margin:12px 0 0}'
            '.bfs-wo{display:flex;gap:14px;margin:16px 0 0;line-height:1.55;color:rgba(250,244,244,.78)}.bfs-wo b{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding-top:3px}'
            '.bfs-f dl{margin:18px 0 0}.bfs-f dt{margin-top:14px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}.bfs-f dd{margin:6px 0 0;line-height:1.6;color:rgba(250,244,244,.9)}</style>')
-    s = K.rahmen('Der Befund', 'Wie Culinarium heute im Netz steht, angesehen am 25. Oktober 2026.', 'Befund', haupt,
-                 'Ein Befund von Robert Reff, Tasty Studios, nach dem Stand vom 25. Oktober 2026. Aufnahmen von Instagram nur zur Anschauung.')
+    s = K.rahmen('Der Befund', 'Wie das Wild Side heute im Netz steht, angesehen im Oktober 2026.', 'Befund', haupt,
+                 'Ein Befund von Robert Reff, Tasty Studios, nach dem Stand vom Oktober 2026. Aufnahmen von Instagram, Portalen und dem Web-Archiv nur zur Anschauung.')
     s = s.replace('</head>', css + '</head>', 1)
     open(os.path.join(z, 'index.html'), 'w', encoding='utf-8').write(s)
 
@@ -155,7 +154,7 @@ def abschnitt(k, kopfk):
     return f'''
 <section class="fl fl--nacht tapete-leicht blatt sbf" id="k1">
   <div class="in">
-    {kopfk('k1', ['Ausgebucht,', 'aber schwer zu finden.'], f'Heute gibt es Culinarium auf Instagram. Von den {ALLE} Punkten, die dort fehlen, stehen hier die vier, die am meisten ausmachen, jeder mit einer Aufnahme als Beleg. Die übrigen stehen im ganzen Befund.')}
+    {kopfk('k1', ['Gut bewertet,', 'aber schwer zu finden.'], f'Heute gibt es das Wild Side auf Instagram und in Portalen. Von den {ALLE} Punkten, die fehlen, stehen hier die vier, die am meisten ausmachen, jeder mit einer Aufnahme als Beleg. Die übrigen stehen im ganzen Befund.')}
     <div class="sbf-b" tabindex="0" aria-roledescription="Karussell" aria-label="Die Befunde">
       <div class="sbf-platten">{platten}</div>
       <div class="sbf-fuss"><button type="button" class="wf__pf" data-f="-1" aria-label="Voriger Befund">{LI}</button><div class="sbf-ziffern">{ziffern}</div><button type="button" class="wf__pf" data-f="1" aria-label="Nächster Befund">{RE}</button></div>

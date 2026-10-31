@@ -145,7 +145,7 @@ def _alt(key):
 
 
 def _bild(key):
-    b = sorted(int(m.group(1)) for p in glob.glob(os.path.join(WEB, 'assets', 'bild', key + '-*.webp')) if (m := re.search(r'-(\d+)\.webp$', p)))
+    b = sorted(int(m.group(1)) for p in glob.glob(os.path.join(WEB, 'assets', 'bild', key + '-*.webp')) if (m := re.fullmatch(re.escape(key) + r'-(\d+)\.webp', os.path.basename(p))))
     return os.path.join(WEB, 'assets', 'bild', f'{key}-{b[-1]}.webp')
 
 

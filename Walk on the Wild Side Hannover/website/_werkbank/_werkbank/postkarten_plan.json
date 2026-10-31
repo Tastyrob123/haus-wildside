@@ -2,108 +2,87 @@
  "karten": [
   {
    "id": "pk01",
-   "key": "po_CxNkFWTIvL2",
-   "name": "Katze im Cocktailglas",
-   "abend": "Fr 15. und Sa 16. September 2023",
-   "farbe": "#87323f"
+   "key": "p-1710",
+   "name": "Ghazouani Brothers",
+   "abend": "SESSION · 17.10.2026",
+   "art": "plakat"
   },
   {
    "id": "pk02",
-   "key": "po_CyT32RTMB4d",
-   "name": "Goldener Herbst",
-   "abend": "Sa 21. Oktober 2023",
-   "farbe": "#0d545d"
+   "key": "p-0310",
+   "name": "Jojo & Reza",
+   "abend": "SESSION · 03.10.2026",
+   "art": "plakat"
   },
   {
    "id": "pk03",
-   "key": "po_CzMcqNcMCqG",
-   "name": "Winter is coming",
-   "abend": "Fr 17. und Sa 18. November 2023",
-   "farbe": "#444d37"
+   "key": "p-0509",
+   "name": "Apo",
+   "abend": "SESSION · 05.09.2026",
+   "art": "plakat"
   },
   {
    "id": "pk04",
-   "key": "po_C0w6iuCMcnF",
-   "name": "Silvester auf der Bühne",
-   "abend": "So 31. Dezember 2023",
-   "farbe": "#a4080a"
+   "key": "p-1605",
+   "name": "Jojo & Reza",
+   "abend": "SESSION · 16.05.2026",
+   "art": "plakat"
   },
   {
    "id": "pk05",
-   "key": "po_C17kqAXLfs_",
-   "name": "Flashback",
-   "abend": "Fr 26. und Sa 27. Januar 2024",
-   "farbe": "#60024b"
+   "key": "p-2103",
+   "name": "Moury",
+   "abend": "SESSION · 21.03.2026",
+   "art": "plakat"
   },
   {
    "id": "pk06",
-   "key": "po_C56bJeds8PF",
-   "name": "Kabinett der Illusionen",
-   "abend": "Fr 26. und Sa 27. April 2024",
-   "farbe": "#5a4e3e"
+   "key": "p-2401",
+   "name": "Loverence",
+   "abend": "SESSION · 24.01.2026",
+   "art": "plakat"
   },
   {
    "id": "pk07",
-   "key": "po_C8cgYVSouVT",
-   "name": "Erdig",
-   "abend": "Fr 19. und Sa 20. Juli 2024",
-   "farbe": "#39515e"
+   "key": "p-2211",
+   "name": "Kollektiv Gerber",
+   "abend": "SESSION · 06.12.2025",
+   "art": "plakat"
   },
   {
    "id": "pk08",
-   "key": "po_DCCf-ikoaGs",
-   "name": "Gondeln aus Gläsern",
-   "abend": "Fr 29. und Sa 30. November 2024",
-   "farbe": "#3c4f54"
+   "key": "p-0906",
+   "name": "Björn",
+   "abend": "SESSION · 06.09.2025",
+   "art": "plakat"
   },
   {
    "id": "pk09",
-   "key": "po_DFqbLG2s_dc",
-   "name": "Panther im Abendrot",
-   "abend": "Fr 21. und Sa 22. Februar 2025",
-   "farbe": "#7c3d24"
+   "key": "decke-2017",
+   "name": "Ein Gewölbe über der Theke.",
+   "abend": "Walk on the Wild Side",
+   "art": "foto"
   },
   {
    "id": "pk10",
-   "key": "po_DJw8OqGMY1G",
-   "name": "Spargel im Gewächshaus",
-   "abend": "Fr 13. und Sa 14. Juni 2025",
-   "farbe": "#435228"
+   "key": "negroni",
+   "name": "Und wer einen Negroni will.",
+   "abend": "Walk on the Wild Side",
+   "art": "foto"
   },
   {
    "id": "pk11",
-   "key": "po_DPwlqcfiKcA",
-   "name": "Kürbis bei Kerzen",
-   "abend": "Fr 14. und Sa 15. November 2025",
-   "farbe": "#14354a"
+   "key": "schild",
+   "name": "An der Ecke.",
+   "abend": "Walk on the Wild Side",
+   "art": "foto"
   },
   {
    "id": "pk12",
-   "key": "po_DVjkofijp6R",
-   "name": "Panther und Spaghetti-Eis",
-   "abend": "Fr 27. und Sa 28. März 2026",
-   "farbe": "#891302"
-  },
-  {
-   "id": "pk13",
-   "key": "po_DbYnkdkjrNy",
-   "name": "Tanz auf dem Mond",
-   "abend": "Fr 25. und Sa 26. September 2026",
-   "farbe": "#2d295b"
-  },
-  {
-   "id": "pk14",
-   "key": "dc_plakat_ganz",
-   "name": "Dirty Chicken",
-   "abend": "Das erste Pop-up",
-   "farbe": "#8953a9"
-  },
-  {
-   "id": "pk15",
-   "key": "pop23",
-   "name": "Das erste Pop-up",
-   "abend": "Sa 20. Mai 2023",
-   "farbe": "#4a4330"
+   "key": "momo-giesst",
+   "name": "Du sagst, was du magst.",
+   "abend": "Walk on the Wild Side",
+   "art": "foto"
   }
  ],
  "boegen": 2

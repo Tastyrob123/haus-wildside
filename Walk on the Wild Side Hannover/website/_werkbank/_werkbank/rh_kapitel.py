@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Baustein in der Werkbank Culinarium (Werkbank-Chat 28.10.2026), über das Schäfli kopiert; die Herkunft steht darunter wie in der Vorlage.
+"""Baustein in der Werkbank Wild Side (Nachtbau 31.10.2026, Vorlage Culinarium 28.10.2026), über das Schäfli kopiert; die Herkunft steht darunter wie in der Vorlage.
 Werkbank Taverne zum Schäfli in acht Kapiteln (Vorlage Schlössli, dort Ruedihus) (Werkbank-Chat 17.10.2026; Aufbau wie die Werkbank des Carlton-Europe vom 15.10.2026, Technik über das
 Waldhotel Doldenhorn (dh_kapitel.py, nur gelesen und kopiert), Kleid und Worte des Ruedihus):
 Auftakt, Brief, «Worum es geht», Register → Was wir gefunden haben → Ihre Marke → Ihre Website → Karten und Unterlagen → Ihre Werkzeuge
@@ -17,14 +17,14 @@ _PK = (lambda p: len(json.load(open(p))['karten']) if os.path.exists(p) else 13)
 e = html.escape
 ROEM = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII']
 KAPITEL_ALLE = [  # Anker, Name, Zeile im Register, Name in der Leiste, Objekt
-    ('k1', 'Befund des aktuellen Auftritts online', 'Wie Culinarium heute im Netz steht, an vier Beispielen mit Bild.', 'Befund', 'analyse-h'),
-    ('k2', 'Eure Marke', 'Die Wortmarke, das C, die Schriften und die Farben eurer Plakate, gesammelt in einem eigenen Werkzeug.', 'Marke', 'livre'),
-    ('k3', 'Eure Website', 'Das Profil von heute neben der neuen Seite, zwölf Stellen mit ihrem Gedanken und jede Seite von der Tafel bis Dirty Chicken.', 'Website', 'website'),
-    ('k4', 'Karten und Unterlagen', 'Die Karte am Platz für jeden Abend, neu gesetzt neben der Karte, wie sie auf dem Tisch lag.', 'Karten', 'unterlagen'),
-    ('k5', 'Eure Werkzeuge', 'Sieben Werkzeuge für Termine, Menüs, Plakate und Gäste, eines davon als Eingang zu allen.', 'Werkzeuge', 'maison'),
-    ('k6', 'Für draußen', f'24 Drucksachen, zwölf Untersetzer, elf Mails, {_PK} Postkarten von euren Plakaten, 40 Sticker und fünf Beigaben, darunter ein Gutschein für einen Abend.', 'Draußen', 'drucksachen'),
+    ('k1', 'Befund des aktuellen Auftritts online', 'Wie das Wild Side heute im Netz steht, an vier Beispielen mit Bild.', 'Befund', 'analyse-h'),
+    ('k2', 'Eure Marke', 'Die Wortmarke, Prata und Hanken, die Farben von Eckschild und Plakaten, gesammelt in einem eigenen Werkzeug.', 'Marke', 'livre'),
+    ('k3', 'Eure Website', 'Das Profil von heute neben der neuen Seite, zwölf Stellen mit ihrem Gedanken und jede Seite von den Drinks bis zum Besuch.', 'Website', 'website'),
+    ('k4', 'Karten und Unterlagen', 'Die Karten der Bar, neu gesetzt neben dem Blatt, wie es auf dem Tisch lag.', 'Karten', 'unterlagen'),
+    ('k5', 'Eure Werkzeuge', 'Sieben Werkzeuge für DJ-Abende, Karten, Plakate und Gäste, eines davon als Eingang zu allen.', 'Werkzeuge', 'maison'),
+    ('k6', 'Für draußen', 'Drucksachen, Untersetzer, Mails an eure Gäste, Postkarten von euren Plakaten, Sticker und Beigaben, dazu ein Feed für Instagram.', 'Draußen', 'drucksachen'),
     ('k7', 'Geprüft', 'Wie alles ausprobiert wurde, und welche Fragen bei euch liegen.', 'Geprüft', 'geprueft'),
-    ('k8', 'Das Angebot', 'Der ganze Umfang, die Wochen bis zum Start und am Ende der Vorschlag als Menükarte.', 'Angebot', 'vorschlag'),
+    ('k8', 'Das Angebot', 'Der ganze Umfang, die Wochen bis zum Start und am Ende der Vorschlag als Karte.', 'Angebot', 'vorschlag'),
 ]
 BEFUND_DA = False   # setzt wb_kapitel.py, sobald der Befund («Die Lupe») gebaut ist
 
