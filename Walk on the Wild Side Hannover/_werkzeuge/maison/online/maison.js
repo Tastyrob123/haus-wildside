@@ -252,10 +252,10 @@
     zahl('reg-besuche', bs ? n(bs) : '–'); zahl('reg-seiten', ganz(u.seiten) ? n(u.seiten) : '–'); zahl('reg-laender', ganz(u.laender) ? n(u.laender) : '–');
     /* Der Weg zur Buchung (Weg des Gastes): Besuche → Abend angesehen → Platz gebucht oder Warteliste → dabei. Rechnung und Namen wie im Besucherbuch
        des Hauses (registre.js trichter, Fehlerbuch 10a): abbruch.von = erste Stufe, davon ohne Abbruch = zweite; booking.zahl = direkt gebucht */
-    /* Wild Side: Stufe 2 = Aufrufe der Seite aus registre/stufen.json (sonst besuch.html, «Bis 2 Uhr» mit Reservieren), höchstens die Besuche; Stufe 3 = zum Tisch
-       (reserviert oder Feier angefragt, summe.buchung, höchstens Stufe 2); Anteil je Stufe an der davor, nie über 100 % */
-    var stufe = (function () { try { return JSON.parse($('#maison-stufe').textContent) || 'besuch.html'; } catch (e) { return 'besuch.html'; } })();
-    var ab = (m.seiten || []).filter(function (x) { return x && x.s === stufe; })[0], fen = Math.min(bs, ganz(ab && ab.n)), wei = Math.min(fen, ganz(u.buchung)), bk = 0;
+    /* Wild Side, wie die Besucherliste (registre.js trichter()): Stufe 2 = Aufrufe von «Besuch» und «Feiern» (besuch.html, tafel.html), höchstens die Besuche;
+       Stufe 3 = zum Tisch (reserviert oder Feier angefragt, summe.buchung, höchstens Stufe 2); Anteil je Stufe an der davor, nie über 100 % */
+    var stufe = (function () { try { return [].concat(JSON.parse($('#maison-stufe').textContent)); } catch (e) { return ['besuch.html', 'tafel.html']; } })();
+    var auf = (m.seiten || []).filter(function (x) { return x && stufe.indexOf(x.s) >= 0; }).reduce(function (a, x) { return a + ganz(x.n); }, 0), fen = Math.min(bs, auf), wei = Math.min(fen, ganz(u.buchung)), bk = 0;
     var ant = function (t, g) { return g ? Math.round(100 * t / g) + ' % davon' : ''; };
     $$('[data-wg]').forEach(function (el) {
       var k = el.getAttribute('data-wg');

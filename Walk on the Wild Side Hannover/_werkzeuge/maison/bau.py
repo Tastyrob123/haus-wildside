@@ -303,10 +303,11 @@ WM = re.sub(r'^<symbol[^>]*>|</symbol>$', '', WM)
 # (registre/stufen.json → maison); bis dahin die Wege der Website (Besuch ansehen → reservieren oder Feier anfragen → an der Bar).
 try:
     _st = json.load(open(os.path.join(WZ, 'registre', 'stufen.json'), encoding='utf-8'))
-    STUFE = _st['maison']; STUFE_SEITE = _st.get('seite') or 'besuch.html'
+    STUFE = _st['maison']; STUFE_SEITE = _st.get('seiten') or ['besuch.html', 'tafel.html']
 except (OSError, ValueError, KeyError):
-    STUFE = ['«Bis 2 Uhr» geöffnet', 'reserviert oder Feier angefragt', 'an der Bar', 'zählt das Team, nicht die Website']   # Wege der Website: besuch.html → Reservieren / Feiern anfragen
-    STUFE_SEITE = 'besuch.html'
+    # dieselben Stufen und Namen wie «Der Weg zum Tisch» der Besucherliste (registre/registre.js trichter(), Fehlerbuch 10a: nie eine eigene Ableitung)
+    STUFE = ['«Besuch» oder «Feiern» geöffnet', 'Tisch reserviert oder Feier angefragt', 'an der Bar', 'zählt das Team, nicht die Website']
+    STUFE_SEITE = ['besuch.html', 'tafel.html']
 
 
 def wortmarke(c):
