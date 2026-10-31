@@ -345,3 +345,12 @@ aside.wo-rand .modus__t{text-wrap:pretty}   /* Tor 5 30.10.2026 (K7): kein Wort 
 /* Wild Side 31.10.2026 (Tor K35): Hanken sitzt in den Knöpfen 0,5 px zu hoch; die Schrift rückt 0,5 px nach unten, der Knauf bleibt in der Mitte */
 .kn{padding-top:1px}
 .kn i{margin-top:-1px}
+/* Wild Side 31.10.2026 (Tor K2 «randlos», 901–1240 px): «Website ansehen» ist dort nur der runde Knauf (kleid/wildside.css); die verborgene Beschriftung
+   misst sonst mit ihrer vollen Breite über den Knopf hinaus. Für Vorleseprogramme bleibt der Name am Link (aria-label in carte.js). */
+@media (min-width:901px) and (max-width:1240px){.wo-kopf .wo-kn--gold.wo-kn--klein>span{font-size:0;letter-spacing:0}}
+/* Tor K6 (390): im aufgeklappten Rand stehen Protokoll und Zustand auf derselben linken Kante wie «Der Tresen» */
+aside.wo-rand .wo-rand__kopf>button{padding-left:0;padding-right:0;margin-left:0}
+/* Tor K35: Wahl der Rubrik («Neuer Eintrag»): Hanken sass 1,1 px zu hoch, das Bild der Rubrik passt ganz in den Knopf */
+.lc .chips.g-wahl button{height:auto;min-height:48px;padding:6.2px 18px 4px 4px}
+/* Tor K7 (390): kein Wort allein in der letzten Zeile der Fenstertitel («Vorher und nachher.») */
+.fenster h2,.fenster__k h2{text-wrap:balance}

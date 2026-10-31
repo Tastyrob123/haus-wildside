@@ -205,6 +205,7 @@ function oben() {
   const r = $('.wo-kopf__r', el), tr = r && $('.wo-trenn', r);
   if (tr) tr.insertAdjacentHTML('beforebegin', `<button class="wo-kn wo-kn--rund" type="button" data-akt="protokoll" title="Protokoll" aria-label="Protokoll">${WO.ic('verlauf')}</button><button class="zustand${STATUS_ROT ? ' rot' : ''}" type="button" data-akt="gesund"><span>${STATUS_ROT ? 'Prüfen' : 'Alles in Ordnung'}</span></button>`);
   const m = $('.wo-marke-w', el); if (m) m.setAttribute('aria-label', NAME + ' · Übersicht');
+  const ws = $('.wo-kopf__r a.wo-kn--gold', el); if (ws) ws.setAttribute('aria-label', 'Website ansehen');   // die Beschriftung ist zwischen 901 und 1240 px nur noch Knauf (carte.css)
 }
 let STATUS_ROT = false, SATZ_ZEICHEN = { ZEICHEN: '', WORTMARKE: '' };
 /* Zeichen des Hauses (aus dem Band der Karte), eingefärbt über currentColor */
@@ -832,7 +833,7 @@ function vglFenster() {
   const v = vergleich(STAND, D), W = { neu: 'Neu', weg: 'Entfernt', anders: 'Geändert', verschoben: 'Verschoben', anordnung: 'Anordnung' };
   const darf = darfVeroeffentlichen();
   const markiere = (a, b) => { const wa = new Set(a.replace(/<[^>]+>/g, ' ').split(/\s+/)); return b.replace(/>([^<]+)</g, (m, t) => '>' + t.split(/(\s+)/).map(w => w.trim() && !wa.has(w) ? `<mark>${w}</mark>` : w).join('') + '<'); };
-  fenster(`<h2>Vorher <em>und nachher.</em></h2><p class="satz">${v.length ? `${v.length} ${v.length === 1 ? 'Stelle' : 'Stellen'} im Entwurf. Links steht, was heute in der PDF steht, rechts der Entwurf. Was neu ist, ist markiert.` : 'Der Entwurf ist gleich wie die PDF.'}</p>
+  fenster(`<h2>Vorher <em>und&nbsp;nachher.</em></h2><p class="satz">${v.length ? `${v.length} ${v.length === 1 ? 'Stelle' : 'Stellen'} im Entwurf. Links steht, was heute in der PDF steht, rechts der Entwurf. Was neu ist, ist markiert.` : 'Der Entwurf ist gleich wie die PDF.'}</p>
     <div class="vgl__k"><span></span><span class="mono">Heute in der PDF</span><span class="mono">Im Entwurf</span></div>
     <div class="vgl">${v.map(x => { if (x.art === 'anordnung') return `<div class="vgl__z"><span class="mono">${W[x.art]}<br><small style="text-transform:none;letter-spacing:0;color:var(--leise)">${h(x.b.ort)}</small></span><div>Wie gesetzt</div><div>${x.n} ${x.n === 1 ? 'Element verschoben, in der Grösse oder Gestaltung geändert' : 'Elemente verschoben, in der Grösse oder Gestaltung geändert'}</div></div>`; const a = x.a ? x.a.text : '', b = x.b ? x.b.text : ''; return `<div class="vgl__z"><span class="mono">${W[x.art]}<br><small style="text-transform:none;letter-spacing:0;color:var(--leise)">${h((x.b || x.a).ort || '')}</small></span><div class="${a ? '' : 'leer'}">${a ? (x.art === 'weg' ? `<del>${a}</del>` : a) : 'stand noch nicht da'}</div><div class="${b ? '' : 'leer'}">${b ? (x.art === 'anders' ? markiere(a, b) : b) : 'nicht mehr auf der Karte'}</div></div>`; }).join('')}</div>
     <div class="fenster__kn"><button class="kn kn--hell" type="button" data-zu>Schliessen</button>${v.length && darf ? `<button class="kn kn--gold" type="button" id="v-ok">Veröffentlichen<i>${PF}</i></button>` : ''}</div>`, true);

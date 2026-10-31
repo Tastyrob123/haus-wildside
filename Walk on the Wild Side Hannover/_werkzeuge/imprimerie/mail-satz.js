@@ -5,7 +5,7 @@
    Fotos als JPG (haeuser/wildside/mail/, 1200 px, Outlook kann kein WebP), öffentliche Adressen auf der Studio-Seite.
    Kein Mailprogramm führt Skripte aus; alles hier ist reines HTML. DSMAIL.html(doc, {editor}) → vollständiges Dokument. */
 (function () {
-  const ONLINE = 'https://culinarium-hannover-entwurf.vercel.app/werkzeuge/imprimerie/';   // öffentliche Adresse der Bilder in den Mails (Fotos, Kopf, Fuss)
+  const ONLINE = (location.origin && /^https:/.test(location.origin) ? location.origin + location.pathname.replace(/[^/]*$/, '') : '');   // öffentliche Adresse der Bilder: die Adresse, unter der die Werkstatt läuft (die Online-Adresse der Bar gibt es noch nicht)
   const C = { navy: '#1c1513', papier: '#f2e9dc', creme: '#ebe2d8', weiss: '#fffbf5', sand: '#ebe2d8', gold: '#e4c88a', messing: '#d8b264', taupe: '#7a5c24', tief: '#261e1a', tinte: '#1c1513' };
   const F = {
     serif: "Prata,Georgia,'Times New Roman',serif",
@@ -100,8 +100,8 @@
 
     const abm = f.abmelden !== false;
     const fuss = `<tr><td${ed ? ' data-b="fuss"' : ''} align="center" style="padding:40px 24px 48px;text-align:center">
-<img src="${basis}haeuser/wildside/mail/_fuss.png" width="60" height="54" alt="" style="display:block;margin:0 auto 14px;width:60px;height:54px;border:0">
-<div class="mono" style="font-family:${F.mono};font-size:11px;line-height:18px;letter-spacing:3px;text-transform:uppercase;color:${C.gold}">Culinarium</div>
+<img src="${basis}haeuser/wildside/mail/_fuss.png" width="48" height="59" alt="" style="display:block;margin:0 auto 14px;width:48px;height:59px;border:0">
+<div class="mono" style="font-family:${F.mono};font-size:11px;line-height:18px;letter-spacing:3px;text-transform:uppercase;color:${C.gold}">Eure Nachbarschafts-Mixology-Bar</div>
 <div style="margin-top:10px;font-family:${F.sans};font-size:13px;line-height:21px;color:#ebe2d8">Walk on the Wild Side<br>Haasemannstraße 13 &middot; 30449&nbsp;Hannover<br><a href="https://www.instagram.com/walkonthewildside_hannover/" target="_blank" style="color:${C.gold};text-decoration:none">Instagram @walkonthewildside_hannover</a></div>
 ${f.text ? `<div style="margin-top:18px;font-family:${F.sans};font-size:12px;line-height:19px;color:#eedbb6">${zeilen(f.text)}</div>` : ''}
 ${abm || v.online ? `<div style="margin-top:18px;font-family:${F.sans};font-size:12px;line-height:19px;color:#eedbb6">${[v.online && abm ? `<a href="${v.online}" target="_blank" style="color:#eedbb6;text-decoration:underline">Im Browser ansehen</a>` : '', abm ? `<a href="${v.abmelden}" target="_blank" style="color:#eedbb6;text-decoration:underline">Vom Newsletter abmelden</a>` : ''].filter(Boolean).join(' &middot; ')}</div>` : ''}
@@ -118,9 +118,9 @@ ${abm || v.online ? `<div style="margin-top:18px;font-family:${F.sans};font-size
 <meta name="format-detection" content="telephone=no,address=no,email=no,date=no">
 <meta name="color-scheme" content="light only">
 <meta name="supported-color-schemes" content="light">
-<title>${esc(doc.betreff || doc.name || 'Culinarium')}</title>
+<title>${esc(doc.betreff || doc.name || 'Walk on the Wild Side')}</title>
 <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><style>.ser,h1,h2{font-family:Georgia,'Times New Roman',serif!important}.san,.mono,p,div,td,a{font-family:Arial,Helvetica,sans-serif!important}</style><![endif]-->
-<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=Prata:wght@340&family=DM+Mono&family=Instrument+Sans&display=swap" rel="stylesheet"><!--<![endif]-->
+<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=Prata&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet"><!--<![endif]-->
 <style>
 body{margin:0!important;padding:0!important;width:100%!important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
 table{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0}img{-ms-interpolation-mode:bicubic}
@@ -136,7 +136,7 @@ ${pre ? `<div style="display:none;font-size:1px;line-height:1px;max-height:0;max
 <tr><td align="center" class="aussen" style="padding:0 12px">
 <!--[if mso]><table role="presentation" width="${BREITE}" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:${BREITE}px;margin:0 auto">
-<tr><td${ed ? ' data-b="kopf"' : ''} align="center" style="padding:40px 0 34px"><a href="https://www.instagram.com/walkonthewildside_hannover/" target="_blank" style="text-decoration:none"><img src="${basis}haeuser/wildside/mail/_kopf.png" width="278" height="64" alt="Culinarium · A UNiQUE EXPERiENCE BY MOMO X RUDI" style="display:block;margin:0 auto;width:278px;height:64px;border:0;color:${C.gold};font-family:Georgia,serif;font-size:18px;letter-spacing:4px"></a></td></tr>
+<tr><td${ed ? ' data-b="kopf"' : ''} align="center" style="padding:40px 0 34px"><a href="https://www.instagram.com/walkonthewildside_hannover/" target="_blank" style="text-decoration:none"><img src="${basis}haeuser/wildside/mail/_kopf.png" width="278" height="64" alt="Walk on the Wild Side · Eure Nachbarschafts-Mixology-Bar" style="display:block;margin:0 auto;width:278px;height:64px;border:0;color:${C.gold};font-family:Georgia,serif;font-size:18px;letter-spacing:4px"></a></td></tr>
 <tr><td style="padding:0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${C.papier}" style="background:${C.papier};border-radius:6px">
 ${karte}

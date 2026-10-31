@@ -182,7 +182,7 @@ async function ladeAlles() {
 function start() {
   const u = S.ue, gruss = WO.gruss();
   const neueste = S.anfragen.slice(0, 4), fragen = S.fragen.slice(0, 5);
-  return WO.startbild({ werkzeug: 'gaeste', art: 'voll', h1: `${gruss} <em>Wer hat geschrieben?</em>`,
+  return WO.startbild({ werkzeug: 'gaeste', art: 'voll', h1: `${gruss} <em>Wer <span class="re-zs">hat geschrieben?</span></em>`,
     satz: 'Hier landet, was Gäste über die Website und im Chat schreiben: wer einen Platz an der Theke reservieren will, wer ein Privates Dinner plant, wer auf der Empore oder in der ganzen Bar feiern möchte. Jede Anfrage liegt im Eingang, mit den Wünschen des Gastes, den Hinweisen zum Abend und einem vorbereiteten Brief für deine Antwort. Verschickt wird nur, was du selbst schickst.',
     knoepfe: WO.knopf('Anleitung', 'buch', 'gold', { href: 'anleitung.html', neu: true }) }) +
     `<div class="wo-lage">
@@ -253,7 +253,7 @@ function karteAnfrage(a, i = 0) {
   const st = a.status === 'neu' ? 'Neu' : a.status === 'erledigt' ? 'Erledigt' : a.entwurf ? 'Brief bereit' : 'Gelesen';
   return `<button class="re-a${a.status === 'neu' ? ' neu' : ''}${a.status === 'erledigt' ? ' erledigt' : ''}${S.wahl === a.id && S.ansicht === 'eingang' ? ' aktiv' : ''}" style="--i:${i}" type="button" data-gehe="eingang" data-wahl="${esc(a.id)}">
     ${bild(a.art, 're-a__bild', a.id)}
-    <span class="re-a__n"><span class="re-a__k re-gl-r">${glieder([esc(ART[a.art] || a.art), abt(a) !== ART[a.art] ? esc(abt(a)) : '', esc(uhr(a.zeit).replace(' Uhr', '')), a.web ? 'Website' : ''])}</span><b><bdi>${esc(a.name || 'Ohne Namen')}</bdi></b><small class="re-gl-r">${glieder([a.datum, a.personen ? a.personen + (+a.personen === 1 ? ' Platz' : ' Plätze') : '', SPRACHE[a.sprache] || a.sprache].filter(Boolean).map(x => `<bdi>${esc(x)}</bdi>`))}</small>${hinwKurz(a).length ? `<em class="re-a__hinw re-gl-r">${glieder(hinwKurz(a).map(x => esc(x)))}</em>` : ''}</span>
+    <span class="re-a__n"><span class="re-a__k re-gl-r">${glieder([esc(ART[a.art] || a.art), abt(a) !== ART[a.art] ? esc(abt(a)) : '', esc(uhr(a.zeit).replace(' Uhr', '')), a.web ? 'Website' : ''])}</span><b><bdi>${esc(a.name || 'Ohne Namen')}</bdi></b><small class="re-gl-r">${glieder([a.datum, a.personen ? a.personen + (+a.personen === 1 ? ' Platz' : ' Plätze') : '', a.sprache && a.sprache !== 'de' ? SPRACHE[a.sprache] || a.sprache : ''].filter(Boolean)   /* Deutsch ist der Normalfall: in der Karte nur fremde Sprachen (Tor «spalte», 31.10.2026), im Detail immer */.map(x => `<bdi>${esc(x)}</bdi>`))}</small>${hinwKurz(a).length ? `<em class="re-a__hinw re-gl-r">${glieder(hinwKurz(a).map(x => esc(x)))}</em>` : ''}</span>
     <span class="re-a__st">${st}</span></button>`;
 }
 function tagVon(iso) {   // Heute, Gestern, Wochentag, sonst Datum

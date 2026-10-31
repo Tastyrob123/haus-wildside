@@ -87,7 +87,7 @@ def lesen():
                                  'Valentinstag · 14. Februar 2026', 'Wild Side goes in love',
                                  [('Cupid’s Signature Drinks', [(n, z.replace(' · ', ' | '), p) for n, z, p in q['karte']])],
                                  'website/unter.py drinks() karte (vom Plakat der Valentinskarte, Beitrag der Bar vom 03.02.2026)', ab='2026-02-14')
-    aus['dishes-in-love'] = karte('dishes-in-love', 'Dishes in Love', 'Valentinstag 2026 · mit Rudi', 'Weitere Karten', 'k30-leopard', 'Dishes in Love',
+    aus['dishes-in-love'] = karte('dishes-in-love', 'Dishes in Love', 'Teller zum Teilen', 'Weitere Karten', 'k30-leopard', 'Dishes in Love',
                                   'Valentinstag · 14. Februar 2026', 'Kleine Dishes zum Teilen, mit Rudi', DISHES, DISHES_QUELLE, ab='2026-02-14')
     aus['klassiker'] = karte('klassiker', 'Die Klassiker', 'An jedem Abend', 'Weitere Karten', 'glas-negroni', 'Die Klassiker', 'Auch ohne Frage',
                              'Ein paar Drinks gehören fest zum Haus.', [('Die Klassiker', [(n, erster_satz(s), '') for n, s in q['klassiker']])],

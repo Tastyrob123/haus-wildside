@@ -12,92 +12,86 @@
   /* ---------- Vorlagen: Fakten aus katalog.js (NEWSLETTER), dort gepflegt ---------- */
   const NL = n => ((window.DSKATALOG && DSKATALOG.NEWSLETTER || []).find(x => x.n === n) || {}).inhalt || {};
   const VORLAGEN = [
-    { key: "abend", n: "Der nächste Abend", wo: "an alle Gäste", foto: "anstossen", bau() {
-      const i = NL("Der nächste Abend");
-      return { betreff: "Culinarium am 27.–28. November", vorschau: "Vierzehn Gäste an einer Tafel, drei Gänge aus der Küche und dazu fünf Signature Drinks, passend zum Essen. Momo erklärt am Tisch, was im Glas ist.", versand: "mailchimp",
-        kopf: { foto: "anstossen", alt: "Am Tisch wird bei Kerzen angestoßen" }, fuss: { abmelden: true },
+    { key: "abend", n: "Der nächste DJ-Abend", wo: "an alle Gäste", foto: "an-dj", bau() {
+      return { betreff: "SESSION · Samstag an der Bar", vorschau: "Rund einmal im Monat legt jemand auf, von 21 bis 1 Uhr. Momo mixt dazu.", versand: "mailchimp",
+        kopf: { foto: "an-dj", alt: "Das DJ-Pult im Licht" }, fuss: { abmelden: true },
         bloecke: [
-          {"typ": "titel", "ueber": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "titel": "Der nächste Abend", "unter": ""},
-          {"typ": "text", "text": "Hallo [Name],\n\nDas Menü ändert sich mit jedem Abend. Rudi kocht drei Gänge, dazu kommen fünf Signature Drinks von Momo, mit Tasting und einer kleinen Schulung am Tisch.", "ausr": "mitte"},
-          {"typ": "termine", "titel": "", "eintraege": [{"wann": "27.–28. November", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}]},
-          {"typ": "foto", "foto": "lauch", "alt": "Lauch, Blumenkohl und Chipotle auf dem Teller", "unterschrift": "LAUCH / BLUMENKOHL / CHIPOTLE", "voll": false},
-          {"typ": "text", "text": "Tickets ausschließlich per Vorverkauf über PayPal. Schreibt uns hierzu gerne eine Nachricht.", "ausr": "mitte"},
-          {"typ": "knopf", "text": "Nachricht schreiben", "link": WEB},
+          {"typ": "titel", "ueber": "SESSION · Sip & Sounds", "titel": "Samstags legt jemand auf.", "unter": ""},
+          {"typ": "text", "text": "Hallo,\n\nrund einmal im Monat legt jemand an der Bar auf, von 21 bis 1 Uhr. Momo mixt dazu. Auf den Plakaten heisst die Reihe SESSION, gemeint sind Drinks und Musik an einem Abend.", "ausr": "links"},
+          {"typ": "foto", "foto": "p-1710", "alt": "Plakat SESSION mit den Ghazouani Brothers, 17.10.2026", "unterschrift": "Zuletzt: die Ghazouani Brothers am 17.10.2026", "voll": false},
+          {"typ": "text", "text": "Den nächsten Abend kündigt die Bar auf Instagram an. Der Eintritt ist frei.", "ausr": "mitte"},
+          {"typ": "knopf", "text": "Zu Instagram", "link": WEB},
         ] };
     } },
-    { key: "warteliste", n: "Warteliste: Platz frei", wo: "an die Warteliste", foto: "kerze2", bau() {
-      const i = NL("Warteliste: Platz frei");
-      return { betreff: "Ein Platz an der Tafel ist frei", vorschau: "Vierzehn Plätze an einer Tafel, und der letzte Abend war ausgebucht. Trag dich ein: Sobald der nächste Termin feststeht, erfährst du es vor allen anderen.", versand: "mailchimp",
-        kopf: { foto: "kerze2", alt: "Gäste und Kerzen an der Tafel" }, fuss: { abmelden: true },
+    { key: "warteliste", n: "Feiern im Wild Side", wo: "an Anfragen", foto: "an-empore-tafel", bau() {
+      return { betreff: "Euer Abend im Wild Side", vorschau: "Ein Dinner an der langen Tafel, die ganze Bar für eure Gesellschaft, Musik, die zum Abend passt.", versand: "anderes",
+        kopf: { foto: "an-empore-tafel", alt: "Die gedeckte lange Tafel oben auf der Empore" }, fuss: { abmelden: false },
         bloecke: [
-          {"typ": "titel", "ueber": "Culinarium", "titel": "Ein Platz ist frei", "unter": ""},
-          {"typ": "text", "text": "Hallo [Name],\n\nVierzehn Plätze an einer Tafel, und der letzte Abend war ausgebucht. Trag dich ein: Sobald der nächste Termin feststeht, erfährst du es vor allen anderen.", "ausr": "mitte"},
-          {"typ": "termine", "titel": "", "eintraege": [{"wann": "27.–28. November", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}]},
-          {"typ": "knopf", "text": "Platz sichern", "link": WEB},
+          {"typ": "titel", "ueber": "Feiern im Wild Side", "titel": "Euer Abend.", "unter": ""},
+          {"typ": "text", "text": "Hallo,\n\nein Dinner an der langen Tafel, die ganze Bar für eure Gesellschaft, Musik, die zum Abend passt. Derya und Momo planen ihn mit euch, vom ersten Drink bis zum letzten Lied.", "ausr": "links"},
+          {"typ": "termine", "titel": "Drei Formate", "eintraege": [{"wann": "10 bis 14 Gäste", "was": "Privates Dinner mit Rudi und Momo", "wo": ""}, {"wann": "10 bis 20 Gäste", "was": "Die lange Tafel auf der Empore", "wo": ""}, {"wann": "ab 30 Gästen", "was": "Die ganze Bar, von 19 bis 2 Uhr", "wo": ""}]},
+          {"typ": "text", "text": "Anzahlung bei jedem Abend: 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn.", "ausr": "mitte"},
+          {"typ": "knopf", "text": "Anrufen: +49 163 3909578", "link": "tel:+491633909578"},
         ] };
     } },
-    { key: "rueckblick", n: "Rückblick auf den Abend", wo: "an alle Gäste", foto: "tafelleer", bau() {
-      const i = NL("Danke für den Abend");
-      return { betreff: "Rückblick: ein Abend an der Tafel", vorschau: "Der Abend ist ausgebucht, bevor er beginnt.", versand: "mailchimp",
-        kopf: { foto: "tafelleer", alt: "Die lange Tafel mit Kerzen, gedeckt" }, fuss: { abmelden: true },
+    { key: "rueckblick", n: "Jeder Abend ein Plakat", wo: "an alle Gäste", foto: "p-1710", bau() {
+      return { betreff: "Jeder Abend ein Plakat", vorschau: "Seit September 2025 holt das Wild Side DJs an die Bar. Jeder Abend bekommt ein eigenes Plakat.", versand: "mailchimp",
+        kopf: { foto: "konzert-love", alt: "Ein Duo spielt in der Bar" }, fuss: { abmelden: true },
         bloecke: [
-          {"typ": "titel", "ueber": "Culinarium", "titel": "Und das war nur ein Abend", "unter": ""},
-          {"typ": "text", "text": "Das Menü wechselt mit jedem Abend. Ein paar Teller und Drinks aus den letzten Ausgaben.", "ausr": "mitte"},
+          {"typ": "titel", "ueber": "Die DJ-Abende", "titel": "Jeder Abend ein Plakat.", "unter": ""},
+          {"typ": "text", "text": "Seit September 2025 holt das Wild Side DJs an die Bar. Jeder Abend bekommt ein eigenes Plakat mit rot-cremefarbenen Wellen und dem Gesicht des Abends in Schwarzweiss.", "ausr": "mitte"},
           {"typ": "trenner"},
-          {"typ": "foto", "foto": "roq1", "alt": "Blumenkohl mit Roquefort, Kapern und Quinoa, daneben der Drink", "unterschrift": "BLUMENKOHL / ROQUEFORT / KAPERN / QUINOA", "voll": false},
-          {"typ": "text", "text": "Seit September 2023 bekommt jeder Culinarium-Abend ein eigenes Plakat. Zusammen sehen sie aus wie die Ausgaben eines Magazins.", "ausr": "mitte"},
-          {"typ": "knopf", "text": "Alle Abende ansehen", "link": WEB},
+          {"typ": "foto", "foto": "p-0310", "alt": "Plakat SESSION mit Jojo und Reza, 03.10.2026", "unterschrift": "Jojo & Reza, 03.10.2026", "voll": false},
+          {"typ": "foto", "foto": "p-0906", "alt": "Plakat SESSION mit Björn, 06.09.2025", "unterschrift": "Björn, der erste Abend, 06.09.2025", "voll": false},
+          {"typ": "knopf", "text": "Alle Abende auf Instagram", "link": WEB},
         ] };
     } },
-    { key: "einladung", n: "Einladung an Stammgäste", wo: "an ausgewählte Gäste", foto: "kerze3", bau() {
-      const i = NL("Der nächste Abend");
-      return { betreff: "Einladung: Culinarium am 27.–28. November", vorschau: "Die Abende an der langen Tafel des Walk on the Wild Side: drei Gänge, fünf Drinks, vierzehn Plätze.", versand: "mailchimp",
-        kopf: { foto: "kerze3", alt: "Blick durch die Tür auf die Tafel" }, fuss: { abmelden: true },
+    { key: "einladung", n: "Live am Donnerstag", wo: "an alle Gäste", foto: "konzert-love", bau() {
+      return { betreff: "Live am Donnerstag", vorschau: "Kleine Konzerte mitten im Raum: Jazz, Soul, Pop. Duos und Trios, ohne Eintritt, ab 20 Uhr.", versand: "mailchimp",
+        kopf: { foto: "konzert-scharf", alt: "Konzert in der Bar: Gitarren und Kontrabass unter der Decke" }, fuss: { abmelden: true },
         bloecke: [
-          {"typ": "titel", "ueber": "A UNiQUE EXPERiENCE BY MOMO X RUDI", "titel": "Ein Abend an der Tafel", "unter": ""},
-          {"typ": "text", "text": "Hallo [Name],\n\nDie Abende an der langen Tafel des Walk on the Wild Side: drei Gänge, fünf Drinks, vierzehn Plätze. Und wer dir erklärt, was auf dem Teller und im Glas ist.", "ausr": "mitte"},
-          {"typ": "termine", "titel": "", "eintraege": [{"wann": "27.–28. November", "was": "Culinarium", "wo": "Walk on the Wild Side · Haasemannstraße 13"}]},
-          {"typ": "text", "text": "Freitags ab 19 Uhr, samstags ab 17 Uhr.", "ausr": "mitte"},
-          {"typ": "knopf", "text": "Platz anfragen", "link": WEB},
+          {"typ": "titel", "ueber": "Donnerstags", "titel": "Live, ab und zu.", "unter": ""},
+          {"typ": "text", "text": "Hallo,\n\nkleine Konzerte mitten im Raum: Jazz, Soul, Pop. Duos und Trios, ohne Eintritt, ab 20 Uhr. 2024 und 2025 spielten Alone Together, Anissa Al Jay, Josseff and Friends und Sina and Friends.", "ausr": "links"},
+          {"typ": "foto", "foto": "saengerin-kunde", "alt": "Eine Sängerin am Mikrofon unter der Decke der Bar", "unterschrift": "", "voll": false},
+          {"typ": "text", "text": "Donnerstag 19 bis 1 Uhr, Haasemannstraße 13.", "ausr": "mitte"},
+          {"typ": "knopf", "text": "Zu Instagram", "link": WEB},
         ] };
     } },
-    { key: "ticket", n: "Dein Platz an der Tafel", wo: "Bestätigungsmail", foto: "fassade", bau() {
-      const i = NL("Danke für den Abend");
-      return { betreff: "Dein Platz an der Tafel", vorschau: "27.–28. November · Walk on the Wild Side · Haasemannstraße 13", versand: "anderes",
-        kopf: { foto: "fassade", alt: "Die Fenster der Bar am Abend" }, fuss: { abmelden: false },
+    { key: "ticket", n: "Euer Platz ist reserviert", wo: "Bestätigungsmail", foto: "schild", bau() {
+      return { betreff: "Euer Platz ist reserviert", vorschau: "Haasemannstraße 13, Ecke Rampenstraße · Das Schild an der Ecke leuchtet.", versand: "anderes",
+        kopf: { foto: "schild", alt: "Das beleuchtete Schild an der Hausecke" }, fuss: { abmelden: false },
         bloecke: [
-          {"typ": "titel", "ueber": "Culinarium", "titel": "Dein Platz an der Tafel", "unter": ""},
-          {"typ": "text", "text": "Hallo [Name],\n\ndein Platz steht."},
-          {"typ": "termine", "titel": "", "eintraege": [{"wann": "27.–28. November", "was": "Freitags ab 19 Uhr, samstags ab 17 Uhr.", "wo": ""}, {"wann": "Wo", "was": "Haasemannstraße 13 · 30449 Hannover-Linden", "wo": ""}]},
-          {"typ": "text", "text": "Da die Plätze begrenzt sind, bitten wir um Verständnis, dass Tickets nicht rückerstattet werden können."},
-          {"typ": "knopf", "text": "So findest du hin", "link": WEB},
+          {"typ": "titel", "ueber": "Walk on the Wild Side", "titel": "Euer Platz ist reserviert.", "unter": ""},
+          {"typ": "text", "text": "Hallo,\n\ndie Bar bestätigt euch den Abend. Wir freuen uns auf euch."},
+          {"typ": "termine", "titel": "", "eintraege": [{"wann": "Wann", "was": "Donnerstag 19 bis 1 Uhr · Freitag und Samstag 19 bis 2 Uhr", "wo": ""}, {"wann": "Wo", "was": "Haasemannstraße 13 · 30449 Hannover-Linden", "wo": "Ecke Rampenstraße"}, {"wann": "Bahn", "was": "Stadtbahn bis Am Küchengarten, Linien 9 und 17", "wo": ""}]},
+          {"typ": "text", "text": "Das Schild an der Ecke leuchtet."},
+          {"typ": "knopf", "text": "Anrufen: +49 163 3909578", "link": "tel:+491633909578"},
         ] };
     } },
-    { key: "danke", n: "Danke für den Abend", wo: "Dankesmail", foto: "toast", bau() {
-      const i = NL("Danke für den Abend");
-      return { betreff: "Danke für den Abend", vorschau: "Nichts wäre all das ohne unsere tollen Gäste! Danke an alle, die da waren.", versand: "anderes",
-        kopf: { foto: "toast", alt: "Am Tisch wird angestoßen" }, fuss: { abmelden: false },
+    { key: "danke", n: "Danke für den Abend", wo: "Dankesmail", foto: "anstossen", bau() {
+      return { betreff: "Danke für den Abend", vorschau: "Gute Drinks, gute Musik. Danke, dass ihr da wart.", versand: "anderes",
+        kopf: { foto: "anstossen", alt: "Zwei Gäste stossen über dem Tisch an" }, fuss: { abmelden: false },
         bloecke: [
-          {"typ": "titel", "ueber": "Culinarium", "titel": "Danke für den Abend", "unter": "A UNiQUE EXPERiENCE BY MOMO X RUDI"},
-          {"typ": "text", "text": "Hallo [Name],\n\nNichts wäre all das ohne unsere tollen Gäste! Danke an alle, die da waren.", "ausr": "mitte"},
+          {"typ": "titel", "ueber": "Walk on the Wild Side", "titel": "Danke für den Abend.", "unter": ""},
+          {"typ": "text", "text": "Hallo,\n\ngute Drinks, gute Musik. Danke, dass ihr da wart.", "ausr": "mitte"},
           {"typ": "trenner"},
-          {"typ": "text", "text": "Vierzehn Plätze an einer Tafel, und der letzte Abend war ausgebucht. Trag dich ein: Sobald der nächste Termin feststeht, erfährst du es vor allen anderen.", "ausr": "mitte"},
-          {"typ": "knopf", "text": "Auf die Warteliste", "link": WEB},
+          {"typ": "text", "text": "Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr. Und an der Bar sagst du, was du magst.", "ausr": "mitte"},
+          {"typ": "knopf", "text": "Zu Instagram", "link": WEB},
         ] };
     } },
     { key: 'leer', n: 'Leere E-Mail', wo: 'selbst aufbauen', foto: '', bau() {
       return { betreff: '', vorschau: '', versand: 'mailchimp', kopf: { foto: '' }, fuss: { abmelden: true },
-        bloecke: [{ typ: 'titel', ueber: 'Culinarium', titel: 'Titel', unter: '' }, { typ: 'text', text: 'Dein Text.' }] };
+        bloecke: [{ typ: 'titel', ueber: 'Walk on the Wild Side', titel: 'Titel', unter: '' }, { typ: 'text', text: 'Dein Text.' }] };
     } },
   ];
 
   const ARTEN = {
-    titel: { n: 'Titel', ic: '<path d="M5 6h14M12 6v13"/>', neu: () => ({ typ: 'titel', ueber: 'Culinarium', titel: 'Titel', unter: '' }) },
+    titel: { n: 'Titel', ic: '<path d="M5 6h14M12 6v13"/>', neu: () => ({ typ: 'titel', ueber: 'Walk on the Wild Side', titel: 'Titel', unter: '' }) },
     text: { n: 'Text', ic: '<path d="M4 6h16M4 10h16M4 14h16M4 18h10"/>', neu: () => ({ typ: 'text', text: 'Dein Text.' }) },
-    foto: { n: 'Foto', ic: '<path d="M4 5h16v14H4zM4 16l5-5 4 4 2.5-2.5L20 17"/>', neu: () => ({ typ: 'foto', foto: 'fassade', alt: 'Die Fenster der Bar am Abend', unterschrift: '', voll: false }) },
+    foto: { n: 'Foto', ic: '<path d="M4 5h16v14H4zM4 16l5-5 4 4 2.5-2.5L20 17"/>', neu: () => ({ typ: 'foto', foto: 'fenster', alt: 'Von der Strasse durchs Fenster: die Rückbar', unterschrift: '', voll: false }) },
     knopf: { n: 'Knopf mit Link', ic: '<rect x="3" y="8" width="18" height="8" rx="4"/><path d="M14 12h3m-1.5-1.5L17 12l-1.5 1.5"/>', neu: () => ({ typ: 'knopf', text: 'Mehr erfahren', link: WEB }) },
     termine: { n: 'Termine', ic: '<path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/>', neu: () => ({ typ: 'termine', titel: '', eintraege: [{ wann: '[Datum · Zeit]', was: '[Anlass]', wo: '[Ort]' }] }) },
-    liste: { n: 'Preisliste', ic: '<path d="M4 7h11M4 12h11M4 17h11M18 7h2M18 12h2M18 17h2"/>', neu: () => ({ typ: 'liste', titel: '', eintraege: [{ name: '[Name]', detail: '[Beschreibung]', preis: 'CHF [Preis]' }] }) },
+    liste: { n: 'Preisliste', ic: '<path d="M4 7h11M4 12h11M4 17h11M18 7h2M18 12h2M18 17h2"/>', neu: () => ({ typ: 'liste', titel: '', eintraege: [{ name: '[Name]', detail: '[Beschreibung]', preis: '[Preis] €' }] }) },
     trenner: { n: 'Zierlinie', ic: '<path d="M3 12h6M15 12h6M12 9l3 3-3 3-3-3z"/>', neu: () => ({ typ: 'trenner' }) },
   };
 

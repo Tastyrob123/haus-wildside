@@ -7,6 +7,7 @@ Leiste mit «Als PDF sichern»), Inhalt und Kleid der Bar. Fotos aus der Website
 import hashlib, html, json, os, re
 
 e = html.escape
+nb = lambda t: re.sub(r' (\S+)$', r'&nbsp;\1', e(t))   # nur das letzte Leerzeichen fest: kein Einzelwort in der letzten Zeile
 HIER = os.path.dirname(os.path.abspath(__file__))
 L = json.load(open(os.path.join(HIER, 'livre.json'), encoding='utf-8'))
 FOTO = {f['k']: f for f in L['fotos']}
@@ -62,7 +63,7 @@ def faecher():
         fs = [f for f in L['farben'] if f['g'] == g['k']]
         knoepfe = ''.join(
             f'<div class="fa" role="button" tabindex="0" data-hex="{f["h"]}" style="--c:{f["h"]}" aria-label="{e(f["n"])} {f["h"]} kopieren">'
-            f'<span class="fa__f"><span class="fa__ok">kopiert</span></span><span class="fa__n"><b>{e(f["n"])}</b><small>{e(f["r"])}</small><code>{f["h"]}</code></span></div>'
+            f'<span class="fa__f"><span class="fa__ok">kopiert</span></span><span class="fa__n"><b>{nb(f["n"])}</b><small>{e(f["r"])}</small><code>{f["h"]}</code></span></div>'
             for f in fs)
         out.append(f'<div class="fg" data-r><div class="fg__t"><h3>{e(g["n"])}</h3><p>{e(g["s"])}</p></div><div class="fg__f">{knoepfe}</div></div>')
     return ''.join(out)
@@ -76,7 +77,7 @@ def seite():
     <div class="titel__t">
       <p class="etikett" data-r>Die Hausregeln · Oktober 2026</p>
       <h1 data-r>Walk on the <em>Wild Side.</em></h1>
-      <p class="titel__ort" data-r>Nachbarschafts-Mixology-Bar <i></i> Haasemannstraße 13 <i></i> Hannover-Linden</p>
+      <p class="titel__ort" data-r>Nachbarschafts-Mixology-Bar <i></i> <span>Haasemannstraße 13</span> <i></i> <span>Hannover-Linden</span></p>
       <p class="titel__lead" data-r>Alles, was die Bar erkennbar macht, an einem Ort: die Wortmarke, die Farben und ihre Rollen, die Farben der DJ-Abende, die Schriften, das Eckschild als Form, die Bilder, die Gegenstände des Raums und der Ton. Damit jedes neue Stück, ob Plakat, Beitrag oder Karte, aussieht wie aus einem Guss.</p>
       <p class="titel__kn" data-r><a class="kn kn--rot" href="#haltung"><span>Lesen</span><i>{RUNTER}</i></a></p>
     </div>
@@ -92,7 +93,7 @@ def seite():
     <article class="k3" data-r><div class="k3__b">{bild('decke-raum', 'Der Raum unter der bedruckten Gewölbe-Decke', '50% 30%')}</div>
       <div class="k3__n"><small>Über dem Raum</small><b>Die Decke.</b><p>Ein grosser Druck eines Kathedralen-Gewölbes, blau-silbern und golden angeleuchtet. Kalt oben, warm unten.</p></div></article>
     <article class="k3" data-r><div class="k3__b">{bild('schild-ecke', 'Die Ecke Haasemannstraße am Abend', '50% 45%')}</div>
-      <div class="k3__n"><small>Ecke Rampenstraße</small><b>Die Ecke.</b><p>Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr. Samstags legen DJs auf, an anderen Abenden spielen Bands.</p></div></article>
+      <div class="k3__n"><small>Ecke Rampenstraße</small><b>Die Ecke.</b><p>Donnerstag 19 bis 1 Uhr, Freitag und Samstag 19 bis 2 Uhr. Samstags legen DJs auf, donnerstags gibt es oft Konzerte.</p></div></article>
   </div>
 </div></section>'''
 
@@ -100,7 +101,7 @@ def seite():
   <div class="fenster__b">{bild(k, None, pos, True, False)}</div>
   <div class="fenster__t"><p class="fenster__s">{e(satz)}</p><p class="fenster__u">{e(unter)}</p></div></div></section>'''
 
-    nein = lambda klasse, text: f'<figure class="nein nein--{klasse}"><div>{marke("rot")}</div><figcaption>{e(text)}</figcaption></figure>'
+    nein = lambda klasse, text: f'<figure class="nein nein--{klasse}"><div>{marke("rot")}</div><figcaption>{nb(text)}</figcaption></figure>'
     zeichen = f'''<section class="blatt dunkel" id="zeichen"><div class="in">
   {kopf(2, 'Zeichen', ('Ein Zeichen,', 'überall dasselbe.'), 'Die Wortmarke ist das Logo der Bar: WILD SIDE in einer schmalen, fetten Grotesk, ausgespart aus einer leicht schrägen Fläche. Sie ist Pfad für Pfad aus dem Logo der früheren Seite der Bar nachgezogen und wird immer als Datei eingesetzt, nie als Schrift nachgebaut.')}
   <div class="lockups">
@@ -111,7 +112,7 @@ def seite():
   <div class="regeln">
     <div class="regel" data-r><div class="regel__f"><span class="schutz">{marke("creme")}</span></div><h3>Schutzraum</h3><p>Rund um die Wortmarke bleibt ein Viertel ihrer Breite frei. Kein Text, kein Bildrand, keine Linie ragt hinein.</p></div>
     <div class="regel" data-r><div class="regel__f klein"><span>{marke("creme")}<small>32 px</small></span><span>{marke("creme")}<small>48 px</small></span><span>{marke("creme")}<small>72 px</small></span></div><h3>Kleinste Grösse</h3><p>Ab 32 Pixel Höhe am Bildschirm, im Druck ab 12 Millimeter. Darunter steht der Name der Bar als Text.</p></div>
-    <div class="regel regel--breit" data-r><div class="regel__f neine">{nein('zerr', 'Nicht verzerren')}{nein('dreh', 'Nicht drehen')}{nein('schatten', 'Kein Schatten, kein Leuchten')}{nein('farbe', 'Keine fremde Farbe')}</div><h3>Was die Wortmarke nicht darf</h3><p>Sie steht so schräg, wie sie gezeichnet ist, in Rot, Creme oder Nacht, ohne Schatten und ohne Rahmen darum. Auf einem unruhigen Foto steht sie nie.</p></div>
+    <div class="regel regel--breit" data-r><div class="regel__f neine">{nein('zerr', 'Nicht verzerren')}{nein('dreh', 'Nicht drehen')}{nein('schatten', 'Kein Schatten, kein Leuchten')}{nein('farbe', 'Keine fremde Farbe')}</div><h3>Was die Wortmarke nicht&nbsp;darf</h3><p>Sie steht so schräg, wie sie gezeichnet ist, in Rot, Creme oder Nacht, ohne Schatten und ohne Rahmen darum. Auf einem unruhigen Foto steht sie nie.</p></div>
   </div>
 </div></section>'''
 
@@ -124,7 +125,7 @@ def seite():
     plakate = ['p-1710', 'p-0310', 'p-0906', 'p-2401']
     session = f'''<section class="blatt creme2" id="session"><div class="in">
   {kopf(4, 'Die DJ-Abende', ('Samstags', 'die Welle.'), 'Für die DJ-Abende hat die Bar eine eigene Sprache: die SESSION-Plakate mit rot-cremefarbenen Wellen, der Schrift in Ultramarin und den DJs in Schwarzweiss. Diese Farben gehören nur zu den DJ-Abenden. Auf der Website liefern die Plakate Farbe und Material, sie sind nie das Hauptbild.')}
-  <div class="plakate">{"".join(f'<figure class="plakat" data-r>{bild(k, None)}<figcaption>{e(re.sub(r"^Plakat SESSION(,| mit( den)?) ", "", FOTO[k]["t"]["de"]))}</figcaption></figure>' for k in plakate)}</div>
+  <div class="plakate">{"".join(f'<figure class="plakat" data-r>{bild(k, None)}<figcaption>{nb(re.sub(r"^Plakat SESSION(,| mit( den)?) ", "", FOTO[k]["t"]["de"]))}</figcaption></figure>' for k in plakate)}</div>
   <div class="session-f" data-r>{"".join(f'<span style="--c:{FARBE[k]["h"]}"><i></i><b>{e(FARBE[k]["n"])}</b><code>{FARBE[k]["h"]}</code></span>' for k in ('plakatrot', 'ultramarin', 'plakatcreme'))}</div>
 </div></section>'''
 
@@ -177,7 +178,7 @@ def seite():
     nachbarn = f'''<section class="blatt hell" id="nachbarn"><div class="in">
   {kopf(10, 'Nachbarn', ('Im selben Haus,', 'nicht im selben Kleid.'), 'Im Haus laufen auch Culinarium, die Food-Pairing-Abende an der langen Tafel, und Dirty Chicken, Rudis Pop-up. Beide haben ihr eigenes Gesicht. Auf den Seiten der Bar stehen sie nur als Verweis: «Unsere Abende an der langen Tafel: Culinarium».')}
   <div class="vergleich">
-    <div class="vg vg--wild" data-r>{marke("rot")}<div><h3>Walk on the Wild Side</h3><p>Nacht, Creme, Gold und ein Punkt Rot. Prata und Hanken. Das Glas, die Ecke, die Musik. Uhrzeiten von 19 bis 2 Uhr als Faden.</p></div></div>
+    <div class="vg vg--wild" data-r>{marke("rot")}<div><h3>Walk on the Wild&nbsp;Side</h3><p>Nacht, Creme, Gold und ein Punkt Rot. Prata und Hanken. Das Glas, die Ecke, die Musik. Uhrzeiten von 19 bis 2 Uhr als Faden.</p></div></div>
     <div class="vg vg--nb" data-r><figure>{bild('culinarium-tafel', None)}</figure><div><h3>Culinarium</h3><p>Kerzenlicht, Teller und die lange Tafel, eigene Schrift und eigene Farben. Gemeinsam ist nur das Haus und Momo an der Bar.</p></div></div>
   </div>
 </div></section>'''
@@ -215,7 +216,7 @@ def seite():
 <main>
 {titel}
 {haltung}
-{fenster('theke', 'Good Drinks, Good Music, Good Energy.', 'So steht es unter den Beiträgen der Bar.', '50% 55%')}
+{fenster('theke', 'Good Drinks, Good Music, Good Energy.', 'Ein Satz der Bar auf Instagram.', '50% 55%')}
 {zeichen}
 {farben}
 {session}

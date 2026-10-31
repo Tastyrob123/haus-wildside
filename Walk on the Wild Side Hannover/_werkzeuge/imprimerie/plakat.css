@@ -1,4 +1,4 @@
-/* Plakatwerkstatt · Ansichten «Abend beschreiben» und «Plakat-Motive» (plakat.js), Culinarium 28.10.2026. Farben und Schriften aus dem Kleid (--wo-*) und
+/* Plakatwerkstatt · Ansichten «DJ-Abend anlegen» und «Plakat-Grund» (plakat.js), Walk on the Wild Side 31.10.2026. Farben und Schriften aus dem Kleid (--wo-*) und
    dem Kern (--navy, --messing, --tinte …); Bewegung nur transform/opacity. Keine Pillen-Reihen als Zierde: die Chips sind Filter, wie überall im Kern. */
 .pk-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;max-width:980px;margin:6px 0 34px;padding:26px 28px 28px;border-radius:14px;
   background:var(--wo-blatt,#fffbf5);box-shadow:0 1px 0 #fff inset,0 24px 50px -30px rgba(28,21,19,.45),0 0 0 1px var(--wo-linie,rgba(28,21,19,.14))}

@@ -28,7 +28,7 @@
     });
   }
 
-  /* Ersatzfoto, wenn ein Entwurf ein unbekanntes Foto nennt: ein Foto des Hauses (vorher fest «haus-aare», ein Foto des Grand Beau-Rivage, Prüfung 16.10.2026) */
+  /* Ersatzfoto, wenn ein Entwurf ein unbekanntes Foto nennt: ein Foto des Hauses (Prüfung 16.10.2026) */
   DS.ersatzFoto = M => (M.bildIndex[M.ersatz || 'haus-tag'] ? (M.ersatz || 'haus-tag') : ((M.bilder.find(b => !b.eigen) || M.bilder[0] || {}).key));
   /* ---------- Ablage ---------- */
   const alleDocs = () => lies(LS.docs, {});

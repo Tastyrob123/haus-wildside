@@ -1,6 +1,6 @@
 {
- "name": "L’Imprimerie",
- "hinweis": "cu-imprimerie (L’Imprimerie des Culinarium Hannover), 28.10.2026, Form wie die Werkstatt der Taverne zum Schäfli (dort nur gelesen). Oberfläche statisch unter /werkzeuge/imprimerie/, das Hausbuch (Le Livre) daneben unter /werkzeuge/livre/ (livre.json, Fotos über «fl» = /assets/bild/). KI-Funktion api/imprimerie_entwurf.py aus api/entwurf.py (Wissen und Marke als lib); ohne ANTHROPIC_API_KEY am Vercel-Projekt melden nur «Fünf Entwürfe» und Bildtext «KI-FREIGABE», Vorlagen, Editor und PDF gehen. Schlüssel nur auf Roberts Wort (Regel 54). Kein Blob-Speicher: alles im Browser des Hauses. Die grossen Fotos (haeuser/culinarium/bilder) nur unter «zusatz» (I08). Mail-Bilder (haeuser/culinarium/mail): nach dem ersten Versand nie mehr entfernen. NICHT ANGESCHLOSSEN: das Online-Projekt des Hauses gibt es noch nicht (Name vorläufig culinarium-hannover-entwurf), nichts hochgeladen.",
+ "name": "Die Plakatwerkstatt",
+ "hinweis": "Die Plakatwerkstatt des Walk on the Wild Side Hannover, 31.10.2026, Form wie die Plakatwerkstatt des Stammhauses. Oberfläche statisch unter /werkzeuge/imprimerie/. KI-Funktion api/imprimerie_entwurf.py aus api/entwurf.py; ohne ANTHROPIC_API_KEY melden nur «Fünf Entwürfe» und Bildtext «KI-FREIGABE», Vorlagen, Editor und PDF gehen. Schlüssel nur auf Roberts Wort. Kein Blob-Speicher: alles im Browser der Bar. Die grossen Fotos (haeuser/wildside/bilder) nur unter «zusatz». NICHT ANGESCHLOSSEN: ein Online-Projekt der Bar gibt es noch nicht, nichts hochgeladen.",
  "funktionen": {
   "api/imprimerie_entwurf.py": {
    "von": "_werkzeuge/imprimerie/api/entwurf.py",
@@ -34,28 +34,36 @@
   "_werkzeuge/imprimerie/ms-bureau.css": "werkzeuge/imprimerie/ms-bureau.css",
   "_werkzeuge/imprimerie/mail.css": "werkzeuge/imprimerie/mail.css",
   "_werkzeuge/imprimerie/lib": "werkzeuge/imprimerie/lib",
-  "_werkzeuge/imprimerie/haeuser/culinarium/marke.json": "werkzeuge/imprimerie/haeuser/culinarium/marke.json",
-  "_werkzeuge/imprimerie/haeuser/culinarium/druck.json": "werkzeuge/imprimerie/haeuser/culinarium/druck.json",
-  "_werkzeuge/imprimerie/haeuser/culinarium/buehne.js": "werkzeuge/imprimerie/haeuser/culinarium/buehne.js",
-  "_werkzeuge/imprimerie/haeuser/culinarium/feder.js": "werkzeuge/imprimerie/haeuser/culinarium/feder.js",
-  "_werkzeuge/imprimerie/haeuser/culinarium/feder.css": "werkzeuge/imprimerie/haeuser/culinarium/feder.css",
-  "_werkzeuge/imprimerie/haeuser/culinarium/hell.css": "werkzeuge/imprimerie/haeuser/culinarium/hell.css",
-  "_werkzeuge/imprimerie/haeuser/culinarium/tapete-dunkel.webp": "werkzeuge/imprimerie/haeuser/culinarium/tapete-dunkel.webp",
-  "_werkzeuge/imprimerie/haeuser/culinarium/tapete-hell.webp": "werkzeuge/imprimerie/haeuser/culinarium/tapete-hell.webp",
-  "_werkzeuge/imprimerie/haeuser/culinarium/tapete-ui-dunkel.webp": "werkzeuge/imprimerie/haeuser/culinarium/tapete-ui-dunkel.webp",
-  "_werkzeuge/imprimerie/haeuser/culinarium/tapete-ui-hell.webp": "werkzeuge/imprimerie/haeuser/culinarium/tapete-ui-hell.webp",
-  "_werkzeuge/imprimerie/haeuser/culinarium/schriften": "werkzeuge/imprimerie/haeuser/culinarium/schriften",
-  "_werkzeuge/imprimerie/haeuser/culinarium/vorlagen": "werkzeuge/imprimerie/haeuser/culinarium/vorlagen",
-  "_werkzeuge/imprimerie/haeuser/culinarium/kopf": "werkzeuge/imprimerie/haeuser/culinarium/kopf",
-  "_werkzeuge/imprimerie/haeuser/culinarium/mini": "werkzeuge/imprimerie/haeuser/culinarium/mini",
-  "_werkzeuge/imprimerie/haeuser/culinarium/mail": "werkzeuge/imprimerie/haeuser/culinarium/mail",
-  "_werkzeuge/imprimerie/haeuser/culinarium/oberflaeche.js": "werkzeuge/imprimerie/haeuser/culinarium/oberflaeche.js",
-  "_werkzeuge/imprimerie/haeuser/culinarium/oberflaeche.css": "werkzeuge/imprimerie/haeuser/culinarium/oberflaeche.css"
+  "_werkzeuge/imprimerie/haeuser/wildside/marke.json": "werkzeuge/imprimerie/haeuser/wildside/marke.json",
+  "_werkzeuge/imprimerie/haeuser/wildside/druck.json": "werkzeuge/imprimerie/haeuser/wildside/druck.json",
+  "_werkzeuge/imprimerie/haeuser/wildside/buehne.js": "werkzeuge/imprimerie/haeuser/wildside/buehne.js",
+  "_werkzeuge/imprimerie/haeuser/wildside/feder.js": "werkzeuge/imprimerie/haeuser/wildside/feder.js",
+  "_werkzeuge/imprimerie/haeuser/wildside/feder.css": "werkzeuge/imprimerie/haeuser/wildside/feder.css",
+  "_werkzeuge/imprimerie/haeuser/wildside/hell.css": "werkzeuge/imprimerie/haeuser/wildside/hell.css",
+  "_werkzeuge/imprimerie/haeuser/wildside/tapete-dunkel.webp": "werkzeuge/imprimerie/haeuser/wildside/tapete-dunkel.webp",
+  "_werkzeuge/imprimerie/haeuser/wildside/tapete-hell.webp": "werkzeuge/imprimerie/haeuser/wildside/tapete-hell.webp",
+  "_werkzeuge/imprimerie/haeuser/wildside/tapete-ui-dunkel.webp": "werkzeuge/imprimerie/haeuser/wildside/tapete-ui-dunkel.webp",
+  "_werkzeuge/imprimerie/haeuser/wildside/tapete-ui-hell.webp": "werkzeuge/imprimerie/haeuser/wildside/tapete-ui-hell.webp",
+  "_werkzeuge/imprimerie/haeuser/wildside/schriften": "werkzeuge/imprimerie/haeuser/wildside/schriften",
+  "_werkzeuge/imprimerie/haeuser/wildside/vorlagen": "werkzeuge/imprimerie/haeuser/wildside/vorlagen",
+  "_werkzeuge/imprimerie/haeuser/wildside/kopf": "werkzeuge/imprimerie/haeuser/wildside/kopf",
+  "_werkzeuge/imprimerie/haeuser/wildside/mini": "werkzeuge/imprimerie/haeuser/wildside/mini",
+  "_werkzeuge/imprimerie/haeuser/wildside/mail": "werkzeuge/imprimerie/haeuser/wildside/mail",
+  "_werkzeuge/imprimerie/haeuser/wildside/oberflaeche.js": "werkzeuge/imprimerie/haeuser/wildside/oberflaeche.js",
+  "_werkzeuge/imprimerie/haeuser/wildside/oberflaeche.css": "werkzeuge/imprimerie/haeuser/wildside/oberflaeche.css",
+  "_werkzeuge/imprimerie/plakat.js": "werkzeuge/imprimerie/plakat.js",
+  "_werkzeuge/imprimerie/plakat.css": "werkzeuge/imprimerie/plakat.css",
+  "_werkzeuge/imprimerie/vorschaubild.js": "werkzeuge/imprimerie/vorschaubild.js",
+  "_werkzeuge/imprimerie/haeuser/wildside/stilblatt.json": "werkzeuge/imprimerie/haeuser/wildside/stilblatt.json",
+  "_werkzeuge/imprimerie/haeuser/wildside/motive.json": "werkzeuge/imprimerie/haeuser/wildside/motive.json",
+  "_werkzeuge/imprimerie/haeuser/wildside/dokumente.js": "werkzeuge/imprimerie/haeuser/wildside/dokumente.js",
+  "_werkzeuge/imprimerie/haeuser/wildside/druck": "werkzeuge/imprimerie/haeuser/wildside/druck",
+  "_werkzeuge/imprimerie/haeuser/wildside/drucksachen": "werkzeuge/imprimerie/haeuser/wildside/drucksachen"
  },
  "zusatz": {
-  "_": "Nur nötig, wenn das Hausbuch online fehlt. Wie beim Carlton in ein Zusatz-Projekt, falls das Hauptprojekt zu gross wird; Umleitung unten. Name ohne Nummer (-2 bis -4 vergibt die Website-Aufteilung von online.py).",
-  "culinarium-hannover-werkstatt": {
-   "_werkzeuge/imprimerie/haeuser/culinarium/bilder": "werkzeuge/imprimerie/haeuser/culinarium/bilder"
+  "_": "Nur nötig, wenn das Hauptprojekt zu gross wird; Umleitung unten. Name ohne Nummer.",
+  "wildside-hannover-werkstatt": {
+   "_werkzeuge/imprimerie/haeuser/wildside/bilder": "werkzeuge/imprimerie/haeuser/wildside/bilder"
   }
  },
  "umleitungen": [
@@ -68,8 +76,8 @@
    "destination": "/werkzeuge/imprimerie/:pfad*"
   },
   {
-   "source": "/werkzeuge/imprimerie/haeuser/culinarium/bilder/:pfad*",
-   "destination": "https://culinarium-hannover-werkstatt.vercel.app/werkzeuge/imprimerie/haeuser/culinarium/bilder/:pfad*"
+   "source": "/werkzeuge/imprimerie/haeuser/wildside/bilder/:pfad*",
+   "destination": "https://wildside-hannover-werkstatt.vercel.app/werkzeuge/imprimerie/haeuser/wildside/bilder/:pfad*"
   }
  ],
  "stand": "",

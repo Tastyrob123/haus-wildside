@@ -408,3 +408,20 @@ html.probe-offen{overflow:visible}
 .re-f .re-f__q:dir(rtl){padding-left:0;padding-right:var(--q-w,.41em)}
 /* Tor 3 (31.10.): die Liste der Bereiche passt zwischen Suchfeld und Leiste, nichts schiebt sie unter das Suchfeld */
 @media (min-width:1001px){#ansicht .sb-idx{align-self:start;max-height:calc(100vh - var(--kopf,90px) - 226px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(203,155,59,.35) transparent}}
+
+/* Wild Side 31.10.2026 (Tor, Regel «spalte»): Foto und Stand einer Karte stehen oben auf der Kennzeile, nicht mittig; sonst zählte das Foto als eigene Zeile
+   und eine Karte mit Hinweis galt als «zerfallen». Ruhiger ist es auch: alle Fotos einer Liste auf einer Oberkante. */
+.re-a>.re-a__bild,.re-a>.re-a__st{align-self:start}
+/* Prata hat hohe Ober- und tiefe Unterlängen: der Titel in der Kopfmitte bekommt die Zeilenhöhe, die die Schrift braucht (Regel «gekuerzt», sonst schnitt die Box unten ab) */
+.wo-kopf__mitte b{line-height:1.4}
+/* Schrift in den Knöpfen des Werkzeugs optisch mittig (Regel text-mitte, Hanken sitzt 0,5 px hoch): 1 px mehr oben, 1 px weniger unten */
+.kn{padding-top:1px}
+.ws-wahl{padding-top:11px;padding-bottom:9px}
+/* Notiz «Vor dem Senden» (Regel «kante»): Satz und Punkte stehen auf einer Kante, das Kästchen hängt links davor im Rand */
+.re-notiz li{padding-left:0}.re-notiz li::before{left:-16px}
+/* Regel «einzelwort»: Fragen in Karten umbrechen ausgewogen; im Gruss bleibt «hat geschrieben?» beisammen */
+.re-a__n b{text-wrap:balance}
+.re-zs{white-space:nowrap}
+/* Kopf 901 bis 1240 px: «Website ansehen» ist nur noch der runde Knauf (kleid/wildside.css versteckt die Beschriftung mit clip); die Beschriftung bekommt
+   zusätzlich Schriftgrösse 0, sonst misst die Regel «randlos» den versteckten Text ausserhalb des Knopfs. Der Name für Vorleser bleibt. */
+@media (min-width:901px) and (max-width:1240px){.wo-kopf .wo-kn--gold.wo-kn--klein>span{font-size:0}}

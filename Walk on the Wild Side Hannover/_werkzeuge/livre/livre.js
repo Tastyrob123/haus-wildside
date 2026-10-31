@@ -118,6 +118,7 @@ function kopf() {
   const titel = { start: t('start'), bilder: t('bilder'), dateien: t('dateien'), pruefung: t('pruefung') }[S.ansicht];
   const st = S.d ? t('stand', zahl(S.d.stand.fotos), zahl(S.d.stand.dateien)) : '';
   $('#kopf').innerHTML = umbenannt(WO.kopf({ werkzeug: 'marke', unter: UNTER(), titel, stand: st, anleitung: 'anleitung.html', website: WEBSITE, marke: 'data-gehe="start"', markeHref: '#start' }));
+  $$('#kopf .wo-kn--gold.wo-kn--klein').forEach(k => { if (!k.getAttribute('aria-label')) k.setAttribute('aria-label', k.textContent.trim()); });
   if (SPRACHEN.length > 1) {
     const akt = SPRACHEN.find(x => x[0] === SP) || SPRACHEN[0];
     $('#kopf .wo-kopf__r').insertAdjacentHTML('afterbegin', `<div class="li-sp"><button class="li-sp__k" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="${esc(t('sprache'))}">${esc(akt[1])}<i>${PFEIL}</i></button>
@@ -408,7 +409,7 @@ function dateien() {
     const fs = S.d.farben.filter(f => f.g === g.k); if (!fs.length) return '';
     return `<div class="li-fg${g.k === 'druck' ? ' li-fg--druck' : ''}${g.bild ? ' li-fg--bild' : ''}">${g.bild ? `<figure class="li-fg__b${/^listen\//.test(g.bild) ? ' li-fg__b--text' : ''}"><img src="${esc(g.bild)}" alt="" loading="lazy" decoding="async"><figcaption>${esc(g.bild_t || '')}</figcaption></figure>` : ''}<div class="li-fg__t"><h3>${esc(g.n)}</h3><p class="leise">${esc(g.s)}</p><div class="li-farben">${fs.map((f, i) => `<div class="li-farbe${f.b ? ' li-farbe--bild' : ''}" role="button" tabindex="0" aria-label="${esc(f.n)} ${f.h} ${esc(t('kopieren'))}" data-kopie="${f.h}" style="--c:${f.h};--i:${i % 6}">${f.b ? `<span class="li-farbe__b"><img src="${esc(f.b)}" alt="" loading="lazy" decoding="async"></span>` : ''}
       <span class="li-farbe__f"><span class="li-farbe__ok">${esc(t('kopiert'))}</span></span>
-      <span class="li-farbe__n"><b>${esc(f.n)}</b><small>${esc(f.r).replace(/\//g, '/<wbr>')}</small></span>
+      <span class="li-farbe__n"><b>${esc(f.n).replace(/ (\S+)$/, '&nbsp;$1')}</b><small>${esc(f.r).replace(/\//g, '/<wbr>')}</small></span>
       <span class="li-farbe__w"><span data-kopie-w="${f.h}">${f.h}</span><span class="li-farbe__rgb" data-kopie-w="rgb(${f.rgb.join(', ')})">RGB <i>${f.rgb.join(' · ')}</i></span></span></div>`).join('')}</div></div></div>`;
   }).join('');
   /* Tor 3 S (30.10.2026): Muster mit Trenner (« / », « · ») in ganze Glieder geteilt; der Trenner steht nur zwischen zwei Gliedern derselben Zeile (livre.css .li-teile) */

@@ -1,0 +1,33 @@
+{
+ "zeit": "2026-10-29T18:45:00+01:00",
+ "art": "feier",
+ "name": "Kai Brandt",
+ "kontakt": "+49 151 2345678",
+ "datum": "Samstag, 13. März 2027",
+ "personen": 40,
+ "anliegen": "Die ganze Bar für den 40. Geburtstag, 40 Personen, mit DJ.",
+ "sprache": "de",
+ "gespraech": "beispiel-4",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Kann man bei euch die ganze Bar mieten? Ich werde 40, wir wären etwa 40 Leute, gern mit DJ."
+  },
+  {
+   "rolle": "assistant",
+   "text": "Ja, ab dreissig Gästen schliesst die Bar für euch, von 19 bis 2 Uhr. Einen DJ ergänzt die Bar auf Wunsch. Wenn du magst, gebe ich deine Anfrage weiter: Wie heisst du, und wie erreicht dich das Team?"
+  },
+  {
+   "rolle": "user",
+   "text": "Kai Brandt, 0151 2345678, am liebsten Samstag, 13. März 2027"
+  },
+  {
+   "rolle": "assistant",
+   "text": "Danke. Dies ist ein Entwurf von Tasty Studios: Die Anfrage geht nicht an das Team, sie liegt nur zur Ansicht im Gästebuch."
+  }
+ ],
+ "status": "gelesen",
+ "beispiel": true,
+ "abteilung": "Feiern",
+ "entwurf": null
+}
