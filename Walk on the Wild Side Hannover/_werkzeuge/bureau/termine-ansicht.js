@@ -101,7 +101,7 @@
   /* ---------- Zeichnen */
   function plakat(t) {   // das Bild eines Abends: sein echtes Plakat, wie Plakatwand und Kontaktbogen es zeigen
     var p = plakatInfo(t.plakat);
-    return '<figure class="cu-pl"><img src="' + p.bild + '" alt="' + esc(p.alt) + '" width="480" height="640" loading="lazy" decoding="async"></figure>';
+    return '<figure class="cu-pl"><img src="' + p.bild + '" alt="' + esc(p.alt) + '" width="480" height="640" loading="eager" decoding="sync"></figure>';
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function feld(label, inhalt, art) { return H.el('label', { class: 'cu-f' + (art ? ' cu-f--' + art : '') }, H.el('span', { class: 'cu-f__l' }, label), inhalt); }
@@ -372,6 +372,12 @@
     var m = document.querySelector('#ws-mitte[data-ws-ansicht="angaben"]'); if (!m) return;
     m.querySelectorAll('p, span').forEach(function (e) { if (!e.children.length && /^Telefon, E-Mail, Adresse, Öffnungstage und die wichtigsten Links\./.test(e.textContent)) e.textContent = e.textContent.replace(/^Telefon, E-Mail, Adresse, Öffnungstage und die wichtigsten Links\./, 'Telefon, Adresse und der Link zu Instagram.'); });
   }
-  function alles() { plan = 0; angabenSatz(); fest(); aendernZeichen(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
+  /* Fotos der Foto-Gruppen eines Bereichs sofort laden und malen (WebKit malte spät geladene Bilder unter einem offenen Fenster nicht; Lösung wie im Gästebuch) */
+  function sofort() {
+    document.querySelectorAll('.ws-fotos .ws-foto img:not([data-sofort]), .cu-t__bild img:not([data-sofort])').forEach(function (i) {
+      i.setAttribute('data-sofort', ''); i.loading = 'eager'; i.decoding = 'sync';
+    });
+  }
+  function alles() { plan = 0; sofort(); angabenSatz(); fest(); aendernZeichen(); ganz(); ohneX(); knaufName(); suchBeispiel(); langfeld(); scharf(); }
   if (window.MutationObserver) new MutationObserver(function () { if (!plan) plan = requestAnimationFrame(alles); }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
 })();
