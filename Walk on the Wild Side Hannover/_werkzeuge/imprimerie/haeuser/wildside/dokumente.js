@@ -447,6 +447,7 @@
       hm *= .93;
     }
     optisch(c, g, y0, y1);
+    if (o.tief) g.forEach(e => { if (e && typeof e === 'object' && typeof e.y === 'number') e.y = +(e.y + o.tief * c.h).toFixed(2); });   // kleine Karten: Gruppe auf die echte Mitte statt optisch angehoben (Tor 31.10.: unten blieb ein Drittel leer)
   }
   /* Kleine Querformate (A6 und DL quer) zweispaltig: links Zeichen, Etikett, Titel und Linie, rechts Datum, Ort, Satz und Instagram, jede Spalte auf ihrer
      eigenen Mitte, beide Gruppen auf derselben optischen Mitte. Wenig Höhe, wenig Inhalt: so wird alles grösser statt leerer
@@ -496,7 +497,7 @@
       // Platz- und Tischkarte: der Name trägt die Karte, das Zeichen ist kleiner
       if (ZWEISPALTIG(c)) return zweispaltig(c, i, r);   // Titelblatt quer: zweispaltig wie Einladung und Rückseite (Tor 30.10.: Inhalt klein, ringsum leer)
       if (c.quer && c.u < 80) i = { ueber: i.ueber, titel: i.titel, fuss: '' };   // Namensschild und Platzkarte: nur Etikett und Name, dafür gross
-      mitte(c, i, r, c.u < 80 ? { titel: 1.3, zeichen: 1, ohneKopfFuss: true, fuellung: .78, kMax: 2.6 } : c.quer && c.u < 90 ? { titel: 1.1, zeichen: .8 } : c.quer && c.u < 110 ? { kMax: 2.6, titel: 1.3, zeichen: .55, textVoll: true, kText: 1.5 } : { kMax: 2.6 });   // DL/A6 quer: wenig Höhe, also kleines Zeichen und grösserer Titel (Tor 30.10.)   // kurzer Titel («Menü») darf weiter wachsen, bis die Karte gefüllt ist
+      mitte(c, i, r, c.u < 80 ? { titel: 1.3, zeichen: 1, ohneKopfFuss: true, fuellung: .78, kMax: 2.6, tief: .03 } : c.quer && c.u < 90 ? { titel: 1.1, zeichen: .8 } : c.quer && c.u < 110 ? { kMax: 2.6, titel: 1.3, zeichen: .55, textVoll: true, kText: 1.5 } : { kMax: 2.6 });   // DL/A6 quer: wenig Höhe, also kleines Zeichen und grösserer Titel (Tor 30.10.)   // kurzer Titel («Menü») darf weiter wachsen, bis die Karte gefüllt ist
     },
   });
 
