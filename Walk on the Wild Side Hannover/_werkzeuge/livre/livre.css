@@ -644,7 +644,6 @@ body.li{background:linear-gradient(rgba(239,230,216,.86),rgba(239,230,216,.86)),
 .li-f[data-ki-art="fremd"]::before{background:var(--wo-tinte)}
 .li-f__n{padding:0 6px!important;left:16px;bottom:16px;max-width:calc(100% - 32px);border-radius:2px;box-shadow:0 0 0 6px var(--wo-tief),0 0 0 7px rgba(216,178,100,.4),0 10px 18px 2px rgba(0,0,0,.5)!important;background:var(--wo-tief)!important;line-height:1.3}
 .li-f--plakat .li-f__n{padding:0 8px!important;box-shadow:none!important;background:transparent!important}
-.wo-kopf__mitte b{padding:0 4px;line-height:1.5;margin:-4px 0 -5px}
 .li-wahl .mono{min-width:98px}
 .li p,.li small,.li-pk__t span,.li-tafel figcaption,.li-fg__b figcaption{text-wrap:pretty}
 .li-bsp .link,#li-bsp{padding:4px 8px}
@@ -658,3 +657,8 @@ body.li{background:linear-gradient(rgba(239,230,216,.86),rgba(239,230,216,.86)),
 .li-erg__l .li-erg__bild figcaption{padding:12px 0 0!important}
 /* Handy: Kacheln ohne Unterschrift (sie steht gross im Fenster des Fotos), nur die Plakate behalten ihre Zeile */
 @media (max-width:600px){.li-f:not(.li-f--plakat) .li-f__n{display:none}}
+
+/* Cloud-Prüfung WebKit 31.10.2026: Farbkarten am Handy breiter (Rolle in wenigen Zeilen); Beschriftung des Ausschnitts am Handy unten im Rahmen, frei vom Zurück-Knopf */
+@media (max-width:760px){.li-farben>.li-farbe,.li-farbe{flex:0 0 212px!important}}
+@container (max-width:277px){.li-farben>.li-farbe{flex:0 0 212px!important}}
+@media (max-width:700px){.li-rahmen::after{top:auto!important;bottom:10px}}

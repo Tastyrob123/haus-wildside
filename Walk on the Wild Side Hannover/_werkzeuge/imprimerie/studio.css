@@ -1682,3 +1682,7 @@ textarea.kopf__name.zwei{font-size:16px;line-height:1.2;padding:3px 10px}
 .tab[data-tab="vorlagen"] .zeile2{flex-wrap:wrap}.tab[data-tab="vorlagen"] .zeile2>*{flex:1 1 100%}
 /* Tor 1, 31.10.2026 (gezielt): Schriftknöpfe dürfen zweizeilig werden, nichts ragt heraus */
 .segment--schrift button{height:auto;min-height:36px;padding:6px 6px;line-height:1.15;text-wrap:balance}
+
+/* Wild Side (31.10.2026, Kleid): der Hauptweg ist das rote Schild mit Creme-Knauf (kleid/wildside.css .wo-kn--gold), Gold bleibt Linie und Knauf der Nebenwege */
+.kn.ms-kn-gold{--o:#F65562;--m:#F0323F;--u:#C8202D;--t:#FFF6EC;--licht:rgba(255,225,225,.45);--kante:rgba(90,10,15,.45);--ko:#FFFBF5;--ku:#E9DECD;--kt:#C8202D;--klicht:rgba(255,255,255,.6);text-shadow:none;
+  box-shadow:inset 0 1px 0 var(--licht),inset 0 -2px 0 var(--kante),0 14px 26px -14px rgba(120,10,20,.6)}

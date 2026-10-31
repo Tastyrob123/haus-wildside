@@ -23,7 +23,8 @@ button{font:inherit;color:inherit}
 /* ---------- Knopf: Schild mit rundem Knauf (Rot mit Creme-Knauf = Hauptweg, Nacht mit Goldlinie und Gold-Knauf = Nebenweg) */
 .kn{display:inline-flex;align-items:center;gap:14px;height:48px;padding:0 6px 0 20px;border:0;border-radius:14px;cursor:pointer;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;white-space:nowrap;
   transition:transform .25s var(--k),box-shadow .25s var(--k)}
-.kn>span{display:block;padding-top:1px}
+.kn>span{display:block;text-box:trim-both cap alphabetic}
+@supports not (text-box:trim-both cap alphabetic){.kn>span{position:relative;top:.05em}}
 .kn i{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;flex:none}
 .kn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .kn--rot{color:#FFF6EE;background:linear-gradient(180deg,#F4505B,var(--rot) 55%,#D30625);box-shadow:0 1px 0 rgba(255,255,255,.22) inset,0 12px 22px -12px rgba(240,50,63,.7)}
@@ -62,7 +63,7 @@ button{font:inherit;color:inherit}
 .index a{display:flex;align-items:baseline;gap:10px;padding:16px 18px;background:var(--platte);font:400 18px/1.25 var(--titel);color:var(--text);transition:background .25s}
 .index a span{font:500 11px/1 var(--lauf);letter-spacing:.14em;color:var(--gold)}
 .index a:hover{background:var(--platte2)}
-@media (max-width:900px){.titel__in{grid-template-columns:1fr}.titel__wm{width:min(220px,56vw)}.index{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.titel__in{grid-template-columns:minmax(0,1fr)}.titel__wm{width:min(220px,56vw)}.index{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ---------- Blätter */
 .blatt{padding:clamp(72px,8vw,120px) 0}
@@ -78,7 +79,7 @@ button{font:inherit;color:inherit}
 .hell .mk__t em,.creme2 .mk__t em{color:var(--gold-t)}
 .mk__lead{max-width:56ch;color:var(--text2)}
 .hell .mk__lead,.creme2 .mk__lead{color:var(--dunkel2)}
-@media (max-width:900px){.mk{grid-template-columns:1fr;align-items:start}}
+@media (max-width:900px){.mk{grid-template-columns:minmax(0,1fr);align-items:start}}
 
 /* Karten mit Foto (Haltung, Gegenstände) */
 .drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
@@ -89,7 +90,7 @@ button{font:inherit;color:inherit}
 .k3__n small{font:500 11px/1.2 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
 .k3__n b{font:400 28px/1.12 var(--titel)}
 .k3__n p{color:var(--text2);font-size:16px}
-@media (max-width:900px){.drei{grid-template-columns:1fr}}
+@media (max-width:900px){.drei{grid-template-columns:minmax(0,1fr)}}
 
 /* Fenster: Foto über die Breite, ein Satz */
 .fenster{background:var(--nacht)}
@@ -131,7 +132,7 @@ button{font:inherit;color:inherit}
 .nein--schatten .wm{filter:drop-shadow(0 0 10px rgba(240,50,63,.9)) drop-shadow(4px 6px 0 rgba(0,0,0,.9))}
 .nein--farbe .wm{filter:hue-rotate(150deg) saturate(1.4)}
 .nein figcaption{font:500 10.5px/1.35 var(--lauf);letter-spacing:.13em;text-transform:uppercase;color:var(--text2);text-align:center}
-@media (max-width:900px){.lockups{grid-template-columns:1fr}.lock>div{aspect-ratio:16/9}.regeln{grid-template-columns:1fr}.neine{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.lockups{grid-template-columns:minmax(0,1fr)}.lock>div{aspect-ratio:16/9}.regeln{grid-template-columns:minmax(0,1fr)}.neine{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* Farben */
 .fg{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:20px clamp(24px,3vw,48px);padding:28px 0;border-top:1px solid rgba(27,21,18,.14)}
@@ -150,7 +151,7 @@ button{font:inherit;color:inherit}
 .satzreihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:20px;padding-top:28px;border-top:1px solid rgba(27,21,18,.14)}
 .satzreihe p{color:var(--dunkel2);font-size:16px}
 .satzreihe b{display:block;margin-bottom:4px;font:400 22px/1.2 var(--titel);color:var(--dunkel)}
-@media (max-width:900px){.fg{grid-template-columns:1fr}.satzreihe{grid-template-columns:1fr}}
+@media (max-width:900px){.fg{grid-template-columns:minmax(0,1fr)}.satzreihe{grid-template-columns:minmax(0,1fr)}}
 
 /* DJ-Abende */
 .plakate{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
@@ -193,7 +194,7 @@ button{font:inherit;color:inherit}
 .nicht{margin-top:clamp(24px,3vw,40px);padding:22px 24px;border-radius:18px;background:var(--creme2);box-shadow:inset 0 0 0 1px rgba(27,21,18,.1)}
 .nicht h3{font:400 22px/1.2 var(--titel);margin-bottom:6px}
 .nicht p{color:var(--dunkel2);font-size:16px}
-@media (max-width:900px){.formen{grid-template-columns:1fr}}
+@media (max-width:900px){.formen{grid-template-columns:minmax(0,1fr)}}
 
 /* Bilder */
 .mosaik{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:clamp(180px,20vw,280px);gap:10px}
@@ -204,7 +205,7 @@ button{font:inherit;color:inherit}
 .regel-liste b{font-weight:500;color:var(--text)}
 .regel-liste li{padding-left:18px;position:relative}
 .regel-liste li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
-@media (max-width:900px){.mosaik{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,40vw,240px)}.regel-liste{grid-template-columns:1fr}}
+@media (max-width:900px){.mosaik{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,40vw,240px)}.regel-liste{grid-template-columns:minmax(0,1fr)}}
 
 /* Gegenstände */
 .vier{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
@@ -214,7 +215,7 @@ button{font:inherit;color:inherit}
 .k4 b{font:400 22px/1.2 var(--titel)}
 .k4 p{color:var(--dunkel2);font-size:15.5px}
 @media (max-width:1100px){.vier{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.vier{grid-template-columns:1fr}}
+@media (max-width:520px){.vier{grid-template-columns:minmax(0,1fr)}}
 
 /* Ton */
 .zwei{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
@@ -225,7 +226,7 @@ button{font:inherit;color:inherit}
 .ton--nein li{display:flex;flex-direction:column;gap:2px}
 .ton--nein s{color:rgba(237,228,216,.5);text-decoration-color:var(--rot)}
 .ton--nein span{font:400 20px/1.3 var(--titel);color:var(--text)}
-@media (max-width:900px){.zwei{grid-template-columns:1fr}}
+@media (max-width:900px){.zwei{grid-template-columns:minmax(0,1fr)}}
 
 /* Nachbarn */
 .vergleich{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
@@ -238,7 +239,7 @@ button{font:inherit;color:inherit}
 .vg h3{font:400 24px/1.15 var(--titel);margin-bottom:8px}
 .vg p{font-size:16px}
 .vg--wild p{color:var(--text2)}.vg--nb p{color:var(--dunkel2)}
-@media (max-width:900px){.vergleich{grid-template-columns:1fr}}
+@media (max-width:900px){.vergleich{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:420px){.vg{grid-template-columns:84px minmax(0,1fr);gap:16px;padding:18px}}
 
 /* Fuss */
@@ -251,7 +252,7 @@ button{font:inherit;color:inherit}
 .fuss__z div{display:flex;gap:10px;align-items:baseline;padding-top:8px;border-top:1px solid rgba(216,178,100,.4)}
 .fuss__z dt{color:var(--text2);font-size:15px}
 .fuss__z dd{font:400 18px/1.2 var(--titel)}
-@media (max-width:600px){.fuss .in{grid-template-columns:1fr}.fuss__wm{width:110px}}
+@media (max-width:600px){.fuss .in{grid-template-columns:minmax(0,1fr)}.fuss__wm{width:110px}}
 
 /* Meldung «Kopiert» */
 .meldung{position:fixed;left:50%;bottom:24px;z-index:30;padding:12px 18px;border-radius:14px;background:var(--platte);color:var(--text);box-shadow:inset 0 0 0 1px rgba(216,178,100,.4),var(--schatten);
@@ -299,3 +300,7 @@ svg.wm{display:block;width:auto;height:auto;aspect-ratio:1296/1600;fill:currentC
 .leiste svg.leiste__wm{width:30px;height:37px;flex:none}
 .k4__b{aspect-ratio:3/4}
 .ort-z{display:inline-flex;align-items:center;gap:14px;white-space:nowrap}
+
+/* Cloud-Prüfung WebKit 31.10.2026: Rasterspalten nie breiter als der Platz (Bilder mit width/height zählen in WebKit sonst als Mindestbreite) */
+.drei>*,.vier>*,.lockups>*,.regeln>*,.formen>*,.zwei>*,.vergleich>*,.fg>*,.fg__f>*,.satzreihe>*,.plakate>*,.mosaik>*,.titel__in>*,.index>*,.kacheln>*,.neine>*{min-width:0}
+.k4__b img,.k3__b img,.mosaik img,.plakat img,.form-b img{max-width:100%}
