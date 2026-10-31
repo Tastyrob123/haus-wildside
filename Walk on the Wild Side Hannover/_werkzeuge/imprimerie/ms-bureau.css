@@ -229,3 +229,21 @@ body.startoffen > .studio, body.startoffen > header.kopf { visibility: hidden; t
 #msNav > button > span{overflow:visible;text-overflow:clip}
 /* «Zurück zur Drucksache» in der Kopfleiste nie zusammendrücken (Messlauf 30.10.2026: bei 1280 fiel der Pfeil weg, die Schrift klebte 3 px am Rand) */
 #start .start__zu{flex:none}#start .start__zu svg{flex:none}
+
+/* Wild Side (31.10.2026, Tor schnell): Hanken Grotesk trägt die Sperrung hinter dem letzten Buchstaben; der Innenabstand links gleicht sie aus,
+   damit die Schrift in Knopf und Reiter optisch mittig sitzt (Kriterium 35). Felder mit Verlauf bekommen dieselbe Grundfarbe als Hintergrund,
+   damit Platzhalter gegen ihre echte Fläche stehen. Plakate in den Fotos stehen ganz (Kriterium 31). */
+#start #startGruppen button{padding-left:calc(14px + .12em)}
+.ms-chips button{padding-left:calc(16px + .14em)}
+.vb__toene button,#start .vb__toene button{padding-left:calc(14px + .14em)}
+.seitenwahl button:not([data-seite="neu"]),#seitenwahl > button:not([data-seite="neu"]){padding-left:calc(14px + .13em + 1px)}
+#btnPruefen .pruef__t{position:relative;top:.9px}
+#startHilfe span{position:relative;top:.9px}
+.ms-feld,.ms-feld--klein{background-color:#fffbf5}
+.start__direkt{background-color:#fffbf5}
+#fotoRaster .fo[data-gruppe="Plakate"]{background:#ebe2d8}
+#fotoRaster .fo[data-gruppe="Plakate"] img{object-fit:contain}
+@media (max-width:1180px) and (min-width:761px){#msNeu .start__direkt .knopf--voll>span{display:none}#msNeu .start__direkt .knopf--voll{padding:0 6px;gap:0}}
+.wo__n > i{flex:none}
+#startWeg .weg__kopf{min-width:0;max-width:100%;box-sizing:border-box}
+@media (max-width:520px){#startWeg .weg__kopf .hwahl-knopf{white-space:normal;max-width:100%}#startWeg .weg__kopf h1,#startWeg .weg__kopf .start__satz{max-width:100%;overflow-wrap:anywhere}}

@@ -150,7 +150,7 @@ FEIERN = [
 ]
 
 HAUS = [
-    v('Flyer · Eure Nachbarschafts-Mixology-Bar', 'zum Mitnehmen', 'a6h', 'buehne', 'dunkel', {"bild": "schild", "ueber": "Walk on the Wild Side", "titel": ZEILE + '.',
+    v('Flyer der Bar', 'zum Mitnehmen', 'a6h', 'buehne', 'dunkel', {"bild": "schild", "ueber": "Walk on the Wild Side", "titel": ZEILE + '.',
       "text": "Eine kleine Bar an der Ecke, in der man sich kennt, mit Drinks, für die man sonst weit fahren müsste.", "aktion": ZEIT},
       {"vorlage": "rueckseite", "inhalt": {"text": ZEIT}}),
     v('Öffnungszeiten', 'an der Tür', 'a4h', 'aushang', 'dunkel', {"ueber": "Walk on the Wild Side", "titel": "Bis 2 Uhr.",
@@ -169,15 +169,15 @@ HAUS = [
 
 ABTEILUNGEN = [
     {"k": "plakate", "t": "Plakate der Bar", "satz": "Jedes Plakat der Bar ganz, wie es war: SESSION, Silvester, Tanz in den Mai, Relaunch.", "foto": "p-1710", "vorlagen": abt_plakate},
-    {"k": "session", "t": "SESSION · Die DJ-Abende", "satz": "Jeder DJ-Abend sein Plakat: rot-cremefarbene Wellen, Ultramarin, das Gesicht des Abends in Schwarzweiss.", "foto": "an-dj", "vorlagen": abt_session},
-    {"k": "feste", "t": "Feste, Konzerte, Gäste", "satz": "Die weissen Plakate der Bar: Silvester, Tanz in den Mai, der Geburtstag, Konzerte und Gastschichten.", "foto": "konzert-love", "vorlagen": FESTE},
+    {"k": "session", "t": "SESSION-Plakate", "satz": "Jeder DJ-Abend sein Plakat: rot-cremefarbene Wellen, Ultramarin, das Gesicht des Abends in Schwarzweiss.", "foto": "an-dj", "vorlagen": abt_session},
+    {"k": "feste", "t": "Feste und Gäste", "satz": "Die weissen Plakate der Bar: Silvester, Tanz in den Mai, der Geburtstag, Konzerte und Gastschichten.", "foto": "konzert-love", "vorlagen": FESTE},
     {"k": "karte", "t": "Karte & Drinks", "satz": "Die Valentinskarte, die Klassiker, die Preise der Bar und wie Momo arbeitet.", "foto": "glas-coupe", "vorlagen": KARTE},
     {"k": "feiern", "t": "Feiern im Wild Side", "satz": "Privates Dinner, die lange Tafel, die ganze Bar: die Angebote der Bar mit Preisen.", "foto": "an-empore-tafel", "vorlagen": FEIERN},
     {"k": "haus", "t": "Das Haus", "satz": "Die Bar an der Ecke, die Zeiten, der Weg, Derya und Momo, Falstaff.", "foto": "schild", "vorlagen": HAUS},
 ]
 
 HINWEISE = [
-    v('Heute geschlossene Gesellschaft', 'sofort aushängen', 'a4h', 'aushang', 'dunkel', {"ueber": "Heute Abend", "titel": "Geschlossene Gesellschaft",
+    v('Geschlossene Gesellschaft', 'sofort aushängen', 'a4h', 'aushang', 'dunkel', {"ueber": "Heute Abend", "titel": "Geschlossene Gesellschaft",
       "text": "Heute gehört die Bar einer Runde. Ab Donnerstag sind wir wieder für alle da.", "aktion": ZEIT}),
     v('Die Empore ist reserviert', 'sofort aushängen', 'a4h', 'aushang', 'creme', {"ueber": "Heute Abend", "titel": "Die Empore ist reserviert",
       "text": "Oben feiert heute eine Runde an der langen Tafel, unten läuft der Abend weiter wie immer.", "aktion": ""}),
@@ -208,7 +208,7 @@ NEWSLETTER = [
 ANLAESSE = [
     {"k": "oktoberfest-2026", "t": "Oktoberfest des Event Klub", "z": "31. Oktober – 1. November", "von": "2026-10-31", "bis": "2026-11-01", "wo": "stadt",
      "ort": "Stephansplatz, 12 bis 21 Uhr", "satz": "Oktoberfest des Event Klub am Stephansplatz, 12 bis 21 Uhr, die Drinks kommen vom Wild Side.", "fotos": ["uw-tische", "uw-pl-okt", "uw-glas"]},
-    {"k": "session", "t": "SESSION · Die DJ-Abende", "z": "samstags", "von": "2025-09-06", "bis": "2027-12-31", "wo": "haus", "ort": "Walk on the Wild Side · 21 bis 1 Uhr",
+    {"k": "session", "t": "SESSION am Samstag", "z": "samstags", "von": "2025-09-06", "bis": "2027-12-31", "wo": "haus", "ort": "Walk on the Wild Side · 21 bis 1 Uhr",
      "satz": "Rund einmal im Monat legt jemand auf, von 21 bis 1 Uhr. Den nächsten Abend kündigt die Bar auf Instagram an.", "fotos": ["an-dj", "p-1710", "sw-an-dj"]},
     {"k": "geburtstag", "t": "Der Geburtstag der Bar", "z": "im Winter", "von": "2026-11-01", "bis": "2026-12-31", "wo": "haus", "ort": "Walk on the Wild Side · Termin auf Instagram",
      "satz": "Am 30. November 2024 wurde die neue Wild Side eins, am 5. Dezember 2025 zwei. Mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste.", "fotos": ["feste-anstossen", "ja-2025", "an-party"]},

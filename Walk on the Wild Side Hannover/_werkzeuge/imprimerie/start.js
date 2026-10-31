@@ -380,7 +380,7 @@
   const sichtbareDocs = () => { const alle = Object.values(st().alleDocs()); return alle.some(d => !istBeispiel(d)) ? alle.filter(d => !istBeispiel(d)) : alle; };
   function beispieleAnlegen() {
     const schl = `ds-${st().haus}-beispiele4`; try { if (localStorage.getItem(schl)) return; } catch (e) { return; }
-    const abt = k => (K.ABTEILUNGEN.find(a => a.k === k) || { vorlagen: [] }).vorlagen, H = K.HINWEISE.find(x => /geschlossene Gesellschaft/.test(x.n));
+    const abt = k => (K.ABTEILUNGEN.find(a => a.k === k) || { vorlagen: [] }).vorlagen, H = K.HINWEISE.find(x => /Geschlossene Gesellschaft/.test(x.n));
     
     const B = [
       { x: abt('session')[0] },
@@ -452,7 +452,7 @@
     const ev = typ === 'event', laeuft = ev && new Date(a.von + 'T00:00') <= heute0();
     const foto = ev ? a.fotos[0] : a.foto, dazu = Z ? ((ev ? Z.anlass[a.k] : Z.abteilung[a.k]) || {}).n || 0 : 0, zahl = zahlDE((ev ? anlassListe(a).length : a.vorlagen.length) + dazu);
     return `<div class="wo" data-${typ}="${a.k}" role="button" tabindex="0" style="--i:${i}" aria-label="${esc(ev ? anlassTitel(a) : a.t)}">
-      <span class="wo__k"><span class="wo__bild" data-bg="${DS.bildUrl(DS.M, foto, true)}"></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${laeuft ? 'Läuft · ' : ''}${esc(a.z)}</span>` : ''}</span>
+      <span class="wo__k"><span class="wo__bild" ${ev ? `data-bg="${DS.bildUrl(DS.M, foto, true)}"` : `style="background-image:url('${DS.bildUrl(DS.M, foto, true)}')"`}></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${laeuft ? 'Läuft · ' : ''}${esc(a.z)}</span>` : ''}</span>
       <span class="wo__n"><span><b>${zus(ev ? anlassTitel(a) : a.t)}</b><small>${ev ? WO[a.wo] + ' · ' : ''}${zahl === 1 ? 'Eine Vorlage' : zahl + ' Vorlagen'}</small></span><i>${PFEIL_SVG}</i></span></div>`;
   }
   /* Eine fertige Vorlage als Karte: echte Vorschau, Klick öffnet sie im Studio (ohne KI, ohne Kosten) */
@@ -638,7 +638,7 @@
     const g = getComputedStyle(t), lh = parseFloat(g.lineHeight) || parseFloat(g.fontSize) * 1.25, pad = parseFloat(g.paddingTop) + parseFloat(g.paddingBottom);
     let zeilen = 1;
     if (t.value) { t.style.height = 'auto'; zeilen = Math.max(1, Math.round((t.scrollHeight - pad) / lh)); }
-    else { const c = (passeFeld.c = passeFeld.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`; zeilen = Math.max(1, Math.ceil(c.measureText(t.placeholder).width / Math.max(40, t.clientWidth - 2))); }
+    else { const c = (passeFeld.c = passeFeld.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`; zeilen = Math.max(1, Math.ceil(c.measureText(t.placeholder).width / Math.max(40, t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 4))); }
     t.style.height = Math.ceil(zeilen * lh + pad) + 'px';
     if (!t.dataset.feld) {
       t.dataset.feld = 1; t.addEventListener('input', () => passeFeld(t));
@@ -650,8 +650,19 @@
   function kurzPlatz(t) {
     if (!t) return; t.dataset.lang = t.dataset.lang || t.placeholder;
     const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
-    t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= t.clientWidth - 4) || 'Beschreiben …';   // Tor 2: nie zweizeilig
+    const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 6;   // Innenabstand abziehen (Tor 31.10.: «Etwa: das nächste Plakat» brach bei 1000 px um)
+    t.placeholder = [t.dataset.lang, 'Etwa: ein Plakat', 'Beschreiben …'].find(x => c.measureText(x).width <= frei) || 'Beschreiben …';   // Tor 2: nie zweizeilig
   }
+  /* Platzhalter, die start.js je Ansicht neu setzt (Suche, «Etwa: …»), passen immer ganz ins Feld: sonst die kürzere Fassung (Tor 31.10.2026) */
+  function passePlatz(t, kurz) {
+    if (!t || t.__pp) return; t.__pp = 1;
+    const pruefe = () => { const g = getComputedStyle(t), c = (kurzPlatz.c = kurzPlatz.c || document.createElement('canvas').getContext('2d')); c.font = `${g.fontWeight} ${g.fontSize} ${g.fontFamily}`;
+      const frei = t.clientWidth - parseFloat(g.paddingLeft) - parseFloat(g.paddingRight) - 6; if (frei <= 0 || c.measureText(t.placeholder).width <= frei) return;
+      const n = kurz.find(x => c.measureText(x).width <= frei) || kurz[kurz.length - 1]; if (n !== t.placeholder) t.placeholder = n; };
+    new MutationObserver(pruefe).observe(t, { attributes: true, attributeFilter: ['placeholder'] });
+    if (window.ResizeObserver) new ResizeObserver(pruefe).observe(t); pruefe();
+  }
+  passePlatz(document.getElementById('startSuche'), ['Arten suchen …', 'Medien suchen …', 'Suchen']);
   ['startFrei', 'startDirekt'].forEach(id => { const t = document.getElementById(id); if (!t) return; kurzPlatz(t); if (window.ResizeObserver) new ResizeObserver(() => kurzPlatz(t)).observe(t); if (document.fonts) document.fonts.ready.then(() => kurzPlatz(t)); });
   /* Schnell anlegen: Arten mit echten Proportionen */
   function zeichneSchnell() {
@@ -688,7 +699,7 @@
     const kurzName = n => String(n || '');
     const livreFarben = L ? `<div class="mb__p mb__p--farben"><h3>Farben</h3><div class="mb__farben">${farbenEinmal.map(c => `<span title="${esc(c.r || '')}"><i style="background:${c.h}"></i><b>${esc(kurzName(c.n))}</b><small>${esc(c.h)}</small></span>`).join('')}</div></div>` : '';
     const livreDateien = L ? `<div class="mb__p mb__p--dateien"><h3>Logo, Zeichen, Wortmarke, Tapete</h3><div class="mb__dateien">${L.dateien.filter(d => d.var && d.var.length && d.var[0].dateien.some(x => /\.(svg|png|webp|jpe?g)$/i.test(x))).map(d => { const v = d.var[0], datei = v.dateien.find(x => x.endsWith('.svg')) || v.dateien[0]; return `<a class="mb__datei ${v.grund === 'dunkel' ? 'mb__datei--d' : ''}" href="${DS.livreUrl('dateien/')}${encodeURIComponent(v.dateien[v.dateien.length - 1])}" download><span${d.k === 'tapete' ? ` style="background-image:url('${DS.livreUrl('dateien/')}${encodeURIComponent(datei)}')"` : ''}>${d.k === 'tapete' ? '' : `<img src="${DS.livreUrl('dateien/')}${encodeURIComponent(datei)}" alt="" loading="lazy">`}</span><b>${esc({ logo: 'Logo', quer: 'Logo quer', zeichen: 'Zeichen', zeiger: 'Wappen', name: 'Name', website: 'Original', ehre: 'Auszeichnungen', wortmarke: 'Wortmarke', tapete: 'Tapete', zeile: 'Zeile', dc: 'Dirty Chicken' }[d.k] || d.k)}</b><small>${d.var.length} ${d.var.length === 1 ? 'Fassung' : 'Fassungen'}</small></a>`; }).join('')}</div></div>` : '';
-    $('#msMarke').innerHTML = `<div class="ms-titel"><h1>Farben &amp; Schriften</h1><span class="ms-leise">${L ? 'Aus dem Markenbuch des Hauses. ' : ''}Jedes Medium entsteht aus diesen Farben, Schriften, Zeichen und Fotos. Niemand muss sie kennen, das Studio hält sich daran.</span></div>
+    $('#msMarke').innerHTML = `<div class="ms-titel"><h1>Farben &amp;&nbsp;Schriften</h1><span class="ms-leise">${L ? 'Aus dem Markenbuch des Hauses. ' : ''}Jedes Medium entsteht aus diesen Farben, Schriften, Zeichen und Fotos. Niemand muss sie kennen, das Studio hält sich daran.</span></div>
       <a class="mb-livre" href="${LS}" target="_blank" rel="noopener"><span class="mb-livre__z">${DS.zeichenSvg(M, 'currentColor')}</span><span><b>Das Markenbuch öffnen</b><small>Das Markenbuch: alle ${L ? L.fotos.length : (M.bilder || []).length} Fotos in jeder Grösse, Logos, Farben, Tapete und die Markenprüfung</small></span><i>${PFEIL_SVG}</i></a>
       <div class="mb">
         <div class="mb__p mb__p--zeichen"><span class="mb__z">${DS.zeichenSvg(M, 'currentColor')}</span><b>${esc(M.voll || M.name)}</b><small>${esc(M.zeile || '')}</small></div>
@@ -827,7 +838,7 @@
     zeichneVorlagen();
     $('#start .ms-haupt').scrollTo({ top: 0 });
     const sf = w.querySelector('#startFormat'); if (sf) sf.addEventListener('change', e => { fk = e.target.value; zeichneVorlagen(); });
-    const ta = w.querySelector('#startAuftrag');
+    const ta = w.querySelector('#startAuftrag'); passePlatz(ta, ['Etwa: ein Plakat', 'Kurz beschreiben …', 'Beschreiben …']);
     if (ta) ta.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); entwirf(); } });
   }
 

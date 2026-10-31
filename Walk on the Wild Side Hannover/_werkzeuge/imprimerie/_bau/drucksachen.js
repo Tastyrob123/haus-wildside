@@ -18,7 +18,7 @@ const STUECKE = [
   ['karte-klassiker', 'karte', 'Die Klassiker', 'Karte DL hoch: Negroni, Paloma, Mexikaner, ohne Alkohol'],
   ['untersetzer-was-magst-du', 'karte', 'Was magst du?', 'Tischaufsteller A6: Geschmack, Glas, was hinein soll'],
   ['tischaufsteller-du-sagst', 'karte', 'Du sagst, was du magst', 'Tischaufsteller A6 mit Momo'],
-  ['flyer-nachbarschafts-mixology-bar', 'haus', 'Flyer · Eure Nachbarschafts-Mixology-Bar', 'Flyer A6, vorne Foto, hinten Zeiten'],
+  ['flyer-nachbarschafts-mixology-bar', 'haus', 'Flyer der Bar', 'Flyer A6, vorne Foto, hinten Zeiten'],
   ['aushang-oeffnungszeiten', 'haus', 'Öffnungszeiten', 'Aushang A4'],
   ['instagram-falstaff', 'haus', 'Falstaff Bar Guide 2027', 'Instagram-Beitrag 4:5'],
   ['instagram-negroni', 'karte', 'Der Negroni', 'Instagram-Beitrag 4:5'],

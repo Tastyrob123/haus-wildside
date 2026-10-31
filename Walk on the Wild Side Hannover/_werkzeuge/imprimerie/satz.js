@@ -158,7 +158,7 @@
     const B = o.ohneBeschnitt ? 0 : DS.B;
     let st = `position:absolute;left:${(el.x + B) * S}px;top:${(el.y + B) * S}px;`;
     if (el.typ === 'text') {
-      st += `width:${el.w * S}px;font-family:'DS-${el.rolle}';font-size:${el.gr * S}px;line-height:${el.zeile || 1.2};letter-spacing:${el.sperr || 0}em;` +
+      st += `width:${el.w * S}px;font-family:'DS-${el.rolle}'${M && M.schriften && M.schriften[el.rolle] ? `,'${String(M.schriften[el.rolle].familie).replace(/'/g, '')}'` : ''};font-size:${el.gr * S}px;line-height:${el.zeile || 1.2};letter-spacing:${el.sperr || 0}em;` +
         `text-align:${{ l: 'left', c: 'center', r: 'right' }[el.ausr || 'l']};color:${DS.farbe(M, el.farbe)};opacity:${el.deck ?? 1};` +
         `white-space:pre-wrap;overflow-wrap:break-word;font-variant-ligatures:none;font-feature-settings:'liga' 0,'clig' 0;` +
         (el.gross ? 'text-transform:uppercase;' : '') +

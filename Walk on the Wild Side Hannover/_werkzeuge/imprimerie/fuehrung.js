@@ -189,7 +189,7 @@
         <dt>⌘ D</dt><dd>Gewähltes verdoppeln</dd>
         <dt>⌫</dt><dd>Gewähltes löschen</dd>
         <dt>Esc</dt><dd>Auswahl aufheben, Schreiben beenden</dd>
-        <dt>Alt beim Ziehen</dt><dd>ohne Einrasten an Kanten und Mitte</dd>
+        <dt>Alt beim Ziehen</dt><dd>ohne Einrasten an Kanten und&nbsp;Mitte</dd>
       </dl>
     </div>`, true);
     document.addEventListener('keydown', taste);

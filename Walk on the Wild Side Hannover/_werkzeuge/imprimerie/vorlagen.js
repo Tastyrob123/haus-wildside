@@ -499,7 +499,7 @@
       const blau = 'blau', x0 = rx + fw * .035, w0 = fw * .93;
       const t = tx(c, 'plakat', i.ueber || 'SESSION', w0, u * .14, blau, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1 });
       plMass(c, t, w0 * .97, u * .2); t.y = +(fy0 + fh * .035).toFixed(2); c.el.push(t);
-      let y = t.y + t.h * .92;
+      let y = t.y + t.h * 1.02;
       if (i.unter) { const s = tx(c, 'plakat', i.unter, fw * .5, t.gr * .3, blau, { slot: 'unter', ausr: 'l', x: x0 + t.gr * .02, zeile: 1.15 }); s.y = +y.toFixed(2); c.el.push(s); }
       const xr = rx + fw * .965, wr = fw * .55;
       const zt = i.zeit ? tx(c, 'plakat', i.zeit, wr, t.gr * .3, blau, { slot: 'zeit', ausr: 'r', x: xr - wr, zeile: 1 }) : null;
@@ -609,6 +609,13 @@
     (V[vorlage] || V.deckel).bau(c, inhalt || {}, seite);
     if (ton === 'dc' && M.zeichen3) c.el.forEach(e => { if (e.typ === 'zeichen' && !e.z) e.z = 3; });
     if (c.stil.ausr === 'l' && LINKS_MOEGLICH.includes(vorlage) && !(vorlage === 'gutschein' && c.quer)) linksbuendig(c);
+    for (const e of c.el) {   // kein Wort bricht mitten im Wort (Tor 31.10.2026: «Geburtstag», «Preise», «SESSION»): Titel, Kapitale und Plakatschrift kleiner, bis das längste Wort passt
+      if (e.typ !== 'text' || !/^(titel|kapitale|plakat|plakatfett|kopf)$/.test(e.rolle)) continue;
+      const lang = String(e.text || '').split(/\s+/).sort((a, b) => b.length - a.length)[0] || '';
+      if (lang.length < 6) continue;
+      const bw = DS.mess(Object.assign({}, e, { text: lang, w: 100000 })).bw || 0;
+      if (bw > e.w * .985) { e.gr = +(e.gr * e.w * .97 / bw).toFixed(2); e.h = DS.mess(e).h; }
+    }
     seite.el = c.el;
     return seite;
   };

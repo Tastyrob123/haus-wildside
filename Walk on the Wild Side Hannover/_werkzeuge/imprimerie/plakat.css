@@ -93,3 +93,7 @@
 
 /* K35 (Tor 30.10.2026): Ziffern 3/4/5 in den runden Wahlknöpfen optisch mittig */
 .pk-zahl button{display:grid;place-items:center;padding:1px 0 0;line-height:1}
+/* Wild Side (31.10.2026): eine Seite je Karte (SESSION-Plakat ohne Rückseite), Blatt und Unterschrift auf einer linken Kante, gerade */
+.pk-blaetter--eins{justify-content:flex-start}
+.pk-blaetter--eins .pk-vorn{transform:none}
+@media (hover:hover){.pk-karte--eins:hover .pk-vorn{transform:translateY(-6px)}}
