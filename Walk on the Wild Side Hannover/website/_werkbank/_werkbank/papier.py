@@ -296,6 +296,7 @@ def baue():
     json.dump(SEITE_NEU, open(os.path.join(ROOT, '_werkbank', 'papier_neu_seite.json'), 'w'), ensure_ascii=False, indent=1)
     P.fertig(Dr, untersetzer_alle(), MEINS)
     css_umstellen()
+    N.satz_namen('papier.css', 'etiketten.html', 'etiketten-bogen.html', *[d['id'] + '.html' for d in Dr])
     print('Plakatwerkstatt:', len(plakatwerkstatt()), 'Drucksachen kopiert')
 
 

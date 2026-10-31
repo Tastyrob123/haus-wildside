@@ -52,8 +52,24 @@ def vorschau(ordner, quelle, breite=1200):
         im.save(os.path.join(HIER, ordner, 'img', 'vorschau.webp'), 'WEBP', quality=86)
 
 
+SEITEN = ('unterlagen', 'drucksachen', 'untersetzer', 'sticker', 'postkarten', 'beigaben')
+
+
+def nachbau():
+    """die Nachbauten der Werkbank (zeile_ganz: kein Wort allein unten, text_mitte: Schrift mittig in Knöpfen) nur über die Papier-Seiten;
+    haus.nach_bau macht dasselbe später über alle Seiten, beides ist wiederholbar"""
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import zeile_ganz, text_mitte
+    for o in SEITEN:
+        if os.path.exists(os.path.join(HIER, o, 'index.html')):
+            nach(o)
+            zeile_ganz.anwenden(os.path.join(HIER, o)); text_mitte.anwenden(os.path.join(HIER, o))
+
+
 if __name__ == '__main__':
     nach('untersetzer')
     nach('drucksachen', drucksachen)
     vorschau('untersetzer', 'u03.webp')
     vorschau('drucksachen', 'karte.webp')
+    nachbau()

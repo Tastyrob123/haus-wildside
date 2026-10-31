@@ -193,3 +193,4 @@ if __name__ == '__main__':
         K.gestaltung(); seite()
     else:
         fertig(alle())
+        N.satz_namen('sticker.html', 'sticker-bogen.html')

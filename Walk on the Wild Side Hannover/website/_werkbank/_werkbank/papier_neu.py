@@ -158,6 +158,17 @@ def birnen(x, y, text, groesse, farbe=GOLD, anker='middle', sperr=.12):
     return f'<g fill="{farbe}">{punkte}</g>'
 
 
+def satz_namen(*namen):
+    """Satzdateien: die Familiennamen, die der Kit fest schreibt (DM Mono, Instrument Sans), heissen wie die Schrift, die gesetzt wird."""
+    from kern import W
+    for n in namen:
+        p = os.path.join(W, 'satz', n)
+        t = open(p, encoding='utf-8').read()
+        u = t.replace('"DM Mono"', '"Hanken Grotesk"').replace("'DM Mono'", "'Hanken Grotesk'").replace("'Instrument Sans'", "'Hanken Grotesk'").replace('"Instrument Sans"', '"Hanken Grotesk"')
+        if u != t:
+            open(p, 'w', encoding='utf-8').write(u)
+
+
 def stuecke(*_):
     """Früher zwanzig weitere Culinarium-Stücke; Wild Side zeigt stattdessen die zwanzig Drucksachen der Plakatwerkstatt (papier.py › plakatwerkstatt)."""
     return [], {}

@@ -95,6 +95,33 @@ def plakatwerkstatt():
     return k0
 
 
+AUSLAGE = [   # (Quelle, Klasse, links %, oben %, Breite %, Drehung): ein Stapel aus dem, was in den Ordnern liegt
+    (os.path.join(IMPR, 'session-aushang-a3.jpg'), 'blattbild', 2, 6, 34, -6),
+    (os.path.join(IMPR, 'karte-preise-der-bar.jpg'), 'blattbild', 33, 0, 32, 3),
+    (os.path.join(IMPR, 'instagram-falstaff.jpg'), 'blattbild', 63, 10, 33, -3),
+    ('03 Untersetzer/Bilder/Untersetzer 91 Punkte.png', 'form', 20, 58, 25, 8),
+    ('07 Sticker/Bilder/Sticker 01 Die Wortmarke.png', 'form', 58, 62, 20, -9),
+]
+
+
+def auslage():
+    """Die leere Auslage neben dem Titel füllen (H.MATERIAL['auslage'] ist leer): Drucksachen, ein Untersetzer, ein Sticker, klein als WebP."""
+    from PIL import Image
+    z = os.path.join(ZIEL, '_auslage'); os.makedirs(z, exist_ok=True)
+    teile = ''
+    for i, (q, kl, x, y, b, r) in enumerate(AUSLAGE):
+        q = q if os.path.isabs(q) else os.path.join(ZIEL, q)
+        if not os.path.exists(q):
+            continue
+        im = Image.open(q); im = im.convert('RGBA' if kl == 'form' else 'RGB'); im.thumbnail((560, 900), Image.LANCZOS)
+        n = f'a{i + 1}.webp'; im.save(os.path.join(z, n), 'WEBP', quality=82, method=6)
+        teile += (f'<div class="{kl}" data-a="schweb" style="left:{x}%;top:{y}%;width:{b}%;--r:{r}deg;--r0:{r * 3}deg;--i:{i + 2}">'
+                  f'<img src="_auslage/{n}" width="{im.width}" height="{im.height}" alt="" loading="eager" decoding="async"></div>')
+    p = os.path.join(ZIEL, 'index.html'); s = open(p, encoding='utf-8').read()
+    s = re.sub(r'<div class="auslage" aria-hidden="true">.*?</div>(?=\s*</div>\s*</section>)', '<div class="auslage" aria-hidden="true">' + teile + '</div>', s, count=1, flags=re.S)
+    open(p, 'w', encoding='utf-8').write(s)
+
+
 def nur_neue_beitraege():
     """06 Instagram: nur die neuen Beiträge (die bisherigen der Bar stehen im Feed nur zum Vergleich)."""
     try:
@@ -150,6 +177,7 @@ def baue():
     npw = plakatwerkstatt()
     ns, nb = mehr()
     n = aufraeumen()
+    auslage()
     du_und_kleid()
     dateien = sum(len([f for f in fs if not f.startswith('.')]) for dp, _, fs in os.walk(ZIEL) if '_vorschau' not in dp) - 1
     print('Material:', n, 'Ordner,', dateien, 'Dateien · Plakatwerkstatt', npw, '· Sticker', ns, '· Beigaben', nb, ('· fehlt noch: ' + ', '.join(sorted(set(FEHLT)))) if FEHLT else '')
