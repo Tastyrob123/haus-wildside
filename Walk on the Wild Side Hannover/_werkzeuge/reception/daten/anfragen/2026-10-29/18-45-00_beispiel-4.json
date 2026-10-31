@@ -26,16 +26,8 @@
    "text": "Danke. Dies ist ein Entwurf von Tasty Studios: Die Anfrage geht nicht an das Team, sie liegt nur zur Ansicht im Gästebuch."
   }
  ],
- "status": "gelesen",
+ "status": "neu",
  "beispiel": true,
  "abteilung": "Feiern",
- "entwurf": {
-  "betreff": "Euer Abend im Wild Side",
-  "text": "Hallo Kai Brandt,\n\ndanke für deine Nachricht und schön, dass ihr bei uns feiern wollt.\n\nDerya und Momo melden sich mit einem Vorschlag, nur für euch [Angebot von Derya und Momo]. Bei jedem Abend gilt: 30 Prozent eine Woche vorher, der Rest am Abend vor Beginn.\n\nDamit wir euren Abend vorbereiten können:\n- Datum\n- wie viele ihr seid\n- der Anlass\n\nBis bald an der Ecke\n\n[Name]\nWalk on the Wild Side",
-  "team": "Grundlage: Feiern (Website)\nOffen: Angebot, Datum, Anzahl",
-  "vorlage": "feier",
-  "absender": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
-  "zeit": "2026-10-31T17:48:51+00:00",
-  "fassung": 1
- }
+ "entwurf": null
 }

@@ -14,7 +14,7 @@
    "text": "Über ein Formular der Website (Seite Besuch): Abend: Freitag, 13. November 2026\nUhrzeit: 20 Uhr\nPlätze: 4"
   }
  ],
- "status": "gelesen",
+ "status": "neu",
  "beispiel": true,
  "an": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
  "abteilung": "Reservieren",
@@ -25,13 +25,5 @@
  "formular": "reservieren",
  "uhrzeit": "20 Uhr",
  "platz": "Theke",
- "entwurf": {
-  "betreff": "Dein Platz im Wild Side",
-  "text": "Hallo Lena Hoffmann,\n\ndanke für deine Nachricht und schön, dass du zu uns an die Ecke kommen willst.\n\nWir schauen, ob dein Platz frei ist [Platz prüfen], und bestätigen dir den Abend per Nachricht.\n\nDamit wir deinen Platz in Ruhe vorbereiten können:\n- welcher Abend\n- welche Uhrzeit\n- wie viele Plätze\n\nBis bald an der Ecke\n\n[Name]\nWalk on the Wild Side",
-  "team": "Grundlage: Besuch (Website)\nOffen: Platz, Abend, Uhrzeit",
-  "vorlage": "reservieren",
-  "absender": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
-  "zeit": "2026-10-31T17:48:13+00:00",
-  "fassung": 1
- }
+ "entwurf": null
 }
