@@ -1,0 +1,265 @@
+/* Wild Side · Drinks, «Die einzige Karte»: 20 Darstellungen (30.10.2026). Bausteine der Seite: kz, Prata, Goldlinie, Blatt (Creme), Platte.
+   Bewegung nur über transform und opacity; Scroll-Getriebenes in einem Takt in v.js. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.kx{--rosa:#FDE1E6;--rosarot:#D7263D}
+.kx .etikett{display:block}
+.kx .text{font-size:17px}
+.kx .knoepfe{margin-top:30px}
+.kx .k-hinweis{display:block;margin-top:22px;font-size:13px;line-height:1.5;color:var(--text3);max-width:60ch}
+.kx .titel{text-wrap:balance}
+.k-zwei{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,100px);align-items:center}
+.kx .kz + h2{margin-top:14px} .kx h2 + .text{margin-top:22px}
+.kx .blatt{max-width:none}
+.kx .vauf{transition:transform 1.4s var(--k),opacity 1s var(--k)}
+html.js:not(.ruhig) .kx .vauf:not(.da){opacity:0}
+@media (max-width:760px){.k-zwei{grid-template-columns:1fr}}
+
+/* 01 In Rosa */
+.r-tisch{perspective:1400px}
+.r-blatt{background:var(--rosa);color:var(--dunkel);border-radius:10px;padding:clamp(30px,3.6vw,52px);box-shadow:var(--schatten);transform-origin:50% 100%}
+html.js:not(.ruhig) .r-blatt:not(.da){transform:rotateX(38deg) translateY(80px) rotate(-3deg)}
+.r-blatt .etikett{color:var(--rosarot)}
+.r-blatt h3{color:var(--rosarot);font-size:clamp(34px,3.4vw,48px);margin-top:12px}
+.r-blatt .posten{margin-top:24px}
+.r-blatt .posten div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-top:1px solid rgba(215,38,61,.25);align-items:baseline}
+.r-blatt .posten b{font:400 22px/1.2 var(--titel);color:var(--dunkel)} .r-blatt .posten span{font:400 20px/1 var(--titel);color:var(--rosarot)}
+.r-blatt .posten p{grid-column:1/3;font-size:14px;color:rgba(27,21,18,.7)}
+.r-blatt small{display:block;margin-top:20px;font-size:12.5px;color:rgba(27,21,18,.6)}
+
+/* 02 Zwei Karten */
+.zk-kopf,.jz-kopf,.qb-oben,.fl-oben,.tr-oben,.sa-oben,.bk-oben,.ng-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.zk-kopf .text,.jz-kopf .text,.qb-oben .text,.fl-oben .text,.tr-oben .text,.sa-oben .text,.bk-oben .text,.ng-kopf .text{margin-top:0}
+.zk-zwei{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,4vw,64px);margin-top:clamp(48px,6vw,80px);align-items:start}
+.zk-jahr{display:block;font-size:clamp(56px,6vw,92px);line-height:1;color:var(--gold);margin-bottom:22px}
+.zk-sp .kachel{aspect-ratio:4/5}
+.zk-sp > .text{margin-top:20px;font-size:15.5px}
+.zk-sp .blatt small{display:block;margin-top:18px;font-size:12.5px;color:rgba(27,21,18,.6)}
+@media (max-width:760px){.zk-kopf,.jz-kopf,.qb-oben,.fl-oben,.tr-oben,.sa-oben,.bk-oben,.ng-kopf,.zk-zwei{grid-template-columns:1fr}}
+
+/* 03 Die Namen gross */
+.ng-et{margin-top:clamp(50px,6vw,80px)}
+.ng-liste{margin-top:18px;border-bottom:1px solid var(--gold-l)}
+.ng-z{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px) 70px;gap:30px;align-items:center;padding:18px 0;border-top:1px solid var(--gold-l)}
+.ng-name{display:block;overflow:hidden;font-size:clamp(46px,7.4vw,112px);line-height:1.08;padding-bottom:.06em}
+.ng-name span{display:block;transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.14s)}
+html.js:not(.ruhig) .ng-liste:not(.da) .ng-name span{transform:translateY(110%)}
+html.js:not(.ruhig) .kx .ng-liste:not(.da){opacity:1}
+.ng-zu{font-size:14.5px;color:var(--text2);line-height:1.5}
+.ng-p{font:400 24px/1 var(--titel);color:var(--gold);text-align:right}
+@media (max-width:760px){.ng-z{grid-template-columns:1fr auto;gap:8px 16px}.ng-zu{grid-column:1/3;order:3}}
+
+/* 04 Einer nach dem anderen */
+.v04#karte{padding:0}
+.e-pin{position:relative;height:320vh}
+.e-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.e-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,100px);align-items:center}
+.e-blatt{background:var(--creme);color:var(--dunkel);border-radius:10px;padding:clamp(30px,3.6vw,52px);box-shadow:var(--schatten);min-height:min(66vh,560px);display:flex;flex-direction:column}
+.e-blatt .etikett{color:#A07F3A}
+.e-titel{font-size:clamp(30px,3vw,40px);margin-top:10px;padding-bottom:20px;border-bottom:1px solid rgba(160,127,58,.3)}
+.e-stage{position:relative;flex:1;min-height:220px}
+.e-d{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(40px);transition:transform .9s var(--k),opacity .6s var(--k)}
+.e-d.an{opacity:1;transform:none} .e-d.weg{opacity:0;transform:translateY(-40px)}
+.e-name{font-size:clamp(40px,4.6vw,66px);color:var(--dunkel);margin:10px 0 14px}
+.e-zu{font-size:16px;color:rgba(27,21,18,.72);max-width:36ch}
+.e-striche{display:flex;gap:8px;margin:6px 0 16px} .e-striche i{flex:1;height:2px;background:rgba(160,127,58,.25);transition:background .5s} .e-striche i.an{background:#A07F3A}
+.e-blatt small{font-size:12.5px;color:rgba(27,21,18,.6)}
+@media (max-width:760px){.e-pin{height:auto}.e-buehne{position:static;height:auto;padding:70px 0}.e-raster{grid-template-columns:1fr}.e-stage{min-height:0}.e-d{position:static;opacity:1;transform:none;padding:12px 0}}
+
+/* 05 Die Karte dreht sich */
+.d-raum{perspective:1600px}
+.d-karte{position:relative;transform-style:preserve-3d;will-change:transform;min-height:620px}
+.d-vorn,.d-hinten{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:10px;box-shadow:var(--schatten);padding:clamp(30px,3.6vw,52px)}
+.d-vorn{background:var(--nacht3);box-shadow:var(--schatten),inset 0 0 0 1px var(--gold-l);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.d-vorn .titel{font-size:clamp(44px,5vw,76px);margin:20px 0}
+.d-datum{font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3)}
+.d-hinten{background:var(--creme);color:var(--dunkel);transform:rotateY(180deg);overflow:hidden}
+.d-hinten h3{font-size:clamp(28px,2.8vw,38px)}
+.d-hinten .posten{margin-top:16px;display:grid}
+.d-hinten .posten div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:11px 0;border-top:1px solid rgba(160,127,58,.3)}
+.d-hinten .posten b{font:400 19px/1.2 var(--titel)} .d-hinten .posten p{grid-column:1/3;font-size:13.5px;color:rgba(27,21,18,.68)}
+.d-hinten small{display:block;margin-top:14px;font-size:12px;color:rgba(27,21,18,.6)}
+@media (max-width:760px){.d-karte{min-height:640px}}
+
+/* 06 Am Tisch */
+.v06#karte{padding:0}
+.t-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100vh}
+.t-bild{min-height:100%} .t-bild img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;position:absolute;inset:0}
+.t-rechts{padding:clamp(70px,8vw,120px) clamp(24px,5vw,90px);align-self:center}
+.t-et{margin-top:44px}
+.t-liste{margin-top:8px}
+.t-liste > div{padding:16px 0;border-bottom:1px solid var(--gold-l)}
+.t-liste .titel{font-size:clamp(26px,2.4vw,34px);display:flex;justify-content:space-between;gap:20px}
+.t-liste .titel span{color:var(--gold);font-size:.75em}
+.t-liste p + p{margin-top:6px;font-size:14.5px;color:var(--text2)}
+@media (max-width:760px){.t-raster{grid-template-columns:1fr}.t-bild{aspect-ratio:4/5}}
+
+/* 07 Wie eine Speisekarte */
+.sk-mitte{max-width:780px;margin:0 auto;text-align:center}
+.sk-mitte .kz{justify-content:center} .sk-mitte .text{margin:22px auto 0}
+.sk-karte{margin-top:clamp(50px,6vw,80px);padding-top:40px;border-top:1px solid var(--gold-l)}
+.sk-name{font-size:clamp(46px,5.4vw,78px);margin:16px 0 34px}
+.sk-liste > div{padding:16px 0}
+.sk-zeile{display:flex;align-items:baseline;gap:14px;text-align:left}
+.sk-zeile b{font-size:clamp(24px,2.4vw,32px);font-weight:400;white-space:nowrap}
+.sk-zeile i{flex:1;border-bottom:2px dotted var(--gold-l);transform:translateY(-6px)}
+.sk-zeile span{font:400 22px/1 var(--titel);color:var(--gold)}
+.sk-zu{text-align:left;margin-top:6px;font-size:14.5px;color:var(--text2)}
+.sk-mitte .k-hinweis{margin:26px auto 0} .sk-mitte .knoepfe{justify-content:center;display:flex}
+
+/* 08 Das Querblatt */
+.qb{margin-top:clamp(50px,6vw,80px);background:var(--creme);color:var(--dunkel);border-radius:10px;padding:clamp(32px,4vw,64px);box-shadow:var(--schatten)}
+html.js:not(.ruhig) .qb:not(.da){transform:rotate(-4deg) translateY(90px) scale(.96)}
+.qb-kopf{display:flex;justify-content:space-between;align-items:baseline;gap:30px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid rgba(160,127,58,.35)}
+.qb-kopf .etikett{color:#A07F3A}
+.qb-kopf h3{font-size:clamp(40px,4.6vw,66px)}
+.qb-posten{display:grid!important;grid-template-columns:1fr 1fr;column-gap:clamp(30px,5vw,80px);margin-top:10px}
+.qb-posten div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid rgba(160,127,58,.22)}
+.qb-posten b{font:400 24px/1.2 var(--titel)} .qb-posten span{font:400 20px/1 var(--titel);color:#A07F3A}
+.qb-posten p{grid-column:1/3;font-size:14px;color:rgba(27,21,18,.7)}
+.qb small{display:block;margin-top:20px;font-size:12.5px;color:rgba(27,21,18,.6)}
+@media (max-width:760px){.qb-posten{grid-template-columns:1fr}}
+
+/* 09 2023 und 2026 */
+.jz-zwei{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,100px);margin-top:clamp(50px,6vw,80px)}
+.jz-jahr{display:block;font-size:clamp(90px,13vw,200px);line-height:.9;color:var(--gold)}
+.jz-sp > .text{margin-top:18px;font-size:15.5px}
+.jz-namen{margin-top:26px;border-top:1px solid var(--gold-l)}
+.jz-namen .titel{font-size:clamp(24px,2.4vw,32px);padding:12px 0;border-bottom:1px solid var(--gold-l)}
+.jz-namen .titel span{display:block;margin-top:4px;font:400 13.5px/1.5 var(--lauf);color:var(--text2)}
+@media (max-width:760px){.jz-zwei{grid-template-columns:1fr}}
+
+/* 10 Es wird rosa */
+.v10#karte{position:relative;overflow:hidden}
+.rs-grund{position:absolute;inset:0;background:var(--rosa);opacity:0;will-change:opacity}
+.rs-innen{position:relative}
+.v10 .kz .uhr,.v10 .kz .was{transition:color .6s}
+.v10.rosa .kz .uhr{color:var(--rosarot)} .v10.rosa .kz .was,.v10.rosa .titel,.v10.rosa .text{color:var(--dunkel)} .v10.rosa .kz i{background:var(--rosarot)}
+.v10 .titel,.v10 .text{transition:color .6s}
+.rs-liste{border-top:2px solid var(--rosarot);padding-top:26px}
+.rs-liste .etikett{color:var(--rosarot)}
+.rs-liste h3{font-size:clamp(40px,4.4vw,64px);color:var(--rosarot)!important;margin:10px 0 10px}
+.rs-liste .posten div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-top:1px solid rgba(215,38,61,.25)}
+.rs-liste .posten b{font:400 22px/1.2 var(--titel)} .rs-liste .posten span{font:400 20px/1 var(--titel);color:var(--rosarot)}
+.rs-liste .posten p{grid-column:1/3;font-size:14px;opacity:.75}
+.rs-liste small{display:block;margin-top:18px;font-size:12.5px;opacity:.6}
+.v10:not(.rosa) .rs-liste .posten b{color:var(--text)} .v10.rosa .rs-liste{color:var(--dunkel)}
+
+/* 11 Das Bild bleibt stehen */
+.v11#karte{padding:0}
+.bs-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.bs-steh{position:sticky;top:0;height:100vh}
+.bs-bild{height:100%} .bs-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bs-rechts{padding:clamp(90px,12vh,140px) clamp(24px,5vw,90px)}
+.bs-liste{margin-top:clamp(70px,10vh,120px)}
+.bs-liste h3{font-size:clamp(40px,4.4vw,64px);margin:12px 0 18px}
+.bs-d{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;padding:26px 0;border-top:1px solid var(--gold-l)}
+html.js:not(.ruhig) .bs-d:not(.da){transform:translateY(50px)}
+.bs-d .titel{font-size:clamp(28px,2.8vw,40px)} .bs-d span{font:400 22px/1 var(--titel);color:var(--gold)} .bs-d p:last-child{grid-column:1/3;font-size:15px;color:var(--text2)}
+.bs-liste small{display:block;margin-top:24px;font-size:13px;color:var(--text3)}
+@media (max-width:760px){.bs-raster{grid-template-columns:1fr}.bs-steh{position:relative;height:70vh}}
+
+/* 12 Wie im Magazin */
+.mg-raster{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(40px,6vw,90px);margin-top:clamp(40px,5vw,64px);align-items:start}
+.mg-text .text{max-width:none;columns:2;column-gap:44px;font-size:18px;line-height:1.7;color:var(--text2)}
+.mg-ini{float:left;font-size:96px;line-height:.8;margin:8px 12px 0 0;color:var(--gold)}
+.mg-kasten{border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:28px 0}
+.mg-kasten h3{font-size:clamp(32px,3.2vw,44px);margin:10px 0 8px}
+.mg-kasten .posten div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:12px 0;border-top:1px solid var(--gold-l)}
+.mg-kasten .posten b{font:400 20px/1.2 var(--titel)} .mg-kasten .posten span{font:400 18px/1 var(--titel);color:var(--gold)} .mg-kasten .posten p{grid-column:1/3;font-size:13.5px;color:var(--text2)}
+.mg-kasten small{display:block;margin-top:14px;font-size:12.5px;color:var(--text3)}
+@media (max-width:760px){.mg-raster{grid-template-columns:1fr}.mg-text .text{columns:1}}
+
+/* 13 Der 14. */
+.dt-raster{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,5vw,80px);align-items:center;margin-top:clamp(30px,4vw,50px)}
+.dt-datum{display:flex;flex-direction:column}
+.dt-datum .titel{font-size:clamp(170px,26vw,400px);line-height:.85;color:var(--gold);letter-spacing:-.03em}
+.dt-datum .etikett{margin-top:18px;font-size:13px}
+html.js:not(.ruhig) .dt-datum:not(.da){transform:translateY(120px)}
+.dt-datum{transition:transform 2s var(--k),opacity 1.4s var(--k)!important}
+.dt-liste{margin-top:30px}
+.dt-liste > div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-top:1px solid var(--gold-l)}
+.dt-liste .titel{font-size:clamp(24px,2.3vw,30px)} .dt-liste span{font:400 20px/1 var(--titel);color:var(--gold)} .dt-liste p:last-child{grid-column:1/3;font-size:14.5px;color:var(--text2)}
+@media (max-width:760px){.dt-raster{grid-template-columns:1fr}}
+
+/* 14 In einem Fluss */
+.v14 .sw.etikett{margin-top:clamp(50px,6vw,80px)}
+.fl-fluss{margin-top:22px;font-size:clamp(34px,4.2vw,62px);line-height:1.22;text-wrap:pretty}
+.fl-d{display:inline;transition:opacity 1s var(--k);transition-delay:calc(var(--n)*.22s)}
+html.js:not(.ruhig) .fl-fluss:not(.da) .fl-d{opacity:0}
+html.js:not(.ruhig) .kx .fl-fluss:not(.da){opacity:1}
+.fl-d b{font-weight:400}
+.fl-zu{font:500 .3em/1 var(--lauf);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);vertical-align:.55em;margin:0 .4em 0 .2em}
+.fl-d:not(:last-child)::after{content:"";display:inline-block;width:.18em;height:.18em;border-radius:50%;background:var(--gold-l);vertical-align:.3em;margin:0 .3em}
+
+/* 15 Vier Platten */
+.pl-et{margin-top:36px}
+.pl-gitter{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pl-p{background:var(--nacht2);border-radius:var(--rand-g);box-shadow:var(--schatten),inset 0 0 0 1px var(--gold-l);padding:28px 26px;min-height:250px;display:flex;flex-direction:column;transition:transform 2.6s var(--k)}
+.pl-p:hover{transform:translateY(-6px)}
+.pl-preis{font-size:20px;color:var(--gold);align-self:flex-end}
+.pl-p > .titel{font-size:clamp(26px,2.4vw,34px);margin:auto 0 12px}
+.pl-zu{font-size:13.5px;line-height:1.55;color:var(--text2)}
+@media (max-width:760px){.pl-gitter{grid-template-columns:1fr}}
+
+/* 16 Drei Felder */
+.tr-wand{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:6px;margin-top:clamp(50px,6vw,80px);height:min(80vh,720px)}
+.tr-b{height:100%} .tr-b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tr-wand > :first-child{border-radius:var(--rand) 0 0 var(--rand)} .tr-wand > :last-child{border-radius:0 var(--rand) var(--rand) 0}
+.tr-mitte{background:var(--creme);color:var(--dunkel);padding:clamp(26px,3vw,44px);display:flex;flex-direction:column;justify-content:center}
+.tr-mitte .etikett{color:#A07F3A} .tr-mitte h3{font-size:clamp(32px,3vw,44px);margin:10px 0 8px}
+.tr-mitte .posten div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:10px 0;border-top:1px solid rgba(160,127,58,.3)}
+.tr-mitte .posten b{font:400 20px/1.2 var(--titel)} .tr-mitte .posten span{font:400 18px/1 var(--titel);color:#A07F3A} .tr-mitte .posten p{grid-column:1/3;font-size:13px;color:rgba(27,21,18,.68)}
+.tr-mitte small{margin-top:12px;font-size:12px;color:rgba(27,21,18,.6)}
+html.js:not(.ruhig) .tr-wand:not(.da){transform:scale(1.05)} html.js:not(.ruhig) .kx .tr-wand:not(.da){opacity:1}
+.tr-wand{transition:transform 1.8s var(--k)!important}
+@media (max-width:760px){.tr-wand{grid-template-columns:1fr;height:auto}.tr-b{aspect-ratio:4/5}.tr-wand > *{border-radius:0!important}}
+
+/* 17 Vier Säulen */
+.sa-kopf{margin-top:clamp(50px,6vw,80px);text-align:center}
+.sa-kopf .titel{font-size:clamp(40px,4.6vw,66px);margin-top:10px}
+.sa-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:36px;border-left:1px solid var(--gold-l)}
+.sa-s{border-right:1px solid var(--gold-l);padding:10px clamp(16px,2vw,30px) 0;display:flex;flex-direction:column;min-height:360px;transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.12s)}
+html.js:not(.ruhig) .sa-reihe:not(.da) .sa-s{transform:translateY(80px)}
+.sa-s > .titel{font-size:clamp(24px,2.3vw,32px)}
+.sa-s ul{list-style:none;margin:20px 0 0;padding:0;font-size:14.5px;color:var(--text2)}
+.sa-s li{padding:7px 0;border-bottom:1px solid var(--gold-ll)}
+.sa-p{margin-top:auto;padding-top:24px;font-size:28px;color:var(--gold)}
+.v17 .k-hinweis{margin:26px auto 0;text-align:center}
+@media (max-width:760px){.sa-reihe{grid-template-columns:1fr 1fr}.sa-s{min-height:300px;border-bottom:1px solid var(--gold-l)}}
+
+/* 18 Der Satz gross */
+.sg-satz{margin-top:clamp(30px,4vw,50px)}
+.sg-t{font-size:clamp(30px,3.6vw,54px);line-height:1.18;color:var(--text);max-width:24ch}
+.sg-t + .sg-t{margin-top:20px;color:var(--text2)}
+.sg-k{margin-top:30px;max-width:60ch}
+.sg-unten{margin-top:clamp(50px,6vw,80px);padding-top:30px;border-top:1px solid var(--gold-l)}
+.sg-zeile{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin-top:20px}
+.sg-zeile > div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-content:start}
+.sg-zeile b{font-size:24px;font-weight:400} .sg-zeile span{font:400 19px/1.3 var(--titel);color:var(--gold)} .sg-zeile p{grid-column:1/3;font-size:13.5px;color:var(--text2)}
+@media (max-width:760px){.sg-zeile{grid-template-columns:1fr 1fr}}
+
+/* 19 Der Name bleibt stehen */
+.v19 .ns-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,100px)}
+.ns-steh{position:sticky;top:clamp(90px,14vh,150px)}
+.ns-steh .etikett{margin-top:40px}
+.ns-name{font-size:clamp(60px,7.6vw,118px);line-height:1;margin-top:14px;color:var(--gold)}
+.ns-rechts{padding-top:clamp(20px,6vh,60px)}
+.ns-liste{margin-top:40px}
+.ns-d{padding:30px 0;border-top:1px solid var(--gold-l)}
+html.js:not(.ruhig) .ns-d:not(.da){transform:translateY(60px)}
+.ns-d .titel{font-size:clamp(30px,3vw,44px);margin:10px 0 8px} .ns-d p:last-child{font-size:15px;color:var(--text2)}
+@media (max-width:760px){.v19 .ns-raster{grid-template-columns:1fr}.ns-steh{position:static}}
+
+/* 20 Bilder und Karte */
+.bk-band{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:6px;margin:clamp(50px,6vw,80px) 0;height:min(64vh,600px)}
+.bk-b{height:100%} .bk-b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bk-name{font-size:clamp(44px,5vw,76px);margin-top:10px}
+.bk-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin-top:26px}
+.bk-reihe > div{border-top:1px solid var(--gold);padding-top:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-content:start}
+.bk-reihe .titel{font-size:clamp(22px,2.1vw,28px)} .bk-reihe span{font:400 19px/1.3 var(--titel);color:var(--gold)} .bk-reihe p:last-child{grid-column:1/3;font-size:13.5px;color:var(--text2)}
+@media (max-width:760px){.bk-band{grid-template-columns:1fr;height:auto}.bk-b{aspect-ratio:4/5}.bk-reihe{grid-template-columns:1fr 1fr}}

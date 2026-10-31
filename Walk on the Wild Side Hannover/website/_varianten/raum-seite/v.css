@@ -1,0 +1,30 @@
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:340px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+
+/* Wild Side · Haus, «Der Raum» in der Sprache der übrigen Haus-Seite (31.10.2026): Steckbrief-Tafel und Bögen wie «Was andere sagen». */
+.rs-weg>div{grid-template-columns:112px 1fr}
+.rs-weg span{font-size:22px}
+@media (max-width:560px){.rs-weg>div{grid-template-columns:1fr;gap:6px}}
+
+/* Bögen: wie .et9, dunkel mit Goldlinie */
+.rs-reihe{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,3.4vw,56px);overflow:hidden;padding-top:20px;margin-top:clamp(30px,3.4vw,50px)}
+.rs-et{--grund:var(--nacht2);--l1:var(--gold);--l2:var(--gold-l);background:var(--nacht2)}
+.rs-sek.da .rs-et{transform:none}
+.et9-in.rs-in{display:block;justify-items:stretch;padding:clamp(14px,1.4vw,20px) clamp(14px,1.4vw,20px) clamp(24px,2.6vw,36px);text-align:center}
+.rs-foto{position:relative;aspect-ratio:4/3;border-radius:50% 50% 3px 3px / 30% 30% 3px 3px;overflow:hidden;margin-bottom:clamp(22px,2.4vw,32px)}
+.rs-bild{position:absolute;inset:0;margin:0;background:var(--nacht3) center/cover;background-image:var(--lq)}
+.rs-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 2.4s var(--k)}
+.rs-sek.da .rs-bild img{transform:none}
+.rs-in>.etikett{display:block;color:var(--gold)}
+.rs-in>i{display:block;width:46px;height:1px;background:var(--gold);margin:16px auto 0}
+.rs-in .rs-weg{text-align:left;margin:22px clamp(6px,1.4vw,22px) 0}
+/* Bogen und Tafel */
+.rs-zwei{align-items:stretch}
+.rs-zwei .rs-b{display:flex}.rs-zwei .rs-b>*{flex:1}
+.et9-in.rs-voll{padding:clamp(14px,1.4vw,20px)}
+.rs-voll .rs-foto{height:100%;aspect-ratio:auto;margin:0;min-height:420px;border-radius:50% 50% 3px 3px / 26% 26% 3px 3px}
+.rs-tafel{padding:clamp(26px,3vw,44px);transform:translateY(105%);transition:transform 1.5s cubic-bezier(.22,1,.36,1);transition-delay:.18s}
+.rs-sek.da .rs-tafel{transform:none}
+@media (max-width:760px){.rs-reihe{grid-template-columns:minmax(0,1fr);overflow:visible}.rs-et,.rs-tafel{transform:translateY(80px)}.rs-voll .rs-foto{min-height:0;aspect-ratio:4/3}}

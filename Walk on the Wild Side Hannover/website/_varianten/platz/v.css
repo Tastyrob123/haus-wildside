@@ -1,0 +1,130 @@
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:340px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+
+/* Wild Side · Haus, «Dein Platz» (31.10.2026). Bilder in normaler Grösse, nur transform und opacity, Auftritte deckend von unten. */
+.p{--p:0;--q:0}
+.p-kopf{margin-bottom:clamp(30px,3.6vw,52px)}
+.p-mitte{text-align:center}.p-mitte .kz{justify-content:center}
+.p-f{position:absolute;inset:0;margin:0;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq)}
+.p-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p h3.titel{font-size:clamp(24px,2.2vw,32px);line-height:1.12;margin:0 0 12px}
+.p .text{margin:0}
+.p .etikett{display:block;margin-bottom:12px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+
+/* 01 Vier Spalten */
+.a1{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,2.6vw,40px)}
+.a1-s{transform:translateY(90px);transition:transform 1.4s var(--k);transition-delay:calc(var(--n)*.14s)}
+.a1.da .a1-s{transform:none}
+.a1-b{position:relative;aspect-ratio:4/5;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);margin-bottom:22px}
+.a1 .text{font-size:15.5px}
+@media (max-width:900px){.a1{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:44px}}
+@media (max-width:560px){.a1{grid-template-columns:1fr}}
+
+/* 02 Im Wechsel */
+.a2{display:grid;gap:clamp(50px,6vw,90px)}
+.a2-e{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:center;max-width:1040px}
+.a2-r{margin-left:auto}.a2-r .a2-b{order:2}
+.a2-b{position:relative;aspect-ratio:4/3.2;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.a2-b img{transform:scale(1.14);transition:transform 2.4s var(--k)}
+.a2-e.da .a2-b img{transform:none}
+.a2-t{max-width:44ch}
+@media (max-width:760px){.a2-e{grid-template-columns:1fr;gap:22px}.a2-r .a2-b{order:0}}
+
+/* 03 Wähl deinen Platz */
+.a3-worte{display:flex;flex-wrap:wrap;gap:6px clamp(20px,3.4vw,54px);border-bottom:1px solid var(--gold-l);padding-bottom:18px;margin-bottom:clamp(26px,3vw,44px)}
+.a3-w{font-size:clamp(30px,3.6vw,54px);line-height:1.05;color:var(--text3);transition:color .3s;position:relative}
+.a3-w.an{color:var(--creme)}
+.a3-w::after{content:'';position:absolute;left:0;right:0;bottom:-19px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--k)}
+.a3-w.an::after{transform:none}
+.a3-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(30px,4vw,70px);align-items:center}
+.a3-rahmen{position:relative;aspect-ratio:4/3;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.a3-b{position:absolute;inset:0;transform:translateY(101%);transition:transform .9s var(--k)}
+.a3-b.an{transform:none;z-index:2}
+.a3-txt{position:relative;min-height:220px;overflow:hidden}
+.a3-t{position:absolute;inset:0 0 auto 0;transform:translateY(calc(100% + 260px));transition:transform .8s var(--k)}
+.a3-t.an{transform:none}
+@media (max-width:760px){.a3-g{grid-template-columns:1fr}.a3-txt{min-height:200px}}
+
+/* 04 Vier Bögen */
+.a4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,30px);overflow:hidden;padding-top:20px}
+.a4-et{--grund:var(--nacht2);--l1:var(--gold);--l2:var(--gold-l);background:var(--nacht2);transition-delay:calc(var(--n)*.16s)}
+.a4-sek.da .a4-et{transform:none}
+.et9-in.a4-in{display:block;justify-items:stretch;padding:12px 12px 26px;text-align:center}
+.a4-foto{position:relative;width:100%;aspect-ratio:3/3.6;border-radius:50% 50% 3px 3px / 32% 32% 3px 3px;overflow:hidden;margin-bottom:20px}
+.a4-in .etikett{color:var(--gold);margin:0}
+.a4-in>i{display:block;width:40px;height:1px;background:var(--gold);margin:14px auto}
+.a4-in p{margin:0 auto;padding:0 8px;font-size:14.5px;line-height:1.55;color:var(--text2);max-width:30ch}
+@media (max-width:900px){.a4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.a4{grid-template-columns:1fr;overflow:visible}.a4-et{transform:translateY(80px)}}
+
+/* 05 Einer nach dem anderen */
+.a5{position:relative;height:320vh}
+.a5-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.a5-g{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(36px,5vw,90px);align-items:center}
+.a5-rahmen{position:relative;aspect-ratio:4/3;max-height:66vh;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.a5-b{position:absolute;inset:0;transform:translateY(101%);transition:transform 1s var(--k)}
+.a5-b.an{transform:none}
+.a5-b.an ~ .a5-b:not(.an){transform:translateY(101%)}
+.a5-txt{position:relative;min-height:260px;overflow:hidden}
+.a5-t{position:absolute;inset:0 0 auto 0}
+.a5-t>div{transform:translateY(calc(100% + 300px));transition:transform .9s var(--k)}
+.a5-t.an>div{transform:none}
+@media (max-width:760px){.a5-g{grid-template-columns:1fr;gap:24px}.a5-txt{min-height:230px}}
+
+/* 06 Das Register */
+.a6-z{display:grid;grid-template-columns:minmax(200px,.8fr) minmax(0,1.4fr) 220px;gap:clamp(20px,3vw,50px);align-items:center;padding:20px 0;border-top:1px solid var(--gold-l);overflow:hidden}
+.a6-z:last-child{border-bottom:1px solid var(--gold-l)}
+.a6-z>*{transform:translateY(110%);transition:transform 1.1s var(--k);transition-delay:calc(.2s + var(--n)*.1s)}
+.a6.da .a6-z>*{transform:none}
+.a6-z>span{font-size:clamp(28px,2.8vw,42px);line-height:1.05}
+.a6-b{position:relative;aspect-ratio:4/3;border-radius:var(--rand);overflow:hidden}
+@media (max-width:760px){.a6-z{grid-template-columns:1fr 120px}.a6-z .text{grid-column:1/-1;grid-row:2}.a6-z>*{transform:none}}
+
+/* 07 Ein Platz, ein Bildschirm */
+.a7-e{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(30px,5vw,90px);align-items:center;min-height:min(86vh,760px);border-top:1px solid var(--gold-ll)}
+.a7-w{display:block;font-size:clamp(64px,9vw,140px);line-height:.95;margin-bottom:26px;overflow:hidden}
+.a7-t .text{max-width:40ch;font-size:17px}
+.a7-b{position:relative;aspect-ratio:4/4.6;max-height:66vh;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);transform:translateY(90px);transition:transform 1.5s var(--k)}
+.a7-e.da .a7-b{transform:none}
+@media (max-width:760px){.a7-e{grid-template-columns:1fr;min-height:0;padding:40px 0}.a7-b{aspect-ratio:4/3}}
+
+/* 08 Tischkarten */
+.a8{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);perspective:1400px}
+.a8-k{background:#F4ECDF;color:#2c2420;padding:12px 12px 24px;border-radius:4px;box-shadow:var(--schatten);text-align:center;transform-origin:50% 100%;transform:rotateX(-70deg);transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.16s)}
+.a8.da .a8-k{transform:none}
+.a8-b{position:relative;aspect-ratio:4/3;overflow:hidden;margin-bottom:20px}
+.a8-o{display:block;font:500 10.5px/1 var(--lauf);letter-spacing:.2em;text-transform:uppercase;color:var(--plakatrot);margin-bottom:10px}
+.a8-k h3.titel{color:#17110F;font-size:clamp(22px,1.9vw,27px)}
+.a8-k p{margin:0 auto;padding:0 6px;font-size:14px;line-height:1.55;max-width:30ch}
+@media (max-width:900px){.a8{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.a8{grid-template-columns:1fr}}
+
+/* 09 Der Weg hinein */
+.a9{position:relative;display:grid;gap:clamp(40px,6vw,90px);padding:20px 0}
+.a9-linie{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold-l)}
+.a9-weg{position:absolute;left:50%;top:0;bottom:0;width:0;transform:translateY(calc(var(--q)*100%))}
+.a9-weg b{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:#FFE7A8;box-shadow:0 0 22px 6px rgba(246,211,110,.6)}
+.a9-e{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(50px,7vw,120px);align-items:center}
+.a9-e .a9-b{grid-column:1}.a9-e .a9-t{grid-column:2}
+.a9-r .a9-b{grid-column:2;grid-row:1}.a9-r .a9-t{grid-column:1;grid-row:1;text-align:right}.a9-r .a9-t .text{margin-left:auto}
+.a9-b{position:relative;aspect-ratio:4/3.2;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.a9-t .text{max-width:40ch}
+@media (max-width:760px){.a9-linie,.a9-weg{left:8px}.a9-e,.a9-r{grid-template-columns:1fr;gap:18px;padding-left:28px}.a9-r .a9-b,.a9-r .a9-t,.a9-e .a9-b,.a9-e .a9-t{grid-column:1;grid-row:auto;text-align:left}.a9-r .a9-t .text{margin-left:0}}
+
+/* 10 Tafel mit Wahl */
+.a10{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,4vw,70px);align-items:stretch}
+.a10-tafel{padding:clamp(14px,1.6vw,24px) clamp(22px,2.6vw,38px)}
+.a10-z{display:block;width:100%;padding:18px 0;border-bottom:1px solid var(--gold-l)}
+.a10-z:last-child{border-bottom:0}
+.a10-z span{display:block;font-size:clamp(24px,2.2vw,30px);color:var(--text3);transition:color .3s;margin-bottom:8px}
+.a10-z p{margin:0;font-size:15px;line-height:1.55;color:var(--text3);transition:color .3s}
+.a10-z.an span{color:var(--gold)}.a10-z.an p{color:var(--text)}
+.a10-rahmen{position:relative;min-height:460px;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.a10-b{position:absolute;inset:0;transform:translateY(101%);transition:transform .9s var(--k)}
+.a10-b.an{transform:none;z-index:2}
+@media (max-width:760px){.a10{grid-template-columns:1fr}.a10-rahmen{order:-1;min-height:0;aspect-ratio:4/3}}
+@media (max-width:560px){.a3-worte{flex-wrap:nowrap;gap:14px}.a3-w{font-size:clamp(18px,5.2vw,26px)}.a3-w::after{bottom:-19px}}
+@media (max-width:760px){.a10-rahmen{width:100%;height:auto}}

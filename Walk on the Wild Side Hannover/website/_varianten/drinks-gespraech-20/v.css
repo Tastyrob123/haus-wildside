@@ -1,0 +1,350 @@
+/* Wild Side · Drinks, 20 neue Darstellungen für «Das Gespräch» und «Wie Momo arbeitet» (30.10.2026).
+   Bausteine der Seite: kz, Prata, Goldlinie, Kachel, Platte, Plakat (Creme). Bewegung nur über transform und opacity, ein Scroll-Takt in v.js. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.gx .kachel img,.gx .foto img{transform:none}
+.gx .etikett{display:block;margin-bottom:10px}
+.gx .text{font-size:15.5px}
+.gx#technik{padding-top:clamp(64px,8vw,110px)}
+.gx .ueber{margin-top:clamp(56px,7vw,90px)}
+.gx p.titel,.gx h3.titel{color:var(--text);text-wrap:balance}
+.gx .hell p.titel,.gx .hell h3.titel,.gx .plakat .titel,.gx .plakat p{color:var(--dunkel)}
+.gx .plakat .etikett,.gx .hell .etikett{color:#A07F3A}
+.ge-zitat small{display:block;margin-top:12px;font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3)}
+[data-pin] .innen{width:var(--innen)}
+
+/* 01 Quer durch */
+.q-pin{position:relative;height:300vh}
+.q-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.q-zug{display:flex;align-items:center;gap:clamp(40px,5vw,80px);padding:0 calc((100vw - var(--innen))/2);will-change:transform}
+.q-tafel{flex:0 0 auto;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,3.4vw,52px);align-items:end;width:min(900px,80vw)}
+.q-tafel .kachel{height:min(68vh,620px);aspect-ratio:3/4}
+.q-satz{padding-bottom:12px}
+.q-satz .titel{font-size:clamp(28px,3.2vw,46px);line-height:1.1}
+.q-satz .text{margin-top:14px;max-width:34ch}
+.q-ende{flex:0 0 auto;width:min(560px,60vw);padding-left:clamp(28px,3vw,48px);border-left:1px solid var(--gold-l)}
+.q-ende .titel{font-size:clamp(32px,3.8vw,54px);line-height:1.1;color:var(--text2)}
+.v01#gespraech{padding-bottom:0} .v01#technik{padding-top:clamp(40px,5vw,72px)}
+
+/* 02 Die Schilder */
+.s-a{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,5vw,84px);align-items:stretch}
+.s-bild{height:100%;min-height:600px}
+.s-a .text{margin-top:18px;max-width:46ch}
+.s-kette{margin-top:42px;position:relative;padding-top:26px}
+.s-kette::before{content:"";position:absolute;left:0;right:30%;top:0;height:2px;background:var(--gold);border-radius:2px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.s-schild{position:relative;padding-top:30px;transform-origin:50% 0;opacity:0}
+.s-schild::before,.s-schild::after{content:"";position:absolute;top:0;height:30px;width:1px;background:var(--gold)}
+.s-schild::before{left:18%} .s-schild::after{right:18%}
+.s-kette .s-schild:first-child{padding-top:0;margin-top:-26px} .s-kette .s-schild:first-child::before,.s-kette .s-schild:first-child::after{top:0;height:26px}
+.s-kette .s-schild:first-child .s-platte{margin-top:26px}
+.s-kette .s-schild{width:min(100%,560px)}
+.s-platte{background:var(--nacht);border-radius:var(--rand);padding:clamp(22px,2.6vw,34px) clamp(24px,3vw,40px);
+ box-shadow:inset 0 0 0 1px var(--gold),inset 0 0 0 7px var(--nacht),inset 0 0 0 8px var(--gold-l),var(--schatten)}
+.s-platte .titel{font-size:clamp(23px,2.4vw,32px);line-height:1.16}
+.s-a .ge-zitat{margin-top:44px}
+.s-stange{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);padding-top:30px;margin-top:10px}
+.s-stange::before{content:"";position:absolute;left:-2%;right:-2%;top:0;height:2px;background:var(--gold);border-radius:2px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.s-stange .kachel{aspect-ratio:4/3;margin-bottom:22px;box-shadow:none}
+.s-stange .s-platte h3{font-size:clamp(24px,2.4vw,32px)} .s-stange .s-platte .text{margin-top:10px}
+.da .s-schild,.s-kette.da .s-schild,.s-stange.da .s-schild{animation:s-schwing 2.1s cubic-bezier(.3,.6,.3,1) both;animation-delay:calc(var(--n)*.22s)}
+@keyframes s-schwing{0%{opacity:0;transform:translateY(-36px) rotate(-7deg)}18%{opacity:1}38%{transform:translateY(0) rotate(4.2deg)}62%{transform:rotate(-1.8deg)}82%{transform:rotate(.6deg)}100%{opacity:1;transform:none}}
+.s-kette:not(.da) .s-schild,.s-stange:not(.da) .s-schild{animation:none}
+
+/* 03 Mit Untertitel */
+.u-pin{position:relative;height:280vh}
+.u-buehne{position:sticky;top:0;height:100vh;display:grid;grid-template-rows:1fr auto auto;justify-items:center;align-content:center;gap:22px;padding:max(84px,10vh) 0 5vh}
+.u-rahmen{position:relative;height:min(58vh,600px);aspect-ratio:4/5;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.u-b{position:absolute;inset:0;transform:translateY(100%);transition:transform 1.1s var(--k)}
+.u-b.an{transform:none;z-index:2} .u-b.war{transform:none;z-index:1}
+.u-unter{position:relative;width:min(760px,88vw);min-height:9.5em;text-align:center}
+.u-z{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(22px);transition:opacity .6s var(--k),transform .9s var(--k)}
+.u-z.an{opacity:1;transform:none;transition-delay:.25s}
+.u-z .titel{font-size:clamp(24px,2.7vw,36px);line-height:1.15}
+.u-z .text{margin:10px auto 0;max-width:58ch;font-size:15px;color:var(--text2)}
+.u-striche{display:flex;gap:10px}
+.u-striche i{width:46px;height:2px;background:var(--gold-l);transition:background .5s}
+.u-striche i.an{background:var(--gold)}
+.v03#gespraech{padding-bottom:0}
+
+/* 04 Der Fächer */
+.f-faecher{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,44px);position:relative}
+.f-karte{position:relative;will-change:transform}
+.f-karte:nth-child(2){z-index:3} .f-karte:nth-child(1){z-index:2}
+.f-karte .kachel{aspect-ratio:4/5}
+.f-satz{margin-top:22px;opacity:0;transform:translateY(18px);transition:opacity .7s var(--k),transform .9s var(--k)}
+.f-faecher.offen .f-satz{opacity:1;transform:none}
+.f-faecher.offen .f-karte:nth-child(2) .f-satz{transition-delay:.12s} .f-faecher.offen .f-karte:nth-child(3) .f-satz{transition-delay:.24s}
+.f-satz .titel{font-size:clamp(22px,2.2vw,30px);line-height:1.16}
+.f-satz .text{margin-top:10px}
+
+/* 05 Platten auf Platten */
+.k-stapel{position:relative}
+.k-karte{position:sticky;top:calc(14vh + var(--j)*20px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,4vw,64px);align-items:center;padding:clamp(18px,2vw,26px);
+ min-height:min(64vh,560px);transform-origin:50% 0;will-change:transform}
+.k-karte + .k-karte{margin-top:18vh}
+.k-karte .kachel{height:min(58vh,520px);box-shadow:none}
+.k-satz{padding-right:clamp(10px,3vw,48px)}
+.k-satz .titel{font-size:clamp(28px,3.2vw,46px);line-height:1.1}
+.k-satz .text{margin-top:16px;max-width:44ch}
+
+/* 06 Wort für Wort */
+.w-block{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(28px,4vw,64px);align-items:end;padding:clamp(34px,4vw,56px) 0;border-top:1px solid var(--gold-ll)}
+.w-block:last-child{border-bottom:1px solid var(--gold-ll)}
+.gx .w-gross{font-size:clamp(44px,6.2vw,96px);line-height:1.04;letter-spacing:-.01em;text-wrap:wrap}
+.w-w{opacity:.2;transition:opacity .45s ease}
+.w-w.an{opacity:1}
+.w-bild{width:clamp(220px,23vw,330px);aspect-ratio:3/4}
+.w-tech .text{margin-top:18px;max-width:58ch}
+
+/* 07 Das Laborblatt */
+.l-a{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.l-bild{min-height:560px;height:100%}
+.l-a .text{margin-top:18px;max-width:46ch}
+.l-blatt{margin-top:34px;padding:clamp(10px,1.4vw,18px) clamp(26px,3vw,42px)}
+.l-zeile{position:relative;padding:22px 0}
+.l-zeile + .l-zeile .l-linie,.l-schritt .l-linie{position:absolute;left:0;right:0;top:0;height:1px;background:rgba(160,127,58,.5);transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--k);transition-delay:calc(var(--n)*.3s + .2s)}
+.l-zeile .titel{font-size:clamp(22px,2.3vw,30px);line-height:1.18}
+.l-zeile{opacity:0;transform:translateY(14px);transition:opacity .7s var(--k),transform .9s var(--k);transition-delay:calc(var(--n)*.3s + .35s)}
+.vauf.da .l-zeile{opacity:1;transform:none} .vauf.da .l-linie{transform:scaleX(1)}
+.l-a .ge-zitat{margin-top:34px}
+.l-prot{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,8fr);gap:clamp(24px,3.4vw,52px);padding:clamp(18px,2vw,26px);align-items:stretch}
+.l-prot + .l-prot{margin-top:24px}
+.l-pbild{aspect-ratio:4/5;box-shadow:none}
+.l-rechts{padding:clamp(6px,1.6vw,22px) clamp(4px,1.6vw,22px) 6px 0;display:flex;flex-direction:column}
+.l-rechts h3{font-size:clamp(28px,3vw,42px)}
+.l-schritte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,34px);margin-top:auto;padding-top:26px}
+.l-schritt{position:relative;padding-top:18px;opacity:0;transform:translateY(14px);transition:opacity .7s var(--k),transform .9s var(--k);transition-delay:calc(var(--n)*.35s + .3s)}
+.l-schritt .l-linie{background:var(--gold);transition-delay:calc(var(--n)*.35s + .15s)}
+.vauf.da .l-schritt{opacity:1;transform:none}
+.l-schritt p{font-size:15px;color:var(--text2);line-height:1.55}
+.l-schritt:last-child p{color:var(--text);font-family:var(--titel);font-size:clamp(18px,1.6vw,21px);line-height:1.3}
+.l-notiz{margin-top:18px;font-size:13.5px;color:var(--text3)}
+
+/* 08 Die Rechnung */
+.m-rechnung{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.15fr);gap:clamp(10px,1.4vw,22px);align-items:start}
+.m-teil{will-change:transform}
+.m-teil .kachel{aspect-ratio:4/5;margin-bottom:18px}
+.m-teil .titel{font-size:clamp(18px,1.75vw,24px);line-height:1.2}
+.m-teil .text{margin-top:8px;font-size:14px;line-height:1.55}
+.m-op{font-size:clamp(34px,3.6vw,54px);color:var(--gold);line-height:1;padding-top:calc(var(--opy,120px));align-self:start}
+.m-ergebnis{padding:clamp(22px,2.4vw,34px);align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.m-gross{font-size:clamp(28px,3vw,44px);line-height:1.08}
+.m-zitat{margin-top:22px;font-family:var(--titel);font-size:clamp(16px,1.4vw,19px);color:var(--dunkel2);line-height:1.35}
+.m-zitat small{display:block;margin-top:10px;font:500 10.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:#A07F3A}
+
+/* 09 Die Drehbühne */
+.p-pin{position:relative;height:300vh}
+.p-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;perspective:2200px;padding-top:6vh}
+.p-prisma{--w:min(1040px,88vw);--h:min(62vh,540px);position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;will-change:transform}
+.p-seite{position:absolute;inset:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3.4vw,56px);align-items:center;padding:clamp(16px,1.8vw,24px);
+ backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(calc(var(--j)*120deg)) translateZ(calc(var(--w)*.2887))}
+.p-seite .kachel{height:100%;aspect-ratio:4/5;box-shadow:none}
+.p-satz{padding-right:clamp(10px,2.6vw,40px)}
+.p-satz .titel{font-size:clamp(30px,3.7vw,56px);line-height:1.08}
+.p-satz .text{margin-top:14px;max-width:46ch}
+.v09#gespraech{padding-bottom:0} .v09 .ueber{margin-top:0}
+
+/* 10 Sie stehen auf */
+.a-boden{perspective:1500px;perspective-origin:50% 20%}
+.a-platte{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(18px,2vw,26px) clamp(18px,2vw,26px) clamp(18px,2vw,26px) clamp(28px,4vw,60px);
+ transform-origin:50% 100%;will-change:transform,opacity}
+.a-platte + .a-platte{margin-top:28px}
+.a-platte .kachel{height:clamp(240px,34vh,340px);box-shadow:none}
+.a-satz .titel{font-size:clamp(26px,3vw,42px);line-height:1.12}
+.a-satz .text{margin-top:14px;max-width:48ch}
+
+/* 11 Die Fallblatt-Tafel */
+.fb-a,.fb-b{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(36px,5vw,80px);align-items:end}
+.fb-b{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}
+.fb-a .text{margin-top:18px;max-width:46ch}
+.fb-bild{aspect-ratio:3/4}
+.fb-rechts .ge-zitat{margin-top:26px}
+.fb-b .g-kopf{grid-template-columns:1fr;margin-bottom:28px}
+.fb-tafel{margin-top:34px;padding:6px clamp(22px,2.6vw,36px)}
+.fb-b .fb-tafel{margin-top:0}
+.fb-zeile{display:grid;grid-template-columns:minmax(150px,2fr) minmax(0,5fr);gap:clamp(18px,2.4vw,36px);align-items:baseline;padding:22px 0;perspective:900px}
+.fb-zeile + .fb-zeile{border-top:1px solid var(--gold-l)}
+.fb-blatt{transform-origin:50% 0;transform:rotateX(-96deg);opacity:0;transition:transform 1s cubic-bezier(.34,1.45,.5,1),opacity .35s ease;transition-delay:calc(var(--n)*.32s + .3s)}
+.fb-links{opacity:0;transition:opacity .6s ease;transition-delay:calc(var(--n)*.32s + .1s)}
+.vauf.da .fb-blatt{transform:none;opacity:1} .vauf.da .fb-links{opacity:1}
+.fb-zeile .titel{font-size:clamp(22px,2.3vw,30px);line-height:1.18}
+.fb-zeile .text{color:var(--text2)}
+
+/* 12 Die Doppelseite */
+.mz-seite{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;position:relative}
+.mz-seite::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold-l)}
+.mz-bildseite{padding-right:clamp(30px,4vw,64px)}
+.mz-bildseite .kachel{height:min(900px,120vh);min-height:620px}
+.mz-bildseite figcaption{margin-top:12px;font-size:13px;color:var(--text3)}
+.mz-text{padding-left:clamp(30px,4vw,64px)}
+.mz-lead{margin-top:22px;font-size:17px;line-height:1.65;color:var(--text2)}
+.mz-text .mz-lead::first-letter,.mz-b-kopf .mz-lead::first-letter{float:left;font-family:var(--titel);font-size:4.1em;line-height:.86;padding:6px 12px 0 0;color:var(--gold)}
+.mz-fragen{margin-top:34px}
+.mz-fragen > div{padding:20px 0;border-top:1px solid var(--gold-ll)}
+.mz-fragen .titel{font-size:clamp(22px,2.2vw,29px);line-height:1.2}
+.mz-fragen .titel::before{content:"— ";color:var(--gold)}
+.mz-zitat{margin:30px 0 0;padding:26px 0;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.mz-zitat .titel{font-size:clamp(26px,2.8vw,40px);line-height:1.15}
+.mz-zitat small{display:block;margin-top:14px;font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3)}
+.mz-b-kopf{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:0 clamp(36px,5vw,80px);align-items:end;margin-bottom:clamp(36px,4vw,56px)}
+.mz-b-kopf .kz{grid-column:1/-1}
+.mz-b-kopf .mz-lead{margin-top:0}
+.mz-spalten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(26px,3.4vw,52px)}
+.mz-spalte{position:relative;padding-top:22px;display:flex;flex-direction:column}
+.mz-regel{position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.18s + .2s)}
+.da .mz-regel{transform:scaleX(1)}
+.mz-spalte .kachel{aspect-ratio:4/5;margin-bottom:22px}
+.mz-spalte.mz-unten .kachel{margin:24px 0 0}
+.mz-spalte h3{font-size:clamp(26px,2.6vw,36px)}
+.mz-spalte .text{margin-top:10px}
+
+/* 13 Das Wort dahinter */
+.v13{overflow:hidden}
+.gx p.r-wort{position:absolute;left:0;top:clamp(220px,32vh,340px);white-space:nowrap;text-wrap:nowrap;width:max-content;font-size:clamp(150px,19vw,300px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(216,178,100,.3);
+ pointer-events:none;will-change:transform;z-index:0}
+.v13 .innen{position:relative;z-index:1}
+.r-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px)}
+.r-platte{padding:clamp(14px,1.4vw,18px);display:flex;flex-direction:column}
+.r-platte .kachel{aspect-ratio:4/5;box-shadow:none}
+.r-satz{padding:22px clamp(6px,1vw,12px) 10px}
+.r-satz .titel{font-size:clamp(22px,2.2vw,30px);line-height:1.16}
+.r-satz .text{margin-top:10px}
+
+/* 14 Das Regal */
+.rg-faecher,.rg-etiketten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,48px);padding:0 clamp(18px,2.4vw,36px)}
+.rg-raum{overflow:hidden;padding-top:20px;margin-top:-20px}
+.rg-raum .kachel{aspect-ratio:4/5;border-radius:var(--rand) var(--rand) 3px 3px}
+.rg-steig{transform:translateY(104%);transition:transform 1.5s var(--k);transition-delay:calc(var(--n)*.2s)}
+.vauf.da .rg-steig{transform:none}
+.rg-brett{position:relative;z-index:2;height:18px;border-radius:3px;background:linear-gradient(var(--nacht4),var(--nacht2));box-shadow:inset 0 1px 0 var(--gold),0 22px 30px -16px rgba(0,0,0,.85)}
+.rg-etiketten{padding-top:24px}
+.rg-etikett{padding:18px 20px 20px;background:var(--creme);border-radius:3px 3px var(--rand) var(--rand);box-shadow:inset 0 0 0 1px rgba(160,127,58,.3);
+ opacity:0;transform:translateY(16px);transition:opacity .8s var(--k),transform 1s var(--k);transition-delay:calc(var(--n)*.2s + .7s)}
+.vauf.da .rg-etikett{opacity:1;transform:none}
+.rg-etikett .etikett{color:#A07F3A} .gx .rg-etikett .titel{color:var(--dunkel);font-size:clamp(20px,2vw,27px);line-height:1.18}
+.rg-etikett .text{color:var(--dunkel2);margin-top:8px;font-size:14.5px}
+
+/* 15 Es wird klar */
+.kw-bild{position:relative;overflow:hidden;border-radius:var(--rand);box-shadow:var(--schatten);background:var(--nacht3) center/cover;background-image:var(--lq)}
+.kw-bild img{width:100%;height:100%;object-fit:cover;display:block}
+.kw-bild .kw-trueb{position:absolute;inset:0;filter:grayscale(.75) sepia(.35) brightness(.55) contrast(.82);will-change:opacity}
+.kw-a{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,5vw,84px);align-items:stretch}
+.kw-a > .kw-bild{min-height:620px}
+.kw-a .text{margin-top:18px;max-width:46ch}
+.kw-liste{margin-top:30px}
+.kw-liste > div{padding:20px 0;border-top:1px solid var(--gold-ll)}
+.kw-liste .titel{font-size:clamp(22px,2.3vw,30px);line-height:1.18}
+.kw-a .ge-zitat{margin-top:30px}
+.kw-spalten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3vw,48px)}
+.kw-sp .kw-bild{aspect-ratio:4/5;margin-bottom:22px}
+.kw-sp h3{font-size:clamp(26px,2.6vw,36px)} .kw-sp .text{margin-top:10px}
+
+/* 16 Eingeschenkt */
+.e-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3.4vw,56px)}
+.e-sp{display:flex;flex-direction:column}
+.e-satz{padding:0 4px}
+.e-reihe .e-sp > .e-satz:first-child{min-height:7.2em;margin-bottom:18px}
+.e-reihe .e-sp > .e-satz:last-child{margin-top:24px}
+.e-satz .titel{font-size:clamp(21px,2.1vw,28px);line-height:1.18}
+.e-satz .text{margin-top:10px}
+.e-glas{position:relative;aspect-ratio:3/4;border-radius:var(--rand) var(--rand) 34px 34px;overflow:hidden;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.e-fuell{position:absolute;inset:0;overflow:hidden;transform:translateY(100%);will-change:transform}
+.e-fuell::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold);z-index:2;box-shadow:0 0 0 1px rgba(216,178,100,.18)}
+.e-gegen{position:absolute;inset:0;transform:translateY(-100%);will-change:transform}
+.e-gegen .kachel{position:absolute;inset:0;border-radius:0;box-shadow:none}
+
+/* 17 Rund um das Bild */
+.u2{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(40px,5vw,84px);align-items:stretch}
+.u2-bild{height:min(84vh,760px);min-height:560px;aspect-ratio:3/4}
+.u2-sp{display:flex;flex-direction:column;justify-content:space-between;gap:30px;padding:8px 0}
+.u2-r{justify-content:space-between}
+.u2-l .text{margin-top:18px}
+.u2-satz{position:relative;opacity:0;transform:translateY(22px);transition:opacity .8s var(--k),transform 1s var(--k);transition-delay:calc(var(--n)*.28s + .55s)}
+.u2-linie{position:absolute;top:8px;height:1px;width:clamp(40px,5vw,84px);background:var(--gold);transform:scaleX(0);transition:transform .9s var(--k);transition-delay:calc(var(--n)*.28s + .3s)}
+.u2-r .u2-linie{right:100%;transform-origin:left} .u2-l .u2-linie{left:100%;transform-origin:right}
+.u2-satz{transition-property:opacity,transform}
+.vauf.da .u2-satz{opacity:1;transform:none} .vauf.da .u2-linie{transform:scaleX(1)}
+.u2-satz .titel{font-size:clamp(22px,2.2vw,30px);line-height:1.18}
+.u2-satz .text{margin-top:10px}
+.u2-l .u2-satz{text-align:right} .u2-l .u2-satz .ge-zitat{margin:0;padding:0 22px 0 0;border-left:0;border-right:1px solid var(--gold-l);margin-left:auto}
+.u2-b .u2-l .u2-satz{text-align:right}
+
+/* 18 Die Bilderwand */
+.sa-wand{display:grid;gap:clamp(14px,1.6vw,22px)}
+.sa-wa{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,clamp(190px,24vh,250px));grid-template-areas:"f1 f1 q1 f2" "f1 f1 f3 f2" "q2 f4 f3 q3"}
+.sa-wb{grid-template-columns:minmax(0,4fr) minmax(0,4fr) minmax(0,4fr);grid-template-rows:auto auto;grid-template-areas:"f1 t1 f2" "t3 f3 t2"}
+.sa-wb .sa-rahmen{aspect-ratio:4/5}
+.sa-rahmen{padding:clamp(10px,1.1vw,14px);background:var(--creme2);border-radius:6px;box-shadow:inset 0 0 0 1px rgba(160,127,58,.45),inset 0 0 0 5px var(--creme2),inset 0 0 0 6px rgba(160,127,58,.3),var(--schatten);
+ opacity:0;transform:translateY(30px) scale(.965);transition:opacity .9s var(--k),transform 1.3s var(--k);transition-delay:calc(var(--n)*.12s)}
+.sa-rahmen .foto{width:100%;height:100%;border-radius:2px}
+.sa-karte{display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(18px,2vw,28px);background:var(--nacht2);border-radius:6px;box-shadow:inset 0 0 0 1px var(--gold-l);
+ opacity:0;transform:translateY(30px);transition:opacity .9s var(--k),transform 1.3s var(--k);transition-delay:calc(var(--n)*.12s + .1s)}
+.vauf.da .sa-rahmen,.vauf.da .sa-karte{opacity:1;transform:none}
+.sa-karte .titel{font-size:clamp(20px,2vw,27px);line-height:1.18}
+.sa-karte h3.titel{font-size:clamp(24px,2.4vw,32px)}
+.sa-karte .text{margin-top:10px;font-size:14.5px}
+.sa-wb .sa-karte{justify-content:center}
+
+/* 19 Zum Umblättern */
+.h-pin{position:relative;height:300vh}
+.h-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;padding-top:7vh}
+.h-heft{position:relative;width:min(1120px,92vw);height:min(72vh,620px);display:grid;grid-template-columns:1fr 1fr;perspective:2600px}
+.h-heft::after{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:1px;background:rgba(160,127,58,.4);z-index:40;pointer-events:none}
+.h-links,.h-rechts,.h-vorn,.h-hinten{background:var(--creme);color:var(--dunkel);padding:clamp(28px,3.6vw,56px)}
+.h-links{border-radius:var(--rand-g) 0 0 var(--rand-g);box-shadow:var(--schatten);display:flex;flex-direction:column;justify-content:center}
+.h-rechts{border-radius:0 var(--rand-g) var(--rand-g) 0;box-shadow:var(--schatten);display:flex;flex-direction:column;justify-content:center}
+.h-links .kz .was,.h-links .text{color:var(--dunkel2)} .h-links .titel{color:var(--dunkel)} .h-links .text{margin-top:18px;max-width:40ch}
+.h-heft .etikett{color:#A07F3A}
+.h-frage{font-size:clamp(28px,3.2vw,46px);line-height:1.1;color:var(--dunkel)!important}
+.h-wer{display:block;margin-top:18px;font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:#A07F3A}
+.h-blatt{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:0 50%;transform-style:preserve-3d;will-change:transform}
+.h-vorn,.h-hinten{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center}
+.h-vorn{border-radius:0 var(--rand-g) var(--rand-g) 0;box-shadow:inset 1px 0 0 rgba(160,127,58,.25)}
+.h-hinten{transform:rotateY(180deg);border-radius:var(--rand-g) 0 0 var(--rand-g);padding:clamp(14px,1.6vw,22px)}
+.h-hinten .foto{width:100%;height:100%;border-radius:8px}
+.gx .h-vorn h3.titel{font-size:clamp(28px,3vw,42px);color:var(--dunkel)} .h-vorn .text{margin-top:14px;color:var(--dunkel2);max-width:44ch}
+.v19#gespraech{padding-bottom:0} .v19 .ueber{margin-top:0}
+
+/* 20 Bilder in der Zeile */
+.z-zeile{padding:clamp(28px,3.4vw,48px) 0;border-top:1px solid var(--gold-ll)}
+.z-zeile:last-child{border-bottom:1px solid var(--gold-ll)}
+.z-gross{font-size:clamp(38px,5.2vw,80px);line-height:1.14;letter-spacing:-.01em}
+.z-bild{display:inline-block;position:relative;width:2.1em;height:.86em;vertical-align:-.08em;border-radius:12px;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);
+ transform:scaleX(0);transform-origin:left center;transition:transform 1.2s var(--k);box-shadow:var(--schatten-k)}
+.z-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.z-bild.an{transform:none}
+.z-tech{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(28px,4vw,64px);align-items:end}
+.z-tech .text{max-width:44ch;padding-bottom:10px}
+
+/* Schmal: alles untereinander, gepinnte Bühnen werden normale Abfolgen */
+@media (max-width:760px){
+  .q-pin,.u-pin,.p-pin,.h-pin{height:auto!important}
+  .q-buehne{position:static;height:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 0 20px}
+  .q-zug{transform:none!important;padding:0 16px;gap:18px}
+  .q-tafel{grid-template-columns:1fr;width:80vw;scroll-snap-align:start} .q-tafel .kachel{height:auto;aspect-ratio:4/5} .q-ende{width:70vw}
+  .s-a,.l-a,.fb-a,.fb-b,.kw-a,.mz-seite,.mz-b-kopf,.u2,.z-tech{grid-template-columns:1fr}
+  .s-bild{position:static;height:auto;aspect-ratio:4/5} .s-stange,.f-faecher,.r-reihe,.kw-spalten,.e-reihe,.mz-spalten,.rg-etiketten{grid-template-columns:1fr}
+  .rg-faecher{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px} .rg-etiketten{gap:12px}
+  .u-buehne{position:static;height:auto;padding:0;display:block} .u-rahmen{margin:0 auto;width:100%;height:auto;aspect-ratio:4/5} .u-b{position:static;transform:none;display:none} .u-b:first-child{display:block}
+  .u-unter{min-height:0;margin-top:20px} .u-z{position:static;opacity:1;transform:none;margin-bottom:20px} .u-striche{display:none}
+  .k-karte,.a-platte,.l-prot{grid-template-columns:1fr} .k-karte{position:static;transform:none!important} .k-karte + .k-karte{margin-top:20px}
+  .w-block{grid-template-columns:1fr} .w-bild{width:60%}
+  .m-rechnung{grid-template-columns:1fr} .m-op{padding:0;text-align:center} .m-teil{transform:none!important}
+  .p-buehne{position:static;height:auto;display:block;perspective:none;padding:0} .p-prisma{width:auto;height:auto;transform:none!important}
+  .p-seite{position:relative;transform:none;grid-template-columns:1fr;margin-bottom:20px} .p-seite .kachel{height:auto;width:100%}
+  .l-schritte{grid-template-columns:1fr}
+  .mz-seite::before{display:none} .mz-bildseite,.mz-text{padding:0} .mz-bildseite .kachel{height:auto;min-height:0;aspect-ratio:4/5} .mz-text{margin-top:30px}
+  .u2-bild{height:auto;min-height:0;width:100%} .u2-l .u2-satz{text-align:left} .u2-linie{display:none} .u2-l .u2-satz .ge-zitat{border-right:0;border-left:1px solid var(--gold-l);padding:0 0 0 22px;margin:0}
+  .sa-wa{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-template-areas:"f1 f1" "q1 q1" "f2 f3" "q2 q2" "f4 f4" "q3 q3"} .sa-wa .sa-rahmen{aspect-ratio:4/5}
+  .sa-wb{grid-template-columns:1fr;grid-template-areas:"f1" "t1" "f2" "t2" "f3" "t3"}
+  .h-buehne{position:static;height:auto;display:block;perspective:none;padding:0} .h-heft{display:block;height:auto;width:auto}
+  .h-heft::after{display:none} .h-links,.h-rechts{border-radius:var(--rand)} .h-rechts{margin-top:16px}
+  .h-blatt{position:relative;left:0;width:auto;height:auto;transform:none!important;margin-top:16px} .h-vorn,.h-hinten{position:relative;transform:none;border-radius:var(--rand)} .h-hinten .foto{aspect-ratio:4/5}
+  .h-heft{display:flex;flex-direction:column} .h-rechts{order:9}
+  .r-wort{display:none}
+}

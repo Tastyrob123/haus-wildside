@@ -1,0 +1,84 @@
+/* Kopf über dem Schachbrett: Fassungen. Lesetext grösser und heller als heute, Bewegung nur transform und opacity. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+.kh{--rosa:#FEE1E6;--kartrot:#D30625;--k3:cubic-bezier(.22,1,.36,1);margin-bottom:clamp(56px,7vw,100px)}
+.kh .tx{font-size:clamp(17px,1.3vw,19.5px);line-height:1.65;color:var(--text);opacity:.88;max-width:58ch}
+.kh .lead{font-family:var(--titel);font-size:clamp(22px,1.9vw,28px);line-height:1.38;color:var(--text);max-width:34ch}
+.kh .lead+.tx{margin-top:22px}
+.kh .knoepfe{margin-top:34px}
+.kh .kh-riesig{font-size:clamp(52px,8.4vw,128px);line-height:.98}
+.kh .kh-gross{font-size:clamp(44px,6vw,92px);line-height:1}
+.kh .km{opacity:0;transform:translate3d(0,46px,0);transition:transform 1.3s var(--k3),opacity .9s var(--k3);transition-delay:calc(.25s + var(--i)*.14s)}
+#karte.da .kh .km,.ruhig .kh .km{opacity:1;transform:none}
+
+/* 01 Mittig: alles auf der Mittelachse, der erste Satz als Lead in der Titelschrift, der zweite zoomt sanft heran */
+.kh01 .kh-m{display:flex;flex-direction:column;align-items:center;text-align:center}
+.kh01 .kz{justify-content:center}
+.kh01 .lead{margin-top:clamp(30px,3.4vw,48px);max-width:40ch}
+.kh01 .lead.km{transform:scale(1.06)}
+.kh01 .tx{max-width:62ch}
+
+/* 02 Zwei Jahre: links Titel und Lead, rechts 2026 und 2023 als grosse Zahlen, Goldlinien ziehen sich */
+.kh02{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(40px,6vw,100px);align-items:start}
+.kh02 .lead{margin-top:28px}
+.kh-j{display:grid;gap:clamp(30px,3.4vw,46px);padding-top:8px}
+.kh-j b{display:block;font:400 clamp(48px,5vw,72px)/1 var(--titel);color:var(--gold)}
+.kh-j i{display:block;height:1px;background:var(--gold);opacity:.5;margin:16px 0 18px;transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--k3);transition-delay:calc(.6s + var(--i)*.14s)}
+#karte.da .kh-j i,.ruhig .kh-j i{transform:none}
+.kh-j div{--i:inherit}
+
+/* 03 Auf Rosa: der Kopf als rosa Platte wie die Karte, Titel in ihrem Rot; die Platte steigt */
+.kh-platte{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(36px,5vw,80px);align-items:end;background:var(--rosa);border-radius:4px;padding:clamp(36px,5vw,80px);
+ transform:translate3d(0,90px,0);opacity:0;transition:transform 1.4s var(--k3),opacity 1s var(--k3)}
+#karte.da .kh-platte,.ruhig .kh-platte{transform:none;opacity:1}
+.kh03 .titel{color:var(--kartrot)} .kh03 .kz .uhr{color:var(--kartrot)} .kh03 .kz i{background:var(--kartrot)} .kh03 .kz .was{color:rgba(160,20,50,.6)}
+.kh03 .lead{color:#8E0A24} .kh03 .tx{color:rgba(120,14,36,.85);opacity:1}
+.kh03 .km{transition-delay:calc(.6s + var(--i)*.14s)}
+
+/* 04 Drei Spalten: Titel über die Breite, eine Goldlinie zieht sich darunter durch, drei Spalten Text */
+.kh-linie{display:block;height:1px;background:var(--gold);opacity:.55;margin:clamp(30px,3.6vw,52px) 0;transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--k3) .3s}
+#karte.da .kh-linie,.ruhig .kh-linie{transform:none}
+.kh-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,3.6vw,60px)}
+.kh-drei .knoepfe{margin-top:28px}
+
+/* 05 Der grosse Satz: der erste Satz gross in der Titelschrift über die Breite, darunter zwei Spalten */
+.kh05 .satz{font-family:var(--titel);font-size:clamp(30px,3.6vw,54px);line-height:1.18;color:var(--text);max-width:24ch;margin-top:clamp(30px,3.4vw,50px)}
+.kh05 .satz.km{transform:translate3d(0,70px,0)}
+.kh-zwei{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(30px,5vw,80px);margin-top:clamp(34px,4vw,56px)}
+.kh-zwei .tx+.tx{margin-top:0}
+
+/* 06 Die Goldlinie: Titel links, eine senkrechte Goldlinie wächst, Text rechts mittig dazu */
+.kh-g{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:center}
+.kh-senk{display:block;align-self:stretch;background:var(--gold);opacity:.6;transform:scaleY(0);transform-origin:top;transition:transform 1.4s var(--k3) .3s}
+#karte.da .kh-senk,.ruhig .kh-senk{transform:none}
+
+/* 07 Gespiegelt: Text links, der Titel rechts in zwei Zeilen, rechtsbündig */
+.kh-sp{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,5vw,90px);align-items:end}
+.kh-r{text-align:right} .kh-r .kz{justify-content:flex-end}
+
+/* 08 Zwei Zeilen: Titel riesig in zwei Zeilen, Text unten auf der Linie der letzten Zeile */
+.kh-zz{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(36px,5vw,80px);align-items:end}
+.kh08 .tx{font-size:clamp(16px,1.2vw,18px)}
+
+/* 09 Die Leiste: Titel und Knopf auf einer Linie, darunter Text zweispaltig über einer Haarlinie */
+.kh-le{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.kh-le .knoepfe{margin:0 0 10px}
+.kh-strich{border-top:1px solid var(--gold-l);padding-top:clamp(26px,3vw,40px)}
+
+/* 10 Auf Rot: der Kopf als rote Platte im Rot der Karte, Schrift Rosa */
+.kh10 .kh-platte{background:var(--kartrot)}
+.kh10 .titel,.kh10 .kz .uhr{color:var(--rosa)} .kh10 .kz i{background:var(--rosa)} .kh10 .kz .was{color:rgba(254,225,230,.7)}
+.kh10 .lead{color:var(--rosa)} .kh10 .tx{color:rgba(254,225,230,.88);opacity:1}
+.kh10 .knopf.rot{background:var(--nacht)}
+.kh10 .km{transition-delay:calc(.6s + var(--i)*.14s)}
+.kh10 .kh-platte{transform:scale(.94)} #karte.da .kh10 .kh-platte{transform:none}
+
+@media (max-width:860px){
+ .kh02,.kh-platte,.kh-drei,.kh-zwei,.kh-g,.kh-sp,.kh-zz{grid-template-columns:1fr}
+ .kh-senk{height:1px;transform-origin:left}
+ .kh-r{text-align:left;order:-1} .kh-r .kz{justify-content:flex-start}
+ .kh-platte{padding:28px 22px}
+}

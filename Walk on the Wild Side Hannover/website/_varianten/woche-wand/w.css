@@ -1,0 +1,59 @@
+/* Wild Side · Programm, «Die Woche»: was links und rechts vom Kinoschild steht (30.10.2026). Nur echtes Material der Bar:
+   der Druck des Kirchengewölbes an der Decke, die Messing-Wandleuchten an der Betonwand, Fotos der Rückbar, Zeiten und Adresse. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+.ww-zeile{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(20px,3vw,56px);margin-bottom:clamp(48px,6vw,90px)}
+.ww-zeile .wo-tafel{margin:0;position:relative;z-index:2}
+.ww-l,.ww-r{position:relative;z-index:1;min-width:0}
+
+/* 1 Das Gewölbe als Tapete: der Deckendruck der Bar liegt gedämpft hinter dem ganzen Abschnitt */
+.ww1{position:relative;isolation:isolate}
+.ww1::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(19,14,13,.74),rgba(19,14,13,.82)),url(../../assets/bild/decke-2017-1600.webp) center/cover}
+.ww1::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(var(--nacht),transparent 14%,transparent 86%,var(--nacht))}
+
+/* 2 Das Gewölbe als Band: nur hinter dem Schild, über die volle Breite, oben und unten eine Goldlinie */
+.ww2 .ww-zeile{grid-template-columns:minmax(0,1fr)}
+.ww-band{position:absolute;left:50%;width:100vw;top:-56px;bottom:-56px;transform:translateX(-50%);z-index:0;
+ background:linear-gradient(90deg,rgba(19,14,13,.55),rgba(19,14,13,.25) 50%,rgba(19,14,13,.55)),linear-gradient(rgba(19,14,13,.35),rgba(19,14,13,.35)),url(../../assets/bild/decke-2017-1600.webp) center 45%/cover;
+ box-shadow:inset 0 1px 0 rgba(216,178,100,.45),inset 0 -1px 0 rgba(216,178,100,.45)}
+.ww2 .ww-zeile{margin:56px 0 calc(56px + clamp(48px,6vw,90px))}
+.ww2 .wo-tafel{justify-self:center}
+
+/* 3 Zwei Wandleuchten: gezeichnet nach den Messingleuchten an der Betonwand der Bar, je ein warmer Lichtkegel auf der Wand */
+.ww-leuchte{display:flex;justify-content:center;position:relative;height:clamp(250px,28vw,400px)}
+.ww-leuchte::before{content:"";position:absolute;left:50%;top:38%;width:clamp(260px,26vw,380px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+ background:radial-gradient(circle,rgba(255,196,120,.26),rgba(255,170,90,.08) 45%,transparent 70%)}
+.ww-leuchte svg{position:relative;height:100%;width:auto;overflow:visible}
+.ww-leuchte .stab{stroke:#B08A4E;stroke-width:2;fill:none}
+.ww-leuchte .kerze{fill:#F3E7D2}
+.ww-leuchte .flamme{fill:#FFE2A6;filter:drop-shadow(0 0 6px rgba(255,200,120,.9))}
+
+/* 4 Kleine Tafeln daneben: links die Abende, rechts die Adresse, aus derselben Rillentafel */
+.ww-mini{justify-self:end;padding:9px;border-radius:10px;background:linear-gradient(160deg,#4A3520,#2A1D12 45%,#3B2A18);box-shadow:inset 0 0 0 1px rgba(232,196,120,.5),inset 0 0 0 3px #1A120B,var(--schatten)}
+.ww-r .ww-mini{justify-self:start}
+.ww-r{display:grid} .ww-l{display:grid}
+.ww-mini .wo-rillen{padding:clamp(16px,1.8vw,26px) clamp(18px,2vw,30px)}
+.ww-mini .wo-rillen p{font-size:clamp(15px,1.7vw,25px);text-shadow:none}
+
+/* 5 Rückbar links und rechts: zwei echte Fotos der Bar in Schildhöhe, Wand an Wand mit dem Schild */
+.ww5 .ww-zeile{gap:0;align-items:stretch}
+.ww-foto{position:relative;margin:0;height:100%;overflow:hidden;background:var(--nacht3) var(--lq) center/cover}
+.ww-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ww-l .ww-foto{border-radius:14px 0 0 14px} .ww-r .ww-foto{border-radius:0 14px 14px 0}
+.ww5 .ww-l,.ww5 .ww-r{display:grid}
+
+/* 6 Das Gewölbe im Licht der Bar: der Deckendruck als Tapete, links blau-silbern, rechts golden angeleuchtet wie im Raum */
+.ww6{position:relative;isolation:isolate}
+.ww6::before{content:"";position:absolute;inset:0;z-index:-1;
+ background:radial-gradient(60% 50% at 18% 30%,rgba(120,150,220,.3),transparent 70%),radial-gradient(60% 50% at 82% 30%,rgba(255,180,90,.26),transparent 70%),linear-gradient(rgba(19,14,13,.72),rgba(19,14,13,.84)),url(../../assets/bild/decke-2017-1600.webp) center/cover}
+.ww6::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(var(--nacht),transparent 12%,transparent 80%,var(--nacht))}
+
+@media (max-width:760px){
+  .ww-zeile{grid-template-columns:minmax(0,1fr);gap:18px}
+  .ww-zeile .wo-tafel{justify-self:center}
+  .ww3 .ww-l,.ww3 .ww-r,.ww5 .ww-l,.ww5 .ww-r{display:none}
+  .ww-mini,.ww-r .ww-mini{justify-self:center}
+}

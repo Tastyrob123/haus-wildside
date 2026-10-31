@@ -1,0 +1,191 @@
+/* Kapitel «Seit 2017 in Linden» · 15 Fassungen (29.10.2026). Bausteine der Seite (Prata, Creme, Goldlinie, Kachel, Platte), je Fassung eigene Anordnung und Bewegung. */
+body:not(.null) .gewoelbe{margin-bottom:0}
+.k17{position:relative;--kk:cubic-bezier(.22,1,.36,1)}
+.k17.dunkel{background:var(--nacht);color:var(--text);padding:clamp(72px,9vw,120px) 0 0}
+.k17.hell{padding:clamp(72px,9vw,120px) 0}
+.k17 .t-gross{font-size:clamp(44px,6.6vw,96px)}
+.dunkel .titel{color:var(--creme)}
+.kopf17{text-align:center;margin-bottom:clamp(36px,4.4vw,60px)}
+.kopf17 .kz{justify-content:center}
+.k17 .foto{height:100%}
+.jb .jz{display:block;font-family:var(--titel);font-size:clamp(46px,5vw,76px);line-height:1;margin-bottom:14px;color:var(--dunkel)}
+.jb .etikett{display:block;margin-bottom:10px}
+.jb p{font-size:16px;line-height:1.58;color:rgba(27,21,18,.74);max-width:44ch}
+.dunkel .jb .jz{color:var(--creme)} .dunkel .jb p{color:var(--text2)} .dunkel .etikett{color:var(--gold)}
+.hell .jb .jz{color:var(--dunkel)} .hell .jb p{color:rgba(27,21,18,.74)} .hell .etikett{color:#A07F3A}
+.w91{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:center;background:var(--dunkel);color:var(--creme);border-radius:var(--rand);padding:22px 28px;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.w91 .jz{font-family:var(--titel);font-size:clamp(52px,5vw,72px);line-height:1}
+.k17 .w91 .etikett{display:block;margin-bottom:6px;color:var(--gold)}
+.w91 p{font-size:14.5px;line-height:1.5;color:var(--text2)}
+.k17 .ueber{margin-top:clamp(56px,7vw,90px)}
+
+/* 01 Das Raster läuft weiter: die vier Spalten des Mosaiks gehen als Fotos weiter und tragen darunter die Jahre */
+.s01{background:var(--nacht)}
+.s01-bilder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;height:58vh;min-height:340px;padding-top:6px}
+.s01-hell{padding:clamp(60px,7.4vw,100px) 0 clamp(72px,9vw,120px)}
+.s01-zellen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.s01-zellen>*{padding:0 clamp(16px,2vw,30px);border-left:1px solid rgba(160,127,58,.38)}
+.s01-zellen>:first-child{border-left:0;padding-left:0}
+.s01-91 .jz{font-size:clamp(70px,8.4vw,124px);color:#A07F3A!important}
+
+/* 02 Schachbrett aus dem Mosaik: Fotos und Jahre wechseln sich in einem geschlossenen Raster ab, mit denselben Fugen wie das Mosaik */
+.s02-brett{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(46vh,auto);gap:6px;background:var(--nacht)}
+.s02-brett .foto{min-height:46vh}
+.s02-z{padding:clamp(22px,2.6vw,40px);display:flex;flex-direction:column;justify-content:flex-end}
+.s02-z .jb p{font-size:15px}
+.s02-nz{background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l);justify-content:center}
+.s02-w{background:none;box-shadow:none;padding:0;grid-template-columns:1fr;gap:12px}
+.s02-w .jz{font-size:clamp(90px,10vw,150px);color:var(--gold)}
+
+/* 03 Drei Hochformate, grosse Jahre: drei hohe Bilder, das Jahr steht gross im Bild, eine Goldlinie verbindet sie */
+.s03-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,36px)}
+.s03-bild{position:relative;height:60vh;min-height:380px;margin-bottom:26px}
+.s03-bild .kachel{height:100%}
+.s03-jahr{position:absolute;left:22px;bottom:14px;font-family:var(--titel);font-size:clamp(64px,7.6vw,118px);line-height:1;color:var(--creme);text-shadow:0 6px 30px rgba(0,0,0,.6)}
+.s03-linie{display:block;height:1px;background:#A07F3A;opacity:.6;margin:clamp(36px,4vw,56px) 0 0;transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--kk) .3s}
+.s03.da .s03-linie{transform:none}
+.s03-91{margin-top:clamp(28px,3vw,40px)}
+
+/* 04 Damals und heute: derselbe Raum auf der ersten Website und heute, darunter die Jahre in vier Spalten */
+.s04-paar{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.s04-paar .kachel{height:66vh;min-height:400px}
+.s04-paar figcaption{margin-top:14px}
+.s04-jahre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,.9fr);gap:clamp(20px,2.6vw,40px);margin-top:clamp(40px,4.6vw,64px);align-items:start}
+.s04-91{grid-template-columns:1fr;gap:12px}
+
+/* 05 Stufen hinauf: drei Stufen wie die Treppe zur Empore, oben links der Titel */
+.s05-innen{position:relative}
+.s05-kopf{position:absolute;left:0;top:0;width:31%;text-align:left;margin:0}
+.s05-kopf .kz{justify-content:flex-start}
+.s05-kopf .t-gross{font-size:clamp(40px,5vw,74px)}
+.s05-treppe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);align-items:start}
+.s05-stufe:nth-child(1){margin-top:clamp(200px,22vw,300px)}
+.s05-stufe:nth-child(2){margin-top:clamp(100px,11vw,150px)}
+.s05-stufe .kachel{aspect-ratio:4/5;margin-bottom:24px}
+.s05-91{margin-top:26px;grid-template-columns:auto 1fr}
+
+/* 06 Ein Bild, drei Zeiten: links steht der Rahmen, beim Weiterlesen schiebt sich das nächste Jahr als Bild hinein */
+.s06-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px)}
+.s06-rahmen{position:sticky;top:12vh;height:76vh;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.s06-b{position:absolute;inset:0;transform:translateY(101%);transition:transform 1.2s var(--kk)}
+.s06-b[data-n="0"],.s06-rahmen[data-an="1"] .s06-b[data-n="1"],.s06-rahmen[data-an="2"] .s06-b[data-n="1"],.s06-rahmen[data-an="2"] .s06-b[data-n="2"]{transform:none}
+.s06-b img{width:100%;height:100%;object-fit:cover}
+.s06-kopf{margin-bottom:10px}
+.s06-txt{min-height:62vh;display:flex;flex-direction:column;justify-content:center}
+.s06-txt .jz{font-size:clamp(70px,8vw,120px)}
+.s06-91{margin-top:28px}
+
+/* 07 Auf der Theke: vier Karten stehen auf dem Tresen, darunter das gelbe Licht der Theke */
+.s07-theke{position:relative;padding-bottom:30px}
+.s07-karten{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;position:relative;z-index:1}
+.s07-k{border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);transform:translateX(-46px);transition:transform 1.3s var(--kk);transition-delay:calc(var(--n)*.1s)}
+.s07.da .s07-k{transform:none}
+.s07-k .foto{height:auto;aspect-ratio:4/3}
+.s07-k .jb{padding:22px 22px 26px}
+.s07-k .jb .jz{font-size:clamp(40px,3.6vw,54px)}
+.s07-k .jb p{font-size:14.5px}
+.s07-nz{background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.s07-nz .jz{color:var(--gold)!important}
+.s07-tresen{position:absolute;left:-4vw;right:-4vw;bottom:0;height:44px;background:#1A1310;border-top:2px solid #E9B44C;transform:scaleX(0);transition:transform 1.6s var(--kk) .2s}
+.s07.da .s07-tresen{transform:none}
+
+/* 08 91 als Fenster: die Punktzahl riesig, in den Ziffern die Decke; daneben die Jahre, darunter drei Bilder Wand an Wand */
+.s08-oben{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.s08-zahl{display:block;font-family:var(--titel);font-size:clamp(220px,33vw,480px);line-height:.8;letter-spacing:-.03em;color:transparent;background:linear-gradient(rgba(242,233,220,.34),rgba(242,233,220,.34)),url(../../assets/bild/decke-hoch-960.webp?v=29101) 50% 8%/150% auto;-webkit-background-clip:text;background-clip:text}
+.s08-links .etikett{display:block;margin-top:18px;color:var(--gold)}
+.s08-kopf{margin-bottom:26px} .s08-kopf .kz{justify-content:flex-start}
+.s08-j{display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;padding:18px 0;border-top:1px solid var(--gold-l)}
+.s08-j .jz{font-family:var(--titel);font-size:44px;line-height:1;color:var(--creme)}
+.s08-j .etikett{display:block;margin-bottom:6px;color:var(--gold)}
+.s08-j p{font-size:15px;color:var(--text2)}
+.s08-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;height:42vh;min-height:280px;margin-top:clamp(44px,5vw,70px);border-radius:var(--rand);overflow:hidden}
+
+/* 09 Das Bildband der Jahre: eine Goldlinie mit den drei Jahren, darunter alle Bilder von 2017 bis heute Wand an Wand */
+.s09-zeit{position:relative;margin-bottom:22px}
+.s09-linie{position:absolute;left:0;right:0;top:5px;height:1px;background:#A07F3A;opacity:.7;transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--kk)}
+.s09.da .s09-linie{transform:none}
+.s09-marken{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px)}
+.s09-marke i{display:block;width:11px;height:11px;background:#A07F3A;margin-bottom:16px}
+.s09-marke .jz{font-family:var(--titel);font-size:clamp(56px,6.4vw,96px);line-height:1;color:var(--dunkel)}
+.s09-band{display:flex;gap:5px;height:46vh;min-height:300px}
+.s09-b{flex-basis:0;min-width:0}
+.s09-texte .jz{display:none}
+.s09-texte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.6vw,40px);margin-top:clamp(30px,3.4vw,46px)}
+
+/* 10 Der Zeitstrahl: eine Goldlinie läuft beim Scrollen mittig hinunter, die Jahre wechseln die Seite */
+.s10-strahl{position:relative}
+.s10-linie{position:absolute;left:50%;top:0;bottom:0;width:1px;margin-left:-.5px;background:#A07F3A;transform-origin:50% 0;transform:scaleY(0);will-change:transform}
+.s10-z{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(60px,8vw,120px);align-items:center;padding:clamp(24px,3vw,40px) 0}
+.s10-marke{position:absolute;left:50%;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;background:#A07F3A;transform:rotate(45deg)}
+.s10-bild .kachel{height:48vh;min-height:300px}
+.s10-um .s10-text{text-align:right} .s10-um .s10-text .jb p{margin-left:auto}
+.s10-text .jz{font-size:clamp(64px,7vw,108px)}
+.s10-91{margin-top:24px;text-align:left}
+
+/* 11 Die Vitrine: Fächer wie in der Rückbar, unter jedem das gelbe Licht der Theke */
+.s11-fach{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,5fr);gap:clamp(24px,3.4vw,52px);align-items:center;padding:clamp(22px,2.6vw,34px) 0}
+.s11-fach>.jz{font-family:var(--titel);font-size:clamp(76px,8.6vw,132px);line-height:1;color:var(--creme)}
+.s11-gold{color:var(--gold)!important}
+.s11-fach .kachel{aspect-ratio:16/9}
+.s11-licht{display:block;height:2px;background:#E9B44C;transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--kk);transition-delay:calc(.3s + var(--n)*.18s)}
+.s11.da .s11-licht{transform:none}
+
+/* 12 Das Fotobuch: links das alte Foto über die ganze Höhe, rechts die helle Seite mit den Jahren */
+.s12-buch{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.s12-bild{position:relative;overflow:hidden;background:var(--nacht3)}
+.s12-bild .foto{position:absolute;inset:0;transform:translateY(12%);transition:transform 1.6s var(--kk)}
+.s12.da .s12-bild .foto{transform:none}
+.s12-unter{position:absolute;left:24px;bottom:22px;color:var(--creme)!important;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.s12-seite{padding:clamp(56px,6vw,96px) clamp(32px,5vw,90px);display:flex;flex-direction:column;justify-content:center;box-shadow:inset 22px 0 30px -24px rgba(27,21,18,.5)}
+.s12-kopf{margin-bottom:28px}
+.s12-91{margin-top:28px}
+.s12 .ueber{margin:44px 0 0;text-align:left}
+.s12 .jahr{grid-template-columns:150px minmax(0,1fr)} .s12 .jahr .zahl{font-size:clamp(44px,4.4vw,60px)}
+
+/* 13 Ein Raum, drei Karten: der Raum über die ganze Breite, die Jahre legen sich als Karten über seine Unterkante */
+.s13{padding-top:0!important}
+.s13-band{position:relative;height:74vh;min-height:460px;overflow:hidden}
+.s13-band .foto img{filter:brightness(.62)}
+.s13-kopf{position:absolute;left:0;right:0;top:clamp(56px,9vh,110px)}
+.s13-kopf .titel{color:var(--creme)} .s13-kopf .kz .was{color:var(--text3)}
+.s13-karten{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:-22vh;position:relative}
+.s13-k{border-radius:var(--rand);padding:clamp(22px,2.4vw,34px);box-shadow:var(--schatten)}
+.s13-k .jb p{font-size:15px}
+.s13-nz{background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.s13-nz .jz{font-size:clamp(80px,8vw,120px)!important;color:var(--gold)!important}
+.s13-nz p{color:var(--text2)!important}
+
+/* 14 Bildwand und Schild: vier Bilder Wand an Wand, daneben das dunkle Schild mit Goldlinie wie an der Hausecke */
+.s14-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:14px;align-items:stretch}
+.s14-wand{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;border-radius:var(--rand);overflow:hidden;min-height:80vh}
+.s14-schild{padding:clamp(28px,3.4vw,50px);display:flex;flex-direction:column;justify-content:center;color:var(--text)}
+.s14-kopf{margin-bottom:18px} .s14-kopf .titel{color:var(--creme);font-size:clamp(38px,4.4vw,64px)!important}
+.s14-j{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid var(--gold-l)}
+.s14-j .jz{font-family:var(--titel);font-size:40px;line-height:1;color:var(--creme)}
+.s14-j .etikett{display:block;margin-bottom:6px;color:var(--gold)}
+.s14-j p{font-size:14.5px;line-height:1.5;color:var(--text2)}
+.s14-91{margin-top:20px;background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-l)}
+
+/* 15 Wie heute, nur dichter: der heutige Aufbau, rechts zwei Bilder übereinander statt einem */
+.s15-paar{display:grid;grid-template-rows:1fr 1fr;gap:6px;min-height:280px;background:var(--creme)}
+.s15-paar .foto{position:relative;height:auto;min-height:0}
+.s15-paar .foto img{position:absolute;inset:0}
+.s15 .jahr{grid-template-columns:150px minmax(0,1fr)} .s15 .jahr .zahl{font-size:clamp(44px,4.4vw,60px)}
+
+@media (max-width:760px){
+  .s01-bilder{grid-template-columns:1fr 1fr;height:auto;grid-auto-rows:34vh}
+  .s01-zellen,.s04-jahre,.s09-texte,.s09-marken,.s13-karten{grid-template-columns:1fr}
+  .s01-zellen>*{border-left:0;padding:22px 0;border-top:1px solid rgba(160,127,58,.38)} .s01-zellen>:first-child{border-top:0}
+  .s02-brett{grid-template-columns:1fr 1fr}
+  .s03-reihe,.s05-treppe,.s07-karten,.s08-oben,.s08-reihe,.s11-fach,.s12-buch,.s14-grid{grid-template-columns:1fr}
+  .s03-bild{height:58vh}
+  .s04-paar{grid-template-columns:1fr} .s04-paar .kachel{height:52vh}
+  .s05-kopf{position:static;width:auto;margin-bottom:30px} .s05-stufe:nth-child(n){margin-top:0}
+  .s06-grid{grid-template-columns:1fr} .s06-rahmen{top:70px;height:44vh} .s06-txt{min-height:56vh}
+  .s08-reihe{height:auto;grid-auto-rows:40vh}
+  .s09-band{height:30vh;min-height:200px} .s09-zeit{display:none} .s09-texte .jz{display:block}
+  .s10-z,.s10-um{grid-template-columns:1fr;gap:20px} .s10-um .s10-bild{order:-1} .s10-um .s10-text{text-align:left} .s10-linie,.s10-marke{left:0}
+  .s12-bild{min-height:70vh}
+  .s13-karten{margin-top:-14vh}
+  .s14-wand{min-height:70vh}
+}

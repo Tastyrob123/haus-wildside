@@ -1,0 +1,120 @@
+/* Wild Side · Besuch, Runde 3: 15 Köpfe «Bis 2 Uhr.» (31.10.2026). Voll mit ganzen, echten Fotos, Kante an Kante; eine Kamerafahrt je Kopf,
+   die auf drei Vierteln langsam wird. Text auf breitem dunklem Band. Nur transform/opacity, kein Schatten oder Verlauf über Bewegtem. */
+.by{--kino:cubic-bezier(.12,.82,.2,1);--hh:min(100svh,920px);position:relative;overflow:hidden;background:#050404;height:var(--hh);min-height:600px}
+.by-f{position:relative;margin:0;overflow:hidden;background:var(--nacht3) center/cover no-repeat;background-image:var(--lq)}
+.by-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.by-voll{position:absolute;inset:0}
+.by .by-t{font-size:clamp(84px,9vw,150px);line-height:.98;letter-spacing:-.01em;color:var(--creme);white-space:nowrap}
+.by .by-t .z{padding-bottom:.2em;margin-bottom:-.2em}
+.by .by-s{font-size:clamp(18px,1.45vw,21px);line-height:1.55;color:var(--text);max-width:42ch}
+
+/* Das Band: breit, dunkel, über allen Bildern */
+.by-band{position:absolute;left:0;right:0;bottom:clamp(36px,7vh,80px);z-index:4;background:var(--nacht);padding:clamp(24px,2.8vw,40px) 0;box-shadow:0 -1px 0 var(--gold-l),0 1px 0 var(--gold-l)}
+.by-band.mitte{bottom:auto;top:54%;transform:translateY(-50%)}
+.by-band .innen{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,4vw,70px);align-items:end}
+.by-band .by-s{margin:0 0 .9em}
+
+/* Bühne für die Scroll-Fassungen: der Kopf ist länger, die Bühne bleibt stehen */
+.by03,.by09,.by10,.by15{height:250vh;min-height:0;overflow:clip}
+.by-buehne{position:sticky;top:0;height:var(--hh);min-height:600px;overflow:hidden}
+
+/* 01 Die Wand steigt */
+.by01-wand{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.by01-wand .by-f{transform:translate3d(0,var(--y),0);transition:transform 2.4s var(--kino);transition-delay:calc(var(--j)*.08s)}
+.by01.da .by01-wand .by-f{transform:none}
+
+/* 02 Rückfahrt aus dem Gewölbe · 15 Hineinfahrt */
+.by02-wand{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) minmax(0,1fr);grid-template-rows:1fr 1fr;gap:4px;
+ grid-template-areas:"a m c" "b m d";transform-origin:50% 50%}
+.by02-wand .a{grid-area:a}.by02-wand .b{grid-area:b}.by02-wand .m{grid-area:m}.by02-wand .c{grid-area:c}.by02-wand .d{grid-area:d}
+.by02 .by02-wand{transform:scale(2.3);transition:transform 3s var(--kino) .25s}
+.by02.da .by02-wand{transform:none}
+.by15-wand{will-change:transform}
+
+/* 03 Kopf in den Nacken · 12 Hochfahrt */
+.by03-hoch,.by12-hoch{position:absolute;left:0;right:0;top:0;will-change:transform}
+.by03-hoch{--H:max(133vw,calc(var(--hh) + 50vh));height:var(--H);transform:translate3d(0,calc(var(--hh) - var(--H)),0)}
+.by12-hoch{--H:max(125vw,calc(var(--hh) + 40vh));height:var(--H);transform:translate3d(0,calc(var(--hh) - var(--H)),0);transition:transform 3.6s var(--kino) .2s}
+.by12.da .by12-hoch{transform:none}
+.by03-hoch .by-f,.by12-hoch .by-f{position:absolute;inset:0}
+
+/* 04 Die Bühne */
+.by04-fahrt{position:absolute;inset:0;transform:scale(1.24);transition:transform 3.2s var(--kino) .15s}
+.by04.da .by04-fahrt{transform:none}
+.by04 .by-t{font-size:clamp(90px,11vw,180px)}
+
+/* 05 Das Licht geht an */
+.by05-wand{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:4px}
+.by05-wand .by-f::after{content:"";position:absolute;inset:0;background:#0b0807;opacity:.86;transition:opacity 1.2s var(--k) var(--d)}
+.by05.da .by05-wand .by-f::after{opacity:0}
+.ruhig .by05-wand .by-f::after{opacity:0}
+
+/* 06 Der grosse Titel */
+.by06{display:grid;grid-template-rows:minmax(0,1fr) auto}
+.by06-bild{position:relative;overflow:hidden}
+.by06-bild .by-f{transform:translate3d(0,-9%,0) scale(1.12);transition:transform 2.8s var(--kino) .1s}
+.by06.da .by06-bild .by-f{transform:none}
+.by06-unten{width:var(--innen);margin:0 auto;padding:clamp(10px,1.6vh,20px) 0 clamp(26px,4vh,46px)}
+.by06-t{margin:0;font-size:calc(var(--innen) / 4.7);line-height:.92;letter-spacing:-.015em;color:var(--creme);white-space:nowrap}
+.by06-t .zl .z{padding-bottom:.12em;margin-bottom:-.12em}
+.by06 .by-s{margin-top:10px;max-width:none}
+
+/* 07 Die Lamellen */
+.by07-bild{position:absolute;inset:0;container-type:size;--bw:max(100cqw,160cqh)}
+.by07-st{position:absolute;top:0;bottom:0;left:calc(var(--k)*10%);width:calc(10% + 1px);transform:translate3d(0,var(--y),0);transition:transform 2.3s var(--kino);transition-delay:calc(var(--k)*.065s);
+ background-image:var(--bild);background-repeat:no-repeat;background-size:var(--bw) calc(var(--bw)/1.6);
+ background-position:calc((100cqw - var(--bw))/2 - var(--k)*10cqw) calc((100cqh - var(--bw)/1.6)*.45)}
+.by07.da .by07-st{transform:none}
+
+/* 08 Draussen und drinnen */
+.by08-zwei{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.by08-zwei .by-f{transition:transform 2.6s var(--kino) .1s}
+.by08-zwei .l{transform:translate3d(0,-34%,0)} .by08-zwei .r{transform:translate3d(0,34%,0)}
+.by08.da .by08-zwei .by-f{transform:none}
+
+/* 09 Der Abend vergeht */
+.by09-f{opacity:0;transition:opacity 1.1s var(--k);will-change:transform}
+.by09-f.an{opacity:1}
+
+/* 10 Durchs Fenster hinein */
+.by10-aussen{position:absolute;inset:0;transform-origin:28% 46%;will-change:transform,opacity}
+.by10-innen{position:absolute;inset:0;opacity:0;transform:scale(1.25);will-change:transform,opacity}
+
+/* 11 Die Tafel über drei Bildern */
+.by11-drei{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.by11-drei .by-f{transform:scale(1.08);transition:transform 2.8s var(--kino)}
+.by11.da .by11-drei .by-f{transform:none}
+.by11-tafel{position:absolute;z-index:4;left:50%;top:56%;width:min(1180px,90vw);transform:translate(-50%,-50%)}
+.by11-tafel>div{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,4vw,70px);align-items:end;padding:clamp(30px,3.4vw,52px) clamp(30px,4vw,64px);
+ background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-l);border-radius:4px;transform:translate3d(0,90px,0);transition:transform 2.2s var(--kino) .15s}
+.by11.da .by11-tafel>div{transform:none}
+.by11-tafel .by-s{margin:0 0 .9em}
+
+/* 13 Das Mosaik der Nacht */
+.by13-wand{position:absolute;inset:0;display:grid;gap:4px;grid-template-columns:minmax(0,1fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1fr);grid-template-rows:1fr 1fr 1fr;
+ grid-template-areas:"a b c d" "a e e d" "f e e g"}
+.by13-wand .w0{grid-area:a}.by13-wand .w1{grid-area:b}.by13-wand .w2{grid-area:c}.by13-wand .w3{grid-area:d}.by13-wand .w4{grid-area:e}.by13-wand .w5{grid-area:f}.by13-wand .w6{grid-area:g}
+.by13-wand .by-f{transform:scale(.7);transition:transform 2.2s var(--kino)}
+.by13-wand .w4{transition-delay:0s}.by13-wand .w1,.by13-wand .w2{transition-delay:.12s}.by13-wand .w0,.by13-wand .w3{transition-delay:.22s}.by13-wand .w5,.by13-wand .w6{transition-delay:.32s}
+.by13.da .by13-wand .by-f{transform:none}
+
+/* 14 Säulen beim Scrollen */
+.by14-saeulen{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;transform:translate3d(0,14%,0);transition:transform 2.4s var(--kino)}
+.by14.da .by14-saeulen{transform:none}
+.by14-s{display:flex;flex-direction:column;gap:4px;will-change:transform}
+.by14-s .by-f{flex:0 0 auto;height:calc(var(--hh)*.62)}
+
+.ruhig .by *{transition:none!important}
+.ruhig .by01-wand .by-f,.ruhig .by02-wand,.ruhig .by04-fahrt,.ruhig .by06-bild .by-f,.ruhig .by07-st,.ruhig .by08-zwei .by-f,.ruhig .by11-drei .by-f,.ruhig .by11-tafel>div,.ruhig .by12-hoch,.ruhig .by13-wand .by-f,.ruhig .by14-saeulen{transform:none}
+
+/* ---------- Handy */
+@media (max-width:860px){
+ .by-band .innen,.by11-tafel>div{grid-template-columns:1fr;gap:10px}
+ .by .by-t{font-size:clamp(60px,17vw,90px)}
+ .by-band .by-s{margin:0;font-size:17px}
+ .by01-wand{grid-template-columns:repeat(3,minmax(0,1fr))} .by01-wand .w3,.by01-wand .w4{display:none}
+ .by05-wand{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,1fr)}
+ .by13-wand{grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,1fr);grid-template-areas:"a b" "e e" "e e" "c d"} .by13-wand .w5,.by13-wand .w6{display:none}
+ .by14-saeulen{grid-template-columns:repeat(2,minmax(0,1fr))} .by14-s:nth-child(n+3){display:none}
+ .by06-t{font-size:20vw}
+}

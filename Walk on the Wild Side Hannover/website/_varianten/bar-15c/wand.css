@@ -1,0 +1,143 @@
+/* Wild Side · Abschnitt «bar», dritte Runde (31.10.2026): wenige, grosse Bilder, das Schild mit Goldlinie. Alles unter .b3, nur transform, deckend. */
+.b3 .b3-schild{position:relative;overflow:hidden;border-radius:6px;background:var(--nacht2);color:var(--text);padding:clamp(28px,3.6vw,52px);display:flex;flex-direction:column;justify-content:center;min-width:0;
+  box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten);transition:transform 1.5s var(--k)}
+.b3 .b3-schild>*{position:relative;z-index:1}
+.b3 .b3-logo{display:block;width:64px;color:var(--rot);flex:none} .b3 .b3-logo svg{width:100%;height:auto;display:block}
+.b3 .b3-schild{container-type:inline-size}
+.b3 .b3-t{font-size:clamp(34px,min(5vw,10.4cqi),76px);line-height:.98;margin-top:22px}
+.b3 .b3-t .z{padding-bottom:.2em;margin-bottom:-.2em}
+.b3 .b3-s{margin:22px 0 0;color:var(--text2);font-size:clamp(17px,1.35vw,19.5px);line-height:1.62;max-width:62ch}
+.b3 .b3-f{margin-top:clamp(26px,2.6vw,36px)}
+.b3 .b3-k{min-height:0;border-radius:6px}
+.b3 .b3-k img{position:absolute;inset:0}
+.b3:not(.da) .b3-schild{transform:translateY(60px)}
+
+/* 01 Halb und halb */
+.v01-g{display:grid;grid-template-columns:1.12fr 1fr;gap:10px;min-height:clamp(560px,46vw,680px)}
+.v01-b img{transition:transform 2.6s var(--k)!important} .b3.v01:not(.da) .v01-b img{transform:scale(1.2)}
+
+.b3 .v02-s,.b3 .v07-s,.b3 .v09-s{justify-content:flex-start}
+.v02-q .b3-t,.v07-q .b3-t,.v09-q .b3-t{font-size:clamp(36px,min(5vw,5.4cqi),76px)}
+
+/* 02 Fenster über dem Schild */
+.v02-g{display:grid;gap:10px}
+.v02-b{height:clamp(320px,34vw,500px);transition:transform 1.6s var(--k)} .b3.v02:not(.da) .v02-b{transform:translateY(-60px)}
+.v02-q{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,64px);align-items:start}
+.v02-q .b3-s{margin-top:0}
+
+/* 03 Nur Schrift */
+.v03-s{padding:clamp(40px,6vw,96px)!important}
+.v03-s .es-linie rect{transition-duration:4.2s!important}
+.b3 .v03-t{font-size:clamp(52px,7.6vw,118px)}
+.b3 .v03-x{font-size:clamp(18px,1.5vw,21px);max-width:58ch;margin-top:30px}
+.v03-f b{font-size:clamp(40px,4.6vw,68px)!important}
+.v03-f>div{transition:transform 1.3s var(--k);transition-delay:calc(.5s + var(--n,0)*.15s)}
+.v03-f>div:nth-child(2){--n:1} .v03-f>div:nth-child(3){--n:2}
+.b3.v03:not(.da) .v03-f>div{transform:translateY(70px)}
+.b3.v03:not(.da) .v03-s{transform:none}
+
+/* 04 Schild und zwei Bilder */
+.v04-g{display:grid;grid-template-columns:1.32fr 1fr;gap:10px;min-height:clamp(560px,46vw,680px)}
+.v04-r{display:grid;grid-template-rows:1fr 1fr;gap:10px}
+.v04-b{transition:transform 1.5s var(--k);transition-delay:calc(.2s + var(--n,0)*.22s)} .b3.v04:not(.da) .v04-b{transform:scale(.84)}
+
+/* 05 Drei Tafeln */
+.v05-g{display:grid;grid-template-columns:1fr 1.45fr 1fr;gap:10px;min-height:clamp(560px,46vw,680px);perspective:1600px}
+.b3 .v05-s .b3-t{font-size:clamp(30px,min(3.5vw,10.4cqi),54px)}
+.v05-s .es-fakten{grid-template-columns:1fr;gap:16px} .v05-s .es-fakten b{font-size:clamp(26px,2.2vw,34px);margin-bottom:8px;padding-bottom:8px}
+.v05-b{transition:transform 1.7s var(--k)} .v05-l{transform-origin:100% 50%} .v05-r{transform-origin:0 50%}
+.b3.v05:not(.da) .v05-l{transform:rotateY(62deg)} .b3.v05:not(.da) .v05-r{transform:rotateY(-62deg)}
+.b3.v05:not(.da) .v05-s{transform:none}
+
+/* 06 Das Bild läuft mit */
+.v06-g{display:grid;grid-template-columns:1.18fr 1fr;gap:10px;min-height:clamp(600px,50vw,740px)}
+.b3 .v06-b img{top:-10%;height:120%;transform:translate3d(0,var(--p,0px),0)!important;transition:none!important}
+
+/* 07 Panorama */
+.v07-b{height:clamp(320px,38vw,560px);border-radius:0!important;margin-top:clamp(28px,3vw,40px)}
+.b3 .v07-b img{transform:scale(var(--z,1.16))!important;transition:none!important}
+.v07-s{margin-top:10px}
+.v07-q{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,64px);align-items:start}
+.v07-q .b3-s{margin-top:0}
+
+/* 08 Das Bild steht auf */
+.v08-g{display:grid;grid-template-columns:1.5fr 1fr;gap:10px;min-height:clamp(580px,48vw,700px);perspective:1400px}
+.v08-b{transform-origin:50% 100%;transition:transform 1.8s var(--k) .15s} .b3.v08:not(.da) .v08-b{transform:rotateX(38deg)}
+
+/* 09 Schild und Reihe */
+.v09-q{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,64px);align-items:start;margin-top:4px}
+.v09-q .b3-s{margin-top:0}
+.v09-r{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.v09-b{aspect-ratio:4/3;transition:transform 1.3s var(--k);transition-delay:calc(.3s + var(--n,0)*.16s)} .b3.v09:not(.da) .v09-b{transform:translateY(90px)}
+
+/* 10 Grosser Titel */
+.v10-kopf{margin-bottom:clamp(28px,3vw,44px)}
+.b3 .v10-t{font-size:clamp(56px,8.4vw,128px);line-height:.96}
+.v10-g{display:grid;grid-template-columns:1.25fr 1fr;gap:10px;min-height:clamp(440px,36vw,540px)}
+.v10-b{transition:transform 1.5s var(--k) .35s} .b3.v10:not(.da) .v10-b{transform:translateY(80px)}
+.v10-s{transition-delay:.5s!important}
+.v10-s .b3-s{margin-top:0}
+.v10-f{grid-template-columns:1fr!important;gap:14px!important} .v10-f>div{display:grid;grid-template-columns:110px 1fr;align-items:baseline;gap:12px}
+.v10-f b{margin:0!important;padding:0!important;border:0!important;font-size:clamp(26px,2.4vw,34px)!important}
+
+/* 11 Wer, Wo, Wann in Bildern */
+.v11-q{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,4vw,64px);align-items:end}
+.v11-r{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.v11-karte{background:var(--nacht2);border-radius:6px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten);
+  transition:transform 1.2s cubic-bezier(.34,1.5,.6,1);transition-delay:calc(.35s + var(--n,0)*.16s)}
+.b3.v11:not(.da) .v11-karte{transform:translateY(110px)}
+.v11-b{aspect-ratio:4/3;border-radius:0!important;box-shadow:none!important}
+.v11-u{padding:22px 24px 26px}
+.v11-u b{display:block;font-family:var(--titel);font-weight:400;font-size:clamp(30px,3vw,42px);line-height:1;color:var(--gold);padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--gold-l)}
+.v11-u p{font-size:16px;line-height:1.55;color:var(--text2)}
+
+/* 12 Die Ecke und das Schild */
+.v12-g{display:grid;grid-template-columns:1fr 1.35fr;gap:10px;min-height:clamp(580px,48vw,700px)}
+.v12-b{transition:transform 1.6s var(--k)} .b3.v12:not(.da) .v12-b{transform:translateY(50px) rotate(-5deg)}
+
+/* 13 Das Bild bleibt stehen */
+.v13-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start}
+.v13-l{position:sticky;top:96px;height:calc(100vh - 136px);height:calc(100svh - 136px);min-height:460px}
+.v13-l .v13-b{height:100%}
+.v13-r{display:grid;gap:10px}
+.v13-s{min-height:calc(50vh - 60px)}
+.b3.v13 .v13-s{transform:translateY(70px)} .b3.v13 .v13-s.da{transform:none}
+.v13-s .b3-t{margin-top:26px} .v13-s2 .b3-s{margin:0;font-size:clamp(19px,1.6vw,23px)} .v13-s3 .b3-f{margin:0;grid-template-columns:1fr;gap:22px}
+
+/* 14 In Creme */
+.v14-g{display:grid;grid-template-columns:1.05fr 1fr;gap:10px;min-height:clamp(560px,46vw,680px)}
+.b3 .v14-s{background:var(--creme);color:var(--dunkel);box-shadow:inset 0 0 0 1px rgba(160,127,58,.3),var(--schatten)}
+.v14-s .b3-s{color:rgba(27,21,18,.74)} .v14-s .es-fakten b{color:#A07F3A;border-color:rgba(160,127,58,.3)} .v14-s .es-fakten p{color:rgba(27,21,18,.8)}
+.v14-s .es-linie rect{stroke:#A07F3A}
+.b3.v14:not(.da) .v14-s{transform:translateY(40px) scale(.95)}
+.v14-b img{transition:transform 2.4s var(--k)!important} .b3.v14:not(.da) .v14-b img{transform:scale(1.14)}
+
+/* 15 Das Logo vorne */
+.v15-g{display:grid;grid-template-columns:auto 1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.v15-logo{display:block;width:clamp(140px,15vw,220px);color:var(--rot)} .v15-logo svg{width:100%;height:auto;display:block}
+.b3.v15.da .v15-logo{animation:v15-puls 1.6s var(--k) .9s 1 both}
+@keyframes v15-puls{0%,100%{transform:scale(1)}45%{transform:scale(1.07)}}
+.v15-g .b3-t{margin-top:0}
+.v15-b{height:clamp(300px,32vw,460px);margin-top:10px}
+.v15-b img{transition:transform 2.6s var(--k) .3s!important} .b3.v15:not(.da) .v15-b img{transform:scale(1.22)}
+
+.ruhig .b3 *{transition:none!important;animation:none!important}
+.ruhig .b3 .b3-schild,.ruhig .b3 .b3-k,.ruhig .b3 .v11-karte,.ruhig .b3 .v03-f>div{transform:none!important}
+
+@media (max-width:900px){
+  .v01-g,.v04-g,.v05-g,.v06-g,.v08-g,.v10-g,.v12-g,.v13-g,.v14-g{grid-template-columns:1fr;min-height:0}
+  .v02-q,.v07-q,.v09-q,.v11-q,.v15-g{grid-template-columns:1fr;gap:18px}
+  .v09-r,.v11-r{grid-template-columns:1fr}
+  .v04-r{grid-template-rows:none}
+  .b3 .b3-k{aspect-ratio:4/3;height:auto}
+  .v13-l{position:relative;top:0;height:auto;min-height:0} .v13-s{min-height:0}
+  .b3 .es-fakten{grid-template-columns:1fr;gap:18px}
+  .v15-logo{width:96px}
+  .v07-b{height:auto}
+}
+/* schmales Schild: «Wer, Wo, Wann» untereinander, das Wort links */
+@container (max-width:600px){
+  .b3 .es-fakten{grid-template-columns:1fr!important;gap:12px!important}
+  .b3 .es-fakten>div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;gap:12px}
+  .b3 .es-fakten b{margin:0!important;padding:0!important;border:0!important;font-size:clamp(24px,2.4vw,32px)!important}
+}

@@ -1,0 +1,181 @@
+/* Walk on the Wild Side · «Im selben Haus», 15 edle Anordnungen mit Bildsatz 3 (29.10.2026). Grosse echte Bilder, ruhige Flächen, Goldlinien, Bewegung von unten. */
+
+.eh a{color:inherit;display:block}
+.eh .eh-f{position:relative;margin:0;overflow:hidden;background:var(--nacht3)}
+.eh .eh-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transition:transform 2.2s var(--k)}
+.eh a:hover .eh-f img{transform:scale(1.035)}
+.eh .eh-t .etikett{display:block;margin-bottom:12px}
+.eh .eh-t .titel{font-size:clamp(30px,2.9vw,44px);line-height:1.04}
+.eh .eh-t .text{margin-top:14px;font-size:16px;line-height:1.62}
+.eh .eh-t .weiter{margin-top:22px}
+.eh .eh-t.mitte{text-align:center} .eh .eh-t.mitte .text{margin-left:auto;margin-right:auto;max-width:40ch}
+.eh .eh-t.gross .titel{font-size:clamp(46px,5.2vw,84px);line-height:.98}
+.eh .eh-t.gross .text{font-size:17px;max-width:44ch}
+/* Auftritt: von unten herauf, nacheinander */
+.eh .auf-k{transform:translateY(70px);opacity:0;transition:transform 1.6s var(--k),opacity 1s ease;transition-delay:calc(var(--n,0)*.14s)}
+.eh.da .auf-k{transform:none;opacity:1}
+
+/* 01 Galerie an der Wand */
+.e01 .eh-galerie{display:grid;grid-template-columns:1fr 1.22fr 1fr;gap:clamp(30px,4vw,70px);align-items:center;margin-top:50px}
+.e01 .eh-g{transform:translateY(70px);opacity:0;transition:transform 1.6s var(--k),opacity 1s;transition-delay:calc(var(--n)*.14s)} .e01.da .eh-g{transform:none;opacity:1}
+.e01 .eh-rahmen{background:#EFE6D8;padding:clamp(14px,1.5vw,22px);box-shadow:0 0 0 7px #0B0807,0 0 0 8px rgba(216,178,100,.75),0 50px 80px -30px rgba(0,0,0,.95)}
+.e01 .eh-rahmen .eh-f{aspect-ratio:4/5}
+.e01 .eh-t{margin-top:36px;text-align:center} .e01 .eh-t .text{margin-left:auto;margin-right:auto;max-width:36ch}
+.e01 .eh-g:hover .eh-rahmen{box-shadow:0 0 0 7px #0B0807,0 0 0 8px rgba(216,178,100,1),0 60px 90px -30px rgba(0,0,0,1)}
+
+/* 02 Passepartout */
+.e02 .eh-pp{margin-top:44px}
+.e02 .eh-pp-matte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);padding:clamp(18px,2.2vw,34px);background:#0B0807;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(216,178,100,.5),var(--schatten)}
+.e02 .eh-ppb .eh-f{aspect-ratio:3/4}
+.e02 .eh-ppb .eh-f::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(216,178,100,.35)}
+.e02 .eh-ppb .eh-f img{transform:scale(1.12);transition:transform 2.4s var(--k2);transition-delay:calc(var(--n)*.15s)} .e02.da .eh-ppb .eh-f img{transform:none}
+.e02 .eh-pp-texte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,50px);margin-top:36px;text-align:center}
+.e02 .eh-pp-texte .text{margin-left:auto;margin-right:auto;max-width:36ch}
+
+/* 03 Kinoband */
+.e03 .eh-kino{margin:44px calc(50% - 50vw) 0}
+.e03 .eh-band .eh-f{aspect-ratio:3/1}
+.e03 .eh-band .eh-f img{transform:scale(1.1);transition:transform 2.6s var(--k2);transition-delay:calc(var(--n)*.2s)} .e03.da .eh-band .eh-f img{transform:none}
+.e03 .eh-balken{display:grid;grid-template-columns:190px auto minmax(0,1fr) auto;gap:20px clamp(30px,3vw,56px);align-items:center;background:#0A0706;padding:24px 4vw;border-top:1px solid rgba(216,178,100,.3);border-bottom:1px solid rgba(216,178,100,.3)}
+.e03 .eh-balken .titel{font-size:clamp(28px,2.6vw,40px);white-space:nowrap}
+.e03 .eh-balken .text{font-size:15.5px;max-width:64ch;margin:0}
+.e03 .eh-balken .weiter{white-space:nowrap}
+
+/* 04 Doppelseite */
+.e04 .eh-dop{display:grid;grid-template-columns:minmax(0,1fr) 2px minmax(0,1fr);margin-top:44px;background:var(--nacht2);border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.e04 .eh-dop.zwei{margin-top:14px}
+.e04 .eh-falz{background:linear-gradient(180deg,rgba(216,178,100,0),rgba(216,178,100,.7) 20%,rgba(216,178,100,.7) 80%,rgba(216,178,100,0));box-shadow:0 0 24px rgba(0,0,0,.8)}
+.e04 .eh-dop:not(.zwei) .eh-seite.links>a{height:100%;display:flex;align-items:center;padding:clamp(34px,4.4vw,80px)}
+.e04 .eh-voll{height:100%} .e04 .eh-voll .eh-f{height:100%;min-height:clamp(460px,44vw,680px)}
+.e04 .eh-halb{padding:clamp(16px,1.6vw,24px)}
+.e04 .eh-halb .eh-f{aspect-ratio:16/10;border-radius:4px}
+.e04 .eh-halb .eh-t{padding:28px 10px 14px}
+
+/* 05 Auf der Mittelachse */
+.e05 .eh-achse{margin-top:44px}
+.e05 .eh-haupt .eh-f{aspect-ratio:21/9;border-radius:6px}
+.e05 .eh-haupt .eh-t{padding:34px 0 0} .e05 .eh-haupt .eh-t .titel{font-size:clamp(46px,5vw,80px)}
+.e05 .eh-neben{display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(30px,4vw,70px);margin-top:54px;padding-top:54px;border-top:1px solid var(--gold-l)}
+.e05 .eh-strich{background:var(--gold-l)}
+.e05 .eh-neben .eh-f{aspect-ratio:3/2;border-radius:6px}
+.e05 .eh-neben .eh-t{padding-top:28px}
+.e05 .eh-f img{transform:scale(1.1);transition:transform 2.4s var(--k2)} .e05.da .eh-f img{transform:none}
+
+/* 06 Säulen mit Goldlinien */
+.e06 .eh-saeulen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:44px;border-top:1px solid var(--gold-l);border-bottom:1px solid var(--gold-l)}
+.e06 .eh-s{padding:40px clamp(20px,2.4vw,44px) 44px;text-align:center;transform:translateY(60px);opacity:0;transition:transform 1.6s var(--k),opacity 1s;transition-delay:calc(var(--n)*.14s)}
+.e06.da .eh-s{transform:none;opacity:1}
+.e06 .eh-s+.eh-s{border-left:1px solid var(--gold-l)}
+.e06 .eh-s .etikett{display:block;margin-bottom:12px}
+.e06 .eh-s .titel{font-size:clamp(28px,2.7vw,42px);line-height:1.04;min-height:2.1em;display:flex;align-items:flex-end;justify-content:center}
+.e06 .eh-s .eh-f{aspect-ratio:3/4;margin:28px 0 26px;border-radius:3px}
+.e06 .eh-s .text{margin:0 auto;max-width:34ch;font-size:15.5px}
+.e06 .eh-s .weiter{margin-top:20px}
+
+/* 07 Vitrine */
+.e07 .eh-vitrine{margin-top:50px}
+.e07 .eh-stuecke{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(30px,4vw,70px);padding:0 clamp(0px,2vw,40px)}
+.e07 .eh-stueck{position:relative}
+.e07 .eh-licht{position:absolute;left:-20%;right:-20%;top:-26%;height:70%;background:radial-gradient(closest-side,rgba(255,196,120,.2),rgba(255,196,120,0));pointer-events:none}
+.e07 .eh-stueck .eh-f{aspect-ratio:4/5;border-radius:2px;box-shadow:0 40px 70px -30px rgba(0,0,0,.95);transform:translateY(-40px);opacity:0;transition:transform 1.8s var(--k),opacity 1.1s;transition-delay:calc(var(--n)*.16s)}
+.e07.da .eh-stueck .eh-f{transform:none;opacity:1}
+.e07 .eh-spiegel{position:relative;height:clamp(70px,7vw,110px);overflow:hidden;border-top:1px solid rgba(216,178,100,.55);-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
+.e07 .eh-spiegel img{position:absolute;left:0;top:0;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;max-width:none;transform:scaleY(-1);opacity:.3}
+.e07 .eh-vt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(30px,4vw,70px);padding:0 clamp(0px,2vw,40px);margin-top:6px}
+
+/* 08 Grosse Initialen */
+.e08 .eh-init{margin-top:40px;border-top:1px solid var(--gold-l)}
+.e08 .eh-iz{display:grid;grid-template-columns:clamp(110px,12vw,200px) minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,3vw,56px);align-items:center;padding:26px 0;border-bottom:1px solid var(--gold-l)}
+.e08 .eh-buch{font-family:var(--titel);font-size:clamp(140px,15vw,250px);line-height:.78;color:var(--gold);text-align:center;transform:translateY(40px);opacity:0;transition:transform 1.6s var(--k),opacity 1s;transition-delay:calc(var(--n)*.16s)}
+.e08.da .eh-buch{transform:none;opacity:.9}
+.e08 .eh-iz .eh-f{aspect-ratio:16/10;border-radius:6px}
+.e08 .eh-iz .eh-t .titel{font-size:clamp(34px,3.4vw,54px)}
+
+/* 09 Hauptbild mit Begleitern */
+.e09 .eh-haupt-platte{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);grid-template-rows:auto 1fr;gap:0 clamp(30px,3.6vw,60px);margin-top:44px;padding:14px;padding-right:clamp(24px,3vw,48px)}
+.e09 .eh-hp{display:contents}
+.e09 .eh-hp .eh-f{grid-column:1;grid-row:1/3;min-height:clamp(560px,52vw,800px);border-radius:12px}
+.e09 .eh-hp .eh-t{grid-column:2;grid-row:1;padding:44px 0 34px;border-bottom:1px solid var(--gold-l)}
+.e09 .eh-begleiter{grid-column:2;grid-row:2;display:flex;flex-direction:column;justify-content:space-evenly}
+.e09 .eh-linie{display:block;height:1px;background:var(--gold-ll)}
+.e09 .eh-b{display:grid;grid-template-columns:clamp(110px,10vw,160px) minmax(0,1fr);gap:24px;align-items:center;padding:22px 0}
+.e09 .eh-b .eh-f{aspect-ratio:1;border-radius:8px}
+.e09 .eh-b .eh-t .titel{font-size:clamp(24px,2.1vw,32px)} .e09 .eh-b .eh-t .text{font-size:15px;margin-top:8px} .e09 .eh-b .eh-t .weiter{margin-top:14px}
+
+/* 10 Sprossenfenster */
+.e10 .eh-fenster{margin-top:44px;padding:14px;background:#0B0807;border-radius:14px;box-shadow:inset 0 0 0 2px #B8964F,0 0 0 1px rgba(216,178,100,.25),0 50px 90px -40px rgba(0,0,0,.95)}
+.e10 .eh-scheiben{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.e10 .eh-scheibe .eh-f{aspect-ratio:4/5;border-radius:3px}
+.e10 .eh-scheibe .eh-f::after{content:"";position:absolute;inset:0;background:#0B0807;opacity:.88;transition:opacity 1.4s ease;transition-delay:calc(.4s + var(--n)*.35s)}
+.e10.da .eh-scheibe .eh-f::after{opacity:0}
+.e10 .eh-ft{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:34px}
+.e10 .eh-ft .eh-t{padding:0 16px}
+
+/* 11 Verzeichnis und Bildwand */
+.e11 .eh-vz{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(30px,4vw,70px);margin-top:44px}
+.e11 .eh-vz-l{display:flex;flex-direction:column;border-top:1px solid var(--gold-l)}
+.e11 .eh-vz-e{flex:1;padding:30px 0;border-bottom:1px solid var(--gold-l);transition:padding 1s var(--k)}
+.e11 .eh-vz-e .eh-t .titel{font-size:clamp(34px,3.4vw,54px)}
+.e11 .eh-vz-e:hover{padding-left:16px}
+.e11 .eh-vz-w{display:grid;grid-template-columns:1.15fr 1fr;grid-template-rows:1fr 1fr;gap:8px;min-height:clamp(560px,50vw,780px)}
+.e11 .eh-w0{grid-row:1/3} .e11 .eh-vz-w a .eh-f{height:100%;border-radius:8px}
+.e11 .eh-vz-w .eh-f img{transition:transform 1.8s var(--k),opacity .8s ease}
+.e11 .eh-vz:has(.eh-vz-e:hover) .eh-vz-w img{opacity:.45}
+.e11 .eh-vz:has(.eh-vz-e:nth-child(1):hover) .eh-w0 img,.e11 .eh-vz:has(.eh-vz-e:nth-child(2):hover) .eh-w1 img,.e11 .eh-vz:has(.eh-vz-e:nth-child(3):hover) .eh-w2 img{opacity:1;transform:scale(1.04)}
+
+/* 12 Auf der Kante hell und dunkel */
+.e12 .eh-kante2{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,40px);margin-top:44px;padding-bottom:56px}
+.e12 .eh-kante2::before{content:"";position:absolute;left:calc(50% - 50vw);right:calc(50% - 50vw);top:44%;bottom:0;background:var(--creme)}
+.e12 .eh-kz{position:relative;transform:translateY(60px);opacity:0;transition:transform 1.6s var(--k),opacity 1s;transition-delay:calc(var(--n)*.14s)} .e12.da .eh-kz{transform:none;opacity:1}
+.e12 .eh-kz .eh-f{aspect-ratio:4/5;border-radius:4px;box-shadow:0 40px 70px -34px rgba(0,0,0,.75)}
+.e12 .eh-kz .eh-t{padding:30px 4px 0}
+.e12 .eh-kz .eh-t .etikett{color:#A07F3A} .e12 .eh-kz .eh-t .titel{color:var(--dunkel)} .e12 .eh-kz .eh-t .text{color:rgba(27,21,18,.76)}
+.e12 .eh-kz .eh-t .weiter{color:#8F6E2E;border-color:rgba(143,110,46,.3)}
+
+/* 13 Halbdunkel */
+.e13 .eh-dunkel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:44px}
+.e13 .eh-dk .eh-f{aspect-ratio:3/4}
+.e13 .eh-vign{position:absolute;inset:0;background:radial-gradient(ellipse 62% 58% at 50% 46%,rgba(19,14,13,0) 30%,rgba(19,14,13,.55) 70%,var(--nacht) 100%);transition:opacity 1.2s}
+.e13 .eh-dk:hover .eh-vign{opacity:.55}
+.e13 .eh-dk .eh-t{padding:6px 24px 0}
+.e13 .eh-dk .eh-f img{transform:scale(1.1);transition:transform 2.6s var(--k2);transition-delay:calc(var(--n)*.18s)} .e13.da .eh-dk .eh-f img{transform:none}
+
+/* 14 Das Prisma */
+.e14 .eh-prisma{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(40px,5vw,90px);align-items:center;margin-top:44px}
+.e14 .eh-p-raum{position:relative;aspect-ratio:4/5;perspective:2200px}
+.e14 .eh-p-koerper{--r:calc(var(--b,520px) * .2887);position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(calc(var(--r) * -1)) rotateY(var(--a,0deg));transition:transform 1.4s var(--k)}
+.e14 .eh-p-seite{position:absolute;inset:0;border-radius:10px;backface-visibility:hidden;box-shadow:0 40px 80px -36px rgba(0,0,0,.95)}
+.e14 .eh-p-seite:nth-child(1){transform:rotateY(0deg) translateZ(var(--r))}
+.e14 .eh-p-seite:nth-child(2){transform:rotateY(120deg) translateZ(var(--r))}
+.e14 .eh-p-seite:nth-child(3){transform:rotateY(240deg) translateZ(var(--r))}
+.e14 .eh-p-texte{position:relative;min-height:clamp(360px,30vw,460px)}
+.e14 .eh-pt{position:absolute;inset:0 0 70px 0;display:flex;align-items:center;opacity:0;transform:translateY(24px);transition:opacity .7s,transform .9s var(--k);pointer-events:none}
+.e14 .eh-pt.an{opacity:1;transform:none;pointer-events:auto}
+.e14 .eh-p-reiter{position:absolute;left:0;right:0;bottom:0;display:flex;gap:28px;border-top:1px solid var(--gold-l);padding-top:20px}
+.e14 .eh-p-reiter button{background:none;border:0;padding:0 0 6px;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3);cursor:pointer;border-bottom:1px solid transparent;transition:color .4s,border-color .4s}
+.e14 .eh-p-reiter button.an{color:var(--gold);border-color:var(--gold)}
+
+/* 15 Unten bündig */
+.e15 .eh-buendig{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,40px);margin-top:44px;align-items:stretch}
+.e15 .eh-bd{display:flex;flex-direction:column}
+.e15 .eh-bd .eh-t{padding:0 4px 28px}
+.e15 .eh-bd .eh-f{flex:1;min-height:clamp(380px,34vw,540px);border-radius:6px 6px 0 0}
+.e15 .eh-bd .eh-f img{transform:translateY(12%) scale(1.08);transition:transform 2.2s var(--k);transition-delay:calc(var(--n)*.15s)} .e15.da .eh-bd .eh-f img{transform:none}
+.e15 .eh-boden{height:2px;background:linear-gradient(90deg,rgba(216,178,100,0),var(--gold) 12%,var(--gold) 88%,rgba(216,178,100,0))}
+
+.ruhig .eh *{transition:none!important}
+.ruhig .e01 .eh-g,.ruhig .e06 .eh-s,.ruhig .e07 .eh-stueck .eh-f,.ruhig .e12 .eh-kz{transform:none;opacity:1}
+.ruhig .e08 .eh-buch{transform:none;opacity:.9} .ruhig .e10 .eh-scheibe .eh-f::after{opacity:0}
+
+@media (max-width:760px){
+  .eh .eh-galerie,.eh .eh-pp-matte,.eh .eh-pp-texte,.eh .eh-dop,.eh .eh-neben,.eh .eh-saeulen,.eh .eh-stuecke,.eh .eh-vt,.eh .eh-scheiben,.eh .eh-ft,.eh .eh-vz,.eh .eh-kante2,.eh .eh-dunkel,.eh .eh-prisma,.eh .eh-buendig,.eh .eh-haupt-platte{grid-template-columns:minmax(0,1fr)}
+  .e03 .eh-balken{grid-template-columns:minmax(0,1fr)} .e03 .eh-band .eh-f{aspect-ratio:16/10} .e03 .eh-balken .titel{white-space:normal}
+  .e04 .eh-falz,.e05 .eh-strich{display:none} .e04 .eh-voll .eh-f{min-height:70vw}
+  .e06 .eh-s+.eh-s{border-left:0;border-top:1px solid var(--gold-l)}
+  .e07 .eh-vt{display:none} .e07 .eh-stueck::after{content:none}
+  .e08 .eh-iz{grid-template-columns:70px minmax(0,1fr)} .e08 .eh-iz .eh-f{grid-column:1/-1} .e08 .eh-buch{font-size:90px}
+  .e09 .eh-hp{display:block} .e09 .eh-hp .eh-f{min-height:80vw}
+  .e11 .eh-vz-w{min-height:110vw}
+  .e12 .eh-kante2::before{top:20%}
+  .e14 .eh-p-texte{min-height:420px}
+}

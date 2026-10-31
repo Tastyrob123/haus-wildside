@@ -1,0 +1,268 @@
+/* Walk on the Wild Side · 20 aussergewöhnliche Auftakte (29.10.2026). Je Fassung ein eigener Gegenstand und ein eigener Moment.
+   Bewegung über transform und opacity, ein Takt, kein Verlauf und keine Unschärfe über Bewegtem (Unschärfe ist vorgerechnet). */
+
+.h20{display:block;align-items:stretch;min-height:100vh;min-height:100svh;position:relative;overflow:hidden;background:var(--nacht);color:var(--text)}
+.h20 .T{font-family:var(--titel);font-weight:400;line-height:1.02;letter-spacing:-.012em;margin:0;color:var(--creme);font-size:var(--T,clamp(48px,7vw,118px))}
+.h20 .T .z{white-space:nowrap}
+.h20 .xsatz{font:400 clamp(17px,1.42vw,21px)/1.58 var(--lauf);color:var(--text);max-width:46ch;margin:24px 0 0}
+.h20 .xzeile{margin-top:20px;display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center}
+.h20 .xzeile .ort{font:500 11.5px/1.4 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text2)}
+.h20 .xzeile .trenner{width:1px;height:14px;background:var(--gold-l)}
+.h20 .knoepfe{margin-top:30px}
+.h20 .xlogo{display:block;width:clamp(78px,6.6vw,112px);color:var(--rot);margin-bottom:clamp(16px,2.6vh,28px)}
+.h20 .xlogo svg{width:100%;height:auto;display:block}
+.h20 .xb{position:relative;overflow:hidden;margin:0;background:var(--nacht3)}
+.h20 .xb img,.h20 .xfoto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+.h20 .xfoto{position:absolute;inset:0 0 0 22%;margin:0;overflow:hidden;background:var(--nacht)}
+.h20 .xhof{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,var(--nacht) 0%,var(--nacht) 21%,rgba(19,14,13,.82) 32%,rgba(19,14,13,.35) 50%,rgba(19,14,13,0) 66%),linear-gradient(0deg,rgba(19,14,13,.9) 0%,rgba(19,14,13,0) 38%)}
+.h20 .xt{position:relative;z-index:5;display:flex;flex-direction:column;justify-content:center;min-height:100vh;min-height:100svh;width:min(56vw,860px);padding:clamp(60px,8vh,110px) clamp(24px,4vw,72px) clamp(40px,6vh,72px)}
+.h20 .x-mitte{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;text-align:center}
+.h20 .x-reihe{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px 50px;align-items:end;text-align:left;width:var(--innen);margin-top:24px}
+.h20 .x-reihe .xsatz{margin-top:0}
+.h20 .x-reihe .knoepfe{margin-top:22px;flex-wrap:nowrap}
+.h20 .x-reihe .xzeile{margin-top:0}
+
+/* ---------- 01 Das Licht geht an */
+.x01 .xfoto{inset:0 0 0 38%}
+.x01 .xfoto img{object-position:56% 34%}
+.x01 .x-hell{opacity:0}
+.x01.da .x-hell{animation:x01an 2.3s .35s linear forwards}
+@keyframes x01an{0%{opacity:0}5%{opacity:.85}7%{opacity:.04}13%{opacity:.92}16%{opacity:.12}23%{opacity:1}27%{opacity:.38}31%,100%{opacity:1}}
+.x01 .sw,.x01 .zl .z>span{transition-delay:calc(1.25s + var(--i,0)*.12s)!important}
+
+/* ---------- 02 Hinter dem Schild */
+.x02 .xfoto{inset:0 0 0 30%}
+.x02 .xfoto img{object-position:50% 20%}
+.x02 .x-vorn{z-index:4;pointer-events:none;background:none}
+.x02 .xhof{background:linear-gradient(90deg,var(--nacht) 0%,var(--nacht) 29%,rgba(19,14,13,.55) 38%,rgba(19,14,13,0) 50%),linear-gradient(0deg,rgba(19,14,13,.94) 0%,rgba(19,14,13,0) 42%)}
+.x02 .x-spur{position:absolute;z-index:3;left:4vw;top:17vh;width:54.6vw}
+.x02 .x-spur .T{--T:clamp(44px,6.5vw,110px)}
+.x02 .x-spur .zl .z>span{transform:translateX(52vw);transition:transform 2.3s var(--k);transition-delay:calc(.45s + var(--i)*.2s)}
+.x02.da .x-spur .zl .z>span{transform:none}
+.x02 .x-unten{position:absolute;left:0;bottom:0;min-height:0;justify-content:flex-end;padding-bottom:56px}
+.x02 .x-unten .xsatz{margin-top:0}
+
+/* ---------- 03 Unter dem Gewölbe */
+.x03{display:flex;flex-direction:column;justify-content:flex-end}
+.x03 .x-raum{position:absolute;left:0;right:0;top:0;height:44%;perspective:520px;perspective-origin:50% 100%;overflow:hidden}
+.x03 .x-decke{position:absolute;left:-28%;right:-28%;top:0;height:260%;transform-origin:50% 0;transform:rotateX(-48deg);overflow:hidden}
+.x03 .x-decke img{position:absolute;left:0;top:0;width:100%;height:128%;object-fit:cover;max-width:none;animation:x03zug 40s ease-in-out infinite alternate;will-change:transform}
+@keyframes x03zug{from{transform:translateY(0)}to{transform:translateY(-20%)}}
+.x03 .x-mitte{padding:0 24px clamp(36px,6vh,60px)}
+.x03 .xlogo{width:clamp(64px,5vw,84px);margin-bottom:14px}
+.x03 .T{--T:clamp(52px,7.8vw,132px)}
+
+/* ---------- 04 Das Eckschild */
+.x04 .x-objekt{position:absolute;right:0;top:0;bottom:0;width:46vw;perspective:1300px;display:flex;align-items:center;justify-content:center}
+.x04 .x-schein{position:absolute;width:80%;height:80%;background:radial-gradient(closest-side,rgba(216,178,100,.2),rgba(216,178,100,0))}
+.x04 .x-kasten{--w:clamp(240px,29vw,470px);--h:calc(var(--w)*1.122);--d:calc(var(--w)*.17);position:relative;width:var(--w);height:var(--h);transform-style:preserve-3d;
+  transform:rotateY(-72deg) rotateX(14deg) translateY(40px);transition:transform 2.1s var(--k);will-change:transform}
+.x04.da .x-kasten{transform:rotateY(var(--ry,-16deg)) rotateX(var(--rx,4deg))}
+.x04.da .x-kasten.folgt{transition:transform .7s ease-out}
+.x04 .f{position:absolute;left:0;top:0;width:var(--w);height:var(--h);background:#0B0807;backface-visibility:hidden}
+.x04 .f img{width:100%;height:100%;display:block;object-fit:cover;max-width:none}
+.x04 .f-vorn{transform:translateZ(calc(var(--d)/2));box-shadow:0 0 70px rgba(255,214,150,.18)}
+.x04 .f-hinten{transform:rotateY(180deg) translateZ(calc(var(--d)/2))}
+.x04 .f-l,.x04 .f-r{width:var(--d);left:calc(50% - var(--d)/2);background:linear-gradient(90deg,#5c4520,#d8b264 50%,#5c4520)}
+.x04 .f-l{transform:rotateY(-90deg) translateZ(calc(var(--w)/2))}
+.x04 .f-r{transform:rotateY(90deg) translateZ(calc(var(--w)/2))}
+.x04 .f-o,.x04 .f-u{height:var(--d);top:calc(50% - var(--d)/2);background:linear-gradient(180deg,#5c4520,#d8b264 50%,#5c4520)}
+.x04 .f-o{transform:rotateX(90deg) translateZ(calc(var(--h)/2))}
+.x04 .f-u{transform:rotateX(-90deg) translateZ(calc(var(--h)/2))}
+
+/* ---------- 05 Die Ecke */
+.x05{display:flex;flex-direction:column;justify-content:flex-end}
+.x05 .x-ecke{position:absolute;left:0;right:0;top:0;height:60%;perspective:1500px;perspective-origin:50% 40%;display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
+.x05 .x-haus{position:relative;width:2px;height:92%;transform-style:preserve-3d;transform:translateY(70px) rotateY(-30deg);transition:transform 2s var(--k)}
+.x05.da .x-haus{transform:rotateY(var(--ry,0deg))}
+.x05.da .x-haus.folgt{transition:transform .8s ease-out}
+.x05 .x-wand{position:absolute;bottom:0;height:100%;width:28vw;overflow:hidden;background:var(--nacht3)}
+.x05 .x-wand img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.x05 .x-wl{right:0;transform-origin:100% 50%;transform:rotateY(-46deg)}
+.x05 .x-wr{left:0;transform-origin:0 50%;transform:rotateY(46deg)}
+.x05 .x-fahne{position:absolute;top:12%;left:0;width:clamp(70px,6.4vw,104px);color:var(--rot);transform:translateX(-50%) translateZ(46px);filter:drop-shadow(0 18px 24px rgba(0,0,0,.6))}
+.x05 .x-fahne svg{width:100%;height:auto;display:block}
+.x05 .x-mitte{padding:0 24px clamp(34px,5vh,56px)}
+.x05 .T{--T:clamp(42px,6.4vw,108px)}
+
+/* ---------- 06 Das Karussell */
+.x06{display:flex;flex-direction:column;justify-content:flex-end}
+.x06 .x-ring{position:absolute;left:0;right:0;top:2%;height:58%;perspective:1250px;perspective-origin:50% 30%;display:flex;align-items:center;justify-content:center}
+.x06 .x-dreh{--w:clamp(140px,15vw,250px);position:relative;width:var(--w);height:calc(var(--w)*1.333);transform-style:preserve-3d;transform:rotateX(-7deg) rotateY(var(--rot,0deg));will-change:transform}
+.x06 .x-feld{position:absolute;inset:0;margin:0;overflow:hidden;border-radius:10px;backface-visibility:hidden;background:var(--nacht3);
+  transform:rotateY(calc(var(--n)*36deg)) translateZ(calc(var(--w)*1.66))}
+.x06 .x-feld img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.x06 .x-mitte{padding:0 24px clamp(34px,5vh,56px)}
+.x06 .T{--T:clamp(42px,6.4vw,108px)}
+
+/* ---------- 07 Die Decke dreht sich */
+.x07 .x-fliesen{position:absolute;right:0;top:0;bottom:0;width:46vw;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(4,1fr);gap:4px;padding:4px;perspective:1800px}
+.x07 .k{position:relative;transform-style:preserve-3d;transition:transform 1.2s var(--k);transition-delay:calc(.9s + (var(--c) + var(--r))*.1s)}
+.x07.da .k{transform:rotateY(180deg)}
+.x07 .s{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;border-radius:4px;background:var(--nacht3)}
+.x07 .s.h{transform:rotateY(180deg)}
+.x07 .s img{position:absolute;width:500%;height:400%;max-width:none;object-fit:cover}
+.x07 .s.v img{object-position:50% 50%} .x07 .s.h img{object-position:50% 45%}
+
+/* ---------- 08 Schärfe zieht auf */
+.x08 .x-sour{position:absolute;right:0;top:0;bottom:0;width:46vw;margin:0;overflow:hidden;background:var(--nacht)}
+.x08 .x-sour img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;max-width:none;transition:opacity 1.1s ease}
+.x08 .e2{opacity:var(--bg,0)} .x08 .e3{opacity:calc(1 - var(--gl,0))} .x08 .e4{opacity:var(--gl,0)}
+
+/* ---------- 09 Über den Tresen */
+.x09 .x-regal{position:absolute;left:0;right:0;top:0;height:64%;margin:0;overflow:hidden}
+.x09 .x-regal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.x09 .x-tresen{position:absolute;left:0;right:0;bottom:0;height:36%;background:linear-gradient(180deg,#2c1f17 0%,#160f0c 70%);border-top:1px solid rgba(216,178,100,.55)}
+.x09 .xhof{background:linear-gradient(90deg,var(--nacht) 0%,rgba(19,14,13,.92) 30%,rgba(19,14,13,.4) 52%,rgba(19,14,13,.12) 70%),linear-gradient(0deg,rgba(19,14,13,.35) 36%,rgba(19,14,13,0) 50%)}
+.x09 .x-weg{position:absolute;z-index:4;right:9vw;bottom:9%;width:clamp(170px,17vw,290px);transform-origin:50% 100%;transform:translate(-13vw,-25vh) scale(.26);transition:transform 2.2s cubic-bezier(.2,.7,.25,1.05) .7s}
+.x09.da .x-weg{transform:none}
+.x09 .x-glas{display:block;width:100%;height:auto;max-width:none;filter:drop-shadow(0 22px 18px rgba(0,0,0,.65))}
+.x09.da .x-glas{animation:x09wackel .7s 2.75s ease-out}
+@keyframes x09wackel{0%{transform:rotate(0)}30%{transform:rotate(-2.2deg)}65%{transform:rotate(1deg)}100%{transform:rotate(0)}}
+
+/* ---------- 10 Aus dem Rahmen */
+.x10 .x-box{position:absolute;right:3vw;top:5vh;bottom:0;width:42vw;transform:translateY(60px);transition:transform 1.8s var(--k)}
+.x10.da .x-box{transform:none}
+.x10 .x-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;max-width:none}
+.x10 .x-box picture,.x10 .x-box>img:first-child{clip-path:inset(24% 0 0 17% round 16px)}
+.x10 .x-linie{position:absolute;inset:24% 0 0 17%;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(216,178,100,.75),0 40px 80px -30px rgba(0,0,0,.8);pointer-events:none}
+
+/* ---------- 11 SESSION */
+.x11{background:#EBE2D8}
+.x11 .T{color:#1A00AA}
+.x11 .xsatz{color:#241B17}
+.x11 .xzeile .etikett{color:#C8261C} .x11 .xzeile .ort{color:rgba(27,21,18,.7)} .x11 .xzeile .trenner{background:rgba(27,21,18,.25)}
+.x11 .x-welle{position:absolute;right:0;top:0;bottom:0;width:47vw;overflow:hidden;background:#EBE2D8}
+.x11 .x-welle svg{position:absolute;left:0;top:0;width:100%;height:200%;fill:#D21C0A;animation:x11lauf 32s linear infinite;will-change:transform}
+@keyframes x11lauf{to{transform:translateY(-50%)}}
+.x11 .x-momo{position:absolute;bottom:0;left:50%;height:90%;width:auto;max-width:none;transform:translateX(-50%) translateY(8%);transition:transform 1.7s var(--k)}
+.x11.da .x-momo{transform:translateX(-50%)}
+.x11 .knopf:not(.rot){background:#1A00AA;color:#EBE2D8} .x11 .knopf:not(.rot) i{background:#EBE2D8;color:#1A00AA}
+
+/* ---------- 12 Zeilen laufen */
+.x12{display:flex;flex-direction:column;justify-content:center;padding:72px 0 40px}
+.x12 .x-z1,.x12 .x-z2{--T:clamp(64px,12.4vw,206px);line-height:.96;white-space:nowrap;padding:0 4vw;will-change:transform;position:relative;z-index:3}
+.x12 .x-z1{transform:translateX(var(--a,0px))}
+.x12 .x-z2{text-align:right;transform:translateX(var(--b,0px))}
+.x12 .x-band{height:25vh;height:25svh;margin:16px 0 12px;overflow:hidden}
+.x12 .x-spur{display:flex;gap:8px;height:100%;width:max-content;transform:translateX(var(--c,-6vw));will-change:transform}
+.x12 .x-spur .xb{height:100%;aspect-ratio:4/5;flex:none;border-radius:10px}
+.x12 .x-unten{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:22px 44px;align-items:end;width:var(--innen);margin:22px auto 0}
+.x12 .x-unten .xlogo{margin:0}
+.x12 .x-unten .xsatz{margin-top:0;max-width:56ch}
+.x12 .x-unten .knoepfe{margin-top:0;flex-wrap:nowrap}
+
+/* ---------- 13 Quer durch die Bar */
+.x13{height:280vh;height:280svh;overflow:clip}
+.x13 .x-buehne{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.x13 .x-spur{display:flex;height:100%;gap:8px;width:max-content;transform:translateX(var(--x,0px));will-change:transform}
+.x13 .x-spur .xt{width:min(56vw,860px);flex:none;min-height:0;height:100%}
+.x13 .x-spur .xb{height:100%;width:calc(100vh*.72);width:calc(100svh*.72);flex:none}
+
+/* ---------- 14 Spiegel der Theke */
+.x14 .x-oben{position:absolute;left:0;right:0;top:0;height:52%;margin:0;overflow:hidden}
+.x14 .x-oben::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(19,14,13,.78) 0%,rgba(19,14,13,0) 42%)}
+.x14 .x-oben img,.x14 .x-spiegel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.x14 .x-spiegel{position:absolute;left:0;right:0;top:52%;height:48%;margin:0;overflow:hidden;border-top:1px solid rgba(216,178,100,.55)}
+.x14 .x-spiegel img{transform:scaleY(-1);opacity:.34}
+.x14 .x-spiegel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,14,13,.25) 0%,rgba(19,14,13,.9) 58%,var(--nacht) 100%)}
+.x14 .x-glanz{position:absolute;z-index:2;top:0;bottom:0;left:-30%;width:24%;background:linear-gradient(100deg,rgba(255,232,190,0) 0%,rgba(255,232,190,.12) 50%,rgba(255,232,190,0) 100%);animation:x14glanz 8s 2.2s ease-in-out infinite;will-change:transform}
+@keyframes x14glanz{0%{transform:translateX(0)}45%,100%{transform:translateX(640%)}}
+.x14 .x-mitte{position:absolute;left:0;right:0;bottom:48%;z-index:4}
+.x14 .x-mitte .T{--T:clamp(46px,6.8vw,116px);line-height:.98}
+.x14 .x-echo{position:absolute;left:0;right:0;top:100%;margin:0;transform:scaleY(-1);transform-origin:50% 0;opacity:.16;pointer-events:none;line-height:.98;font-size:clamp(46px,6.8vw,116px)}
+.x14 .x-reihe{position:absolute;z-index:4;bottom:clamp(40px,7vh,70px);left:50%;transform:translateX(-50%);margin-top:0}
+.x14 .x-reihe{grid-template-columns:auto minmax(0,1fr) auto}
+.x14 .x-reihe .xlogo{margin:0;width:clamp(56px,4.4vw,74px)}
+
+/* ---------- 15 Das Zeichen als Fenster */
+.x15 .x-platte{position:absolute;right:5vw;top:50%;height:min(82vh,50vw);aspect-ratio:1296/1600;background:var(--rot);clip-path:polygon(1% 11%,97% 1.5%,100% 99.5%,3.5% 98.5%);
+  transform:translateY(-50%) rotate(-8deg) scale(.72);transition:transform 1.7s cubic-bezier(.2,1.3,.4,1)}
+.x15.da .x-platte{transform:translateY(-50%) rotate(-1.5deg)}
+.x15 .x-innen{position:absolute;inset:5.5% 5% 5% 5.5%;clip-path:polygon(.5% 10%,99% .5%,100% 100%,2% 99%);overflow:hidden;background:var(--nacht)}
+.x15 .x-innen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transform:scale(1.25);transition:transform 2.4s var(--k2)}
+.x15.da .x-innen img{transform:none}
+
+/* ---------- 16 Von 19 bis 2 */
+.x16 .xfoto{inset:0 0 0 26%}
+.x16 .x-st{opacity:0;transition:opacity .4s ease}
+.x16 .x-st.an{opacity:1}
+.x16 .x-uhr{position:absolute;z-index:6;left:calc(26vw + 40px);right:44px;top:38px;display:flex;justify-content:space-between;font-family:var(--titel);font-size:clamp(20px,1.9vw,30px);color:rgba(237,228,216,.55);border-bottom:1px solid var(--gold-l);padding-bottom:12px;cursor:default}
+.x16 .x-uhr span{transition:color .3s;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.x16 .x-uhr span.an{color:var(--gold)}
+.x16 .x-marke{position:absolute;left:0;bottom:-1px;height:2px;width:var(--mw,40px);background:var(--gold);transform:translateX(var(--mx,0px));transition:transform .4s var(--k)}
+
+/* ---------- 17 Ins Glas */
+.x17{height:230vh;height:230svh;overflow:clip}
+.x17 .x-buehne{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.x17 .x-glas{position:absolute;right:8vw;top:50%;height:68vh;width:auto;max-width:none;transform-origin:50% 62%;transform:translateY(-50%) scale(var(--s,1));will-change:transform}
+.x17 .x-rot{position:absolute;inset:0;background:#4E0A0F;opacity:var(--r,0)}
+.x17 .xt{height:100%;min-height:0}
+
+/* ---------- 18 Getippt */
+.x18{display:grid;grid-template-columns:58fr 42fr}
+.x18 .xt{width:auto}
+.x18 .T{--T:clamp(48px,7.4vw,124px)}
+.x18 .x-tipp .x-zl{display:block;white-space:nowrap}
+.x18 .x-tipp .b{opacity:0}
+.x18 .x-tipp .b.an{opacity:1}
+.x18 .x-cursor{display:inline-block;width:.055em;height:.8em;background:var(--gold);vertical-align:-.04em;margin-left:.05em;animation:x18blink 1s steps(1) infinite}
+@keyframes x18blink{50%{opacity:0}}
+.x18 .x-cursor.aus{display:none}
+.x18 .sw{transition-delay:calc(1.9s + var(--i,0)*.12s)!important}
+.x18 .xlogo.sw{transition-delay:0s!important}
+.x18 .xb img{transform:scale(1.06);transition:transform 2.6s var(--k2)} .x18.da .xb img{transform:none}
+
+/* ---------- 19 Filmstreifen */
+.x19{display:flex;flex-direction:column;justify-content:space-between;padding:clamp(56px,8vh,90px) 0 clamp(32px,5vh,48px)}
+.x19 .x-oben{width:var(--innen);margin:0 auto;display:flex;align-items:flex-end;gap:clamp(24px,3vw,48px);position:relative;z-index:3}
+.x19 .x-oben .xlogo{margin:0 0 .12em;flex:none}
+.x19 .T{--T:clamp(44px,6.8vw,114px)}
+.x19 .x-film{position:relative;z-index:2;margin:clamp(18px,4vh,40px) -12vw;height:clamp(150px,27vh,300px);transform:rotate(-5deg);background:#0A0706;box-shadow:0 34px 60px -30px #000}
+.x19 .x-spur{display:flex;gap:10px;height:100%;width:max-content;padding:28px 0;box-sizing:border-box;animation:x19lauf 110s linear infinite;will-change:transform;
+  background:repeating-linear-gradient(90deg,transparent 0 12px,rgba(237,228,216,.78) 12px 26px,transparent 26px 40px) 0 8px/100% 12px no-repeat,
+             repeating-linear-gradient(90deg,transparent 0 12px,rgba(237,228,216,.78) 12px 26px,transparent 26px 40px) 0 calc(100% - 8px)/100% 12px no-repeat}
+.x19 .x-spur .xb{height:100%;aspect-ratio:3/2;flex:none;border-radius:3px}
+@keyframes x19lauf{to{transform:translateX(calc(-50% - 5px))}}
+.x19 .x-unten{width:var(--innen);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 50px;align-items:end;position:relative;z-index:3}
+.x19 .x-unten .xsatz{margin-top:0}
+.x19 .x-unten .knoepfe{margin-top:22px;flex-wrap:nowrap}
+
+/* ---------- 20 Stillleben */
+.x20 .x-still{position:absolute;right:0;top:0;bottom:0;width:50vw}
+.x20 .x-still::before{content:"";position:absolute;left:10%;top:6%;width:80%;height:70%;background:radial-gradient(closest-side,rgba(216,150,80,.16),rgba(216,150,80,0))}
+.x20 .x-kante{position:absolute;left:0;right:0;bottom:0;height:17%;background:linear-gradient(180deg,#2a1d16,#140e0b);border-top:1px solid rgba(216,178,100,.5);z-index:2}
+.x20 .x-e{position:absolute;transform:translate3d(var(--px,0px),var(--py,0px),0);transition:transform .9s ease-out}
+.x20 .x-e img{display:block;width:100%;height:auto;max-width:none;transform:translateY(70px);opacity:0;transition:transform 1.5s var(--k),opacity .8s ease}
+.x20.da .x-e img{transform:none;opacity:1}
+.x20 .x-momo{left:16%;bottom:17%;width:min(34vw,62vh);z-index:1}
+.x20 .x-momo img{transition-delay:.2s}
+.x20 .x-g1{left:6%;bottom:17%;width:min(9vw,16vh);z-index:3} .x20 .x-g1 img{transition-delay:.55s}
+.x20 .x-g3{right:5%;bottom:17%;width:min(14vw,25vh);z-index:3} .x20 .x-g3 img{transition-delay:.75s}
+.x20 .x-g2{right:24%;bottom:4%;width:min(12vw,22vh);z-index:4} .x20 .x-g2 img{transition-delay:.95s;filter:drop-shadow(0 18px 16px rgba(0,0,0,.6))}
+
+/* ---------- Ruhig gestellt */
+.ruhig .h20 *{animation:none!important}
+@media (prefers-reduced-motion:reduce){.h20 *{animation:none!important}}
+
+/* ---------- Handy */
+@media (max-width:760px){
+  .h20{display:flex;flex-direction:column}
+  .h20 .xt{width:auto;min-height:0;padding:32px 16px 48px}
+  .h20 .T{--T:clamp(42px,12vw,60px)!important}
+  .h20 .T .z{white-space:normal}
+  .h20 .x-reihe{grid-template-columns:1fr;width:auto;padding:0 16px} .h20 .x-reihe .knoepfe{flex-wrap:wrap}
+  .x01 .xfoto,.x16 .xfoto,.x02 .xfoto{position:relative;inset:auto;height:56svh;flex:none} .x01 .xhof,.x16 .xhof,.x02 .xhof{display:none}
+  .x02 .x-vorn{position:absolute;inset:0 0 auto 0;height:56svh} .x02 .x-spur{position:relative;left:auto;top:auto;width:auto;padding:28px 16px 0} .x02 .x-unten{position:relative}
+  .x04 .x-objekt,.x07 .x-fliesen,.x08 .x-sour,.x10 .x-box,.x11 .x-welle,.x15 .x-platte,.x20 .x-still{position:relative;inset:auto;width:auto;height:56svh;order:-1;flex:none;right:auto;top:auto;transform:none}
+  .x15 .x-platte{height:56svh;margin:20px auto 0} .x15.da .x-platte{transform:rotate(-1.5deg)}
+  .x03 .x-raum,.x05 .x-ecke,.x06 .x-ring{position:relative;height:46svh;flex:none}
+  .x09 .x-weg{right:6vw;width:38vw}
+  .x12 .x-z1,.x12 .x-z2{--T:15vw!important} .x12 .x-unten{grid-template-columns:1fr;width:auto;padding:0 16px} .x12 .x-unten .knoepfe{flex-wrap:wrap}
+  .x13{height:auto} .x13 .x-buehne{position:relative;height:auto} .x13 .x-spur{flex-direction:column;width:auto;transform:none} .x13 .x-spur .xb{width:auto;height:46svh}
+  .x14 .x-mitte{bottom:auto;top:30svh} .x14 .x-reihe{position:relative;bottom:auto;left:auto;transform:none;margin-top:60svh}
+  .x17{height:auto} .x17 .x-buehne{position:relative;height:auto} .x17 .x-glas{position:relative;right:auto;top:auto;height:40svh;margin:80px auto 0;display:block;transform:none}
+  .x18{display:flex;flex-direction:column} .x18 .xb{height:50svh;order:-1}
+  .x19 .x-oben,.x19 .x-unten{width:auto;padding:0 16px;grid-template-columns:1fr;flex-direction:column;align-items:flex-start} .x19 .x-unten .knoepfe{flex-wrap:wrap}
+  .x20 .x-momo{width:58vw}
+}

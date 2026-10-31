@@ -1,0 +1,71 @@
+/* Wild Side · Eckschild: zehn Fassungen für Wer, Wo, Wann (29.10.2026). Nur der untere Teil des Schilds, Farben und Schrift der Seite. */
+.es-unten[class*="eu-"]{display:block}
+.es-unten[class*="eu-"] .text{max-width:68ch;font-size:clamp(17px,1.35vw,19.5px);line-height:1.62}
+.ef{margin-top:clamp(26px,2.6vw,36px)}
+.ef .etikett{display:block;color:var(--gold);margin-bottom:10px}
+.ef p{font-family:var(--titel);font-size:clamp(17px,1.45vw,21px);line-height:1.38;color:var(--text)}
+
+/* 01 Drei Spalten, feine Goldlinien */
+.f01{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--gold-l)}
+.f01>div{padding:22px 26px 0}
+.f01>div:first-child{padding-left:0} .f01>div+div{border-left:1px solid var(--gold-l)}
+
+/* 02 Die Messingleiste */
+.f02{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:clamp(28px,2.8vw,40px) calc(12px - clamp(26px,3.4vw,46px)) calc(12px - clamp(26px,3.4vw,46px));
+  background:var(--nacht3);border-top:1px solid var(--gold);border-radius:0 0 7px 7px;box-shadow:inset 0 1px 0 rgba(216,178,100,.18)}
+.f02>div{padding:24px calc(clamp(26px,3.4vw,46px) - 12px) 26px}
+.f02>div+div{border-left:1px solid var(--gold-ll)}
+
+/* 03 Goldene Wörter */
+.f03{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px)}
+.f03 b{display:block;font-family:var(--titel);font-weight:400;font-size:clamp(30px,3vw,44px);line-height:1;color:var(--gold);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--gold-l)}
+.f03 p{font-family:var(--lauf);font-size:16px;line-height:1.55;color:var(--text2)}
+
+/* 04 Drei Plaketten */
+.f04{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.f04>div{border-radius:6px;padding:20px 22px 22px;background:rgba(255,255,255,.025);box-shadow:inset 0 0 0 1px var(--gold-l),inset 0 0 0 5px var(--nacht2),inset 0 0 0 6px var(--gold-ll)}
+
+/* 05 Zeilen über die ganze Breite */
+.f05>div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:20px;align-items:baseline;padding:16px 0;border-top:1px solid var(--gold-l)}
+.f05>div:last-child{border-bottom:1px solid var(--gold-l)}
+.f05 .etikett{margin:0}
+.f05 p{font-size:clamp(18px,1.6vw,23px)}
+
+/* 06 Oben am Schild, neben dem Logo */
+.f06-kopf{display:flex;align-items:flex-start;gap:clamp(24px,3vw,44px)}
+.f06-kopf .logo{margin:0!important}
+.f06{margin:0 0 0 auto;display:flex;gap:0;max-width:760px;border-top:1px solid var(--gold-l)}
+.f06>div{padding:14px 20px 0;flex:1}
+.f06>div+div{border-left:1px solid var(--gold-ll)}
+.f06 p{font-size:clamp(15px,1.15vw,17px);line-height:1.4}
+.f06 .etikett{margin-bottom:8px}
+.eu-06 .text{margin-top:4px}
+
+/* 07 Mit Zeichen */
+.f07{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px);border-top:1px solid var(--gold-l);padding-top:24px}
+.f07 i{display:block;width:34px;height:34px;margin-bottom:14px;color:var(--gold)}
+.f07 svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+
+/* 08 Eine ruhige Fusszeile */
+.f08{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;border-top:1px solid var(--gold-l);padding-top:22px;
+  font:500 12px/1.7 var(--lauf);letter-spacing:.16em;text-transform:uppercase;color:var(--text2)}
+.f08 i{font-style:normal;color:var(--gold);font-size:8px}
+
+/* 09 Cremefarbene Kärtchen */
+.f09{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.f09>div{background:var(--creme);border-radius:8px;padding:20px 22px 22px;box-shadow:inset 0 0 0 1px rgba(160,127,58,.35),0 16px 30px -18px rgba(0,0,0,.8)}
+.f09 .etikett{color:#A07F3A} .f09 p{color:var(--dunkel)}
+
+/* 10 Die Zeiten gross */
+.f10{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(26px,3.4vw,56px);border-top:1px solid var(--gold-l);padding-top:24px;align-items:start}
+.f10-zeit p{font-size:clamp(26px,2.6vw,38px);line-height:1.18}
+.f10-rest{display:grid;gap:18px}
+.f10-rest p{font-size:clamp(16px,1.25vw,18px)}
+
+@media (max-width:900px){
+  .f01,.f02,.f03,.f04,.f07,.f09,.f10{grid-template-columns:minmax(0,1fr)}
+  .f01>div{padding:18px 0 0}.f01>div+div{border-left:0;border-top:1px solid var(--gold-ll);margin-top:18px}
+  .f02>div+div{border-left:0;border-top:1px solid var(--gold-ll)}
+  .f05>div{grid-template-columns:minmax(0,1fr);gap:6px}
+  .f06-kopf{flex-direction:column} .f06{margin:0;flex-direction:column;width:100%} .f06>div{padding:12px 0 0} .f06>div+div{border-left:0}
+}

@@ -1,0 +1,215 @@
+/* Wild Side · Haus-Seite, «Der Raum», 15 neue Fassungen (31.10.2026). Nur transform und opacity. --p aus v.js (Block im Bild), --q (gehaltene Strecke). */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+.hv{--p:0;--q:0}
+.hv-kopf{margin-bottom:clamp(34px,4vw,56px)}
+.hv-weg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hv-f{position:relative;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);border-radius:var(--rand);margin:0}
+.hv-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+[data-t]{cursor:pointer}
+
+/* ================= 01 Drei Worte */
+.w1{display:grid;grid-template-columns:5fr 7fr;gap:clamp(24px,3vw,48px);align-items:center;margin-bottom:clamp(40px,5vw,72px)}
+.w1:last-child{margin-bottom:0}
+.w1-wort{font-size:clamp(84px,13vw,210px);line-height:.9;color:var(--creme);letter-spacing:-.02em}
+.w1-r .w1-wort{order:2;text-align:right}
+.w1-paar{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.4vw,20px)}
+.w1-b .hv-f{aspect-ratio:4/5;box-shadow:var(--schatten)}
+.w1-b figcaption{margin-top:14px;font-size:15.5px}
+.w1-steigt .w1-b{transform:translateY(calc(90px + var(--n)*60px));opacity:0;transition:transform 1.6s var(--k),opacity 1s var(--k);transition-delay:calc(.25s + var(--n)*.14s)}
+.w1-setzt .w1-b{opacity:0;transition:opacity 1s var(--k);transition-delay:calc(.25s + var(--n)*.14s)}.w1-setzt .w1-b img{transform:scale(1.16);transition:transform 2.4s var(--k);transition-delay:calc(.25s + var(--n)*.14s)}
+.w1-tiefe .w1-b{transform:scale(.84);opacity:0;transition:transform 1.7s var(--k),opacity 1s var(--k);transition-delay:calc(.25s + var(--n)*.14s)}
+.w1.da .w1-b,.w1.da .w1-b img{transform:none;opacity:1}
+
+/* ================= 02 Die Wandtafel */
+.t2{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,4vw,64px)}
+.t2-z{position:relative;display:grid;grid-template-columns:clamp(110px,10vw,150px) 1fr;gap:clamp(18px,2vw,28px);align-items:center;padding:clamp(18px,2vw,26px) 0;opacity:0;transform:translateY(40px);transition:transform 1.2s var(--k),opacity .8s var(--k);transition-delay:calc(var(--n)*.1s)}
+.t2.da .t2-z{opacity:1;transform:none}
+.t2-z .hv-f{aspect-ratio:4/5;box-shadow:var(--schatten-k);transition:transform .6s var(--k)}
+.t2-z:hover .hv-f{transform:scale(1.08) rotate(-1.5deg)}
+.t2-z p{font-size:clamp(21px,2vw,28px);line-height:1.24;transition:color .4s}
+.t2-z:hover p{color:var(--gold)}
+.t2-linie{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold-l);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.4s var(--k);transition-delay:calc(.3s + var(--n)*.1s)}
+.t2.da .t2-linie{transform:none}
+
+/* ================= 03 Der Stapel */
+.s3-sek{padding-bottom:0}
+.s3{height:300vh;position:relative;overflow:clip}
+.s3-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-top:60px}
+.s3-innen{display:grid;grid-template-columns:5fr 7fr;gap:clamp(30px,4vw,70px);align-items:center}
+.s3-text{position:relative;padding:clamp(28px,3vw,44px);min-height:clamp(200px,18vw,250px)}
+.s3-saetze{position:relative;min-height:clamp(130px,11vw,160px)}
+.s3-s{position:absolute;inset:0;font-size:clamp(24px,2.3vw,32px);line-height:1.22;opacity:0;transform:translateY(16px);transition:transform .6s var(--k),opacity .45s var(--k)}.s3-s.an{opacity:1;transform:none}
+.s3-zaehl{margin-top:22px;height:1px;background:var(--gold-l);position:relative;overflow:hidden}
+.s3-zaehl i{position:absolute;inset:0;background:var(--gold);transform-origin:0 50%;transform:scaleX(calc(.08 + var(--q)*.92))}
+.s3-stapel{position:relative;height:min(72vh,640px)}
+.s3-k{position:absolute;inset:0 6% 0 6%;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);
+ transform:translateY(calc(clamp(0, (var(--q)*5 - var(--i) - .35)*2.5, 1) * -125vh)) rotate(calc(var(--r) + clamp(0, (var(--q)*5 - var(--i) - .35)*2.5, 1)*-14deg))}
+.s3-k .hv-f{height:100%;border-radius:0}
+
+/* ================= 04 Die Birnen gehen an */
+.b4-birnen{display:flex;justify-content:space-between;padding:0 4px;margin-bottom:clamp(20px,2.4vw,32px)}
+.b4-birnen i{width:9px;height:9px;border-radius:50%;background:#F7D58C;box-shadow:0 0 12px 3px rgba(247,200,110,.55);opacity:calc(.12 + .88*clamp(0, var(--p)*34 - var(--d) - 2, 1))}
+.b4-raster{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,3vw,44px) clamp(12px,1.4vw,20px)}
+.b4-bild{position:relative;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten)}
+.b4-bild .hv-f{aspect-ratio:4/3;border-radius:0}
+.b4-dunkel{position:absolute;inset:0;background:var(--nacht);opacity:calc(.86 * (1 - clamp(0, var(--p)*9 - var(--n)*1.1 - 1.2, 1)))}
+.b4-k figcaption{margin-top:14px;font-size:15.5px;opacity:calc(.35 + .65*clamp(0, var(--p)*9 - var(--n)*1.1 - 1.2, 1))}
+.ruhig .b4-dunkel{opacity:0}.ruhig .b4-birnen i,.ruhig .b4-k figcaption{opacity:1}
+
+/* ================= 05 Die Mitte */
+.m5{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:10px;height:clamp(600px,58vw,780px)}
+.m5-sp{display:grid;grid-template-rows:repeat(3,1fr);gap:10px;min-height:0;transition:transform 1.7s var(--k),opacity 1s var(--k);opacity:0}
+.m5-l{transform:translateY(-110px)}.m5-r{transform:translateY(110px)}
+.m5.da .m5-sp{transform:none;opacity:1}
+.m5-b{position:relative;border-radius:var(--rand);overflow:hidden}
+.m5-b .hv-f{position:absolute;inset:0;border-radius:0}.m5-b img{transition:transform 1s var(--k),opacity .4s}
+.m5-b.an img{transform:scale(1.05)}.m5-b::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 2px var(--gold);opacity:0;transition:opacity .4s}.m5-b.an::after{opacity:1}
+.m5-mitte{border-radius:var(--rand-g);padding:clamp(30px,3.4vw,52px);display:flex;flex-direction:column;justify-content:space-between;transform:scale(.9);opacity:0;transition:transform 1.5s var(--k) .3s,opacity 1s var(--k) .3s}
+.m5.da .m5-mitte{transform:none;opacity:1}
+.m5-saetze{position:relative;flex:1;margin-top:28px}
+.m5-saetze p{position:absolute;left:0;right:0;bottom:0;font-size:clamp(26px,2.6vw,38px);line-height:1.18;color:var(--dunkel);opacity:0;transform:translateY(18px);transition:transform .7s var(--k),opacity .5s var(--k)}.m5-saetze p.an{opacity:1;transform:none}
+
+/* ================= 06 Wie die Steckbriefe */
+.p6{display:grid;grid-template-columns:7fr 5fr;align-items:center;margin-bottom:clamp(40px,5vw,70px)}
+.p6:last-child{margin-bottom:0}
+.p6-b{grid-column:1;grid-row:1}.p6-b .hv-f{aspect-ratio:4/3;border-radius:var(--rand-g);box-shadow:var(--schatten)}
+.p6-p{grid-column:2;grid-row:1;margin-left:-90px;padding:clamp(18px,2vw,26px) clamp(18px,2vw,26px) clamp(24px,2.6vw,34px);z-index:2;transform:translateY(-70px);opacity:0;transition:transform 1.5s var(--k) .35s,opacity 1s var(--k) .35s}
+.p6.da .p6-p{transform:none;opacity:1}
+.p6-klein{aspect-ratio:16/10;margin-bottom:20px;border-radius:10px}
+.p6-p .text{font-size:15.5px;margin-top:12px}.p6-p .text b{font-family:var(--titel);font-size:clamp(20px,1.8vw,24px);line-height:1.25;color:var(--creme)}
+.p6-p .text:first-of-type{margin-top:0}
+.p6-r{grid-template-columns:5fr 7fr}.p6-r .p6-b{grid-column:2}.p6-r .p6-p{grid-column:1;margin:0 -90px 0 0}
+.p6-b img{transform:scale(1.12);transition:transform 2.4s var(--k)}.p6.da .p6-b img{transform:none}
+
+/* ================= 07 Kleine Steckbriefe */
+.k7-raster{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px,3.4vw,52px) clamp(18px,2vw,30px)}
+.k7{display:flex;flex-direction:column}
+.k7 .hv-f{aspect-ratio:4/5;border-radius:var(--rand-g);box-shadow:var(--schatten);opacity:0;transition:opacity 1s var(--k);transition-delay:calc(var(--n)*.12s)}
+.k7 .hv-f img{transform:scale(1.14);transition:transform 2.4s var(--k);transition-delay:calc(var(--n)*.12s)}
+.k7-raster.da .k7 .hv-f{opacity:1}.k7-raster.da .k7 .hv-f img{transform:none}
+.k7-p{position:relative;z-index:2;flex:1;margin:-64px 0 0 26px;padding:20px 22px 22px;transform:translateY(60px);opacity:0;transition:transform 1.3s var(--k),opacity .9s var(--k);transition-delay:calc(.5s + var(--n)*.12s)}
+.k7:nth-child(even) .k7-p{margin:-64px 26px 0 0}
+.k7-raster.da .k7-p{transform:none;opacity:1}
+.k7-p .text{margin:0;font-size:15.5px}
+
+/* ================= 08 Die Zeitungsseite */
+.z8-sek{box-shadow:none}
+.z8-linie{display:block;height:5px;border-top:2px solid var(--dunkel);border-bottom:1px solid var(--dunkel);margin-bottom:clamp(22px,2.6vw,34px);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.4s var(--k)}
+.z8.da .z8-linie{transform:none}
+.z8-spalten{display:grid;grid-template-columns:1.05fr 1fr 1fr;height:clamp(760px,74vw,980px)}
+.z8-sp{display:flex;flex-direction:column;gap:22px;padding:0 clamp(16px,2vw,28px);border-left:1px solid rgba(27,21,18,.25);min-height:0;opacity:0;transform:translateY(60px);transition:transform 1.4s var(--k),opacity 1s var(--k);transition-delay:calc(.3s + var(--n)*.2s)}
+.z8-sp:first-child{border-left:0;padding-left:0}.z8-sp:last-child{padding-right:0}
+.z8.da .z8-sp{opacity:1;transform:none}
+.z8-e{flex:1;display:flex;flex-direction:column;min-height:0}
+.z8-e .hv-f{flex:1;min-height:0;border-radius:3px}
+.z8-e figcaption{margin-top:12px;font-family:var(--titel);font-size:clamp(16px,1.35vw,19px);line-height:1.32;color:var(--dunkel);padding-bottom:4px;border-bottom:1px solid rgba(27,21,18,.18)}
+.z8-sp:first-child .z8-e figcaption{font-size:clamp(20px,1.9vw,26px)}
+
+/* ================= 09 Der Rundgang */
+.r9-sek{padding-bottom:0}
+.r9{height:320vh;position:relative}
+.r9-buehne{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-top:50px}
+.r9-zug{display:flex;gap:clamp(16px,1.8vw,26px);width:max-content;padding:0 4vw;transform:translateX(calc(var(--q)*-1*(100% - 100vw)))}
+.r9-f{width:clamp(300px,30vw,440px)}
+.r9-f .hv-f{height:min(58vh,560px);box-shadow:var(--schatten)}
+.r9-f figcaption{margin-top:16px;padding-right:12px;font-size:15.5px}
+.r9-weg{margin-top:clamp(20px,2.4vw,34px);height:1px;background:var(--gold-l);position:relative}
+.r9-weg i{position:absolute;inset:0;background:var(--gold);transform-origin:0 50%;transform:scaleX(calc(.04 + var(--q)*.96))}
+
+/* ================= 10 Der Guckkasten */
+.g10-kasten{--t:520px;position:relative;height:clamp(440px,46vw,620px);perspective:900px;perspective-origin:50% 45%;overflow:hidden;border-radius:var(--rand-g);background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.g10-box{position:absolute;inset:16% 24%;transform-style:preserve-3d;transform:translateZ(calc(var(--p)*240px - 260px))}
+.g10-w{position:absolute;display:flex;gap:0}
+.g10-f{position:relative;flex:1;overflow:hidden;transition:opacity .4s}
+.g10-f .hv-f{position:absolute;inset:0;border-radius:0}
+.g10-hinten{inset:0;transform:translateZ(calc(var(--t) * -1))}
+.g10-oben{left:0;right:0;bottom:100%;height:var(--t);transform-origin:50% 100%;transform:rotateX(-90deg)}
+.g10-unten{left:0;right:0;top:100%;height:var(--t);transform-origin:50% 0;transform:rotateX(90deg)}
+.g10-links{top:0;bottom:0;right:100%;width:var(--t);transform-origin:100% 50%;transform:rotateY(90deg)}
+.g10-rechts{top:0;bottom:0;left:100%;width:var(--t);transform-origin:0 50%;transform:rotateY(-90deg)}
+.g10:has(.g10-f.an) .g10-f:not(.an){opacity:.3}
+.g10-saetze{display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(24px,3vw,44px);margin-top:clamp(24px,2.6vw,36px);border-top:1px solid var(--gold-l)}
+.g10-s{margin:0;max-width:none;padding:16px 0;border-bottom:1px solid var(--gold-l);font-size:15.5px;transition:color .3s;opacity:0;transform:translateY(24px);transition:transform 1s var(--k),opacity .8s var(--k),color .3s;transition-delay:calc(.3s + var(--n)*.08s)}
+.g10.da .g10-s{opacity:1;transform:none}.g10-s.an{color:var(--creme)}
+.g10-kasten{opacity:0;transition:opacity 1.4s var(--k)}.g10.da .g10-kasten{opacity:1}
+
+/* ================= 11 Die Decke bleibt */
+.d11{display:grid;grid-template-columns:5fr 7fr;gap:clamp(24px,3vw,48px);align-items:start}
+.d11-halt{position:sticky;top:110px}
+.d11-decke{position:relative}
+.d11-decke .hv-f{height:min(70vh,700px);border-radius:var(--rand-g);box-shadow:var(--schatten)}
+.d11-decke .hv-f img{transform:scale(1.12);transition:transform 2.6s var(--k)}.d11-decke.da .hv-f img{transform:none}
+.d11-decke figcaption{position:relative;z-index:2;margin:-60px 22px 0;padding:22px 24px}
+.d11-decke figcaption p{font-size:clamp(20px,1.8vw,25px);line-height:1.25}
+.d11-rechts{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,3vw,44px) clamp(14px,1.6vw,22px)}
+.d11-e:first-child{grid-column:1/3}.d11-e:first-child .hv-f{aspect-ratio:16/10}
+.d11-e .hv-f{aspect-ratio:4/5;box-shadow:var(--schatten);transform:translateY(70px);opacity:0;transition:transform 1.4s var(--k),opacity .9s var(--k);transition-delay:calc(var(--n)*.12s)}
+.d11-rechts.da .d11-e .hv-f{transform:none;opacity:1}
+.d11-e figcaption{margin-top:14px;font-size:15.5px}
+
+/* ================= 12 Die Theke entlang */
+.e12-reihe{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;height:clamp(380px,40vw,540px);align-items:end}
+.e12-b{position:relative;height:100%;border-radius:6px;overflow:hidden;transform:translateY(120px);opacity:0;transition:transform 1.5s var(--k),opacity 1s var(--k);transition-delay:calc(var(--n)*.09s)}
+.e12.da .e12-b{transform:translateY(0);opacity:1}
+.e12.da .e12-b.an{transform:translateY(-22px);transition:transform .7s var(--k)}
+.e12-b .hv-f{position:absolute;inset:0;border-radius:0}.e12-b img{transition:opacity .4s}
+.e12.da .e12-reihe:hover .e12-b:not(.an) img{opacity:.6}
+.e12-kante{display:block;height:3px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,#E7B04A,#F7D58C,#E7B04A);box-shadow:0 10px 40px 6px rgba(247,190,90,.32);transform:scaleX(0);transition:transform 1.6s var(--k) .6s}
+.e12.da .e12-kante{transform:none}
+.e12-satz{position:relative;min-height:clamp(96px,8vw,120px);margin-top:clamp(22px,2.4vw,32px)}
+.e12-satz p{position:absolute;left:0;right:0;top:0;text-align:center;font-size:clamp(24px,2.4vw,34px);line-height:1.22;max-width:30ch;margin:0 auto;opacity:0;transform:translateY(14px);transition:transform .6s var(--k),opacity .45s var(--k)}.e12-satz p.an{opacity:1;transform:none}
+
+/* ================= 13 Die Ecke */
+.c13{display:grid;grid-template-columns:1fr 1fr;width:min(1440px,96vw);margin:0 auto;perspective:1800px;--w:calc(24deg - var(--p)*18deg)}
+.c13-w{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 4px;transform-style:preserve-3d}
+.c13-l{transform-origin:100% 50%;transform:rotateY(calc(var(--w)*-1))}
+.c13-r{transform-origin:0 50%;transform:rotateY(var(--w))}
+.c13-e .hv-f{aspect-ratio:3/4.4;border-radius:6px;box-shadow:var(--schatten)}
+.c13-e figcaption{margin-top:12px;font-size:15px;line-height:1.45}
+.c13{opacity:0;transition:opacity 1.2s var(--k)}.c13.da{opacity:1}
+.c13::after{content:"";display:none}
+.c13-l{border-right:1px solid var(--gold)}
+
+/* ================= 14 Das Regal */
+.r14-brett{margin-bottom:clamp(40px,4.4vw,64px)}.r14-brett:last-child{margin-bottom:0}
+.r14-reihe{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,40px);padding:0 clamp(16px,2vw,30px)}
+.r14-b{transform:translateY(-60px);opacity:0;transition:transform 1.2s cubic-bezier(.34,1.4,.5,1),opacity .6s var(--k);transition-delay:calc(var(--n)*.12s)}
+.r14.da .r14-b{transform:none;opacity:1}
+.r14-b .hv-f{aspect-ratio:4/5;border-radius:8px 8px 3px 3px;box-shadow:0 20px 30px -18px rgba(0,0,0,.9)}
+.r14-holz{display:block;height:16px;border-radius:4px;background:var(--nacht3);box-shadow:inset 0 2px 0 var(--gold),0 18px 30px -12px rgba(0,0,0,.8),0 -10px 40px -8px rgba(247,190,90,.18)}
+.r14-schilder{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,40px);padding:0 clamp(28px,3vw,50px)}
+.r14-s{margin:0;padding:14px 16px 15px;border-radius:0 0 8px 8px;font-size:14.5px;line-height:1.45;color:rgba(27,21,18,.82);transform-origin:50% 0;transform:rotate(calc(var(--r)*6));opacity:0;transition:transform 1.8s cubic-bezier(.3,1.6,.4,1),opacity .6s var(--k);transition-delay:calc(.5s + var(--n)*.12s)}
+.r14.da .r14-s{transform:rotate(var(--r));opacity:1}
+
+/* ================= 15 Bilder im Satz */
+.i15-s{font-size:clamp(28px,3.2vw,46px);line-height:1.32;margin-bottom:.55em;max-width:24ch}
+.i15-s:nth-child(even){margin-left:auto;text-align:right}
+.i15-w{opacity:calc(.2 + .8*clamp(0, (var(--p)*1.25 - var(--w))*14, 1))}
+.i15{display:inline-block;vertical-align:-.18em;width:2.6em;height:1.15em;margin:0 .1em;opacity:calc(.2 + .8*clamp(0, (var(--p)*1.25 - var(--w))*14, 1));transform:scale(calc(.7 + .3*clamp(0, (var(--p)*1.25 - var(--w))*14, 1)))}
+.i15 .hv-f{display:block;width:100%;height:100%;border-radius:.3em}
+.ruhig .i15-w,.ruhig .i15{opacity:1;transform:none}
+
+/* ================= schmal */
+@media (max-width:760px){
+ .w1,.w1-r{grid-template-columns:1fr}.w1-r .w1-wort{order:0;text-align:left}
+ .t2{grid-template-columns:1fr}
+ .s3-innen{grid-template-columns:1fr;gap:18px}.s3-buehne{padding-top:70px}.s3-stapel{height:48vh;order:-1}.s3-text{min-height:0;padding:20px}.s3-saetze{min-height:120px}
+ .b4-raster{grid-template-columns:1fr 1fr}.b4-birnen i{width:6px;height:6px}.b4-birnen i:nth-child(n+15){display:none}
+ .m5{grid-template-columns:1fr 1fr;height:auto}.m5-mitte{grid-column:1/3;grid-row:1;min-height:220px}.m5-sp{grid-template-rows:repeat(3,44vw)}
+ .p6,.p6-r{grid-template-columns:1fr}.p6-b,.p6-r .p6-b{grid-column:1;grid-row:1}.p6-p,.p6-r .p6-p{grid-column:1;grid-row:2;margin:-50px 14px 0}
+ .k7-raster{grid-template-columns:1fr}
+ .z8-spalten{grid-template-columns:1fr;height:auto}.z8-sp{border:0;padding:0;margin-bottom:22px}.z8-e .hv-f{flex:none;aspect-ratio:4/3}
+ .r9-f{width:72vw}.r9-f .hv-f{height:50vh}
+ .g10-kasten{height:360px;--t:300px}.g10-box{inset:16% 20%}.g10-saetze{grid-template-columns:1fr}
+ .d11{grid-template-columns:1fr}.d11-halt{position:relative;top:0}.d11-decke .hv-f{height:auto;aspect-ratio:4/5}
+ .e12-reihe{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;height:120vw}.e12-satz{min-height:150px}
+ .c13{grid-template-columns:1fr;--w:0deg;gap:30px}.c13-l{border:0}
+ .r14-reihe,.r14-schilder{gap:10px;padding:0 6px}.r14-schilder{padding:0 10px}.r14-s{font-size:12.5px;padding:10px}
+ .i15-s{font-size:26px}
+}
+.ruhig .hv *{transition:none!important}

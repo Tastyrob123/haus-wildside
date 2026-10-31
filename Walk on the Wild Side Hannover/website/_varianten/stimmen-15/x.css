@@ -1,0 +1,219 @@
+/* Wild Side · Das Haus, «Was andere sagen · 91, 4,8 und 4,8.»: 15 Darstellungen (31.10.2026).
+   Auftritte nur über transform, alles deckend. Scrollgetriebenes in x.js. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.xq{--e:cubic-bezier(.22,1,.36,1)}
+.xq .xp{margin-top:clamp(36px,4vw,56px);font-size:18px;line-height:1.6;max-width:60ch}
+.xq p{margin:0}
+.ruhig .xq *{transition:none!important;animation:none!important}
+
+/* 01 Die Zeile */
+.z1{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(40px,5vw,72px)}
+.z1-s{padding:0 clamp(20px,3vw,48px);border-left:1px solid var(--gold-l);display:grid;gap:16px;align-content:start}
+.z1-s:first-child{padding-left:0;border-left:0}
+.z1-m{overflow:hidden;padding-bottom:.06em}
+.z1-z{display:block;font-size:clamp(96px,11vw,176px);line-height:1;color:var(--creme);transform:translateY(105%);transition:transform 1.4s var(--e);transition-delay:calc(var(--n)*.16s)}
+.z1-s p{font-size:17px;line-height:1.6;color:var(--text2);max-width:30ch;transform:translateY(40px);transition:transform 1.3s var(--e);transition-delay:calc(.35s + var(--n)*.16s)}
+.z1.ok .z1-z,.z1.ok .z1-s p{transform:none}
+
+/* 02 Die grosse 91 */
+.g2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,90px);align-items:end;margin-top:clamp(30px,4vw,56px)}
+.g2-l{display:grid;gap:18px}.g2-l .etikett{margin-top:.18em}
+.g2-z{display:block;font-size:clamp(200px,27vw,420px);line-height:.9;color:var(--creme);transform-origin:0 100%;transform:scale(.72) translateY(60px);transition:transform 1.8s var(--e)}
+.g2-l p{font-size:19px;line-height:1.55;color:var(--text2);max-width:36ch}
+.g2-rs{display:grid}
+.g2-r{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;padding:28px 0;border-top:1px solid var(--gold-l);transform:translateY(70px);transition:transform 1.4s var(--e);transition-delay:calc(.5s + var(--n)*.18s)}
+.g2-r:last-child{border-bottom:1px solid var(--gold-l)}
+.g2-k{font-size:clamp(64px,6.4vw,104px);line-height:1;color:var(--gold)}
+.g2-r .etikett{display:block;margin-bottom:10px} .g2-r p{font-size:16px;line-height:1.55;color:var(--text2)}
+.g2.ok .g2-z,.g2.ok .g2-r{transform:none}
+
+/* 03 Das Gästebuch */
+.b3{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,90px);align-items:center}
+.b3-l .xp{margin-top:28px}
+.b3-blatt{perspective:1600px}
+.b3-papier{border-radius:4px;padding:clamp(30px,3.6vw,56px) clamp(28px,3.4vw,52px);box-shadow:var(--schatten);
+ background:var(--creme) repeating-linear-gradient(to bottom,transparent 0 39px,rgba(160,127,58,.22) 39px 40px);
+ transform:rotate(-7deg) translateY(90px);transition:transform 1.8s var(--e)}
+.b3-blatt.ok .b3-papier{transform:rotate(-1.2deg)}
+.b3-e{display:grid;grid-template-columns:clamp(84px,8vw,120px) 1fr;gap:22px;align-items:baseline;padding:22px 0}
+.b3-e + .b3-e{border-top:1px solid rgba(27,21,18,.18)}
+.b3-z{font-size:clamp(52px,5vw,76px);line-height:1;color:var(--dunkel)}
+.b3-e .etikett{display:block;margin-bottom:8px;color:var(--rot)} .b3-e p{font-size:16.5px;line-height:1.6;color:rgba(27,21,18,.78)}
+
+/* 04 Die Bierdeckel */
+.d4{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(30px,5vw,80px);margin-top:clamp(44px,5vw,72px)}
+.d4-s{display:grid;gap:28px;justify-items:center;text-align:center}
+.d4-deckel{width:min(100%,300px);aspect-ratio:1;border-radius:50%;background:var(--creme);box-shadow:inset 0 0 0 10px var(--creme),inset 0 0 0 12px var(--rot),var(--schatten);
+ display:grid;place-items:center;transform:translateY(-140px) rotate(calc(var(--w) - 160deg));transition:transform 1.5s var(--e);transition-delay:calc(var(--n)*.2s)}
+.d4.ok .d4-deckel{transform:rotate(var(--w))}
+.d4-in{display:grid;gap:12px;justify-items:center;padding:0 14%}
+.d4-z{font-size:clamp(76px,7.6vw,118px);line-height:1;color:var(--dunkel)}
+.d4-in .etikett{color:var(--rot);font-size:10.5px;line-height:1.5}
+.d4-s p{font-size:16.5px;line-height:1.6;color:var(--text2);max-width:30ch;transform:translateY(40px);transition:transform 1.3s var(--e);transition-delay:calc(.5s + var(--n)*.2s)}
+.d4.ok .d4-s p{transform:none}
+
+/* 05 Die Skala */
+.s5{display:grid;margin-top:clamp(40px,5vw,64px)}
+.s5-r{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(26px,3vw,40px) 0;border-top:1px solid var(--gold-l);transform:translateY(60px);transition:transform 1.3s var(--e);transition-delay:calc(var(--n)*.15s)}
+.s5-r:last-child{border-bottom:1px solid var(--gold-l)}
+.s5.ok .s5-r{transform:none}
+.s5-k{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.s5-z{font-size:clamp(70px,7vw,112px);line-height:1;color:var(--creme)}
+.s5-k .etikett{line-height:1.6}
+.s5-b{display:grid;gap:18px}
+.s5-spur{position:relative;height:6px;border-radius:6px;background:var(--nacht3);margin-right:44px}
+.s5-voll{position:absolute;left:0;top:0;bottom:0;width:calc(var(--f)*100%);border-radius:6px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform 2s var(--e);transition-delay:calc(.4s + var(--n)*.2s)}
+.s5.ok .s5-voll{transform:none}
+.s5-ende{position:absolute;left:100%;top:50%;margin-left:14px;transform:translateY(-50%);font:500 12px/1 var(--lauf);letter-spacing:.12em;color:var(--text3)}
+.s5-b p{font-size:17px;line-height:1.6;color:var(--text2);max-width:58ch}
+
+/* 06 Die Plakette */
+.p6{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center;margin-top:clamp(44px,5vw,72px)}
+.p6-f{display:grid;gap:14px;text-align:center;justify-items:center;transform:translateY(60px);transition:transform 1.4s var(--e);transition-delay:calc(.5s + var(--n)*.15s)}
+.p6-k{font-size:clamp(72px,7vw,112px);line-height:1;color:var(--creme)}
+.p6-f p{font-size:16px;line-height:1.6;color:var(--text2);max-width:28ch}
+.p6{perspective:1600px}
+.p6-schild{padding:10px;border-radius:10px;background:linear-gradient(160deg,#E4C27A,#A07F3A 60%,#C9A35A);box-shadow:var(--schatten);transform-origin:50% 0;transform:rotateX(55deg) translateY(30px);transition:transform 1.8s var(--e)}
+.p6-in{border-radius:6px;background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold),inset 0 0 0 7px var(--nacht),inset 0 0 0 8px var(--gold-l);padding:clamp(34px,4vw,60px) clamp(24px,3vw,44px);display:grid;gap:16px;text-align:center;justify-items:center}
+.p6-z{font-size:clamp(120px,12vw,190px);line-height:.95;color:var(--gold)}
+.p6-in p{font-size:16.5px;line-height:1.6;color:var(--text2);max-width:30ch}
+.p6.ok .p6-schild,.p6.ok .p6-f{transform:none}
+
+/* 07 Das Laufband */
+.x07{overflow-x:clip}
+.l7-band{margin-top:clamp(40px,5vw,64px);padding:clamp(22px,2.6vw,36px) 0;overflow:hidden}
+.l7-lauf{display:flex;width:max-content;will-change:transform}
+.l7-e{display:inline-flex;align-items:center;gap:22px;padding-right:44px;white-space:nowrap}
+.l7-e b{font-weight:400;font-size:clamp(70px,8vw,128px);line-height:1;color:var(--dunkel)}
+.l7-e .etikett{color:#A07F3A;font-size:12.5px}
+.l7-e i{width:12px;height:12px;border-radius:50%;background:var(--rot);margin-left:22px}
+.l7-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,64px);margin-top:clamp(40px,5vw,64px)}
+.l7-s{display:grid;gap:14px;transform:translateY(50px);transition:transform 1.3s var(--e);transition-delay:calc(var(--n)*.15s)}
+.l7-s p{font-size:17px;line-height:1.6;color:var(--text2)}
+.l7-drei.ok .l7-s{transform:none}
+
+/* 08 Die Zeitungsseite */
+.n8{perspective:1800px}
+.n8-blatt{border-radius:4px;padding:clamp(30px,4vw,64px);box-shadow:var(--schatten);transform-origin:50% 100%;transform:rotate(2.5deg) translateY(90px);transition:transform 1.8s var(--e)}
+.n8.ok .n8-blatt{transform:none}
+.n8-kopf{text-align:center;padding:22px 0 26px;border-top:3px double rgba(27,21,18,.55);border-bottom:3px double rgba(27,21,18,.55);display:grid;justify-items:center;gap:14px}
+.n8-kopf .kz .was{color:#A07F3A} .n8-kopf .kz .uhr{color:var(--dunkel)} .n8-kopf .kz i{background:rgba(27,21,18,.4)}
+.n8-kopf .t-kap{color:var(--dunkel);font-size:clamp(50px,6.4vw,96px)}
+.n8-spalten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:30px}
+.n8-sp{padding:0 clamp(18px,2.4vw,36px);border-left:1px solid rgba(27,21,18,.22);display:grid;gap:14px;align-content:start;transform:translateY(40px);transition:transform 1.3s var(--e);transition-delay:calc(.5s + var(--n)*.15s)}
+.n8-sp:first-child{border-left:0;padding-left:0} .n8-sp:last-child{padding-right:0}
+.n8.ok .n8-sp{transform:none}
+.n8-z{font-size:clamp(70px,7vw,110px);line-height:1;color:var(--dunkel)}
+.n8-sp .etikett{color:var(--rot)} .n8-sp p{font-size:16.5px;line-height:1.6;color:rgba(27,21,18,.78)}
+.n8-presse{margin-top:30px;padding-top:24px;border-top:1px solid rgba(27,21,18,.3);font-family:var(--titel);font-size:clamp(20px,1.8vw,26px);line-height:1.5;color:var(--dunkel);text-align:center;max-width:none}
+
+/* 09 Die Flaschenetiketten */
+.e9{position:relative;margin-top:clamp(44px,5vw,72px)}
+.e9-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,3.4vw,56px);overflow:hidden;padding-top:20px}
+.e9-et{border-radius:50% 50% 6px 6px / 22% 22% 6px 6px;padding:12px;box-shadow:var(--schatten);transform:translateY(105%);transition:transform 1.5s var(--e);transition-delay:calc(var(--n)*.18s);height:100%}
+.e9.ok .e9-et{transform:none}
+.e9-in{height:100%;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(27,21,18,.55),inset 0 0 0 5px var(--creme),inset 0 0 0 6px rgba(160,127,58,.6);padding:clamp(44px,5vw,70px) clamp(20px,2.4vw,34px) clamp(30px,3vw,44px);display:grid;gap:18px;justify-items:center;align-content:start;text-align:center}
+.e9-in .etikett{color:#A07F3A;line-height:1.6} .e9-in i{width:46px;height:1px;background:rgba(27,21,18,.4)}
+.e9-z{font-size:clamp(84px,8.4vw,132px);line-height:.95;color:var(--dunkel)}
+.e9-in p{font-size:16px;line-height:1.6;color:rgba(27,21,18,.78);max-width:26ch}
+.e9-kante{display:block;height:2px;background:var(--gold);margin-top:0;box-shadow:0 1px 0 rgba(0,0,0,.5)}
+
+/* 10 Der Fächer */
+.f10{--g:clamp(18px,2.4vw,36px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--g);margin-top:clamp(44px,5vw,72px)}
+.f10-k{padding:clamp(28px,3vw,44px);display:grid;gap:16px;align-content:start;transition:transform 1.6s var(--e);transition-delay:.15s}
+.f10-k:nth-child(1){transform:translateX(calc(100% + var(--g))) rotate(-9deg) translateY(30px);--r:-1.5deg}
+.f10-k:nth-child(2){transform:translateY(-12px);z-index:2;--r:0deg}
+.f10-k:nth-child(3){transform:translateX(calc(-100% - var(--g))) rotate(9deg) translateY(30px);--r:1.5deg}
+.f10.ok .f10-k{transform:rotate(var(--r))}
+.f10-z{font-size:clamp(80px,8vw,128px);line-height:1;color:var(--creme)}
+.f10-k p{font-size:16.5px;line-height:1.6;color:var(--text2)}
+
+/* 11 Die Anmerkungen */
+.a11-titel{display:flex;flex-wrap:nowrap;align-items:flex-start;gap:0 clamp(14px,2vw,32px);margin-top:16px;font-size:clamp(72px,8.6vw,150px);line-height:1}
+.a11-g{display:grid;gap:22px;flex:1 1 0;min-width:0}
+.a11-und .a11-m{padding-right:.14em}
+.a11-m{display:block;overflow:hidden;padding-bottom:.08em}
+.a11-z,.a11-und .titel{display:block;color:var(--creme);transform:translateY(105%);transition:transform 1.4s var(--e);transition-delay:calc(var(--n,1.5)*.16s)}
+.a11-und{--n:1.5} .a11-und .titel{color:var(--gold);font-style:italic}
+.a11-k{color:var(--gold)}
+.a11-notiz{display:grid;gap:12px;font-size:16px;line-height:1.6}
+.a11-notiz i{display:block;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:0 50%;transition:transform 1.3s var(--e);transition-delay:calc(.55s + var(--n)*.16s)}
+.a11-notiz .etikett,.a11-p{transform:translateY(30px);transition:transform 1.2s var(--e);transition-delay:calc(.7s + var(--n)*.16s)}
+.a11-p{color:var(--text2);font-family:var(--lauf);letter-spacing:0;max-width:30ch}
+.a11.ok .a11-z,.a11.ok .a11-und .titel,.a11.ok .a11-notiz i,.a11.ok .a11-notiz .etikett,.a11.ok .a11-p{transform:none}
+
+/* 12 Die Wechselzahl */
+.w12{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,90px)}
+.w12-steh{position:sticky;top:18vh}
+.w12-zahlen{position:relative;height:clamp(180px,20vw,300px);margin-top:20px;overflow:hidden}
+.w12-z{position:absolute;left:0;bottom:0;font-size:clamp(170px,19vw,290px);line-height:.9;color:var(--creme);transform:translateY(125%);transition:transform .9s var(--e)}
+.w12[data-a="0"] .w12-z[data-w="0"],.w12[data-a="1"] .w12-z[data-w="1"],.w12[data-a="2"] .w12-z[data-w="2"]{transform:none}
+.w12[data-a="1"] .w12-z[data-w="0"],.w12[data-a="2"] .w12-z[data-w="0"],.w12[data-a="2"] .w12-z[data-w="1"]{transform:translateY(-125%)}
+.w12-r{padding-top:12vh}
+.w12-e{min-height:46vh;display:grid;gap:18px;align-content:center;border-top:1px solid var(--gold-l);padding:40px 0}
+.w12-e .etikett{font-size:13px;transition:color .6s} .w12-e.an .etikett{color:var(--rot)}
+.w12-p{font-family:var(--titel);font-size:clamp(26px,2.6vw,40px);line-height:1.3;color:var(--text3);transition:color .6s}
+.w12-e.an .w12-p{color:var(--creme)}
+.w12-iz{display:none}
+.w12-r .xp{margin-top:20px}
+
+/* 13 Der Bon */
+.k13{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,90px);align-items:start}
+.k13-l .xp{margin-top:28px}
+.k13-kasse{position:relative;max-width:440px;justify-self:center;width:100%}
+.k13-schlitz{display:block;height:14px;border-radius:8px;background:#0B0807;box-shadow:inset 0 2px 4px rgba(0,0,0,.8),0 0 0 1px var(--gold-l);position:relative;z-index:2}
+.k13-fenster{overflow:hidden;margin:-7px 14px 0;padding-bottom:30px}
+.k13-bon{padding:34px 28px 46px;transform:translateY(-102%);transition:transform 2.4s cubic-bezier(.4,.1,.2,1);
+ clip-path:polygon(0 0,100% 0,100% calc(100% - 10px),95% 100%,90% calc(100% - 10px),85% 100%,80% calc(100% - 10px),75% 100%,70% calc(100% - 10px),65% 100%,60% calc(100% - 10px),55% 100%,50% calc(100% - 10px),45% 100%,40% calc(100% - 10px),35% 100%,30% calc(100% - 10px),25% 100%,20% calc(100% - 10px),15% 100%,10% calc(100% - 10px),5% 100%,0 calc(100% - 10px));
+ font-family:var(--lauf)}
+.k13-kasse.ok .k13-bon{transform:none}
+.k13-kopf{display:block;text-align:center;padding-bottom:20px;border-bottom:1px dashed rgba(27,21,18,.4);color:var(--dunkel)!important}
+.k13-zeile{padding:22px 0;border-bottom:1px dashed rgba(27,21,18,.4)}
+.k13-oben{display:flex;align-items:baseline;gap:10px}
+.k13-oben span{font:500 11px/1.4 var(--lauf);letter-spacing:.14em;text-transform:uppercase;color:var(--dunkel)}
+.k13-oben i{flex:1;border-bottom:2px dotted rgba(27,21,18,.45);transform:translateY(-4px)}
+.k13-oben b{font-weight:400;font-size:clamp(40px,3.6vw,54px);line-height:1;color:var(--dunkel)}
+.k13-zeile p{margin-top:10px;font-size:14.5px;line-height:1.55;color:rgba(27,21,18,.72)}
+
+/* 14 Die Weinkarte */
+.w14{margin-top:clamp(40px,5vw,64px)}
+.w14-r{position:relative;display:grid;grid-template-columns:minmax(0,3fr) minmax(0,6fr) minmax(0,2fr);gap:clamp(20px,3vw,48px);align-items:center;padding:clamp(28px,3.2vw,44px) 0;transform:translateY(50px);transition:transform 1.3s var(--e);transition-delay:calc(.2s + var(--n)*.16s)}
+.w14.ok .w14-r{transform:none}
+.w14-linie{position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold);opacity:.55;transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s var(--e);transition-delay:calc(var(--n,3)*.16s)}
+.w14-end{position:relative;display:block;--n:3}
+.w14.ok .w14-linie{transform:none}
+.w14-r .etikett{font-size:12.5px;line-height:1.6}
+.w14-r p{font-family:var(--titel);font-size:clamp(20px,1.8vw,27px);line-height:1.4;color:var(--text)}
+.w14-z{justify-self:end;font-size:clamp(76px,7.4vw,118px);line-height:1;color:var(--gold)}
+
+/* 15 Die Leuchtschrift */
+.n15{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(26px,4vw,64px);margin-top:clamp(44px,5vw,72px)}
+.n15-s{display:grid;gap:18px;justify-items:center;text-align:center}
+.n15-rohr{width:100%;aspect-ratio:5/3;border-radius:22px;display:grid;place-items:center;background:#0E0A09;
+ box-shadow:inset 0 0 0 2px rgba(240,50,63,.9),inset 0 0 22px rgba(240,50,63,.35),0 0 30px -4px rgba(240,50,63,.55)}
+.n15-z{font-size:clamp(90px,9vw,148px);line-height:1;color:#FFE3E0;text-shadow:0 0 6px rgba(255,90,100,.95),0 0 22px rgba(240,50,63,.85),0 0 48px rgba(240,50,63,.55)}
+.n15-rohr{opacity:.12}
+.n15.ok .n15-rohr{animation:n15-an 1.4s steps(1,end) forwards;animation-delay:calc(var(--n)*.45s)}
+@keyframes n15-an{0%{opacity:.12}10%{opacity:1}18%{opacity:.25}26%{opacity:1}34%{opacity:.4}42%,100%{opacity:1}}
+.n15-s .etikett{margin-top:8px} .n15-s p{font-size:16.5px;line-height:1.6;color:var(--text2);max-width:30ch}
+
+/* Handy */
+@media (max-width:760px){
+ .z1,.d4,.l7-drei,.n8-spalten,.e9-reihe,.f10,.n15{grid-template-columns:minmax(0,1fr)}
+ .z1{gap:34px} .z1-s{padding:0;border-left:0} .z1-s + .z1-s{padding-top:30px;border-top:1px solid var(--gold-l)}
+ .g2,.b3,.k13,.w12{grid-template-columns:minmax(0,1fr)}
+ .s5-r{grid-template-columns:minmax(0,1fr)}
+ .p6{grid-template-columns:minmax(0,1fr)} .p6-schild{order:-1}
+ .n8-sp{padding:24px 0 0;border-left:0;border-top:1px solid rgba(27,21,18,.22);margin-top:24px} .n8-sp:first-child{border-top:0;margin-top:0;padding-top:0}
+ .e9-reihe{overflow:visible} .e9-et{transform:translateY(80px)}
+ .f10-k:nth-child(1),.f10-k:nth-child(3){transform:translateY(60px)}
+ .a11-titel{display:grid;gap:30px;font-size:96px} .a11-g{max-width:none}
+ .w12-steh{position:static} .w12-zahlen{display:none} .w12-r{padding-top:0} .w12-e{min-height:0} .w12-iz{display:block;font-size:88px;line-height:1;color:var(--creme)} .w12-p{color:var(--creme)}
+ .w14-r{grid-template-columns:minmax(0,1fr) auto} .w14-r p{grid-column:1/-1;grid-row:2} .w14-z{grid-row:1/2;grid-column:2}
+}

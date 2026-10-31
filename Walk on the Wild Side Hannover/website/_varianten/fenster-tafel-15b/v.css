@@ -1,0 +1,13 @@
+/* Wild Side · 15 Bilder für das Fenster «Ein Abend, der nur euch gehört.» (29.10.2026). Nur das Schild; das Fenster ist das echte fenster_fest der Seite. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam: Kopf mit Momos Satz rechts, ein Satz je Bild, Fusszeile */
+.m-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:end;margin-bottom:clamp(30px,3.6vw,46px)}
+.m-kopf .ge-zitat{margin:0 0 6px;font-size:clamp(22px,2.4vw,32px);color:var(--text);max-width:none}
+.m-satz .titel{font-size:clamp(20px,1.9vw,26px);line-height:1.18;color:var(--text)}
+.m-zu{margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text2)}
+/* keine weiteren Regeln: das Fenster ist das echte fenster_fest der Seite */

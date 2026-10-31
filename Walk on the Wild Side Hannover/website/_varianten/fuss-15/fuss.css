@@ -1,0 +1,321 @@
+/* Walk on the Wild Side · 15 Fassungen für den Fuss (29.10.2026). Bar vorn, Culinarium und Dirty Chicken mit echten Logos daneben.
+   Bewegung nur über transform, alles von Anfang an deckend; Auslöser ist .da auf dem Fuss (wild.js). */
+
+/* ---------- Gemeinsam */
+.f2 .hoch{transform:translateY(70px);transition:transform 1.25s var(--k);transition-delay:calc(var(--n,0)*.1s)}
+.f2.da .hoch{transform:none}
+.f2 .logo{display:block;color:var(--rot)} .f2 .logo svg{width:100%;height:auto;display:block}
+.f2 .z-cu{display:block;width:clamp(170px,16vw,220px);height:auto}
+.f2 .z-dc{display:block;width:clamp(112px,10vw,140px);height:auto}
+.f2 .n-et{display:block;margin-top:18px}
+.f2 .n-satz{font-size:15px;line-height:1.6;color:var(--text2);margin-top:8px;max-width:38ch}
+.f2 .weiter{margin-top:16px}
+.f2 .besuch .etikett{display:block;margin-bottom:12px}
+.f2 .besuch p{font-size:15.5px;line-height:1.7;color:var(--text2)} .f2 .besuch p+p{margin-top:10px}
+.f2 .besuch a:hover{color:var(--text)}
+.f2 .zeiten{margin-top:18px}
+.f2 .zeiten b{padding-right:.55em}
+.f2 .hell .zeiten div.heute b,.f2 .hell .zeiten .jetzt{color:#A07F3A}
+.f2 .kachel img{transition:transform 1.7s var(--k)}
+.f2 a .kachel img{transition:transform 1.7s var(--k)}
+.f2 a:hover .kachel img{transform:scale(1.04)}
+.f2 .f-nav{display:flex;flex-wrap:wrap;gap:12px 30px;margin-top:56px;padding-top:24px;border-top:1px solid var(--gold-ll)}
+.f2 .f-nav a{font:500 12px/1 var(--lauf);letter-spacing:.15em;text-transform:uppercase;color:var(--text2)} .f2 .f-nav a:hover{color:var(--text)}
+.f2 .fuss-unten{margin-top:22px}
+.f2 .hell .etikett{color:#A07F3A}
+.f2 .hell .besuch p,.f2 .hell .n-satz{color:var(--dunkel2)}
+.f2 .hell .titel{color:var(--dunkel)}
+.f2 .hell .weiter{color:#8F6E2E;border-color:rgba(143,110,46,.3)}
+.schlitz{overflow:hidden;padding-bottom:.08em}
+.schlitz span{display:block;transform:translateY(105%);transition:transform 1.3s var(--k) .15s}
+.f2.da .schlitz span{transform:none}
+.ruhig .f2 .hoch,.ruhig .f2 .schlitz span{transform:none!important;transition:none!important}
+
+/* ---------- 01 Die Schrift trägt */
+.f01 .f01-kopf{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:end}
+.f01 .f01-logo{width:clamp(110px,11vw,150px)}
+.f01 .f01-satz{font-size:clamp(50px,8.6vw,124px);line-height:1;letter-spacing:-.015em}
+.f01 .f01-spalten{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(40px,5vw,64px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--gold-l)}
+.f01 .f01-spalten .zeiten{margin-top:0}
+.f01 .f01-et{display:block;margin-top:clamp(40px,4vw,56px)}
+.f01 .f01-dach{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,2vw,24px);margin-top:16px}
+.f01 .f01-n{display:grid;grid-template-columns:clamp(150px,15vw,210px) minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:28px;align-items:start;padding:26px 28px;border-radius:var(--rand);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll)}
+.f01 .f01-n img{grid-row:1/4;align-self:center;justify-self:center}
+.f01 .f01-n .n-et{margin-top:0} .f01 .f01-n .n-satz{font-size:14.5px}
+.f01 .f01-n .z-dc{width:112px}
+.f01 .f01-n:hover{box-shadow:inset 0 0 0 1px var(--gold-l)}
+
+/* ---------- 02 Die Hausecke */
+.f02 .f02-oben{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,60px);align-items:stretch}
+.f02 .f02-bild{min-height:520px;height:100%}
+.f02 .f02-info{display:grid;align-content:start;gap:0}
+.f02 .f02-logo{width:110px;margin-bottom:22px}
+.f02 .besuch{margin-top:28px}
+.f02 .f02-stange{height:6px;border-radius:3px;margin:clamp(44px,5vw,64px) 0 0;background:var(--gold);box-shadow:0 6px 14px -6px rgba(0,0,0,.7)}
+.f02 .f02-haengen{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,70px);padding:0 clamp(0px,4vw,60px)}
+.f02 .f02-schild{position:relative;display:block;margin-top:42px;padding:30px 32px 30px;border-radius:var(--rand-g);box-shadow:var(--schatten);
+  transform-origin:50% -42px;transform:rotate(var(--r,4deg));transition:transform 2.2s cubic-bezier(.3,1.5,.5,1)}
+.f02.da .f02-schild{transform:rotate(0)}
+.f02 .f02-schild:nth-child(2){--r:-5deg;transition-delay:.12s}
+.f02 .f02-h::before,.f02 .f02-h::after{content:"";position:absolute;top:-42px;width:1px;height:42px;background:var(--gold)}
+.f02 .f02-h::before{left:22%} .f02 .f02-h::after{right:22%}
+.f02 .f02-cu{background:var(--creme);color:var(--dunkel)}
+.f02 .f02-cu .etikett{color:#A07F3A} .f02 .f02-cu .n-satz{color:var(--dunkel2)} .f02 .f02-cu .weiter{color:#8F6E2E;border-color:rgba(143,110,46,.3)}
+.f02 .f02-dc{background:#8A53AA}
+.f02 .f02-dc .etikett,.f02 .f02-dc .weiter{color:var(--creme);border-color:rgba(242,233,220,.35)} .f02 .f02-dc .n-satz{color:rgba(242,233,220,.86)}
+.f02 .f02-dc .z-dc{width:118px}
+.ruhig .f02 .f02-schild{transform:none!important;transition:none!important}
+
+/* ---------- 03 Drei Fenster */
+.f03 .f03-reihe{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2vw,28px)}
+.f03 .f03-f{display:grid;grid-template-rows:auto 1fr;gap:22px}
+.f03 .f03-f .kachel{height:clamp(300px,32vw,440px)}
+.f03 .f03-u{display:grid;align-content:start;gap:0}
+.f03 .f03-logo{width:96px;margin-bottom:16px}
+.f03 .f03-u .n-satz{font-size:14.5px;margin-top:14px}
+.f03 a.f03-f .f03-u{display:flex;flex-direction:column;align-items:flex-start;height:100%}
+.f03 a.f03-f .f03-u .weiter{margin-top:auto;padding-top:16px}
+.f03 .f03-wsu{height:100%} .f03 .f03-wsu .zeiten{align-self:end}
+.f03 .jetzt{display:none}
+.f03 .f03-wsu{grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start}
+.f03 .f03-wsu .zeiten{margin-top:0}
+.f03 .f03-unten{margin-top:clamp(36px,4vw,50px);padding-top:26px;border-top:1px solid var(--gold-l)}
+.f03 .f03-unten .besuch{display:grid;grid-template-columns:auto minmax(0,1.2fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);align-items:start}
+.f03 .f03-unten .besuch p+p{margin-top:0}
+
+/* ---------- 04 Das Plakat an der Tür */
+.f04 .f04-wand{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:start}
+.f04 .f04-plakat{padding:clamp(34px,4vw,54px);border-radius:6px;background:var(--creme);box-shadow:var(--schatten);
+  transform:translateY(60px) rotate(-5deg);transform-origin:50% 0;transition:transform 2s cubic-bezier(.3,1.35,.5,1)}
+.f04.da .f04-plakat{transform:rotate(-1.4deg)}
+.f04 .f04-logo{width:120px;margin-bottom:24px}
+.f04 .f04-plakat > .etikett{display:block;margin-bottom:12px}
+.f04 .f04-plakat .titel{color:var(--dunkel)}
+.f04 .f04-plakat .besuch{margin-top:28px}
+.f04 .f04-rechts{display:grid;gap:18px}
+.f04 .f04-bild{height:clamp(240px,24vw,330px)}
+.f04 .f04-rechts > .etikett{margin-top:14px}
+.f04 .f04-z{display:grid;grid-template-columns:clamp(110px,11vw,150px) minmax(0,1fr);gap:22px;align-items:start;padding-top:18px;border-top:1px solid var(--gold-ll)}
+.f04 .f04-z .kachel{aspect-ratio:1;border-radius:10px}
+.f04 .f04-z .z-cu{width:170px} .f04 .f04-z .z-dc{width:104px}
+.f04 .f04-z .n-et{margin-top:12px}
+.ruhig .f04 .f04-plakat{transform:rotate(-1.4deg)!important;transition:none!important}
+
+/* ---------- 05 Die Nacht in Stunden */
+.f05 .f05-oben{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(24px,3vw,48px);align-items:end}
+.f05 .f05-oben > div:first-child{display:contents}
+.f05 .f05-logo{width:clamp(100px,10vw,130px)}
+.f05 .f05-oben .titel{font-size:clamp(38px,4.6vw,66px)}
+.f05 .f05-z .jetzt{font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold);margin-left:10px}
+.f05 .f05-leiste{margin-top:clamp(36px,4vw,52px);padding:clamp(22px,3vw,34px) clamp(22px,3vw,40px)}
+.f05 .f05-z{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(0,3fr);gap:24px;align-items:center;padding:13px 0;border-top:1px solid var(--gold-ll);font-size:16px;color:var(--text2)}
+.f05 .f05-kopf{border-top:0;padding-top:0}
+.f05 .f05-std{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));position:relative}
+.f05 .f05-kopf i{font:400 15px/1 var(--titel);font-style:normal;color:var(--text3)}
+.f05 .f05-b{grid-column:1 / span var(--l);height:34px;border-radius:9px;background:var(--nacht4);box-shadow:inset 0 0 0 1px var(--gold-l);display:flex;align-items:center;justify-content:flex-end;padding:0 14px;
+  transform:scaleX(.04);transform-origin:0 50%;transition:transform 1.6s var(--k);transition-delay:calc(.2s + var(--n)*.14s)}
+.f05 .f05-b span{font:400 17px/1 var(--titel);color:var(--text);white-space:nowrap}
+.f05.da .f05-b{transform:none}
+.f05 .f05-z.heute{color:var(--text)} .f05 .f05-z.heute .f05-b{background:var(--gold)} .f05 .f05-z.heute .f05-b span{color:var(--nacht)}
+.f05 .f05-z em{grid-column:1 / -1;font:400 18px/1 var(--titel);font-style:normal;color:var(--text3)}
+.f05 .f05-nachbarn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2vw,28px);margin-top:clamp(22px,2.4vw,30px)}
+.f05 .f05-n{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px;padding:16px;align-items:center}
+.f05 .f05-n .kachel{height:100%;min-height:220px;border-radius:12px}
+.f05 .f05-n > div{padding:10px 10px 10px 0}
+.ruhig .f05 .f05-b{transform:none!important;transition:none!important}
+
+/* ---------- 06 Das Klingelschild */
+.f06 .f06-wand{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,4vw,60px);align-items:stretch}
+.f06 .f06-bild{min-height:560px;height:100%}
+.f06 .f06-rechts{display:grid;gap:clamp(28px,3vw,40px);align-content:start}
+.f06 .f06-tafel{padding:clamp(24px,3vw,36px);display:grid;gap:14px}
+.f06 .f06-adr{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding-bottom:16px;border-bottom:1px solid var(--gold-l)}
+.f06 .f06-adr .titel{font-size:clamp(24px,2.4vw,32px);color:var(--gold)}
+.f06 .f06-k{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center;padding:18px 18px 18px 22px;border-radius:var(--rand);background:var(--nacht3);box-shadow:inset 0 0 0 1px var(--gold-ll),0 14px 30px -18px rgba(0,0,0,.8)}
+.f06 .f06-k .etikett{display:block;margin-bottom:6px}
+.f06 .f06-k p{color:var(--text2);font-size:15.5px}
+.f06 .f06-ws{padding:26px 22px 26px 26px;background:var(--nacht4)}
+.f06 .f06-logo{width:96px}
+.f06 .f06-k .z-cu{width:180px} .f06 .f06-k .z-dc{width:96px}
+.f06 .f06-knopf{width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--nacht);display:grid;place-items:center;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.22),0 8px 16px -6px rgba(0,0,0,.8);transition:transform .5s var(--k),box-shadow .5s var(--k)}
+.f06 .f06-ws .f06-knopf{background:var(--rot);color:var(--creme);width:60px;height:60px}
+.f06 .f06-knopf svg{width:20px;height:20px}
+.f06 .f06-k:hover .f06-knopf{transform:scale(.92) translateY(2px);box-shadow:inset 0 -1px 0 rgba(0,0,0,.22),0 3px 8px -4px rgba(0,0,0,.8)}
+.f06 .f06-unten{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,3vw,44px)}
+.f06 .f06-unten .zeiten{margin-top:0}
+
+/* ---------- 07 Das Band */
+.f07{padding-bottom:40px}
+.f07 .f07-oben{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end}
+.f07 .f07-logo{width:120px;margin-bottom:20px}
+.f07 .f07-dach{margin-top:26px;color:var(--text2);font-size:15px;max-width:34ch}
+.f07 .f07-dach .etikett{display:block;margin-bottom:10px}
+.f07 .f07-band{margin-top:clamp(44px,5vw,64px);overflow:hidden}
+.f07 .f07-spur{display:flex;gap:14px;width:max-content;animation:f07-lauf 70s linear infinite;animation-play-state:paused}
+.f07.lauf .f07-spur{animation-play-state:running}
+.f07 .f07-band:hover .f07-spur{animation-play-state:paused}
+@keyframes f07-lauf{to{transform:translateX(calc(-50% - 7px))}}
+.f07 .f07-spur > *{flex:none;height:clamp(220px,22vw,300px);width:clamp(170px,16vw,230px)}
+.f07 .f07-spur > a > .kachel{height:100%;width:100%}
+.f07 .f07-logo-k{display:grid;place-items:center;align-content:center;gap:18px;padding:22px;border-radius:var(--rand);box-shadow:var(--schatten);text-align:center}
+.f07 .f07-cu{background:var(--creme)} .f07 .f07-cu .etikett{color:#A07F3A} .f07 .f07-cu .z-cu{width:82%}
+.f07 .f07-dc{background:#8A53AA} .f07 .f07-dc .etikett{color:var(--creme)} .f07 .f07-dc .z-dc{width:64%}
+.f07 .innen:last-child{margin-top:0}
+.ruhig .f07 .f07-spur{animation:none}
+
+/* ---------- 08 Das Gewölbe zum Schluss */
+.f08{padding-top:0;border-top:0}
+.f08 .f08-bild{height:clamp(300px,36vw,520px);overflow:hidden;margin-bottom:clamp(48px,6vw,80px)}
+.f08 .f08-bild .kachel{height:100%;border-radius:0;box-shadow:none}
+.f08 .f08-bild .kachel img{transform:scale(1.14);transition:transform 2.4s var(--k)}
+.f08.da .f08-bild .kachel img{transform:scale(1)}
+.f08 .f08-kopf{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,3.5vw,56px);align-items:end}
+.f08 .f08-logo{width:clamp(110px,11vw,150px)}
+.f08 .f08-kopf .titel{font-size:clamp(38px,4.8vw,68px)}
+.f08 .f08-kopf .zeiten{margin-top:0}
+.f08 .f08-spalten{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3.5vw,56px);margin-top:clamp(40px,4vw,56px);padding-top:30px;border-top:1px solid var(--gold-l)}
+.f08 .f08-n{display:block}
+.f08 .f08-n .n-et{margin-top:16px}
+
+/* ---------- 09 Drei Platten mit Tiefe */
+.f09 .f09-reihe{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2vw,28px);perspective:1400px}
+.f09 .f09-p{display:grid;align-content:start;padding:clamp(24px,2.6vw,36px);transform-origin:50% 100%;
+  transform:translateY(70px) rotateX(16deg);transition:transform 1.5s var(--k);transition-delay:calc(var(--n)*.12s)}
+.f09.da .f09-p{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.f09.da .f09-p.zieht{transition:transform .9s var(--k)}
+.f09 .f09-logo{width:104px;margin-bottom:22px}
+.f09 .f09-ws .besuch{margin-top:24px}
+.f09 a.f09-p{padding:14px 14px 26px;grid-template-rows:minmax(0,1fr) auto;align-content:stretch}
+.f09 a.f09-p .kachel{height:100%;min-height:240px;border-radius:12px}
+.f09 .f09-t{padding:24px 12px 0}
+.f09 .f09-t .z-cu{width:180px} .f09 .f09-t .z-dc{width:104px}
+.ruhig .f09 .f09-p{transform:none!important;transition:none!important}
+
+/* ---------- 10 Das Triptychon */
+.f10 .f10-kz .kz{justify-content:center}
+.f10 .f10-reihe{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr);gap:clamp(24px,3.5vw,56px);align-items:start}
+.f10 .f10-mitte{text-align:center;display:grid;justify-items:center}
+.f10 .f10-logo{width:clamp(130px,13vw,170px);margin-bottom:24px}
+.f10 .f10-abende{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;margin-top:30px}
+.f10 .f10-abende > div{padding:20px 10px;border-radius:var(--rand);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll);display:grid;gap:12px}
+.f10 .f10-abende b{font:400 clamp(17px,1.55vw,21px)/1.1 var(--titel);white-space:nowrap}
+.f10 .f10-mitte .titel{font-size:clamp(40px,4.6vw,64px)}
+.f10 .f10-abende .heute{box-shadow:inset 0 0 0 1px var(--gold)} .f10 .f10-abende .heute b{color:var(--gold)}
+.f10 .f10-abende .jetzt{display:block;margin:8px 0 0;font:500 10.5px/1 var(--lauf);letter-spacing:.17em;color:var(--gold)}
+.f10 .f10-zu{margin-top:16px;color:var(--text3);font-size:15px}
+.f10 .f10-b{margin-top:26px;padding-top:24px;border-top:1px solid var(--gold-l);width:100%}
+.f10 .f10-fluegel{display:block;margin-top:clamp(40px,6vw,90px)}
+.f10 .f10-fluegel .kachel{aspect-ratio:3/4;margin-bottom:24px}
+
+/* ---------- 11 Die Wand */
+.f11 .f11-wand{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(150px,15vw,210px);gap:12px}
+.f11 .f11-z{transform:translateY(var(--d,60px));transition:transform 1.4s var(--k)}
+.f11.da .f11-z{transform:none}
+.f11 .f11-z > .kachel,.f11 .f11-z.kachel{height:100%}
+.f11 a.f11-z{display:block;border-radius:var(--rand)}
+.f11 a.f11-z > .kachel{height:100%}
+.f11 .f11-info{grid-area:1/1/4/4;padding:clamp(24px,2.6vw,34px);display:grid;align-content:space-between}
+.f11 .f11-kopf{display:flex;gap:22px;align-items:center}
+.f11 .f11-logo{width:84px;flex:none}
+.f11 .f11-info .zeiten{margin-top:10px}
+.f11 .f11-info .besuch p{font-size:14.5px}
+.f11 .f11-a{grid-area:1/4/3/5} .f11 .f11-b{grid-area:1/5/2/7} .f11 .f11-c{grid-area:2/5/3/6} .f11 .f11-d{grid-area:2/6/3/7}
+.f11 .f11-e{grid-area:3/4/4/5} .f11 .f11-f{grid-area:3/5/4/6} .f11 .f11-g{grid-area:3/6/4/7}
+.f11 .f11-l{display:grid!important;place-items:center;align-content:center;gap:14px;padding:16px;text-align:center;box-shadow:var(--schatten)}
+.f11 .f11-cu{background:var(--creme)} .f11 .f11-cu .etikett{color:#A07F3A;font-size:10px} .f11 .f11-cu .z-cu{width:88%}
+.f11 .f11-dc{background:#8A53AA} .f11 .f11-dc .etikett{color:var(--creme);font-size:10px} .f11 .f11-dc .z-dc{width:62%}
+.ruhig .f11 .f11-z{transform:none!important;transition:none!important}
+
+/* ---------- 12 Zwei Ebenen */
+.f12 .f12-oben{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,60px);align-items:stretch}
+.f12 .f12-bild{min-height:500px;height:100%}
+.f12 .f12-logo{width:110px;margin-bottom:22px}
+.f12 .f12-info .besuch{margin-top:26px}
+.f12 .f12-ebene{margin-top:clamp(36px,4vw,52px);padding:clamp(28px,3.4vw,44px);border-radius:var(--rand-g);background:var(--creme);box-shadow:var(--schatten);
+  transform:translateY(90px);transition:transform 1.6s var(--k) .25s}
+.f12.da .f12-ebene{transform:none}
+.f12 .f12-ebene > .etikett{display:block;margin-bottom:22px}
+.f12 .f12-zwei{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,3.4vw,52px)}
+.f12 .f12-n{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px;align-items:center}
+.f12 .f12-n .kachel{aspect-ratio:4/5;border-radius:12px;box-shadow:0 18px 40px -20px rgba(0,0,0,.5)}
+.f12 .f12-n .z-cu{width:180px} .f12 .f12-n .z-dc{width:104px}
+.ruhig .f12 .f12-ebene{transform:none!important;transition:none!important}
+
+/* ---------- 13 Die Wegweiser */
+.f13 .f13-wand{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:start}
+.f13 .f13-pfosten{position:relative;display:grid;gap:22px;padding:14px 0 60px 46px}
+.f13 .f13-pfosten::before{content:"";position:absolute;left:18px;top:0;bottom:0;width:8px;border-radius:4px;background:var(--gold);box-shadow:0 10px 20px -8px rgba(0,0,0,.7)}
+.f13 .f13-s{position:relative;display:grid;gap:14px;justify-items:start;padding:26px 74px 26px 30px;box-shadow:var(--schatten);
+  clip-path:polygon(0 0,calc(100% - 46px) 0,100% 50%,calc(100% - 46px) 100%,0 100%);
+  transform:translateY(80px) rotate(var(--r));transform-origin:-28px 50%;transition:transform 1.8s cubic-bezier(.3,1.4,.5,1);transition-delay:calc(var(--n)*.14s)}
+.f13.da .f13-s{transform:none}
+.f13 .f13-s:hover{transform:translateX(8px)!important;transition-duration:.9s;transition-delay:0s}
+.f13 .f13-ws{background:var(--nacht4);padding:30px 90px 30px 30px;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:28px}
+.f13 .f13-logo{width:clamp(110px,10vw,140px)}
+.f13 .f13-ws .etikett{font-size:11.5px;display:block;margin-bottom:10px}
+.f13 .f13-ws .titel{font-size:clamp(24px,2.4vw,32px);line-height:1.15;color:var(--text)}
+.f13 .f13-rechts .titel{font-size:clamp(40px,4.8vw,66px)}
+.f13 .f13-cu{background:var(--creme);width:84%} .f13 .f13-cu .etikett{color:#A07F3A} .f13 .f13-cu .z-cu{width:210px}
+.f13 .f13-dc{background:#8A53AA;width:72%} .f13 .f13-dc .etikett{color:var(--creme)} .f13 .f13-dc .z-dc{width:112px}
+.f13 .f13-rechts .besuch{margin-top:28px}
+.ruhig .f13 .f13-s{transform:none!important;transition:none!important}
+
+/* ---------- 14 Drei Etagen */
+.f14 .f14-e + .f14-e{margin-top:clamp(16px,1.8vw,22px)}
+.f14 .f14-ws{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,4vw,60px);align-items:stretch;padding-bottom:clamp(20px,2vw,28px)}
+.f14 .f14-ws .kachel{min-height:440px;height:100%}
+.f14 .f14-logo{width:110px;margin-bottom:20px}
+.f14 .f14-info .titel{font-size:clamp(38px,4.4vw,62px)}
+.f14 .f14-zwei{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;margin-top:8px}
+.f14 .f14-n{display:grid;grid-template-columns:clamp(150px,18vw,240px) auto auto minmax(0,1fr) auto;gap:clamp(18px,2.4vw,36px);align-items:center;padding:14px clamp(20px,2.4vw,32px) 14px 14px}
+.f14 .f14-n .kachel{aspect-ratio:16/10;border-radius:10px}
+.f14 .f14-n .etikett{white-space:nowrap}
+.f14 .f14-n .n-satz{margin-top:0}
+.f14 .f14-n .weiter{margin-top:0;white-space:nowrap}
+
+/* ---------- 15 Die Visitenkarten */
+.f15 .f15-wand{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:center}
+.f15 .f15-stapel{position:relative;height:clamp(430px,40vw,520px)}
+.f15 .f15-k{position:absolute;border-radius:16px;box-shadow:var(--schatten);transition:transform 2s cubic-bezier(.3,1.3,.5,1)}
+.f15 .f15-cu,.f15 .f15-dc{width:62%;height:56%;display:grid;align-content:start;justify-items:start;gap:14px;padding:28px 30px}
+.f15 .f15-cu{left:0;top:4%;background:var(--creme);transform:translate(18%,22%) rotate(0);transition-delay:.15s}
+.f15 .f15-cu .etikett{color:#A07F3A} .f15 .f15-cu .z-cu{width:52%}
+.f15 .f15-dc{right:0;top:0;background:#8A53AA;transform:translate(-18%,26%) rotate(0);transition-delay:.25s}
+.f15 .f15-dc .etikett{color:var(--creme)} .f15 .f15-dc .z-dc{width:34%}
+.f15.da .f15-cu{transform:rotate(-7deg)} .f15.da .f15-dc{transform:rotate(6deg)}
+.f15.da .f15-cu:hover{transform:rotate(-7deg) translateY(-16px);transition-duration:.9s;transition-delay:0s}
+.f15.da .f15-dc:hover{transform:rotate(6deg) translateY(-16px);transition-duration:.9s;transition-delay:0s}
+.f15 .f15-ws{left:9%;right:9%;bottom:0;height:62%;background:var(--nacht3);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);padding:30px 34px;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 28px;align-content:center;transform:translateY(40px) rotate(-1deg)}
+.f15.da .f15-ws{transform:rotate(-1deg)}
+.f15 .f15-logo{width:96px;grid-row:1/3}
+.f15 .f15-ws .etikett{align-self:end}
+.f15 .f15-ws .besuch p{font-size:14.5px}
+.f15 .f15-rechts .titel{font-size:clamp(40px,4.8vw,66px)}
+.f15 .f15-dach{margin-top:24px;color:var(--text2);font-size:15px}
+.f15 .f15-dach a{color:var(--text);border-bottom:1px solid var(--gold-l)}
+.ruhig .f15 .f15-k{transition:none!important}
+
+@media (max-width:1180px){.f14 .f14-zwei{grid-template-columns:minmax(0,1fr)}}
+.f15 .f15-cu .etikett{max-width:48%;line-height:1.6}
+
+/* ---------- Schmal */
+@media (max-width:860px){
+  .f01 .f01-kopf,.f01 .f01-spalten,.f01 .f01-dach,.f01 .f01-n,.f02 .f02-oben,.f02 .f02-haengen,.f03 .f03-reihe,.f03 .f03-wsu,.f03 .f03-unten .besuch,.f04 .f04-wand,.f05 .f05-oben,.f05 .f05-nachbarn,
+  .f06 .f06-wand,.f06 .f06-unten,.f07 .f07-oben,.f08 .f08-kopf,.f08 .f08-spalten,.f09 .f09-reihe,.f10 .f10-reihe,.f12 .f12-oben,.f12 .f12-zwei,
+  .f13 .f13-wand,.f14 .f14-ws,.f14 .f14-zwei,.f15 .f15-wand{grid-template-columns:minmax(0,1fr)}
+  .f02 .f02-bild,.f06 .f06-bild,.f12 .f12-bild,.f14 .f14-ws .kachel{min-height:360px}
+  .f02 .f02-haengen{padding:0}
+  .f05 .f05-z{grid-template-columns:minmax(0,1fr)} .f05 .f05-kopf > span{display:none}
+  .f10 .f10-fluegel{margin-top:0}
+  .f10 .f10-mitte{order:-1}
+  .f11 .f11-wand{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:170px}
+  .f11 .f11-info{grid-area:auto;grid-column:1/-1;grid-row:span 3}
+  .f11 .f11-a,.f11 .f11-b,.f11 .f11-c,.f11 .f11-d,.f11 .f11-e,.f11 .f11-f,.f11 .f11-g{grid-area:auto}
+  .f12 .f12-n{grid-template-columns:minmax(0,1fr)}
+  .f13 .f13-cu,.f13 .f13-dc{width:100%}
+  .f14 .f14-n{grid-template-columns:minmax(0,1fr)}
+  .f15 .f15-stapel{height:480px}
+  .f15 .f15-cu,.f15 .f15-dc{width:78%}
+}

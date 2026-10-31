@@ -1,0 +1,307 @@
+/* Wild Side · Feiern, «Ein Rahmen, den ihr setzt.», 15 Darstellungen (30.10.2026). Nur Farben, Schriften und Masse aus wild.css. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* ---------- Gemeinsam */
+.bv{overflow:clip}
+.bv .bk .text{margin-top:20px;max-width:34em}
+.bklein{margin-top:18px;font-size:14px;color:rgba(27,21,18,.6)} .bv:not(.hell) .bklein{color:var(--text3)}
+.bhin{display:block;font-size:13px;line-height:1.5;color:var(--text3)} .hell .bhin{color:rgba(27,21,18,.55)}
+.bltitel{font-size:clamp(28px,2.8vw,40px);margin-top:12px;color:var(--creme)} .hell .bltitel{color:var(--dunkel)}
+.bp{display:grid;grid-template-columns:auto minmax(20px,1fr) auto;gap:12px;align-items:baseline;padding:10px 0}
+.bp span{font-size:16px}
+.bp i{height:1px;align-self:end;margin-bottom:6px;background-image:radial-gradient(circle,var(--gold) 1px,transparent 1.2px);background-size:7px 2px;background-repeat:repeat-x;opacity:.7}
+.hell .bp i{background-image:radial-gradient(circle,#A07F3A 1px,transparent 1.2px)}
+.bp b{font-size:20px;line-height:1;color:var(--gold);white-space:nowrap} .hell .bp b{color:#8F6E2E}
+.bf{position:relative;margin:0;overflow:hidden;background:var(--nacht3) var(--lq) center/cover}
+.bf img{width:100%;height:100%;object-fit:cover}
+.betrag-t{font-size:clamp(30px,3vw,44px);line-height:1;white-space:nowrap}
+
+/* ---------- 01 Die Waage */
+.w1-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.w1-waage{position:relative;height:clamp(320px,30vw,420px)}
+.w1-saeule{position:absolute;left:50%;top:34px;bottom:0;width:2px;margin-left:-1px;background:#A07F3A}
+.w1-saeule::after{content:"";position:absolute;left:50%;bottom:0;width:150px;height:10px;margin-left:-75px;border-radius:6px;background:var(--dunkel)}
+.w1-saeule::before{content:"";position:absolute;left:50%;top:-14px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#A07F3A}
+.w1-balken{position:absolute;left:4%;right:4%;top:26px;height:2px;background:#A07F3A;transform-origin:50% 50%;transform:rotate(-9deg);transition:transform 2.4s cubic-bezier(.3,1.6,.45,1) .3s}
+.w1-waage.da .w1-balken{transform:rotate(0)}
+.w1-schale{position:absolute;top:0;width:47%;display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;transform:rotate(9deg);transition:transform 2.4s cubic-bezier(.3,1.6,.45,1) .3s}
+.w1-waage.da .w1-schale{transform:none}
+.w1-schale.l{left:-4%} .w1-schale.r{right:-4%}
+.w1-kette{width:1px;height:70px;background:rgba(160,127,58,.7)}
+.w1-teller{width:100%;text-align:center;padding:24px 16px 26px;border-radius:0 0 999px 999px;background:#FBF6EE;box-shadow:inset 0 0 0 1px rgba(160,127,58,.35),0 24px 40px -24px rgba(60,40,20,.45)}
+.w1-teller b{display:block;margin-top:12px;font-size:clamp(28px,2.6vw,40px);line-height:1;white-space:nowrap}
+.w1-klein{text-align:center;margin-top:26px}
+.w1-leiste{margin-top:clamp(40px,5vw,70px);padding:30px clamp(22px,3vw,40px);border-radius:var(--rand-g);background:var(--nacht);color:var(--text);box-shadow:var(--schatten)}
+.w1-leiste .etikett{color:var(--gold)}
+.w1-reihe{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;margin:24px 0 18px;border-top:1px solid var(--gold-l)}
+.w1-p{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:18px 14px 0;border-left:1px solid var(--gold-l);opacity:0;transform:translateY(18px);transition:opacity .8s var(--k),transform 1s var(--k);transition-delay:calc(.4s + var(--n)*.08s)}
+.w1-p:first-child{border-left:0;padding-left:0}
+.w1-p span{font-size:14px;color:var(--text2)} .w1-p b{font-size:26px;color:var(--gold)}
+.w1-leiste.da .w1-p{opacity:1;transform:none}
+
+/* ---------- 02 Die Rechnungsmappe */
+.m2-kopf{text-align:center;max-width:760px;margin:0 auto}
+.m2-kopf .kz{justify-content:center} .m2-kopf .text{margin-left:auto;margin-right:auto}
+.m2-mappe{position:relative;margin:clamp(40px,5vw,64px) auto 0;max-width:1060px;perspective:2200px}
+.m2-innen{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);border-radius:var(--rand-g);background:#FBF6EE;box-shadow:inset 0 0 0 1px rgba(160,127,58,.3),0 40px 80px -40px rgba(60,40,20,.5);overflow:hidden}
+.m2-seite{padding:clamp(28px,3.6vw,50px)}
+.m2-l{border-right:1px dashed rgba(160,127,58,.4)}
+.m2-betrag{margin-top:22px} .m2-betrag span{display:block;font-size:14px;color:rgba(27,21,18,.6)} .m2-betrag b{display:block;margin-top:8px;font-size:clamp(38px,4vw,58px);line-height:1;white-space:nowrap}
+.m2-plus{display:block;margin-top:14px;font:400 30px/1 var(--titel);font-style:normal;color:#A07F3A}
+.m2-posten{margin:22px 0 18px}
+.m2-deckel{position:absolute;inset:0;width:50%;left:50%;border-radius:0 var(--rand-g) var(--rand-g) 0;background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-l);display:grid;place-items:center;transform-origin:0 50%;transform:rotateY(0);transition:transform 1.9s cubic-bezier(.6,.05,.2,1) .4s,opacity .5s linear 1.9s;backface-visibility:hidden}
+.m2-deckel span{font-size:clamp(22px,2.2vw,32px);color:var(--gold)} .m2-deckel i{position:absolute;inset:18px;border-radius:12px;box-shadow:inset 0 0 0 1px var(--gold-l)}
+.m2-mappe.da .m2-deckel{transform:rotateY(-178deg);opacity:0}
+.m2-mappe .m2-seite>*{opacity:0;transform:translateY(16px);transition:opacity .8s var(--k),transform 1s var(--k);transition-delay:1.5s}
+.m2-mappe.da .m2-seite>*{opacity:1;transform:none}
+
+/* ---------- 03 Das Glas füllt sich */
+.g3-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr) minmax(0,.9fr);gap:clamp(24px,4vw,60px);align-items:center}
+.g3-glas{position:relative}
+.g3-glas svg{display:block;width:100%;height:auto;overflow:visible}
+.g3-drink{fill:#B5402C;transform:translateY(100%);transform-box:view-box}
+.g3-rand{fill:none;stroke:var(--creme3);stroke-width:2.4;stroke-linejoin:round}
+.g3-marke{stroke:var(--gold);stroke-width:1.6;stroke-dasharray:5 5}
+.g3-mtext{position:absolute;left:100%;top:26%;transform:translate(-12%,-50%);background:var(--nacht);padding:4px 0 4px 10px;white-space:nowrap}
+.g3-mtext b{display:block;margin-top:6px;font-size:clamp(26px,2.4vw,36px);color:var(--creme);transition:color .6s}
+.g3-glas.voll .g3-mtext b{color:var(--gold)}
+.g3-boden{margin-top:18px;text-align:center} .g3-boden b{display:block;margin-top:8px;font-size:clamp(24px,2.2vw,32px);color:var(--creme)}
+.g3-liste{padding:clamp(24px,2.8vw,38px);border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.g3-posten{margin:20px 0 16px}
+.g3-posten .bp{opacity:0;transform:translateX(-14px);transition:opacity .7s var(--k),transform .9s var(--k);transition-delay:calc(.2s + var(--n)*.1s)}
+.g3-liste.da .bp{opacity:1;transform:none}
+
+/* ---------- 04 Die Schiefertafel */
+.t4-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start}
+.t4-haenger{position:relative;padding-top:90px;transform-origin:50% 0;transform:rotate(5deg) translateY(-30px);opacity:0;transition:transform 2.6s cubic-bezier(.25,1.7,.45,1),opacity .6s linear}
+.t4-haenger.da{transform:none;opacity:1}
+.t4-s{position:absolute;top:0;height:96px;width:1px;background:rgba(27,21,18,.45)} .t4-s.l{left:22%;transform:rotate(14deg);transform-origin:0 0} .t4-s.r{right:22%;transform:rotate(-14deg);transform-origin:0 0}
+.t4-s::before{content:"";position:absolute;top:-6px;left:-4px;width:9px;height:9px;border-radius:50%;background:var(--dunkel)}
+.t4-tafel{padding:clamp(30px,3.4vw,48px);border-radius:10px;background:#1D201D;color:var(--text);box-shadow:inset 0 0 0 10px #3A2C22,inset 0 0 0 11px rgba(216,178,100,.3),0 40px 70px -30px rgba(0,0,0,.55)}
+.t4-tafel .etikett{color:var(--gold)}
+.t4-posten{margin:22px 0}
+.t4-posten .bp span{color:var(--text)} .t4-posten .bp i{background-image:radial-gradient(circle,rgba(237,228,216,.6) 1px,transparent 1.2px)} .t4-posten .bp b{color:var(--creme)}
+.t4-fuss{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:end;padding:20px 0 18px;border-top:1px solid rgba(237,228,216,.2);margin-bottom:12px}
+.t4-fuss b{display:block;margin-top:10px;font-size:clamp(26px,2.4vw,36px);color:var(--gold);white-space:nowrap} .t4-fuss i{font:400 28px/1 var(--titel);font-style:normal;color:var(--gold);padding-bottom:4px}
+
+/* ---------- 05 Grosse Zahlen */
+.z5-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.6fr);gap:40px;align-items:end}
+.z5-kopf .bklein{margin-bottom:6px}
+.z5-zahlen{margin-top:clamp(40px,5vw,70px);display:grid;grid-template-columns:auto auto 1fr;gap:clamp(20px,3vw,50px);align-items:end;padding:clamp(24px,3vw,40px) 0;border-top:1px solid var(--gold-l);border-bottom:1px solid var(--gold-l)}
+.z5-zahlen b{display:flex;margin-top:14px;font-size:clamp(60px,9vw,150px);line-height:1;color:var(--creme)}
+.z5-zahlen>i{font-size:clamp(50px,6vw,100px);font-style:normal;color:var(--gold);line-height:1;padding-bottom:.05em}
+.z5-r{display:inline-block;height:1em;overflow:hidden}
+.z5-r>span{display:flex;flex-direction:column;transform:translateY(0);transition:transform 2.2s cubic-bezier(.2,.7,.2,1);transition-delay:calc(.2s + var(--j)*.08s)}
+.z5-r i{font-style:normal;height:1em;line-height:1}
+.z5-zahlen.da .z5-r>span{transform:translateY(calc(var(--d)*-1em))}
+.z5-lk{margin-top:clamp(40px,5vw,60px)}
+.z5-spalten{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-top:24px}
+.z5-spalten div{padding:0 14px;border-left:1px solid var(--gold-l);opacity:0;transform:translateY(24px);transition:opacity .8s var(--k),transform 1.1s var(--k);transition-delay:calc(var(--n)*.07s)}
+.z5-spalten div:first-child{border-left:0;padding-left:0}
+.z5-spalten b{display:block;font-size:clamp(28px,2.6vw,38px);color:var(--gold);white-space:nowrap} .z5-spalten span{display:block;margin-top:10px;font-size:14px;color:var(--text2)}
+.z5-spalten.da div{opacity:1;transform:none}
+.z5-fuss{margin-top:22px}
+
+/* ---------- 06 Vor der Rückbar */
+.r6-raster{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.r6-bild{border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.r6-f{aspect-ratio:3/4} .r6-f img{transform:scale(1.16);will-change:transform}
+.r6-betraege{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px;padding-top:24px;border-top:1px solid var(--gold-l)}
+.r6-betraege b{display:block;margin-top:12px;font-size:clamp(32px,3.2vw,48px);line-height:1;color:var(--creme);white-space:nowrap}
+.r6-liste{margin-top:34px} .r6-posten{margin:16px 0 14px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px}
+.r6-posten .bp{padding:9px 0} .r6-posten .bp span{font-size:15px}
+
+/* ---------- 07 Die Anhänger */
+.a7-oben{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(30px,5vw,80px);align-items:end}
+.a7-rechnung{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:end}
+.a7-rechnung b{display:block;margin-top:12px;font-size:clamp(32px,3vw,46px);line-height:1;white-space:nowrap}
+.a7-rechnung>i{font:400 30px/1 var(--titel);font-style:normal;color:#A07F3A;padding-bottom:6px}
+.a7-rechnung .bklein{grid-column:1/-1}
+.a7-lk{margin-top:clamp(50px,6vw,80px)}
+.a7-stange{position:relative;margin-top:30px}
+.a7-holz{display:block;height:8px;border-radius:4px;background:#4A3626;box-shadow:0 6px 12px -6px rgba(0,0,0,.4)}
+.a7-reihe{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(8px,1.2vw,18px)}
+.a7-tag{display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;transform:translateY(-60px) rotate(-8deg);opacity:0;transition:transform 1.8s cubic-bezier(.25,1.8,.45,1),opacity .4s linear;transition-delay:calc(var(--n)*.12s)}
+.a7-stange.da .a7-tag{transform:none;opacity:1}
+.a7-faden{width:1px;height:calc(30px + var(--n)%3*18px);background:rgba(27,21,18,.4)}
+.a7-karte{position:relative;width:100%;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;padding:34px 14px 18px;border-radius:8px 8px 12px 12px;clip-path:polygon(22% 0,78% 0,100% 12%,100% 100%,0 100%,0 12%);background:#E5D3B4;box-shadow:inset 0 0 0 1px rgba(160,127,58,.35)}
+.a7-loch{position:absolute;top:12px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--creme);box-shadow:inset 0 0 0 1.5px rgba(160,127,58,.6)}
+.a7-karte span{font-size:14px;line-height:1.3;color:var(--dunkel2);text-align:center} .a7-karte b{font-size:clamp(24px,2.2vw,32px);color:var(--dunkel);text-align:center;white-space:nowrap}
+.a7-hin{margin-top:26px}
+
+/* ---------- 08 Das Leporello */
+.l8-kopf{max-width:760px}
+.l8-karte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(40px,5vw,64px);perspective:2400px}
+.l8-feld{padding:clamp(28px,3vw,44px);min-height:420px;background:#FBF6EE;box-shadow:inset 0 0 0 1px rgba(160,127,58,.28);transform-origin:0 50%;opacity:0;transform:rotateY(-70deg);transition:transform 1.5s cubic-bezier(.3,.9,.3,1),opacity .6s linear}
+.l8-a{border-radius:var(--rand-g) 0 0 var(--rand-g);transform:rotateY(0) translateX(-30px);background:#F6EEDF}
+.l8-b{transition-delay:.45s} .l8-c{transition-delay:.9s;background:var(--nacht);color:var(--text);border-radius:0 var(--rand-g) var(--rand-g) 0;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.l8-c .etikett{color:var(--gold)} .l8-c .bltitel{color:var(--creme)} .l8-c .bp i{background-image:radial-gradient(circle,var(--gold) 1px,transparent 1.2px)} .l8-c .bp b{color:var(--gold)} .l8-c .bhin{color:var(--text3)}
+.l8-karte.da .l8-feld{opacity:1;transform:none}
+.l8-was{margin-top:44px;font-size:16px;color:rgba(27,21,18,.7)} .l8-feld>b{display:block;margin-top:14px;font-size:clamp(46px,5vw,74px);line-height:1;white-space:nowrap} .l8-s{margin-top:14px;font-size:14px;color:rgba(27,21,18,.6)}
+.l8-posten{margin:20px 0 16px} .l8-posten .bp{padding:8px 0} .l8-posten .bp span{font-size:15px}
+
+/* ---------- 09 Der Goldrahmen */
+.r9-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.r9-rahmen{position:relative;padding:clamp(44px,5vw,70px) clamp(30px,4vw,60px);text-align:center}
+.r9-k{position:absolute;background:var(--gold);transition:transform 1s var(--k)}
+.r9-k.o{top:0;left:0;right:0;height:2px;transform-origin:0 0;transform:scaleX(0)} .r9-k.r{top:0;right:0;bottom:0;width:2px;transform-origin:0 0;transform:scaleY(0);transition-delay:.9s}
+.r9-k.u{bottom:0;left:0;right:0;height:2px;transform-origin:100% 0;transform:scaleX(0);transition-delay:1.8s} .r9-k.l{top:0;left:0;bottom:0;width:2px;transform-origin:0 100%;transform:scaleY(0);transition-delay:2.7s}
+.r9-rahmen::before{content:"";position:absolute;inset:12px;box-shadow:inset 0 0 0 1px var(--gold-l);opacity:0;transition:opacity 1s linear 3.4s}
+.r9-rahmen.da .r9-k{transform:none} .r9-rahmen.da::before{opacity:1}
+.r9-gross{display:block;margin-top:18px;font-size:clamp(64px,8vw,124px);line-height:1;color:var(--creme);white-space:nowrap}
+.r9-dazu{margin-top:24px;color:var(--text2)} .r9-dazu b{font-size:28px;color:var(--gold);margin-left:8px}
+.r9-innen{opacity:0;transform:scale(.94);transition:opacity 1.2s var(--k) .5s,transform 1.6s var(--k) .5s} .r9-rahmen.da .r9-innen{opacity:1;transform:none}
+.r9-legende{margin-top:clamp(50px,6vw,80px);padding-top:30px;border-top:1px solid var(--gold-l);opacity:0;transform:translateY(30px);transition:opacity 1s var(--k),transform 1.2s var(--k)}
+.r9-legende.da{opacity:1;transform:none}
+.r9-posten{display:grid;grid-template-columns:1fr 1fr;column-gap:60px;margin:20px 0 16px}
+
+/* ---------- 10 Auf der Theke */
+.k10-oben{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(30px,5vw,80px);align-items:end}
+.k10-betraege{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.k10-betraege b{display:block;margin-top:12px;font-size:clamp(32px,3vw,46px);line-height:1;color:var(--creme);white-space:nowrap}
+.k10-betraege .bklein{grid-column:1/-1;margin-top:4px}
+.k10-lk{margin-top:clamp(50px,6vw,80px)}
+.k10-theke{position:relative;margin-top:36px;padding-bottom:70px}
+.k10-reihe{position:relative;z-index:1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(8px,1vw,16px);align-items:end;overflow:hidden;padding-top:20px}
+.k10-p{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:20px 10px 22px;border-radius:12px 12px 0 0;background:var(--nacht3);box-shadow:inset 0 0 0 1px var(--gold-l);
+ transform:translateY(105%);transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.1s)}
+.k10-p:nth-child(odd){padding-top:34px}
+.k10-p b{font-size:clamp(26px,2.4vw,36px);color:var(--gold);white-space:nowrap} .k10-p span{font-size:13.5px;line-height:1.3;color:var(--text2)}
+.k10-theke.da .k10-p{transform:none}
+.k10-kante{position:relative;z-index:2;display:block;height:16px;border-radius:3px;background:#2E2219;box-shadow:inset 0 1px 0 rgba(216,178,100,.35)}
+.k10-licht{position:absolute;left:3%;right:3%;bottom:30px;height:40px;background:#E9B54A;border-radius:50%;opacity:0;transform:scaleY(.3);transition:opacity 1.6s linear 1s,transform 1.6s var(--k) 1s;box-shadow:0 0 60px 20px rgba(233,181,74,.35);filter:none}
+.k10-theke.da .k10-licht{opacity:.32;transform:scaleY(.25)}
+.k10-hin{margin-top:6px}
+
+/* ---------- 11 Der Bestellblock */
+.b11-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:clamp(30px,5vw,80px);align-items:center}
+.b11-block{position:relative;padding:44px clamp(26px,3vw,44px) 34px;border-radius:4px 4px 12px 12px;background:#FFFCF6;box-shadow:0 1px 0 #EADFCB,0 3px 0 #FFFCF6,0 4px 0 #EADFCB,0 34px 60px -30px rgba(60,40,20,.5);transform:rotate(1.2deg)}
+.b11-perf{position:absolute;left:0;right:0;top:18px;height:2px;background-image:radial-gradient(circle,rgba(27,21,18,.25) 1.2px,transparent 1.5px);background-size:10px 2px}
+.b11-kopf{display:flex;justify-content:space-between;font:500 10.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:#A07F3A;margin-top:4px}
+.b11-zeilen{margin:20px 0 6px}
+.b11-z{position:relative;display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(26,0,170,.14)}
+.b11-z span,.b11-z b{opacity:0;transform:translateX(-10px);transition:opacity .5s linear,transform .7s var(--k);transition-delay:calc(.4s + var(--n)*.28s)}
+.b11-z b{font-size:20px;color:var(--dunkel);transition-delay:calc(.58s + var(--n)*.28s)}
+.b11-stift{position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:var(--dunkel);transform-origin:0 0;transform:scaleX(0);transition:transform .5s cubic-bezier(.5,0,.3,1);transition-delay:calc(.3s + var(--n)*.28s)}
+.b11-block.da .b11-z span,.b11-block.da .b11-z b{opacity:1;transform:none} .b11-block.da .b11-stift{transform:scaleX(1);opacity:.0;transition:transform .5s cubic-bezier(.5,0,.3,1) calc(.3s + var(--n)*.28s),opacity .4s linear calc(.8s + var(--n)*.28s)}
+.b11-summe{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:18px 0 18px;padding-top:18px;border-top:2px solid var(--dunkel);opacity:0;transition:opacity .8s linear 2.6s}
+.b11-block.da .b11-summe{opacity:1}
+.b11-summe span{display:block;font-size:13px;color:rgba(27,21,18,.6)} .b11-summe b{display:block;margin-top:8px;font-size:clamp(28px,2.6vw,38px);line-height:1;white-space:nowrap}
+
+/* ---------- 12 Zwei Karten im Fächer */
+.f12-raster{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,4vw,60px);align-items:center}
+.f12-faecher{position:relative;height:560px}
+.f12-k{position:absolute;top:0;left:22%;width:56%;padding:clamp(26px,2.6vw,38px);border-radius:var(--rand-g);will-change:transform}
+.f12-hell{background:#FBF6EE;box-shadow:inset 0 0 0 1px rgba(160,127,58,.3),0 34px 60px -30px rgba(60,40,20,.55);transform:translate3d(0,60px,0) rotate(-6deg);top:40px}
+.f12-dunkel{background:var(--nacht);color:var(--text);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);transform:rotate(5deg)}
+.f12-dunkel .etikett{color:var(--gold)} .f12-dunkel .bltitel{color:var(--creme)} .f12-dunkel .bp i{background-image:radial-gradient(circle,var(--gold) 1px,transparent 1.2px)} .f12-dunkel .bp b{color:var(--gold)} .f12-dunkel .bhin{color:var(--text3)}
+.f12-posten{margin:18px 0 14px} .f12-posten .bp{padding:8px 0} .f12-posten .bp span{font-size:15px}
+.f12-b{margin-top:22px} .f12-b span{display:block;font-size:14px;color:rgba(27,21,18,.6)} .f12-b b{display:block;margin-top:8px;font-size:clamp(40px,4vw,60px);line-height:1;white-space:nowrap}
+.f12-plus{display:block;margin-top:14px;font-size:30px;color:#A07F3A}
+.f12-faecher.offen{height:auto;display:grid;gap:20px} .f12-faecher.offen .f12-k{position:relative;left:0;top:0;width:auto;transform:none!important}
+
+/* ---------- 13 Hell und dunkel geteilt */
+.b13{padding:0!important}
+.h13-teil{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:100vh}
+.h13-l{display:flex;flex-direction:column;justify-content:center;padding:clamp(72px,9vw,120px) clamp(30px,5vw,90px) clamp(72px,9vw,120px) max(4vw,calc((100vw - 1240px)/2))}
+.h13-betraege{display:grid;grid-template-columns:auto auto auto;justify-content:start;gap:clamp(16px,2vw,30px);align-items:end;margin-top:34px}
+.h13-betraege b{display:block;margin-top:12px;font-size:clamp(40px,4.4vw,66px);line-height:1;white-space:nowrap} .h13-betraege>i{font-size:40px;font-style:normal;color:#A07F3A;padding-bottom:4px}
+.h13-r{position:relative;background:var(--nacht);color:var(--text);display:flex;align-items:center;transform:translateX(100%);transition:transform 1.6s cubic-bezier(.6,0,.2,1)}
+.h13-r.da{transform:none}
+.h13-rin{width:100%;padding:clamp(60px,7vw,100px) max(4vw,calc((100vw - 1240px)/2)) clamp(60px,7vw,100px) clamp(30px,5vw,90px);opacity:0;transform:translateX(40px);transition:opacity 1s var(--k) 1.2s,transform 1.2s var(--k) 1.2s}
+.h13-r.da .h13-rin{opacity:1;transform:none}
+.h13-rin .etikett{color:var(--gold)} .h13-rin .bltitel{color:var(--creme);font-size:clamp(36px,3.6vw,54px)}
+.h13-posten{margin:28px 0 22px} .h13-posten .bp{padding:13px 0;border-bottom:1px solid var(--gold-ll)} .h13-posten .bp span{font-size:17px;color:var(--text)} .h13-posten .bp i{background-image:radial-gradient(circle,var(--gold) 1px,transparent 1.2px)} .h13-posten .bp b{color:var(--gold);font-size:24px}
+.h13-rin .bhin{color:var(--text3)}
+
+/* ---------- 14 Die Uhr des Abends */
+.u14-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.u14-uhr{position:relative;width:min(100%,460px);aspect-ratio:1;margin:0 auto;border-radius:50%;box-shadow:inset 0 0 0 1px var(--gold-l),0 0 0 14px var(--nacht2),0 0 0 15px var(--gold-ll)}
+.u14-st{position:absolute;left:50%;top:0;width:1px;height:50%;margin-left:-.5px;transform-origin:50% 100%;transform:rotate(var(--w))}
+.u14-st::before{content:"";position:absolute;top:10px;left:0;width:1px;height:14px;background:var(--text3)}
+.u14-seg{position:absolute;left:50%;top:0;width:6px;height:50%;margin-left:-3px;transform-origin:50% 100%;transform:rotate(var(--w))}
+.u14-seg::before{content:"";position:absolute;top:-1px;left:0;width:6px;height:28px;border-radius:3px;background:var(--gold);transform:scaleY(0);transform-origin:50% 0;transition:transform .5s var(--k);transition-delay:calc(.5s + var(--n)*.22s)}
+.u14-uhr.da .u14-seg::before{transform:none}
+.u14-z{position:absolute;font:400 22px/1 var(--titel);color:var(--gold)}
+.u14-19{left:16%;top:61%} .u14-2{left:70%;top:20%}
+.u14-mitte{position:absolute;inset:24%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;opacity:0;transform:scale(.9);transition:opacity 1s var(--k) 2s,transform 1.4s var(--k) 2s}
+.u14-uhr.da .u14-mitte{opacity:1;transform:none}
+.u14-mitte b{display:block;margin:8px 0 0;font-size:clamp(28px,2.8vw,42px);line-height:1;color:var(--creme);white-space:nowrap} .u14-mitte i{width:40px;height:1px;background:var(--gold);margin:16px 0}
+.u14-liste{margin-top:clamp(50px,6vw,80px);display:grid;grid-template-columns:minmax(0,.6fr) minmax(0,1fr);column-gap:clamp(30px,5vw,80px);align-items:start}
+.u14-liste .bltitel{margin-top:12px} .u14-posten{grid-row:span 3;grid-column:2;grid-row-start:1;display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+.u14-liste .bhin{grid-column:1;margin-top:16px}
+
+/* ---------- 15 Die Walze */
+.b15{padding-bottom:0}
+.w15-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start;min-height:210vh}
+.w15-l{position:sticky;top:max(80px,calc(50vh - 280px))}
+.w15-betraege{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px;padding-top:24px;border-top:1px solid var(--gold-l)}
+.w15-betraege b{display:block;margin-top:12px;font-size:clamp(32px,3.2vw,48px);line-height:1;color:var(--creme);white-space:nowrap}
+.w15-rechts{height:100%}
+.w15-kleb{position:sticky;top:max(80px,calc(50vh - 300px));padding:clamp(28px,3vw,44px);border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.w15-fenster{position:relative;height:330px;margin:20px 0 18px;overflow:hidden}
+.w15-walze{position:absolute;left:0;right:0;top:110px;transition:transform .9s cubic-bezier(.3,1.25,.4,1);will-change:transform}
+.w15-z{height:110px;display:flex;justify-content:space-between;align-items:center;gap:20px;opacity:.12;transform:scale(.86);transform-origin:0 50%;transition:opacity .6s,transform .9s var(--k)}
+.w15-z span{font-size:clamp(18px,1.6vw,22px);color:var(--text)} .w15-z b{font-size:clamp(48px,5vw,76px);color:var(--gold);white-space:nowrap}
+.w15-z.nah{opacity:.35} .w15-z.an{opacity:1;transform:none}
+
+/* ---------- Schmal */
+@media (max-width:900px){
+ .w1-raster,.t4-raster,.r6-raster,.a7-oben,.r9-raster,.k10-oben,.b11-raster,.f12-raster,.u14-raster,.w15-raster,.z5-kopf{grid-template-columns:minmax(0,1fr)}
+ .g3-raster{grid-template-columns:minmax(0,1fr)} .g3-glas{max-width:240px;margin:0 auto} .g3-mtext{left:auto;right:-10px;transform:translateY(-50%)}
+ .m2-innen{grid-template-columns:minmax(0,1fr)} .m2-l{border-right:0;border-bottom:1px dashed rgba(160,127,58,.4)} .m2-deckel{left:0;width:100%;border-radius:var(--rand-g);transform-origin:50% 0}
+ .m2-mappe.da .m2-deckel{transform:rotateX(178deg)}
+ .w1-reihe,.z5-spalten{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:20px} .w1-p,.z5-spalten div{border-left:0;padding-left:0}
+ .a7-reihe,.k10-reihe{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:18px}
+ .l8-karte{grid-template-columns:minmax(0,1fr)} .l8-feld{min-height:0;border-radius:0!important;transform-origin:50% 0;transform:rotateX(-60deg)} .l8-a{border-radius:var(--rand-g) var(--rand-g) 0 0!important} .l8-c{border-radius:0 0 var(--rand-g) var(--rand-g)!important}
+ .r6-posten,.r9-posten,.u14-posten{grid-template-columns:minmax(0,1fr)} .u14-liste{grid-template-columns:minmax(0,1fr)} .u14-posten{grid-column:1;grid-row:auto}
+ .h13-teil{grid-template-columns:minmax(0,1fr)} .h13-l,.h13-rin{padding-left:4vw;padding-right:4vw} .h13-r{transform:translateY(60px);opacity:0;transition:transform 1.2s var(--k),opacity .8s} .h13-r.da{transform:none;opacity:1}
+ .w15-raster{min-height:0} .w15-l,.w15-kleb{position:static} .w15-fenster{height:auto} .w15-walze{position:static;transform:none!important} .w15-z{opacity:1;transform:none;height:auto;padding:10px 0} .w15-z b{font-size:30px}
+}
+@media (max-width:600px){.a7-reihe,.k10-reihe{grid-template-columns:repeat(2,minmax(0,1fr))} .z5-zahlen{grid-template-columns:minmax(0,1fr)} .h13-betraege,.a7-rechnung,.t4-fuss{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- Ruhig */
+@media (prefers-reduced-motion:reduce){.bv *{transition:none!important}}
+.ruhig .w1-balken,.ruhig .w1-schale,.ruhig .w1-p,.ruhig .m2-seite>*,.ruhig .g3-posten .bp,.ruhig .t4-haenger,.ruhig .z5-spalten div,.ruhig .a7-tag,.ruhig .l8-feld,.ruhig .r9-k,.ruhig .r9-innen,.ruhig .r9-legende,.ruhig .k10-p,.ruhig .b11-z span,.ruhig .b11-z b,.ruhig .b11-summe,.ruhig .h13-r,.ruhig .h13-rin,.ruhig .u14-seg::before,.ruhig .u14-mitte{opacity:1!important;transform:none!important;transition:none!important}
+.ruhig .m2-deckel{display:none} .ruhig .z5-r>span{transform:translateY(calc(var(--d)*-1em))!important;transition:none!important}
+
+/* Dunkle Karten auf heller Fläche: Farben zurück ins Dunkel */
+.hell .w1-leiste .bltitel,.hell .t4-tafel .bltitel,.hell .l8-c .bltitel,.hell .f12-dunkel .bltitel{color:var(--creme)}
+.hell .w1-leiste .bhin,.hell .t4-tafel .bhin,.hell .l8-c .bhin,.hell .f12-dunkel .bhin{color:var(--text3)}
+.hell .w1-leiste .etikett,.hell .t4-tafel .etikett,.hell .l8-c .etikett,.hell .f12-dunkel .etikett{color:var(--gold)}
+.hell .l8-c .bp b,.hell .f12-dunkel .bp b{color:var(--gold)} .hell .t4-tafel .bp b{color:var(--creme)}
+.hell .l8-c .bp i,.hell .f12-dunkel .bp i{background-image:radial-gradient(circle,var(--gold) 1px,transparent 1.2px)}
+.hell .t4-tafel .bp i{background-image:radial-gradient(circle,rgba(237,228,216,.6) 1px,transparent 1.2px)}
+.hell .t4-tafel .t4-fuss b{color:var(--gold)}
+.w1-teller .etikett{letter-spacing:.12em;line-height:1.3}
+/* 03 nachgemessen bei 1024 px: Glas neben dem Text, Preise darunter in zwei Spalten */
+.g3-raster{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}
+.g3-glas{width:min(100%,250px);margin-right:auto;margin-left:8%}
+.g3-mtext{transform:translate(4%,-50%)}
+.g3-liste{grid-column:1/-1;margin-top:clamp(20px,3vw,40px)}
+.g3-posten{display:grid;grid-template-columns:1fr 1fr;column-gap:50px}
+.t4-fuss .etikett{letter-spacing:.12em;line-height:1.3} .t4-posten .bp{padding:8px 0}
+@media (max-width:900px){.g3-glas{margin:0 auto}.g3-posten{grid-template-columns:minmax(0,1fr)}}
+/* 05: jede Rolle so breit wie ihre echte Ziffer, Leerzeichen bleiben */
+.z5-r{position:relative} .z5-r em{font-style:normal;visibility:hidden}
+.z5-r>span{position:absolute;left:0;right:0;top:0;text-align:center;align-items:center}
+.z5-c{white-space:pre}
+/* Nachgemessen bei 1024 px */
+.m2-l .m2-betrag:first-child{margin-top:0}
+.l8-karte{grid-template-columns:minmax(0,.9fr) minmax(0,1fr) minmax(0,1.25fr)} .l8-was{margin-top:0}
+.r9-gross{font-size:clamp(50px,6vw,104px)}
+.f12-raster{grid-template-columns:minmax(0,1fr)} .f12-raster .bk{max-width:760px}
+.f12-faecher{height:520px;margin-top:20px} .f12-k{left:30%;width:40%}
+.u14-19{left:27%;top:76%} .u14-2{left:78%;top:27%}
+.u14-z{transform:translate(-50%,-50%)}
+.u14-liste{display:grid;grid-template-columns:minmax(0,.6fr) minmax(0,1fr)} .u14-liste .bhin{margin-top:16px}
+.u14-posten{grid-row:auto;grid-column:auto;display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+.w15-rechts{align-self:stretch} .w15-l{align-self:start}
+/* 05: Rolle mit Luft, damit keine Nachbarziffer hervorschaut */
+.z5-r{height:1.12em} .z5-r i{height:1.12em;line-height:1.12em;display:block} .z5-r em{line-height:1.12em}
+.z5-zahlen.da .z5-r>span{transform:translateY(calc(var(--d)*-1.12em))} .ruhig .z5-r>span{transform:translateY(calc(var(--d)*-1.12em))!important}
+@media (max-width:600px){.a7-karte{min-height:140px}}

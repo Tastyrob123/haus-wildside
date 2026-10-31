@@ -1,0 +1,230 @@
+/* Wild Side · Besuch, 15 Fassungen für den Kopf «Bis 2 Uhr.» (31.10.2026). Titel gross, Satz lesbar; Farben und Schriften der Seite.
+   Nur transform/opacity, Fotos von Anfang an da. */
+.bh{--ein:cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;background:var(--nacht);min-height:min(100vh,900px);min-height:min(100svh,900px)}
+.bh-f{position:relative;margin:0;overflow:hidden;background:var(--nacht3) center/cover no-repeat;background-image:var(--lq)}
+.bh-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bh-voll{position:absolute;inset:0}
+.bh-voll img{filter:brightness(.55)}
+.bh .bh-t{font-size:clamp(72px,9vw,150px);line-height:.98;letter-spacing:-.01em;color:var(--creme)}
+.bh .bh-t .z{padding-bottom:.2em;margin-bottom:-.2em}
+.bh .bh-s{font-size:clamp(18px,1.45vw,21px);line-height:1.55;color:var(--text);max-width:44ch;margin-top:22px}
+.bh .etikett{font:500 12px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.bh-unten{position:absolute;left:0;right:0;bottom:0;margin:0 auto;padding:0 0 clamp(48px,6vh,80px);z-index:3}
+.bh-unten .bh-t,.bh-unten .bh-s,.bh06-oben .bh-t,.bh06-oben .bh-s,.bh14-mitte .bh-s{text-shadow:0 4px 40px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.5)}
+.bh-tage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:36px;padding-top:20px;border-top:1px solid var(--gold-l);max-width:560px}
+.bh-tage b{display:block;margin-top:10px;font:400 clamp(20px,1.8vw,26px)/1.15 var(--titel);color:var(--creme)}
+.bh-tage-zeile{grid-template-columns:1fr;gap:0;padding-top:0;max-width:440px}
+.bh-tage-zeile>div{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--gold-ll)}
+.bh-tage-zeile b{margin:0}
+.bh-zwei,.bh01-in,.bh04-in,.bh07-in,.bh08-in,.bh11-in{display:grid;gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:130px 0 64px}
+
+/* 01 Die Uhr */
+.bh01-in{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.bh01-uhr{width:100%;max-width:520px;justify-self:center}
+.bh01-blatt{position:relative;aspect-ratio:1;border-radius:50%;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),inset 0 0 0 14px var(--nacht2),inset 0 0 0 15px var(--gold-ll),var(--schatten)}
+.bh01-blatt>i:not([class^="bh01"]){position:absolute;inset:0;transform:rotate(var(--r))}
+.bh01-blatt>i:not([class^="bh01"])::before{content:"";position:absolute;left:50%;top:5%;width:2px;height:3.5%;margin-left:-1px;background:var(--gold-l)}
+.bh01-blatt>i.gross::before{width:3px;margin-left:-1.5px;height:6%;background:var(--gold)}
+.bh01-blatt>span{position:absolute;inset:0;transform:rotate(var(--r))}
+.bh01-blatt em{position:absolute;left:50%;top:13%;transform:translate(-50%,-50%) rotate(calc(-1 * var(--r)));font:400 clamp(16px,1.9vw,26px)/1 var(--titel);font-style:normal;color:var(--text2)}
+.bh01-std,.bh01-min{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:4px}
+.bh01-std{width:7px;margin-left:-3.5px;height:25%;background:var(--creme);transform:rotate(210deg);transition:transform 3.2s var(--ein) .5s}
+.bh01-min{width:3px;margin-left:-1.5px;height:37%;background:var(--gold);transform:rotate(0deg);transition:transform 3.2s var(--ein) .5s}
+.bh01.da .bh01-std{transform:rotate(420deg)}
+.bh01.da .bh01-min{transform:rotate(2520deg)}
+.bh01-nabe{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--nacht2)}
+
+/* 02 Der Raum am Abend */
+.bh02-zoom{position:absolute;inset:0;transform:scale(1.12);transition:transform 3.4s var(--ein)}
+.bh02.da .bh02-zoom{transform:none}
+.bh02 .bh-t{font-size:clamp(84px,13vw,210px)}
+
+/* 03 Die Ecke, halbiert */
+.bh03{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.bh03-bild{position:relative;overflow:hidden}
+.bh03-bild .bh-f{position:absolute;inset:0;transform:translateX(-14%) scale(1.06);transition:transform 2.2s var(--ein)}
+.bh03.da .bh03-bild .bh-f{transform:none}
+.bh03-text{display:flex;align-items:center;padding:130px clamp(28px,5vw,90px) 64px}
+.bh03 .bh-t{font-size:clamp(70px,7.6vw,128px)}
+
+/* 04 Die zwei Strassenschilder */
+.bh04-in{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.bh04-ecke{position:relative;height:clamp(340px,38vw,520px)}
+.bh04-mast{position:absolute;left:10%;top:6%;bottom:0;width:12px;margin-left:-6px;border-radius:6px 6px 0 0;background:var(--nacht4);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.bh04-schild{position:absolute;z-index:2;display:flex;align-items:baseline;gap:14px;padding:clamp(14px,1.4vw,20px) clamp(20px,2vw,30px);border-radius:8px;background:var(--creme);color:var(--dunkel);
+ box-shadow:inset 0 0 0 4px var(--creme),inset 0 0 0 6px var(--dunkel),var(--schatten);white-space:nowrap;transform:rotate(-14deg)}
+.bh04-schild b{font:400 clamp(22px,2.5vw,38px)/1 var(--titel)}
+.bh04-schild small{font:500 clamp(14px,1.2vw,18px)/1 var(--lauf);letter-spacing:.08em;color:#8F6E2E}
+.bh04-schild.a{left:calc(10% + 6px);top:14%;transform-origin:0 50%}
+.bh04-schild.b{left:calc(10% + 6px);top:40%;transform-origin:0 50%;transform:rotate(14deg)}
+.bh04.da .bh04-schild.a{transform:none;animation:bh04-a 2.6s var(--k) .3s both}
+.bh04.da .bh04-schild.b{transform:none;animation:bh04-b 2.6s var(--k) .45s both}
+@keyframes bh04-a{0%{transform:rotate(-14deg)}35%{transform:rotate(6deg)}60%{transform:rotate(-3deg)}82%{transform:rotate(1deg)}100%{transform:none}}
+@keyframes bh04-b{0%{transform:rotate(14deg)}35%{transform:rotate(-6deg)}60%{transform:rotate(3deg)}82%{transform:rotate(-1deg)}100%{transform:none}}
+
+/* 05 Der Abend als Strecke */
+.bh05-bild{position:absolute;top:0;right:0;width:52%;height:74%}
+.bh05-bild .bh-f{position:absolute;inset:0}
+.bh05-in{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;min-height:inherit;padding:130px 0 56px}
+.bh05-text{max-width:44%}
+.bh05 .bh-t{font-size:clamp(72px,8vw,136px)}
+.bh05-strecke{position:relative;height:74px;margin-top:52px}
+.bh05-linie{position:absolute;left:0;right:0;top:20px;height:1px;background:var(--gold-l)}
+.bh05-licht{position:absolute;left:0;right:0;top:16px;height:9px;transform:translateX(-100%);animation:bh05-lauf 9s var(--ein) 1s infinite}
+.bh05-licht::before{content:"";position:absolute;right:-4px;top:0;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px var(--gold-ll)}
+.bh05-licht::after{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:var(--gold)}
+@keyframes bh05-lauf{0%{transform:translateX(-100%)}70%{transform:translateX(0)}100%{transform:translateX(0)}}
+.ruhig .bh05-licht{animation:none;transform:none}
+.bh05-strecke>span{position:absolute;top:0;left:calc(var(--x)*100%);transform:translateX(-50%)}
+.bh05-strecke>span:first-of-type{transform:none}
+.bh05-strecke>span:last-of-type{transform:translateX(-100%)}
+.bh05-strecke>span::before{content:"";position:absolute;left:50%;top:14px;width:1px;height:13px;background:var(--gold)}
+.bh05-strecke>span:first-of-type::before{left:0}
+.bh05-strecke>span:last-of-type::before{left:auto;right:0}
+.bh05-strecke b{display:block;padding-top:40px;font:400 clamp(18px,1.7vw,24px)/1 var(--titel);color:var(--creme)}
+
+/* 06 Drei Abende */
+.bh06-drei{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;background:#050404}
+.bh06-sp{position:relative;overflow:hidden;transform:translateY(22%);transition:transform 1.8s var(--ein);transition-delay:calc(.15s + var(--j)*.16s)}
+.bh06.da .bh06-sp{transform:none}
+.bh06-sp .bh-f{position:absolute;inset:0}
+.bh06-sp .bh-f img{filter:brightness(.6)}
+.bh06-tag{position:absolute;left:0;right:0;bottom:0;padding:0 clamp(18px,2.4vw,36px) clamp(26px,4vh,44px);display:flex;flex-direction:column;gap:12px;text-shadow:0 2px 24px rgba(0,0,0,.7)}
+.bh06-tag b{font-size:clamp(34px,3.6vw,60px);line-height:1;color:var(--creme)}
+.bh06-tag span{font:500 13px/1 var(--lauf);letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.bh06-oben{position:absolute;left:0;right:0;top:0;z-index:3;padding-top:120px}
+.bh06 .bh-t{font-size:clamp(84px,11vw,180px)}
+
+/* 07 Das Schild geht an */
+.bh07-in{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.bh07 .bh-t{font-size:clamp(68px,7.2vw,122px)}
+.bh07-schild{position:relative;aspect-ratio:3/2;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.bh07-schild .bh-f{position:absolute;inset:0}
+.bh07-aus{position:absolute;inset:0;background:#050303;opacity:.9}
+.bh07.da .bh07-aus{animation:bh07-an 2s linear .6s both}
+@keyframes bh07-an{0%{opacity:.9}20%{opacity:.9}22%{opacity:.25}26%{opacity:.9}40%{opacity:.9}42%{opacity:.1}47%{opacity:.7}52%{opacity:0}100%{opacity:0}}
+.ruhig .bh07-aus{display:none}
+
+/* 08 Der Weg hin */
+.bh08-in{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.bh08-weg{margin-top:34px;padding-top:18px;border-top:1px solid var(--gold-l);font:400 clamp(20px,1.8vw,26px)/1.3 var(--titel);color:var(--creme);max-width:440px}
+.bh08-weg .etikett{display:block;margin-bottom:12px}
+.bh08-karte{position:relative;aspect-ratio:6/5;border-radius:var(--rand-g);overflow:hidden;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.bh08-flaeche{position:absolute;inset:0}
+.bh08-str{position:absolute;background:var(--nacht4);transition:transform 1.6s var(--ein) .4s}
+.bh08-str.h{left:-10%;right:-10%;top:58%;height:9%;transform:rotate(-8deg) scaleX(0)}
+.bh08-str.r{top:-10%;bottom:-10%;left:52%;width:8%;transform:rotate(12deg) scaleY(0)}
+.bh08-str.n1{left:-10%;right:-10%;top:20%;height:3.2%;transform:rotate(-6deg) scaleX(0);opacity:.7}
+.bh08-str.n2{top:-10%;bottom:-10%;left:16%;width:3.2%;transform:rotate(10deg) scaleY(0);opacity:.7}
+.bh08.da .bh08-str.h{transform:rotate(-8deg)} .bh08.da .bh08-str.r{transform:rotate(12deg)}
+.bh08.da .bh08-str.n1{transform:rotate(-6deg)} .bh08.da .bh08-str.n2{transform:rotate(10deg)}
+.bh08-name{position:absolute;font:500 11px/1 var(--lauf);letter-spacing:.18em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.bh08-name.h{left:6%;top:72%;transform:rotate(-8deg)}
+.bh08-name.r{left:64%;top:16%;transform:rotate(102deg);transform-origin:0 0}
+.bh08-kg{position:absolute;left:24%;bottom:7%;display:flex;align-items:center;gap:10px;font:400 18px/1 var(--titel);color:var(--text2)}
+.bh08-kg i{width:38px;height:38px;border-radius:8px;background:var(--gold-ll);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.bh08-punkt{position:absolute;left:53.5%;top:62%;width:0;height:0}
+.bh08-punkt i{position:absolute;left:-9px;top:-9px;width:18px;height:18px;border-radius:50%;background:var(--gold)}
+.bh08-punkt i+i{background:none;box-shadow:0 0 0 2px var(--gold);animation:bh08-puls 2.4s ease-out 1.6s infinite}
+@keyframes bh08-puls{0%{transform:scale(1);opacity:1}100%{transform:scale(4);opacity:0}}
+.ruhig .bh08-punkt i+i{animation:none;opacity:0}
+.bh08-punkt b{position:absolute;left:18px;top:-48px;font:400 clamp(30px,3vw,44px)/1 var(--titel);color:var(--creme)}
+
+/* 09 Das Band zwischen den Zeilen */
+.bh09{min-height:0;padding-bottom:64px}
+.bh09-oben{padding-top:118px}
+.bh09 .bh-t{font-size:clamp(96px,13vw,210px)}
+.bh09-band{position:relative;height:clamp(200px,30vh,320px);overflow:hidden;margin:6px 0 10px}
+.bh09-zug{position:absolute;left:0;right:0;top:-30%;bottom:-30%}
+.bh09-zug .bh-f{position:absolute;inset:0}
+.bh09-unten{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:end}
+.bh09-unten .bh-s{margin:0 0 1.1em}
+
+/* 10 Die grosse Zwei */
+.bh10-in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,6vw,110px);align-items:center;min-height:inherit;padding:120px 0 56px}
+.bh10-zwei{margin:0;font-size:clamp(300px,58vh,640px);line-height:.8;color:transparent;-webkit-text-stroke:2px var(--gold);overflow:hidden;padding:.06em .04em .1em}
+.bh10-zwei span{display:block;transform:translateY(40%) rotate(-10deg);transform-origin:50% 100%;transition:transform 2s var(--ein) .2s}
+.bh10.da .bh10-zwei span{transform:none}
+.bh10 .bh-t{font-size:clamp(72px,7.6vw,128px)}
+
+/* 11 Die Tafel an der Tür */
+.bh11-in{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.bh11-haken{position:relative;justify-self:center;width:min(440px,100%)}
+.bh11-pendel{position:relative;padding-top:96px;transform-origin:50% 0}
+.bh11.da .bh11-pendel{animation:bh11-pendel 3.2s var(--k) .5s both}
+@keyframes bh11-pendel{0%{transform:rotate(9deg)}30%{transform:rotate(-6deg)}55%{transform:rotate(3deg)}78%{transform:rotate(-1.2deg)}100%{transform:none}}
+.bh11-nagel{position:absolute;left:50%;top:0;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--gold);z-index:2}
+.bh11-schnur{position:absolute;top:7px;width:1px;height:168px;background:var(--gold);transform-origin:50% 0}
+.bh11-schnur.l{left:50%;transform:rotate(58deg)}
+.bh11-schnur.r{left:50%;transform:rotate(-58deg)}
+.bh11-tafel{position:relative;padding:34px 38px 26px;border-radius:12px;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.bh11-tafel .etikett{display:block;margin-bottom:14px}
+.bh11-tafel>div{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid var(--gold-ll)}
+.bh11-tafel>div:last-child{border:0}
+.bh11-tafel span{font-size:16px;color:var(--text2)}
+.bh11-tafel b{font:400 clamp(20px,1.8vw,26px)/1.1 var(--titel);color:var(--creme);white-space:nowrap}
+.bh11-tafel .zu b{color:var(--text3)}
+
+/* 12 Grosses Bild, zwei kleine */
+.bh12-raster{position:absolute;inset:0;display:grid;grid-template-columns:64fr 36fr;grid-template-rows:1fr 1fr;gap:4px;background:#050404}
+.bh12-gross{grid-row:1/3}
+.bh12-raster .bh-f img{transform:scale(1.08);transition:transform 2.4s var(--ein)}
+.bh12.da .bh12-raster .bh-f img{transform:none}
+.bh12-gross img{filter:brightness(.6)}
+.bh12-text{width:var(--innen)}
+.bh12-text>*{max-width:58vw}
+.bh12 .bh-t{font-size:clamp(76px,9vw,150px)}
+
+/* 13 Von 19 bis 2 */
+.bh13{min-height:0;padding-bottom:64px}
+.bh13-oben{padding-top:120px;padding-bottom:44px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:end}
+.bh13-oben .bh-s{margin:0 0 1.1em}
+.bh13 .bh-t{font-size:clamp(84px,11vw,180px)}
+.bh13-streifen{overflow:hidden}
+.bh13-zug{display:flex;gap:4px;padding-left:calc((100vw - var(--innen))/2);width:max-content}
+.bh13-st{flex:0 0 clamp(240px,27vw,400px)}
+.bh13-st .bh-f{aspect-ratio:4/5}
+.bh13-st .etikett{display:block;margin-top:16px;font-size:13px}
+
+/* 14 Leuchtschrift */
+.bh14-raum img{filter:brightness(.34)}
+.bh14-mitte{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:inherit;padding:130px 0 64px}
+.bh14 .bh14-t{font-size:clamp(90px,14vw,230px);color:#FFEBC8;text-shadow:0 0 18px rgba(255,196,120,.55),0 0 60px rgba(216,178,100,.35)}
+.bh14-t span{display:inline-block;opacity:.1}
+.bh14.da .bh14-t span{animation:bh14-an 1s steps(1) both;animation-delay:calc(.4s + var(--b)*.14s)}
+@keyframes bh14-an{0%{opacity:.1}25%{opacity:1}40%{opacity:.25}55%{opacity:1}100%{opacity:1}}
+.ruhig .bh14-t span{opacity:1}
+.bh14 .bh-s{margin:26px auto 0}
+
+/* 15 Die Woche */
+.bh15-bild{position:absolute;top:0;right:0;width:50%;height:62%}
+.bh15-bild .bh-f{position:absolute;inset:0}
+.bh15-in{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;min-height:inherit;padding:130px 0 56px}
+.bh15-in>div:first-child{max-width:46%}
+.bh15 .bh-t{font-size:clamp(72px,8vw,136px)}
+.bh15-woche{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:48px}
+.bh15-woche>div{position:relative;padding:20px 16px 18px;border-radius:12px;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll)}
+.bh15-woche>div::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--gold);opacity:0;transition:opacity .7s var(--k);transition-delay:calc(1s + (var(--j) - 3)*.4s)}
+.bh15-woche b,.bh15-woche span{position:relative;display:block}
+.bh15-woche b{font-size:clamp(28px,3vw,48px);line-height:1;color:var(--text3);transition:color .7s var(--k);transition-delay:calc(1s + (var(--j) - 3)*.4s)}
+.bh15-woche span{margin-top:12px;font:500 13px/1 var(--lauf);letter-spacing:.1em;color:var(--text3);transition:color .7s var(--k);transition-delay:calc(1s + (var(--j) - 3)*.4s)}
+.bh15.da .bh15-woche .an::before{opacity:1}
+.bh15.da .bh15-woche .an b,.bh15.da .bh15-woche .an span{color:var(--dunkel)}
+.ruhig .bh15-woche .an::before{opacity:1} .ruhig .bh15-woche .an b,.ruhig .bh15-woche .an span{color:var(--dunkel)}
+
+/* ---------- Handy */
+@media (max-width:860px){
+ .bh01-in,.bh04-in,.bh07-in,.bh08-in,.bh11-in,.bh09-unten,.bh13-oben{grid-template-columns:1fr;padding-top:110px}
+ .bh10-in{grid-template-columns:1fr;gap:10px;padding-top:110px}
+ .bh10-zwei{font-size:220px}
+ .bh03{grid-template-columns:1fr;grid-template-rows:52vh auto}
+ .bh03-text{padding:40px 16px 56px}
+ .bh05-bild,.bh15-bild{position:relative;width:100%;height:46vh}
+ .bh05-in,.bh15-in{min-height:0;padding-top:28px}
+ .bh05-text,.bh15-in>div:first-child{max-width:none}
+ .bh15-woche{gap:3px} .bh15-woche>div{padding:12px 4px;text-align:center} .bh15-woche b{font-size:20px} .bh15-woche span{font-size:10px;letter-spacing:0}
+ .bh06-tag b{font-size:22px} .bh06-tag span{font-size:10px;letter-spacing:.08em}
+ .bh12-raster{grid-template-columns:1fr 1fr;grid-template-rows:60% 40%} .bh12-gross{grid-row:1;grid-column:1/3} .bh12-text>*{max-width:none}
+ .bh04-ecke{height:300px} .bh04-schild b{font-size:20px}
+ .bh-tage{gap:14px}
+}

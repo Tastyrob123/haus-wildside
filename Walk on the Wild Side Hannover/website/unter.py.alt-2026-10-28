@@ -1,0 +1,276 @@
+"""Walk on the Wild Side · Unterseiten: Drinks, Programm, Die lange Tafel, Das Haus, Besuch, Impressum, Datenschutz.
+Jede Seite beginnt mit einem grossen Kopf (Bilder füllen den Raum, Titel gross darüber), jeder Abschnitt hat seine eigene Anordnung.
+Fakten mit Quelle in _quelle/ (Notizen, research_notes, ig/beitraege.md)."""
+from bau import E, HAUS, LINEUP, PFEIL, bild, img_tag, knopf, mache, rahmen, verh, wellen
+
+
+def zl(*zeilen, i0=0):
+    return ''.join('<span class="z"><span style="--i:%d">%s</span></span>' % (i0 + n, z) for n, z in enumerate(zeilen))
+
+
+def kopf(cls, titel_zeilen, satz, bilder_html, extra=''):
+    """Seitenkopf: ein Bildschirm, Bilder füllen den Raum, Titel gross darüber. Geht von selbst auf (Klasse .fassung → .offen)."""
+    return '''<section class="seitenkopf" aria-label="%s"><div class="fassung sk %s" data-nr="1" data-name="Kopf">%s
+<div class="sk-text hof"><h1 class="sk-titel">%s</h1><p class="sk-satz">%s</p>%s</div></div></section>''' % (
+        E(' '.join(titel_zeilen)), cls, bilder_html, ''.join('<span class="z"><span style="--i:%d">%s</span></span>' % (n, E(z)) for n, z in enumerate(titel_zeilen)), E(satz), extra)
+
+
+def weiter(titel, satz, links):
+    """Abschluss jeder Unterseite: ein Satz, die Zeiten, zwei Wege weiter."""
+    return '''<section class="kap weiter"><div class="innen weiter-in"><h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">%s</p>
+<p class="eng weiter-zeit sw auf" style="--i:2"><span data-heute-satz>Do bis Sa ab 19 Uhr</span> · %s · %s</p><div class="knoepfe sw auf" style="--i:3">%s</div></div></section>''' % (
+        zl(titel), E(satz), HAUS['zeit_kurz'], HAUS['adresse'], ''.join(knopf(t, h, c) for t, h, c in links))
+
+
+# ---------------------------------------------------------------- Drinks
+def drinks():
+    k = kopf('sk-drei', ['Du sagst,', 'was du magst.'], 'Im Wild Side gibt es keine Getränkekarte. Momo fragt nach deinem Geschmack und mixt dir deinen Drink.',
+             '<div class="sk-wand">%s%s%s</div>' % (bild('schaum', 'ab', '34vw', True), bild('momo-giesst', 'ab', '34vw', True), bild('glas-trinkt', 'ab', '34vw', True)))
+
+    geschmack = [('Sauer', 'glas-sour'), ('Bitter', 'glas-negroni'), ('Fruchtig', 'glas-rot'), ('Cremig', 'glas-coupe')]
+    frage = '''<section class="kap d-frage"><div class="f-frage dfr auf">
+<div class="fr-links"><h2 class="fr-frage zl auf">%s</h2><p class="vtext sw auf" style="--i:1">So beginnt jeder Drink: Du erzählst, was du gern trinkst, Momo baut daraus etwas für dich. Falstaff beschreibt es so: Man nennt seine Vorlieben, die Barkeeper machen daraus einen eigenen Drink aus guten Zutaten.</p>
+<ul class="fr-liste">%s</ul></div><div class="fr-bild">%s</div></div></section>''' % (
+        zl('Was magst du?'),
+        ''.join('<li data-g="%d"%s style="--i:%d"><span>%s</span></li>' % (n, ' class="an"' if n == 0 else '', n, E(w)) for n, (w, _) in enumerate(geschmack)),
+        ''.join(bild(b, 'ab' + (' an' if n == 0 else ''), '50vw', False, 'position:absolute') for n, (_, b) in enumerate(geschmack)))
+
+    techniken = [
+        ('Milk Washing', 'Die Spirituose oder der Punsch wird mit Milch versetzt und gefiltert. Was übrig bleibt, ist klar und weich im Mund.', 'tafel-glaeser'),
+        ('Fat Washing', 'Ein Fett gibt seinen Geschmack an die Spirituose ab und wird danach wieder abgeschöpft. Auf der Valentinskarte 2026: Rum mit Kakaobutter.', 'rueckbar'),
+        ('Enzyme', 'Mit Enzymen werden Säfte geklärt. Der Drink bleibt fruchtig, ist aber glasklar.', 'glas-hand'),
+    ]
+    tech = '''<section class="kap d-tech"><div class="innen"><h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">Momo hat Biotechnologie studiert und mixt seit über zehn Jahren in Berlin und Hannover. Ein paar Techniken tauchen im Wild Side immer wieder auf.</p></div>
+<div class="schach">%s</div></section>''' % (
+        zl('Wie Momo arbeitet.'),
+        ''.join('<div class="schach-paar%s">%s<div class="schach-text sw auf"><h3 class="titel">%s</h3><p>%s</p></div></div>' % (' umgekehrt' if n % 2 else '', bild(b, 'foto auf', '50vw'), E(t), E(s)) for n, (t, s, b) in enumerate(techniken)))
+
+    karte = [('Frensh 26', 'Gin · Bergamotte · Nori · Schaumwein'), ('Whey Bramble', 'Gin · Lemon Shrub · Vetiver · Whey Berry Soda'),
+             ('Pink Lady', 'Kakaobutter-Fat-Washed Rum · Himbeerpüree · Agave · Limette'), ('Karamella', 'Havana 7 Jahre · Portwein · Johannisbeere · Karamell · schwarze Walnüsse · Limette')]
+    abend = '''<section class="kap d-karte"><div class="dk-gr">
+<div class="dk-text"><h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">Eine gedruckte Karte gibt es nur zu besonderen Abenden. Zum Valentinstag 2026 hiess sie «Drunk in Love», dazu kochte Rudi kleine Dishes zum Teilen.</p></div>
+<div class="dk-blatt auf"><div class="dk-innen"><p class="dk-kopf">Drunk in Love</p><p class="eng dk-unter">Cupid’s Signature Drinks · 14.02.2026</p>%s</div></div>
+</div></section>''' % (zl('Eine Karte', 'für einen Abend.'),
+                       ''.join('<div class="dk-zeile"><p><b>%s</b><span>%s</span></p><em>12</em></div>' % (E(n), E(z)) for n, z in karte))
+
+    klassiker = '''<section class="kap d-klassik"><div class="innen"><h2 class="titel zl auf">%s</h2></div>
+<div class="kl-gr">
+<div class="kl">%s<div class="kl-t"><h3 class="titel">Negroni</h3><p>Gerührt, auf Eis. An einem Freitag bei Sonnenuntergang auch draussen auf der Terrasse.</p></div></div>
+<div class="kl">%s<div class="kl-t"><h3 class="titel">Paloma</h3><p>Zur Paloma-Nacht im Juni 2025 mit 1800 Tequila, dazu Rudis Tacos.</p></div></div>
+<div class="kl kl-rot"><div class="kl-t"><h3 class="titel">Mexikaner</h3><p>Der scharfe Shot des Hauses, an Geburtstagen und Silvester «all night long». Wild-Side-Tradition.</p></div></div>
+<div class="kl">%s<div class="kl-t"><h3 class="titel">Ohne Alkohol</h3><p>Jeder Drink geht auch alkoholfrei. Dazu Wein und Bier.</p></div></div>
+</div>
+<div class="innen"><p class="karte-namen sw auf">%s</p><p class="eng karte-quelle sw auf" style="--i:1">Momos Signature Drinks zum Neustart im Dezember 2023</p></div></section>''' % (
+        zl('Und natürlich Klassiker.'), bild('glas-kerze', 'foto', '25vw'), bild('paloma', 'foto', '25vw'), bild('glas-zwei', 'foto', '25vw'),
+        ''.join('<span>%s</span>' % E(n) for n in ['Linden Mule', 'Sakura', 'Mary Bramble', 'Ambré', 'Clean Pornstar', 'Zauberwald']))
+
+    inhalt = k + frage + tech + abend + klassiker + weiter('Komm vorbei.', 'Donnerstag bis Samstag ab 19 Uhr. Reservieren geht per Nachricht, Anruf oder hier auf der Seite.',
+                                                           [('Platz reservieren', 'besuch.html#reservieren', ''), ('Programm', 'programm.html', 'schild')])
+    return rahmen('Drinks · Walk on the Wild Side Hannover', 'Keine Karte: Momo mixt dir deinen Drink nach deinem Geschmack. Milk Washing, Fat Washing, Klassiker und Signature Drinks.', inhalt, 'drinks.html', ' class="unter"')
+
+
+# ---------------------------------------------------------------- Programm
+POSTER = {'17.10.2026': 'p-1710', '03.10.2026': 'p-0310', '05.09.2026': 'p-0509', '16.05.2026': 'p-1605', '21.03.2026': 'p-2103', '24.01.2026': 'p-2401', '22.11.2025': 'p-2211', '06.09.2025': 'p-0906'}
+
+
+def programm():
+    k = '''<section class="seitenkopf" aria-label="Programm"><div class="fassung sk f-welle" data-nr="1" data-name="Kopf">%s<div class="fw-gr"><div class="fw-platte">
+<h1 class="sk-titel blau">%s</h1><p class="at-satz">DJ-Abende, kleine Konzerte, Gäste hinter dem Tresen und die Feste der Bar. Angekündigt wird alles auf Instagram, gesammelt hier.</p>
+<p class="eng at-zeit">%s</p><div class="knoepfe">%s</div></div>%s</div></div></section>''' % (
+        wellen(), zl('Programm'), HAUS['zeit_kurz'], knopf('Zum Line-up', '#session') + knopf('Auf Instagram', HAUS['instagram'], 'schild" target="_blank" rel="noopener'),
+        bild('saengerin-sw', 'fw-bild', '42vw', True, 'position:relative;inset:auto'))
+
+    zeilen = ''.join('<li data-p="%s"%s><b>%s</b><span>%s</span><em>%s</em></li>' % (POSTER.get(d, ''), ' class="an"' if n == 0 else '', d[:6] + d[8:], E(nm), E(z)) for n, (d, nm, z) in enumerate(LINEUP))
+    poster = ''.join(bild(p, 'ab' + (' an' if n == 0 else ''), '30vw', False, 'position:absolute').replace('<figure ', '<figure data-pk="%s" ' % p, 1) for n, p in enumerate(POSTER.values()))
+    session = '''<section class="kap p-session" id="session"><div class="ps-gr">
+<div class="ps-links"><h2 class="session-titel zl auf">%s</h2>
+<p class="vtext sw auf" style="--i:1">Die Regel: rund einmal im Monat, meistens samstags, von 21 bis 1 Uhr. Ein DJ am Deck, Momo an der Bar, Eintritt frei. Angefangen hat es am 6. September 2025 mit Björn vom This Is Social Club.</p>
+<ul class="lineup ps-liste sw auf" style="--i:2">%s</ul></div>
+<div class="ps-poster"><div class="ps-rahmen">%s</div><p class="eng">Die Plakate der Abende</p></div></div></section>''' % (zl('Session', '<small>Sip &amp; Sound</small>'), zeilen, poster)
+
+    konzerte = [('07.03.2024', 'Dornröschen-Trio', 'Jazz'), ('14.03.2024', 'Sini', 'Wohnzimmerkonzert'), ('28.03.2024', 'Alone Together', 'Jazz, Soul, Pop'),
+                ('13.06.2024', 'Alone Together', 'Michelle und Max'), ('28.06.2024', 'Anissa Al Jay', 'Pop, Soul'), ('29.08.2024', 'Josseff and Friends', 'Neo Soul'),
+                ('20.02.2025', 'Sina and Friends', 'Konzertabend')]
+    konz = '''<section class="kap p-konzerte" id="konzerte"><div class="pk-gr">
+<div class="pk-bilder flaeche auf">%s%s%s</div>
+<div class="pk-text"><h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">2024 und Anfang 2025 spielten donnerstags Duos und kleine Bands mitten im Raum, meist um halb neun, Eintritt frei. Plätze reservieren war die beste Idee.</p>
+<ul class="pk-liste sw auf" style="--i:2">%s</ul></div></div></section>''' % (
+        bild('konzert-love', 'foto pk-1', '30vw'), bild('konzert', 'foto pk-2', '30vw'), bild('saengerin', 'foto pk-3', '20vw'), zl('Konzerte', 'am Donnerstag.'),
+        ''.join('<li><b>%s</b><span>%s</span><em>%s</em></li>' % (d, E(n), E(z)) for d, n, z in konzerte))
+
+    gaeste = [('gast-musa', '02.03.2024', 'Musa', 'Rebe & Brot, Hannover. Mit Momo hinter der Bar, «sexy, ausgefallene Drinks».'),
+              ('gast-havn', '09.03.2024', 'Gastschicht aus dem Havn', 'Eine Bartenderin aus dem Havn in Hannover, zusammen mit Momo.'),
+              ('gast-nils', '20.04.2024', 'Nils Lutterbach', 'Lovis, Berlin. Nach Jahren wieder mit Momo an einer Bar, vier Signature Drinks mit Freimeister Kollektiv.'),
+              ('gast-cold', '25.05.2024', 'Cold Drinks and More', 'Ein alter Bekannter aus Berlin mit fünf Signature Drinks.'),
+              ('gast-enlil', '19.10.2024', 'Enlil Arevalo', 'Eine Legende der Barszene Hannovers, fünf Signature Drinks.')]
+    gast = '''<section class="kap p-gaeste" id="gaeste"><div class="innen pg-kopf"><h2 class="titel zl auf">%s</h2><div class="gast-pfeile"><button type="button" data-band="-1" aria-label="Zurück">%s</button><button type="button" data-band="1" aria-label="Weiter">%s</button></div></div>
+<div class="gast-band staffel auf">%s</div>
+<div class="innen"><p class="vtext sw auf pg-dazu">Dazu Abende mit Partnern: Paragon von Monin und Sipsmith am 23.09.2024, die Paloma-Nacht mit 1800 Tequila am 20.06.2025, Mystic Mella mit Tarot und Paragon-Drinks am 20.03.2026.</p></div></section>''' % (
+        zl('Gäste hinterm Tresen.'), PFEIL.replace('d="M4 12h15M13 6l6 6-6 6"', 'd="M20 12H5M11 6l-6 6 6 6"'), PFEIL,
+        ''.join('<article class="gast" style="--i:%d">%s<p class="eng">%s</p><h3>%s</h3><p class="gast-bar">%s</p></article>' % (n, bild(b, 'foto', '24vw'), d, E(nm), E(t)) for n, (b, d, nm, t) in enumerate(gaeste)))
+
+    feste = [('31.12.', 'Silvester ab mittags', '2024 als Frühshoppen von 12 bis 19 Uhr mit Buffet von Rudi, 2025 von 12 bis 20 Uhr mit dem Foodtruck von Tru Story vor der Tür.', 'silvester'),
+             ('Herbst', 'Geburtstag der Bar', 'Am 30.11.2024 wurde die neue Wild Side eins, am 05.12.2025 zwei. Mit DJs, Mexikanern und einem Welcome Drink für die ersten Gäste.', 'voll'),
+             ('30.04.', 'Tanz in den Mai', 'Mahir Maulud am Deck, Momo an der Bar, Eintritt frei.', 'anstossen'),
+             ('14.02.', 'Wild Side goes in love', 'Valentinstag 2026 mit Rudi: kleine Dishes zum Teilen und die Karte «Drunk in Love».', 'valentin')]
+    fest = '''<section class="kap p-feste" id="feste"><div class="innen"><h2 class="titel zl auf">%s</h2></div><div class="pf-gr">%s</div></section>''' % (
+        zl('Die Feste der Bar.'),
+        ''.join('<article class="pf" style="--i:%d">%s<div class="pf-t"><p class="pf-datum">%s</p><h3 class="titel">%s</h3><p>%s</p></div></article>' % (n, bild(b, 'foto', '25vw'), d, E(t), E(s)) for n, (d, t, s, b) in enumerate(feste)))
+
+    aussen = [('31.10. und 01.11.2026', 'Oktoberfest des Event Klub am Stephansplatz, 12 bis 21 Uhr', 'bald'),
+              ('09.08.2026', 'Smash n Mingle beim HTV, mit Musa und Tru Story', ''), ('13. und 14.06.2026', 'Südstadtfest, Cocktailstand mit dem Mon Bonheur', ''),
+              ('14. und 15.05.2026', 'Christi Limmerfahrt am Küchengarten', ''), ('31.07.2025', 'Maschseefest, Stand Aresto x Lindenblatt', ''),
+              ('29. und 30.05.2025', 'Christi Limmerfahrt am Küchengarten', ''), ('09.05.2024', 'Christi Limmerfahrt, Kiezfest am Küchengarten', '')]
+    unterwegs = '''<section class="kap p-aussen"><div class="innen pa-gr"><div><h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">Manchmal kommt die Bar zu euch: Momo mixt auf den Festen in Linden und der Südstadt.</p></div>
+<ul class="pa-liste sw auf" style="--i:2">%s</ul></div></section>''' % (zl('Unterwegs.'), ''.join('<li%s><b>%s</b><span>%s</span></li>' % (' class="bald"' if b else '', d, E(t)) for d, t, b in aussen))
+
+    inhalt = k + session + konz + gast + fest + unterwegs + weiter('Was als Nächstes kommt.', 'Neue Abende kündigt die Bar zuerst auf Instagram an. Ohne Programm ist sie donnerstags bis samstags ab 19 Uhr einfach offen.',
+                                                                  [('Auf Instagram', HAUS['instagram'] + '" target="_blank" rel="noopener', ''), ('Platz reservieren', 'besuch.html#reservieren', 'schild')])
+    return rahmen('Programm · Walk on the Wild Side Hannover', 'SESSION – Sip & Sound, Konzerte, Gastschichten und die Feste der Bar Walk on the Wild Side in Linden.', inhalt, 'programm.html', ' class="unter"')
+
+
+# ---------------------------------------------------------------- Die lange Tafel
+def tafel():
+    k = kopf('sk-eins', ['Die lange Tafel.'], '„Bei uns kannst du exklusiv mit deinen Gästen ein privates Dinner an unserer Langen Tafel erleben!“ Oben auf der kleinen Empore, und die Drinks passen zum Menü.',
+             bild('tafel-glaeser', 'ab', '100vw', True), '<div class="knoepfe">%s</div>' % knopf('Anfragen', '#anfrage'))
+
+    zahlen = '''<section class="kap t-zahlen"><div class="innen tz-gr">
+<div class="tz sw auf"><b>14</b><p>Gäste passen an die Tafel, sagt die Partnerseite von Hannover Prestige.</p></div>
+<div class="tz sw auf" style="--i:1"><b>1</b><p>Tafel, nur für euch. Für Geburtstage, Firmenfeiern und besondere Abende.</p></div>
+<div class="tz sw auf" style="--i:2"><b>0</b><p>Karte. Momo stimmt die Drinks auf euer Menü ab, wie bei Culinarium.</p></div>
+</div></section>'''
+
+    anlaesse = [('anstossen', 'Geburtstag', 'Anstossen mit den Leuten, die zählen, und einem Drink, den es nur an diesem Abend gibt.'),
+                ('tafel-teller', 'Firmenfeier', 'Das Team an einem Tisch, Essen und Drinks aufeinander abgestimmt.'),
+                ('culinarium-teller', 'Ein besonderer Abend', 'Ein Menü, wie ihr es euch wünscht. Schreibt uns, was ihr vorhabt.')]
+    anl = '''<section class="kap t-anlass"><div class="innen"><h2 class="titel zl auf">%s</h2></div><div class="ta-gr staffel auf">%s</div></section>''' % (
+        zl('Wofür die Tafel da ist.'),
+        ''.join('<article class="ta" style="--i:%d">%s<h3 class="titel">%s</h3><p>%s</p></article>' % (n, bild(b, 'foto', '33vw'), E(t), E(s)) for n, (b, t, s) in enumerate(anlaesse)))
+
+    ablauf = '''<section class="kap t-ablauf"><div class="innen tab-gr">
+<div class="tab sw auf"><p class="tab-wort">Anfragen</p><p>Ihr schreibt uns Anlass, Datum und wie viele ihr seid, per Formular, Nachricht oder Anruf.</p></div>
+<div class="tab sw auf" style="--i:1"><p class="tab-wort">Angebot</p><p>Ihr bekommt ein Angebot nur für euren Abend, mit Menü und den Drinks dazu.</p></div>
+<div class="tab sw auf" style="--i:2"><p class="tab-wort">Abend</p><p>Die Tafel gehört euch. Momo mixt, ihr feiert.</p></div>
+</div></section>'''
+
+    form = '''<section class="kap t-form" id="anfrage"><div class="tf-gr"><div class="tf-bild">%s</div><div class="tf-rechts">
+<h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">Für grössere Feiern führt der Event Klub das Wild Side auch als Raum für die ganze Bar.</p>
+<form class="anfrage sw auf" style="--i:2" data-vorfuehrung>
+<p class="eng anfrage-kopf">Anfrage für die lange Tafel</p>
+<div class="af-reihe"><label><span>Anlass</span><select name="anlass"><option>Geburtstag</option><option>Firmenfeier</option><option>Ein besonderer Abend</option></select></label><label><span>Datum</span><input type="date" name="datum"></label><label><span>Gäste</span><input type="number" name="gaeste" min="2" max="20" placeholder="z. B. 10"></label></div>
+<div class="af-reihe zwei"><label><span>Name</span><input type="text" name="name" autocomplete="name"></label><label><span>E-Mail oder Telefon</span><input type="text" name="kontakt"></label></div>
+<label class="af-voll"><span>Was habt ihr vor?</span><textarea name="text" rows="4"></textarea></label>
+<div class="af-fuss"><button class="knopf" type="submit"><span>Anfrage senden</span><i>%s</i></button><p class="af-hinweis" role="status">Vorführung: In diesem Entwurf wird noch nichts verschickt.</p></div>
+</form></div></div></section>''' % (bild('tafel-drink', 'foto auf', '45vw'), zl('Erzählt uns', 'von eurem Abend.'), PFEIL)
+
+    inhalt = k + zahlen + anl + ablauf + form + weiter('Lieber an einer geteilten Tafel?', 'Bei Culinarium sitzen an einzelnen Wochenenden vierzehn Gäste an derselben Tafel: Rudi kocht, Momo mixt die Drinks dazu.',
+                                                       [('Zu Culinarium', HAUS['culinarium'], ''), ('Das Haus', 'haus.html', 'schild')])
+    return rahmen('Die lange Tafel · Walk on the Wild Side Hannover', 'Private Dining an der langen Tafel im Walk on the Wild Side: Geburtstag, Firmenfeier, besonderer Abend. Drinks passend zum Menü.', inhalt, 'tafel.html', ' class="unter"')
+
+
+# ---------------------------------------------------------------- Das Haus
+def haus():
+    k = '''<section class="seitenkopf" aria-label="Das Haus"><div class="fassung sk f-schwenk" data-nr="1" data-name="Kopf">
+<figure class="sch-bild" data-v="%.4f" data-ziel=".78" style="--lq:url(%s)">%s</figure><div class="hof-flaeche"></div>
+<div class="sk-text hof"><h1 class="sk-titel">%s</h1><p class="sk-satz">Eine kleine Bar unter einem grossen Gewölbe. Seit 2017 an der Haasemannstraße, seit 2023 ohne Karte.</p></div></div></section>''' % (
+        verh('decke-hoch'), mache('decke-hoch')['lq'], img_tag('decke-hoch', '100vw', True), zl('Das Haus.'))
+
+    raum = [('decke-flach', 'Die Decke', 'Ein Kirchengewölbe, gedruckt über den ganzen Raum, blau und golden angeleuchtet.', 'r-gross'),
+            ('negroni', 'NEGRONI', 'Glühbirnen-Buchstaben über der Vitrine mit den Gläsern.', ''),
+            ('theke', 'Die Theke', 'Geriffelt, mit gelbem Licht unter der Kante.', ''),
+            ('terrasse', 'Draussen', 'Bänke und Kelim-Hocker vor den grossen Fenstern.', ''),
+            ('rueckbar', 'Die Rückbar', 'Schwarze Regale, Flaschen bis unter die Decke.', '')]
+    r = '''<section class="kap h-raum"><div class="innen"><h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">Falstaff nennt es urbanes Loft-Ambiente. Wer reinkommt, schaut zuerst nach oben.</p></div>
+<div class="hr-gr flaeche auf">%s</div></section>''' % (zl('Der Raum.'), ''.join('<figure class="hr %s">%s<figcaption><b>%s</b><span>%s</span></figcaption></figure>' % (c, bild(b, 'foto', '40vw' if c else '25vw'), E(t), E(s)) for b, t, s, c in raum))
+
+    leute = '''<section class="kap h-leute"><div class="innen"><h2 class="titel zl auf">%s</h2></div><div class="hl-gr">
+<article class="hl">%s<div class="hl-t sw auf"><h3 class="titel">Derya Ivkin</h3><p class="eng">Führt die Bar seit Herbst 2023</p><p>Sie hat das Wild Side Ende 2023 von Christoph Elbert übernommen und zur Nachbarschafts-Mixology-Bar gemacht. Auf Instagram nennt sie sich Bar Owner, und auch bei Culinarium ist sie dabei.</p><p class="hl-foto">Foto: Ilona Hottmann, Neue Presse</p></div></article>
+<article class="hl">%s<div class="hl-t sw auf"><h3 class="titel">Momo Ben Khelifa</h3><p class="eng">Die Drinks</p><p>Aus Tunis, seit 2008 in Hannover, studierter Biotechnologe. Er hat in Berliner Bars gearbeitet, war Barchef im Lindenblatt und hat die ProBierBar in Linden mitgegründet. Ohne Karte gemixt hat er schon dort.</p></div></article>
+</div></section>''' % (zl('Wer hinter der Bar steht.'), bild('derya', 'foto auf', '50vw'), bild('momo-lacht', 'foto auf', '50vw'))
+
+    chronik = [('Oktober 2017', 'Christoph Elbert und Verena Schindler eröffnen das Wild Side in der früheren Kneipe Linden Journal, gegenüber ihrem Restaurant 11A. Vorne Cocktails, hinten eine Tafel für Private Dining.'),
+               ('2018', 'Henrike Hollander ist Barchefin. In der DJ-Kabine steht die Plattensammlung von Wolfgang Besemer, dem Mitgründer von Hannover Concerts.'),
+               ('Ende 2023', 'Elbert übergibt die Bar an Derya Ivkin. Am 9. November öffnet sie mit Momo wieder, mit Signature Drinks und ohne Karte. Seitdem laufen hier auch die Culinarium-Abende.'),
+               ('2024', 'Gastschichten aus Hannover und Berlin, Konzerte am Donnerstag, am 30. November der erste Geburtstag.'),
+               ('2025', 'Die lange Tafel wird zum Private Dining, im September startet SESSION – Sip & Sound, im Dezember wird die Bar zwei.'),
+               ('2026', 'Rudis Dirty Chicken öffnet im Juni im Wild Side. Im Falstaff Bar Guide 2027: 91 Punkte unter den Cocktailbars.')]
+    ch = '''<section class="kap h-chronik"><div class="hc-gr"><div class="hc-kopf"><h2 class="titel zl auf">%s</h2><div class="hc-bild">%s</div></div>
+<ol class="hc-liste">%s</ol></div></section>''' % (zl('Seit 2017.'), bild('decke-2017', 'foto auf', '40vw'),
+                                                  ''.join('<li class="sw auf"><p class="hc-jahr">%s</p><p>%s</p></li>' % (j, E(t)) for j, t in chronik))
+
+    presse = [('Falstaff Bar Guide 2027', '91 Punkte, Kategorie Cocktailbars. Drinks 47 von 50, Stil 18 von 20, Service 18 von 20.'),
+              ('Google', '4,8 von 5 Sternen aus 75 Bewertungen. Gelobt werden die Beratung statt Karte, Momo und die kleine, gemütliche Bar.'),
+              ('Neue Presse und HAZ, Januar 2024', 'Die neue Chefin, das neue Konzept: Mixology ohne Karte.'),
+              ('Hannover geht aus, Winter 2017', 'Thomas Lasser über die Eröffnung: Cocktails und ein in Hannover einmaliges Private Dining.'),
+              ('fizzz, Januar 2018', 'Eine in dieser Form einmalige Kombination aus Cocktailbar und Private Dining.')]
+    pr = '''<section class="kap h-presse"><div class="innen hp-gr"><h2 class="titel zl auf">%s</h2><div class="hp-liste">%s</div></div></section>''' % (
+        zl('Was andere sagen.'), ''.join('<div class="hp sw auf" style="--i:%d"><p class="eng">%s</p><p>%s</p></div>' % (n, E(q), E(t)) for n, (q, t) in enumerate(presse)))
+
+    inhalt = k + r + leute + ch + pr + weiter('Schau es dir an.', 'Am besten an einem Donnerstag, Freitag oder Samstag ab 19 Uhr, mit einem Drink in der Hand.',
+                                             [('Besuch', 'besuch.html', ''), ('Drinks', 'drinks.html', 'schild')])
+    return rahmen('Das Haus · Walk on the Wild Side Hannover', 'Die Bar Walk on the Wild Side in Linden: der Raum unter dem Gewölbe, Derya Ivkin und Momo Ben Khelifa, die Geschichte seit 2017.', inhalt, 'haus.html', ' class="unter"')
+
+
+# ---------------------------------------------------------------- Besuch
+def besuch():
+    k = kopf('sk-eins sk-rechts', ['Besuch.'], 'Haasemannstraße 13, Linden-Mitte. Donnerstag bis Samstag ab 19 Uhr.',
+             bild('schild-ecke', 'ab', '100vw', True), '<p class="eng sk-heute" data-heute-satz>Do bis Sa ab 19 Uhr</p>')
+
+    zeiten = ''.join('<div class="bz" data-zeile-tag="%s"><b>%s</b><span>%s</span></div>' % (t, E(n), E(z)) for n, z, t in HAUS['zeiten'])
+    info = '''<section class="kap b-info"><div class="innen bi-gr">
+<div class="bi-zeiten"><h2 class="titel zl auf">%s</h2><div class="bz-liste sw auf" style="--i:1">%s</div></div>
+<div class="bi-weg sw auf" style="--i:1"><h3 class="eng">Adresse</h3><p class="bi-gross">%s<br>%s</p>
+<p>In Linden-Mitte, ein paar Schritte vom Küchengarten, gegenüber vom Restaurant 11A.</p>
+<div class="knoepfe"><a class="knopf schild" href="https://www.openstreetmap.org/search?query=Haasemannstra%%C3%%9Fe%%2013%%20Hannover" target="_blank" rel="noopener"><span>Auf der Karte</span><i>%s</i></a></div>
+<h3 class="eng">Kontakt</h3><p><a href="tel:%s">%s</a><br><a href="%s" target="_blank" rel="noopener">Instagram: @walkonthewildside_hannover</a></p></div>
+</div></section>''' % (zl('Geöffnet.'), zeiten, HAUS['adresse'], HAUS['ort'], PFEIL, HAUS['tel_href'], HAUS['telefon'], HAUS['instagram'])
+
+    res = '''<section class="kap b-res" id="reservieren"><div class="br-gr"><div class="br-bild">%s</div><div class="br-rechts">
+<h2 class="titel zl auf">%s</h2><p class="vtext sw auf" style="--i:1">Reservieren geht per Nachricht auf Instagram, per Anruf oder hier. An Konzert- und DJ-Abenden lohnt es sich.</p>
+<form class="anfrage sw auf" style="--i:2" data-vorfuehrung>
+<p class="eng anfrage-kopf">Tisch anfragen</p>
+<div class="af-reihe"><label><span>Tag</span><input type="date" name="datum"></label><label><span>Uhrzeit</span><select name="zeit"><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option></select></label><label><span>Personen</span><input type="number" name="personen" min="1" max="12" placeholder="2"></label></div>
+<div class="af-reihe zwei"><label><span>Name</span><input type="text" name="name" autocomplete="name"></label><label><span>E-Mail oder Telefon</span><input type="text" name="kontakt"></label></div>
+<div class="af-fuss"><button class="knopf" type="submit"><span>Anfrage senden</span><i>%s</i></button><p class="af-hinweis" role="status">Vorführung: In diesem Entwurf wird noch nichts verschickt.</p></div>
+</form></div></div></section>''' % (bild('freundinnen', 'foto auf', '45vw'), zl('Platz', 'reservieren.'), PFEIL)
+
+    fragen = [('Gibt es eine Karte?', 'Nein. Du sagst Momo, was du magst, und er mixt dir deinen Drink. Klassiker wie den Negroni gibt es trotzdem.'),
+              ('Was kostet ein Drink?', 'Anfang 2024 kostete jeder Drink 11 Euro (Neue Presse), auf der Valentinskarte 2026 standen 12 Euro.'),
+              ('Gibt es alkoholfreie Drinks?', 'Ja. Jeder Drink geht auch ohne Alkohol, dazu gibt es Wein und Bier.'),
+              ('Kostet die Musik Eintritt?', 'Bei den Konzerten und DJ-Abenden war der Eintritt bisher frei.'),
+              ('Gibt es etwas zu essen?', 'Eine feste Küche gibt es nicht. Essen kommt zu besonderen Abenden: Culinarium, Dirty Chicken, Rudis Buffets und Foodtrucks.'),
+              ('Kann ich draussen sitzen?', 'Ja, vor der Bar gibt es eine Terrasse.'),
+              ('Wie kann ich bezahlen?', 'Bar, mit EC- und Kreditkarte oder kontaktlos (laut Falstaff).'),
+              ('Kann ich die Bar für eine Feier mieten?', 'Die lange Tafel für eure Runde, oder über den Event Klub die ganze Bar.')]
+    faq = '''<section class="kap b-faq"><div class="innen bf-gr"><div><h2 class="titel zl auf">%s</h2><div class="bf-bild">%s</div></div><div class="bf-liste">%s</div></div></section>''' % (
+        zl('Bevor du kommst.'), bild('terrasse', 'foto auf', '40vw'),
+        ''.join('<details class="bf sw auf"%s><summary><span>%s</span><i aria-hidden="true"></i></summary><p>%s</p></details>' % (' open' if n == 0 else '', E(f), E(a) + (' <a href="tafel.html">Zur langen Tafel</a>' if 'Feier' in f else '')) for n, (f, a) in enumerate(fragen)))
+
+    inhalt = k + info + res + faq
+    return rahmen('Besuch · Walk on the Wild Side Hannover', 'Öffnungszeiten, Adresse und Reservierung der Bar Walk on the Wild Side, Haasemannstraße 13, Hannover-Linden.', inhalt, 'besuch.html', ' class="unter"')
+
+
+# ---------------------------------------------------------------- Rechtliches
+def recht(titel, absaetze, name):
+    inhalt = '''<section class="kap recht"><div class="innen recht-in"><h1 class="titel">%s</h1>%s</div></section>''' % (
+        E(titel), ''.join('<h2 class="eng">%s</h2><p>%s</p>' % (E(h), t) for h, t in absaetze))
+    return rahmen('%s · Walk on the Wild Side Hannover' % titel, titel, inhalt, name, ' class="unter recht-seite"')
+
+
+def impressum():
+    return recht('Impressum', [
+        ('Angaben gemäss § 5 DDG', 'Walk on the Wild Side<br>Haasemannstraße 13<br>30449 Hannover<br><br>Betreiber und Rechtsform: werden vor dem Online-Gehen mit der Bar ergänzt.'),
+        ('Kontakt', 'Telefon: <a href="tel:%s">%s</a><br>Instagram: <a href="%s" target="_blank" rel="noopener">@walkonthewildside_hannover</a>' % (HAUS['tel_href'], HAUS['telefon'], HAUS['instagram'])),
+        ('Gestaltung', 'Designstudie von Tasty Studios, Hamburg. Nicht die offizielle Website der Bar.'),
+        ('Bildnachweis', 'Fotos der Bar, ihres Google-Eintrags und ihrer Instagram- und Facebook-Seiten; Foto von Derya Ivkin: Ilona Hottmann, Neue Presse. Rechte werden vor dem Online-Gehen geklärt.')], 'impressum.html')
+
+
+def datenschutz():
+    return recht('Datenschutz', [
+        ('Entwurf', 'Diese Seite ist ein Entwurf. Formulare verschicken nichts, es werden keine Daten gespeichert, keine Cookies gesetzt und keine Dienste Dritter eingebunden. Schriften liegen auf dem eigenen Server.'),
+        ('Vor dem Online-Gehen', 'Die vollständige Datenschutzerklärung (Verantwortliche Stelle, Hosting, Formulare, Rechte der Betroffenen) wird mit dem Betreiber der Bar ergänzt.')], 'datenschutz.html')
+
+
+def alle():
+    return {'drinks.html': drinks(), 'programm.html': programm(), 'tafel.html': tafel(), 'haus.html': haus(), 'besuch.html': besuch(),
+            'impressum.html': impressum(), 'datenschutz.html': datenschutz()}

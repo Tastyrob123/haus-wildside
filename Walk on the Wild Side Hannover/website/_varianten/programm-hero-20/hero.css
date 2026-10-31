@@ -1,0 +1,191 @@
+/* Wild Side · Programm, 20 Fassungen für den Kopf «Lauter.» (30.10.2026). Titel gross, Satz lesbar; Farben und Schriften der Seite.
+   Nur transform, Fotos von Anfang an da. */
+.ph{--ein:cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;background:var(--nacht);min-height:min(100vh,900px);min-height:min(100svh,900px)}
+.ph-f{position:relative;margin:0;overflow:hidden;background:var(--nacht3) center/cover no-repeat;background-image:var(--lq)}
+.ph-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph-voll{position:absolute;inset:0}
+.ph-voll img{filter:brightness(.55)}
+.ph .ph-t{font-size:clamp(72px,11vw,176px);line-height:.98;letter-spacing:-.01em;color:var(--creme)}
+.ph .ph-t .z{padding-bottom:.2em;margin-bottom:-.2em}
+.ph .ph-s{font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:var(--text);max-width:46ch;margin-top:22px}
+.ph .etikett{font:500 12px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.ph-unten{position:absolute;left:0;right:0;bottom:0;margin:0 auto;padding:0 0 clamp(48px,6vh,80px);z-index:3}
+.ph-unten .ph-t,.ph-unten .ph-s,.ph05-mitte .ph-t,.ph05-mitte .ph-s,.ph08-mitte .ph-t,.ph08-mitte .ph-s{text-shadow:0 4px 40px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.5)}
+.ph-zwei{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+
+/* 01 Es wird lauter: der Titel wächst */
+.ph01-wachs{transform-origin:0 100%;transform:scale(.42);transition:transform 2.4s var(--ein) .2s}
+.ph01.da .ph01-wachs{transform:none}
+.ph01 .ph-t{font-size:clamp(84px,14vw,220px)}
+
+/* 02 Der Pegel */
+.ph02-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.ph02-rechts{position:relative;aspect-ratio:4/5;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.ph02-rechts .ph-f{position:absolute;inset:0}
+.ph02-pegel{position:absolute;left:0;right:0;bottom:0;height:34%;display:flex;align-items:flex-end;gap:6px;padding:0 20px 20px;z-index:2}
+.ph02-pegel i{flex:1;height:100%;background:var(--gold);border-radius:2px;transform-origin:50% 100%;transform:scaleY(var(--h));animation:ph02-schlag 1.1s ease-in-out var(--d) infinite alternate}
+@keyframes ph02-schlag{from{transform:scaleY(calc(var(--h)*.25))}to{transform:scaleY(var(--h))}}
+.ruhig .ph02-pegel i{animation:none}
+
+/* 03 Die Plakatwand */
+.ph03-wand{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr 1fr;gap:4px;background:#050404}
+.ph03-wand .ph-f{transform:translateY(40px) scale(.94);transition:transform 1.3s var(--ein);transition-delay:calc(var(--d)*.09s)}
+.ph03.da .ph03-wand .ph-f{transform:none}
+.ph03-band{position:absolute;left:0;right:0;bottom:clamp(40px,8vh,90px);z-index:3;background:var(--nacht);padding:clamp(28px,3.4vw,48px) 0;box-shadow:0 -1px 0 var(--gold-l),0 1px 0 var(--gold-l)}
+.ph03-band .innen{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,4vw,70px);align-items:end}
+.ph03-band .ph-s{margin:0 0 .8em}
+
+/* 04 Drei Abende, drei Bilder */
+.ph04-drei{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.ph04-sp{position:relative;overflow:hidden}
+.ph04-sp .ph-f{position:absolute;inset:0;transform:translateY(100%);transition:transform 1.5s var(--ein)}
+.ph04-sp:nth-child(2) .ph-f{transition-delay:.14s} .ph04-sp:nth-child(3) .ph-f{transition-delay:.28s}
+.ph04.da .ph04-sp .ph-f{transform:none}
+.ph04-sp .ph-f img{filter:brightness(.42)}
+.ph04-tag{position:absolute;left:clamp(18px,2vw,32px);bottom:clamp(24px,4vh,44px);z-index:2;display:grid;gap:6px;color:var(--text)}
+.ph04-tag b{font-size:clamp(44px,4.6vw,72px);line-height:1;color:var(--gold);font-weight:400}
+.ph04-tag span{font-size:18px} .ph04-tag small{font-size:14px;color:var(--text2)}
+.ph04-oben{position:relative;z-index:3;padding-top:130px}
+.ph04-oben .ph-t,.ph04-oben .ph-s{text-shadow:0 4px 40px rgba(0,0,0,.8)}
+
+/* 05 Die Bühne */
+.ph05 .ph-voll img{transform:scale(1.18);transition:transform 6s var(--ein)}
+.ph05.da .ph-voll img{transform:none}
+.ph05-mitte{position:absolute;inset:0;margin:auto;display:grid;place-content:center;justify-items:center;text-align:center;z-index:3;padding-top:60px}
+.ph05 .ph-t{font-size:clamp(84px,15vw,240px)}
+
+/* 06 Die Platte dreht sich */
+.ph06-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.ph06-jetzt{margin-top:30px;display:grid;gap:10px;font-family:var(--titel);font-size:clamp(22px,2vw,30px);color:var(--creme)}
+.ph06-platte{aspect-ratio:1;border-radius:50%;padding:7%;background:#0a0807;box-shadow:var(--schatten),inset 0 0 0 1px var(--gold-ll)}
+.ph06-dreh{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;animation:ph06-dreh 14s linear infinite}
+.ph06-dreh .ph-f{position:absolute;inset:0}
+.ph06-dreh::after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle,rgba(0,0,0,0) 0 7px,rgba(0,0,0,.16) 7px 8px);pointer-events:none}
+.ph06-loch{position:absolute;left:50%;top:50%;width:5%;aspect-ratio:1;margin:-2.5% 0 0 -2.5%;border-radius:50%;background:var(--nacht);box-shadow:0 0 0 3px var(--gold);z-index:2}
+@keyframes ph06-dreh{to{transform:rotate(360deg)}}
+.ruhig .ph06-dreh{animation:none}
+
+/* 07 Dreimal lauter */
+.ph07-in{display:grid;align-content:center;min-height:inherit;padding:130px 0 64px}
+.ph07-echo{display:grid;line-height:.95;margin:0}
+.ph07-echo span{display:block;color:var(--text3);transform:translateY(40px) scale(.9);transform-origin:0 100%;opacity:0;transition:transform 1.2s var(--ein),opacity 1s var(--ein);transition-delay:calc(var(--i)*.22s)}
+.ph07-echo span:nth-child(1){font-size:clamp(36px,4.4vw,70px);color:var(--text3)}
+.ph07-echo span:nth-child(2){font-size:clamp(54px,7vw,110px);color:var(--text2)}
+.ph07.da .ph07-echo span{transform:none;opacity:1}
+.ph07 .ph-t{font-size:clamp(90px,16vw,250px);color:var(--gold)}
+.ph07 .ph-t .z>span{transition-delay:.5s}
+
+/* 08 Zwei Abende */
+.ph08-zwei{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.ph08-l{transform:translateX(-14%);transition:transform 1.8s var(--ein)} .ph08-r{transform:translateX(14%);transition:transform 1.8s var(--ein)}
+.ph08.da .ph08-l,.ph08.da .ph08-r{transform:none}
+.ph08-zwei img{filter:brightness(.5)}
+.ph08-mitte{position:absolute;inset:0;margin:auto;display:grid;place-content:end center;justify-items:center;text-align:center;z-index:3;padding-bottom:clamp(48px,7vh,90px)}
+.ph08 .ph-t{font-size:clamp(84px,14vw,220px)}
+
+/* 09 Die Setliste */
+.ph09-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.ph09-liste{background:var(--nacht2);border-radius:var(--rand-g);padding:28px 30px;box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten)}
+.ph09-fenster{height:min(52vh,460px);overflow:hidden;margin-top:18px}
+.ph09-zug{animation:ph09-lauf 30s linear infinite}
+.ph09-zug div{display:grid;grid-template-columns:7.2em minmax(0,1fr);column-gap:18px;padding:16px 0;border-top:1px solid var(--gold-ll)}
+.ph09-zug span{grid-row:span 2;color:var(--gold);font-size:14px;letter-spacing:.06em;padding-top:.5em}
+.ph09-zug b{font-family:var(--titel);font-weight:400;font-size:clamp(24px,2.2vw,32px);color:var(--creme);line-height:1.2}
+.ph09-zug small{font-size:15px;color:var(--text2)}
+@keyframes ph09-lauf{to{transform:translateY(-50%)}}
+.ruhig .ph09-zug{animation:none}
+
+/* 10 Die Namen laufen */
+.ph10-band{position:absolute;left:0;right:0;top:34%;z-index:2;overflow:hidden;padding:18px 0;background:var(--nacht);box-shadow:0 -1px 0 var(--gold-l),0 1px 0 var(--gold-l)}
+.ph10-zug{display:flex;gap:.6em;width:max-content;white-space:nowrap;font-size:clamp(34px,4vw,60px);color:var(--creme);animation:ph10-lauf 40s linear infinite}
+.ph10-zug i{font-style:normal;color:var(--gold)}
+@keyframes ph10-lauf{to{transform:translateX(-50%)}}
+.ruhig .ph10-zug{animation:none}
+
+/* 11 Das Mikrofon schwebt */
+.ph11-in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.ph11-kapsel{aspect-ratio:9/15;border-radius:999px;overflow:hidden;box-shadow:var(--schatten),0 0 0 1px var(--gold-l);animation:ph11-schweb 6s ease-in-out infinite alternate}
+.ph11-kapsel .ph-f{position:absolute;inset:0}
+@keyframes ph11-schweb{from{translate:0 -10px}to{translate:0 12px}}
+.ruhig .ph11-kapsel{animation:none}
+.ph11 .ph-t{font-size:clamp(84px,13vw,210px)}
+
+/* 12 Das Plakat kippt */
+.ph12-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px;perspective:1400px}
+.ph12-karte{aspect-ratio:1350/1687}
+.ph12-karte .ph-f{position:absolute;inset:0;border-radius:8px;box-shadow:var(--schatten);transform:rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg)) rotate(-2deg);transition:transform .5s var(--ein)}
+.ph12-karte{position:relative}
+
+/* 13 Der Ton geht raus */
+.ph13-ringe{position:absolute;left:33%;top:60%;width:0;height:0;z-index:2;pointer-events:none}
+.ph13-ringe i{position:absolute;left:-30vmax;top:-30vmax;width:60vmax;height:60vmax;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--gold);transform:scale(.05);opacity:0;animation:ph13-ring 6s cubic-bezier(.2,.6,.4,1) infinite}
+.ph13-ringe i:nth-child(2){animation-delay:1.5s} .ph13-ringe i:nth-child(3){animation-delay:3s} .ph13-ringe i:nth-child(4){animation-delay:4.5s}
+@keyframes ph13-ring{0%{transform:scale(.05);opacity:.9}100%{transform:scale(1);opacity:0}}
+.ruhig .ph13-ringe{display:none}
+
+/* 14 Tiefe beim Scrollen */
+.ph14-tief{position:absolute;inset:-6% 0 0;will-change:transform}
+.ph14-vorn{will-change:transform}
+
+/* 15 Die Plakate blättern */
+.ph15-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.ph15-stapel{position:relative;aspect-ratio:1350/1687;max-height:72vh;justify-self:center;width:100%;max-width:520px}
+.ph15-b{position:absolute;inset:0;border-radius:8px;box-shadow:var(--schatten);transform:translateY(105%);transition:transform 1s var(--ein);z-index:0}
+.ph15-b.an{transform:none;z-index:2} .ph15-b.war{transform:translateY(-6%) scale(.94);z-index:1}
+.ph15-stapel{overflow:hidden;border-radius:8px}
+.ph15-name{margin-top:30px;display:grid;gap:10px}
+.ph15-name b{font-family:var(--titel);font-weight:400;font-size:clamp(22px,2vw,30px);color:var(--creme)}
+
+/* 16 Der Streifen */
+.ph16{display:grid;grid-template-rows:auto 1fr}
+.ph16-oben{position:relative;z-index:2;padding:130px 0 40px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,4vw,70px);align-items:end}
+.ph16-oben .ph-s{margin:0 0 .8em}
+.ph16-streifen{overflow:hidden;min-height:clamp(260px,38vh,420px)}
+.ph16-zug{display:flex;gap:6px;height:100%;width:max-content;will-change:transform}
+.ph16-zug .ph-f{width:clamp(320px,38vw,620px);height:100%;min-height:clamp(260px,38vh,420px)}
+
+/* 17 Die Wochentafel */
+.ph17 .ph-voll img{filter:brightness(.32)}
+.ph17-in{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.ph17-tafel{display:grid;background:var(--nacht);border-radius:var(--rand-g);padding:10px clamp(24px,2.6vw,40px);box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten)}
+.ph17-tafel div:first-child{border-top:0} .ph17-tafel div:last-child{border-bottom:0!important}
+.ph17-tafel div{display:grid;grid-template-columns:1fr auto;column-gap:20px;padding:22px 0;border-top:1px solid var(--gold-l)}
+.ph17-tafel div:last-child{border-bottom:1px solid var(--gold-l)}
+.ph17-tafel b{grid-column:1/-1;font-weight:400;font-size:clamp(40px,4.4vw,68px);line-height:1;color:var(--creme)}
+.ph17-tafel span{font-size:18px;color:var(--text);margin-top:10px} .ph17-tafel small{font-size:15px;color:var(--gold);margin-top:12px;letter-spacing:.04em}
+
+/* 18 Grosses Bild, zwei kleine */
+.ph18-raster{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,62fr) minmax(0,38fr);grid-template-rows:1fr 1fr;gap:4px}
+.ph18-gross{grid-row:1/3} .ph18-gross img{filter:brightness(.6)}
+.ph18-a,.ph18-b{transform:translateX(102%);transition:transform 1.5s var(--ein)} .ph18-b{transition-delay:.18s}
+.ph18.da .ph18-a,.ph18.da .ph18-b{transform:none}
+.ph18-text{right:38%;padding-left:max(4vw,calc((100vw - 1240px)/2));width:auto;max-width:none}
+.ph18 .ph-t{font-size:clamp(80px,12vw,190px)}
+
+/* 19 Das Foto in der Schrift */
+.ph19-in{display:grid;align-content:center;min-height:inherit;padding:120px 0 64px}
+.ph19-t{font-size:clamp(110px,22vw,360px)!important;line-height:.9!important}
+.ph19-foto{display:inline-block;color:transparent;background-size:130% auto;background-position:0% 40%;-webkit-background-clip:text;background-clip:text;animation:ph19-wandern 18s ease-in-out infinite alternate}
+@keyframes ph19-wandern{to{background-position:100% 60%}}
+.ruhig .ph19-foto{animation:none}
+
+/* 20 Gäste hinter der Bar */
+.ph20-reihe{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.ph20-reihe .ph-f{transform:translateY(-104%);transition:transform 1.4s var(--ein);transition-delay:calc(var(--j)*.12s)}
+.ph20.da .ph20-reihe .ph-f{transform:none}
+.ph20-reihe img{filter:brightness(.5)}
+.ph20-text{position:absolute;left:0;right:0;bottom:0;margin:0 auto;padding:0 0 clamp(48px,6vh,80px);z-index:3}
+.ph20-text .ph-t,.ph20-text .ph-s{text-shadow:0 4px 40px rgba(0,0,0,.8),0 1px 3px rgba(0,0,0,.5)}
+
+/* Handy */
+@media (max-width:900px){
+  .ph .ph-t{font-size:clamp(64px,19vw,110px)!important}
+  .ph02-in,.ph06-in,.ph09-in,.ph11-in,.ph12-in,.ph15-in,.ph17-in{grid-template-columns:1fr;gap:34px}
+  .ph03-wand{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,1fr)}
+  .ph03-band .innen,.ph16-oben{grid-template-columns:1fr}
+  .ph04-tag b{font-size:34px} .ph04-tag span,.ph04-tag small{display:none}
+  .ph11-kapsel{max-width:300px;justify-self:center;width:100%}
+  .ph18-raster{grid-template-columns:1fr;grid-template-rows:2fr 1fr 1fr} .ph18-gross{grid-row:auto} .ph18-text{right:0}
+  .ph20-reihe{grid-template-columns:repeat(3,minmax(0,1fr))} .ph20-reihe .ph-f:nth-child(n+4){display:none}
+  .ph06-platte{max-width:360px;justify-self:center;width:100%}
+}

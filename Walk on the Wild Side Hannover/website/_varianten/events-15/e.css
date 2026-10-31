@@ -1,0 +1,159 @@
+/* Wild Side · Feiern, «Grosse Events · Grösser als die Bar.»: 15 Darstellungen (30.10.2026).
+   Bewegung nur über transform, alles deckend; Scroll-Getriebenes läuft in einem Takt in e.js. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:380px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.fb{position:relative;margin:0;overflow:hidden;background:var(--nacht3) var(--lq) center/cover;border-radius:var(--rand-g);box-shadow:var(--schatten)}
+.fb img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);display:block}
+.ev-klein{margin-top:18px;font-size:14px;color:var(--text3)}
+.hell .ev-klein{color:rgba(27,21,18,.6)}
+.ev-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vx .text{margin-top:22px}
+.vauf{transform:translateY(72px);transition:transform 1.5s cubic-bezier(.22,1,.36,1)}
+.vauf.ok{transform:none}
+.ruhig .vauf{transform:none!important;transition:none!important}
+
+/* 01 · Von der Bar in die Loge */
+.e1-weg{display:grid;grid-template-columns:minmax(0,340px) minmax(60px,1fr) minmax(0,400px);align-items:center;gap:clamp(18px,2.4vw,36px)}
+.e1-bar{aspect-ratio:3/4}
+.e1-loge{aspect-ratio:590/792}
+.e1-ort .etikett{display:block;margin-top:16px}
+.e1-ziel .etikett{text-align:right}
+.e1-linie{align-self:center;height:1px;background:var(--gold-ll);margin-bottom:30px}
+.e1-linie i{display:block;height:100%;background:var(--gold);transform-origin:left;transform:scaleX(var(--p,0))}
+.e1-unten{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);margin-top:clamp(48px,6vw,80px);align-items:start}
+.e1-unten .text{margin-top:0}
+
+/* 02 · Der Titel wächst */
+.e02 .e2-titel .titel{font-size:clamp(48px,8.6vw,150px);line-height:1;white-space:nowrap;transform-origin:0 100%;transform:scale(var(--s,.86));will-change:transform}
+.e2-unten{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:clamp(32px,6vw,96px);margin-top:clamp(40px,5vw,72px);align-items:center}
+.e2-bild{aspect-ratio:4/3}
+.e2-bild img{object-position:50% 70%}
+.e2-text .text{margin-top:0;font-size:19px}
+
+/* 03 · Stehender Text */
+.e3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.e3-links{position:sticky;top:14vh}
+.e3-platte{padding:clamp(30px,4vw,56px)}
+.e3-rechts{display:flex;flex-direction:column;align-items:center;gap:clamp(40px,6vw,80px)}
+.e3-b{width:min(100%,440px)}
+.e3-b:nth-child(1){aspect-ratio:590/792} .e3-b:nth-child(2){aspect-ratio:832/1110} .e3-b:nth-child(3){aspect-ratio:656/820}
+.e3-b img{transform:scale(var(--z,1.12));will-change:transform}
+
+/* 04 · Bühne in der Mitte */
+.e4{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center}
+.e4-l{text-align:right}
+@media (max-width:1180px){.e4{grid-template-columns:minmax(0,1fr) minmax(0,320px) minmax(0,1fr)}}
+.e4-l .kz{justify-content:flex-end;flex-wrap:nowrap}
+.e4-bild{aspect-ratio:590/792}
+.e4-bild img{transform:scale(1.2);transition:transform 2.6s cubic-bezier(.22,1,.36,1) .3s}
+.e4-bild.ok img{transform:none}
+.e4-r .text{margin-top:0}
+
+/* 05 · Heller Raum */
+.e5{display:grid;grid-template-columns:minmax(0,430px) minmax(0,1fr);gap:clamp(36px,7vw,110px);align-items:center}
+.e5-bild{aspect-ratio:590/792;box-shadow:0 40px 80px -30px rgba(27,21,18,.55),0 12px 26px -14px rgba(27,21,18,.4)}
+.e5-bild.vauf{transform:translateY(80px) rotate(-5deg);transform-origin:30% 100%}
+.e5-bild.vauf.ok{transform:none}
+.e05 .text{font-size:18px}
+
+/* 06 · Laufband */
+.e06{padding-top:clamp(70px,9vw,130px)}
+.e6-band{overflow:hidden;border-top:1px solid var(--gold-ll);border-bottom:1px solid var(--gold-ll);padding:clamp(14px,1.6vw,24px) 0}
+.e6-lauf{display:flex;width:max-content;animation:e6lauf 70s linear infinite;will-change:transform}
+.e6-lauf span{font:400 clamp(56px,8vw,132px)/1.08 var(--titel);color:var(--creme);white-space:nowrap;padding-right:.3em}
+@keyframes e6lauf{to{transform:translateX(-50%)}}
+.ruhig .e6-lauf{animation:none}
+.e6{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(36px,7vw,110px);align-items:center;margin:clamp(48px,6vw,90px) auto 0}
+.e6-bild{aspect-ratio:590/792}
+.e06 .text{font-size:19px}
+
+/* 07 · Eine Reihe */
+.e7-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:end}
+.e7-kopf .text{margin-top:0}
+.e7-reihe{margin-top:clamp(72px,8vw,112px)}
+.e7-zug{display:flex;gap:clamp(14px,1.6vw,22px);height:clamp(300px,33vw,430px);transform:translateX(var(--x,0));will-change:transform}
+.e7-b{height:100%;aspect-ratio:var(--r);flex:none}
+
+/* 08 · Das Bild zieht langsamer */
+.e8{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,430px);gap:clamp(36px,7vw,110px);align-items:center}
+.e8-bild{aspect-ratio:590/792;transform:translateY(var(--y,0));will-change:transform}
+.e08 .text{font-size:19px;max-width:46ch}
+
+/* 09 · Mittelachse */
+.e9{display:flex;flex-direction:column;align-items:center;text-align:center}
+.e9-bild{width:min(400px,80vw);aspect-ratio:590/792;margin-bottom:clamp(40px,5vw,64px)}
+.e9-bild img{transform:scale(var(--z,1.22));transform-origin:50% 60%;will-change:transform}
+.e9-kz .kz{justify-content:center}
+.e9 .text{margin-left:auto;margin-right:auto;max-width:58ch;font-size:19px}
+.e9 .knoepfe{justify-content:center;display:flex}
+
+/* 10 · Abzüge fächern auf */
+.e10{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(36px,6vw,96px);align-items:center}
+.e10-tisch{position:relative;aspect-ratio:2/1}
+.e10-a{position:absolute;left:33.5%;top:4%;width:33%;aspect-ratio:3/4;border-radius:10px;box-shadow:inset 0 0 0 6px var(--creme2),var(--schatten);
+ transform:translateX(calc((var(--n) - 1) * var(--p,0) * 92%)) rotate(calc((var(--n) - 1) * (1 - var(--p,0)) * 7deg + (var(--n) - 1) * 2deg));will-change:transform}
+.e10-a img{border-radius:10px;padding:6px;background:var(--creme2)}
+.e10-a:nth-child(2){z-index:2}
+
+/* 11 · Gesetzt wie gedruckt */
+.e11{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(36px,7vw,110px);align-items:center}
+.e11-satz{position:relative;padding:clamp(34px,4vw,54px) 0}
+.e11-satz::before,.e11-satz::after{content:"";position:absolute;left:0;right:0;height:1px;background:var(--gold-l);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.22,1,.36,1)}
+.e11-satz::before{top:0} .e11-satz::after{bottom:0;transform-origin:right;transition-delay:.25s}
+.da .e11-satz::before,.da .e11-satz::after{transform:none}
+.e11-text{font-size:19px;max-width:54ch}
+.e11-ini{float:left;font:400 4.6em/.82 var(--titel);color:var(--gold);margin:.06em .12em 0 0}
+.e11-bild{aspect-ratio:590/792}
+.e11-bild img{transform:scale(1.16);transition:transform 2.4s cubic-bezier(.22,1,.36,1) .2s}
+.e11-bild.ok img{transform:none}
+
+/* 12 · Rotes Feld */
+.e12{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:clamp(28px,4vw,56px);align-items:center}
+.e12-feld{background:var(--plakatrot);color:var(--creme);border-radius:var(--rand-g);padding:clamp(36px,5vw,72px);box-shadow:var(--schatten)}
+.e12-feld .kz .uhr,.e12-feld .kz .was{color:var(--creme)} .e12-feld .kz i{background:rgba(242,233,220,.6)}
+.e12-feld .text{color:rgba(242,233,220,.9)} .e12-feld .ev-klein{color:rgba(242,233,220,.7)}
+.e12-bild{aspect-ratio:590/792}
+.e12-bild img{height:114%;margin-top:-7%;transform:translateY(var(--y,0));will-change:transform}
+
+/* 13 · Eine Tafel für beides */
+.e13{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);overflow:hidden}
+.e13-bild{border-radius:0;box-shadow:none;min-height:560px}
+.e13-bild img{position:absolute;inset:0;transform:scale(1.18);transition:transform 2.6s cubic-bezier(.22,1,.36,1) .25s}
+.e13.ok .e13-bild img{transform:none}
+.e13-text{padding:clamp(36px,5vw,76px);align-self:center}
+
+/* 14 · Der Weg hinaus */
+section.e14{padding:0;height:260vh}
+.e14-steh{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+.e14-zug{display:flex;align-items:center;gap:clamp(28px,3vw,48px);padding:0 max(4vw,calc((100vw - 1240px) / 2));transform:translateX(var(--x,0));will-change:transform}
+.e14-text{flex:0 0 min(500px,80vw)}
+.e14-b{height:min(64vh,590px);aspect-ratio:var(--r);flex:none}
+
+/* 15 · Säule */
+.e15{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,430px);gap:clamp(36px,7vw,110px);align-items:center}
+.e15-text{border-left:1px solid var(--gold-l);padding-left:clamp(28px,4vw,56px)}
+.e15 .text{font-size:19px;max-width:48ch}
+.e15-saeule{height:clamp(480px,66vh,600px);border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.e15-bild{height:112%;border-radius:0;box-shadow:none;transform:translateY(var(--y,-5%));will-change:transform}
+
+/* Schmal */
+@media (max-width:860px){
+  .e1-weg{grid-template-columns:minmax(0,1fr) 30px minmax(0,1.3fr)}
+  .e1-unten,.e2-unten,.e3,.e4,.e5,.e6,.e7-kopf,.e8,.e10,.e11,.e12,.e13,.e15{grid-template-columns:minmax(0,1fr)}
+  .e02 .e2-titel .titel{white-space:normal}
+  .e3-links{position:static}
+  .e4-l{text-align:left} .e4-l .kz{justify-content:flex-start}
+  .e4-bild,.e5-bild,.e6-bild,.e8-bild,.e11-bild,.e12-bild,.e2-bild{width:min(100%,420px)}
+  .e7-zug{height:260px}
+  .e13-bild{min-height:420px}
+  section.e14{height:auto;padding:70px 0}
+  .e14-steh{position:static;height:auto;overflow:visible}
+  .e14-zug{flex-direction:column;align-items:stretch;transform:none!important}
+  .e14-b{height:auto;width:min(100%,420px)}
+  .e15-saeule{height:520px}
+}

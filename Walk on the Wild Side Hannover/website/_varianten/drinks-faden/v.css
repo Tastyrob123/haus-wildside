@@ -1,0 +1,424 @@
+/* Wild Side · Drinks, «Gespräch» und «Techniken» als ein Faden (30.10.2026). Bausteine der Seite: kz, Prata, Gold, Creme.
+   Bewegung über --p (0 → 1, gesetzt in v.js, während der Schritt ins Bild kommt); bewegt wird nur mit transform und opacity. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+
+.gx [data-p]{--p:0}
+.gx .foto img{transform:none}
+.gx .foto{border-radius:var(--rand);box-shadow:var(--schatten)}
+.gx .etikett{display:block;margin-bottom:12px}
+.gx p.titel,.gx h3.titel{color:var(--text);text-wrap:balance}
+.ge-zitat small{display:block;margin-top:12px;font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3)}
+.ww{opacity:.18;transition:opacity .45s ease} .ww.an{opacity:1}
+.trueb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.75) sepia(.35) brightness(.5) contrast(.82)}
+
+/* ============ 01 Vom Dunkel ins Klare ============ */
+.f01{padding-bottom:clamp(110px,13vw,180px)}
+.t1-grund{position:sticky;top:0;height:100vh;margin-bottom:-100vh;z-index:0;pointer-events:none}
+.t1-grund i{position:absolute;inset:0;opacity:0;will-change:opacity}
+.t1-a{background:#3A2416} .t1-c{background:var(--creme)}
+.t1{position:relative;z-index:1}
+.t1-kopf{text-align:center;max-width:980px;margin:0 auto}
+.t1-kopf .kz{justify-content:center}
+.t1-kopf .text{margin:26px auto 0;max-width:52ch;font-size:18px}
+.t1-kopf .ge-zitat{margin:44px auto 0;padding:0;border:0;max-width:30ch;font-size:clamp(24px,2.6vw,34px);color:var(--text)}
+.t1-frage{font-size:clamp(40px,4.7vw,70px);line-height:1.06}
+.t1-satz .text{margin-top:18px;font-size:16px;max-width:46ch}
+.t1-satz h3.titel{font-size:clamp(40px,4.4vw,64px);line-height:1.04}
+/* Schritt 1: der Shaker öffnet sich aus einem Schlitz */
+.t1-s1{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(40px,5vw,84px);align-items:center;margin-top:clamp(110px,13vw,190px)}
+.t1-schlitz{height:min(82vh,780px);border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);transform:scaleX(calc(.16 + .84 * var(--p)));will-change:transform}
+.t1-gegen{height:100%;transform:scaleX(calc(1 / (.16 + .84 * var(--p))));will-change:transform}
+.t1-gegen .foto{height:100%;border-radius:0;box-shadow:none}
+.t1-s1 .t1-satz{opacity:calc(var(--p) * 1.4 - .3);transform:translateY(calc((1 - var(--p)) * 50px))}
+/* Schritt 2: drei Coupes, Wand an Wand, steigen verschieden schnell auf eine Linie */
+.t1-s2{margin-top:clamp(120px,14vw,200px);text-align:center}
+.t1-s2 .t1-frage{max-width:16ch;margin:0 auto}
+.t1-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(40px,5vw,64px)}
+.t1-d{aspect-ratio:3/4;transform:translateY(calc((1 - var(--p)) * var(--v)));will-change:transform}
+/* Schritt 3: die Wörter gehen an, das Bild zieht sich zurück */
+.t1-s3{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,5vw,84px);align-items:center;margin-top:clamp(120px,14vw,200px)}
+.t1-zoom{height:min(82vh,780px);border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten)}
+.t1-zoom .foto{height:100%;border-radius:0;box-shadow:none;transform:scale(calc(1.3 - .3 * var(--p)));will-change:transform}
+/* Schritt 4: der Übergang, hier wird es warm */
+.t1-t{padding-top:clamp(130px,15vw,210px)}
+.t1-s4{text-align:center;max-width:980px;margin:0 auto}
+.t1-ueber{font-size:clamp(34px,4.2vw,62px);color:var(--text);opacity:calc(var(--p) * 1.5 - .2);transform:scale(calc(.9 + .1 * var(--p)))}
+.t1-s4 .kz{justify-content:center;margin-top:clamp(70px,8vw,110px)}
+.t1-s4 .text{margin:24px auto 0;max-width:52ch;font-size:18px}
+/* ab Schritt 5 auf Creme */
+.t1-s5,.t1-s6,.t1-s7{color:var(--dunkel)}
+.t1-s5 .titel,.t1-s6 .titel,.t1-s7 .titel,.gx .t1-s5 h3.titel,.gx .t1-s6 h3.titel,.gx .t1-s7 h3.titel{color:var(--dunkel)}
+.t1-s5 .text,.t1-s6 .text,.t1-s7 .text{color:var(--dunkel2)}
+.t1-s5 .etikett,.t1-s6 .etikett,.t1-s7 .etikett{color:#A07F3A}
+/* Schritt 5: Milk Washing, das Bild wird klar */
+.t1-s5{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(40px,5vw,84px);align-items:end;margin-top:clamp(150px,17vw,240px)}
+.t1-klar{height:min(84vh,800px)}
+.t1-klar .trueb{opacity:calc(1 - var(--p))}
+/* Schritt 6: Fat Washing, das Bild kippt ins Lot */
+.t1-s6{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,5vw,84px);align-items:center;margin-top:clamp(120px,14vw,200px);perspective:1600px}
+.t1-lot{height:min(80vh,740px);transform-origin:100% 50%;transform:rotateY(calc((1 - var(--p)) * -26deg)) translateX(calc((1 - var(--p)) * 40px));will-change:transform}
+.t1-lot .foto{height:100%}
+/* Schritt 7: Enzyme, erst wird gegossen, dann steht der Drink da */
+.t1-s7{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,3vw,44px);align-items:start;margin-top:clamp(120px,14vw,200px)}
+.t1-gross{height:min(86vh,820px);transform:scale(calc(.9 + .1 * var(--p)));transform-origin:50% 100%}
+.t1-rechts{display:flex;flex-direction:column;gap:30px;padding-top:clamp(60px,9vw,140px)}
+.t1-klein{aspect-ratio:4/5;transform:translateY(calc((1 - var(--p)) * 190px));will-change:transform}
+
+/* ============ 02 Frage und Antwort ============ */
+.t2-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:end}
+.t2-kopf .text{font-size:18px;max-width:46ch}
+.t2-s0{margin-top:clamp(70px,8vw,110px);padding-left:clamp(26px,3vw,44px);border-left:1px solid var(--gold)}
+.t2-momo{font-size:clamp(40px,5.4vw,82px);line-height:1.06}
+.t2-s0 small{display:block;margin-top:20px;font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3)}
+.t2-zeile{position:relative;padding-left:clamp(56px,6vw,84px)}
+.t2-zeile::before{content:"";position:absolute;left:0;top:calc(.6em + 34px);width:clamp(36px,4vw,60px);height:1px;background:var(--gold)}
+.t2-stimme{font-size:clamp(36px,4.2vw,62px);line-height:1.08;max-width:22ch}
+.t2-s1,.t2-s2,.t2-s3,.t2-s5,.t2-s6,.t2-s7{margin-top:clamp(120px,14vw,200px)}
+/* Antwort 1: vier Drinks legen sich auf den Tisch */
+.t2-vier{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4vw,56px)}
+.t2-karte{aspect-ratio:3/4;transform:translateY(calc((1 - var(--p)) * (120px + var(--j) * 40px))) rotate(calc((1 - var(--p)) * var(--r)));will-change:transform}
+/* Antwort 2: drei Gläser steigen nacheinander aus ihrem Rahmen, darunter klar, cremig, spritzig */
+.t2-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);margin-top:clamp(36px,4vw,56px)}
+.t2-glas{--t:clamp(0,calc(var(--p) * 2.2 - var(--j) * .55),1)}
+.t2-maske{aspect-ratio:4/5;overflow:hidden;border-radius:var(--rand);box-shadow:var(--schatten);background:var(--nacht2)}
+.t2-maske .foto{height:100%;border-radius:0;box-shadow:none;transform:translateY(calc((1 - var(--t)) * 100%));will-change:transform}
+.t2-glas .titel{margin-top:18px;font-size:clamp(28px,2.8vw,40px);opacity:var(--t)}
+/* Antwort 3: über die Flaschen fahren */
+.t2-s3{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,4vw,64px);align-items:center}
+.t2-s3 .t2-zeile{grid-column:1;grid-row:1}
+.t2-fahrt{grid-column:2;height:min(84vh,780px);overflow:hidden;border-radius:var(--rand);box-shadow:var(--schatten)}
+.t2-fahrt .foto{height:118%;border-radius:0;box-shadow:none;transform:translateY(calc((var(--p) - 1) * 15%)) scale(1.06);will-change:transform}
+/* Übergang */
+.t2-t{padding-top:clamp(130px,15vw,200px)}
+.t2-mitte{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
+.t2-mitte i{height:1px;background:var(--gold);transform:scaleX(var(--p));will-change:transform}
+.t2-mitte i:first-child{transform-origin:right} .t2-mitte i:last-child{transform-origin:left}
+.t2-mitte .titel{font-size:clamp(28px,3.2vw,46px);color:var(--text2)}
+.t2-bkopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:end;margin-top:clamp(70px,8vw,110px)}
+.t2-bkopf .text{font-size:18px;max-width:46ch}
+/* Technik 1: zwei Bilder, das zweite kommt von unten nach */
+.t2-kz{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:end}
+.t2-kz .text{font-size:16px;max-width:46ch;padding-bottom:8px}
+.t2-paar{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(18px,2.4vw,36px);align-items:start;margin-top:clamp(36px,4vw,56px)}
+.t2-p1{aspect-ratio:4/5} .t2-p2{aspect-ratio:4/5;margin-top:clamp(90px,14vw,200px);transform:translateY(calc((1 - var(--p)) * 220px));will-change:transform}
+/* Technik 2: das Bild klappt von oben herunter */
+.t2-s6{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,5vw,80px);align-items:center;perspective:1700px}
+.t2-klapp{height:min(80vh,740px);transform-origin:50% 0;transform:rotateX(calc((1 - var(--p)) * -64deg));opacity:calc(.25 + var(--p));will-change:transform}
+.t2-klapp .foto{height:100%}
+.t2-s6 .text{margin-top:22px;font-size:16px;max-width:46ch;padding-left:clamp(56px,6vw,84px)}
+/* Technik 3: gegossen, eine Linie, im Glas */
+.t2-folge{display:grid;grid-template-columns:minmax(0,1fr) clamp(60px,9vw,140px) minmax(0,1fr);align-items:center;margin-top:clamp(36px,4vw,56px)}
+.t2-f1,.t2-f2{aspect-ratio:4/5}
+.t2-pfeil{height:1px;margin:0 16px;background:var(--gold);transform-origin:left;transform:scaleX(clamp(0,calc(var(--p) * 2 - .5),1))}
+.t2-f2{opacity:clamp(0,calc(var(--p) * 2.4 - 1.2),1);transform:translateY(calc((1 - var(--p)) * 60px))}
+.t2-unter{margin:28px 0 0 auto;max-width:52ch;font-size:16px}
+
+/* ============ 03 Die Wand füllt sich ============ */
+.t3-sek{padding-bottom:0}
+.t3-pin{position:relative;height:460vh}
+.t3-anker{position:absolute;left:0;top:55%;height:45%;width:1px}
+.t3-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-top:76px}
+.t3{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,4.5vw,72px);align-items:center}
+.t3-links{position:relative;height:min(72vh,680px);display:flex;flex-direction:column}
+.t3-texte{position:relative;flex:1}
+.t3-text{position:absolute;left:0;right:0;top:50%;opacity:0;transform:translateY(calc(-50% + 40px));transition:opacity .55s ease,transform .9s var(--k)}
+.t3-text.an{opacity:1;transform:translateY(-50%);transition-delay:.15s}
+.t3-text.war{transform:translateY(calc(-50% - 40px))}
+.t3-gross{font-size:clamp(40px,4.6vw,68px);line-height:1.04}
+.t3-frage{font-size:clamp(32px,3.4vw,50px);line-height:1.1}
+.t3-leise{color:var(--text2)!important;margin-bottom:34px}
+.t3-text .text{margin-top:18px;font-size:16px;max-width:44ch}
+.t3-text .ge-zitat{margin-top:26px;font-size:clamp(18px,1.7vw,22px)}
+.t3-striche{display:flex;gap:8px}
+.t3-striche i{flex:1;max-width:40px;height:2px;background:var(--gold-l);transition:background .5s}
+.t3-striche i.an{background:var(--gold)}
+.t3-wand{height:min(78vh,720px);display:grid;gap:10px;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));
+ grid-template-areas:"a b c" "a d e" "f g h"}
+.t3-kachel{border-radius:var(--rand);overflow:hidden;position:relative}
+.t3-kachel .foto{position:absolute;inset:0;border-radius:0;box-shadow:none;opacity:0;transform:translateY(46px) scale(.9);transition:opacity .7s ease,transform 1.1s cubic-bezier(.2,1.2,.3,1)}
+.t3-kachel.da .foto{opacity:1;transform:none}
+
+/* Schmal: alles untereinander, ohne gepinnte Bühne */
+@media (max-width:760px){
+  .gx [data-p]{--p:1!important}
+  .t1-s1,.t1-s3,.t1-s5,.t1-s6,.t1-s7,.t2-kopf,.t2-s3,.t2-bkopf,.t2-s6,.t3{grid-template-columns:1fr}
+  .t1-schlitz,.t1-zoom,.t1-klar,.t1-lot,.t1-gross{height:auto;aspect-ratio:4/5}
+  .t1-rechts{padding-top:0}
+  .t2-vier{grid-template-columns:1fr 1fr} .t2-kz{grid-template-columns:1fr} .t2-paar{grid-template-columns:1fr 1fr} .t2-p2{margin-top:0}
+  .t2-s3 .t2-zeile,.t2-fahrt{grid-column:auto;grid-row:auto} .t2-fahrt{height:auto;aspect-ratio:4/5} .t2-klapp{height:auto;aspect-ratio:4/5}
+  .t2-zeile{padding-left:0} .t2-zeile::before{display:none} .t2-s6 .text{padding-left:0}
+  .t3-pin{height:auto} .t3-buehne{position:static;height:auto;display:block;padding:0}
+  .t3-links{height:auto} .t3-text{position:static;opacity:1;transform:none;margin-bottom:34px} .t3-striche{display:none}
+  .t3-wand{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:none;grid-template-areas:"a b" "c d" "e f" "g h"} .t3-kachel{aspect-ratio:4/5}
+  .t3-kachel .foto{opacity:1;transform:none}
+}
+
+/* ======================================================================
+   Bausteine der Fäden 04 bis 20 (je Schritt eigene Anordnung und Bewegung über --p)
+   ====================================================================== */
+.bf{padding-bottom:clamp(110px,13vw,180px)}
+.b-weg{position:relative}
+.b{position:relative;z-index:1;margin-top:clamp(120px,14vw,200px)}
+.b-weg > .b:first-child,.b-weg > .b-stueck:first-child + .b{margin-top:0}
+.b-frage{font-size:clamp(38px,4.4vw,66px);line-height:1.06}
+.gx .b-tech{font-size:clamp(36px,4vw,60px);line-height:1.04}
+.b-satz .text{margin-top:18px;font-size:16px;max-width:46ch}
+.b-mittig{text-align:center;max-width:860px;margin:0 auto}
+.b-mittig .text{margin-left:auto;margin-right:auto}
+.foto.b-st,.b-vier .foto,.b-mk .foto,.b-folge .foto,.b-stufen .foto{aspect-ratio:4/5}
+/* zwei Spalten: Bild und Text, Seite wählbar */
+.b-schlitz,.b-fenster,.b-tr,.b-lot,.b-klapp,.b-aufzug,.b-kipp{grid-area:bild;height:min(80vh,760px)}
+.b.s-l,.b.s-r{display:grid;gap:clamp(40px,5vw,84px);align-items:center}
+.b.s-l{grid-template-columns:minmax(0,6fr) minmax(0,5fr);grid-template-areas:"bild satz"}
+.b.s-r{grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-areas:"satz bild"}
+.b.s-l > .b-satz,.b.s-r > .b-satz{grid-area:satz}
+.b-fenster,.b-aufzug{border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten)}
+.b-fenster .foto,.b-auf .foto,.b-lot .foto,.b-klapp .foto,.b-kipp .foto,.b-gegen .foto{height:100%}
+.b-fenster .foto,.b-auf .foto,.b-gegen .foto{border-radius:0;box-shadow:none}
+/* Schlitz: öffnet sich in der Breite */
+.b-schlitz{border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);transform:scaleX(calc(.16 + .84 * var(--p)))}
+.b-gegen{height:100%;transform:scaleX(calc(1 / (.16 + .84 * var(--p))))}
+.b-schlitz + .b-satz,.b-aufzug + .b-satz{opacity:calc(var(--p) * 1.4 - .3)}
+/* Zoom: zieht sich zurück */
+.bs-zoom .b-fenster .foto{transform:scale(calc(1.3 - .3 * var(--p)))}
+/* Fahrt: fährt am Bild hinauf */
+.bs-fahrt .b-fenster .foto{height:118%;transform:translateY(calc((var(--p) - 1) * 15%))}
+/* Wort für Wort: das Bild hellt mit auf */
+.bs-wortweise .b-fenster .foto{opacity:calc(.25 + .75 * var(--p))}
+/* Trüb: wird klar */
+.b-tr .trueb{opacity:calc(1 - var(--p))}
+/* Lot: dreht sich gerade */
+.b-lot{perspective:1600px} .b-lot .foto{transform-origin:0 50%;transform:perspective(1600px) rotateY(calc((1 - var(--p)) * 28deg))}
+.s-r > .b-lot .foto{transform-origin:100% 50%;transform:perspective(1600px) rotateY(calc((1 - var(--p)) * -28deg))}
+/* Klappe: fällt von oben herunter */
+.b-klapp .foto{transform-origin:50% 0;transform:perspective(1700px) rotateX(calc((1 - var(--p)) * -66deg));opacity:calc(.25 + var(--p))}
+/* Aufzug: von unten aufgedeckt */
+.b-auf{height:100%;transform:translateY(calc((1 - var(--p)) * 100%))}
+.b-auf .foto{transform:translateY(calc((1 - var(--p)) * -100%))}
+/* Kippen: setzt sich wie ein abgestellter Abzug */
+.b-kipp .foto{transform-origin:0 100%;transform:translateY(calc((1 - var(--p)) * 90px)) rotate(calc((1 - var(--p)) * -6deg))}
+/* Wachsen */
+.b-wachs{width:min(560px,80vw);margin:clamp(36px,4vw,56px) auto 0}
+.b-wachs .foto{aspect-ratio:4/5;transform:scale(calc(.74 + .26 * var(--p)));opacity:calc(.2 + var(--p))}
+/* Drei steigen */
+.b-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4vw,56px)}
+.b-st:nth-child(1){--v:90px} .b-st:nth-child(2){--v:200px} .b-st:nth-child(3){--v:310px}
+.b-st{transform:translateY(calc((1 - var(--p)) * var(--v)))}
+/* Vier Karten */
+.b-vier{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4vw,56px)}
+.b-karte{transform:translateY(calc((1 - var(--p)) * (120px + var(--i) * 40px))) rotate(calc((1 - var(--p)) * var(--r)))}
+/* Drei Masken */
+.bs-masken3 .b-drei{gap:clamp(18px,2.4vw,36px)}
+.b-mk{--t:clamp(0,calc(var(--p) * 2.2 - var(--i) * .55),1)}
+.b-maske{aspect-ratio:4/5;overflow:hidden;border-radius:var(--rand);box-shadow:var(--schatten);background:var(--nacht2)}
+.b-maske .foto{height:100%;border-radius:0;box-shadow:none;transform:translateY(calc((1 - var(--t)) * 100%))}
+.b-mk .titel{margin-top:16px;font-size:clamp(26px,2.6vw,38px);opacity:var(--t)}
+/* Paar */
+.b-kz{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:end}
+.b-kz .text{margin:0;padding-bottom:8px}
+.b-kz > .etikett{grid-column:1/-1;margin-bottom:-10px}
+.b-paar{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(18px,2.4vw,36px);align-items:start;margin-top:clamp(36px,4vw,56px)}
+.b-p1,.b-p2{aspect-ratio:4/5} .b-p2{margin-top:clamp(90px,14vw,200px);transform:translateY(calc((1 - var(--p)) * 220px))}
+/* Folge */
+.b-folge{display:grid;grid-template-columns:minmax(0,1fr) clamp(60px,9vw,140px) minmax(0,1fr);align-items:center;margin-top:clamp(36px,4vw,56px)}
+.b-strich{height:1px;margin:0 16px;background:var(--gold);transform-origin:left;transform:scaleX(clamp(0,calc(var(--p) * 2 - .5),1))}
+.b-f2{opacity:clamp(0,calc(var(--p) * 2.4 - 1.2),1);transform:translateY(calc((1 - var(--p)) * 60px))}
+/* Nachkommen */
+.bs-nachkommen{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,3vw,44px);align-items:start}
+.b-gross{height:min(86vh,820px);transform:scale(calc(.9 + .1 * var(--p)));transform-origin:50% 100%}
+.b-rechts{display:flex;flex-direction:column;gap:30px;padding-top:clamp(60px,9vw,140px)}
+.b-klein{aspect-ratio:4/5;transform:translateY(calc((1 - var(--p)) * 190px))}
+/* Stufen */
+.b-stufen-wrap{display:contents}
+.b-stufen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(36px,4vw,56px)}
+.b-su:nth-child(2){margin-top:clamp(50px,7vw,100px)} .b-su:nth-child(3){margin-top:clamp(100px,14vw,200px)}
+.b-su{transform:translateY(calc((1 - var(--p)) * 140px)) scale(calc(.9 + .1 * var(--p)))}
+/* Band */
+.b-band{overflow:hidden;margin-top:clamp(36px,4vw,56px);border-radius:var(--rand)}
+.b-bandzug{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;width:112%;transform:translateX(calc((var(--p) - 1) * 10.7%))}
+.b-bandzug .foto{aspect-ratio:3/4;border-radius:4px;box-shadow:none}
+/* Anfang und Wende */
+.bs-kopf-mitte,.bs-wende-mitte{text-align:center;max-width:980px;margin-left:auto;margin-right:auto}
+.bs-kopf-mitte .kz,.bs-wende-mitte .kz{justify-content:center}
+.bs-kopf-mitte .text,.bs-wende-mitte .text{margin:24px auto 0;max-width:52ch;font-size:18px}
+.bs-kopf-mitte .ge-zitat{margin:40px auto 0;padding:0;border:0;max-width:30ch;font-size:clamp(24px,2.6vw,34px);color:var(--text)}
+.bs-kopf-links{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:end}
+.bs-kopf-links .text{margin-top:22px;font-size:18px;max-width:46ch}
+.bs-kopf-links .ge-zitat{margin:0;font-size:clamp(22px,2.4vw,32px);color:var(--text)}
+.bs-kopf-bild,.bs-wende-bild{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(40px,5vw,84px);align-items:center}
+.bs-wende-bild{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.b-rahmen{height:min(80vh,740px)} .b-rahmen .foto{height:100%;transform:translateY(calc((1 - var(--p)) * 60px))}
+.bs-kopf-bild .text,.bs-wende-bild .text{margin-top:20px;font-size:17px;max-width:46ch}
+.bs-kopf-bild .ge-zitat{margin-top:34px}
+.b-ueber{font-size:clamp(32px,3.8vw,56px);color:var(--text2);margin-bottom:clamp(50px,6vw,90px);opacity:calc(var(--p) * 1.5 - .2)}
+.b-linien{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:center}
+.b-linien i{height:1px;background:var(--gold);transform:scaleX(var(--p))} .b-linien i:first-child{transform-origin:right} .b-linien i:last-child{transform-origin:left}
+.b-linien .b-ueber{margin:0;font-size:clamp(26px,3vw,44px)}
+.b-wkopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:end;margin-top:clamp(60px,7vw,100px)}
+.b-wkopf .text,.bs-wende-mitte .text{font-size:18px;max-width:48ch}
+.b-teil{display:block}
+
+/* Faden 04: Momos Satz in Stücken */
+.b-stueck{margin-top:clamp(130px,15vw,210px)}
+.b-stueck + .b{margin-top:clamp(50px,6vw,90px)}
+.b-stueck .titel{font-size:clamp(56px,8.4vw,136px);line-height:1;color:var(--text)}
+.b-stueck span{display:inline-block;margin-right:.24em;opacity:clamp(0,calc(var(--p) * 3 - var(--w) * .6),1);transform:translateY(calc((1 - var(--p)) * (50px + var(--w) * 30px)))}
+/* Faden 05: der Pegel */
+.b-pegel{position:sticky;top:34vh;height:0;z-index:5;pointer-events:none}
+.b-pegel-in{position:absolute;left:clamp(14px,2vw,36px);top:0;width:120px}
+.b-pegel .etikett{display:block;writing-mode:vertical-rl;transform:rotate(180deg);height:13em;margin:0 0 14px;opacity:.85}
+.b-roehre{width:3px;height:30vh;border-radius:3px;background:var(--gold-ll);overflow:hidden}
+.b-roehre i{display:block;height:100%;background:var(--gold);transform-origin:50% 100%;transform:scaleY(var(--pg,0))}
+/* Faden 06: immer näher, jeder Schritt grösser */
+.f-naeher .b-fenster,.f-naeher .b-kipp,.f-naeher .b-lot,.f-naeher .b-aufzug,.f-naeher .b-rahmen{height:min(calc(44vh + var(--k) * 6vh),88vh)}
+.f-naeher .b-wachs{width:min(760px,86vw)}
+/* Faden 07: Bänder hell und dunkel */
+.f-baender .b{isolation:isolate;margin-top:0;padding:clamp(100px,11vw,160px) 0}
+.f-baender .b::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1;background:var(--nacht)}
+.f-baender .b.hellband::before{background:var(--creme)}
+.f-baender .b.hellband,.gx.f-baender .hellband p.titel,.gx.f-baender .hellband h3.titel,.f-baender .hellband .t-gross,.f-baender .hellband .ge-zitat{color:var(--dunkel)}
+.f-baender .hellband .text{color:var(--dunkel2)} .f-baender .hellband .etikett{color:#A07F3A} .f-baender .hellband .b-ueber{color:var(--dunkel2)}
+.f-baender{padding-bottom:0}
+/* Faden 08: die Treppe */
+.f-treppe .b{margin-left:var(--tl,0%)}
+/* Faden 16: Schlagworte dahinter */
+.gx p.b-wort{position:relative;z-index:0;height:0;margin:clamp(120px,14vw,200px) 0 0;overflow:visible;white-space:nowrap;text-wrap:nowrap;font-size:clamp(150px,19vw,300px);line-height:.8;
+ color:transparent;-webkit-text-stroke:1.2px rgba(216,178,100,.45);transform:translateX(calc((1 - var(--p)) * 26vw - 6vw));pointer-events:none}
+.f-worte .b-wort + .b{margin-top:0}
+.f-worte .b-weg > .b-wort:first-child{margin-top:0}
+.f-worte{overflow:hidden}
+/* Faden 18: Magazin mit Kopfzeile */
+.b-kopfzeile{position:sticky;top:0;height:0;z-index:6}
+.b-kopfzeile span{position:absolute;left:0;right:0;top:18px;margin:0 auto;width:max-content;padding:8px 16px;border-radius:999px;background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-l);
+ font:500 10.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.f-magazin .b{padding-top:30px;border-top:1px solid var(--gold-l)}
+.f-magazin .b-weg > .b:first-child{border-top:0;padding-top:0}
+/* Faden 19: Wand an Wand, von Rand zu Rand */
+.f-wand .b-weg{width:calc(100vw - 32px)}
+.f-wand .foto,.f-wand .b-fenster,.f-wand .b-aufzug,.f-wand .b-schlitz,.f-wand .b-maske{border-radius:3px}
+.f-wand .b-drei,.f-wand .b-vier,.f-wand .b-paar{gap:4px}
+.f-wand .b{margin-top:0;padding:clamp(70px,8vw,110px) 0;border-top:1px solid var(--gold-l)}
+.f-wand .b-weg > .b:first-child{border-top:0}
+.f-wand .b-satz,.f-wand .b-kz,.f-wand .bs-kopf-links,.f-wand .bs-wende-mitte{padding:0 clamp(16px,6vw,110px)}
+.f-wand .b-band{border-radius:0}
+/* Faden 20: Zoom-Kette */
+.f-zoomkette .b .foto img{transform:scale(calc(1.45 - .45 * var(--p)))}
+
+/* ======================================================================
+   Stehende Bühnen (09 bis 15, 17): --d = Abstand zum aktuellen Schritt
+   ====================================================================== */
+.pf{padding-bottom:0}
+[data-s]{--d:0;--a:0}
+.p-pin{position:relative;height:calc(100vh + (var(--n) - 1) * 52vh)}
+.p-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-top:72px;overflow:hidden}
+.p-raster{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,4.5vw,72px);align-items:center}
+.p-links{position:relative;height:min(72vh,680px)}
+.p-rechts{position:relative;height:min(76vh,700px)}
+.p-text{position:absolute;left:0;right:0;top:50%;opacity:0;transform:translateY(calc(-50% + 40px));transition:opacity .55s ease,transform .9s var(--k)}
+.p-text.an{opacity:1;transform:translateY(-50%);transition-delay:.12s}
+.p-text.war{transform:translateY(calc(-50% - 40px))}
+.p-gross{font-size:clamp(40px,4.6vw,68px);line-height:1.04}
+.p-leise{font-size:clamp(28px,3vw,42px);color:var(--text2)!important;margin-bottom:30px}
+.p-text .text{margin-top:18px;font-size:16px;max-width:46ch}
+.p-text .ge-zitat{margin-top:26px;font-size:clamp(18px,1.7vw,22px)}
+.p-text .b-frage{font-size:clamp(32px,3.4vw,50px);line-height:1.1}
+.p-text .b-tech{font-size:clamp(32px,3.4vw,50px)!important}
+/* 09 Satz in der Mitte */
+.f-mitte .p-raster{display:block;position:static}
+.f-mitte .p-links{width:min(560px,44vw);margin:0 auto;text-align:center;z-index:2}
+.f-mitte .p-text .text,.f-mitte .p-text .ge-zitat{margin-left:auto;margin-right:auto}
+.f-mitte .p-text .ge-zitat{padding:0;border:0}
+.f-mitte .kz{justify-content:center}
+.f-mitte .p-rechts{position:absolute;inset:0;height:auto;z-index:1}
+.m-paar{position:absolute;inset:0}
+.m-l,.m-r{position:absolute;aspect-ratio:4/5}
+.m-l{left:4vw;top:46%;width:min(22vw,320px);transform:translateY(calc(-50% + var(--d) * -92vh))}
+.m-r{right:4vw;top:58%;width:min(18vw,260px);transform:translateY(calc(-50% + var(--d) * -128vh))}
+.m-paar:nth-child(even) .m-l{top:60%;width:min(18vw,260px)} .m-paar:nth-child(even) .m-r{top:42%;width:min(22vw,320px)}
+/* 10 Wendekarte */
+.w-karte{position:relative;height:100%;perspective:2000px}
+.w-seite{position:absolute;top:0;bottom:0;left:0;right:0;margin:0 auto;height:100%;aspect-ratio:4/5;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+ --w:calc(clamp(-90deg,calc((var(--d) - .3) * -450deg),0deg) + clamp(0deg,calc((var(--d) + .3) * -450deg),90deg));transform:rotateY(var(--w))}
+.w-seite:nth-child(even){transform:rotateX(calc(var(--w) * -1))}
+.w-seite:not(.an){visibility:hidden}
+.w-seite .foto{height:100%}
+/* 11 Stapel */
+.s-stapel{position:relative;height:100%}
+.s-abzug{position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;height:100%;aspect-ratio:4/5;z-index:calc(20 - var(--j));
+ transform:translate(calc(clamp(0,var(--d),1) * var(--x)),calc(clamp(0,var(--d),1) * -118vh)) rotate(calc(var(--r) + clamp(0,var(--d),1) * var(--w)))}
+.s-abzug .foto{height:100%;box-shadow:0 26px 50px -20px rgba(0,0,0,.85)}
+/* 12 Reihe */
+.r2-buehne{flex-direction:column;justify-content:center;gap:clamp(26px,4vh,44px)}
+.r2-reihe{position:relative;width:100%;height:min(50vh,460px);flex:0 0 auto}
+.r2-bild{position:absolute;left:50%;top:0;height:100%;aspect-ratio:4/5;transform:translateX(calc(-50% + var(--d) * -1 * min(30vw,420px))) scale(calc(1 - .4 * var(--a)));opacity:calc(1 - .45 * var(--a))}
+.r2-bild .foto{height:100%}
+.r2-texte{position:relative;height:min(30vh,260px)}
+.r2-texte .p-text{top:0;transform:translateY(30px);text-align:center}
+.r2-texte .p-text.an{transform:none} .r2-texte .p-text.war{transform:translateY(-30px)}
+.r2-texte .p-text .text,.r2-texte .ge-zitat{margin-left:auto;margin-right:auto}
+.r2-texte .kz{justify-content:center}
+.r2-texte .p-gross{font-size:clamp(32px,3.4vw,50px)} .r2-texte .p-text .b-frage{font-size:clamp(28px,2.8vw,42px)}
+.r2-texte .ge-zitat{display:none} .r2-texte .p-leise{margin-bottom:12px;font-size:clamp(22px,2.2vw,30px)}
+/* 13 Paternoster */
+.pa-schacht{display:grid;grid-template-columns:1fr 1fr;gap:12px;height:100%;overflow:hidden;border-radius:var(--rand)}
+.pa-spalte{position:relative}
+.pa-bild{position:absolute;left:0;right:0;top:50%;aspect-ratio:4/5}
+.pa-hoch .pa-bild{transform:translateY(calc(-50% + var(--d) * -104%))}
+.pa-runter .pa-bild{transform:translateY(calc(-50% + var(--d) * 104%))}
+.pa-bild .foto{height:100%;box-shadow:none}
+/* 14 Quer durch die Bar */
+.qb-buehne{align-items:center}
+.qb-zug{display:flex;align-items:center;gap:clamp(60px,7vw,120px);padding:0 calc((100vw - var(--innen)) / 2);will-change:transform}
+.qb{flex:0 0 auto;display:grid;grid-template-columns:auto auto;gap:clamp(20px,2.4vw,36px);align-items:end}
+.qb2{grid-template-columns:auto}
+.qb .foto{height:min(62vh,580px);aspect-ratio:4/5}
+.qb .foto img{transform:translateX(calc(var(--d) * 6%)) scale(1.14)}
+.qb-bilder{display:flex;gap:12px;align-items:flex-end}
+.qb-text{width:min(440px,34vw)} .qb-text .text{margin-top:16px;font-size:15.5px}
+.qb-text .b-frage,.qb-text .b-tech{font-size:clamp(28px,3vw,44px)!important} .qb-text .p-gross{font-size:clamp(36px,4vw,58px)}
+.qb1 .foto:nth-child(2){height:min(44vh,400px)}
+.qb2 .foto{height:min(44vh,400px)} .qb2 .qb-text{order:-1}
+.qb4 .qb-text{width:min(560px,42vw)} .qb4 .foto{height:min(46vh,420px)} .qb4{grid-template-columns:auto auto}
+.qb5 .foto:nth-child(2){margin-bottom:60px} .qb7 .foto:nth-child(2){height:min(46vh,420px)}
+/* 15 Heft */
+.hb-buehne{justify-content:center}
+.hb-heft{position:relative;width:min(1120px,92vw);height:min(72vh,620px);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:100%;perspective:2600px}
+.hb-links,.hb-rechts{min-height:0;overflow:hidden}
+.hb-links .p-gross{font-size:clamp(34px,3.6vw,52px)}
+.hb-heft::after{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:1px;background:rgba(160,127,58,.4);z-index:60;pointer-events:none}
+.hb-links,.hb-vorn{background:var(--creme);color:var(--dunkel);padding:clamp(28px,3.6vw,56px);display:flex;flex-direction:column;justify-content:center}
+.hb-links{border-radius:var(--rand-g) 0 0 var(--rand-g);box-shadow:var(--schatten)}
+.hb-rechts{border-radius:0 var(--rand-g) var(--rand-g) 0;box-shadow:var(--schatten);background:var(--creme);padding:clamp(14px,1.6vw,22px)}
+.hb-rechts .foto,.hb-hinten .foto{height:100%;border-radius:8px}
+.hb-heft .titel,.gx .hb-heft p.titel,.gx .hb-heft h3.titel{color:var(--dunkel)} .hb-heft .text,.hb-heft .kz .was{color:var(--dunkel2)} .hb-heft .etikett{color:#A07F3A}
+.hb-heft .ge-zitat{color:var(--dunkel2);border-color:rgba(160,127,58,.4)} .hb-heft .p-leise{color:var(--dunkel2)!important}
+.hb-links .text{margin-top:16px;font-size:15.5px} .hb-links .ge-zitat{margin-top:22px;font-size:19px}
+.hb-blatt{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:0 50%;transform-style:preserve-3d;z-index:calc(20 - var(--j));
+ transform:rotateY(calc(clamp(0,calc((var(--d) - .1) * 1.25),1) * -180deg))}
+.hb-blatt.war{z-index:calc(30 + var(--j))}
+.hb-vorn,.hb-hinten{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.hb-vorn{border-radius:0 var(--rand-g) var(--rand-g) 0;box-shadow:inset 1px 0 0 rgba(160,127,58,.25)}
+.hb-vorn .text{margin-top:14px;font-size:15.5px}
+.hb-hinten{transform:rotateY(180deg);border-radius:var(--rand-g) 0 0 var(--rand-g);background:var(--creme);padding:clamp(14px,1.6vw,22px)}
+/* 17 Ein Bild, viele Blicke */
+.bb-rahmen{position:relative;height:100%;overflow:hidden;border-radius:var(--rand);box-shadow:var(--schatten);background:var(--nacht2)}
+.bb-lage{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.bb-lage.an{opacity:1}
+.bb-lage .foto{height:100%;border-radius:0;box-shadow:none;transform-origin:var(--ox,50%) var(--oy,50%);transform:scale(var(--sc,1));transition:transform 1.6s var(--k),transform-origin 1.6s var(--k)}
+
+@media (max-width:760px){
+  .b.s-l,.b.s-r{grid-template-columns:1fr;grid-template-areas:"bild" "satz"}
+  .b-schlitz,.b-fenster,.b-tr,.b-lot,.b-klapp,.b-aufzug,.b-kipp,.b-rahmen,.b-gross{height:auto!important;aspect-ratio:4/5}
+  .b-kz,.bs-kopf-links,.bs-kopf-bild,.bs-wende-bild,.b-wkopf,.bs-nachkommen{grid-template-columns:1fr}
+  .b-vier{grid-template-columns:1fr 1fr} .b-rechts{padding-top:0} .b-su{margin-top:0!important}
+  .f-treppe .b{margin-left:0} .b-pegel{display:none} .gx p.b-wort{display:none}
+  .p-pin,.qb-pin{height:auto!important} .p-buehne{position:static;height:auto;display:block;padding:0;overflow:visible}
+  .p-raster{grid-template-columns:1fr} .p-links,.p-rechts{height:auto} .p-text{position:static;opacity:1;transform:none!important;margin-bottom:40px}
+  .p-rechts{display:none} .r2-reihe,.qb-zug .foto img{display:block} .r2-reihe{display:none} .r2-texte{height:auto}
+  .qb-zug{flex-direction:column;align-items:stretch;padding:0 16px;transform:none!important} .qb{grid-template-columns:1fr!important} .qb .foto{height:auto;width:100%} .qb-text{width:auto}
+  .hb-heft{display:block;height:auto;width:auto} .hb-blatt{position:relative;left:0;width:auto;height:auto;transform:none!important;margin-top:16px} .hb-vorn,.hb-hinten{position:relative;transform:none}
+  .hb-hinten .foto,.hb-rechts .foto{aspect-ratio:4/5} .hb-heft::after{display:none}
+}

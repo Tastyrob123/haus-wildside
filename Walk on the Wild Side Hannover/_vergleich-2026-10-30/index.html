@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wild Side · Kundenwünsche vorher/nachher</title>
+<style>
+:root{--grund:#130E0D;--platte:#1E1716;--text:#F1E9DC;--text2:#B9AC9B;--gold:#C9A65A;--rot:#D9413A;--gruen:#7FB07A;--linie:rgba(201,166,90,.25)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--grund);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;padding:0 16px 120px}
+.innen{max-width:1500px;margin:0 auto}
+header{padding:56px 0 28px;border-bottom:1px solid var(--linie);margin-bottom:28px}
+h1{font:400 clamp(40px,6vw,84px)/1 Georgia,serif;letter-spacing:-.01em}
+header p{color:var(--text2);max-width:70ch;margin-top:16px;font-size:18px}
+.liste{display:grid;gap:8px;margin:24px 0 8px}
+.liste a{display:flex;gap:14px;align-items:baseline;color:var(--text);text-decoration:none;padding:10px 14px;background:var(--platte);border-radius:6px}
+.liste a:hover{outline:1px solid var(--gold)}
+.marke{font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.ok{background:rgba(127,176,122,.16);color:var(--gruen)} .offen{background:rgba(217,65,58,.16);color:#F08A84}
+section{padding:56px 0;border-bottom:1px solid var(--linie)}
+.kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:32px;align-items:start;margin-bottom:28px}
+h2{font:400 clamp(30px,3.4vw,46px)/1.05 Georgia,serif;margin:10px 0 12px}
+.wunsch{color:var(--text2);font-size:17px}
+.wunsch b{color:var(--text);font-weight:500}
+.notiz img{width:100%;border-radius:6px;display:block;cursor:zoom-in}
+.notiz small{display:block;color:var(--text2);font-size:13px;margin-top:6px}
+.paar{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.paar figure{background:var(--platte);border-radius:8px;overflow:hidden}
+.paar figcaption{padding:10px 14px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--text2)}
+.paar figure:last-child figcaption{color:var(--gold)}
+.paar img{width:100%;display:block;cursor:zoom-in}
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:15.5px}
+th{text-align:left;font-weight:500;color:var(--text2);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:0 12px 10px}
+td{vertical-align:top;padding:12px;border-top:1px solid var(--linie)}
+td:first-child{color:var(--text2);width:18%}
+del{color:#E8908A;text-decoration-color:rgba(232,144,138,.6)} ins{color:#A9D6A3;text-decoration:none;background:rgba(127,176,122,.12);border-radius:3px;padding:0 2px}
+.drei{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.drei figure{background:var(--platte);border-radius:8px;overflow:hidden}
+.drei img{width:100%;display:block;cursor:zoom-in}
+.drei figcaption{padding:12px 14px;color:var(--text2);font-size:15px}
+.gross{position:fixed;inset:0;background:rgba(10,7,6,.94);display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:24px;z-index:9;cursor:zoom-out}
+.gross.an{display:flex} .gross img{max-width:min(1440px,100%);height:auto}
+@media (max-width:900px){.kopf,.paar,.drei{grid-template-columns:1fr} td:first-child{width:auto}}
+</style></head><body><div class="innen">
+<header>
+<h1>Vorher, nachher.</h1>
+<p>Die Wünsche der Bar aus dem PDF «Web Side» und den WhatsApp-Nachrichten vom 30.10.2026, je Stelle der alte und der neue Stand. Ein Klick auf ein Bild zeigt es gross.</p>
+<div class="liste">
+<a href="#w1"><span class="marke ok">umgesetzt</span>Bildwand «Eure Nachbarschafts-Mixology-Bar»: weniger Bilder, ruhiger</a>
+<a href="#w2"><span class="marke ok">umgesetzt</span>Jahre: 2017 raus, seit 2018 Momo mit der Probierbar, dann Wild Side, dazu Stadtfeste</a>
+<a href="#w3"><span class="marke ok">umgesetzt</span>Live-Musik: neues Bild der Sängerin</a>
+<a href="#w4"><span class="marke ok">umgesetzt</span>Ab 30 Personen buchbar, individuell gestaltet; Hochzeiten mit Party</a>
+<a href="#w5"><span class="marke ok">umgesetzt</span>Weitere Stellen mit 2017 auf der Seite (Laufband, Text, Haus-Seite)</a>
+<a href="#w6"><span class="marke offen">offen</span>Drei Punkte zur Culinarium-Seite</a>
+</div>
+</header>
+
+<section id="w1"><div class="kopf"><div><span class="marke ok">umgesetzt</span><h2>Bildwand an der Ecke</h2>
+<p class="wunsch">Wunsch der Bar: <b>«layout eventuell etwas cleaner, zu viele Bilder»</b>.<br>Vorher vierzehn Bilder rund um das Schild, jetzt nur noch eines links und eines rechts. Text und Schild bleiben, nur der Satz zu 2017 ist raus (siehe unten).</p></div>
+<div class="notiz"><img src="bilder/kunde-5.jpg" alt="Notiz der Bar, PDF Seite 5"><small>PDF Seite 5</small></div></div>
+<div class="paar"><figure><figcaption>Vorher</figcaption><img src="bilder/bildwand-vorher.jpg" alt=""></figure><figure><figcaption>Nachher</figcaption><img src="bilder/bildwand-nachher.jpg" alt=""></figure></div>
+</section>
+
+<section id="w2"><div class="kopf"><div><span class="marke ok">umgesetzt</span><h2>Die Jahre</h2>
+<p class="wunsch">Wunsch der Bar: <b>«bitte diese Info rausnehmen, lieber drauf verweisen seit 2018: Momo ist bereits präsent in Linden mit probierbar, danach gemeinsames ‹Baby› Wild Side. Stadtfeste wie Christi Limmerfahrt, Südstadtfest etc. mit gastronomischen Geschäftspartnern.»</b></p></div>
+<div class="notiz"><img src="bilder/kunde-8.jpg" alt="Notiz der Bar, PDF Seite 8"><small>PDF Seite 8</small></div></div>
+<div class="paar"><figure><figcaption>Vorher</figcaption><img src="bilder/jahre-vorher.jpg" alt=""></figure><figure><figcaption>Nachher</figcaption><img src="bilder/jahre-nachher.jpg" alt=""></figure></div>
+<table><tr><th>Stelle</th><th>Vorher</th><th>Nachher</th></tr>
+<tr><td>Überschrift</td><td>Seit <del>2017</del> in Linden.</td><td>Seit <ins>2018</ins> in Linden.</td></tr>
+<tr><td>Erstes Jahr</td><td><del>2017 · Eröffnung: Ende Oktober 2017 öffnen Christoph Elbert und Verena Schindler vom Restaurant 11A gegenüber die Bar und hängen das Gewölbe an die Decke. Freitag und Samstag ab 19 Uhr, dazu private Dinner an der langen Tafel.</del></td><td><ins>2018 · In Linden: Seit 2018 ist Momo in Linden zu Hause, zuerst mit der Probierbar an der Limmerstraße. Danach kommt das gemeinsame Baby von Derya und Momo: das Wild Side.</ins></td></tr>
+<tr><td>2023</td><td>… Seitdem heisst es Nachbarschafts-Mixology-Bar.</td><td>… Seitdem heisst es Nachbarschafts-Mixology-Bar. <ins>Dazu Stadtfeste wie die Christi Limmerfahrt und das Südstadtfest, mit Partnern aus der Gastronomie.</ins></td></tr>
+</table></section>
+
+<section id="w3"><div class="kopf"><div><span class="marke ok">umgesetzt</span><h2>Live-Musik</h2>
+<p class="wunsch">Wunsch der Bar: <b>«Bild anpassen :)»</b> beim rechten Bild unter dem Plakat, dazu das Foto der Sängerin aus dem PDF (Seite 7). Nur dieses eine Bild ist getauscht.</p></div>
+<div class="notiz"><img src="bilder/kunde-6.jpg" alt="Notiz der Bar, PDF Seite 6"><small>PDF Seite 6, Foto auf Seite 7</small></div></div>
+<div class="paar"><figure><figcaption>Vorher</figcaption><img src="bilder/live-vorher.jpg" alt=""></figure><figure><figcaption>Nachher</figcaption><img src="bilder/live-nachher.jpg" alt=""></figure></div>
+</section>
+
+<section id="w4"><div class="kopf"><div><span class="marke ok">umgesetzt</span><h2>Ab 30 Personen, Hochzeiten</h2>
+<p class="wunsch">Wunsch der Bar: <b>«dass wir buchbar sind ab 30P für geschlossene Veranstaltungen. Diese können dann wie auf dem Angebot individuell gestaltet werden.»</b> und <b>«wir richten auch Hochzeiten aus, mit Partys»</b>.<br>Auf der Startseite bei der langen Tafel, dazu auf der Feiern-Seite bei «Die ganze Bar».</p></div>
+<div class="notiz"><img src="bilder/kunde-whatsapp.png" alt="WhatsApp der Bar"><small>WhatsApp, 30.10.2026, 17:26</small></div></div>
+<div class="paar"><figure><figcaption>Vorher · Startseite</figcaption><img src="bilder/tafel-vorher.jpg" alt=""></figure><figure><figcaption>Nachher · Startseite</figcaption><img src="bilder/tafel-nachher.jpg" alt=""></figure></div>
+<table><tr><th>Stelle</th><th>Vorher</th><th>Nachher</th></tr>
+<tr><td>Startseite, «Für wen»</td><td>Zehn bis zwanzig Gäste an der Tafel<del>, ab dreissig die ganze Bar</del>.</td><td>Zehn bis zwanzig Gäste an der Tafel.</td></tr>
+<tr><td>Startseite, neu</td><td>–</td><td><ins>Ab 30 Personen: Die ganze Bar für geschlossene Veranstaltungen, individuell gestaltet wie im Angebot.</ins></td></tr>
+<tr><td>Startseite, neu</td><td>–</td><td><ins>Hochzeiten: Wir richten auch eure Hochzeit aus, mit Party.</ins></td></tr>
+<tr><td>Feiern-Seite, «Die ganze Bar»</td><td>Für Geburtstag, Firmenfeier, Weihnachtsfeier oder ein Gastro-Event, <del>mit eurer eigenen Atmosphäre</del>.</td><td>Für <ins>Hochzeit mit Party,</ins> Geburtstag, Firmenfeier, Weihnachtsfeier oder ein Gastro-Event, <ins>jeder Abend individuell gestaltet</ins>.</td></tr>
+</table>
+<div class="paar" style="margin-top:22px"><figure><figcaption>Vorher · Feiern-Seite</figcaption><img src="bilder/feiern-bar-vorher.jpg" alt=""></figure><figure><figcaption>Nachher · Feiern-Seite</figcaption><img src="bilder/feiern-bar-nachher.jpg" alt=""></figure></div>
+</section>
+
+<section id="w5"><div class="kopf"><div><span class="marke ok">umgesetzt</span><h2>Weitere Stellen mit 2017</h2>
+<p class="wunsch">Damit die Eröffnung 2017 nirgends mehr auftaucht, sind dieselben Angaben auch an diesen Stellen raus.</p></div></div>
+<table><tr><th>Stelle</th><th>Vorher</th><th>Nachher</th></tr>
+<tr><td>Laufband am Fuss der Startseite</td><td><del>Seit 2017 unter dieser Decke</del></td><td><ins>Momo seit 2018 in Linden</ins></td></tr>
+<tr><td>Text im Schild der Bildwand</td><td>… <del>Seit 2017 unter dieser Decke, seit</del> November 2023 mit Derya und Momo hinter der Theke.</td><td>… <ins>Seit</ins> November 2023 mit Derya und Momo hinter der Theke.</td></tr>
+<tr><td>Haus-Seite, Raum</td><td>Die Decke: ein Gewölbe als Druck über dem ganzen Raum, blau und silbern angeleuchtet. <del>Seit 2017 hängt es dort.</del></td><td>Die Decke: ein Gewölbe als Druck über dem ganzen Raum, blau und silbern angeleuchtet.</td></tr>
+<tr><td>Haus-Seite, Jahre</td><td><del>2017: Ende Oktober eröffnen Christoph Elbert und Verena Schindler …</del><br><del>2018: Henrike Hollander leitet die Bar, die Karte wechselt wöchentlich. In der DJ-Kabine steht die Plattensammlung von Wolfgang Besemer.</del></td><td><ins>2018: Momo ist in Linden zu Hause, zuerst mit der Probierbar an der Limmerstraße. Danach kommt das gemeinsame Baby von Derya und Momo: das Wild Side.</ins></td></tr>
+<tr><td>Haus-Seite, 2023</td><td>… seitdem Nachbarschafts-Mixology-Bar ohne Karte.</td><td>… seitdem Nachbarschafts-Mixology-Bar ohne Karte. <ins>Dazu Stadtfeste wie die Christi Limmerfahrt und das Südstadtfest, mit Partnern aus der Gastronomie.</ins></td></tr>
+<tr><td>Haus-Seite, Zeile über den Jahren</td><td>Seit <del>2017</del> · Die Jahre</td><td>Seit <ins>2018</ins> · Die Jahre</td></tr>
+</table>
+<div class="paar" style="margin-top:22px"><figure><figcaption>Vorher · Haus-Seite</figcaption><img src="bilder/haus-jahre-vorher.jpg" alt=""></figure><figure><figcaption>Nachher · Haus-Seite</figcaption><img src="bilder/haus-jahre-nachher.jpg" alt=""></figure></div>
+</section>
+
+<section id="w6"><div class="kopf"><div><span class="marke offen">offen</span><h2>Culinarium-Seite</h2>
+<p class="wunsch">Diese drei Notizen im PDF gehören zur Culinarium-Seite, nicht zur Wild-Side-Seite. Dort ist noch nichts geändert.</p></div></div>
+<div class="drei">
+<figure><img src="bilder/kunde-1.jpg" alt=""><figcaption><b>Seite 1:</b> Wild-Side-Logo auf der Culinarium-Startseite durch den Schriftzug «Walk on the Wild Side» ersetzen.</figcaption></figure>
+<figure><img src="bilder/kunde-2.jpg" alt=""><figcaption><b>Seite 2 und 3:</b> Bild bei «Das erste Glas.» tauschen, gerne gegen eines der beiden Fotos auf Seite 3.</figcaption></figure>
+<figure><img src="bilder/kunde-4.jpg" alt=""><figcaption><b>Seite 4:</b> «Tasting und Schulung» macht eher Momo, gegebenenfalls Bild ändern.</figcaption></figure>
+</div></section>
+</div>
+<div class="gross" id="gross"><img alt=""></div>
+<script>
+const g=document.getElementById('gross');
+document.querySelectorAll('section img, .notiz img').forEach(i=>i.addEventListener('click',()=>{g.querySelector('img').src=i.src;g.classList.add('an');g.scrollTop=0}));
+g.addEventListener('click',()=>g.classList.remove('an'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')g.classList.remove('an')});
+</script>
+</body></html>

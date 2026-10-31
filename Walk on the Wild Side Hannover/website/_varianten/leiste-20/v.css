@@ -1,0 +1,145 @@
+/* Kopfleiste · 20 Fassungen (31.10.2026). Alles unter .leiste.lvNN, nichts an wild.css. Nur transform/opacity bewegt. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:340px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+
+.leiste.lv{background:var(--nacht);box-shadow:none}
+.leiste.lv .innen{position:relative}
+
+/* 01 Glühbirnen: unter dem aktiven Wort eine Reihe kleiner Lichter, beim Zeigen gehen sie an */
+.leiste.lv01{background:var(--nacht);box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv01 nav a.aktiv::after,.leiste.lv01 nav a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:4px;background:radial-gradient(circle,var(--gold) 1.6px,transparent 2.2px) 0 0/9px 4px repeat-x;opacity:0;transform:scaleX(.6);transition:opacity .5s,transform .6s var(--k)}
+.leiste.lv01 nav a.aktiv::after{opacity:1;transform:none;filter:drop-shadow(0 0 3px rgba(255,200,110,.9))}
+.leiste.lv01 nav a:hover::after{opacity:.75;transform:none}
+.leiste.lv01 .knopf{box-shadow:inset 0 0 0 1px var(--gold-l)}
+
+/* 02 Die Theke: dunkles Holz, gelbes Licht unter der Kante */
+.leiste.lv02{background:#20140F;box-shadow:inset 0 1px 0 rgba(255,220,160,.06)}
+.leiste.lv02 .lv-licht{position:absolute;left:0;right:0;bottom:-10px;height:10px;background:linear-gradient(rgba(255,196,84,.55),rgba(255,196,84,0));pointer-events:none}
+.leiste.lv02 .lv-licht::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#FFC454}
+.leiste.lv02 nav a{color:rgba(237,228,216,.8)} .leiste.lv02 nav a.aktiv{color:#FFD27A} .leiste.lv02 nav a.aktiv::after{background:#FFC454}
+
+/* 03 Logo in der Mitte, die Seiten links und rechts davon */
+.leiste.lv03{box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv03 .innen{display:grid;grid-template-columns:1fr auto 1fr;gap:34px}
+.leiste.lv03 nav{margin:0} .leiste.lv03 .lv-l{justify-content:flex-end} .leiste.lv03 .lv-r{justify-content:flex-start}
+.leiste.lv03 .logo{height:46px}
+.leiste.lv03 .knopf{position:absolute;right:0;top:50%;margin:-22px 0 0}
+.leiste.lv03 .lv-r{padding-right:190px}
+
+/* 04 Prata statt Grossbuchstaben */
+.leiste.lv04{box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv04 nav{gap:34px}
+.leiste.lv04 nav a{font:400 19px/1 var(--titel);letter-spacing:.01em;text-transform:none;color:var(--text2)}
+.leiste.lv04 nav a.aktiv{color:var(--gold)} .leiste.lv04 nav a.aktiv::after{bottom:-4px}
+
+/* 05 Die Kapsel: frei unter dem oberen Rand, rund */
+.leiste.lv05{background:none;height:96px}
+.leiste.lv05 .lv-kapsel{width:min(1040px,94vw);margin:0 auto;height:64px;display:flex;align-items:center;gap:30px;padding:0 10px 0 26px;border-radius:40px;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),0 20px 40px -20px rgba(0,0,0,.8)}
+.leiste.lv05 .logo{height:34px;color:var(--rot)} .leiste.lv05 nav{margin-left:auto}
+.leiste.lv05 .knopf{border-radius:32px;margin-left:10px}
+
+/* 06 Zwei Etagen: oben Adresse, Zeiten, Telefon */
+.leiste.lv06{height:110px;display:block;box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv06 .lv-oben{height:34px;display:flex;align-items:center;background:var(--nacht3);font:500 11px/1 var(--lauf);letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.leiste.lv06 .lv-oben .innen{display:flex;justify-content:space-between;gap:20px} .leiste.lv06 .lv-oben a{color:var(--gold)}
+.leiste.lv06 .lv-unten{height:76px;display:flex;align-items:center}
+.leiste.lv06 .lv-unten .innen{display:flex;align-items:center;gap:30px}
+@media (max-width:900px){.leiste.lv06 .lv-oben span:nth-child(2){display:none}}
+
+/* 07 Goldrahmen mit Rauten an den Ecken */
+.leiste.lv07{height:92px}
+.leiste.lv07 .lv-rahmen{flex:1;position:relative;display:flex;align-items:center;gap:30px;height:66px;padding:0 10px 0 22px;box-shadow:inset 0 0 0 1px rgba(216,178,100,.45),inset 0 0 0 4px var(--nacht),inset 0 0 0 5px rgba(216,178,100,.2)}
+.leiste.lv07 .lv-rahmen b{position:absolute;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+.leiste.lv07 .lv-rahmen b:nth-child(1){left:-4px;top:-4px} .leiste.lv07 .lv-rahmen b:nth-child(2){right:-4px;top:-4px}
+.leiste.lv07 .lv-rahmen b:nth-child(3){left:-4px;bottom:-4px} .leiste.lv07 .lv-rahmen b:nth-child(4){right:-4px;bottom:-4px}
+.leiste.lv07 nav{margin-left:auto}
+
+/* 08 Unten am Rand: die Leiste sitzt am unteren Bildschirmrand */
+.leiste.lv08{inset:auto 0 0 0;box-shadow:inset 0 1px 0 var(--gold-l)}
+.leiste.lv08.weg{transform:translateY(110%)}
+body.mit-lv08 .vschild{bottom:92px}
+
+/* 09 Creme: hell, dunkle Schrift, rotes Logo */
+.leiste.lv09{background:var(--creme);box-shadow:inset 0 -1px 0 rgba(160,127,58,.35)}
+.leiste.lv09 nav a{color:rgba(27,21,18,.62)} .leiste.lv09 nav a.aktiv,.leiste.lv09 nav a:hover{color:var(--dunkel)}
+.leiste.lv09 nav a.aktiv::after{background:var(--rot)}
+
+/* 10 Das Gewölbe: die Unterkante als Reihe flacher Bögen */
+.leiste.lv10{background:var(--nacht)}
+.leiste.lv10 .lv-boegen{position:absolute;left:0;right:0;top:100%;height:14px;pointer-events:none;
+ background:radial-gradient(64px 14px at 50% 0,var(--nacht) 98%,transparent 100%) 0 0/120px 14px repeat-x}
+.leiste.lv10 .lv-boegen::after{content:"";position:absolute;inset:0;background:radial-gradient(64px 14px at 50% 0,transparent 96%,rgba(216,178,100,.55) 97%,transparent 100%) 0 0/120px 14px repeat-x}
+
+/* 11 Der wandernde Schein: ein goldenes Feld gleitet unter das Wort */
+.leiste.lv11{box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv11 nav{position:relative;gap:6px}
+.leiste.lv11 nav a{padding:12px 16px;z-index:1;transition:color .4s}
+.leiste.lv11 nav a.aktiv::after{display:none}
+.leiste.lv11 .lv-schein{position:absolute;left:0;top:0;height:100%;width:var(--w,80px);border-radius:12px;background:rgba(216,178,100,.14);box-shadow:inset 0 0 0 1px var(--gold-l);transform:translateX(var(--x,0));transition:transform .55s cubic-bezier(.3,1.35,.5,1),width .55s cubic-bezier(.3,1.35,.5,1)}
+.leiste.lv11 nav a.aktiv,.leiste.lv11 nav a:hover{color:var(--gold)}
+
+/* 12 Das hängende Schild: das Logo hängt rot über die Unterkante */
+.leiste.lv12{box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv12 .lv-schild{height:auto;width:76px;align-self:flex-start;margin-top:8px;color:var(--rot);transform:rotate(-4deg);transform-origin:50% 0;transition:transform 1.4s var(--k)}
+.leiste.lv12 .lv-schild svg{width:100%;height:auto;filter:none}
+.leiste.lv12 .lv-schild:hover{transform:rotate(2deg)}
+
+/* 13 Spalten wie eine Barkarte: senkrechte Goldlinien über die volle Höhe */
+.leiste.lv13{box-shadow:inset 0 -1px 0 var(--gold-l)}
+.leiste.lv13 .innen{height:100%}
+.leiste.lv13 nav{gap:0;height:100%;align-items:stretch}
+.leiste.lv13 nav a{display:flex;align-items:center;padding:0 26px;box-shadow:inset 1px 0 0 var(--gold-ll)}
+.leiste.lv13 nav a:last-child{box-shadow:inset 1px 0 0 var(--gold-ll),inset -1px 0 0 var(--gold-ll)}
+.leiste.lv13 nav a.aktiv{background:var(--nacht3)} .leiste.lv13 nav a.aktiv::after{left:26px;right:26px;bottom:22px}
+
+/* 14 Zweizeilig: Logo oben mittig, Seiten und Knopf darunter */
+.leiste.lv14{height:132px;box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv14 .innen{flex-direction:column;gap:10px}
+.leiste.lv14 .logo{height:48px}
+.leiste.lv14 .lv-zeile{display:flex;align-items:center;gap:30px}
+.leiste.lv14 nav{margin:0}
+.leiste.lv14 .knopf{height:38px}
+.leiste.lv14 .knopf i{width:28px;height:28px}
+
+/* 15 Leuchtschrift: das aktive Wort glüht wie eine Leuchtröhre */
+.leiste.lv15{box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv15 nav a{color:rgba(237,228,216,.55);transition:color .5s,text-shadow .5s}
+.leiste.lv15 nav a.aktiv::after{display:none}
+.leiste.lv15 nav a.aktiv,.leiste.lv15 nav a:hover{color:#FFE2A8;text-shadow:0 0 6px rgba(255,190,90,.9),0 0 16px rgba(255,170,60,.5)}
+
+/* 16 Ganz schmal: 54 px, Reservieren als Wort mit Pfeil */
+.leiste.lv16{height:54px;box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv16 .logo{height:28px}
+.leiste.lv16 nav a{font-size:10.5px}
+.leiste.lv16 .lv-wort{display:flex;align-items:center;gap:10px;margin-left:16px;font:500 11px/1 var(--lauf);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.leiste.lv16 .lv-wort i{width:16px;height:16px;display:block;transition:transform .8s var(--k)} .leiste.lv16 .lv-wort i svg{width:100%;height:100%}
+.leiste.lv16 .lv-wort:hover i{transform:translateX(4px)}
+@media (max-width:900px){.leiste.lv16 .lv-wort{margin-left:auto}}
+
+/* 17 Mit Unterzeile neben dem Logo */
+.leiste.lv17{height:84px;box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv17 .lv-marke{display:flex;align-items:center;gap:16px}
+.leiste.lv17 .lv-marke span{font:400 15px/1.3 var(--titel);color:var(--text2);white-space:nowrap}
+.leiste.lv17 nav{margin-left:auto}
+@media (max-width:1200px){.leiste.lv17 .lv-marke span{display:none}}
+
+/* 18 Goldleiste: Gold als Fläche, dunkle Schrift */
+.leiste.lv18{background:var(--gold)}
+.leiste.lv18 nav a{color:rgba(27,21,18,.66)} .leiste.lv18 nav a.aktiv,.leiste.lv18 nav a:hover{color:var(--dunkel)}
+.leiste.lv18 nav a.aktiv::after{background:var(--dunkel)}
+.leiste.lv18 .knopf.lv-dunkel{background:var(--dunkel);color:var(--creme);box-shadow:none}
+
+/* 19 Gewölbeblau: das Blau der angeleuchteten Decke, silberne Schrift */
+.leiste.lv19{background:#140A4A;box-shadow:inset 0 -1px 0 rgba(200,210,235,.25)}
+.leiste.lv19 nav a{color:rgba(214,222,240,.72)} .leiste.lv19 nav a.aktiv,.leiste.lv19 nav a:hover{color:#E8EDF7}
+.leiste.lv19 nav a.aktiv::after{background:#C9D3E8}
+.leiste.lv19 .knopf{background:#1F1366;box-shadow:inset 0 0 0 1px rgba(200,210,235,.25)}
+
+/* 20 Der rote Punkt: ein Punkt über dem aktiven Wort, Reservieren rot */
+.leiste.lv20{box-shadow:inset 0 -1px 0 var(--gold-ll)}
+.leiste.lv20 nav a.aktiv::after{left:50%;right:auto;bottom:auto;top:-6px;width:5px;height:5px;border-radius:50%;background:var(--rot);transform:translateX(-50%)}
+.leiste.lv20 nav a.aktiv{color:var(--text)}
+
+/* Variantenseiten: Leiste steht immer, damit jede Fassung ohne Scrollen sichtbar ist */
+#leiste.leiste.weg{transform:none}

@@ -1,0 +1,90 @@
+/* Walk on the Wild Side · 15 Variationen des heutigen Auftakts (29.10.2026). Grundgestalt und Bewegung wie heute, je Fassung eine Änderung. */
+
+/* Bildausschnitte der anderen Fotos */
+.w03 .at-bild img{object-position:55% 40%}
+.w04 .at-bild img{object-position:58% 26%}
+.w05 .at-bild img{object-position:50% 42%}
+.w06 .at-bild img{object-position:50% 62%}
+.w07 .at-bild img{object-position:50% 30%}
+
+@media (min-width:761px){
+  /* 01 Grösser: Titel und Satz grösser, sonst alles wie heute */
+  .w01 .at-titel{font-size:clamp(56px,9vw,150px);max-width:none}
+  .w01 .at-satz{font-size:clamp(18px,1.55vw,22px);max-width:48ch}
+  .w01 .innen{padding:90px 0 56px}
+  .w01 .at-logo{width:clamp(110px,11vw,160px);margin-bottom:28px}
+
+  /* 02 Gespiegelt: Bild links, Text rechts */
+  .w02 .at-bild{inset:0 18% 0 0}
+  .w02 .at-bild img{object-position:40% 38%}
+  .w02 .at-hof{background:linear-gradient(270deg,rgba(19,14,13,1) 0%,rgba(19,14,13,1) 16%,rgba(19,14,13,.86) 30%,rgba(19,14,13,.4) 52%,rgba(19,14,13,.05) 70%,rgba(19,14,13,0) 82%),linear-gradient(0deg,rgba(19,14,13,.9) 0%,rgba(19,14,13,0) 42%)}
+  .w02 .innen{display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+  .w02 .at-zeile,.w02 .knoepfe{justify-content:flex-end}
+  .w02 .at-weiter{right:auto;left:4vw}
+
+  /* 08 Drei Zeilen: der Titel steht hoch und gross */
+  .w08 .at-titel{font-size:clamp(56px,8vw,134px);line-height:.98;max-width:none}
+  .w08 .at-logo{width:clamp(96px,9vw,130px);margin-bottom:24px}
+  .w08 .innen{padding:80px 0 50px}
+
+  /* 09 Zeichen neben dem Titel */
+  .w09 .kopfreihe{display:flex;align-items:flex-end;gap:clamp(28px,3.4vw,56px)}
+  .w09 .at-logo{width:clamp(150px,15vw,230px);margin:0 0 .12em;flex:none}
+  .w09 .at-titel{max-width:none}
+  .w09 .at-satz{margin-top:30px}
+
+  /* 10 Mittig: Bild über den ganzen Schirm, alles mittig unten */
+  .w10 .at-bild{inset:0}
+  .w10 .at-bild img{object-position:50% 34%}
+  .w10 .at-hof{background:linear-gradient(0deg,rgba(19,14,13,1) 0%,rgba(19,14,13,.94) 30%,rgba(19,14,13,.55) 52%,rgba(19,14,13,.12) 72%,rgba(19,14,13,0) 84%),linear-gradient(180deg,rgba(19,14,13,.5) 0%,rgba(19,14,13,0) 20%)}
+  .w10 .innen{display:flex;flex-direction:column;align-items:center;text-align:center;padding:140px 0 56px}
+  .w10 .at-logo{width:clamp(90px,8vw,120px);margin-bottom:24px}
+  .w10 .at-titel{max-width:none}
+  .w10 .at-satz{max-width:52ch}
+  .w10 .at-zeile,.w10 .knoepfe{justify-content:center}
+
+  /* 11 Oben: der Text steht oben links, unten bleibt das Bild frei */
+  .w11{align-items:flex-start}
+  .w11 .innen{padding:84px 0 0}
+  .w11 .at-weiter{display:none}
+  .w11 .at-hof{background:linear-gradient(90deg,rgba(19,14,13,1) 0%,rgba(19,14,13,1) 16%,rgba(19,14,13,.86) 30%,rgba(19,14,13,.4) 52%,rgba(19,14,13,.05) 70%,rgba(19,14,13,0) 82%),linear-gradient(180deg,rgba(19,14,13,.85) 0%,rgba(19,14,13,0) 45%)}
+
+  /* 12 Harte Kante: links eine ruhige Fläche, rechts das Foto ohne Verlauf */
+  .w12 .at-bild{inset:0 0 0 53%}
+  .w12 .at-bild img{object-position:54% 38%}
+  .w12 .at-bild::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--gold-l);z-index:1}
+  .w12 .at-hof{display:none}
+  .w12 .innen{padding:96px 0 60px}
+  .w12 .innen>*{max-width:calc(53vw - 4vw - 48px)}
+  .w12 .at-weiter{display:none}
+
+  /* 13 Gerahmt wie das Schild: Rand, runde Ecken, Goldlinie */
+  .w13 .at-bild{inset:12px 12px 12px 18%;border-radius:0 18px 18px 0;overflow:hidden}
+  .w13 .at-hof,.w13 .schleier{inset:12px;border-radius:18px}
+  .w13::after{content:"";position:absolute;inset:12px;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(216,178,100,.5);pointer-events:none;z-index:5}
+  .w13 .at-weiter{right:calc(4vw + 12px);bottom:44px}
+  .w13 .innen{padding-bottom:70px}
+
+  /* 14 Zeiten gross: die Öffnungszeiten in der Titelschrift */
+  .w14 .at-zeile.gross{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 0;margin-top:26px}
+  .w14 .zg{font-family:var(--titel);font-size:clamp(20px,1.9vw,28px);color:var(--gold);line-height:1.2;padding-right:22px;margin-right:22px;border-right:1px solid var(--gold-l)}
+  .w14 .zg:nth-child(2){border-right:0;margin-right:0;padding-right:0}
+  .w14 .at-zeile.gross .ort{flex-basis:100%;margin-top:8px}
+  .w14 .innen{padding:100px 0 52px}
+
+  /* 15 Leiste unten: Zeiten, Adresse und Knöpfe auf einem Band über die ganze Breite */
+  .w15 .innen{padding:140px 0 150px}
+  .w15 .at-band{position:absolute;left:0;right:0;bottom:0;z-index:4;background:var(--nacht2);border-top:1px solid var(--gold-l)}
+  .w15 .at-band .innen{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0}
+  .w15 .at-band .at-zeile{margin-top:0}
+  .w15 .at-band .knoepfe{margin-top:0;flex-wrap:nowrap}
+  .w15 .at-weiter{display:none}
+}
+
+@media (max-width:760px){
+  .w15 .at-band{position:relative;z-index:4;background:var(--nacht2);border-top:1px solid var(--gold-l)}
+  .w15{flex-direction:column;justify-content:flex-end}
+  .w15 .at-band .innen{padding:22px 0 30px}
+  .w14 .zg{display:block;font-family:var(--titel);font-size:20px;color:var(--gold)}
+  .w14 .at-zeile.gross{flex-direction:column;align-items:flex-start;gap:4px}
+}

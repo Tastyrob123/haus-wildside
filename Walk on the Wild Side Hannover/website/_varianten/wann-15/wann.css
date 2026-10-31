@@ -1,0 +1,253 @@
+/* Wild Side · Besuch · Abschnitt «Wann», 15 Fassungen (31.10.2026). Alles unter #wann.wnNN, Bewegung nur transform, deckend, nie seitwärts. */
+#wann.wann{overflow:clip}
+#wann .w-hoch{transform:translateY(70px);transition:transform 1.25s var(--k);transition-delay:calc(var(--n,0)*.1s)}
+#wann.da .w-hoch{transform:none}
+#wann .w-satz{margin-top:22px}
+#wann [data-tag] .jetzt{font:500 10.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold);margin-left:10px}
+#wann .kachel img{transform:none}
+@media (prefers-reduced-motion:reduce){#wann *{transition:none!important;animation:none!important}#wann .w-hoch{transform:none}}
+
+/* 01 Die Theke als Leiste */
+.wn01 .innen{display:flex;flex-direction:column;align-items:center;text-align:center}
+.wn01 .w01-t{font-size:clamp(40px,5.6vw,80px);line-height:1.04;margin:0 0 34px}
+.wn01 .w01-bild{width:min(900px,100%);aspect-ratio:4/3;max-height:62vh}
+.wn01 .w01-kante{position:relative;width:min(900px,100%);display:grid;grid-template-columns:repeat(3,1fr);margin-top:-1px;padding:26px 0 30px}
+.wn01 .w01-a{display:flex;flex-direction:column;align-items:center;gap:12px;padding:0 10px;border-left:1px solid var(--gold-ll)}
+.wn01 .w01-a:first-child{border-left:0}
+.wn01 .w01-a b{font:400 clamp(24px,2.6vw,34px)/1.1 var(--titel);color:var(--text)}
+.wn01 .w01-a.heute b{color:var(--gold)}
+.wn01 .w01-licht{position:absolute;left:4%;right:4%;top:0;height:2px;background:var(--gold);box-shadow:0 0 18px 2px rgba(216,178,100,.55);transform:scaleX(0);transition:transform 1.6s var(--k) .35s}
+.wn01.da .w01-licht{transform:scaleX(1)}
+.wn01 .w01-unten p{margin:0;font-size:15px;letter-spacing:.04em;color:var(--text3)}
+.wn01 .w01-unten .w-satz{margin:16px auto 0}
+
+/* 02 Die Nacht in Stunden */
+.wn02 .w02-g{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.wn02 .w02-leiste{padding:clamp(18px,2.4vw,30px);margin-top:28px}
+.wn02 .w02-z{display:grid;grid-template-columns:clamp(110px,15vw,190px) minmax(0,1fr);align-items:center;min-height:56px;border-top:1px solid var(--gold-ll);font-size:15px;color:var(--text2)}
+.wn02 .w02-kopf{min-height:30px;border-top:0}
+.wn02 .w02-std{display:grid;grid-template-columns:repeat(7,1fr);position:relative;height:100%;align-items:center}
+.wn02 .w02-kopf .w02-std i{font:400 13px/1 var(--titel);font-style:normal;color:var(--text3);transform:translateX(-50%)}
+.wn02 .w02-kopf .w02-std i:first-child{transform:none}
+.wn02 .w02-kopf .w02-std{grid-template-columns:repeat(7,1fr) 0}
+.wn02 .w02-b{grid-column:1/span var(--l);height:30px;border-radius:6px;background:var(--nacht4);box-shadow:inset 0 0 0 1px var(--gold-l);display:flex;align-items:center;padding:0 12px;
+  font:400 15px/1 var(--titel);color:var(--text);transform-origin:left;transform:scaleX(.04);transition:transform 1.5s var(--k);transition-delay:calc(.4s + var(--n)*.18s)}
+.wn02 .w02-b span{white-space:nowrap}
+.wn02.da .w02-b{transform:none}
+.wn02 .w02-z.heute{color:var(--text)}
+.wn02 .w02-z.heute .w02-b{background:var(--gold);color:var(--nacht)}
+.wn02 .w02-z em{grid-column:1/-1;font:400 17px/1 var(--titel);font-style:normal;color:var(--text3)}
+.wn02 .w02-bild{aspect-ratio:3/4}
+
+/* 03 Das Schild */
+.wn03 .w03-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn03 .w03-bild{aspect-ratio:4/5}
+.wn03 .w03-tafel{position:relative;margin-top:44px;background:var(--creme);color:var(--dunkel);border-radius:6px;padding:clamp(26px,3vw,40px);box-shadow:var(--schatten);
+  transform-origin:50% -40px;transform:rotate(-7deg) translateY(30px);transition:transform 1.8s cubic-bezier(.3,1.55,.4,1) .2s}
+.wn03.da .w03-tafel{transform:rotate(-1deg)}
+.wn03 .w03-h{position:absolute;top:-44px;left:22%;width:1px;height:46px;background:var(--gold);transform:rotate(12deg);transform-origin:bottom}
+.wn03 .w03-h.r{left:auto;right:22%;transform:rotate(-12deg)}
+.wn03 .w03-h::after{content:"";position:absolute;bottom:-4px;left:-4px;width:9px;height:9px;border-radius:50%;background:var(--nacht3);box-shadow:inset 0 0 0 2px var(--gold)}
+.wn03 .w03-tafel .etikett{color:#A07F3A}
+.wn03 .w03-tafel .titel{color:var(--dunkel);margin:14px 0 6px}
+.wn03 .w03-tafel .zeiten div{color:rgba(27,21,18,.74);border-color:rgba(160,127,58,.3)}
+.wn03 .w03-tafel .zeiten b{color:var(--dunkel)}
+.wn03 .w03-tafel .zeiten div.heute b{color:var(--plakatrot)}
+.wn03 .w03-tafel .zeiten .jetzt{color:var(--plakatrot)}
+
+/* 04 Drei Abende, drei Bilder */
+.wn04 .w04-kopf{text-align:center;display:flex;flex-direction:column;align-items:center;margin-bottom:38px}
+.wn04 .w04-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px)}
+.wn04 .w04-k{background:var(--nacht2);border-radius:var(--rand-g);overflow:hidden;box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten)}
+.wn04 .w04-k .kachel{border-radius:0;aspect-ratio:4/5;box-shadow:none}
+.wn04 .w04-u{padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px}
+.wn04 .w04-u b{font:400 clamp(24px,2.4vw,32px)/1.1 var(--titel)}
+.wn04 .w04-k.heute{box-shadow:inset 0 0 0 2px var(--gold),var(--schatten)}
+.wn04 .w04-k.heute b{color:var(--gold)}
+.wn04 .w04-unten{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:34px}
+.wn04 .w04-unten p{margin:0;display:flex;gap:16px;align-items:baseline;color:var(--text2)}
+.wn04 .w04-unten p b{font:400 22px/1 var(--titel);color:var(--text)}
+
+/* 05 Nur Schrift */
+.wn05 .w05-schlitz{overflow:hidden;padding-bottom:.08em}
+.wn05 .w05-t{font-size:clamp(56px,10vw,150px);line-height:1;margin:6px 0 0;transform:translateY(105%);transition:transform 1.4s var(--k) .1s}
+.wn05.da .w05-t{transform:none}
+.wn05 .w05-reihe{display:grid;grid-template-columns:repeat(3,1fr) 1.3fr;margin-top:clamp(36px,5vw,64px);border-top:1px solid var(--gold-l)}
+.wn05 .w05-z{padding:22px 18px 0 0;display:flex;flex-direction:column;gap:14px}
+.wn05 .w05-z+.w05-z{padding-left:18px;border-left:1px solid var(--gold-ll)}
+.wn05 .w05-z .etikett{color:var(--text3)}
+.wn05 .w05-z b{font:400 clamp(24px,2.6vw,36px)/1.1 var(--titel)}
+.wn05 .w05-z.heute .etikett,.wn05 .w05-z.heute b{color:var(--gold)}
+.wn05 .w-satz{margin-top:34px}
+
+/* 06 Das Zifferblatt */
+.wn06 .w06-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn06 .w06-uhr{width:100%;max-width:520px;display:block;margin:0 auto;overflow:visible}
+.wn06 .w06-rand{fill:var(--nacht2);stroke:var(--gold-l);stroke-width:1.2}
+.wn06 .w06-str line{stroke:var(--gold);stroke-width:1.4;opacity:.55}
+.wn06 .w06-spur{fill:none;stroke:var(--nacht4);stroke-width:9}
+.wn06 .w06-bg{fill:none;stroke:var(--gold);stroke-width:9;stroke-linecap:round;stroke-dasharray:var(--l) var(--u);stroke-dashoffset:var(--l);transition:stroke-dashoffset 1.8s var(--k) .5s}
+.wn06.da .w06-bg{stroke-dashoffset:0}
+.wn06 .w06-bg+.w06-bg{transition-delay:.8s;opacity:.65}
+.wn06 .w06-z text{font:400 16px/1 var(--titel);fill:var(--text2);text-anchor:middle}
+.wn06 .w06-l{font:500 9.5px/1 var(--lauf);letter-spacing:.14em;text-transform:uppercase;fill:var(--text3);text-anchor:middle}
+
+/* 07 Die Tür */
+.wn07 .w07-g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn07 .w07-rahmen{perspective:1400px}
+.wn07 .w07-bild{aspect-ratio:3/4;transform-origin:left center;transform:rotateY(-38deg);transition:transform 1.9s var(--k) .15s}
+.wn07.da .w07-bild{transform:none}
+.wn07 .titel{margin:0 0 30px}
+.wn07 .w07-raster{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(18px,2.5vw,36px)}
+.wn07 .w07-z{padding:18px 0;border-top:1px solid var(--gold-ll);display:flex;flex-direction:column;gap:10px}
+.wn07 .w07-z .etikett{color:var(--text3)}
+.wn07 .w07-z b{font:400 clamp(22px,2.2vw,30px)/1.1 var(--titel)}
+.wn07 .w07-z.heute .etikett,.wn07 .w07-z.heute b{color:var(--gold)}
+
+/* 08 Drei Kalenderblätter */
+.wn08 .w08-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn08 .titel{margin:0 0 22px}
+.wn08 .w08-zu{margin:0;color:var(--text2)}
+.wn08 .w08-zu b{font:400 21px/1 var(--titel);font-weight:400;color:var(--text)}
+.wn08 .w08-stapel{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.6vw,22px);align-items:end}
+.wn08 .w08-b{position:relative;background:var(--creme);color:var(--dunkel);border-radius:8px;overflow:hidden;box-shadow:var(--schatten);text-align:center;padding-bottom:22px;display:flex;flex-direction:column;
+  transform:translateY(-120px) rotate(calc((var(--n) - 1) * 9deg));transition:transform 1.3s cubic-bezier(.3,1.35,.45,1);transition-delay:calc(.15s + var(--n)*.2s)}
+.wn08.da .w08-b{transform:rotate(calc((var(--n) - 1) * 2.5deg))}
+.wn08 .w08-kopf{background:var(--plakatrot);color:var(--creme);font:500 12px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;padding:13px 6px}
+.wn08 .w08-b b{font:400 clamp(64px,7vw,108px)/1 var(--titel);margin:18px 0 4px}
+.wn08 .w08-bis{font:400 clamp(16px,1.5vw,20px)/1.2 var(--titel)}
+.wn08 .w08-b .jetzt{margin:10px 0 0;color:var(--plakatrot);min-height:11px}
+.wn08 .w08-b.heute{box-shadow:0 0 0 3px var(--gold),var(--schatten);z-index:2}
+
+/* 09 Ein Satz */
+.wn09 .w09-g{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr);gap:clamp(28px,5vw,80px);align-items:end}
+.wn09 .w09-s{font-size:clamp(34px,4.4vw,64px);line-height:1.18;margin:4px 0 0;color:var(--text)}
+.wn09 .w09-tg.heute{color:var(--gold)}
+.wn09 .w09-zu{color:var(--text3)}
+.wn09 .w09-unten{margin-top:34px;padding-top:22px;border-top:1px solid var(--gold-l)}
+.wn09 .w09-unten .w-satz{margin-top:14px}
+.wn09 .w09-bild{aspect-ratio:3/4}
+
+/* 10 Hell und dunkel */
+#wann.wn10{padding:0}
+.wn10 .w10-g{display:grid;grid-template-columns:1fr 1fr;min-height:min(92vh,900px)}
+.wn10 .w10-hell{background:var(--creme);color:var(--dunkel);display:flex;align-items:center;justify-content:flex-end;padding:clamp(56px,7vw,110px) clamp(28px,5vw,80px)}
+.wn10 .w10-in{width:min(560px,100%)}
+.wn10 .kz .was{color:rgba(27,21,18,.5)}
+.wn10 .kz .uhr{color:#A07F3A}
+.wn10 .titel{color:var(--dunkel);margin:0 0 6px}
+.wn10 .zeiten div{color:rgba(27,21,18,.74);border-color:rgba(160,127,58,.3)}
+.wn10 .zeiten b{color:var(--dunkel)}
+.wn10 .zeiten div.heute b,.wn10 .zeiten .jetzt{color:var(--plakatrot)}
+.wn10 .text{color:rgba(27,21,18,.74)}
+.wn10 .w10-bild{border-radius:0;box-shadow:none;height:100%;min-height:420px}
+.wn10 .w10-bild img{transform:scale(1.1)!important;transition:transform 2.2s var(--k)!important}
+.wn10.da .w10-bild img{transform:none!important}
+
+/* 11 Sieben Glühbirnen */
+.wn11 .w11-kopf{text-align:center;display:flex;flex-direction:column;align-items:center}
+.wn11 .w11-leine{position:relative;display:grid;grid-template-columns:repeat(7,1fr);margin-top:30px;padding-top:0}
+.wn11 .w11-kabel{position:absolute;left:0;right:0;top:0;height:40px;border-top:1px solid rgba(216,178,100,.35);border-radius:0 0 50% 50%/0 0 100% 100%;border-bottom:0}
+.wn11 [class^="w11-t"]{display:flex;flex-direction:column;align-items:center;text-align:center}
+.wn11 .w11-draht{display:block;width:1px;height:calc(46px + var(--n) * 0px);background:rgba(216,178,100,.35)}
+.wn11 .w11-birne{position:relative;display:block;width:clamp(30px,3.6vw,46px);aspect-ratio:3/4;border-radius:50% 50% 46% 46%;background:var(--nacht3);box-shadow:inset 0 0 0 1px rgba(216,178,100,.25)}
+.wn11 .w11-birne::before{content:"";position:absolute;left:30%;right:30%;top:-9px;height:10px;background:var(--nacht4);border-radius:2px}
+.wn11 .w11-glanz{position:absolute;inset:0;border-radius:inherit;background:#F6D58E;box-shadow:0 0 26px 8px rgba(246,213,142,.55),0 0 70px 20px rgba(216,178,100,.22);opacity:0;
+  transition:opacity .5s ease;transition-delay:calc(.5s + (var(--n) - 3) * .35s)}
+.wn11 .an .w11-glanz{transition-delay:calc(.5s + (var(--n) - 3) * .35s)}
+.wn11.da .an .w11-glanz{opacity:1}
+.wn11 .w11-tag{font:400 clamp(26px,3vw,40px)/1 var(--titel);margin-top:26px;color:var(--text3)}
+.wn11 .an .w11-tag{color:var(--text)}
+.wn11 [class^="w11-t"] b{font:500 11px/1.4 var(--lauf);letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-top:12px}
+.wn11 .an b{color:var(--gold)}
+.wn11 .heute .w11-tag{color:var(--gold)}
+.wn11 .heute .w11-birne{animation:w11puls 3.2s ease-in-out 2.6s infinite}
+@keyframes w11puls{50%{transform:scale(1.06)}}
+.wn11 .w11-satz{margin:44px auto 0;text-align:center}
+
+/* 12 Drei Bierdeckel */
+.wn12 .w12-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn12 .titel{margin:0 0 22px}
+.wn12 .w12-zu{margin:0;color:var(--text2)}
+.wn12 .w12-zu b{font:400 21px/1 var(--titel);color:var(--text)}
+.wn12 .w12-tisch{position:relative;height:clamp(420px,42vw,560px)}
+.wn12 .w12-d{position:absolute;width:clamp(190px,19vw,260px);aspect-ratio:1;border-radius:50%;background:var(--creme);color:var(--dunkel);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  box-shadow:inset 0 0 0 8px var(--creme),inset 0 0 0 9px rgba(160,127,58,.55),var(--schatten);
+  transform:translateY(-140px) rotate(calc(var(--r) * 4)) scale(1.08);transition:transform 1.1s cubic-bezier(.3,1.45,.5,1);transition-delay:calc(.15s + var(--n)*.22s)}
+.wn12.da .w12-d{transform:rotate(var(--r))}
+.wn12 .w12-d:nth-child(1){left:2%;top:4%}
+.wn12 .w12-d:nth-child(2){right:2%;top:16%}
+.wn12 .w12-d:nth-child(3){left:22%;bottom:0}
+.wn12 .w12-d .etikett{color:#A07F3A}
+.wn12 .w12-d b{font:400 clamp(30px,3vw,42px)/1 var(--titel)}
+.wn12 .w12-l{font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:rgba(27,21,18,.55)}
+.wn12 .w12-d .jetzt{color:var(--plakatrot);margin:0;min-height:11px}
+.wn12 .w12-d.heute{background:var(--gold);box-shadow:inset 0 0 0 8px var(--gold),inset 0 0 0 9px rgba(27,21,18,.4),var(--schatten);z-index:2}
+.wn12 .w12-d.heute .etikett,.wn12 .w12-d.heute .jetzt{color:var(--dunkel)}
+
+/* 13 Wie eine Karte */
+.wn13 .w13-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn13 .w13-karte{background:var(--creme);color:var(--dunkel);border-radius:6px;padding:clamp(28px,3.6vw,52px);box-shadow:var(--schatten);margin-top:6px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.wn13 .w13-logo{height:auto;width:58px;margin:0 0 16px}
+.wn13 .w13-karte .etikett{color:#A07F3A;margin-bottom:22px}
+.wn13 .w13-z{display:grid;grid-template-columns:auto minmax(20px,1fr) auto;gap:12px;align-items:baseline;width:100%;padding:12px 0;text-align:left}
+.wn13 .w13-z span{font-size:16px;color:rgba(27,21,18,.8)}
+.wn13 .w13-z i{height:0;border-bottom:2px dotted rgba(160,127,58,.6);transform-origin:left;transform:scaleX(0);transition:transform 1s var(--k);transition-delay:calc(.6s + var(--n)*.15s)}
+.wn13.da .w13-z i{transform:none}
+.wn13 .w13-z b{font:400 clamp(20px,2vw,26px)/1 var(--titel)}
+.wn13 .w13-z.heute b,.wn13 .w13-z .jetzt{color:var(--plakatrot)}
+.wn13 .w13-fuss{margin:20px 0 0;font:400 18px/1.2 var(--titel);color:rgba(27,21,18,.7)}
+.wn13 .w13-bild{aspect-ratio:3/4}
+
+/* 14 Do, Fr, Sa */
+.wn14 .w14-g{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn14 .w14-z{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center;border-bottom:1px solid var(--gold-ll)}
+.wn14 .w14-sch{overflow:hidden;display:block}
+.wn14 .w14-sch b{display:block;font:400 clamp(84px,11vw,168px)/.98 var(--titel);color:var(--text);transform:translateY(100%);transition:transform 1.25s var(--k);transition-delay:calc(.1s + var(--n)*.16s);width:1.45em}
+.wn14.da .w14-sch b{transform:none}
+.wn14 .w14-z.heute b{color:var(--gold)}
+.wn14 .w14-r{display:flex;flex-direction:column;gap:12px}
+.wn14 .w14-r .etikett{color:var(--text3)}
+.wn14 .w14-r em{font:400 clamp(22px,2.4vw,34px)/1.1 var(--titel);font-style:normal}
+.wn14 .w14-z.heute .etikett,.wn14 .w14-z.heute em{color:var(--gold)}
+.wn14 .w14-zu{margin:20px 0 0;color:var(--text3)}
+.wn14 .w14-bild{aspect-ratio:3/4}
+
+/* 15 Das Leuchtschild */
+.wn15 .w15-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,80px);align-items:center}
+.wn15 .w15-schild{position:relative;background:#0A0807;border:3px solid #E8C25A;border-radius:4px;padding:clamp(28px,3.6vw,52px);text-align:center;margin-top:6px;box-shadow:var(--schatten)}
+.wn15 .w15-licht{position:absolute;inset:-3px;border-radius:4px;pointer-events:none;box-shadow:0 0 0 3px #F6D27A,0 0 30px 4px rgba(246,210,122,.5),inset 0 0 26px rgba(246,210,122,.25);opacity:0;transition:opacity 1.2s ease .9s}
+.wn15.da .w15-licht{opacity:1}
+.wn15 .w15-wild{display:block;font:500 13px/1 var(--lauf);letter-spacing:.32em;text-transform:uppercase;color:#E8C25A}
+.wn15 .w15-t{font-size:clamp(36px,4.4vw,64px);color:var(--creme);margin:18px 0 10px}
+.wn15 .w15-zt{text-align:left;max-width:520px;margin:0 auto}
+.wn15 .w15-zt div{border-color:rgba(232,194,90,.22)}
+.wn15 .w15-zt div.heute b,.wn15 .w15-zt .jetzt{color:#E8C25A}
+.wn15 .w15-bild{aspect-ratio:3/4}
+
+/* Handy */
+@media (max-width:800px){
+  .wn02 .w02-g,.wn03 .w03-g,.wn06 .w06-g,.wn07 .w07-g,.wn08 .w08-g,.wn09 .w09-g,.wn12 .w12-g,.wn13 .w13-g,.wn14 .w14-g,.wn15 .w15-g,.wn10 .w10-g{grid-template-columns:1fr}
+  .wn04 .w04-reihe{grid-template-columns:1fr}
+  .wn04 .w04-k{display:grid;grid-template-columns:42% 1fr;align-items:center}
+  .wn04 .w04-k .kachel{aspect-ratio:1}
+  .wn05 .w05-reihe{grid-template-columns:1fr 1fr}
+  .wn05 .w05-z:nth-child(3){padding-left:0;border-left:0}
+  .wn05 .w05-z{padding-bottom:18px}
+  .wn01 .w01-kante{grid-template-columns:1fr}
+  .wn01 .w01-a{border-left:0;border-top:1px solid var(--gold-ll);padding:14px 0}
+  .wn01 .w01-a:first-child{border-top:0}
+  .wn06 .w06-uhr{max-width:340px}
+  .wn07 .w07-raster{grid-template-columns:1fr}
+  .wn10 .w10-hell{justify-content:flex-start}
+  .wn10 .w10-bild{min-height:0;aspect-ratio:4/5}
+  .wn11 .w11-leine{grid-template-columns:repeat(7,1fr)}
+  .wn11 [class^="w11-t"] b{font-size:9px;letter-spacing:.06em}
+  .wn11 .w11-tag{font-size:20px}
+  .wn12 .w12-tisch{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .wn12 .w12-d{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:100%}
+  .wn09 .w09-bild,.wn13 .w13-bild,.wn14 .w14-bild,.wn15 .w15-bild,.wn02 .w02-bild,.wn03 .w03-bild,.wn07 .w07-bild{max-height:70vh;aspect-ratio:4/5}
+  .wn14 .w14-sch b{width:1.4em}
+}
+/* Titel ohne Umbruch mitten in der Uhrzeit */
+.wn07 .titel,.wn08 .titel,.wn12 .titel,.wn10 .titel{font-size:clamp(38px,4.6vw,70px);text-wrap:balance}

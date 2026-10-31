@@ -1,0 +1,23 @@
+{
+  "haus": "Walk on the Wild Side Hannover",
+  "kurz": "wildside",
+  "ordner": "Walk on the Wild Side Hannover",
+  "tor_ziele": "_Werkzeuge/abnahme-tor/ziele-wildside.json",
+  "mess_ziele": "_Werkzeuge/messlauf/ziele-wildside.json",
+  "tor_groessen": [
+    "1280x800",
+    "1000x650",
+    "390x844"
+  ],
+  "mess_groessen": [
+    "1440",
+    "1280",
+    "1000",
+    "390"
+  ],
+  "browser": [
+    "chromium",
+    "webkit"
+  ],
+  "server": []
+}

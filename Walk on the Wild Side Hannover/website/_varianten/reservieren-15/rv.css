@@ -1,0 +1,276 @@
+/* Reservieren · 15 Fassungen (31.10.2026). Bewegung nur transform/opacity, nie seitwärts; .da setzt wild.js am Abschnitt. */
+
+/* ---------- Gemeinsam */
+.rv .rv-t{margin:0}
+.rv .rv-gross{font-size:clamp(52px,7.4vw,112px);line-height:1}
+.rv .rv-mittelgross{font-size:clamp(44px,5.6vw,84px);line-height:1}
+.rv .rv-z{display:block;overflow:hidden;padding:0 .08em .18em;margin:0 -.08em -.18em}
+.rv .rv-z>span{display:block;transform:translateY(115%);transition:transform 1.25s var(--k)}
+.rv .rv-z+.rv-z>span{transition-delay:.12s}
+.rv.da .rv-z>span{transform:none}
+.rv .rv-kz,.rv .rv-satz{opacity:0;transform:translateY(40px);transition:transform 1.2s var(--k),opacity .9s var(--k)}
+.rv .rv-satz{transition-delay:.25s;margin-top:22px;font-size:clamp(17px,1.35vw,20px);line-height:1.6}
+.rv.da .rv-kz,.rv.da .rv-satz{opacity:1;transform:none}
+.rv .rv-satz a{color:var(--gold)}
+.rv .hell .rv-satz a{color:#8F6E2E}
+
+.rv .rv-bild{position:relative;margin:0;overflow:hidden;background:var(--nacht3) var(--lq) center/cover no-repeat;border-radius:var(--rand);box-shadow:var(--schatten)}
+.rv .rv-bild img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.12);transition:transform 1.8s var(--k)}
+.rv.da .rv-bild img{transform:scale(1)}
+
+.rv-form{position:relative}
+.rv-form .rv-f{display:grid;gap:8px;min-width:0}
+.rv-form .rv-f>span{font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.rv-form input,.rv-form select{width:100%;min-width:0;background:var(--nacht);border:0;border-radius:10px;padding:15px 16px;color:var(--text);font:inherit;font-size:17px;
+ box-shadow:inset 0 0 0 1px var(--gold-ll);outline:0;transition:box-shadow .5s}
+.rv-form input:focus,.rv-form select:focus{box-shadow:inset 0 0 0 1px var(--gold)}
+.rv-form select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);
+ background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.rv-form .rv-stapel{display:grid;gap:16px}
+.rv-form .rv-zwei{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.rv-fuss{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:22px}
+.rv-hinweis{font-size:13px;color:var(--text3)}
+.rv-form .dank{display:none;margin:0;font-family:var(--titel);font-size:clamp(24px,2.4vw,32px);color:var(--text)}
+.rv-form.fertig .rv-weg{display:none}
+.rv-form.fertig .dank{display:block}
+.rv-form.platte{padding:clamp(24px,3vw,40px)}
+/* Formular auf hellem Grund */
+.hell .rv-form input,.hell .rv-form select,.rv-form.hell input,.rv-form.hell select{background:#FBF6EE;color:var(--dunkel);box-shadow:inset 0 0 0 1px rgba(160,127,58,.3)}
+.hell .rv-form .rv-f>span,.rv-form.hell .rv-f>span{color:#8F6E2E}
+.hell .rv-hinweis,.rv-form.hell .rv-hinweis{color:rgba(27,21,18,.55)}
+.hell .rv-form .dank,.rv-form.hell .dank{color:var(--dunkel)}
+/* Felder als feine Linien statt Kästen */
+.rv-linien input,.rv-linien select{background:transparent;border-radius:0;padding:12px 0;font-size:20px;box-shadow:inset 0 -1px 0 rgba(216,178,100,.35)}
+.rv-linien input:focus,.rv-linien select:focus{box-shadow:inset 0 -2px 0 var(--gold)}
+.rv-linien select{background-position:calc(100% - 12px) 50%,calc(100% - 6px) 50%}
+
+/* ---------- 01 Die Thekenkante */
+.rv01-oben{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.rv01-bild{aspect-ratio:4/3;max-width:640px}
+.rv01-form{margin-top:clamp(44px,5vw,70px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--gold-l)}
+.rv01-reihe{display:grid;grid-template-columns:1.1fr .8fr .7fr 1fr 1.4fr;gap:14px}
+.rv01-zelle{opacity:0;transform:translateY(44px);transition:transform 1.15s var(--k),opacity .8s var(--k);transition-delay:calc(.35s + var(--n) * .09s)}
+.rv.da .rv01-zelle{opacity:1;transform:none}
+.rv01-fuss{justify-content:space-between}
+
+/* ---------- 02 Sechs Hocker */
+.rv02-kopf{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 clamp(30px,5vw,80px);align-items:end}
+.rv02-kopf .rv-kz{grid-column:1/-1}
+.rv02-kopf .rv-satz{margin:0 0 .6em;max-width:44ch}
+.rv02-form{margin-top:clamp(40px,5vw,64px)}
+.rv02-wahl{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.rv02-zahl{font-family:var(--titel);font-size:clamp(26px,2.6vw,36px);color:var(--text)}
+.rv02-zahl b{font-weight:400;color:var(--gold)}
+.rv02-theke{position:relative;margin-top:18px;padding-top:26px}
+.rv02-theke::before{content:"";display:block;height:20px;border-radius:6px 6px 0 0;background:var(--nacht3);box-shadow:inset 0 1px 0 rgba(216,178,100,.25)}
+.rv02-licht{position:absolute;left:0;right:0;top:46px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform 1.6s var(--k) .2s;box-shadow:0 0 18px rgba(216,178,100,.7)}
+.rv.da .rv02-licht{transform:scaleX(1)}
+.rv02-hocker{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(10px,2vw,30px);padding:22px clamp(10px,3vw,50px) 0}
+.rv02-h{position:relative;display:grid;justify-items:center;gap:10px;cursor:pointer;opacity:0;transform:translateY(-50px);transition:transform 1s cubic-bezier(.3,1.4,.5,1),opacity .6s var(--k);transition-delay:calc(.4s + var(--n) * .1s)}
+.rv.da .rv02-h{opacity:1;transform:none}
+.rv02-h input{position:absolute;opacity:0;pointer-events:none}
+.rv02-h svg{width:min(100%,64px);height:auto;overflow:visible}
+.rv02-sitz{fill:var(--nacht3);stroke:rgba(216,178,100,.4);stroke-width:1.5;transition:fill .5s,stroke .5s}
+.rv02-bein{fill:none;stroke:rgba(216,178,100,.4);stroke-width:2.2;stroke-linecap:round;transition:stroke .5s}
+.rv02-h b{font:500 12px/1 var(--lauf);letter-spacing:.14em;color:var(--text3);transition:color .5s}
+.rv02-h.an .rv02-sitz{fill:var(--gold);stroke:var(--gold)}
+.rv02-h.an .rv02-bein{stroke:var(--gold)}
+.rv02-h.an b{color:var(--gold)}
+.rv02-h:hover .rv02-sitz{stroke:var(--gold)}
+.rv02-h input:focus-visible+svg .rv02-sitz{stroke:var(--creme);stroke-width:2.5}
+.rv02-felder{margin-top:clamp(36px,4vw,56px);display:grid;grid-template-columns:1.1fr .8fr 1fr 1.4fr;gap:14px}
+
+/* ---------- 03 Ein Satz zum Ausfüllen */
+.rv03-g{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr);gap:clamp(30px,5vw,80px);align-items:start}
+.rv03-satz{margin:0;font-size:clamp(28px,3vw,44px);line-height:1.5;color:var(--text)}
+.rv03-z{display:block;overflow:hidden;padding-bottom:.12em}
+.rv03-z>span{display:block;transform:translateY(110%);transition:transform 1.2s var(--k);transition-delay:calc(.3s + var(--n) * .14s)}
+.rv.da .rv03-z>span{transform:none}
+.rv03-form .rv03-l{display:inline-block;width:auto;vertical-align:baseline;background:transparent;border-radius:0;padding:0 .1em;margin:0 .1em;
+ font-family:var(--lauf);font-size:.62em;color:var(--gold);box-shadow:inset 0 -1.5px 0 rgba(216,178,100,.5)}
+.rv03-form .rv03-l::placeholder{color:rgba(216,178,100,.5)}
+.rv03-form select.rv03-l{padding-right:1.5em;background-position:calc(100% - 12px) 55%,calc(100% - 6px) 55%}
+.rv03-d{width:8.6em!important}
+.rv03-k{width:2.6em!important;text-align:center}
+.rv03-n{width:min(9.5em,100%)!important}
+.rv03-form .rv-fuss{margin-top:34px}
+
+/* ---------- 04 Hell und dunkel */
+.rv.rv04-sek{padding:0}
+.kap+.rv04-sek{margin-top:clamp(40px,5vw,72px)}
+.rv04-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(88vh,820px)}
+.rv04-hell{position:relative;display:flex;align-items:center;transform:scaleY(.86);transform-origin:bottom;transition:transform 1.5s var(--k)}
+.rv.da .rv04-hell{transform:none}
+.rv04-in{padding:clamp(60px,7vw,110px) clamp(24px,6vw,100px);margin-left:auto;width:min(100%,640px)}
+.rv04-hell .rv-satz{color:rgba(27,21,18,.74)}
+.rv04-hell .titel{color:var(--dunkel)}
+.rv04-dunkel{display:flex;align-items:center;background:var(--nacht2)}
+.rv04-form{padding:clamp(60px,7vw,110px) clamp(24px,6vw,100px);width:min(100%,640px);opacity:0;transform:translateY(50px);transition:transform 1.3s var(--k) .35s,opacity .9s var(--k) .35s}
+.rv.da .rv04-form{opacity:1;transform:none}
+
+/* ---------- 05 Das Reserviert-Schild */
+.rv05-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.rv05-tisch{position:relative;display:grid;justify-items:center;perspective:900px;margin-bottom:-6px;z-index:1}
+.rv05-schild{display:grid;justify-items:center;gap:10px;width:min(78%,340px);padding:24px 24px 26px;border-radius:10px 10px 4px 4px;background:var(--creme);color:var(--dunkel);
+ box-shadow:var(--schatten-k);transform-origin:bottom center;transform:rotateX(78deg);transition:transform 1.4s cubic-bezier(.3,1.25,.5,1) .3s}
+.rv.da .rv05-schild{transform:rotateX(0)}
+.rv05-logo{display:block;width:34px;color:var(--dunkel)} .rv05-logo svg{width:100%;height:auto;display:block}
+.rv05-schild b{font-family:var(--titel);font-weight:400;font-size:clamp(34px,3.4vw,48px);line-height:1}
+.rv05-schild .etikett{color:#8F6E2E}
+.rv05-kante{display:block;width:min(86%,380px);height:6px;border-radius:3px;background:var(--gold);opacity:.5}
+.rv05-form{opacity:0;transform:translateY(50px);transition:transform 1.2s var(--k) .1s,opacity .8s var(--k) .1s}
+.rv.da .rv05-form{opacity:1;transform:none}
+
+/* ---------- 06 Wann, wer, wie */
+.rv06-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(30px,5vw,80px);align-items:end}
+.rv06-kopf .rv-satz{margin-bottom:.5em}
+.rv06-form{margin-top:clamp(50px,6vw,84px)}
+.rv06-linie{height:1px;background:var(--gold-ll)}
+.rv06-linie i{display:block;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 1.8s var(--k) .2s}
+.rv.da .rv06-linie i{transform:scaleX(1)}
+.rv06-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+.rv06-sp{position:relative;display:grid;gap:18px;align-content:start;padding-top:34px;opacity:0;transform:translateY(46px);transition:transform 1.2s var(--k),opacity .8s var(--k);transition-delay:calc(.5s + var(--n) * .2s)}
+.rv.da .rv06-sp{opacity:1;transform:none}
+.rv06-punkt{position:absolute;left:0;top:-6px;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--nacht),0 0 14px rgba(216,178,100,.6)}
+.rv06-w{font-size:clamp(34px,3.4vw,50px);line-height:1;color:var(--gold)}
+.rv06-n{margin:0;color:var(--text3);font-size:15px}
+.rv06-fuss{margin-top:40px}
+
+/* ---------- 07 Der Bogen */
+.rv07-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:center}
+.rv07-bogen{max-width:480px}
+.rv07-bild{aspect-ratio:3/4.3;border-radius:999px 999px var(--rand) var(--rand);box-shadow:var(--schatten),inset 0 0 0 1px var(--gold-l)}
+.rv07-bild img{transform:scale(1.22);transition-duration:2.2s}
+.rv07-form{margin-top:34px;opacity:0;transform:translateY(50px);transition:transform 1.2s var(--k) .35s,opacity .8s var(--k) .35s}
+.rv.da .rv07-form{opacity:1;transform:none}
+
+/* ---------- 08 Nur Schrift */
+.rv08-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,26ch);gap:clamp(24px,4vw,60px);align-items:end}
+.rv .rv08-t{font-size:clamp(64px,11vw,176px);line-height:.94}
+.rv08-satz{margin:0 0 .8em!important}
+.rv08-form{margin-top:clamp(50px,6vw,90px);opacity:0;transform:translateY(50px);transition:transform 1.3s var(--k) .4s,opacity .9s var(--k) .4s}
+.rv.da .rv08-form{opacity:1;transform:none}
+.rv08-raster{display:grid;grid-template-columns:1.1fr .8fr .7fr 1fr 1.4fr;gap:24px 30px}
+.rv08-fuss{margin-top:36px}
+
+/* ---------- 09 Drei Bilder vom Abend */
+.rv09-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px);align-items:start;margin-bottom:clamp(50px,6vw,90px)}
+.rv09-b{opacity:0;transform:translateY(90px);transition:transform 1.5s var(--k),opacity 1s var(--k);transition-delay:calc(var(--n) * .16s)}
+.rv09-b:nth-child(2){margin-top:clamp(30px,4vw,60px)} .rv09-b:nth-child(3){margin-top:clamp(12px,1.6vw,24px)}
+.rv.da .rv09-b{opacity:1;transform:none}
+.rv09-b .rv-bild{aspect-ratio:4/4.4}
+.rv09-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.rv09-form{opacity:0;transform:translateY(50px);transition:transform 1.2s var(--k) .3s,opacity .8s var(--k) .3s}
+.rv.da .rv09-form{opacity:1;transform:none}
+
+/* ---------- 10 Wie eine Karte */
+.rv10-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.rv10-bild{aspect-ratio:3/4;width:min(62%,300px);margin-top:36px}
+.rv10-karte{padding:clamp(30px,3.6vw,52px);border-radius:6px;box-shadow:var(--schatten),inset 0 0 0 1px rgba(160,127,58,.35);display:grid;justify-items:stretch;
+ transform:translateY(60px) rotate(-2.5deg);opacity:0;transition:transform 1.5s var(--k) .2s,opacity .9s var(--k) .2s}
+.rv.da .rv10-karte{transform:none;opacity:1}
+.rv10-logo{justify-self:center;width:46px;color:var(--dunkel)} .rv10-logo svg{width:100%;height:auto;display:block}
+.rv10-et{justify-self:center;margin:14px 0 18px;color:#8F6E2E!important}
+.rv10-z{display:grid;grid-template-columns:auto minmax(20px,1fr) minmax(0,1.3fr);align-items:end;gap:10px;padding:12px 0}
+.rv10-z>span{font-family:var(--titel);font-size:clamp(19px,1.6vw,23px);color:var(--dunkel);white-space:nowrap}
+.rv10-z>i{height:2px;margin-bottom:9px;background-image:radial-gradient(circle,rgba(27,21,18,.5) 1px,transparent 1.4px);background-size:7px 2px;background-repeat:repeat-x;
+ transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--k);transition-delay:calc(.7s + var(--n) * .1s)}
+.rv.da .rv10-z>i{transform:scaleX(1)}
+.rv10-karte input,.rv10-karte select{background:transparent!important;box-shadow:inset 0 -1px 0 rgba(27,21,18,.3)!important;border-radius:0;padding:6px 0;font-size:17px;text-align:right}
+.rv10-karte select{text-align-last:right;padding-right:26px;background-position:calc(100% - 12px) 50%,calc(100% - 6px) 50%}
+.rv10-karte input:focus,.rv10-karte select:focus{box-shadow:inset 0 -2px 0 #A07F3A!important}
+.rv10-karte .rv-fuss{justify-content:center;text-align:center;margin-top:28px}
+
+/* ---------- 11 Momo hinter der Bar */
+.rv.rv11-sek{padding:0}
+.kap+.rv11-sek{margin-top:clamp(40px,5vw,72px)}
+.rv11-g{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);align-items:stretch;min-height:min(92vh,880px)}
+.rv11-bild{border-radius:0;box-shadow:none;height:100%;min-height:520px}
+.rv11-bild img{transform:scale(1.18);transition-duration:2.4s}
+.rv11-r{padding:clamp(60px,7vw,110px) max(4vw,calc((100vw - var(--innen)) / 2)) clamp(60px,7vw,110px) clamp(30px,5vw,80px);align-self:center;max-width:720px}
+.rv11-form{margin-top:34px;opacity:0;transform:translateY(50px);transition:transform 1.2s var(--k) .35s,opacity .8s var(--k) .35s}
+.rv.da .rv11-form{opacity:1;transform:none}
+
+/* ---------- 12 Die nächsten Abende */
+.rv12-g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.rv12-bild{aspect-ratio:3/4;width:min(56%,260px);margin-top:36px}
+.rv12-et{display:block;margin:0 0 12px}
+.rv12-et+*{margin-bottom:26px}
+.rv12-abende{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;perspective:900px}
+.rv12-a{position:relative;display:grid;gap:8px;padding:20px 18px;border-radius:12px;background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-ll);cursor:pointer;
+ transform-origin:bottom;transform:rotateX(-80deg);opacity:0;transition:transform 1.1s cubic-bezier(.3,1.2,.5,1),opacity .6s var(--k),box-shadow .5s,background .5s;transition-delay:calc(.4s + var(--n) * .14s),calc(.4s + var(--n) * .14s),0s,0s}
+.rv.da .rv12-a{transform:none;opacity:1}
+.rv12-a input,.rv12-u input{position:absolute;opacity:0;pointer-events:none}
+.rv12-dat{font-family:var(--titel);font-weight:400;white-space:nowrap;font-size:clamp(19px,1.6vw,24px);line-height:1;color:var(--text)}
+.rv12-bis{font-size:13px;color:var(--text3)}
+.rv12-a:has(input:checked){background:var(--nacht3);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.rv12-a:has(input:focus-visible),.rv12-u:has(input:focus-visible){outline:2px solid var(--creme);outline-offset:2px}
+.rv12-zeiten{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.rv12-u span{display:block;text-align:center;padding:14px 6px;border-radius:10px;background:var(--nacht);box-shadow:inset 0 0 0 1px var(--gold-ll);cursor:pointer;transition:box-shadow .5s,color .5s;font-size:16px}
+.rv12-u:has(input:checked) span{box-shadow:inset 0 0 0 1.5px var(--gold);color:var(--gold)}
+
+/* ---------- 13 Ruhig in der Mitte */
+.rv13-g{display:grid;justify-items:center;text-align:center}
+.rv13-kz{justify-content:center}
+.rv13-satz{margin-inline:auto;max-width:48ch}
+.rv13-form{width:min(100%,560px);margin-top:clamp(40px,5vw,64px);text-align:left}
+.rv13-spalte{display:grid;gap:26px}
+.rv13-form .rv-f{position:relative}
+.rv13-form .rv-f::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:center;transition:transform 1.4s var(--k) .5s;opacity:.55}
+.rv.da .rv13-form .rv-f::after{transform:scaleX(1);opacity:0;transition:transform 1.4s var(--k) .5s,opacity 1s ease 1.9s}
+.rv13-form .rv-f>span{opacity:0;transform:translateY(20px);transition:transform 1s var(--k) .4s,opacity .7s var(--k) .4s}
+.rv.da .rv13-form .rv-f>span{opacity:1;transform:none}
+.rv13-fuss{justify-content:center;flex-direction:column;margin-top:40px}
+
+/* ---------- 14 Zwei bis sechs */
+.rv14-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;margin-top:clamp(40px,5vw,64px)}
+.rv14-zahlen{display:grid;gap:0}
+.rv14-z{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:24px;padding:18px 0;border-bottom:1px solid var(--gold-ll)}
+.rv14-z:first-child{border-top:1px solid var(--gold-ll)}
+.rv14-sch{display:block;overflow:hidden;padding-bottom:.1em}
+.rv14-sch b{display:block;font-weight:400;font-size:clamp(54px,6.4vw,96px);line-height:1;color:var(--gold);transform:translateY(110%);transition:transform 1.25s var(--k);transition-delay:calc(.3s + var(--n) * .16s)}
+.rv14-z:first-child .rv14-sch b{color:var(--creme)}
+.rv.da .rv14-sch b{transform:none}
+.rv14-z .etikett{display:block;margin-bottom:8px}
+.rv14-z em{font-style:normal;color:var(--text2)}
+.rv14-z em a{color:var(--gold)}
+.rv14-zahlen .text{margin-top:20px}
+.rv14-form{opacity:0;transform:translateY(50px);transition:transform 1.2s var(--k) .3s,opacity .8s var(--k) .3s}
+.rv.da .rv14-form{opacity:1;transform:none}
+
+/* ---------- 15 Drei Wege */
+.rv15-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:clamp(30px,5vw,80px);align-items:end}
+.rv15-kopf .rv-satz{margin-bottom:.5em}
+.rv15-reihe{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(44px,5vw,70px);align-items:stretch}
+.rv15-k{display:flex;flex-direction:column;gap:16px;padding:clamp(24px,2.8vw,38px);border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);
+ opacity:0;transform:translateY(80px) rotate(var(--r));transition:transform 1.4s var(--k),opacity .9s var(--k);transition-delay:calc(.3s + var(--n) * .15s)}
+.rv15-k.hell{background:var(--creme);color:var(--dunkel)}
+.rv.da .rv15-k{opacity:1;transform:none}
+.rv15-w{font-size:clamp(30px,2.8vw,42px);line-height:1}
+.rv15-k .text{margin:0;font-size:16px}
+.rv15-gross{font-family:var(--titel);font-size:clamp(22px,1.9vw,28px);color:var(--dunkel);text-decoration:none;border-bottom:1px solid rgba(160,127,58,.4);padding-bottom:6px;align-self:flex-start}
+.rv15-k .knopf{margin-top:auto;align-self:flex-start}
+
+/* ---------- Schmal */
+@media (max-width:900px){
+  .rv01-reihe,.rv08-raster{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .rv02-felder{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .rv15-reihe{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .rv15-form-k{grid-column:1/-1}
+}
+@media (max-width:760px){
+  .rv01-oben,.rv03-g,.rv04-g,.rv05-g,.rv06-kopf,.rv07-g,.rv08-kopf,.rv09-g,.rv10-g,.rv11-g,.rv12-g,.rv14-g,.rv15-kopf,.rv02-kopf{grid-template-columns:minmax(0,1fr)}
+  .rv06-reihe,.rv15-reihe{grid-template-columns:minmax(0,1fr)}
+  .rv01-reihe,.rv08-raster,.rv02-felder,.rv-form .rv-zwei{grid-template-columns:minmax(0,1fr)}
+  .rv04-in,.rv04-form{width:100%;margin:0}
+  .rv11-bild{min-height:0;aspect-ratio:4/5;height:auto}
+  .rv11-r{padding:48px 16px}
+  .rv12-abende{grid-template-columns:minmax(0,1fr)} .rv12-zeiten{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rv14-z{grid-template-columns:minmax(0,1fr)}
+  .rv09-reihe{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .rv03-n{width:100%!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .rv *{transition:none!important}
+  .rv .rv-z>span,.rv .rv-kz,.rv .rv-satz,.rv [class*="rv0"],.rv [class*="rv1"]{opacity:1!important}
+}
+.ruhig .rv *,.ruhig .rv{transition:none!important}

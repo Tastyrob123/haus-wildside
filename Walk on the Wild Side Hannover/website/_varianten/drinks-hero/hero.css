@@ -1,0 +1,151 @@
+/* Wild Side · Drinks, 15 Fassungen für den Kopf «Was magst du?» (29.10.2026). Titel gross, Satz lesbar; Farben und Schriften der Seite.
+   Nur transform (11: eine Schicht über der anderen), Fotos von Anfang an da. */
+.dh{--ein:cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;background:var(--nacht);min-height:min(100vh,900px);min-height:min(100svh,900px)}
+.dh-f{position:relative;margin:0;overflow:hidden;background:var(--nacht3) center/cover no-repeat;background-image:var(--lq)}
+.dh-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dh-voll{position:absolute;inset:0}
+.dh .dh-t{font-size:clamp(56px,9.4vw,150px);line-height:.98;letter-spacing:-.01em;color:var(--creme)}
+.dh .dh-t .z{padding-bottom:.2em;margin-bottom:-.2em}
+.dh .dh-s{font-size:clamp(18px,1.5vw,22px);line-height:1.55;color:var(--text);max-width:46ch;margin-top:22px}
+.dh-unten{position:absolute;left:0;right:0;bottom:0;margin:0 auto;padding:0 0 clamp(48px,6vh,80px);z-index:3}
+.dh-unten .dh-t,.dh-unten .dh-s{text-shadow:0 4px 40px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.5)}
+
+/* 01 Langsam heran */
+.dh01 .dh-voll img{filter:brightness(.58);transform:scale(1.16);transition:transform 5.5s var(--ein)}
+.dh01.da .dh-voll img{transform:none}
+
+/* 02 Drei Gläser */
+.dh02-drei{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.dh02-drei .dh-f img{filter:brightness(.55)}
+.dh02-drei .dh-f{transform:translateY(110%);transition:transform 1.6s var(--ein)}
+.dh02-drei .dh-f:nth-child(2){transition-delay:.15s} .dh02-drei .dh-f:nth-child(3){transition-delay:.3s}
+.dh02.da .dh02-drei .dh-f{transform:none}
+
+/* 03 Die Frage steht */
+.dh03{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.dh03-l{display:flex;align-items:flex-end;padding:120px clamp(28px,4vw,64px) clamp(48px,6vh,80px) max(4vw,calc((100vw - 1240px)/2))}
+.dh03 .dh-t{font-size:clamp(64px,10.4vw,170px);line-height:.92}
+.dh03-r img{transform:scale(1.12);transition:transform 2.6s var(--ein)} .dh03.da .dh03-r img{transform:none}
+
+/* 04 Sauer, süss oder bitter */
+.dh04-in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.dh04-rad{display:flex;align-items:baseline;gap:.3em;font-family:var(--titel);font-size:clamp(34px,4.4vw,66px);line-height:1.1;margin-top:10px;color:var(--text3)}
+.dh04-fix{color:var(--text3)} .dh04-fix:first-child{font:500 12px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold);align-self:center;margin-right:.6em}
+.dh04-w{position:relative;display:inline-grid;overflow:hidden;color:var(--gold);padding-bottom:.12em}
+.dh04-w span{grid-area:1/1;transform:translateY(110%);transition:transform .9s var(--ein)}
+.dh04-w span.an{transform:none} .dh04-w span.weg{transform:translateY(-110%)}
+.dh04-rahmen{position:relative;aspect-ratio:4/5;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.dh04-b{position:absolute;inset:0;transform:translateY(101%);transition:transform 1s var(--ein);z-index:0}
+.dh04-b.an{transform:none;z-index:2} .dh04-b.war{transform:none;z-index:1;transition:none}
+
+/* 05 Das runde Fenster */
+.dh05{display:grid;place-items:center;padding:110px 0 56px}
+.dh05-kreis{position:relative;width:min(64vh,640px,80vw);aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px var(--gold-l),0 0 0 12px var(--nacht),0 0 0 13px var(--gold-ll),var(--schatten);transform:scale(.72);transition:transform 2s var(--ein)}
+.dh05-kreis .dh-f{position:absolute;inset:0} .dh05-kreis img{filter:brightness(.8);transform:scale(1.3);transition:transform 2.4s var(--ein)}
+.dh05.da .dh05-kreis{transform:none} .dh05.da .dh05-kreis img{transform:none}
+.dh05-text{text-align:center;margin-top:calc(-1 * clamp(70px,7vw,110px));position:relative;z-index:2;display:grid;justify-items:center}
+.dh05-text .dh-t{text-shadow:0 4px 40px rgba(0,0,0,.8)}
+
+/* 06 Die Gläser laufen */
+.dh06-reihen{position:absolute;inset:0;display:grid;grid-template-rows:1fr 1fr;gap:8px;padding:8px 0}
+.dh06-r{overflow:hidden}
+.dh06-zug{display:flex;gap:8px;height:100%;width:max-content;animation:dh06-lauf 90s linear infinite}
+.dh06-r2 .dh06-zug{animation-direction:reverse}
+.dh06-zug .dh-f{width:clamp(240px,22vw,340px);height:100%;border-radius:6px} .dh06-zug img{filter:brightness(.62)}
+@keyframes dh06-lauf{to{transform:translateX(calc(-50% - 4px))}}
+.ruhig .dh06-zug{animation:none}
+.dh06{display:grid;place-items:center}
+.dh06-schild{position:relative;z-index:2;background:var(--nacht2);border-radius:6px;box-shadow:inset 0 0 0 1px var(--gold-ll),0 50px 100px -30px rgba(0,0,0,.9);padding:clamp(36px,4vw,64px) clamp(36px,5vw,80px);text-align:center;display:grid;justify-items:center;margin:100px 4vw 50px;max-width:1000px}
+.dh06-linie{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.dh06-linie rect{width:calc(100% - 20px);height:calc(100% - 20px);fill:none;stroke:var(--gold);stroke-width:1.2;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 2.6s var(--ein) .4s}
+.dh06.da .dh06-linie rect{stroke-dashoffset:0}
+.dh06-schild>*:not(svg){position:relative}
+.dh06 .dh-t{font-size:clamp(52px,7.2vw,112px)}
+
+/* 07 Tiefe beim Scrollen */
+.dh07-tief{position:absolute;inset:-12% 0 0 0;will-change:transform} .dh07-tief img{filter:brightness(.55)}
+.dh07-vorn{will-change:transform}
+
+/* 08 Das Glas in der Mitte */
+.dh08{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr) minmax(0,1fr);align-items:end}
+.dh08-l{padding:0 clamp(20px,2.6vw,44px) clamp(48px,6vh,80px) 0;text-align:right;display:grid;justify-items:end}
+.dh08-l .dh-s{text-align:right}
+.dh08-r{padding:0 0 clamp(48px,6vh,80px) clamp(20px,2.6vw,44px);align-self:end}
+.dh08 .dh-t{font-size:clamp(54px,7.6vw,128px)}
+.dh08-r .dh-t{padding-bottom:calc(clamp(18px,1.5vw,22px) * 1.55 * 3 + 22px)}
+.dh08-m{height:100%;min-height:inherit;transform:scale(.86);transition:transform 2s var(--ein)} .dh08-m img{filter:brightness(.85)}
+.dh08.da .dh08-m{transform:none}
+
+/* 09 Die Karte ohne Karte */
+.dh09{display:flex;flex-direction:column;justify-content:flex-end}
+.dh09-oben{padding:130px 0 clamp(30px,4vh,50px)}
+.dh09-glaeser{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;height:clamp(240px,36vh,380px)}
+.dh09-glaeser .dh-f{border-radius:6px 6px 0 0;transform:translateY(var(--d));transition:transform 1.6s var(--ein)}
+.dh09.da .dh09-glaeser .dh-f{transform:none}
+
+/* 10 Nur Schrift */
+.dh10-in{display:grid;justify-items:center;text-align:center;align-content:center;min-height:inherit;padding:120px 0 64px}
+.dh10 .dh-t{font-size:clamp(70px,11.4vw,210px);line-height:.92;white-space:nowrap}
+.dh10-linie{display:block;width:min(560px,60%);height:1px;background:var(--gold);margin:clamp(26px,3vw,40px) 0 4px;transform:scaleX(0);transition:transform 2.2s var(--ein) .4s}
+.dh10.da .dh10-linie{transform:none}
+.dh10-k{margin-top:30px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;font:500 12px/1 var(--lauf);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.dh10-k i{font-style:normal;color:var(--text3)}
+
+/* 11 Das Foto in der Schrift */
+.dh11-in{display:grid;justify-items:center;text-align:center;align-content:center;min-height:inherit;padding:120px 0 64px}
+.dh11-t{position:relative;white-space:nowrap;font-size:clamp(76px,11.4vw,210px)!important;line-height:.95!important;letter-spacing:-.02em}
+.dh11-hell{display:block;color:var(--creme)}
+.dh11-foto{position:absolute;inset:0;display:block;color:transparent;background-size:cover;background-position:50% 45%;-webkit-background-clip:text;background-clip:text;opacity:0;transition:opacity 2.4s ease .8s}
+.dh11.da .dh11-foto{opacity:1} .ruhig .dh11-foto{opacity:1}
+.dh11 .dh-s{margin-top:30px}
+
+/* 12 An der Theke, im Glas */
+.dh12-vergleich{position:absolute;inset:0;--p:50%}
+.dh12-vergleich img{filter:brightness(.6)}
+.dh12-oben{position:absolute;inset:0;overflow:hidden;transform:translateX(calc(var(--p) - 100%))}
+.dh12-innen{position:absolute;inset:0;transform:translateX(calc(100% - var(--p)))}
+.dh12-griff{position:absolute;top:0;bottom:0;left:var(--p);width:0;z-index:4;cursor:ew-resize}
+.dh12-griff::before{content:"";position:absolute;top:0;bottom:0;left:-.5px;width:1px;background:var(--gold)}
+.dh12-griff i{position:absolute;top:42%;left:-26px;width:52px;height:52px;border-radius:50%;background:var(--gold);box-shadow:0 10px 30px -8px rgba(0,0,0,.8)}
+.dh12-griff i::before,.dh12-griff i::after{content:"";position:absolute;top:50%;width:8px;height:8px;margin-top:-4px;border:solid var(--nacht);border-width:0 0 2px 2px}
+.dh12-griff i::before{left:13px;transform:rotate(45deg)} .dh12-griff i::after{right:13px;transform:rotate(-135deg)}
+.dh12-l,.dh12-r{position:absolute;top:110px;z-index:3;color:var(--creme)!important;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.dh12-l{left:4vw} .dh12-r{right:4vw}
+
+/* 13 Das Foto kippt */
+.dh13-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;min-height:inherit;padding:120px 0 64px}
+.dh13-karte{perspective:1400px}
+.dh13-karte .dh-f{aspect-ratio:4/5;border-radius:var(--rand-g);box-shadow:var(--schatten);transform:perspective(1400px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform 1.2s var(--ein)}
+
+/* 14 Vier Felder */
+.dh14-felder{position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:6px;padding:76px 0 0;perspective:1800px}
+.dh14-t{background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,3.4vw,56px)}
+.dh14 .dh-t{font-size:clamp(54px,6.6vw,110px)}
+.dh14-felder>*{transform-origin:50% 100%;transform:rotateX(24deg) translateY(40px);transition:transform 1.6s var(--ein)}
+.dh14-felder>*:nth-child(2){transition-delay:.1s} .dh14-felder>*:nth-child(3){transition-delay:.2s} .dh14-felder>*:nth-child(4){transition-delay:.3s}
+.dh14.da .dh14-felder>*{transform:none}
+.dh14-felder img{filter:brightness(.85)}
+
+/* 15 Bilder ziehen unter dem Titel durch */
+.dh15{min-height:0}
+.dh15-bilder{display:grid}
+.dh15-bilder .dh-f{height:100vh;height:100svh} .dh15-bilder img{filter:brightness(.55)}
+.dh15-steht{position:absolute;inset:0;pointer-events:none}
+.dh15-steht .innen{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(48px,6vh,80px)}
+.dh15-steht .dh-t,.dh15-steht .dh-s{text-shadow:0 4px 40px rgba(0,0,0,.75)}
+
+.ruhig .dh *{transition:none!important}
+
+@media (max-width:900px){
+  .dh .dh-t{font-size:clamp(46px,13vw,72px)}
+  .dh03,.dh04-in,.dh13-in{grid-template-columns:minmax(0,1fr)}
+  .dh03-l{padding:110px 16px 30px} .dh03-r{min-height:60vh}
+  .dh04-rahmen,.dh13-karte{max-width:420px}
+  .dh08{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 50vh auto} .dh08-l,.dh08-r{padding:20px 16px;text-align:left;justify-items:start} .dh08-l{padding-top:110px} .dh08-l .dh-s{text-align:left} .dh08-r .dh-t{padding-bottom:0}
+  .dh08-m{min-height:0}
+  .dh09-glaeser{grid-template-columns:repeat(3,minmax(0,1fr))} .dh09-glaeser .dh-f:nth-child(n+4){display:none}
+  .dh10 .dh-t,.dh11-t{font-size:clamp(40px,12.4vw,96px)!important}
+  .dh14-felder{position:relative;grid-template-columns:minmax(0,1fr);grid-template-rows:auto repeat(3,40vh);padding-top:76px}
+  .dh14-t{min-height:60vh}
+  .dh06-schild{margin:100px 16px 40px}
+}

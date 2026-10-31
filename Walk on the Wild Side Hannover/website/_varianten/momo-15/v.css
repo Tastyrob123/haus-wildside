@@ -1,0 +1,235 @@
+/* Wild Side · 15 Fassungen «Momo bei der Arbeit» (29.10.2026). Bausteine der Seite (kz, titel, kachel, platte, plakat, knopf, Goldlinie), je Fassung eigene Darstellung. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam: Kopf mit Momos Satz rechts, ein Satz je Bild, Fusszeile */
+.m-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:end;margin-bottom:clamp(30px,3.6vw,46px)}
+.m-kopf .ge-zitat{margin:0 0 6px;font-size:clamp(22px,2.4vw,32px);color:var(--text);max-width:none}
+.m-satz .titel{font-size:clamp(20px,1.9vw,26px);line-height:1.18;color:var(--text)}
+.m-zu{margin-top:8px;font-size:14.5px;line-height:1.5;color:var(--text2)}
+.hell .m-satz .titel{color:var(--dunkel)} .hell .m-zu{color:rgba(27,21,18,.7)}
+.m-fuss{margin-top:clamp(30px,3.6vw,46px);padding-top:26px;border-top:1px solid var(--gold-ll);display:flex;justify-content:space-between;align-items:center;gap:30px}
+.m-fuss .ge-zitat,.m-fuss .knoepfe{margin-top:0}
+.mx .kachel img,.mx .foto img{transform:none}
+.mx .stapel-basis{position:relative;overflow:hidden}
+
+/* Stapel echter Fotos: das neue kommt von unten */
+.m2-stapel,.m4-stapel,.m12-stapel,.m15-stapel{position:relative;overflow:hidden;border-radius:var(--rand);background:var(--nacht3);box-shadow:var(--schatten)}
+.m2-stapel .foto,.m4-stapel .foto,.m12-stapel .foto,.m15-stapel .foto{position:absolute;inset:0;transform:translateY(100%);transition:transform 1.15s var(--k)}
+.m2-stapel .foto.an,.m4-stapel .foto.an,.m12-stapel .foto.an,.m15-stapel .foto.an{transform:none;z-index:2}
+.m2-stapel .foto.war,.m4-stapel .foto.war,.m12-stapel .foto.war,.m15-stapel .foto.war{transform:none;z-index:1}
+
+/* ---------- 01 Filmstreifen */
+.m1-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.m1-sch .kachel{aspect-ratio:3/4}
+.m1-sch .m-satz{margin-top:16px;padding-right:6px}
+
+/* ---------- 02 Das Bild bleibt stehen */
+.m02{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.5vw,72px)}
+.m2-halt{position:sticky;top:max(90px,calc(50vh - 330px));height:min(78vh,660px)}
+.m2-stapel{height:100%}
+.m2-block{min-height:min(42vh,380px);display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--gold-ll);transition:opacity .6s}
+.m2-block:not(.an){opacity:.32}
+.m2-block .titel{font-size:clamp(30px,3.4vw,46px)}
+.m2-block .m-zu{font-size:16px;max-width:40ch}
+.m2-ende{padding-top:30px;border-top:1px solid var(--gold-ll)}
+.m2-ende .knoepfe{margin-top:26px}
+
+/* ---------- 03 Das Band zum Blättern */
+.m3-pfeile{display:flex;gap:12px;justify-self:end;margin-bottom:6px}
+.m3-pf{width:56px;height:56px;border-radius:50%;border:0;background:var(--nacht3);color:var(--gold);display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 0 0 1px var(--gold-l),0 14px 30px -14px rgba(0,0,0,.8);transition:transform 1.6s var(--k),opacity .4s}
+.m3-pf svg{width:19px;height:19px} .m3-pf[data-d="-1"] svg{transform:scaleX(-1)}
+.m3-pf:hover{transform:translateY(-3px)} .m3-pf:disabled{opacity:.3;cursor:default;transform:none}
+.m3-band{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc((var(--innen) - 100vw)/2);padding-right:calc((100vw - var(--innen))/2)}
+.m3-band::-webkit-scrollbar{display:none}
+.m3-sch{flex:0 0 clamp(260px,31vw,420px);scroll-snap-align:start}
+.m3-sch .kachel{aspect-ratio:4/5}
+.m3-sch .m-satz{margin-top:16px}
+.m3-sek{overflow-x:clip}
+
+/* ---------- 04 Nach der Uhr */
+.m04{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.m4-links{display:flex;flex-direction:column;gap:14px}
+.m4-striche{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.m4-striche button{height:18px;padding:8px 0;border:0;background:none;cursor:pointer}
+.m4-striche i{display:block;height:2px;background:var(--gold-l);position:relative;overflow:hidden}
+.m4-striche i::after{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left}
+.m4-striche .war i::after{transform:none}
+.m4-striche .an i::after{animation:m4l 4.8s linear forwards}
+.halt .m4-striche .an i::after{animation-play-state:paused}
+.ruhig .m4-striche .an i::after{animation:none;transform:none}
+@keyframes m4l{to{transform:none}}
+.m4-stapel{flex:1;min-height:540px}
+.m4-rechts{display:flex;flex-direction:column;justify-content:center}
+.m4-saetze{position:relative;margin-top:34px;height:170px;border-top:1px solid var(--gold-ll);overflow:hidden}
+.m4-s{position:absolute;inset:24px 0 0;opacity:0;transform:translateY(40px);transition:transform 1s var(--k),opacity .7s}
+.m4-s.an{opacity:1;transform:none}
+.m4-s .titel{font-size:clamp(28px,3vw,40px)}
+.m04 .ge-zitat{margin-top:10px} .m04 .knoepfe{margin-top:28px}
+
+/* ---------- 05 Geschlossenes Mosaik */
+.m5-kopf{margin-bottom:30px}
+.m5{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"a a b c" "a a d e" "t t z z";grid-template-rows:clamp(220px,26vw,330px) clamp(220px,26vw,330px) auto;gap:14px}
+.m5-a{grid-area:a} .m5-b{grid-area:b} .m5-c{grid-area:c} .m5-d{grid-area:d} .m5-e{grid-area:e}
+.m5-text{grid-area:t;padding:clamp(24px,3vw,40px)}
+.m5-ablauf{font-family:var(--titel);font-size:clamp(19px,1.8vw,24px);line-height:1.4;color:var(--text2)}
+.m5-ablauf b{font-weight:400;color:var(--text)}
+.m5-zitat{grid-area:z}
+.m5-zitat .titel{font-size:clamp(30px,3.7vw,52px);line-height:1.06}
+.m5-zitat .etikett{color:#A07F3A;margin:16px 0 22px}
+.m5-zitat .knopf{align-self:flex-start;margin-top:auto}
+
+/* ---------- 06 Satz und Bilder im Wechsel */
+.m6-kopf{max-width:60ch;margin-bottom:30px}
+.m6-zeile{font-size:clamp(44px,6vw,86px);line-height:1;margin:clamp(26px,3vw,40px) 0 clamp(18px,2vw,26px)}
+.m6-reihe{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.m6-reihe .kachel{aspect-ratio:16/10}
+.m6-reihe .kachel img{object-position:50% 40%}
+.m6-wer{margin-top:20px;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.m6-ablauf{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;flex:1}
+.m6-ablauf li{font-size:13.5px;line-height:1.45;color:var(--text2)}
+.m6-ablauf b{display:block;font:400 18px/1.2 var(--titel);color:var(--text);margin-bottom:6px}
+.m6-fuss{align-items:flex-start}
+
+/* ---------- 07 Gegenlauf */
+.m07{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,4fr) minmax(0,4fr);gap:clamp(20px,2.6vw,40px);align-items:start}
+.m7-sp{display:grid;gap:14px;will-change:transform}
+.m7-sp .kachel{aspect-ratio:3/4}
+.m7-r{margin-top:120px}
+.m7-halt{position:sticky;top:110px}
+.m7-saetze{margin-top:26px;display:grid;gap:16px;padding-top:22px;border-top:1px solid var(--gold-ll)}
+.m07 .knoepfe{margin-top:28px}
+.m07 .text{font-size:16px}
+
+/* ---------- 08 Das Bild zieht sich auf */
+.m8-kopf{max-width:60ch;margin:0 auto;text-align:center}
+.m8-kopf .kz{justify-content:center} .m8-kopf .text{margin:0 auto}
+.m8-buehne{height:210vh;position:relative;margin-top:20px}
+.m8-halt{position:sticky;top:90px;height:calc(100vh - 120px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px}
+.m8-bild{width:min(100%,1100px);height:min(68vh,640px);border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);transform:scale(.46);transform-origin:50% 50%;will-change:transform}
+.m8-bild .foto{width:100%;height:100%}
+.m8-bild .foto img{object-position:60% 30%!important}
+.m8-unter{text-align:center;opacity:0;transform:translateY(24px);transition:opacity .8s,transform 1s var(--k)}
+.m8-unter.da{opacity:1;transform:none}
+.m8-unter .titel{font-size:clamp(28px,3.2vw,44px)}
+.m8-rest{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:10px}
+.m8-sch .kachel{aspect-ratio:3/4}
+.m8-sch .m-satz{margin-top:14px}
+.m8-sch:nth-child(1){--n:0} .m8-sch:nth-child(2){--n:1} .m8-sch:nth-child(3){--n:2} .m8-sch:nth-child(4){--n:3}
+
+/* ---------- 09 Abzüge auf dem Tresen */
+.m09{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.m9-liste{margin-top:26px;display:grid;gap:14px;padding-top:20px;border-top:1px solid var(--gold-ll)}
+.m9-s .titel{font-size:clamp(19px,1.8vw,24px)}
+.m09 .knoepfe{margin-top:28px}
+.m9-tresen{position:relative;height:clamp(560px,58vw,760px)}
+.m9-abzug{position:absolute;width:34%;aspect-ratio:3/4;margin:0;border-radius:6px;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);
+ box-shadow:0 0 0 7px var(--creme2),0 30px 60px -22px rgba(0,0,0,.85);transition:translate 1.6s var(--k),scale 1.6s var(--k)}
+.m9-abzug img{width:100%;height:100%;object-fit:cover}
+.m9-0{left:0;top:2%;rotate:-3deg;z-index:1}
+.m9-1{left:33%;top:0;rotate:1.5deg;z-index:2}
+.m9-2{left:66%;top:3%;rotate:-1.5deg;z-index:3}
+.m9-3{left:13%;top:41%;width:38%;rotate:2deg;z-index:4}
+.m9-4{left:50%;top:43%;width:38%;rotate:-2deg;z-index:5}
+.m9-abzug:hover{translate:0 -10px;scale:1.03;z-index:9}
+
+/* ---------- 10 Ein Satz mit Bildern */
+.m10-kopf{max-width:60ch}
+.m10-satz{margin-top:clamp(30px,3.6vw,46px);font-size:clamp(38px,5vw,74px);line-height:1.22;color:var(--text)}
+.m10-nb{white-space:nowrap}
+.m10-bild{display:inline-block;vertical-align:-.2em;width:2.4em;height:1.08em;border-radius:.2em;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);box-shadow:0 14px 30px -14px rgba(0,0,0,.8);transition:transform 1.4s var(--k)}
+.m10-bild img{width:100%;height:100%;object-fit:cover}
+.m10-bild:hover{transform:scale(1.6);position:relative;z-index:3}
+.m10-fuss{margin-top:clamp(36px,4vw,56px)}
+
+/* ---------- 11 Auf hellem Papier */
+section.ms11{background:var(--creme);color:var(--dunkel)}
+section.ms11 .ueber{color:rgba(27,21,18,.62)}
+.m11{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.m11 .titel{color:var(--dunkel)}
+.m11-liste{margin-top:26px}
+.m11-z{padding:16px 0;border-top:1px solid rgba(160,127,58,.45)}
+.m11-z .titel{font-size:clamp(19px,1.8vw,24px)}
+.m11-z .m-zu{font-size:14px}
+.m11 .knoepfe{margin-top:26px}
+.m11-wand{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:12px}
+.m11-wand .kachel{min-height:0;box-shadow:0 26px 50px -26px rgba(27,21,18,.6)}
+
+/* ---------- 12 Grosses Bild, kleine Bilder */
+.m12-g{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.m12-rechts .text{font-size:16px}
+.m12-stapel{aspect-ratio:5/4}
+.m12-stapel .foto img{object-position:50% 40%}
+.m12-klein{margin-top:12px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.m12-k{padding:0;border:0;aspect-ratio:1/1;border-radius:10px;overflow:hidden;cursor:pointer;background:var(--nacht3) center/cover;background-image:var(--lq);opacity:.5;transition:opacity .5s,transform 1.4s var(--k);box-shadow:var(--schatten-k)}
+.m12-k img{width:100%;height:100%;object-fit:cover}
+.m12-k:hover{opacity:.85;transform:translateY(-4px)}
+.m12-k.an{opacity:1;box-shadow:var(--schatten-k),0 0 0 2px var(--gold)}
+.m12-saetze{position:relative;height:190px;margin-top:24px;border-top:1px solid var(--gold-ll)}
+.m12-s{position:absolute;inset:26px 0 0;opacity:0;transform:translateY(30px);transition:transform 1s var(--k),opacity .6s}
+.m12-s.an{opacity:1;transform:none}
+.m12-s .titel{font-size:clamp(28px,3vw,42px)}
+.m12-s .m-zu{font-size:16px}
+.m12-g .knoepfe{margin-top:24px} .m12-rechts .ge-zitat{margin-top:0}
+
+/* ---------- 13 Der Weg nach unten */
+.m13-weg{position:relative;padding:10px 0}
+.m13-linie{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold-ll)}
+.m13-linie i{position:absolute;inset:0;background:var(--gold);transform:scaleY(0);transform-origin:top}
+.m13-st{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center;margin-top:-90px}
+.m13-st:first-of-type{margin-top:0}
+.m13-st .kachel{aspect-ratio:4/3;width:min(100%,470px)}
+.m13-l .kachel{justify-self:end} .m13-r .kachel{order:2}
+.m13-r .m-satz{text-align:right;justify-self:end}
+.m13-st .m-satz{max-width:30ch}
+.m13-st .m-satz .titel{font-size:clamp(24px,2.6vw,34px)}
+.m13-punkt{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 0 0 2px var(--gold-l);transition:background .5s,box-shadow .5s}
+.m13-st.an .m13-punkt{background:var(--gold);box-shadow:0 0 0 5px var(--gold-ll)}
+.m13-fuss{justify-content:center}
+
+/* ---------- 14 Drei Bilder bis an den Rand */
+.m14-band{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:0}
+.m14-b .foto{aspect-ratio:3/4;height:min(78vh,720px);width:100%}
+.m14-b:first-child .foto{border-radius:0 0 0 0}
+.m14-saetze{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,44px);margin-top:24px}
+.m14-saetze .titel{font-size:clamp(24px,2.5vw,34px)}
+
+/* ---------- 15 Die Liste zum Zeigen */
+.m15{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.m15-liste{margin-top:26px;border-bottom:1px solid var(--gold-ll)}
+.m15-z{display:grid;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--gold-ll);padding:16px 0;cursor:pointer;color:inherit}
+.m15-z .titel{font-size:clamp(26px,2.9vw,40px);color:var(--text3);transition:color .5s,transform 1.2s var(--k)}
+.m15-z .m-zu{display:block;max-height:0;opacity:0;overflow:hidden;transition:opacity .5s;margin-top:0}
+.m15-z.an .titel{color:var(--text);transform:translateX(10px)}
+.m15-z.an .m-zu{max-height:none;opacity:1;margin-top:8px;padding-left:10px}
+.m15 .knoepfe{margin-top:28px}
+.m15-rahmen{position:relative}
+.m15-stapel{position:sticky;top:100px;height:min(80vh,660px)}
+
+/* ---------- Schmale Fenster */
+@media (max-width:1100px){
+  .m1-reihe{grid-template-columns:repeat(5,minmax(0,1fr));gap:8px} .m1-sch .m-satz .titel{font-size:18px} .m1-sch .m-zu{font-size:13px}
+  .m6-ablauf{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .m-kopf,.m02,.m04,.m07,.m09,.m11,.m12-g,.m15{grid-template-columns:minmax(0,1fr)}
+  .m1-reihe{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .m2-halt{position:static;height:60vh} .m2-links{order:2}
+  .m4-stapel{min-height:0;aspect-ratio:4/5}
+  .m5{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"a a" "b c" "d e" "t t" "z z";grid-template-rows:60vw 44vw 44vw auto auto}
+  .m6-ablauf{grid-template-columns:minmax(0,1fr)} .m-fuss{flex-direction:column;align-items:flex-start}
+  .m7-sp{display:none} .m7-halt{position:static}
+  .m8-rest{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .m9-tresen{height:120vw}
+  .m11-wand{grid-auto-rows:auto} .m11-wand .kachel{aspect-ratio:3/4}
+  .m13-linie{left:12px} .m13-st{grid-template-columns:minmax(0,1fr);margin-top:30px;padding-left:36px;gap:16px} .m13-r .kachel{order:0} .m13-r .m-satz{text-align:left;justify-self:start} .m13-punkt{left:12px;top:24px}
+  .m14-band{grid-template-columns:minmax(0,1fr)} .m14-b .foto{height:auto} .m14-saetze{grid-template-columns:minmax(0,1fr)}
+  .m15-stapel{position:static;height:auto;aspect-ratio:4/5}
+}
+
+/* Satzwechsel: der alte geht schnell, der neue kommt danach (nie zwei Sätze übereinander) */
+.m4-s,.m12-s{transition:opacity .25s,transform .3s}
+.m4-s.an,.m12-s.an{transition:opacity .6s .28s,transform 1s var(--k) .28s}

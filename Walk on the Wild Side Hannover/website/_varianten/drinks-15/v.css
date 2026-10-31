@@ -1,0 +1,324 @@
+/* Wild Side · 15 Fassungen «Was magst du?» (29.10.2026). Bausteine der Seite (kz, titel, etikett, kachel, platte, knopf, Goldlinie), je Fassung eigene Darstellung. */
+
+/* Schild unten links: nur Anzeige, feste Breite, Wechsel mit ← → */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+.vx .ge-satz{min-height:0}
+.vx .ge-glas .foto img{transform:none}
+
+/* ---------- 01 Das Gespräch */
+.v1{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:start}
+.v1-bild{aspect-ratio:3/4;position:sticky;top:96px}
+.v1-log{margin-top:30px;display:grid;gap:12px}
+.v1-m{font-family:var(--titel);font-size:clamp(20px,2vw,26px);line-height:1.25;color:var(--text);display:grid;grid-template-columns:70px minmax(0,1fr);gap:14px;align-items:baseline}
+.v1-m .etikett{font-size:10.5px}
+.v1-du{justify-self:end;padding:12px 20px;border-radius:14px 14px 4px 14px;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll);margin-bottom:6px}
+.v1-du .wahl{justify-content:flex-end}
+.v1-antw{margin-top:10px;display:grid;grid-template-columns:minmax(0,1fr) 130px;gap:22px;align-items:center;padding:22px 22px 22px 24px;border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten-k)}
+.v1-antw>div{position:relative}
+.v1-antw .etikett{display:block;margin-bottom:12px}
+.v1-antw .ge-satz{font-size:clamp(22px,2.2vw,28px);transition:opacity .35s}
+.v1-tippt{position:absolute;left:0;top:34px;display:flex;gap:6px;opacity:0;transition:opacity .25s}
+.v1-tippt i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:v1t 1s infinite ease-in-out}
+.v1-tippt i:nth-child(2){animation-delay:.15s} .v1-tippt i:nth-child(3){animation-delay:.3s}
+@keyframes v1t{0%,100%{transform:translateY(0);opacity:.35}50%{transform:translateY(-5px);opacity:1}}
+.v1-antw.tippt .v1-tippt{opacity:1} .v1-antw.tippt .ge-satz{opacity:0}
+.v1-glas{aspect-ratio:1/1}
+.v1 .knoepfe{margin-top:30px}
+
+/* ---------- 02 Ein Satz zum Antippen */
+.v2{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.v2-satz{margin-top:30px;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:.45em;align-items:baseline;font-family:var(--titel);font-size:clamp(36px,4.4vw,62px);line-height:1.18}
+.v2-satz>span{color:var(--text3);font-size:.62em}
+.v2-wort{justify-self:start;background:none;border:0;padding:0;cursor:pointer;height:1.18em;overflow:hidden;display:block;position:relative;color:var(--text);font:inherit;line-height:1.18}
+.v2-wort::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:1px;background:var(--gold)}
+.v2-roll{display:grid;transition:transform .9s var(--k);text-align:left}
+.v2-roll span{display:block;height:1.18em}
+.v2-wort:hover{color:var(--gold)}
+.v2-tipp{margin-top:16px;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text3)}
+.v2-antw{margin-top:30px;padding-top:24px;border-top:1px solid var(--gold-ll)}
+.v2-antw .etikett{display:block;margin-bottom:12px}
+.v2-antw .ge-satz{font-size:clamp(24px,2.5vw,32px)}
+.v2 .knoepfe{margin-top:30px}
+.v2-glas{min-height:100%}
+.v2-stapel{height:100%;aspect-ratio:auto;min-height:520px}
+
+/* ---------- 03 Drei Spalten, ein Goldstrich */
+.v3{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:start}
+.v3-bild{aspect-ratio:3/4}
+.v3-spalten{margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--gold-ll);border-bottom:1px solid var(--gold-ll)}
+.v3-sp{padding:22px 0 24px 22px;border-left:1px solid var(--gold-ll)}
+.v3-sp:first-child{border-left:0;padding-left:0}
+.v3-sp .etikett{display:block;margin-bottom:16px;color:var(--text3)}
+.v3-liste{position:relative;padding-left:18px}
+.v3-liste .wahl{flex-direction:column;gap:2px}
+.v3-liste .wahl button{text-align:left;font-size:clamp(20px,2vw,26px);padding:5px 0}
+.v3-liste .wahl button::after{display:none}
+.v3-strich{position:absolute;left:0;top:0;width:2px;height:100px;background:var(--gold);transform-origin:0 0;transition:transform .8s var(--k)}
+.v3 .ge-antwort{margin-top:26px}
+.v3 .knoepfe{margin-top:30px}
+
+/* ---------- 04 Momo und das Glas, die Karte dreht sich */
+.v4-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:end}
+.v4-kopf .ge-zitat{margin:0 0 6px;font-size:clamp(22px,2.4vw,32px);color:var(--text);max-width:none}
+.v4-paar{margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.v4-paar>.kachel,.v4-karte{aspect-ratio:4/5}
+.v4-karte{perspective:1800px}
+.v4-dreh{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 1.3s var(--k)}
+.v4-dreh.um{transform:rotateY(180deg)}
+.v4-seite{position:absolute;inset:0;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.v4-seite.hinten{transform:rotateY(180deg)}
+.v4-seite .foto{position:absolute;inset:0;opacity:0}
+.v4-seite .foto.an{opacity:1}
+.v4-seite .foto img{transform:none}
+.v4-fragen{margin-top:30px;display:grid;grid-template-columns:4fr 3fr 5fr;gap:clamp(18px,2.4vw,36px);padding:24px 0;border-top:1px solid var(--gold-ll);border-bottom:1px solid var(--gold-ll)}
+.v4-fr .etikett{display:block;margin-bottom:12px;color:var(--text3)}
+.v4-unten{margin-top:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:end}
+.v4-unten .etikett{display:block;margin-bottom:12px}
+.v4-unten .ge-satz{font-size:clamp(24px,2.6vw,34px)}
+
+/* ---------- 05 Das Glas bis an den Rand */
+.v5-sek>.innen{width:100%;max-width:none}
+.v5{display:grid;grid-template-columns:minmax(0,52fr) minmax(0,48fr);align-items:stretch}
+.v5-buehne{position:relative;min-height:min(92vh,860px);display:flex;flex-direction:column}
+.v5-glas{flex:1;aspect-ratio:auto;border-radius:0 var(--rand-g) var(--rand-g) 0}
+.v5-unter{padding:22px clamp(20px,3vw,44px) 0 calc((100vw - var(--innen))/2)}
+.v5-unter .etikett{display:block;margin-bottom:10px}
+.v5-unter .ge-satz{font-size:clamp(22px,2.3vw,30px)}
+.v5-text{padding:0 calc((100vw - var(--innen))/2) 0 clamp(32px,5vw,80px);align-self:center}
+.v5 .ge-fragen{margin-top:28px}
+.v5 .ge-frage{grid-template-columns:110px minmax(0,1fr)}
+.v5 .ge-zitat{margin-top:28px} .v5 .knoepfe{margin-top:28px}
+
+/* ---------- 06 Alle Gläser in einer Reihe */
+.v6-oben{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,4.5vw,72px);align-items:end}
+.v6-fragen{margin-top:0}
+.v6 .ge-frage{grid-template-columns:100px minmax(0,1fr)}
+.v6-reihe{margin-top:40px;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px;padding-top:26px}
+.v6-g{aspect-ratio:3/5;border-radius:12px;box-shadow:var(--schatten-k);transition:transform 1s var(--k),opacity .8s var(--k);opacity:.42}
+.v6-g img{transform:none!important}
+.v6-g.an{transform:translateY(-26px);opacity:1;box-shadow:var(--schatten),inset 0 0 0 1px var(--gold)}
+.v6-antw{margin-top:22px;text-align:center}
+.v6-antw .etikett{display:block;margin-bottom:12px}
+.v6-antw .ge-satz{font-size:clamp(26px,3vw,40px);max-width:24ch;margin:0 auto}
+.v6-fuss{margin-top:34px;display:flex;justify-content:space-between;align-items:center;gap:30px;padding-top:26px;border-top:1px solid var(--gold-ll)}
+.v6-fuss .ge-zitat{margin-top:0}
+.v6-fuss .knoepfe{margin-top:0}
+
+/* ---------- 07 Momos Satz als Titel */
+.v7{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:start}
+.v7-zitat{margin:0;font-size:clamp(42px,5.4vw,78px);line-height:1.02;color:var(--text)}
+.v7-wer{margin-top:16px;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.v7-mitte{margin-top:40px;padding-top:28px;border-top:1px solid var(--gold-ll);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:28px;align-items:start}
+.v7-mitte .text{font-size:16px}
+.v7 .ge-fragen{margin-top:24px}
+.v7-antw{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:24px;align-items:center}
+.v7-antw .etikett{display:block;margin-bottom:12px}
+.v7-satz{font-size:clamp(24px,2.5vw,32px)}
+.v7-z{display:block}
+.v7-w{display:inline-block;opacity:0;transform:translateY(.4em)}
+.v7-satz.los .v7-w{animation:v7w .7s var(--k) forwards;animation-delay:calc(var(--w)*.08s)}
+@keyframes v7w{to{opacity:1;transform:none}}
+.v7-bild{aspect-ratio:3/4;position:sticky;top:96px}
+.v7 .knoepfe{margin-top:30px}
+
+/* ---------- 08 Die Walzen */
+.v8{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:start}
+.v8-bild{aspect-ratio:3/4}
+.v8-walzen{margin-top:30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.v8-w{--zh:58px;background:var(--nacht2);border-radius:var(--rand-g);box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten-k);padding:16px 12px 12px;display:grid;justify-items:center;gap:6px}
+.v8-w .etikett{color:var(--text3);margin-bottom:4px}
+.v8-pf{width:40px;height:30px;border:0;border-radius:10px;background:var(--nacht3);color:var(--gold);display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 0 0 1px var(--gold-ll)}
+.v8-pf svg{width:15px;height:15px;transform:rotate(-90deg)}
+.v8-pf[data-d="1"] svg{transform:rotate(90deg)}
+.v8-pf:disabled{opacity:.25;cursor:default}
+.v8-fenster{position:relative;width:100%;height:calc(var(--zh)*3);overflow:hidden}
+.v8-fenster::before{content:"";position:absolute;left:8%;right:8%;top:var(--zh);height:var(--zh);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);pointer-events:none;z-index:1}
+.v8-rolle{display:flex;flex-direction:column;flex-wrap:nowrap;gap:0;transition:transform .8s var(--k)}
+.v8-rolle button{height:var(--zh);width:100%;padding:0;text-align:center;font-size:clamp(20px,2vw,27px);opacity:.18;transition:opacity .6s,color .5s}
+.v8-rolle button::after{display:none}
+.v8-rolle button.nah{opacity:.5}
+.v8-rolle button.an{opacity:1;color:var(--text)}
+.v8 .ge-antwort{margin-top:26px}
+.v8 .knoepfe{margin-top:30px}
+
+/* ---------- 09 Eine Frage nach der anderen */
+.v9{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:start}
+.v9-bild{aspect-ratio:3/4}
+.v9-buehne{margin-top:30px;height:330px;overflow:hidden}
+.v9-band{height:400%;transition:transform 1s var(--k)}
+.v9-folie{height:25%;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;justify-content:center}
+.v9-nr{font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.v9-frage{margin-top:14px;font-size:clamp(30px,3.4vw,46px);color:var(--text3)}
+.v9-wahl{margin-top:18px;gap:8px 26px}
+.v9-wahl button{font-size:clamp(28px,3.2vw,44px);color:var(--text)}
+.v9-wahl button.an{color:var(--gold)}
+.v9-ende{flex-direction:row;align-items:center;gap:28px}
+.v9-ende-text{flex:1}
+.v9-ende-text .etikett{display:block;margin-bottom:14px}
+.v9-ende .ge-satz{font-size:clamp(26px,2.8vw,36px)}
+.v9-nochmal{margin-top:22px;background:none;border-width:0 0 1px;cursor:pointer;font:500 12px/1 var(--lauf)}
+.v9-glas{width:min(34%,220px);flex:none;aspect-ratio:3/4}
+.v9-punkte{position:absolute;right:22px;top:22px;display:flex;gap:6px}
+.v9-punkte i{width:22px;height:2px;background:var(--gold-l);transition:background .6s}
+.v9-punkte i.an{background:var(--gold)}
+.v9 .knoepfe{margin-top:30px}
+
+/* ---------- 10 Auf hellem Papier */
+.v10.innen,.v10{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.v10 .titel{color:var(--dunkel)}
+.v10-tab{margin-top:30px}
+.v10-z{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:baseline;padding:18px 0;position:relative}
+.v10-z::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(160,127,58,.45);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--k);transition-delay:calc(var(--n)*.18s + .3s)}
+.da .v10-z::before{transform:none}
+.v10-z .etikett{color:rgba(27,21,18,.5)}
+.v10 .wahl button{color:rgba(27,21,18,.4)}
+.v10 .wahl button.an,.v10 .wahl button:hover{color:var(--dunkel)}
+.v10 .wahl button::after{background:#A07F3A}
+.v10-antw{padding-top:22px;border-top:1px solid rgba(160,127,58,.45)}
+.v10-antw .etikett{display:block;margin-bottom:12px}
+.v10-antw .ge-satz{color:var(--dunkel);font-size:clamp(24px,2.5vw,32px)}
+.v10 .knoepfe{margin-top:30px}
+.v10-paar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.v10-paar>.kachel,.v10-glas{aspect-ratio:3/5}
+.v10-glas{box-shadow:0 30px 60px -28px rgba(27,21,18,.55)}
+
+section.vs10{background:var(--creme);color:var(--dunkel)}
+section.vs10 .ueber{color:rgba(27,21,18,.62)}
+
+/* ---------- 11 Die Wortwand */
+.v11-oben{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.v11-bild{aspect-ratio:4/3}
+.v11-wand{margin-top:44px;padding:30px 0;border-top:1px solid var(--gold-ll);border-bottom:1px solid var(--gold-ll);font-family:var(--titel);line-height:1.15}
+.v11-gr{display:inline}
+.v11-gr sup{font:500 10.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold);vertical-align:top;margin:0 12px 0 0;position:relative;top:.9em}
+.v11-gr + .v11-gr::before{content:"/";font-size:clamp(34px,4.6vw,66px);color:var(--gold-l);margin:0 .3em}
+.v11-wahl{display:inline;gap:0}
+.v11-wahl button{font-size:clamp(34px,4.6vw,66px);color:rgba(237,228,216,.24);padding:0;margin-right:.28em;transition:color .7s var(--k),transform .9s var(--k);display:inline-block}
+.v11-wahl button::after{display:none}
+.v11-wahl button.an{color:var(--creme);transform:translateY(-.06em)}
+.v11-wahl button:hover{color:var(--text2)}
+.v11-wahl button.an:hover{color:var(--creme)}
+.v11-antw{margin-top:30px;display:grid;grid-template-columns:minmax(0,5fr) 150px minmax(0,5fr);gap:clamp(22px,3vw,44px);align-items:center}
+.v11-antw .etikett{display:block;margin-bottom:12px}
+.v11-antw .ge-satz{font-size:clamp(24px,2.5vw,32px)}
+.v11-antw .ge-zitat{margin-top:0} .v11-antw .knoepfe{margin-top:22px}
+
+/* ---------- 12 Das Bild bleibt stehen */
+.v12{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.5vw,72px)}
+.v12-halt{position:sticky;top:max(90px,calc(50vh - 340px));height:min(80vh,680px)}
+.v12-stapel{position:relative;height:100%;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.v12-stapel .foto{position:absolute;inset:0;transform:translateY(100%);transition:transform 1.2s var(--k)}
+.v12-stapel .foto.an{transform:none;z-index:2} .v12-stapel .foto.war{transform:none;z-index:1}
+.v12-stapel .foto img{transform:none!important}
+.v12-block{min-height:min(56vh,520px);display:flex;flex-direction:column;justify-content:center;padding:26px 0;border-top:1px solid var(--gold-ll)}
+.v12-start{border-top:0;justify-content:flex-start;min-height:0;padding-top:0}
+.v12-nr{font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.v12-frage{margin-top:12px;font-size:clamp(28px,3vw,40px);color:var(--text3)}
+.v12-wahl{margin-top:16px;flex-direction:column;gap:2px}
+.v12-wahl button{text-align:left;font-size:clamp(30px,3.4vw,48px)}
+.v12-schluss{min-height:0;justify-content:flex-start}
+.v12-schluss .etikett{display:block;margin-bottom:12px}
+.v12-schluss .ge-satz{font-size:clamp(26px,2.8vw,36px)}
+.v12-schluss .ge-zitat{margin-top:28px} .v12 .knoepfe{margin-top:28px}
+
+/* ---------- 13 Geschlossenes Raster */
+.v13{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"momo kopf kopf glas" "momo f1 f2 glas" "antw antw f3 zitat";gap:14px}
+.v13-momo{grid-area:momo;min-height:0}
+.v13-kopf{grid-area:kopf;padding:clamp(22px,2.6vw,36px)}
+.v13-kopf .text{margin-top:14px;font-size:15.5px}
+.v13-kopf .kz{margin-bottom:14px}
+.v13-geschmack{grid-area:f1} .v13-art{grid-area:f2} .v13-basis{grid-area:f3}
+.v13-f{padding:22px 24px}
+.v13-f .etikett{display:block;margin-bottom:12px;color:var(--text3)}
+.v13-wahl{flex-direction:column;gap:0}
+.v13-wahl button{text-align:left}
+.v13-glasbox{grid-area:glas;overflow:visible;background:none;box-shadow:none}
+.v13-glas{height:100%;aspect-ratio:auto}
+.v13-glasbox::after{content:"";position:absolute;inset:0;border-radius:var(--rand);box-shadow:inset 0 0 0 2px var(--gold);opacity:0;pointer-events:none;z-index:3}
+.v13-glasbox.neu::after{animation:v13n 1.4s var(--k)}
+@keyframes v13n{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+.v13-antw{grid-area:antw;padding:24px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px}
+.v13-antw .etikett{grid-column:1/-1}
+.v13-antw .ge-satz{font-size:clamp(22px,2.3vw,30px)}
+.v13-antw .knoepfe{margin:0}
+.v13-zitat{grid-area:zitat;padding:24px}
+.v13-zitat .titel{font-size:clamp(23px,2.5vw,34px);line-height:1.15;margin-bottom:auto}
+.v13-zitat .etikett{color:#A07F3A;margin-top:14px}
+
+/* ---------- 14 Drei Bilder, dann der Weg */
+.v14-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:end}
+.v14-kopf .ge-zitat{margin:0 0 6px;font-size:clamp(22px,2.4vw,32px);color:var(--text);max-width:none}
+.v14-bilder{margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.v14-bilder>.kachel{aspect-ratio:4/5}
+.v14-glas{height:100%;aspect-ratio:auto;box-shadow:none;border-radius:0}
+.v14-weg{margin-top:44px;position:relative;display:grid;grid-template-columns:4fr 3fr 5fr;gap:clamp(18px,2.4vw,36px);padding-top:30px}
+.v14-linie{position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold-ll)}
+.v14-linie i{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 2.4s var(--k);transition-delay:.5s}
+.da .v14-linie i{transform:none}
+.v14-punkt{position:absolute;top:-35px;left:0;width:11px;height:11px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 0 0 2px var(--gold)}
+.v14-st{position:relative}
+.v14-st .etikett{display:block;margin-bottom:12px;color:var(--text3)}
+.v14-st.tippt .v14-punkt{animation:v14p .9s var(--k)}
+@keyframes v14p{40%{transform:scale(1.7)}}
+.v14-ziel .etikett{display:block;margin-bottom:12px}
+.v14-ziel .ge-satz{font-size:clamp(24px,2.6vw,34px)}
+.v14-fuss{margin-top:36px;display:flex;justify-content:space-between;align-items:center;gap:30px;padding-top:26px;border-top:1px solid var(--gold-ll)}
+.v14-fuss .knoepfe{margin-top:0}
+
+/* ---------- 15 Das Glas in der Hand */
+.v15-kopf{text-align:center}
+.v15-kopf .kz{justify-content:center}
+.v15-drei{margin-top:36px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,4fr) minmax(0,4fr);gap:clamp(24px,3.4vw,52px);align-items:start}
+.v15 .ge-frage{grid-template-columns:minmax(0,1fr);gap:8px;padding:14px 0}
+.v15-momo{margin-top:20px;aspect-ratio:4/3}
+.v15-m{perspective:1400px}
+.v15-kipp{transition:transform .9s var(--k);transform-style:preserve-3d}
+.v15-stapel{position:relative;aspect-ratio:3/4;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);background:var(--nacht3)}
+.v15-stapel .foto{position:absolute;inset:0;opacity:0}
+.v15-stapel .foto img{transform:none!important}
+.v15-stapel .foto.an{opacity:1;animation:v15d 1.2s var(--k)}
+@keyframes v15d{0%{opacity:0;transform:rotateY(-70deg) scale(.92)}100%{opacity:1;transform:none}}
+.v15-r .text{font-size:16px}
+.v15-antw{margin-top:26px;padding-top:22px;border-top:1px solid var(--gold-ll)}
+.v15-antw .etikett{display:block;margin-bottom:12px}
+.v15-antw .ge-satz{font-size:clamp(23px,2.3vw,30px)}
+.v15-r .ge-zitat{margin-top:26px} .v15-r .knoepfe{margin-top:26px}
+
+/* ---------- Schmale Fenster */
+@media (max-width:1100px){
+  .v6-reihe{grid-template-columns:repeat(9,minmax(0,1fr));gap:6px}
+  .v13{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"momo kopf kopf" "momo f1 f2" "glas f3 zitat" "glas antw antw"}
+}
+@media (max-width:900px){
+  .v1,.v2,.v3,.v7,.v8,.v9,.v10,.v12,.v6-oben,.v11-oben,.v15-drei{grid-template-columns:minmax(0,1fr)}
+  .v1-bild,.v7-bild{position:static;aspect-ratio:4/3}
+  .v3-bild,.v8-bild,.v9-bild{aspect-ratio:4/3}
+  .v2-stapel{min-height:0;aspect-ratio:4/3}
+  .v5{grid-template-columns:minmax(0,1fr)} .v5-buehne{min-height:70vh} .v5-glas{border-radius:0} .v5-unter,.v5-text{padding-left:4vw;padding-right:4vw} .v5-text{padding-top:30px}
+  .v4-fragen,.v4-kopf,.v14-kopf{grid-template-columns:minmax(0,1fr)}
+  .v6-reihe{grid-template-columns:repeat(3,minmax(0,1fr))} .v6-fuss,.v14-fuss{flex-direction:column;align-items:flex-start}
+  .v12-links{order:2} .v12-halt{position:static;height:60vh}
+  .v13{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"kopf kopf" "momo glas" "f1 f2" "f3 zitat" "antw antw"} .v13-momo,.v13-glasbox{aspect-ratio:3/4}
+  .v11-antw{grid-template-columns:minmax(0,1fr) 120px} .v11-antw>div:last-child{grid-column:1/-1}
+  .v14-weg{grid-template-columns:minmax(0,1fr)} .v14-punkt{display:none}
+  .v15-kopf{text-align:left} .v15-kopf .kz{justify-content:flex-start}
+}
+
+/* Das Bild läuft mit der Textspalte bis unten (keine leere Ecke unter dem Foto) */
+.v3,.v8,.v9{align-items:stretch}
+.v3-bild,.v8-bild,.v9-bild{aspect-ratio:auto;height:100%;min-height:520px}
+.v3-bild img,.v8-bild img,.v9-bild img{object-position:62% 50%}
+@media (max-width:900px){.v3-bild,.v8-bild,.v9-bild{height:auto;min-height:0;aspect-ratio:4/3}}
+.v10{align-items:stretch}
+.v10-paar{height:100%;min-height:560px}
+.v10-paar>.kachel,.v10-glas{aspect-ratio:auto;height:100%}
+.v10-paar img{object-position:62% 50%}
+@media (max-width:900px){.v10-paar{min-height:0;height:auto}.v10-paar>.kachel,.v10-glas{aspect-ratio:3/4;height:auto}}
+.v15-drei{align-items:stretch}
+.v15-m,.v15-kipp{height:100%}
+.v15-stapel{aspect-ratio:auto;height:100%;min-height:420px}
+@media (max-width:900px){.v15-m,.v15-kipp{height:auto}.v15-stapel{aspect-ratio:3/4;height:auto;min-height:0}}

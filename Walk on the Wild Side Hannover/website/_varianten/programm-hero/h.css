@@ -1,0 +1,133 @@
+/* Wild Side · Programm, Kopf «Lauter.»: 15 Fassungen (30.10.2026). Bausteine der Seite: Gewölbe-Tapete, Kinoschild mit Birnen, Steckbuchstaben, Deckel.
+   Bewegung nur über transform und opacity; was am Scrollen hängt, läuft in einem Takt in h.js. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.hx{position:relative;overflow:hidden;min-height:min(100vh,940px);min-height:min(100svh,940px);display:flex;align-items:center;background:var(--nacht);isolation:isolate}
+.hx .innen{position:relative;z-index:3;width:var(--innen);margin:0 auto}
+.mx-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hx-t{margin:0;font-size:clamp(64px,10vw,160px);line-height:.95;color:var(--creme);letter-spacing:-.01em}
+.hx-t span{display:inline-block;opacity:0;transform:translateY(.5em);transition:transform 1.2s var(--k),opacity .8s var(--k);transition-delay:calc(.25s + var(--b) * .06s)}
+.hx.da .hx-t span,.ruhig .hx-t span{opacity:1;transform:none}
+.hx-s{margin:26px 0 0;max-width:46ch;font-size:clamp(17px,1.45vw,21px);line-height:1.55;color:var(--text);opacity:0;transform:translateY(24px);transition:transform 1.2s var(--k) .9s,opacity .9s var(--k) .9s}
+.hx.da .hx-s,.ruhig .hx-s{opacity:1;transform:none}
+.hx-mitte{text-align:center} .hx-mitte .hx-s{margin-left:auto;margin-right:auto}
+.hx-unten{align-self:flex-end;padding:140px 0 72px}
+.hb{position:absolute;inset:0;margin:0;overflow:hidden;background:var(--nacht3) var(--lq) center/cover}
+.hb img{width:100%;height:100%;object-fit:cover;display:block}
+.hx-hof{position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(19,14,13,.95) 0%,rgba(19,14,13,.6) 34%,rgba(19,14,13,.1) 68%,rgba(19,14,13,.3) 100%)}
+.hx-tapete{position:absolute;inset:0;z-index:0;background:linear-gradient(rgba(19,14,13,.72),rgba(19,14,13,.8)),url(../../assets/bild/decke-2017-2048.webp) center/cover}
+.hx-tapete::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 70%,var(--nacht))}
+
+/* Steckbuchstaben */
+.ht-r{border-radius:4px;background:#0E0B0A repeating-linear-gradient(to bottom,#0E0B0A 0 13px,#16110F 13px 15px);box-shadow:inset 0 0 0 1px rgba(0,0,0,.8),inset 0 10px 30px rgba(0,0,0,.6)}
+.ht-r p{margin:0;font:600 clamp(28px,4vw,62px)/1.4 var(--lauf);letter-spacing:.14em;color:#FFF8EC;white-space:nowrap;text-shadow:0 0 12px rgba(255,236,205,.12)}
+.ht-r span{display:inline-block;opacity:0;transform:translateY(-18px);transition:transform .5s cubic-bezier(.3,1.5,.5,1),opacity .2s linear;transition-delay:calc(.4s + var(--b) * .08s)}
+.hx.da .ht-r span,.ruhig .ht-r span{opacity:1;transform:none}
+
+/* Kinoschild mit Birnen (wie «Die Woche») */
+.hx-schild{--wb:clamp(16px,2vw,26px);position:relative;display:inline-block;padding:calc(var(--wb) * 2);border-radius:14px;
+ background:linear-gradient(160deg,#4A3520,#2A1D12 45%,#3B2A18);box-shadow:inset 0 0 0 1px rgba(232,196,120,.55),inset 0 0 0 3px #1A120B,inset 0 0 0 4px rgba(232,196,120,.3),0 0 50px -14px rgba(255,190,100,.14),var(--schatten)}
+.hx-birne{position:absolute;width:clamp(7px,.75vw,11px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 40% 35%,#9C7A44,#5A3E1C 70%);box-shadow:0 0 0 2px #140E09,0 0 0 3px rgba(232,196,120,.25)}
+.hx-birne::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFFBEA,#FFD889 45%,#E8A043 100%);box-shadow:0 0 5px 1px rgba(255,214,140,.45),0 0 12px 3px rgba(255,180,90,.12);opacity:0;transition:opacity 1.2s linear;transition-delay:calc(.4s + var(--j) * .04s)}
+.hx.da .hx-birne::after,.ruhig .hx-birne::after{opacity:.85}
+.h1-tafel .ht-r{padding:clamp(22px,3vw,44px) clamp(34px,5vw,80px)}
+.h1-tafel .ht-r p{font-size:clamp(46px,9vw,140px);letter-spacing:.12em}
+
+/* 02 Die Tafel ist der Kopf */
+.h2-rillen{position:absolute;inset:0;background:#0E0B0A repeating-linear-gradient(to bottom,#0E0B0A 0 15px,#17120F 15px 17px);box-shadow:inset 0 0 120px rgba(0,0,0,.7)}
+.h02 .ht-r{background:none;box-shadow:none}
+.h2-tafel .ht-r p{font-size:clamp(70px,15vw,240px);letter-spacing:.1em;line-height:1}
+
+/* 03 Tapete und Sängerin */
+.h03{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:stretch}
+.h3-links{position:relative;display:flex;align-items:flex-end;padding:140px clamp(28px,5vw,90px) 72px calc((100vw - var(--innen)) / 2)}
+.h3-text{position:relative;z-index:2}
+.h3-rechts{position:relative;overflow:hidden}
+.h3-rechts .hb{transform:translateY(8%);transition:transform 1.8s var(--k)} .h03.da .h3-rechts .hb{transform:none}
+
+/* 04 / 05 Bild über die Fläche */
+.h04 .hb img{transform:scale(1.1);transition:transform 2.6s var(--k2)} .h04.da .hb img{transform:none}
+.h05 .hb img{transform:translateY(calc(var(--p,0) * 10%)) scale(calc(1.12 + var(--p,0) * .1));transform-origin:50% 0}
+
+/* 06 Ein grosser Deckel */
+.h06 .h6-raster{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(30px,5vw,90px);align-items:center;padding:120px 0 80px}
+.hx-deckel{position:relative;width:min(100%,520px,64vh);aspect-ratio:1;margin-left:auto;border-radius:50%;background:var(--nacht2);box-shadow:var(--schatten);
+ transform:translateX(30vw) rotate(200deg);transition:transform 1.8s var(--k)}
+.hx.da .hx-deckel,.ruhig .hx-deckel{transform:none}
+.hx-dbild{position:absolute;inset:13%;margin:0;overflow:hidden;border-radius:50%;background:var(--nacht3) var(--lq) center/cover}
+.hx-dbild img{width:100%;height:100%;object-fit:cover;display:block}
+.hx-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:rotate(calc(var(--r,0) * 1deg))}
+.hx-ring circle{fill:none;stroke:var(--gold);stroke-width:1} .hx-ring circle:first-of-type{stroke-width:1.4}
+.hx-ring text{fill:var(--gold);font:500 11.5px var(--lauf)}
+
+/* 07 Birnen unter dem Titel */
+.h7-leiste{display:flex;justify-content:space-between;width:min(100%,720px);margin:34px auto 0;padding:10px 14px;border-radius:999px;background:linear-gradient(160deg,#4A3520,#2A1D12 45%,#3B2A18);box-shadow:inset 0 0 0 1px rgba(232,196,120,.5),var(--schatten)}
+.h7-leiste i{width:10px;aspect-ratio:1;border-radius:50%;background:#5A3E1C;box-shadow:0 0 0 2px #140E09;position:relative}
+.h7-leiste i::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 40% 35%,#FFFBEA,#FFD889 45%,#E8A043);box-shadow:0 0 6px 1px rgba(255,214,140,.5);opacity:0;transition:opacity 1s linear;transition-delay:calc(.9s + var(--j) * .05s)}
+.hx.da .h7-leiste i::after,.ruhig .h7-leiste i::after{opacity:.9}
+
+/* 08 Drei Bilder Wand an Wand */
+.h8-wand{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.h8-wand>div{position:relative;overflow:hidden;transform:translateY(100%);transition:transform 1.5s var(--k);transition-delay:calc(var(--n) * .16s)}
+.h08.da .h8-wand>div,.ruhig .h8-wand>div{transform:none}
+
+/* 09 Das Schild hängt am Gewölbe */
+.h9-decke{position:absolute;left:0;right:0;top:0;height:26%;background:linear-gradient(rgba(19,14,13,.35),rgba(19,14,13,.55)),url(../../assets/bild/decke-2017-2048.webp) center 40%/cover;box-shadow:inset 0 -1px 0 rgba(216,178,100,.45)}
+.h9-mitte{padding-top:calc(26vh - 10px)}
+.h9-haenger{position:relative;display:inline-block;transform-origin:50% -30vh;transform:rotate(-7deg);transition:transform 2.4s cubic-bezier(.25,1.6,.4,1)}
+.hx.da .h9-haenger,.ruhig .h9-haenger{transform:none}
+.h9-kette{position:absolute;bottom:100%;width:2px;height:calc(14vh + 20px);background:repeating-linear-gradient(#C9A35C 0 6px,#6E5428 6px 8px)}
+.h9-kette:first-child{left:18%} .h9-kette:nth-child(2){right:18%}
+
+/* 10 Lichtschrift */
+.h10-t{font-size:clamp(90px,16vw,250px)}
+.h10-t span{opacity:.12;transform:none;transition:opacity .35s linear,text-shadow .35s linear;transition-delay:calc(.5s + var(--b) * .22s)}
+.hx.da .h10-t span{opacity:1;text-shadow:0 0 24px rgba(255,214,150,.35)}
+
+/* 11 Der Kreis öffnet sich */
+.h11-kreis{position:absolute;left:50%;top:44%;width:150vmax;aspect-ratio:1;border-radius:50%;overflow:hidden;transform:translate(-50%,-50%) scale(.26);box-shadow:0 0 0 2px var(--gold);transition:transform 2.2s var(--k) .3s}
+.h11-innen{position:absolute;inset:0;transform:scale(1)} .h11-innen .hb{inset:16% 0}
+.hx.da .h11-kreis,.ruhig .h11-kreis{transform:translate(-50%,-50%) scale(1)}
+.h11-hof{opacity:0;transition:opacity 1.2s linear 1.4s} .hx.da .h11-hof{opacity:1}
+
+/* 12 Das Gewölbe dreht sich */
+.h12-dreh{position:absolute;left:50%;top:50%;width:170vmax;aspect-ratio:1;transform:translate(-50%,-50%) rotate(calc(var(--p,0) * 24deg));background:url(../../assets/bild/decke-2017-2048.webp) center/cover}
+.h12-schleier{position:absolute;inset:0;z-index:1;background:rgba(19,14,13,.74);box-shadow:inset 0 -160px 120px -40px var(--nacht)}
+
+/* 13 Die Tapete sinkt */
+.h13-tapete{transform:translateY(-12%);transition:transform 2.2s var(--k)} .hx.da .h13-tapete,.ruhig .h13-tapete{transform:none}
+.h13-tapete::after{background:linear-gradient(transparent 40%,var(--nacht) 96%)}
+.h13-unten{align-self:flex-end;padding:140px 0 72px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:end}
+.h13-unten .hx-s{margin:0 0 .6em}
+
+/* 14 Bild im Birnenrahmen */
+.h14-raster{padding:110px 0 64px}
+.h14-rahmen{--wb:clamp(16px,2vw,26px);position:relative;padding:calc(var(--wb) * 2);border-radius:14px;height:min(56vh,560px);
+ background:linear-gradient(160deg,#4A3520,#2A1D12 45%,#3B2A18);box-shadow:inset 0 0 0 1px rgba(232,196,120,.55),inset 0 0 0 3px #1A120B,var(--schatten)}
+.h14-rahmen .hb{position:relative;height:100%;border-radius:4px}
+.h14-text{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:end;margin-top:36px}
+.h14-text .hx-s{margin:0 0 .5em}
+
+/* 15 Laufschrift */
+.h15-text{padding-bottom:140px}
+.h15-band{position:absolute;left:0;right:0;bottom:0;z-index:3;overflow:hidden;padding:16px 0;background:#0E0B0A repeating-linear-gradient(to bottom,#0E0B0A 0 13px,#16110F 13px 15px);box-shadow:inset 0 1px 0 rgba(216,178,100,.45)}
+.h15-zug{display:flex;width:max-content;animation:h15 60s linear infinite}
+.h15-zug span{font:600 clamp(16px,1.5vw,22px)/1 var(--lauf);letter-spacing:.16em;color:#FFF8EC;white-space:nowrap}
+@keyframes h15{to{transform:translateX(-50%)}}
+.ruhig .h15-zug{animation:none}
+
+@media (max-width:760px){
+  .hx{min-height:100svh}
+  .h03{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 55vh}
+  .h3-links{padding:120px 16px 40px;order:0}
+  .h06 .h6-raster,.h13-unten,.h14-text{grid-template-columns:minmax(0,1fr)}
+  .hx-deckel{margin:0 auto;width:min(84vw,420px)}
+  .h8-wand{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .h1-tafel .ht-r p{font-size:11vw} .hx-schild{max-width:100%}
+  .h14-rahmen{height:44vh}
+  .ht-r p{white-space:nowrap}
+}

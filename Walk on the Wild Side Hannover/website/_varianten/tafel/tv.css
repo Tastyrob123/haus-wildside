@@ -1,0 +1,132 @@
+/* Kapitel «Die lange Tafel» · 15 Fassungen (29.10.2026). Bausteine der Seite, je Fassung eigene Anordnung und Bewegung. */
+.tv .text{max-width:56ch}
+.tv .kopf .zeilen{margin-top:24px}
+.tv .knoepfe{margin-top:26px}
+.tv-mitte{text-align:center;max-width:780px;margin:0 auto clamp(36px,4vw,56px)}
+.tv-mitte .kz{justify-content:center} .tv-mitte .text{margin:18px auto 0}
+.tv-knopf-mitte{display:flex;justify-content:center;margin-top:clamp(28px,3vw,40px)} .tv-knopf-mitte .knoepfe{margin:0}
+.tv01-zellen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(36px,4vw,56px)}
+.tv01-zellen>*{padding:0 clamp(16px,2vw,28px);border-left:1px solid var(--gold-ll)} .tv01-zellen>:first-child{border-left:0;padding-left:0}
+.tv01-zellen .etikett{display:block;margin-bottom:10px} .tv01-zellen p{font-size:16px;line-height:1.55;color:var(--text2)}
+.wz .z{display:inline-block;vertical-align:top}
+.tv-unter{position:absolute;left:18px;bottom:16px;color:var(--creme)!important;text-shadow:0 2px 14px rgba(0,0,0,.8);z-index:1}
+
+/* 01 Die Gäste setzen sich: fünf Bilder Wand an Wand über die ganze Breite, sie setzen sich nacheinander von links */
+.tv01-band{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:6px;height:56vh;min-height:340px}
+.tv01-band .foto{height:100%}
+
+/* 02 Oben und unten: oben die Tafel, unten die Bar; die beiden Bilder kommen sich entgegen */
+.tv02{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.tv02 figure{margin:0;position:relative;transition:transform 1.4s var(--k)}
+.tv02 .kachel{height:35vh;min-height:240px}
+.tv02 figcaption{position:absolute;left:20px;bottom:16px;color:var(--creme);text-shadow:0 2px 14px rgba(0,0,0,.85)}
+.tv02-o{transform:translateY(-40px)} .tv02-u{transform:translateY(40px)} .da .tv02-o,.da .tv02-u{transform:none}
+.tv02-linie{display:block;height:1px;background:var(--gold);margin:14px 0;transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--k) .35s}
+.da .tv02-linie{transform:none}
+
+/* 03 Die Speisenfolge: in der Mitte die dunkle Karte mit den vier Punkten wie Gänge, links und rechts die Tafel */
+.tv03{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1fr);gap:14px;align-items:stretch}
+.tv03>.kachel{min-height:76vh}
+.tv03-karte{padding:clamp(28px,3vw,46px);text-align:center;display:flex;flex-direction:column;justify-content:center}
+.tv03-karte .kz{justify-content:center} .tv03-karte .text{margin:16px auto 0;font-size:16px}
+.tv03-gaenge{margin-top:22px}
+.tv03-gang{padding:13px 0;border-top:1px solid var(--gold-ll)}
+.tv03-gang .etikett{display:block;margin-bottom:6px}
+.tv03-gang p{font-family:var(--titel);font-size:19px;line-height:1.35;color:var(--creme)}
+.tv03-karte .knoepfe{display:flex;justify-content:center;margin-top:22px}
+
+/* 04 Stufen zur Empore: unten die Treppe, oben die Tafel, die Zeilen steigen von unten nach oben auf */
+.tv04{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:stretch}
+.tv04-links{position:relative} .tv04-links .kachel{height:100%;min-height:80vh}
+.tv04-rechts>.kachel{aspect-ratio:16/9;margin-bottom:28px}
+.tv04-treppe{margin-top:22px}
+.tv04-stufe{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;padding:13px 0;border-top:1px solid var(--gold-ll);margin-left:calc(var(--s)*30px);font-size:15.5px;color:var(--text2)}
+.tv04-stufe:last-child{border-bottom:1px solid var(--gold-ll)}
+.tv04 .tv04-treppe>*{transition-delay:calc(var(--s)*.14s)}
+
+/* 05 Der Film vom Tisch: der kurze Film entlang der gedeckten Tafel läuft, solange man hinsieht */
+.tv05{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:center}
+.tv05-film{aspect-ratio:4/5;max-height:82vh;margin:0}
+.tv05-film video{width:100%;height:100%;object-fit:cover;display:block}
+.tv05-paar{display:grid;grid-template-columns:1fr 1fr;gap:6px;height:28vh;min-height:190px;margin-top:28px;border-radius:var(--rand);overflow:hidden}
+.tv05-paar .foto{height:100%}
+
+/* 06 Bild mit Schild: die Tafel gross, das dunkle Schild mit allem legt sich über ihre rechte Hälfte */
+.tv06{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:center}
+.tv06>.kachel{grid-column:1/9;grid-row:1;height:84vh;min-height:520px}
+.tv06-schild{grid-column:7/13;grid-row:1;z-index:1;padding:clamp(28px,3vw,46px)}
+
+/* 07 Text und Bildwand: vier Bilder Wand an Wand steigen gemeinsam, daneben der Text */
+.tv07{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,64px);align-items:center}
+.tv07-wand{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:82vh;min-height:520px;border-radius:var(--rand);overflow:hidden}
+.tv07-wand .foto{height:100%}
+
+/* 08 Die Tafel zieht vorbei: unter dem Titel läuft von selbst ein Band mit allen Bildern der Tafel */
+.tv08-band{overflow:hidden}
+.tv08-reihe{display:flex;width:max-content;animation:tvlauf 80s linear infinite}
+.tv08-band.halt .tv08-reihe{animation-play-state:paused}
+.tv08-reihe figure{height:46vh;min-height:300px;aspect-ratio:4/5;margin:0 8px 0 0;border-radius:var(--rand);overflow:hidden;flex:none;background:var(--nacht3)}
+.tv08-reihe img,.tv13-lauf img{width:100%;height:100%;object-fit:cover}
+@keyframes tvlauf{to{transform:translateX(-50%)}}
+
+/* 09 Die lange Tafel als langes Bild: ein schmaler, breiter Ausschnitt geht zur Seite auf */
+.tv09-kopf{text-align:center} .tv09-kopf .kz{justify-content:center}
+.tv09-titel{font-size:clamp(56px,10vw,150px);line-height:1}
+.tv09-lang{max-width:1120px;height:clamp(220px,32vh,330px);overflow:hidden;border-radius:var(--rand);margin:clamp(28px,3vw,44px) auto;transform:scaleX(.18);box-shadow:var(--schatten)}
+.tv09-in{height:100%;transform:scaleX(5.5556)}
+.tv09-in img{width:100%;height:100%;object-fit:cover}
+.tv09-unten{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px);align-items:start;max-width:1120px;margin:0 auto}
+.tv09-unten .zeilen{margin-top:0}
+
+/* 10 Vier Zeilen, vier Bilder: links steht der Titel, rechts kommt Zeile für Zeile mit eigenem Bild */
+.tv10{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px)}
+.tv10-steh{position:sticky;top:18vh}
+.tv10-z{margin-bottom:clamp(40px,5vw,72px)} .tv10-z:last-child{margin-bottom:0}
+.tv10-z .kachel{aspect-ratio:16/10;margin-bottom:18px}
+.tv10-z .etikett{display:block;margin-bottom:8px}
+.tv10-z p{font-family:var(--titel);font-size:clamp(22px,2.2vw,30px);line-height:1.25;color:var(--creme)}
+
+/* 11 Halb Bild, halb Seite: links die Tafel über die ganze Höhe, rechts die dunkle Seite mit Text und zwei Bildern */
+.tv11{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.tv11-bild .foto{height:100%}
+.tv11-seite{background:var(--nacht2);padding:clamp(48px,5vw,90px) clamp(28px,4.4vw,80px);display:flex;flex-direction:column;justify-content:center}
+.tv11-paar{display:grid;grid-template-columns:1fr 1fr;gap:6px;height:24vh;min-height:170px;margin-top:28px;border-radius:12px;overflow:hidden}
+.tv11-paar .foto{height:100%}
+
+/* 12 Hell wie die Plakate: cremefarben, drei hohe Bilder nebeneinander, darunter Text und Zeilen */
+.tvs12{background:var(--creme)}
+.tvs12 .titel{color:var(--dunkel)}
+.tv12-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.tv12-drei .kachel{aspect-ratio:4/5}
+.tv12-unten{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,64px);margin-top:clamp(36px,4vw,56px);align-items:start}
+.tv12-unten .zeilen{margin-top:0}
+.tvs12 + .kap{padding-top:clamp(72px,9vw,120px)}
+
+/* 13 Die Säulen laufen: zwei Bildsäulen laufen von selbst gegeneinander neben dem Text */
+.tv13{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);align-items:center}
+.tv13-saeulen{display:grid;grid-template-columns:1fr 1fr;gap:8px;height:84vh;min-height:520px;overflow:hidden;border-radius:var(--rand)}
+.tv13-s{overflow:hidden}
+.tv13-lauf{display:flex;flex-direction:column;animation:tvhoch 70s linear infinite}
+.tv13-ab .tv13-lauf{animation-direction:reverse}
+.tv13-saeulen.halt .tv13-lauf{animation-play-state:paused}
+.tv13-lauf figure{margin:0 0 8px;aspect-ratio:4/5;overflow:hidden;flex:none;background:var(--nacht3)}
+@keyframes tvhoch{to{transform:translateY(-50%)}}
+
+/* 14 Der Satz gross: der Text selbst trägt, Wort für Wort, darunter drei Bilder Wand an Wand und die Zeilen */
+.tv14-satz{font-size:clamp(28px,3.4vw,50px);line-height:1.22;color:var(--creme);max-width:1060px;margin:26px 0 clamp(36px,4vw,56px)}
+.tv14-drei{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;height:46vh;min-height:280px;border-radius:var(--rand);overflow:hidden}
+.tv14-drei .foto{height:100%}
+
+@media (max-width:760px){
+  .tv01-band{grid-template-columns:1fr 1fr;height:auto;grid-auto-rows:30vh} .tv01-band>:first-child{grid-column:1/3}
+  .tv01-zellen,.tv02,.tv03,.tv04,.tv05,.tv07,.tv09-unten,.tv10,.tv11,.tv12-unten,.tv13{grid-template-columns:1fr}
+  .tv01-zellen>*{border-left:0;padding:16px 0;border-top:1px solid var(--gold-ll)} .tv01-zellen>:first-child{border-top:0}
+  .tv03>.kachel{min-height:50vh}
+  .tv04-links .kachel{min-height:60vh} .tv04-stufe{margin-left:calc(var(--s)*10px);grid-template-columns:90px 1fr}
+  .tv06>.kachel{grid-column:1/-1;height:56vh;min-height:0} .tv06-schild{grid-column:1/-1;grid-row:2;margin-top:-50px}
+  .tv07-wand,.tv13-saeulen{height:70vh;min-height:0}
+  .tv10-steh{position:static}
+  .tv11-bild{min-height:70vh}
+  .tv12-drei .kachel{aspect-ratio:3/4}
+  .tv14-drei{grid-template-columns:1fr;height:auto;grid-auto-rows:42vh}
+}

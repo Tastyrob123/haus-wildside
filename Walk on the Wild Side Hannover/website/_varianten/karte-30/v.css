@@ -1,0 +1,406 @@
+/* Wild Side · Drinks, «Die einzige Karte»: 30 neue Darstellungen (30.10.2026). Rosa und Rot exakt von der Valentinskarte (#FEE1E6, #DB0527).
+   Jedes Bild steht nur neben seinem eigenen Fest. Bewegung nur über transform; Ausgangslagen unter html.vjs, alles von Anfang an sichtbar. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* ---------- Gemeinsam */
+.kx{--rosa:#FEE1E6;--rrot:#DB0527;--rlove:#E94B73;--fz:cubic-bezier(.34,1.42,.64,1);overflow-x:clip}
+.kx.voll{padding-top:clamp(72px,9vw,120px)!important}
+.kx.ohne-rand{padding-top:0!important;padding-bottom:0!important}
+.kx.ohne-unten{padding-bottom:0!important}
+.kx .text{font-size:17px}
+.kx .knoepfe{margin-top:30px}
+.kx .k-hinweis{display:block;margin-top:22px;font-size:13px;line-height:1.5;color:var(--text3);max-width:60ch}
+.kx .kz + h2{margin-top:6px} .kx h2 + .text{margin-top:22px}
+.kx .titel{text-wrap:balance}
+.kx .etikett{display:block}
+
+.rosa{background:var(--rosa);color:var(--dunkel)}
+.rosa .titel{color:var(--rrot)} .rosa .text{color:rgba(27,21,18,.78)} .rosa .etikett{color:var(--rrot)}
+.rosa .kz .uhr{color:var(--rrot)} .rosa .kz .was{color:rgba(27,21,18,.55)} .rosa .kz i{background:var(--rrot)}
+.rosa .k-hinweis{color:rgba(27,21,18,.56)}
+.kx.rotgrund,.rotgrund{background:var(--rrot);color:var(--creme)}
+.rotgrund .titel{color:var(--creme)} .rotgrund .text{color:rgba(242,233,220,.88)} .rotgrund .etikett{color:var(--rosa)}
+.rotgrund .kz .uhr{color:var(--creme)} .rotgrund .kz .was{color:rgba(242,233,220,.7)} .rotgrund .kz i{background:var(--creme)} .rotgrund .k-hinweis{color:rgba(242,233,220,.7)}
+.kx.creme{background:var(--creme);color:var(--dunkel)}
+.creme .titel{color:var(--dunkel)} .creme .text{color:rgba(27,21,18,.76)} .creme .kz .uhr{color:#9C7A32} .creme .kz .was{color:rgba(27,21,18,.55)} .creme .kz i{background:#9C7A32}
+.creme .k-hinweis{color:rgba(27,21,18,.56)}
+
+.rotgrund .knopf.rot{background:var(--creme);color:var(--dunkel)} .rotgrund .knopf.rot i{background:var(--rrot);color:var(--creme)}
+
+/* Bilder: eigene Figuren, ohne Hebe-Bewegung der Seite */
+.vfig{position:relative;overflow:hidden;background:var(--nacht3) center/cover no-repeat;background-image:var(--lq)}
+.vfig img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:50% 50%}
+.fp{aspect-ratio:1350/985} .fw{aspect-ratio:4/5} .fw img{object-position:50% 50%}
+.illu{background:var(--rosa);display:block;overflow:hidden}
+.illu img{width:100%;height:100%;object-fit:contain;object-position:100% 100%;display:block}
+.leo{aspect-ratio:856/1108;width:100%;max-width:400px;transform-origin:100% 100%}
+.cp{aspect-ratio:464/520;width:100%;max-width:220px} .cp img{object-position:50% 50%}
+
+/* Listen */
+.dl .d,.tl .d{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 18px;align-items:baseline;padding:15px 0;border-top:1px solid var(--gold-l)}
+.dl b,.tl b{font:400 23px/1.2 var(--titel);color:var(--text)} .dl span,.tl span{font:400 19px/1 var(--titel);color:var(--gold);white-space:nowrap}
+.dl p,.tl p{grid-column:1/3;margin:0;font-size:14px;line-height:1.5;color:var(--text3)}
+.tl b{font-size:19px} .tl span{font-size:17px}
+.rosa .dl .d,.rosa .tl .d{border-color:rgba(219,5,39,.22)} .rosa .dl b,.rosa .tl b{color:var(--dunkel)} .rosa .dl span,.rosa .tl span{color:var(--rrot)} .rosa .dl p,.rosa .tl p{color:rgba(27,21,18,.62)}
+.rotgrund .dl .d{border-color:rgba(242,233,220,.3)} .rotgrund .dl b{color:var(--creme)} .rotgrund .dl span{color:var(--rosa)} .rotgrund .dl p{color:rgba(242,233,220,.74)}
+.creme .dl .d{border-color:rgba(27,21,18,.14)} .creme .dl b{color:var(--dunkel)} .creme .dl span{color:var(--rrot)} .creme .dl p{color:rgba(27,21,18,.6)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:22px}
+.sg b{font:400 24px/1.25 var(--titel);color:var(--creme);padding:12px 0;border-top:1px solid var(--gold-l)}
+
+/* Blöcke der Feste */
+.vb > .titel,.wb > .titel{font-size:clamp(34px,3.6vw,52px);margin-top:12px}
+.vb > .text,.wb > .text{margin-top:16px;font-size:16.5px}
+.vb .dl{margin-top:22px}
+.kx:not(.rosa) .vb:not(.rosa *):not(.rotgrund *) > .titel{color:var(--rlove)}
+.kx:not(.rosa) .vb:not(.rosa *):not(.rotgrund *) > .etikett{color:var(--rlove)}
+.wb > .titel{color:var(--creme)}
+
+/* Auftritt-Ausgangslagen allgemein */
+html.vjs .kx [data-m]{transition:transform 1.5s var(--k)}
+
+/* Die nachgesetzte Karte (03, 04) */
+.kn-eti{font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--rrot);margin:0}
+.kn-titel{margin:14px 0 0;font-family:var(--titel);line-height:.95;color:var(--rrot)}
+.kn-titel span{display:block;font-size:clamp(44px,4.6vw,70px);text-transform:uppercase;letter-spacing:.01em}
+.kn-titel em{display:block;font-style:normal;font-size:clamp(50px,5.2vw,80px);color:var(--rlove);padding-left:1.4em}
+.kn-cupid{margin:24px 0 0;font:600 12px/1 var(--lauf);letter-spacing:.14em;text-transform:uppercase;color:var(--rrot)}
+.kn-dl{margin-top:8px}
+
+/* ================= 01 Rosa Wand */
+.v01{padding-bottom:0!important}
+.rw{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(30px,5vw,80px);align-items:end}
+.rw-l{padding-bottom:clamp(72px,9vw,120px)}
+.v01 .t-kap{font-size:clamp(56px,7.4vw,118px);line-height:.98}
+.rw-dl{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin-top:40px}
+.rw-leo{justify-self:end;max-width:600px;margin-right:calc((var(--innen) - 100vw)/2)}
+html.vjs .rw-leo:not(.da){transform:translateX(34%)}
+html.vjs .rw-leo{transition:transform 1.8s var(--k)}
+
+/* ================= 02 Die zwei Gastgeber */
+.gg-o{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center}
+.gg-f{max-width:1000px}
+.gg-dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;margin-top:clamp(48px,6vw,80px)}
+.gg-dl .d{border-top:2px solid var(--rlove);align-content:start}
+
+/* ================= 03 Die Karte nachgesetzt */
+.kn{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,100px);align-items:center}
+.kn-blatt{position:relative;background:var(--rosa);border-radius:6px;padding:clamp(30px,3.4vw,50px) clamp(30px,3.4vw,50px) 0;box-shadow:var(--schatten);transform-origin:50% 80%;will-change:transform;overflow:hidden;min-height:620px}
+.kn-blatt .kn-dl{width:62%}
+.kn-blatt .dl b{color:var(--dunkel)} .kn-blatt .dl span{color:var(--rrot)} .kn-blatt .dl p{color:rgba(27,21,18,.62)} .kn-blatt .dl .d{border-color:rgba(219,5,39,.22)}
+.kn-leo{position:absolute;right:0;bottom:0;width:40%}
+.kn-blatt::after{content:"";display:block;height:clamp(30px,3.4vw,50px)}
+
+/* ================= 04 Drinks und Teller */
+.dt-o{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.dt-o .text{margin-top:0}
+.dt{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,34px);margin-top:clamp(48px,6vw,80px);align-items:stretch}
+.dt-b{background:var(--rosa);border-radius:6px;padding:clamp(30px,3.4vw,50px);box-shadow:var(--schatten)}
+.dt-b .dl b,.dt-b .tl b{color:var(--dunkel)} .dt-b .dl span,.dt-b .tl span{color:var(--rrot)} .dt-b .dl p,.dt-b .tl p{color:rgba(27,21,18,.62)} .dt-b .d{border-color:rgba(219,5,39,.22)!important}
+.dt-b .tl .d{padding:11px 0}
+.dt-a{display:flex;flex-direction:column;padding-right:0;padding-bottom:0;overflow:hidden} .dt-a .kn-dl{padding-right:clamp(30px,3.4vw,50px)} .dt-leo{margin:auto 0 0 auto;max-width:300px}
+html.vjs .dt-a:not(.da){transform:translateX(26%) rotate(-3deg)}
+html.vjs .dt-t:not(.da){transform:translateX(-26%) rotate(3deg)}
+.dt-a{position:relative;z-index:2}
+
+/* ================= 05 Die Namen auf Rosa */
+.nr{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(40px,6vw,100px)}
+.nr-kleb{position:sticky;top:110px}
+.nr-cp{margin-bottom:30px;max-width:190px}
+.nr-z{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:baseline;padding:28px 0;border-top:1px solid rgba(219,5,39,.3)}
+.nr-z b{font:400 clamp(42px,5vw,78px)/1 var(--titel);color:var(--rrot)}
+.nr-z span{font:400 26px/1 var(--titel);color:var(--rrot)}
+.nr-z p{grid-column:1/3;margin:0;font-size:15.5px;color:rgba(27,21,18,.66)}
+html.vjs .nr-z{transition:transform 1.4s var(--k) calc(var(--n)*.1s)!important}
+html.vjs .nr-z:not(.da){transform:translateX(90px)}
+
+/* ================= 06 Leopard links */
+.ll{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:min(100vh,860px)}
+.ll-r{display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden;padding-top:60px}
+.ll-leo{max-width:min(470px,90%)}
+.ll-t{padding:clamp(72px,9vw,120px) clamp(28px,6vw,110px);align-self:center}
+.ll-dl{margin-top:30px;max-width:560px}
+html.vjs .ll-r[data-m]:not(.da) .ll-leo{transform:translateY(22%)}
+html.vjs .ll-r .ll-leo{transition:transform 1.8s var(--k)}
+
+/* ================= 07 Der 14. Februar */
+.dm-datum{font:400 clamp(150px,41vw,700px)/.8 var(--titel);color:var(--rrot);white-space:nowrap;margin:0 0 clamp(30px,4vw,60px) -1vw;letter-spacing:-.02em}
+.dm{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,100px);align-items:start}
+.dm-cp{margin-top:40px;max-width:170px}
+.dm-dl .d:first-child{border-top:0;padding-top:0}
+
+/* ================= 08 Drei Felder */
+.df-o{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.df-o .text{margin-top:0}
+.df{display:grid;grid-template-columns:1.32fr .9fr .76fr;height:clamp(300px,34vw,470px);margin-top:clamp(40px,5vw,70px)}
+.df .vfig{aspect-ratio:auto;height:100%}
+.df-m{display:flex;justify-content:flex-end;align-items:flex-end;overflow:hidden}
+.df-m .leo{height:94%;width:auto;max-width:none}
+html.vjs .df [data-m]:not(.da){transform:translateY(70px)}
+html.vjs .df .df-m:not(.da){transform:translateY(130px)}
+html.vjs .df [data-m]{transition:transform 1.5s var(--k) .18s} html.vjs .df .df-m{transition-delay:0s}
+.df-dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 30px;margin-top:40px}
+.df-dl .d{align-content:start}
+
+/* ================= 09 Auf Rot */
+.ar{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:center}
+.ar-feld{aspect-ratio:1;display:grid;place-items:center;border-radius:4px}
+.ar-cp{max-width:none;width:58%;transform-origin:50% 0}
+.ar-cp img{object-position:50% 50%}
+html.vjs .ar-cp:not(.da){transform:rotate(-16deg)}
+html.vjs .ar-cp{transition:transform 1.6s var(--fz)!important}
+.ar-dl{margin-top:28px}
+
+/* ================= 10 Der Leopard bleibt stehen */
+.lb{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:start}
+.lb-l{height:100%}
+.lb-kleb{position:sticky;top:90px;height:calc(100vh - 140px);max-height:760px;display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden;border-radius:4px}
+.lb-leo{max-width:none;height:92%;width:auto}
+.lb-h{font-size:clamp(30px,3vw,44px);margin-top:clamp(56px,6vw,90px);color:var(--rlove)}
+.lb-dl{margin-top:18px}
+
+/* ================= 11 Die Einladung */
+.ei{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,100px);align-items:center}
+.ei-k{background:var(--rosa);color:var(--dunkel);text-align:center;padding:clamp(40px,4.4vw,66px) clamp(30px,4vw,64px);border-radius:3px;
+ box-shadow:inset 0 0 0 1px var(--rrot),inset 0 0 0 9px var(--rosa),inset 0 0 0 10px var(--rrot),var(--schatten)}
+.ei-cp{margin:20px auto 0;max-width:150px}
+.kx .ei-k .kn-cupid,.kx .ei-k .kn-eti{color:var(--rrot)}
+.kx .ei-k h3{color:var(--rrot);font-size:clamp(44px,4.4vw,66px);margin-top:10px}
+.ei-k .kn-cupid{margin-top:14px}
+.kx .ei-dl{margin-top:20px} .kx .ei-dl .d{display:block;text-align:center;border-color:rgba(219,5,39,.22)} .kx .ei-dl b{color:var(--dunkel)} .kx .ei-dl p{color:rgba(27,21,18,.6);margin-top:6px}
+.ei-preis{margin:20px 0 0;font:400 20px/1 var(--titel);color:var(--rrot)}
+html.vjs .ei-k:not(.da){transform:scale(.86) rotate(-5deg)}
+html.vjs .ei-k{transition:transform 1.6s var(--fz)!important}
+
+/* ================= 12 Drei Spalten */
+.ds-o{max-width:760px}
+.ds{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.82fr) minmax(0,1fr);margin-top:clamp(48px,6vw,80px);align-items:stretch}
+.ds-s{padding:0 clamp(22px,3vw,48px) 0 0}
+.ds-re{padding:0 0 0 clamp(22px,3vw,48px)}
+.ds-s .etikett{margin-bottom:14px}
+.ds-m{display:flex;align-items:flex-end;justify-content:flex-end;overflow:hidden;border-radius:4px;min-height:520px}
+.ds-leo{max-width:none;width:100%}
+.ds-u{margin-top:30px}
+html.vjs .ds-s:not(.da){transform:translateX(-70px)} html.vjs .ds-re:not(.da){transform:translateX(70px)}
+
+/* ================= 13 Querband */
+.qb-kleb{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center}
+.qb-zug{display:flex;align-items:stretch;height:78vh;will-change:transform;padding-left:calc((100vw - var(--innen))/2)}
+.qb-f{flex:0 0 auto;width:min(36vw,520px);height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,3vw,46px);overflow:hidden}
+.qb-t{width:min(42vw,560px);justify-content:center;padding-left:0}
+.qb-d .etikett{margin-bottom:auto}
+.qb-d b{font:400 clamp(46px,4.6vw,76px)/1 var(--titel)}
+.qb-d.rosa b{color:var(--rrot)} .qb-d p{margin:18px 0 0;font-size:15.5px} .qb-d.rosa p{color:rgba(27,21,18,.68)} .qb-d.rotgrund p{color:rgba(242,233,220,.82)}
+.qb-d i{font:400 24px/1 var(--titel);font-style:normal;margin-top:18px}
+.qb-l{padding:0;align-items:flex-end}
+.qb-leo{max-width:none;height:92%;width:auto;margin-left:auto}
+.qb-p{width:auto;padding:0 calc((100vw - var(--innen))/2) 0 0;background:var(--nacht)}
+.qb-foto{height:100%;width:auto;aspect-ratio:1350/985}
+
+/* ================= 14 Drunk / in Love */
+.dl2-w{margin:0;font:400 clamp(120px,21vw,340px)/.84 var(--titel);white-space:nowrap;letter-spacing:-.02em}
+.dl2-a{color:var(--rrot);padding-left:3vw}
+.dl2-b{color:var(--rlove);text-align:right;padding-right:3vw;margin-top:clamp(24px,3vw,40px)}
+.dl2-m{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center;margin-top:clamp(24px,3vw,40px)}
+.dl2-dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 30px;margin-top:clamp(40px,5vw,64px)}
+.dl2-dl .d{align-content:start}
+
+/* ================= 15 An der Bar */
+.ab{display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr)}
+.ab-f{aspect-ratio:auto;min-height:min(100vh,940px);height:100%}
+.ab-f img{object-position:50% 40%}
+.ab-r{display:flex;align-items:center;overflow:hidden}
+.ab-in{padding:clamp(60px,7vw,110px) clamp(28px,5vw,90px)}
+.ab-dl{margin-top:28px}
+
+/* ================= 16 Leopard in der Mitte */
+.lm-o{text-align:center;max-width:760px;margin:0 auto}
+.lm-o .kz{justify-content:center} .lm-o .text{margin-left:auto;margin-right:auto}
+.lm-b{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px) minmax(0,1fr);gap:clamp(24px,3.4vw,56px);align-items:center;margin-top:clamp(40px,5vw,70px)}
+.lm-u{text-align:center;margin-top:20px} .lm-u .knoepfe{display:flex;justify-content:center} .lm-u .k-hinweis{margin-left:auto;margin-right:auto}
+html.vjs .lm-l:not(.da){transform:translateX(-80px)} html.vjs .lm-r:not(.da){transform:translateX(80px)}
+
+/* ================= 17 Rosa Streifen */
+.rs{margin-top:0}
+.rs-i{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end;padding-top:clamp(50px,6vw,90px)}
+.rs-i > div{padding-bottom:clamp(50px,6vw,90px)}
+.rs-titel{margin:8px 0 0;font-size:clamp(64px,8vw,130px);line-height:.95;color:var(--rrot)}
+.rs-titel em{font-style:normal;color:var(--rlove)}
+.rs-leo{width:min(360px,30vw)}
+html.vjs .rs:not(.da) .rs-i > div{transform:translateX(-90px)} html.vjs .rs:not(.da) .rs-leo{transform:translateX(90px)}
+html.vjs .rs .rs-i > div,html.vjs .rs .rs-leo{transition:transform 1.6s var(--k)}
+.rs-u{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,100px);margin-top:clamp(48px,6vw,80px)}
+.rs-u .text{margin-top:0}
+.rs-dl .d{border-top-color:var(--gold)} .rs-dl .d:first-child{padding-top:0;border-top:0}
+
+/* ================= 18 Der Satz */
+.sz-satz{margin:10px 0 0;font-size:clamp(40px,5.6vw,88px);line-height:1.1;color:var(--text)}
+.sz-z{display:block;overflow:hidden;padding-bottom:.06em}
+.sz-z > span{display:block}
+.sz-satz em{font-style:normal;color:var(--rlove)}
+html.vjs .sz-z > span{transition:transform 1.3s var(--k) calc(var(--n)*.11s)}
+html.vjs .sz-z:not(.da) > span{transform:translateY(100%)}
+.sz-u{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,5vw,80px);margin-top:clamp(48px,6vw,80px);align-items:start}
+.sz-cp{width:clamp(150px,16vw,230px);border-radius:4px}
+.sz-dl{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+
+/* ================= 19 Zwei Hälften */
+.zh-o{max-width:none;display:block;margin-bottom:clamp(48px,6vw,80px)}
+.zh{display:grid;grid-template-columns:1fr 1fr}
+.zh-v{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);align-items:end;padding:clamp(48px,5vw,80px) 0 0 max(calc((100vw - var(--innen))/2),24px);gap:24px;overflow:hidden}
+.zh-v .vb{padding-bottom:clamp(48px,5vw,80px)}
+.zh-w{background:var(--nacht2);padding:clamp(48px,5vw,80px) max(calc((100vw - var(--innen))/2),24px) clamp(48px,5vw,80px) clamp(30px,4vw,64px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start}
+html.vjs .zh-v:not(.da) > *{transform:translateX(-60px)} html.vjs .zh-w:not(.da) > *{transform:translateX(60px)}
+html.vjs .zh-v > *,html.vjs .zh-w > *{transition:transform 1.6s var(--k)}
+
+/* ================= 20 Winter, dann Februar */
+.wf-o{max-width:760px}
+.wf-z{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,100px);align-items:center;margin-top:clamp(56px,7vw,100px)}
+.wf-z2{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.wf-r{display:flex;justify-content:flex-end;align-items:flex-end;aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.wf-leo{max-width:none;height:92%;width:auto}
+
+/* ================= 21 Zwei Blätter */
+.zb-o{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.zb-o .text{margin-top:0}
+.zb{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,48px);margin-top:clamp(48px,6vw,80px);align-items:stretch}
+.zb-b{border-radius:6px;box-shadow:var(--schatten);overflow:hidden;position:relative}
+.zb-w{background:var(--creme)}
+.zb-w .zb-f{aspect-ratio:5/4} .zb-w .zb-f img{object-position:50% 62%}
+.zb-t{padding:clamp(26px,3vw,44px)}
+.zb-w .etikett{color:#9C7A32} .zb-w .titel{color:var(--dunkel)} .zb-w .text{color:rgba(27,21,18,.74)}
+.zb-w .sg b{color:var(--dunkel);border-color:rgba(27,21,18,.14)}
+.zb-v{display:grid;grid-template-rows:auto 1fr}
+.zb-v .zb-t{padding-bottom:0;position:relative;z-index:1}
+.zb-leo{justify-self:end;align-self:end;max-width:260px}
+html.vjs .zb-w:not(.da){transform:rotate(-5deg) translateY(50px)} html.vjs .zb-v:not(.da){transform:rotate(5deg) translateY(50px)}
+html.vjs .zb-b{transition:transform 1.7s var(--fz)!important}
+
+/* ================= 22 Die Linie */
+.li-o{max-width:760px}
+.li{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);margin-top:clamp(56px,7vw,100px);padding-top:44px}
+.li-strich{position:absolute;left:0;right:0;top:0;height:2px;background:var(--gold);transform-origin:0 50%}
+html.vjs .li-strich:not(.da){transform:scaleX(.08)}
+html.vjs .li-strich{transition:transform 2.2s var(--k)!important}
+.li-p{position:relative}
+.li-p::before{content:"";position:absolute;left:0;top:-51px;width:16px;height:16px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 0 0 2px var(--gold)}
+.li-dat{display:block;font-size:clamp(30px,3vw,44px);color:var(--gold);margin-bottom:22px}
+.li-f,.li-rosa{aspect-ratio:4/5;margin-bottom:30px}
+.li-rosa{display:flex;justify-content:flex-end;align-items:flex-end;overflow:hidden;border-radius:4px}
+.li-leo{max-width:none;height:92%;width:auto}
+
+/* ================= 23 Das Jahr bleibt stehen */
+.jb{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:start}
+.jb-l{height:100%}
+.jb-kleb{position:sticky;top:110px}
+.jb-fenster{height:clamp(110px,13vw,210px);overflow:hidden;margin-top:30px}
+.jb-zug{transition:transform 1s var(--k)}
+.jb-zug b{display:block;height:clamp(110px,13vw,210px);font-size:clamp(110px,13vw,210px);line-height:1;color:var(--gold)}
+.jb-zug b + b{color:var(--rlove)}
+.jb-fenster.b .jb-zug{transform:translateY(-50%)}
+.jb-r > .text{margin-top:0;font-size:19px}
+.jb-teil{margin-top:clamp(56px,7vw,100px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:clamp(24px,3vw,44px);align-items:start}
+.jb-rosa{display:flex;justify-content:flex-end;align-items:flex-end;aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.jb-leo{max-width:none;height:92%;width:auto}
+.jb-r .sg{grid-template-columns:1fr}
+
+/* ================= 24 Februar gross, Dezember danach */
+.fg{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:end}
+.fg-leo{max-width:480px;align-self:end}
+.fg-l{padding-bottom:clamp(72px,9vw,120px)}
+.v24 .t-kap{font-size:clamp(48px,6vw,92px)}
+.fg-dl{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;margin-top:30px}
+.fg-w{background:var(--nacht);padding:clamp(72px,9vw,120px) 0}
+.fg-wi{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:center}
+html.vjs .fg-wi:not(.da){transform:translateY(90px)}
+
+/* ================= 25 Zwei Abzüge */
+.az-o{max-width:760px}
+.az{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);margin-top:clamp(48px,6vw,80px)}
+.az-bild{aspect-ratio:4/5;box-shadow:var(--schatten);margin-bottom:34px;transform-origin:50% 100%}
+.az-bild .vfig{height:100%;aspect-ratio:auto}
+.az-r{display:flex;justify-content:flex-end;align-items:flex-end;overflow:hidden}
+.az-leo{max-width:none;height:92%;width:auto}
+html.vjs .az-s:first-child .az-bild:not(.da){transform:rotate(-5deg)} html.vjs .az-s:last-child .az-bild:not(.da){transform:rotate(5deg)}
+html.vjs .az-bild{transition:transform 1.7s var(--fz)!important}
+
+/* ================= 26 Vier Felder */
+.vf-o{margin-bottom:clamp(48px,6vw,80px)}
+.vf{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(560px,auto)}
+.vf-f{overflow:hidden}
+.vf-f.rosa{display:flex;justify-content:flex-end;align-items:flex-end;padding-top:50px}
+.vf-leo{max-width:min(440px,80%)}
+.vf-f.rotgrund,.vf-n{padding:clamp(40px,5vw,80px)}
+.vf-n{background:var(--nacht2);display:flex;align-items:center}
+.vf-b .vfig{height:100%;aspect-ratio:auto}
+html.vjs .vf-f > *{transition:transform 1.5s var(--k) calc(var(--n)*.14s)}
+html.vjs .vf-f:not(.da) > *{transform:scale(.9)}
+html.vjs .vf-f.rosa > *{transform-origin:100% 100%}
+
+/* ================= 27 Zwei Spalten versetzt */
+.zs-o{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:start}
+.zs-o .text{margin-top:0}
+.zs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);margin-top:clamp(48px,6vw,80px)}
+.zs-s + .zs-s{margin-top:clamp(60px,8vw,140px)}
+.zs-f{aspect-ratio:4/5;margin-bottom:32px}
+
+/* ================= 28 Die Bühne wechselt */
+.bw{height:240vh}
+.bw-kleb{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--nacht)}
+.bw-s{position:absolute;inset:0;display:flex;align-items:center;will-change:transform}
+.bw-a{background:var(--nacht)}
+.bw-b{transform:translate3d(100%,0,0);box-shadow:-30px 0 60px -20px rgba(0,0,0,.6)}
+.bw-i{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(40px,6vw,100px);align-items:center}
+.bw-b .bw-i{grid-template-columns:minmax(0,6fr) minmax(0,4fr);align-items:end;height:100%;padding-top:80px}
+.bw-b .vb{align-self:center}
+.bw-f{height:min(72vh,680px);width:auto;aspect-ratio:4/5}
+.bw-a .wb{margin-top:26px}
+.bw-leo{max-width:min(440px,100%);justify-self:end}
+
+/* ================= 29 Zwei Bänder */
+.zb2-o{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,90px);align-items:start;margin-bottom:clamp(48px,6vw,80px)}
+.zb2-o .text{margin-top:0}
+.zb2-w{background:var(--nacht2);padding:clamp(56px,6vw,90px) 0}
+.zb2-i{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:center}
+.zb2-v .zb2-i{grid-template-columns:minmax(0,7fr) minmax(0,4fr);align-items:end;padding-top:clamp(56px,6vw,90px)}
+.zb2-v .vb{padding-bottom:clamp(56px,6vw,90px);align-self:center}
+.zb2-leo{justify-self:end}
+.zb2-v .vb .dl{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+html.vjs .zb2-w:not(.da) .zb2-i{transform:translateX(-80px)} html.vjs .zb2-v:not(.da) .zb2-i{transform:translateX(80px)}
+html.vjs .zb2 .zb2-i{transition:transform 1.6s var(--k)}
+
+/* ================= 30 Mit Rückblick */
+.rb{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:center}
+.rb-f{max-width:1000px}
+.rb-k{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);margin-top:clamp(56px,7vw,100px)}
+.rb-k .etikett{color:var(--rlove);margin-bottom:12px}
+.rb-w{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,100px);align-items:center;margin-top:clamp(64px,8vw,120px);padding-top:clamp(56px,7vw,100px);border-top:1px solid var(--gold)}
+
+/* ---------- Handy */
+@media (max-width:760px){
+  .rw,.gg-o,.kn,.dt-o,.dt,.nr,.ll,.dm,.df-o,.ar,.lb,.ei,.ds,.dl2-m,.ab,.lm-b,.rs-i,.rs-u,.sz-u,.zh,.zh-v,.zh-w,.wf-z,.wf-z2,.zb-o,.zb,.li,.jb,.jb-teil,.fg,.fg-wi,.az,.vf,.zs-o,.zs,.bw-i,.bw-b .bw-i,.zb2-o,.zb2-i,.zb2-v .zb2-i,.rb,.rb-k,.rb-w{grid-template-columns:1fr}
+  .rw-dl,.gg-dl,.df-dl,.dl2-dl,.sz-dl,.fg-dl,.zb2-v .vb .dl{grid-template-columns:1fr}
+  .rw-leo{margin-right:-16px;max-width:300px}
+  .nr-kleb,.lb-kleb,.jb-kleb{position:static;height:auto}
+  .lb-kleb{aspect-ratio:4/5} .lb-l{height:auto}
+  .ll-r{min-height:420px} .ll-t{padding:56px 16px}
+  .kn-blatt{min-height:0} .kn-blatt .kn-dl{width:100%} .kn-leo{position:static;width:60%;margin:20px -30px 0 auto}
+  .df{grid-template-columns:1fr;height:auto} .df .vfig{aspect-ratio:4/3} .df-m{height:380px}
+  .ei-r{margin-bottom:-56px} .ds-s,.ds-re{padding:0} .ds-m{min-height:420px;margin:30px 0}
+  .qb{height:auto!important} .qb-kleb{position:static;height:auto;display:block} .qb-zug{display:block;height:auto;padding:0;transform:none!important}
+  .qb-f,.qb-t{width:auto;height:auto;min-height:340px;padding:40px 16px} .qb-t{min-height:0;padding-top:72px} .qb-l{height:420px;padding:0} .qb-p{padding:0;min-height:0} .qb-foto{height:auto;width:100%}
+  .dl2-w{font-size:28vw}
+  .ab-f{min-height:0;aspect-ratio:3/4}
+  .lm-leo{max-width:300px;margin:0 auto}
+  .rs-leo{width:70%;justify-self:end}
+  .zh-v,.zh-w{padding-left:16px;padding-right:16px}
+  .vf{grid-auto-rows:auto} .vf-f.rosa{height:420px} .vf-b .vfig{aspect-ratio:4/5}
+  .zs-s + .zs-s{margin-top:56px}
+  .bw{height:auto} .bw-kleb{position:static;height:auto} .bw-s{position:relative;transform:none!important;padding:72px 0}
+  .bw-b .bw-i{padding-top:0} .bw-f{height:auto;width:100%}
+  .jb-fenster{height:110px} .jb-zug b{height:110px;font-size:110px}
+  .sg{grid-template-columns:1fr}
+}
+.kx .fg-w .text{color:var(--text2)} .kx .fg-w .etikett{color:var(--gold)} .kx .fg-w .titel{color:var(--creme)}

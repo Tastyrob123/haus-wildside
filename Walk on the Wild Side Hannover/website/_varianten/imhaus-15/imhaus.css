@@ -1,0 +1,187 @@
+/* Walk on the Wild Side · 15 Darstellungen «Im selben Haus» (29.10.2026). Texte wie heute, je Fassung eine eigene Ordnung und Bewegung. */
+
+.ihv a{color:inherit}
+.ihv .ih-f{position:relative;margin:0;overflow:hidden;background:var(--nacht3);border-radius:var(--rand)}
+.ihv .ih-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transition:transform 1.8s var(--k)}
+.ihv a:hover .ih-f img{transform:scale(1.04)}
+.ihv .ih-t .etikett{display:block;margin-bottom:10px}
+.ihv .ih-t .titel{font-size:clamp(28px,2.8vw,42px);line-height:1.04}
+.ihv .ih-t .text{margin-top:12px;font-size:16px}
+.ihv .ih-t .weiter{margin-top:18px}
+.ihv .ih-k{display:flex;flex-direction:column;gap:22px}
+.ihv .ih-texte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px);margin-top:30px}
+.ihv .ih-texte>a{display:block}
+.ihv>.innen>.kz,.ihv>.innen>h2{position:relative;z-index:2}
+
+/* 01 Drei hohe Bilder */
+.v01 .ih-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:34px}
+.v01 .ih-k .ih-f{aspect-ratio:3/4.1;border-radius:6px}
+.v01 .ih-drei{overflow:hidden;padding-bottom:4px}
+.v01 .ih-k{transform:translateY(80px);opacity:0;transition:transform 1.5s var(--k),opacity .9s ease;transition-delay:calc(var(--n)*.14s)}
+.v01.da .ih-k{transform:none;opacity:1}
+.v01 .ih-t{padding:0 6px}
+
+/* 02 Schachbrett */
+.v02 .ih-schach{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:clamp(300px,27vw,430px);gap:8px;margin-top:34px}
+.v02 .ih-z{position:relative;display:block;border-radius:8px;overflow:hidden}
+.v02 .bz .ih-f{position:absolute;inset:0;border-radius:0}
+.v02 .tz{background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l);display:flex;align-items:flex-end;padding:clamp(24px,2.6vw,40px)}
+.v02 .ih-z{transform:scale(.94);opacity:0;transition:transform 1.3s var(--k),opacity .8s ease;transition-delay:calc(var(--n)*.09s)}
+.v02.da .ih-z{transform:none;opacity:1}
+
+/* 03 Im Zickzack */
+.v03 .ih-zz{display:flex;flex-direction:column;gap:8px;margin-top:34px}
+.v03 .ih-r{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(30px,4vw,70px);align-items:center;background:var(--nacht2);border-radius:10px;padding:8px;padding-right:clamp(24px,3vw,50px)}
+.v03 .ih-r.um{grid-template-columns:minmax(0,5fr) minmax(0,7fr);padding-right:8px;padding-left:clamp(24px,3vw,50px)}
+.v03 .ih-r.um .ih-f{order:2}
+.v03 .ih-r .ih-f{aspect-ratio:16/9;border-radius:6px}
+.v03 .ih-r .ih-t .titel{font-size:clamp(32px,3.6vw,56px)}
+.v03 .ih-r .ih-f img{transform:scale(1.14);transition:transform 2s var(--k2)}
+.v03.da .ih-r .ih-f img{transform:none}
+.v03.da .ih-r:hover .ih-f img{transform:scale(1.04)}
+
+/* 04 Register */
+.v04 .ih-reg{margin-top:30px;border-top:1px solid var(--gold-l)}
+.v04 .ih-zeile{display:block;padding:28px 0 8px;border-bottom:1px solid var(--gold-l)}
+.v04 .ih-kopf{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(0,34ch);gap:20px 40px;align-items:end}
+.v04 .ih-kopf .etikett{padding-bottom:.9em}
+.v04 .ih-kopf .titel{font-size:clamp(44px,6.2vw,104px);line-height:.95;transition:transform 1.2s var(--k)}
+.v04 .ih-zeile:hover .titel{transform:translateX(14px)}
+.v04 .ih-rechts .text{font-size:15.5px}
+.v04 .ih-rechts .weiter{margin-top:14px}
+.v04 .ih-band{height:clamp(110px,11vw,180px);margin:22px 0 20px;border-radius:6px}
+.v04 .ih-band img{transform:scale(1.12);transition:transform 2.4s var(--k2)}
+.v04.da .ih-band img{transform:none}
+
+/* 05 Ein Bild, drei Zeilen */
+.v05 .ih-liste{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,4vw,70px);margin-top:34px;align-items:stretch}
+.v05 .ih-zeilen{display:flex;flex-direction:column;border-top:1px solid var(--gold-l)}
+.v05 .ih-l{display:block;flex:1;padding:24px 0 24px 26px;border-bottom:1px solid var(--gold-l);position:relative;transition:background .6s}
+.v05 .ih-l::before{content:"";position:absolute;left:0;top:24px;bottom:24px;width:2px;background:var(--gold);transform:scaleY(0);transform-origin:50% 0;transition:transform .7s var(--k)}
+.v05 .ih-l.an::before{transform:none}
+.v05 .ih-l .text{opacity:.6;transition:opacity .6s} .v05 .ih-l.an .text{opacity:1}
+.v05 .ih-l .titel{transition:color .6s} .v05 .ih-l:not(.an) .titel{color:var(--text2)}
+.v05 .ih-gross{position:relative;min-height:clamp(480px,46vw,720px);border-radius:12px;overflow:hidden}
+.v05 .ih-gross .ih-f{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;border-radius:12px}
+.v05 .ih-gross .ih-f.an{opacity:1}
+
+/* 06 Fächer */
+.v06 .ih-faecher{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:40px;perspective:1600px;padding:0 2vw}
+.v06 .ih-k{padding:14px 14px 26px;gap:20px;transition:transform 1s var(--k),box-shadow 1s}
+.v06 .ih-k .ih-f{aspect-ratio:4/4.6;border-radius:10px}
+.v06 .ih-k .ih-t{padding:0 10px}
+.v06 .ih-k:nth-child(1){transform:rotateY(16deg) translateZ(-40px) translateX(14px);transform-origin:100% 50%}
+.v06 .ih-k:nth-child(2){transform:translateZ(30px);z-index:2}
+.v06 .ih-k:nth-child(3){transform:rotateY(-16deg) translateZ(-40px) translateX(-14px);transform-origin:0 50%}
+.v06 .ih-faecher:hover .ih-k{transform:rotateY(0) translateZ(-30px)}
+.v06 .ih-faecher .ih-k:hover{transform:translateZ(40px);z-index:3}
+.v06 .ih-faecher{opacity:0;transform:translateY(60px);transition:opacity 1s ease,transform 1.6s var(--k)}
+.v06.da .ih-faecher{opacity:1;transform:none}
+
+/* 07 Quer */
+.v07 .ih-quer{height:240vh;margin-top:20px}
+.v07 .ih-buehne{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden;margin:0 calc(50% - 50vw)}
+.v07 .ih-spur{display:flex;gap:10px;padding:0 4vw;width:max-content;transform:translateX(var(--x,0px));will-change:transform}
+.v07 .ih-k{width:min(44vw,700px);flex:none;flex-direction:row;align-items:flex-end;gap:28px;background:var(--nacht2);border-radius:14px;padding:10px;padding-right:30px;box-shadow:inset 0 0 0 1px var(--gold-l)}
+.v07 .ih-k .ih-f{width:56%;flex:none;height:min(66vh,560px);border-radius:8px}
+.v07 .ih-k .ih-t{padding-bottom:14px}
+
+/* 08 Gegenlauf */
+.v08 .ih-gegen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,30px);margin-top:34px;align-items:start}
+.v08 .ih-k{transform:translateY(var(--y,0px));will-change:transform}
+.v08 .ih-k .ih-f{aspect-ratio:3/4;border-radius:10px}
+.v08 .ih-k.mitte{flex-direction:column-reverse;margin-top:60px}
+
+/* 09 Schräg geschnitten */
+.v09 .ih-streifen{display:flex;height:clamp(360px,40vw,600px);margin:40px -1vw 0}
+.v09 .ih-s{flex:1;position:relative;margin:0 -2.2vw;clip-path:polygon(12% 0,100% 0,88% 100%,0 100%);transform:translateY(60px);opacity:0;transition:transform 1.5s var(--k),opacity .9s;transition-delay:calc(var(--n)*.14s)}
+.v09 .ih-s:first-child{clip-path:polygon(0 0,100% 0,88% 100%,0 100%);margin-left:0}
+.v09 .ih-s:last-child{clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);margin-right:0}
+.v09.da .ih-s{transform:none;opacity:1}
+.v09 .ih-s .ih-f{position:absolute;inset:0;border-radius:0}
+.v09 .ih-texte{margin-top:34px}
+
+/* 10 Hell wie die Plakate */
+.v10{background:var(--creme);color:var(--dunkel)}
+.v10 .kz .uhr{color:#A07F3A} .v10 .titel{color:var(--dunkel)}
+.v10 .ih-hell-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:40px;border-top:2px solid var(--dunkel)}
+.v10 .ih-k{gap:0;border-right:1px solid rgba(27,21,18,.18)}
+.v10 .ih-k:last-child{border-right:0}
+.v10 .ih-k .ih-f{aspect-ratio:1;border-radius:0}
+.v10 .ih-k .ih-t{padding:24px 26px 6px}
+.v10 .ih-t .etikett{color:#C8261C}
+.v10 .ih-t .text{color:rgba(27,21,18,.78)}
+.v10 .ih-t .weiter{color:#C8261C;border-color:rgba(200,38,28,.35)}
+.v10 .ueber{color:rgba(27,21,18,.6)}
+.v10 .ih-k .ih-f img{transform:scale(1.12);transition:transform 2s var(--k2);transition-delay:calc(var(--n)*.12s)}
+.v10.da .ih-k .ih-f img{transform:none}
+
+/* 11 Breitbild und Paar */
+.v11 .ih-breit{display:block;margin-top:34px}
+.v11 .ih-breit .ih-f{aspect-ratio:21/9;border-radius:12px}
+.v11 .ih-breit .ih-t{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 50px;align-items:end;padding:26px 0 30px;border-bottom:1px solid var(--gold-l)}
+.v11 .ih-breit .ih-t .etikett{grid-column:1/-1;margin:0}
+.v11 .ih-breit .ih-t .titel{font-size:clamp(40px,4.6vw,72px)}
+.v11 .ih-breit .ih-t .text{margin:0;max-width:56ch}
+.v11 .ih-breit .ih-t .weiter{margin:0 0 6px}
+.v11 .ih-breit .ih-f img{transform:scale(1.12);transition:transform 2.4s var(--k2)} .v11.da .ih-breit .ih-f img{transform:none}
+.v11 .ih-paar{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,48px);margin-top:30px}
+.v11 .ih-paar .ih-k{flex-direction:row;align-items:center;gap:26px}
+.v11 .ih-paar .ih-f{width:42%;flex:none;aspect-ratio:1;border-radius:10px}
+
+/* 12 Im Wechsel */
+.v12 .ih-wechsel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:34px}
+.v12 .ih-k{gap:0;background:var(--nacht2);border-radius:10px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--gold-l)}
+.v12 .ih-k.um{flex-direction:column-reverse}
+.v12 .ih-k .ih-f{aspect-ratio:4/4.4;border-radius:0}
+.v12 .ih-k .ih-t{padding:28px 28px 30px;flex:1}
+.v12 .ih-k .ih-f img{transform:scale(1.14);transition:transform 2s var(--k2);transition-delay:calc(var(--n)*.15s)} .v12.da .ih-k .ih-f img{transform:none}
+
+/* 13 In drei Tiefen */
+.v13 .ih-ebenen{position:relative;height:clamp(440px,44vw,680px);margin-top:40px}
+.v13 .ih-e{position:absolute;display:block;transform:translate3d(var(--px,0px),var(--py,0px),0);transition:transform .9s ease-out}
+.v13 .ih-e .ih-f{width:100%;height:100%;border-radius:12px;box-shadow:var(--schatten)}
+.v13 .e1{left:20%;top:6%;width:42%;height:94%;z-index:1}
+.v13 .e2{left:0;top:16%;width:25%;height:76%;z-index:2}
+.v13 .e3{right:0;top:0;width:39.5%;height:88%;z-index:2}
+.v13 .ih-e .ih-f img{transform:scale(1.12);transition:transform 2s var(--k2)} .v13.da .ih-e .ih-f img{transform:none}
+
+/* 14 Das Bild bleibt stehen */
+.v14 .ih-steht{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,4vw,70px);margin-top:34px}
+.v14 .ih-links{position:relative}
+.v14 .ih-halt{position:sticky;top:12vh;height:76vh;border-radius:12px;overflow:hidden}
+.v14 .ih-halt .ih-f{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;border-radius:12px}
+.v14 .ih-halt .ih-f.an{opacity:1}
+.v14 .ih-b{display:flex;align-items:center;min-height:62vh;border-top:1px solid var(--gold-l)}
+.v14 .ih-b:last-child{border-bottom:1px solid var(--gold-l)}
+.v14 .ih-b .ih-t .titel{font-size:clamp(36px,4.2vw,66px)}
+.v14 .ih-b .ih-t{opacity:.35;transition:opacity .7s} .v14 .ih-b.an .ih-t{opacity:1}
+
+/* 15 Gross, schmal, gross */
+.v15 .ih-gsg{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,2.4fr) minmax(0,5fr);gap:8px;margin-top:34px}
+.v15 .ih-k .ih-f{height:clamp(380px,38vw,600px);border-radius:8px}
+.v15 .ih-k:nth-child(2) .ih-t .titel{font-size:clamp(24px,2.2vw,32px)}
+.v15 .ih-k .ih-t{padding:0 6px}
+.v15 .ih-k .ih-f{transform:translateY(50px);transition:transform 1.5s var(--k);transition-delay:calc(var(--n)*.12s)}
+.v15.da .ih-k .ih-f{transform:none}
+
+.ruhig .ihv *{transition:none!important}
+.ruhig .v01 .ih-k,.ruhig .v02 .ih-z,.ruhig .v06 .ih-faecher,.ruhig .v09 .ih-s{opacity:1;transform:none}
+
+/* Handy */
+@media (max-width:760px){
+  .ihv .ih-drei,.ihv .ih-schach,.ihv .ih-liste,.ihv .ih-faecher,.ihv .ih-gegen,.ihv .ih-texte,.ihv .ih-hell-reihe,.ihv .ih-paar,.ihv .ih-wechsel,.ihv .ih-steht,.ihv .ih-gsg{grid-template-columns:minmax(0,1fr)}
+  .v02 .ih-schach{grid-auto-rows:auto} .v02 .bz{aspect-ratio:4/3}
+  .v03 .ih-r,.v03 .ih-r.um{grid-template-columns:minmax(0,1fr);padding:8px 8px 24px} .v03 .ih-r.um .ih-f{order:0}
+  .v04 .ih-kopf{grid-template-columns:minmax(0,1fr)} .v04 .ih-kopf .titel{font-size:40px}
+  .v05 .ih-gross{order:-1;min-height:60vw}
+  .v06 .ih-k:nth-child(n){transform:none}
+  .v07 .ih-quer{height:auto} .v07 .ih-buehne{position:relative;height:auto;margin:0} .v07 .ih-spur{flex-direction:column;width:auto;padding:0;transform:none!important} .v07 .ih-k{width:auto;flex-direction:column;padding:8px 8px 20px} .v07 .ih-k .ih-f{width:100%;height:60vw}
+  .v08 .ih-k{transform:none!important} .v08 .ih-k.mitte{flex-direction:column;margin-top:0}
+  .v09 .ih-streifen{height:auto;flex-direction:column;gap:8px;margin:30px 0 0} .v09 .ih-s,.v09 .ih-s:first-child,.v09 .ih-s:last-child{clip-path:none;margin:0;height:56vw}
+  .v11 .ih-breit .ih-t{grid-template-columns:minmax(0,1fr)} .v11 .ih-paar .ih-k{flex-direction:column} .v11 .ih-paar .ih-f{width:100%}
+  .v12 .ih-k.um{flex-direction:column}
+  .v13 .ih-ebenen{height:auto;display:grid;gap:8px} .v13 .ih-e{position:relative;inset:auto;width:auto;height:56vw;transform:none!important}
+  .v14 .ih-links{display:none} .v14 .ih-b{min-height:0;padding:26px 0} .v14 .ih-b .ih-t{opacity:1}
+  .v15 .ih-k .ih-f{height:60vw}
+}

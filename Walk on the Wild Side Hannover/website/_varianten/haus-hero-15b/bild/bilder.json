@@ -1,0 +1,108 @@
+{
+ "decke-weit": {
+  "w": 4284,
+  "h": 1514,
+  "alt": "Das Gewölbe über der Bar, quer über den ganzen Raum",
+  "stufen": [
+   [
+    2142,
+    "decke-weit-2142.webp"
+   ],
+   [
+    4284,
+    "decke-weit-4284.webp"
+   ]
+  ],
+  "dunkel": "decke-weit-dunkel-4284.webp"
+ },
+ "decke-tief": {
+  "w": 3024,
+  "h": 1895,
+  "alt": "Das Gewölbe über der Theke",
+  "stufen": [
+   [
+    1512,
+    "decke-tief-1512.webp"
+   ],
+   [
+    3024,
+    "decke-tief-3024.webp"
+   ]
+  ]
+ },
+ "decke-ecke": {
+  "w": 4284,
+  "h": 2399,
+  "alt": "Das Gewölbe an der Ecke des Raums, darunter der Balken",
+  "stufen": [
+   [
+    2142,
+    "decke-ecke-2142.webp"
+   ],
+   [
+    4284,
+    "decke-ecke-4284.webp"
+   ]
+  ]
+ },
+ "vitrine": {
+  "w": 1512,
+  "h": 1331,
+  "alt": "Die beleuchtete Vitrine unter dem NEGRONI-Schriftzug",
+  "stufen": [
+   [
+    756,
+    "vitrine-756.webp"
+   ],
+   [
+    1512,
+    "vitrine-1512.webp"
+   ]
+  ]
+ },
+ "theke": {
+  "w": 2485,
+  "h": 1142,
+  "alt": "Die Theke mit dem gelben Licht unter der Kante",
+  "stufen": [
+   [
+    1242,
+    "theke-1242.webp"
+   ],
+   [
+    2485,
+    "theke-2485.webp"
+   ]
+  ]
+ },
+ "raum": {
+  "w": 4284,
+  "h": 5712,
+  "alt": "Der Raum unter dem Gewölbe: Rückbar, Theke im gelben Licht, Gäste am Tresen",
+  "stufen": [
+   [
+    2142,
+    "raum-2142.webp"
+   ],
+   [
+    4284,
+    "raum-4284.webp"
+   ]
+  ]
+ },
+ "derya": {
+  "w": 3000,
+  "h": 1985,
+  "alt": "Derya Ivkin an der Bar mit einem Continental Sour (Foto: Ilona Hottmann, Neue Presse)",
+  "stufen": [
+   [
+    1500,
+    "derya-1500.webp"
+   ],
+   [
+    3000,
+    "derya-3000.webp"
+   ]
+  ]
+ }
+}

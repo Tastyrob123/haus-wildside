@@ -1,0 +1,5 @@
+/* Dreiklang im Fenster: drei Hochformate ganz und unbeschnitten nebeneinander, stehen fest wie das Bild im Fenster (29.10.2026) */
+.fk3 .foto{top:50%;height:min(67vh,624px);transform:translateY(-50%)}
+.fk3-reihe{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;background:var(--nacht)}
+.fk3-reihe img{width:100%;height:100%;object-fit:cover;filter:brightness(.82)}
+@media (max-width:760px){.fk3 .foto{height:58svh}.fk3-reihe{grid-template-columns:1fr}.fk3-reihe img:not(:nth-child(2)){display:none}}

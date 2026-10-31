@@ -1,0 +1,218 @@
+/* Wild Side · Programm, «Jemand anderes am Shaker.»: 15 weitere Darstellungen, 16–30 (30.10.2026).
+   Bewegung nur über transform und opacity; scrollgetriebenes läuft in einem Takt in h.js. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.hf{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:10px;background:var(--nacht3) var(--lq) center/cover}
+.hf img{width:100%;height:100%;object-fit:cover;display:block}
+.hq-kopf{margin-bottom:clamp(40px,5vw,70px)} .hq-kopf-l{max-width:660px} .hq-kopf .text{margin-top:22px}
+.h-satz .etikett{display:block;margin-top:16px}
+.hq .h-satz h3{font-size:clamp(21px,1.9vw,27px);line-height:1.1;margin-top:8px;color:var(--text)}
+.h-satz p{font-size:14px;color:var(--text2);margin-top:8px;line-height:1.5}
+[data-pin] .innen{width:var(--innen);margin:0 auto}
+.ruhig .hq *{transition:none!important}
+
+/* 16 Der Bon */
+.b16-raster{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,5vw,80px);align-items:start}
+.b16-raster .hq-kopf{margin:0;position:sticky;top:120px}
+.b16-kasse{position:relative;max-width:440px;margin:0 auto;padding-top:22px}
+.b16-schlitz{position:absolute;z-index:2;left:-18px;right:-18px;top:0;height:30px;border-radius:8px;background:#0B0807;box-shadow:inset 0 0 0 1px var(--gold-l),inset 0 -8px 0 -6px rgba(0,0,0,.9),0 16px 30px -12px rgba(0,0,0,.9)}
+.b16-fenster{overflow:hidden;padding:0 4px 30px}
+.b16-bon{background:var(--creme);color:#1B1512;padding:30px 26px 34px;font:500 13px/1.5 var(--lauf);letter-spacing:.04em;box-shadow:0 30px 50px -24px rgba(0,0,0,.9);
+ transform:translateY(-100%);transition:transform 2.4s cubic-bezier(.45,.05,.3,1)}
+.b16-ort.ok .b16-bon{transform:none}
+.b16-kopf{text-align:center;font-size:15px;letter-spacing:.16em;color:var(--plakatrot)}
+.b16-kopf span{font-size:11px;color:#1B1512;letter-spacing:.12em}
+.b16-strich{margin:18px 0;padding:8px 0;border-top:1px dashed rgba(27,21,18,.5);border-bottom:1px dashed rgba(27,21,18,.5);text-align:center;font-size:11.5px;letter-spacing:.2em}
+.b16-z{display:grid;grid-template-columns:62px 1fr;gap:16px;padding:12px 0;border-bottom:1px dotted rgba(27,21,18,.35)}
+.b16-z .hf{border-radius:2px}
+.b16-z .hf img{filter:grayscale(1) contrast(1.1)}
+.b16-dat{font-size:11.5px;color:var(--plakatrot);letter-spacing:.14em}
+.b16-name{font-size:15px;letter-spacing:.12em;margin-top:2px}
+.b16-s{font-size:12.5px;letter-spacing:0;color:rgba(27,21,18,.75);margin-top:4px;line-height:1.45}
+@media (max-width:760px){.b16-raster{grid-template-columns:1fr}.b16-raster .hq-kopf{position:static}}
+
+/* 17 Aus Streifen */
+.s17-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,26px)}
+.s17-bild{position:relative;aspect-ratio:4/5;display:grid;grid-template-columns:repeat(6,1fr);border-radius:10px;overflow:hidden}
+.s17-bild i{background-size:600% 100%;opacity:0;transform:translateY(calc((var(--s) % 2 * 2 - 1) * 60%));transition:transform 1s cubic-bezier(.3,1,.3,1),opacity .5s;transition-delay:calc(var(--n)*.22s + var(--s)*.05s)}
+.s17-reihe.ok .s17-bild i{opacity:1;transform:none}
+.s17-p .h-satz{opacity:0;transition:opacity .6s;transition-delay:calc(var(--n)*.22s + .6s)}
+.s17-reihe.ok .h-satz{opacity:1}
+@media (max-width:760px){.s17-reihe{grid-template-columns:1fr 1fr}}
+
+/* 18 Die Zeitungsseite */
+.z18-seite{background:var(--creme);color:#1B1512;border-radius:4px;padding:clamp(24px,4vw,56px);box-shadow:var(--schatten)}
+.z18-kopf{display:flex;justify-content:space-between;align-items:baseline;gap:20px;font:500 11px var(--lauf);letter-spacing:.2em;text-transform:uppercase;color:rgba(27,21,18,.6)}
+.z18-kopf b{font-weight:400;font-size:clamp(34px,4.6vw,70px);letter-spacing:0;text-transform:none;color:#1B1512}
+.z18-linie{display:block;height:3px;margin:18px 0 26px;border-top:1px solid #1B1512;border-bottom:1px solid #1B1512;transform-origin:left;transform:scaleX(0);transition:transform 1.2s var(--k)}
+.z18-seite.ok .z18-linie{transform:none}
+.z18-auf{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:clamp(24px,3vw,44px);align-items:end}
+.z18-auf .hf,.z18-sp .hf{border-radius:0}
+.z18-auf .hf{aspect-ratio:4/3}
+.z18-dat{font:500 11px var(--lauf);letter-spacing:.16em;color:var(--plakatrot)}
+.hq .z18-auf h3{font-size:clamp(40px,4.6vw,70px);line-height:1;margin-top:10px;color:#1B1512}
+.z18-auf p{font-size:19px;line-height:1.5;margin-top:14px;color:rgba(27,21,18,.85)}
+.z18-spalten{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.z18-sp{padding:0 18px;border-left:1px solid rgba(27,21,18,.25);opacity:0;transform:translateY(24px);transition:transform .9s var(--k),opacity .6s;transition-delay:calc(var(--n)*.14s + .6s)}
+.z18-sp:first-child{border-left:0;padding-left:0} .z18-sp:last-child{padding-right:0}
+.z18-seite.ok .z18-sp{opacity:1;transform:none}
+.z18-sp .hf{margin-bottom:12px;aspect-ratio:1}
+.hq .z18-sp h3{font-size:clamp(20px,1.8vw,25px);color:#1B1512;margin-top:6px;line-height:1.1}
+.z18-sp p{font-size:13.5px;line-height:1.5;margin-top:6px;color:rgba(27,21,18,.8)}
+.z18-auf{opacity:0;transition:opacity .8s .3s} .z18-seite.ok .z18-auf{opacity:1}
+@media (max-width:760px){.z18-auf{grid-template-columns:1fr}.z18-spalten{grid-template-columns:1fr 1fr;gap:24px 0}.z18-sp:nth-child(3){border-left:0;padding-left:0}.z18-kopf span{display:none}}
+
+/* 19 Im Wechsel */
+.w19-z{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(30px,5vw,80px);align-items:center;margin-top:clamp(40px,6vw,90px)}
+.w19-z:first-of-type{margin-top:0}
+.w19-z.rechts .w19-bild{order:2}
+.w19-bild{overflow:hidden;border-radius:var(--rand-g);box-shadow:var(--schatten)}
+.w19-bild .hf{border-radius:0;aspect-ratio:5/4;transform:scale(1.15);transition:transform 1.6s var(--k)}
+.w19-z.ok .w19-bild .hf{transform:none}
+.w19-t{opacity:0;transform:translateY(40px);transition:transform 1.1s var(--k) .25s,opacity .7s .25s}
+.w19-z.ok .w19-t{opacity:1;transform:none}
+.hq .w19-t .w19-dat{font-size:clamp(46px,6vw,96px);line-height:1;color:var(--gold)}
+.hq .w19-t h3{font-size:clamp(28px,3vw,44px);color:var(--text);margin-top:18px;line-height:1.05}
+.w19-t p{font-size:17px;color:var(--text2);margin-top:12px;max-width:34ch}
+@media (max-width:760px){.w19-z{grid-template-columns:1fr}.w19-z.rechts .w19-bild{order:0}.w19-dat{font-size:40px}}
+
+/* 20 Fünf Fenster bei Nacht */
+.f20-fassade{background:#0E0A09;border-radius:var(--rand-g);padding:clamp(30px,4vw,56px) clamp(20px,3vw,44px);box-shadow:inset 0 0 0 1px var(--gold-ll)}
+.f20-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2.4vw,36px)}
+.f20-rahmen{position:relative;padding:8px;border-radius:4px;background:#1A1210;box-shadow:inset 0 0 0 1px var(--gold),0 0 0 6px #0E0A09,0 0 0 7px var(--gold-l)}
+.f20-rahmen .hf{border-radius:2px;aspect-ratio:3/4.4}
+.f20-rahmen .hf img{opacity:.08;transition:opacity 1.4s ease;transition-delay:calc(var(--n)*.45s + .3s)}
+.f20-fassade.ok .hf img{opacity:1}
+.f20-rahmen .hf{background:#120C0A}
+.f20-sprosse{position:absolute;inset:8px;pointer-events:none}
+.f20-sprosse::before,.f20-sprosse::after{content:"";position:absolute;background:var(--gold)}
+.f20-sprosse::before{left:50%;top:0;bottom:0;width:2px;margin-left:-1px}
+.f20-sprosse::after{top:42%;left:0;right:0;height:2px}
+.f20-f .h-satz{opacity:0;transition:opacity .8s;transition-delay:calc(var(--n)*.45s + .9s)}
+.f20-fassade.ok .h-satz{opacity:1}
+@media (max-width:760px){.f20-reihe{grid-template-columns:1fr 1fr}}
+
+/* 21 Das Mosaik */
+.m21-raster{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:clamp(200px,22vw,300px);gap:8px;grid-template-areas:"a a b c" "a a b d" "e e f f"}
+.m21-a{grid-area:a} .m21-b{grid-area:b} .m21-c{grid-area:c} .m21-d{grid-area:d} .m21-e{grid-area:e} .m21-schrift{grid-area:f}
+.m21-f{position:relative;overflow:hidden;border-radius:8px;opacity:0;transform:scale(.9);transition:transform 1s var(--k),opacity .6s;transition-delay:calc(var(--n)*.12s)}
+.m21-raster.ok .m21-f{opacity:1;transform:none}
+.m21-f .hf{position:absolute;inset:0;aspect-ratio:auto;border-radius:0}
+.m21-e .hf img{object-position:50% 22%}
+.m21-band{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:var(--nacht)}
+.m21-band span{display:block;font:500 11px var(--lauf);letter-spacing:.16em;color:var(--gold)}
+.m21-band b{display:block;font-weight:400;font-size:clamp(18px,1.6vw,24px);color:var(--text);margin-top:4px;line-height:1.1}
+.m21-schrift{display:flex;align-items:center;padding:clamp(20px,3vw,44px);background:var(--nacht3);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.m21-schrift p{font-size:clamp(28px,3.2vw,48px);line-height:1.1;color:var(--gold)}
+@media (max-width:760px){.m21-raster{grid-template-columns:1fr 1fr;grid-auto-rows:240px;grid-template-areas:"a a" "a a" "b c" "b d" "e e" "f f"}}
+
+/* 22 Die Kamerafahrt */
+.k22-pin{height:calc(100vh + 5 * 70vh)}
+.k22-buehne{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;gap:28px;overflow:hidden}
+.k22-fenster{width:var(--innen);margin:0 auto;height:58vh;overflow:hidden;border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll)}
+.k22-gruppe{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:2%;width:100%;height:100%;padding:6% 4%;transform-origin:0 0;will-change:transform}
+.k22-p .hf{height:100%;aspect-ratio:auto;border-radius:6px}
+.k22-texte{position:relative;min-height:110px}
+.k22-t{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(16px);transition:transform .6s var(--k),opacity .35s}
+.k22-t.an{opacity:1;transform:none}
+.hq .k22-name{font-size:clamp(28px,3vw,44px);color:var(--text);margin-top:6px;line-height:1.05}
+.k22-t>p:last-child{color:var(--text2);margin-top:6px;font-size:15px}
+
+/* 23 Verdeckte Karten */
+.c23-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,26px)}
+.c23-p{perspective:1200px}
+.c23-karte{position:relative;aspect-ratio:4/5;transform-style:preserve-3d;transform:rotateY(180deg);transition:transform 1.1s cubic-bezier(.45,.05,.2,1);transition-delay:calc(var(--n)*.3s + .2s)}
+.c23-reihe.ok .c23-karte{transform:none}
+.c23-rueck,.c23-vorn{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:10px}
+.c23-vorn .hf{height:100%;box-shadow:var(--schatten)}
+.c23-rueck{transform:rotateY(180deg);background:#0B0807;box-shadow:inset 0 0 0 8px #0B0807,inset 0 0 0 9px var(--gold),var(--schatten);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font:500 10.5px var(--lauf);letter-spacing:.24em;color:var(--gold)}
+.c23-rueck b{font:400 clamp(20px,2vw,30px) var(--titel);letter-spacing:.04em;color:var(--rot)}
+.c23-p .h-satz{opacity:0;transform:translateY(12px);transition:transform .7s var(--k),opacity .5s;transition-delay:calc(var(--n)*.3s + .9s)}
+.c23-reihe.ok .h-satz{opacity:1;transform:none}
+@media (max-width:760px){.c23-reihe{grid-template-columns:1fr 1fr}}
+
+/* 24 Übereinander */
+.t24-stapel{padding-bottom:20vh}
+.t24-t{position:sticky;top:calc(90px + var(--n) * 18px);margin-top:30vh}
+.t24-t:first-child{margin-top:0}
+.t24-innen{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(24px,4vw,60px);align-items:center;padding:clamp(18px,2vw,28px);border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),0 -20px 50px -20px rgba(0,0,0,.9);transform-origin:50% 0;transform:scale(var(--z,1));transition:transform .3s linear}
+.t24-innen .hf{aspect-ratio:5/4}
+.hq .t24-dat{font-size:clamp(40px,5vw,80px);line-height:1;color:var(--gold)}
+.hq .t24-text h3{font-size:clamp(28px,3vw,46px);color:var(--text);margin-top:14px;line-height:1.05}
+.t24-text p{font-size:16px;color:var(--text2);margin-top:12px;max-width:34ch}
+@media (max-width:760px){.t24-innen{grid-template-columns:1fr}.t24-innen .hf{aspect-ratio:16/10}.t24-dat{font-size:34px}}
+
+/* 25 Zwei Laufbänder */
+.l25-baender{overflow:hidden;padding:6px 0}
+.l25-band{display:flex;width:max-content;will-change:transform}
+.l25-oben{gap:16px}
+.l25-b{width:clamp(200px,17vw,250px);flex:none}
+.l25-unten{gap:56px;margin-top:26px;padding:22px 0;border-top:1px solid var(--gold-l);border-bottom:1px solid var(--gold-l)}
+.l25-n{flex:none;display:flex;align-items:baseline;gap:18px;white-space:nowrap}
+.l25-n span{font:500 11.5px var(--lauf);letter-spacing:.16em;color:var(--gold)}
+.l25-n b{font-weight:400;font-size:clamp(34px,4vw,62px);color:var(--text);line-height:1}
+.l25-saetze{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;margin-top:40px}
+@media (max-width:760px){.l25-saetze{grid-template-columns:1fr 1fr}}
+
+/* 26 Kalenderblätter */
+.k26-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,26px)}
+.k26-p{opacity:0;transform:translateY(-70px) rotate(var(--w));transition:transform 1.2s cubic-bezier(.25,1.5,.45,1),opacity .4s;transition-delay:calc(var(--n)*.15s)}
+.k26-reihe.ok .k26-p{opacity:1;transform:rotate(var(--w))}
+.k26-blatt{background:var(--creme);color:#1B1512;border-radius:4px 4px 8px 8px;padding:0 12px 12px;box-shadow:0 24px 40px -20px rgba(0,0,0,.9);text-align:center;overflow:hidden}
+.k26-bindung{display:flex;justify-content:center;gap:40%;height:26px;margin:0 -12px 6px;background:#0B0807;box-shadow:inset 0 -1px 0 var(--gold)}
+.k26-bindung i{width:16px;height:6px;margin-top:10px;border-radius:2px;background:var(--gold)}
+.hq .k26-tag{font-size:clamp(56px,6vw,96px);line-height:1;color:var(--plakatrot)}
+.k26-monat{font:500 11px var(--lauf);letter-spacing:.2em;text-transform:uppercase;margin:4px 0 12px;color:rgba(27,21,18,.7)}
+.k26-blatt .hf{border-radius:3px;aspect-ratio:1}
+.hq .k26-p h3{font-size:clamp(20px,1.8vw,26px);color:var(--text);margin-top:18px;line-height:1.1}
+.k26-s{font-size:14px;color:var(--text2);margin-top:8px;line-height:1.5}
+@media (max-width:760px){.k26-reihe{grid-template-columns:1fr 1fr}}
+
+/* 27 Gesicht und Hand */
+.g27-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,26px)}
+.g27-oben,.g27-unten{overflow:hidden;border-radius:8px;opacity:0;transition:transform 1.2s var(--k),opacity .6s;transition-delay:calc(var(--n)*.14s)}
+.g27-oben{transform:translateY(-50px)} .g27-unten{margin-top:8px;transform:translateY(50px)}
+.g27-reihe.ok .g27-oben,.g27-reihe.ok .g27-unten{opacity:1;transform:none}
+.g27-oben .hf,.g27-unten .hf{aspect-ratio:1;border-radius:0}
+.g27-oben img{object-position:50% 18%}
+.g27-unten img{object-position:50% 100%;transform:scale(1.5);transform-origin:50% 92%}
+.g27-p .h-satz{opacity:0;transition:opacity .6s;transition-delay:calc(var(--n)*.14s + .7s)}
+.g27-reihe.ok .h-satz{opacity:1}
+@media (max-width:760px){.g27-reihe{grid-template-columns:1fr 1fr}}
+
+/* 28 Der Tresen von oben */
+.o28-raum{perspective:1300px;perspective-origin:50% 20%}
+.o28-flaeche{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,26px);padding:clamp(20px,3vw,40px);border-radius:var(--rand-g);background:#1E1612;box-shadow:inset 0 0 0 1px var(--gold-l),inset 0 2px 0 var(--gold),0 40px 70px -30px rgba(0,0,0,.9);transform-origin:50% 100%;transform:rotateX(calc(var(--t,0) * 1deg));will-change:transform}
+.o28-p .hf{box-shadow:0 14px 24px -12px rgba(0,0,0,.9)}
+.o28-p:nth-child(odd) .hf{transform:rotate(-1.5deg)} .o28-p:nth-child(even) .hf{transform:rotate(1.5deg)}
+@media (max-width:760px){.o28-flaeche{grid-template-columns:1fr 1fr;transform:none!important}}
+
+/* 29 Erst Schwarzweiss */
+.s29-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.8vw,26px)}
+.s29-f{box-shadow:var(--schatten)}
+.s29-f img.s29-grau{position:absolute;inset:0;filter:grayscale(1) contrast(1.08);transition:opacity 1.2s ease}
+.s29-p.farbe img.s29-grau{opacity:0}
+.s29-p .h-satz{transition:opacity .8s;opacity:.45}
+.s29-p.farbe .h-satz{opacity:1}
+@media (max-width:760px){.s29-reihe{grid-template-columns:1fr 1fr}}
+
+/* 30 Die Liste an der Tür */
+.t30-brett{position:relative;max-width:980px;margin:0 auto;padding:46px clamp(14px,2vw,26px) clamp(14px,2vw,26px);border-radius:20px;background:#2A1F18;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten)}
+.t30-klemme{position:absolute;left:50%;top:-14px;width:180px;height:46px;margin-left:-90px;border-radius:10px 10px 14px 14px;background:#2F251F;box-shadow:inset 0 0 0 1px var(--gold),0 10px 18px -8px rgba(0,0,0,.9)}
+.t30-blatt{background:var(--creme);color:#1B1512;border-radius:4px;padding:clamp(24px,3.4vw,48px)}
+.t30-kopf{display:flex;justify-content:space-between;font:500 11.5px var(--lauf);letter-spacing:.2em;text-transform:uppercase;color:var(--plakatrot);padding-bottom:16px;border-bottom:2px solid #1B1512}
+.t30-z{display:grid;grid-template-columns:30px 120px minmax(0,1fr) 84px;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(27,21,18,.18)}
+.t30-box{width:26px;height:26px;border:1.5px solid #1B1512;border-radius:4px;display:grid;place-items:center}
+.t30-box svg{width:22px;height:22px;fill:none;stroke:var(--plakatrot);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(1.8) rotate(-10deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .2s;transition-delay:calc(var(--n)*.4s + .4s)}
+.t30-brett.ok .t30-box svg{opacity:1;transform:none}
+.t30-dat{font:400 18px var(--titel);color:var(--plakatrot)}
+.hq .t30-z h3{font-size:clamp(22px,2.2vw,30px);color:#1B1512;line-height:1.1}
+.t30-z p{font-size:14px;color:rgba(27,21,18,.75);margin-top:4px}
+.t30-z .hf{border-radius:4px;opacity:0;transform:translateY(12px);transition:transform .7s var(--k),opacity .5s;transition-delay:calc(var(--n)*.4s + .7s)}
+.t30-brett.ok .t30-z .hf{opacity:1;transform:none}
+@media (max-width:760px){.t30-z{grid-template-columns:28px minmax(0,1fr) 64px}.t30-dat{grid-column:2}.t30-z>div{grid-column:2}.t30-z .hf{grid-column:3;grid-row:1/3}}

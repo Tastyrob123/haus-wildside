@@ -1,0 +1,46 @@
+/* Kopf als Teil des Schachbretts: gleiche Fugen, gleiche Ecken, Farben der Karte. Bewegung wie die Felder: steigen schräg nacheinander. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+.kb{--rosa:#FEE1E6;--kartrot:#D30625}
+.kb .ka-x{transition-delay:calc((var(--d) + 2)*.16s)!important}
+.kb-k{border-radius:4px;padding:clamp(28px,3.2vw,52px);display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(300px,30vw,440px);
+ opacity:0;transform:translate3d(0,100px,0);transition:transform 1.4s var(--k3),opacity .9s var(--k3);transition-delay:calc(var(--d)*.16s)}
+.kb.da .kb-k,.ruhig .kb-k{opacity:1;transform:none}
+.kb-s2{grid-column:span 2} .kb-s3{grid-column:span 3} .kb-s4{grid-column:span 4}
+.kb-bild{padding:0;aspect-ratio:4/5;min-height:0}
+.kb-bild .ka-f{height:100%}
+.kb .kz{margin-bottom:18px}
+.kb-g{font-size:clamp(44px,5.2vw,80px);line-height:1}
+.kb-m{font-size:clamp(34px,3vw,48px);line-height:1.04}
+.kb .lead{font-family:var(--titel);font-size:clamp(21px,1.8vw,27px);line-height:1.36;max-width:36ch}
+.kb .lead.kb-kl{font-size:clamp(19px,1.5vw,23px)}
+.kb .tx{font-size:clamp(16px,1.15vw,18px);line-height:1.62;max-width:56ch}
+.kb .lead+.tx{margin-top:20px}
+.kb .knoepfe{margin-top:28px}
+.kb-ab{margin-top:24px}
+
+/* Farben */
+.kb-nacht{background:var(--nacht2)}
+.kb-nacht .titel,.kb-nacht .lead{color:var(--creme)} .kb-nacht .tx{color:var(--text);opacity:.86}
+.kb-rosa{background:var(--rosa)}
+.kb-rosa .titel,.kb-rosa .lead,.kb-rosa .kz .uhr{color:var(--kartrot)} .kb-rosa .tx{color:rgba(120,14,36,.86)}
+.kb-rosa .kz i{background:var(--kartrot)} .kb-rosa .kz .was{color:rgba(160,20,50,.6)}
+.kb-rot{background:var(--kartrot)}
+.kb-rot .titel,.kb-rot .lead,.kb-rot .kz .uhr{color:var(--rosa)} .kb-rot .tx{color:rgba(254,225,230,.88)}
+.kb-rot .kz i{background:var(--rosa)} .kb-rot .kz .was{color:rgba(254,225,230,.7)}
+.kb-rot .knopf.rot{background:var(--nacht)}
+
+/* Band über die ganze Breite: Titel links, Text rechts */
+.kb-band{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(30px,4vw,70px);align-items:end;min-height:0}
+.kb-s3.kb-band{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.kb-rechts{text-align:right} .kb-rechts .kz{justify-content:flex-end}
+
+@media (max-width:760px){
+ .kb-k{grid-column:span 2;min-height:0;padding:26px 22px}
+ .kb-bild{grid-column:span 2;aspect-ratio:4/5}
+ .kb-band,.kb-s3.kb-band{grid-template-columns:1fr;gap:20px}
+ .kb-rechts{text-align:left} .kb-rechts .kz{justify-content:flex-start}
+}

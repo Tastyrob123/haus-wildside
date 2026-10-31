@@ -1,0 +1,13 @@
+
+.bs .bs-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,40px);margin-top:40px}
+.bs .bs-k{display:flex;flex-direction:column;color:var(--text)}
+.bs .bs-f{position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:var(--nacht3)}
+.bs .bs-f::after{content:"";position:absolute;inset:0;border-radius:4px;box-shadow:inset 0 0 0 1px rgba(216,178,100,.28);pointer-events:none}
+.bs .bs-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transform:scale(1.08);transition:transform 2.4s var(--k2)}
+.bs.da .bs-f img{transform:none} .bs .bs-k:hover .bs-f img{transform:scale(1.03)}
+.bs .bs-t{padding:26px 4px 0}
+.bs .bs-t .etikett{display:block;margin-bottom:12px}
+.bs .bs-t .titel{font-size:clamp(28px,2.7vw,40px);line-height:1.05}
+.bs .bs-t .text{margin-top:14px;font-size:16px}
+.bs .bs-t .weiter{margin-top:20px}
+@media (max-width:760px){.bs .bs-reihe{grid-template-columns:minmax(0,1fr);gap:36px}}

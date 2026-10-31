@@ -1,0 +1,169 @@
+/* Wild Side · Abschnitt «bar», zweite Runde (29.10.2026): Plakat und Bildwand wie heute, je Fassung ein eigener Aufbau und eine eigene Bewegung.
+   Auftritte nur mit transform, von Anfang an deckend, nach der Uhr (1,5 s, zügig hinein, satt an den Platz). */
+.b2{--ein:cubic-bezier(.22,1,.36,1);--g:14px}
+.b2 .kachel img{position:absolute;inset:0}
+.b2 .plakat{min-width:0}
+.b2 .plakat h2{font-size:clamp(34px,3.6vw,54px);line-height:1.02;margin-top:22px}
+.b2 .plakat h2.t-plakat{font-size:clamp(40px,5vw,76px);line-height:.98}
+.b2 .plakat .text{font-size:clamp(16px,1.25vw,18px);max-width:52ch}
+.b2 .plakat .fakten div{font-size:15px}
+.b2 .kachel,.b2 .plakat{transition:transform 1.5s var(--ein)}
+.b2 .plakat .logo{flex:none}
+.q-unten{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,3.4vw,56px);align-items:end;margin-top:22px}
+.q-unten .text{margin:0} .q-unten .fakten{margin-top:0}
+
+/* 01 Das Plakat quer */
+.w01-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(clamp(400px,36vw,500px),auto) clamp(240px,24vw,330px);gap:var(--g)}
+.w01-p{grid-column:1/4;grid-row:1}
+.w01-f{grid-column:4;grid-row:1}
+.w01-reihe{grid-column:1/5;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);transition:transform 1.5s var(--ein) .15s}
+.auf .w01-p,.auf .w01-f{transform:translateY(70px)} .auf .w01-reihe{transform:translateY(130px)}
+.da .w01-p,.da .w01-f,.da .w01-reihe{transform:none}
+
+/* 02 Die Ecke */
+.w02-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:clamp(220px,22vw,300px) minmax(clamp(220px,19vw,280px),auto) minmax(clamp(220px,19vw,280px),auto);gap:var(--g)}
+.w02-o{grid-row:1} .w02-p{grid-column:1/4;grid-row:2/4}
+.w02-r{grid-column:4} .w02-r1{grid-row:2} .w02-r2{grid-row:3}
+.w02-p h2{font-size:clamp(40px,5.4vw,80px)!important}
+.auf .w02-o{transform:translateY(-90px)} .auf .w02-r{transform:translateY(110px)} .auf .w02-p{transform:translateY(50px)}
+.da .w02-o,.da .w02-r,.da .w02-p{transform:none}
+
+/* 03 Die Wand lebt (Aufbau von heute) */
+.w03 .mosaik{grid-auto-rows:minmax(clamp(230px,29vw,340px),auto)}
+.w03 .mosaik .kachel{overflow:hidden}
+.w03 .tausch{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:translateY(101%);transition:transform 1.3s var(--ein);z-index:2}
+.w03 .tausch.an{transform:none}
+
+/* 04 Randlos */
+.w04-wand{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:clamp(220px,21vw,300px) minmax(clamp(380px,32vw,460px),auto) clamp(220px,21vw,300px);gap:6px;margin:0 0 0;transform-origin:50% 50%;transition:transform 2.2s var(--ein)}
+.w04-wand .kachel{border-radius:4px}
+.w04-wand>.kachel:nth-child(7){grid-column:1;grid-row:2} .w04-p{grid-column:2/6;grid-row:2;border-radius:4px}
+.w04-wand>.kachel:nth-child(9){grid-column:6;grid-row:2}
+.auf .w04-wand{transform:scale(1.06)} .da .w04-wand{transform:none}
+.auf .w04-p{transform:translateY(60px)} .da .w04-p{transform:none}
+.w04 .ueber{margin-top:clamp(56px,7vw,90px)}
+
+/* 05 Aufgehängt */
+.w05-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(clamp(260px,25vw,340px),auto) minmax(clamp(260px,25vw,340px),auto) clamp(230px,22vw,300px);gap:var(--g)}
+.w05-p{grid-column:1/3;grid-row:1/3;transform-origin:50% 0;transform:rotate(-1.4deg);z-index:2;box-shadow:inset 0 0 0 1px rgba(160,127,58,.3),0 40px 80px -30px rgba(0,0,0,.9),0 12px 26px -12px rgba(0,0,0,.6)}
+.w05-a{grid-column:3;grid-row:1/3} .w05-b{grid-column:4;grid-row:1} .w05-c{grid-column:4;grid-row:2}
+.w05-d{grid-column:1;grid-row:3} .w05-e{grid-column:2/4;grid-row:3} .w05-f{grid-column:4;grid-row:3}
+.w05-p{transition:transform 1.8s var(--ein)}
+.auf .w05-p{transform:translateY(90px) rotate(-6deg)} .da .w05-p{transform:rotate(-1.4deg)}
+.auf .w05-wand .kachel{transform:translateY(60px)} .da .w05-wand .kachel{transform:none}
+
+/* 06 Aus dem Plakat heraus */
+.w06-wand{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr) minmax(0,1fr);grid-template-rows:clamp(200px,19vw,260px) minmax(clamp(460px,40vw,560px),auto) clamp(200px,19vw,260px);gap:var(--g)}
+.w06-p{grid-column:2;grid-row:2;z-index:3}
+.w06-k{z-index:1;transition:transform 1.6s var(--ein) .15s}
+.w06-tl{grid-column:1;grid-row:1} .w06-tm{grid-column:2;grid-row:1} .w06-tr{grid-column:3;grid-row:1}
+.w06-ml{grid-column:1;grid-row:2} .w06-mr{grid-column:3;grid-row:2}
+.w06-bl{grid-column:1;grid-row:3} .w06-bm{grid-column:2;grid-row:3} .w06-br{grid-column:3;grid-row:3}
+.auf .w06-tl{transform:translate(55%,55%) scale(.86)} .auf .w06-tm{transform:translateY(70%) scale(.86)} .auf .w06-tr{transform:translate(-55%,55%) scale(.86)}
+.auf .w06-ml{transform:translateX(45%) scale(.86)} .auf .w06-mr{transform:translateX(-45%) scale(.86)}
+.auf .w06-bl{transform:translate(55%,-55%) scale(.86)} .auf .w06-bm{transform:translateY(-70%) scale(.86)} .auf .w06-br{transform:translate(-55%,-55%) scale(.86)}
+.da .w06-k{transform:none}
+.auf .w06-p{transform:scale(.97)} .da .w06-p{transform:none}
+
+/* 07 Das Regal */
+.w07-reihe{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,3fr) minmax(0,1fr) minmax(0,1fr);gap:var(--g);min-height:clamp(560px,50vw,720px)}
+.w07-p .logo{margin-bottom:auto}
+.auf .w07-reihe>*{transform:translateY(var(--d))} .da .w07-reihe>*{transform:none}
+
+/* 08 Plakat mit Foto */
+.w08-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,minmax(clamp(220px,21vw,300px),auto));gap:var(--g)}
+.w08-a{grid-column:1;grid-row:1/3} .w08-b{grid-column:1;grid-row:3} .w08-c{grid-column:4;grid-row:1} .w08-d{grid-column:4;grid-row:2/4}
+.w08-p{grid-column:2/4;grid-row:1/4;padding:0}
+.w08-foto{height:clamp(260px,26vw,380px);border-radius:var(--rand) var(--rand) 0 0;box-shadow:none;flex:none}
+.w08-foto img{transform:scale(1.22)!important;transition:transform 2.6s var(--ein)!important} .da .w08-foto img{transform:scale(1)!important}
+.w08-text{padding:clamp(26px,3vw,42px);display:flex;flex-direction:column;flex:1}
+.w08-text h2{margin-top:0!important} .w08-text .fakten{margin-top:auto;padding-top:16px}
+.w08-text .text{margin-bottom:22px}
+.auf .w08-wand>.kachel,.auf .w08-p{transform:translateY(70px)} .da .w08-wand>.kachel,.da .w08-p{transform:none}
+
+/* 09 Die Kacheln stellen sich auf */
+.w09-wand{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:minmax(clamp(380px,32vw,460px),auto) clamp(230px,22vw,310px);gap:var(--g);perspective:1600px}
+.w09-gross{grid-column:1/3;grid-row:1/3} .w09-p{grid-column:3/6;grid-row:1}
+.w09-k{transform-origin:50% 100%;transition:transform 1.6s var(--ein)}
+.auf .w09-k{transform:rotateX(26deg) translateY(30px)} .da .w09-k{transform:none}
+
+/* 10 Mit Tiefe */
+.w10-wand{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:minmax(clamp(250px,24vw,330px),auto) minmax(clamp(250px,24vw,330px),auto) clamp(230px,22vw,300px);gap:var(--g)}
+.w10-a{grid-column:1;grid-row:1/3} .w10-p{grid-column:2;grid-row:1/3} .w10-b{grid-column:3;grid-row:1} .w10-c{grid-column:3;grid-row:2}
+.w10-d{grid-column:1;grid-row:3} .w10-e{grid-column:2;grid-row:3} .w10-f{grid-column:3;grid-row:3}
+.w10-t{--hoch:0px;transform:translate3d(calc(var(--mx,0) * var(--t) * 1px),calc(var(--my,0) * var(--t) * 1px + var(--hoch)),0);transition:transform 1.2s var(--ein)}
+.auf .w10-t{--hoch:70px} .da .w10-t{--hoch:0px}
+.w10-p{z-index:2}
+.w10-p h2{font-size:clamp(32px,3.2vw,46px)!important}
+
+/* 11 Die Wand schliesst sich (am Scrollen) */
+.w11-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:clamp(230px,22vw,300px) minmax(clamp(230px,22vw,300px),auto) minmax(clamp(230px,22vw,300px),auto);gap:var(--g)}
+.w11-1{grid-column:1;grid-row:1} .w11-2{grid-column:2;grid-row:1} .w11-3{grid-column:3;grid-row:1} .w11-4{grid-column:4;grid-row:1/3}
+.w11-5{grid-column:1;grid-row:2/4} .w11-p{grid-column:2/4;grid-row:2/4} .w11-6{grid-column:4;grid-row:3}
+.w11-p h2{font-size:clamp(36px,4vw,60px)!important}
+.w11-k{transform:translate3d(0,calc(var(--v) * var(--p,0) * 1px),0);transition:none;will-change:transform}
+
+/* 12 Das Eckschild */
+.w12-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(clamp(260px,25vw,340px),auto) minmax(clamp(260px,25vw,340px),auto) clamp(230px,22vw,300px);gap:var(--g)}
+.w12-p{grid-column:3/5;grid-row:1/3;background:var(--nacht2);color:var(--text);box-shadow:inset 0 0 0 1px var(--gold-ll),var(--schatten)}
+.w12-p .text{color:var(--text2)} .w12-p .fakten{border-color:var(--gold-l)} .w12-p .fakten div{color:var(--text)} .w12-p .fakten .etikett{color:var(--gold)}
+.w12-p>*{position:relative;z-index:1}
+.w12-linie{position:absolute!important;inset:0;width:100%;height:100%;z-index:0!important;pointer-events:none;overflow:visible}
+.w12-linie rect{width:calc(100% - 18px);height:calc(100% - 18px);fill:none;stroke:var(--gold);stroke-width:1.2;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 2.6s var(--ein) .3s}
+.da .w12-linie rect{stroke-dashoffset:0}
+.w12-a{grid-column:1;grid-row:1/3} .w12-b{grid-column:2;grid-row:1} .w12-c{grid-column:2;grid-row:2}
+.w12-f{grid-column:1/3;grid-row:3} .w12-d{grid-column:3;grid-row:3} .w12-e{grid-column:4;grid-row:3}
+.auf .w12-wand>*{transform:translateY(60px)} .da .w12-wand>*{transform:none}
+
+/* 13 Unter der Decke */
+.w13-reihe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--g);height:clamp(250px,24vw,340px)}
+.w13-k{transform-origin:50% -30%;transition:transform 1.9s var(--ein)}
+.auf .w13-k:nth-child(odd){transform:rotate(4deg)} .auf .w13-k:nth-child(even){transform:rotate(-4deg)}
+.da .w13-k:nth-child(n){transform:none}
+.w13-p{margin-top:var(--g);min-height:clamp(360px,30vw,440px)}
+.auf .w13-p{transform:translateY(70px)} .da .w13-p{transform:none}
+
+/* 14 Das Plakat in Stücken */
+.w14-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:minmax(clamp(270px,24vw,330px),auto) minmax(clamp(230px,21vw,290px),auto) clamp(180px,15vw,210px);gap:var(--g)}
+.w14-t{grid-column:1/3;grid-row:1} .w14-t .logo{margin-bottom:auto}
+.w14-a{grid-column:3;grid-row:1/3} .w14-b{grid-column:4;grid-row:1}
+.w14-s{grid-column:1/3;grid-row:2;justify-content:center} .b2 .w14-s .text{font-size:clamp(18px,1.6vw,23px);line-height:1.55;margin:0;max-width:none}
+.w14-c{grid-column:4;grid-row:2}
+.w14-f{justify-content:flex-end;padding:clamp(18px,2vw,28px)} .w14-f .etikett{color:#A07F3A;margin-bottom:10px}
+.w14-f p{font-family:var(--titel);font-size:clamp(17px,1.5vw,21px);line-height:1.3;color:var(--dunkel)}
+.w14-wand>.w14-f:nth-of-type(n){grid-row:3}
+.w14-d{grid-column:4;grid-row:3}
+.auf .w14-z{transform:scale(.9)} .da .w14-z{transform:none}
+
+/* 15 Grosses Bild und Band */
+.w15-oben{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--g);min-height:clamp(520px,46vw,640px)}
+.w15-gross{min-height:100%}
+.w15-band{overflow:hidden;margin-top:var(--g);border-radius:var(--rand)}
+.w15-spur{display:flex;gap:var(--g);width:max-content;animation:w15-lauf 120s linear infinite}
+.w15-spur .kachel{width:clamp(150px,14vw,200px);height:clamp(190px,18vw,250px);flex:none;transition:none}
+@keyframes w15-lauf{to{transform:translateX(calc(-50% - 7px))}}
+.ruhig .w15-spur{animation:none}
+.auf .w15-oben>*{transform:translateY(70px)} .da .w15-oben>*{transform:none}
+
+.ruhig .b2 .kachel,.ruhig .b2 .plakat,.ruhig .w01-reihe,.ruhig .w04-wand{transform:none!important}
+.ruhig .w05-p{transform:rotate(-1.4deg)!important}
+.ruhig .w12-linie rect{stroke-dashoffset:0}
+
+/* schmal: zwei Spalten, Plakate über die ganze Breite */
+@media (max-width:900px){
+  .w01-wand,.w02-wand,.w04-wand,.w05-wand,.w06-wand,.w07-reihe,.w08-wand,.w09-wand,.w10-wand,.w11-wand,.w12-wand,.w13-reihe,.w14-wand,.w15-oben,.w01-reihe{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:none!important;grid-auto-rows:auto;height:auto;min-height:0}
+  .b2 .kachel{grid-column:auto!important;grid-row:auto!important;aspect-ratio:3/4}
+  .b2 .kachel.ganz{grid-column:1/-1!important;aspect-ratio:16/10}
+  .b2 .plakat,.w01-reihe{grid-column:1/-1!important;grid-row:auto!important}
+  .q-unten{grid-template-columns:minmax(0,1fr)}
+  .b2 .plakat h2,.b2 .plakat h2.t-plakat,.w02-p h2,.w11-p h2,.w10-p h2{font-size:clamp(28px,8.2vw,44px)!important}
+  .w04-wand{margin:0 16px}
+  .w08-foto{height:auto;aspect-ratio:4/3}
+  .w14-f{grid-row:auto!important;grid-column:auto!important} .w14-wand>.w14-f:nth-of-type(n){grid-row:auto}
+  .w14-wand>.w14-f:last-of-type{grid-column:1/-1!important}
+  .w15-oben .kachel{aspect-ratio:4/3}
+  .w11-k{transform:none!important}
+  .w05-p{transform:rotate(-.8deg)}
+  .w06-k{transform:none!important}
+}

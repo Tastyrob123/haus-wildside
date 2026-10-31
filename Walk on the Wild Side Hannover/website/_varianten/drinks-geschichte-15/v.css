@@ -1,0 +1,250 @@
+/* Wild Side · Drinks, 15 Fassungen «Gespräch und Techniken als eine Geschichte» (29.10.2026). Bausteine der Startseite: kz, Prata, Goldlinie, Kachel, Platte, Plakat, Knopf. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.gx .kachel img,.gx .foto img{transform:none}
+.gx + .gx{padding-top:clamp(56px,7vw,96px)}
+.g-kopf{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:end;margin-bottom:clamp(34px,4vw,54px)}
+.g-kopf .text{margin-top:16px}
+.g-kopf .ge-zitat{margin:0 0 6px;font-size:clamp(21px,2.3vw,30px);color:var(--text);max-width:none}
+.g-frage .etikett,.g-tech .etikett{display:block;margin-bottom:10px}
+.g-frage .titel{font-size:clamp(22px,2.3vw,30px);line-height:1.18;color:var(--text);text-wrap:balance}
+.g-tech h3{font-size:clamp(24px,2.5vw,34px)}
+.g-tech .text{margin-top:10px;font-size:15px}
+.hell .g-frage .titel,.hell .titel{color:var(--dunkel)}
+.g3-stapel,.g8-stapel,.g13-stapel{position:relative;overflow:hidden;border-radius:var(--rand);background:var(--nacht3);box-shadow:var(--schatten)}
+.g3-stapel .foto,.g8-stapel .foto,.g13-stapel .foto{position:absolute;inset:0;transform:translateY(100%);transition:transform 1.15s var(--k)}
+.g3-stapel .foto.an,.g8-stapel .foto.an,.g13-stapel .foto.an{transform:none;z-index:2}
+.g3-stapel .foto.war,.g8-stapel .foto.war,.g13-stapel .foto.war{transform:none;z-index:1}
+
+/* 01 Ein Weg */
+.w1-weg{position:relative}
+.w1-linie{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold-ll)}
+.w1-linie i{position:absolute;inset:0;background:var(--gold);transform:scaleY(0);transform-origin:top}
+.w1-st{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.w1-st + .w1-st{margin-top:-56px}
+.w1-st .kachel{aspect-ratio:4/3;width:min(100%,470px)}
+.w1-l .kachel{justify-self:end} .w1-r .kachel{order:2}
+.w1-satz{max-width:32ch} .w1-r .w1-satz{text-align:right;justify-self:end}
+.w1-satz .etikett{display:block;margin-bottom:10px}
+.w1-satz .titel{font-size:clamp(24px,2.6vw,34px);line-height:1.15;text-wrap:balance}
+.w1-satz .text{margin-top:10px;font-size:15px}
+.w1-punkt{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 0 0 2px var(--gold-l);transition:background .5s,box-shadow .5s}
+.w1-st.an .w1-punkt{background:var(--gold);box-shadow:0 0 0 5px var(--gold-ll)}
+/* 01: Brücke statt Leerraum. Die Linie läuft durch den Satz in «Wie Momo arbeitet». */
+.w1-seite#gespraech{padding-bottom:0} .w1-seite#technik{padding-top:0}
+.w1-bruecke{padding:clamp(44px,5vw,72px) 0 clamp(64px,7vw,96px)} .w1-bruecke .w1-linie{bottom:auto;height:calc(clamp(44px,5vw,72px) + 30px)}
+.w1-bruecke .ueber{position:relative;margin:0 auto;padding:16px 28px;background:var(--nacht);width:max-content;max-width:min(30ch,86vw)}
+
+
+/* 02 Grosse Fragen, Bilder bis an den Rand */
+.g2{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.g2-bild{min-height:560px}
+.g2-fragen{margin-top:30px;border-top:1px solid var(--gold-ll)}
+.g2-z{font-size:clamp(28px,3.2vw,44px);line-height:1.12;padding:18px 0;border-bottom:1px solid var(--gold-ll);color:var(--text);text-wrap:balance}
+.g2 .ge-zitat{margin-top:28px}
+.g2-band{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.g2-band .foto{aspect-ratio:4/5;width:100%}
+.g2-unter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,44px);margin-top:26px}
+
+/* 03 Das Bild bleibt stehen */
+.g3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.5vw,72px)}
+.g3 + .g3{margin-top:40px}
+.g3-halt{position:sticky;top:max(90px,calc(50vh - 320px));height:min(76vh,640px)}
+.g3-stapel{height:100%}
+.g3-kopf{margin-bottom:10px}
+.g3-block{min-height:min(40vh,360px);display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--gold-ll);transition:opacity .6s}
+.g3-block:not(.an){opacity:.32}
+.g3-block .etikett{display:block;margin-bottom:10px}
+.g3-block .titel{font-size:clamp(28px,3.2vw,44px);line-height:1.1;text-wrap:balance}
+.g3-block .text{margin-top:12px;max-width:44ch}
+.g3-ende{padding-top:26px;border-top:1px solid var(--gold-ll)}
+
+/* 04 Geschlossenes Raster */
+.g4a,.g4b{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.g4a{grid-template-areas:"k k b1 b2" "f f f z";grid-template-rows:minmax(360px,auto) auto}
+.g4-kopf{padding:clamp(24px,3vw,40px)} .g4-kopf .kz{margin-bottom:14px} .g4-kopf .text{margin-top:14px}
+.g4a .g4-kopf{grid-area:k} .g4-b1{grid-area:b1} .g4-b2{grid-area:b2}
+.g4-fragen{grid-area:f;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:clamp(24px,3vw,40px)}
+.g4-fragen .titel{color:var(--dunkel);font-size:clamp(20px,2vw,26px)} .g4-fragen .etikett{color:#A07F3A}
+.g4-zitat{grid-area:z;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.g4-zitat .titel{font-size:clamp(20px,1.9vw,25px);line-height:1.2} .g4-zitat .etikett{margin-top:14px;color:var(--text3)}
+.g4b{grid-template-areas:"k k k k" "t1 t2 t3 x"}
+.g4b{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:none}
+.g4b .g4-kopf{grid-column:1/-1}
+.g4-tb{aspect-ratio:4/3}
+.g4-t{padding:22px 24px}
+.g4-t h3{font-size:clamp(24px,2.4vw,32px);margin:8px 0 10px} .g4-t .text{font-size:15px}
+.g4b .g4-tb:nth-of-type(1){grid-column:1;grid-row:2} .g4b .g4-tb:nth-of-type(2){grid-column:2;grid-row:2} .g4b .g4-tb:nth-of-type(3){grid-column:3;grid-row:2}
+.g4b .g4-t:nth-of-type(2){grid-column:1;grid-row:3} .g4b .g4-t:nth-of-type(3){grid-column:2;grid-row:3} .g4b .g4-t:nth-of-type(4){grid-column:3;grid-row:3}
+
+/* 05 Die Karte ist eine Frage */
+.g5{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.g5-blatt{background:var(--creme);color:var(--dunkel);border-radius:6px;padding:clamp(30px,4vw,56px);box-shadow:0 0 0 8px var(--creme2),0 40px 80px -30px rgba(0,0,0,.85);rotate:-1.2deg}
+.g5-blatt>.etikett{color:#A07F3A}
+.g5-z{padding:20px 0;border-bottom:1px solid rgba(160,127,58,.35)}
+.g5-z .etikett{display:block;margin-bottom:8px;color:rgba(27,21,18,.55)}
+.g5-z .titel{font-size:clamp(24px,2.5vw,34px);line-height:1.14;color:var(--dunkel);text-wrap:balance}
+.g5-wer{margin-top:22px;font-family:var(--titel);font-size:clamp(18px,1.7vw,22px);color:rgba(27,21,18,.75)}
+.g5-wer small{display:block;margin-top:8px;font:500 11px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:#A07F3A}
+.g5-fenster{display:grid;gap:14px}
+.g5-f{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,3.4vw,52px);align-items:center}
+.g5-f:nth-child(2){grid-template-columns:minmax(0,5fr) minmax(0,7fr)} .g5-f:nth-child(2) .foto{order:2}
+.g5-f .foto{aspect-ratio:21/9;border-radius:var(--rand);box-shadow:var(--schatten)}
+.g5-ft h3{font-size:clamp(28px,3vw,42px);margin:8px 0 12px} .g5-ft .text{font-size:15.5px}
+
+/* 06 Halb und halb */
+.g6-sek > .innen:empty{display:none}
+.g6{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.g6-bild{min-height:min(86vh,780px)} .g6-bild .foto{width:100%;height:100%}
+.g6-l .g6-bild .foto{border-radius:0 var(--rand-g) var(--rand-g) 0} .g6-r .g6-bild .foto{border-radius:var(--rand-g) 0 0 var(--rand-g)}
+.g6-text{align-self:center;padding:40px clamp(32px,5vw,80px)}
+.g6-l .g6-text{padding-right:calc((100vw - var(--innen))/2)} .g6-r .g6-text{padding-left:calc((100vw - var(--innen))/2)}
+.g6-liste{margin-top:26px;border-top:1px solid var(--gold-ll)}
+.g6-z{padding:16px 0;border-bottom:1px solid var(--gold-ll)}
+.g6-liste .g-tech h3{font-size:clamp(22px,2.2vw,28px)}
+.g6 .ge-zitat{margin-top:26px}
+
+/* 07 Abzüge */
+.g7{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.g7-tresen{position:relative;height:clamp(460px,48vw,620px)}
+.g7-abzug{margin:0;border-radius:6px;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);box-shadow:0 0 0 7px var(--creme2),0 30px 60px -22px rgba(0,0,0,.85);transition:translate 1.6s var(--k),scale 1.6s var(--k)}
+.g7-abzug img{width:100%;height:100%;object-fit:cover}
+.g7-tresen .g7-abzug{position:absolute;width:44%;aspect-ratio:3/4}
+.g7-0{left:0;top:6%;rotate:-3deg;z-index:1} .g7-1{left:28%;top:0;rotate:2deg;z-index:2} .g7-2{left:56%;top:8%;rotate:-1.5deg;z-index:3}
+.g7-abzug:hover{translate:0 -10px;scale:1.03;z-index:9}
+.g7-fragen{margin-top:24px;display:grid;gap:16px;padding-top:20px;border-top:1px solid var(--gold-ll)}
+.g7 .ge-zitat{margin-top:24px}
+.g7-drei{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,44px)}
+.g7-t .g7-abzug{aspect-ratio:4/3;margin-bottom:26px}
+.g7-t:nth-child(1) .g7-abzug{rotate:-1.5deg} .g7-t:nth-child(2) .g7-abzug{rotate:1deg} .g7-t:nth-child(3) .g7-abzug{rotate:-.8deg}
+.g7-t h3{font-size:clamp(24px,2.4vw,32px);margin:8px 0 10px} .g7-t .text{font-size:15px}
+
+/* 08 Die Liste zum Zeigen */
+.g8{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.g8-liste{border-bottom:1px solid var(--gold-ll)}
+.g8-z{display:grid;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--gold-ll);padding:18px 0;cursor:pointer;color:inherit}
+.g8-z .etikett{margin-bottom:8px}
+.g8-z .titel{font-size:clamp(24px,2.7vw,36px);line-height:1.15;color:var(--text3);transition:color .5s,transform 1.2s var(--k)}
+.g8-z .text{display:block;opacity:0;max-height:0;overflow:hidden;transition:opacity .5s;font-size:15px}
+.g8-z.an .titel{color:var(--text);transform:translateX(10px)}
+.g8-z.an .text{opacity:1;max-height:none;margin-top:10px;padding-left:10px}
+.g8-rahmen{min-height:420px} .g8-stapel{height:100%}
+.g8 + .g8{margin-top:40px}
+
+/* 09 Hell */
+section.gs09,section.gt09{background:var(--creme);color:var(--dunkel)}
+section.gs09 .ueber{color:rgba(27,21,18,.62)}
+.g9{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.g9-tab{margin-top:26px}
+.g9-z{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;align-items:baseline;padding:16px 0;border-top:1px solid rgba(160,127,58,.45)}
+.g9-z .etikett{color:rgba(27,21,18,.5)}
+.g9-z .titel{font-size:clamp(21px,2.1vw,27px);line-height:1.18;color:var(--dunkel)}
+.g9-z .text{margin-top:8px;font-size:14.5px}
+.g9 .ge-zitat{margin-top:24px;color:rgba(27,21,18,.75);border-color:rgba(160,127,58,.45)} .g9 .ge-zitat small{color:rgba(27,21,18,.5)}
+.g9-paar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;min-height:520px}
+.g9-paar .kachel{height:100%;box-shadow:0 26px 50px -26px rgba(27,21,18,.6)}
+
+/* 10 Drei Fragen, drei Antworten */
+.g10{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,44px)}
+.g10-s .kachel{aspect-ratio:4/5;margin-bottom:20px}
+.g10-s .etikett{display:block;margin-bottom:10px}
+.g10-s .titel{font-size:clamp(22px,2.3vw,30px);line-height:1.18;text-wrap:balance}
+.g10-s h3.titel{font-size:clamp(26px,2.7vw,36px)}
+.g10-s .text{margin-top:10px;font-size:15px}
+
+/* 11 Momos Satz als Titel */
+.g11-zitat{margin:0;font-size:clamp(46px,6.4vw,96px);line-height:1;color:var(--text)}
+.g11-wer{margin-top:16px;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--gold)}
+.g11-unten{margin-top:40px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4.5vw,72px);align-items:stretch;padding-top:30px;border-top:1px solid var(--gold-ll)}
+.g11-bild{min-height:420px}
+.g11-h{font-size:clamp(28px,3vw,40px)}
+.g11-fragen{margin-top:24px;display:grid;gap:16px}
+.g11-worte{display:grid;gap:14px}
+.g11-w{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,3.4vw,52px);align-items:center;padding:14px 0;border-top:1px solid var(--gold-ll)}
+.g11-w .kachel{aspect-ratio:16/10}
+.g11-gross{font-size:clamp(44px,5.6vw,84px);line-height:1}
+.g11-w .text{margin-top:14px}
+
+/* 12 Das Band zum Blättern */
+.g12-sek{overflow-x:clip}
+.g12a{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.g12-bild{min-height:520px}
+.g12-fragen{margin-top:24px;display:grid;gap:16px;padding-top:20px;border-top:1px solid var(--gold-ll)}
+.g12a .ge-zitat{margin-top:24px}
+.g12-pfeile{display:flex;gap:12px;justify-self:end;margin-bottom:6px}
+.g12-pf{width:56px;height:56px;border-radius:50%;border:0;background:var(--nacht3);color:var(--gold);display:grid;place-items:center;cursor:pointer;box-shadow:inset 0 0 0 1px var(--gold-l),0 14px 30px -14px rgba(0,0,0,.8);transition:transform 1.6s var(--k),opacity .4s}
+.g12-pf svg{width:19px;height:19px} .g12-pf[data-d="-1"] svg{transform:scaleX(-1)} .g12-pf:hover{transform:translateY(-3px)} .g12-pf:disabled{opacity:.3;transform:none;cursor:default}
+.g12-band{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:calc((var(--innen) - 100vw)/2);padding-right:calc((100vw - var(--innen))/2)}
+.g12-band::-webkit-scrollbar{display:none}
+.g12-k{flex:0 0 clamp(280px,38vw,520px);scroll-snap-align:start}
+.g12-k .kachel{aspect-ratio:4/3;margin-bottom:18px}
+.g12-k .etikett{display:block;margin-bottom:8px} .g12-k h3{font-size:clamp(24px,2.4vw,32px);margin-bottom:10px} .g12-k .text{font-size:15px}
+
+/* 13 Nach der Uhr */
+.g13-kopf{max-width:62ch}
+.g13-satz{margin-top:clamp(26px,3vw,40px);font-size:clamp(34px,4.4vw,64px);line-height:1.22;color:var(--text)}
+.g13-nb{white-space:nowrap}
+.g13-bild{display:inline-block;vertical-align:-.2em;width:2.4em;height:1.08em;border-radius:.2em;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);box-shadow:0 14px 30px -14px rgba(0,0,0,.8);transition:transform 1.4s var(--k)}
+.g13-bild img{width:100%;height:100%;object-fit:cover} .g13-bild:hover{transform:scale(1.6);position:relative;z-index:3}
+.gs13 .ge-zitat{margin-top:30px}
+.g13{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:stretch}
+.g13-links{display:flex;flex-direction:column;gap:14px}
+.g13-striche{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.g13-striche button{height:18px;padding:8px 0;border:0;background:none;cursor:pointer}
+.g13-striche i{display:block;height:2px;background:var(--gold-l);position:relative;overflow:hidden}
+.g13-striche i::after{content:"";position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left}
+.g13-striche .war i::after{transform:none} .g13-striche .an i::after{animation:g13l 5.2s linear forwards}
+.halt .g13-striche .an i::after{animation-play-state:paused} .ruhig .g13-striche .an i::after{animation:none;transform:none}
+@keyframes g13l{to{transform:none}}
+.g13-stapel{flex:1;min-height:500px}
+.g13-rechts{display:flex;flex-direction:column;justify-content:center}
+.g13-saetze{position:relative;margin-top:30px;height:250px;border-top:1px solid var(--gold-ll)}
+.g13-s{position:absolute;inset:24px 0 0;opacity:0;transform:translateY(30px);transition:opacity .25s,transform .3s}
+.g13-s.an{opacity:1;transform:none;transition:opacity .6s .28s,transform 1s var(--k) .28s}
+.g13-s .etikett{display:block;margin-bottom:8px} .g13-s h3{font-size:clamp(28px,3vw,40px);margin-bottom:12px} .g13-s .text{font-size:15.5px}
+
+/* 14 Gegenlauf */
+.g14{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,5fr) minmax(0,4fr);gap:clamp(20px,2.6vw,40px);align-items:start}
+.g14-sp{display:grid;gap:14px;will-change:transform} .g14-sp .kachel{aspect-ratio:3/4} .g14-r{margin-top:110px}
+.g14-mitte{position:sticky;top:110px}
+.g14-mitte .text{font-size:16px}
+.g14-fragen{margin-top:24px;display:grid;gap:16px;padding-top:20px;border-top:1px solid var(--gold-ll)}
+.g14 .ge-zitat{margin-top:24px}
+
+/* 15 Ein Bild zieht sich auf */
+.g15-kopf{max-width:60ch;margin:0 auto;text-align:center} .g15-kopf .kz{justify-content:center} .g15-kopf .text{margin:16px auto 0}
+.g15-buehne{height:200vh;position:relative;margin-top:10px}
+.g15-halt{position:sticky;top:90px;height:calc(100vh - 120px);display:flex;align-items:center;justify-content:center}
+.g15-bild{width:min(100%,1100px);height:min(70vh,660px);border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten);transform:scale(.46);will-change:transform}
+.g15-bild .foto{width:100%;height:100%}
+.g15-fragen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,44px);margin-top:10px}
+.g15-zitat{margin:34px auto 0;text-align:left}
+.g15-zz{display:grid;gap:clamp(30px,4vw,56px)}
+.g15-st{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+.g15-r{grid-template-columns:minmax(0,5fr) minmax(0,6fr)} .g15-r .kachel{order:2}
+.g15-st .kachel{aspect-ratio:16/10}
+
+/* Schmale Fenster */
+@media (max-width:900px){
+  .g-kopf,.g2,.g3,.g5,.g5-f,.g5-f:nth-child(2),.g6,.g7,.g8,.g9,.g11-unten,.g11-w,.g12a,.g13,.g14,.g15-st,.g15-r{grid-template-columns:minmax(0,1fr)}
+  .w1-linie{left:6px} .w1-st,.w1-st + .w1-st{grid-template-columns:minmax(0,1fr);gap:16px;margin-top:34px;padding-left:30px}
+  .w1-bruecke{padding-left:30px} .w1-bruecke .ueber{margin:0;text-align:left;padding:10px 0;background:none}
+  .w1-st .kachel{width:100%} .w1-r .kachel{order:0} .w1-r .w1-satz{text-align:left;justify-self:start} .w1-punkt{left:6px;top:20px}
+  .g2-bild{min-height:0;aspect-ratio:4/3} .g2-band,.g2-unter,.g4-fragen,.g7-drei,.g10,.g15-fragen{grid-template-columns:minmax(0,1fr)}
+  .g3-halt{position:static;height:60vh} .g3-links{order:2}
+  .g4a{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"k k" "b1 b2" "f f" "z z";grid-template-rows:auto} .g4-tb{aspect-ratio:4/3}
+  .g4b{grid-template-columns:minmax(0,1fr)} .g4b > *{grid-column:auto!important;grid-row:auto!important}
+  .g5-f:nth-child(2) .foto{order:0} .g5-blatt{rotate:0deg}
+  .g6-bild{min-height:60vh} .g6-r .g6-bild{order:-1} .g6-text{padding:30px 4vw!important}
+  .g7-tresen{height:110vw}
+  .g9-paar{min-height:0} .g9-paar .kachel{aspect-ratio:3/4;height:auto} .g9-r .g9-paar{order:2}
+  .g11-bild,.g12-bild{min-height:0;aspect-ratio:4/3}
+  .g13-stapel{min-height:0;aspect-ratio:4/5}
+  .g14-sp{display:none} .g14-mitte{position:static}
+}
+.gx .titel.t-kap + .text,.gx .titel.t-kap + p.text{margin-top:20px}

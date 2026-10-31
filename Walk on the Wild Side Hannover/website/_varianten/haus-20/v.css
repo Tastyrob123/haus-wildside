@@ -1,0 +1,245 @@
+/* Wild Side · Haus, «Der Raum», 20 Fassungen dritte Runde (31.10.2026). Nur transform und opacity, nativer Scroll.
+   Auftritte deckend von unten (kein Einblenden), Zoom im Rahmen, Kamerafahrt in gehaltenen Strecken (--q aus v.js), --p = Block im Bild. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:340px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+.hv{--p:0;--q:0}
+.hv-kopf{margin-bottom:clamp(30px,3.6vw,52px)}
+.hv-mitte{text-align:center} .hv-mitte .kz{justify-content:center}
+.hv-f{position:relative;overflow:hidden;background:var(--nacht3) center/cover;background-image:var(--lq);border-radius:var(--rand);margin:0}
+.hv-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Bildzeile im Bild: unten links, weicher Schatten hinter der Schrift */
+.ov{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(14px,1.6vw,22px);font:400 clamp(13.5px,1.05vw,15.5px)/1.5 var(--lauf);color:var(--creme);
+ text-shadow:0 0 18px rgba(0,0,0,.95),0 0 6px rgba(0,0,0,.8),0 1px 2px rgba(0,0,0,.9);max-width:36ch}
+/* Wand: schmale Fuge, kleinere Ecken */
+.wand-z,.w2 .hv-f,.m3 .hv-f,.b4 .hv-f,.t7 .hv-f,.o13 .hv-f,.t15 .hv-f,.l16 .hv-f,.j19 .hv-f,.f20 .hv-f,.b17 .hv-f,.g18-l .hv-f,.k1-wand .hv-f,.s6 .hv-f{--rand:8px}
+/* Steigen: deckend von unten, Zoom im Rahmen */
+.st{transform:translateY(90px);transition:transform 1.5s var(--k)}
+.da .st,.da.st{transform:none}
+
+/* ================= 01 Die Kamera fährt an die Theke */
+.k1-sek{padding-top:0}
+.k1{position:relative;height:260vh}
+.k1-buehne{position:sticky;top:0;height:100vh;overflow:hidden}
+.k1-bild{position:absolute;inset:0}
+.k1-bild .hv-f{position:absolute;inset:0;border-radius:0}
+.k1-bild img{object-position:50% 78%;transform-origin:45% 70%;transform:scale(calc(1 + .34*(1 - (1 - var(--q))*(1 - var(--q))*(1 - var(--q)))));will-change:transform}
+.k1-text{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(40px,8vh,90px)}
+.k1-text .hv-kopf{margin:0}
+.k1-text .t-kap,.k1-text .kz{text-shadow:0 0 30px rgba(0,0,0,.95),0 0 10px rgba(0,0,0,.8)}
+.k1-text .t-kap{font-size:clamp(56px,8vw,128px);line-height:.98}
+.k1-wand{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:clamp(44px,5vw,72px);overflow:hidden}
+.k1-z{aspect-ratio:4/3.4;transform:translateY(100%);transition:transform 1.4s var(--k)}
+.k1-wand.da .k1-z{transform:none}
+.k1-z img{transform:scale(1.12);transition:transform 2.2s var(--k)} .k1-wand.da .k1-z img{transform:none}
+
+/* ================= 02 Die Wand */
+.w2{display:grid;gap:6px;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:clamp(150px,15vw,230px) clamp(150px,15vw,230px) clamp(150px,15vw,230px) clamp(150px,15vw,230px);
+ grid-template-areas:"a a a a a a b b b c c c" "a a a a a a b b b c c c" "d d d e e f f f f g g g" "h h h e e i i j j g g g";
+ transform:translateY(110px);transition:transform 1.6s var(--k)}
+.w2.da{transform:none}
+.w2 img{transform:scale(1.14);transition:transform 2.4s var(--k)} .w2.da img{transform:none}
+.w2 .ov{font-size:13.5px}
+
+/* ================= 03 Das Mosaik */
+.m3{display:grid;grid-template-columns:auto 1fr;gap:6px;height:min(84vh,800px)}
+.m3-mos{position:relative;height:100%;width:calc(min(84vh,800px)*.75);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);overflow:hidden;border-radius:8px}
+.m3-mos i{background-repeat:no-repeat;background-size:300% 400%;background-position:calc(var(--x)*50%) calc(var(--y)*33.333%);
+ transform:translateY(calc(140px + var(--n)*22px));transition:transform 1.5s var(--k);transition-delay:calc(var(--n)*.05s)}
+.m3.da .m3-mos i{transform:none}
+.m3-r{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:6px;overflow:hidden}
+.m3-z{transform:translateY(100%);transition:transform 1.4s var(--k);transition-delay:calc(.4s + var(--n)*.05s)} .m3.da .m3-z{transform:none}
+
+/* ================= 04 Breitbild und vier Säulen */
+.b4{display:grid;gap:6px;overflow:hidden}
+.b4-breit{aspect-ratio:21/9}
+.b4-breit img{transform:scale(1.12);transition:transform 2.6s var(--k)} .b4.da .b4-breit img{transform:none}
+.b4-breit,.b4-reihe{transform:translateY(120px);transition:transform 1.5s var(--k)} .b4-reihe{transition-delay:.12s}
+.b4.da .b4-breit,.b4.da .b4-reihe{transform:none}
+.b4-reihe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.b4-s{aspect-ratio:3/4.2}
+
+/* ================= 05 Drei Akte */
+.a5-r{display:grid;grid-template-columns:2fr 1fr;gap:6px;margin-bottom:6px;overflow:hidden}
+.a5-spiegel{grid-template-columns:1fr 2fr} .a5-spiegel .a5-b{order:2}
+.a5-b,.a5-t{height:clamp(320px,34vw,520px);transform:translateY(100%);transition:transform 1.45s var(--k)}
+.a5-t{transition-delay:.08s}
+.a5-r.da .a5-b,.a5-r.da .a5-t{transform:none}
+.a5-r img{transform:scale(1.12);transition:transform 2.3s var(--k)} .a5-r.da img{transform:none}
+
+/* ================= 06 Fünf Säulen */
+.s6{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:0 6px;transform:translateY(100px);transition:transform 1.5s var(--k)}
+.s6.da{transform:none}
+.s6-s{height:min(80vh,780px)}
+.s6-s img{inset:-9% 0;height:118%;transform:translateY(calc((.5 - var(--p))*(6% + var(--n)*1.6%)))}
+.s6-zl{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:22px;width:calc(100vw - 12px)}
+.s6-zl p{font-size:14.5px;line-height:1.5;color:var(--text2);text-align:center;padding:0 6px}
+
+/* ================= 07 Das Triptychon */
+.t7{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:6px;height:min(86vh,820px);overflow:hidden}
+.t7-fl{display:grid;grid-template-rows:1fr 1fr;gap:6px;transform:translateY(100%);transition:transform 1.5s var(--k);transition-delay:.18s}
+.t7.da .t7-fl{transform:none}
+.t7-m{border-radius:999px 999px 8px 8px / 260px 260px 8px 8px;transform:translateY(100%);transition:transform 1.5s var(--k)}
+.t7.da .t7-m{transform:none}
+.t7-m img{transform:scale(1.14);transition:transform 2.6s var(--k)} .t7.da .t7-m img{transform:none}
+
+/* ================= 08 Gewölbefenster */
+.g8{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;align-items:end;height:min(76vh,700px);overflow:hidden}
+.g8-f{height:calc(var(--h)*1%);border-radius:999px 999px 8px 8px / 120px 120px 8px 8px;transform:translateY(105%);transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.08s)}
+.g8.da .g8-f{transform:none}
+.g8 .ov{font-size:13px;padding:14px 12px}
+
+/* ================= 09 Die Lichtkante */
+.l9{position:relative}
+.l9-reihe{display:grid;grid-template-columns:1.1fr 1fr 1.25fr;gap:6px;overflow:hidden}
+.l9-o,.l9-u{height:clamp(240px,24vw,380px)}
+.l9-o{transform:translateY(100%);transition:transform 1.4s var(--k);transition-delay:calc(.35s + var(--n)*.06s)}
+.l9-u{transform:translateY(100%);transition:transform 1.4s var(--k);transition-delay:calc(.5s + var(--n)*.06s)}
+.l9.da .l9-o,.l9.da .l9-u{transform:none}
+.l9-kante{height:3px;margin:16px 0;background:#F6C744;box-shadow:0 0 18px 3px rgba(246,199,68,.55),0 0 60px 8px rgba(246,199,68,.22);transform:scaleX(0);transition:transform 1.4s var(--k)}
+.l9.da .l9-kante{transform:none}
+
+/* ================= 10 Grosses Bild, Reihe darunter */
+.z10-b{position:relative;aspect-ratio:16/8.4;overflow:hidden;border-radius:8px}
+.z10-z{position:absolute;inset:0;transform:translateY(101%);transition:transform 0s .95s}
+.z10-z.an{transform:none;z-index:2;transition:transform .95s var(--k)}
+.z10-z .hv-f{position:absolute;inset:0;--rand:0}
+.z10-sz{position:relative;height:3.4em;margin:18px 0 14px;overflow:hidden;text-align:center}
+.z10-s{position:absolute;left:0;right:0;top:0;transform:translateY(4em);transition:transform 0s .8s;color:var(--text2)}
+.z10-s.an{transform:none;transition:transform .8s var(--k)}
+.z10-r{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+.z10-t{all:unset;cursor:pointer;display:block;position:relative;aspect-ratio:1/1.15;border-radius:6px;overflow:hidden;transition:transform .5s var(--k)}
+.z10-t .hv-f{position:absolute;inset:0;--rand:6px}
+.z10-t::after{content:'';position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 2px var(--gold);opacity:0;transition:opacity .4s}
+.z10-t.an::after{opacity:1} .z10-t:hover{transform:translateY(-4px)}
+
+/* ================= 11 Im Kinoformat */
+.c11{position:relative;height:340vh}
+.c11-buehne{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+.c11-buehne .innen{width:var(--innen)}
+.c11 .hv-kopf{margin-bottom:22px}
+.c11-rahmen{position:relative;aspect-ratio:2.39/1;max-height:58vh;width:100%;overflow:hidden;border-radius:8px;background:#000}
+.c11-streifen{position:absolute;left:0;right:0;top:0;height:600%;display:grid;grid-template-rows:repeat(6,1fr);gap:0;transform:translateY(calc(var(--q) * -83.3333%));will-change:transform}
+.c11-f{--rand:0}
+.c11-sz{position:relative;height:3.3em;margin-top:18px;overflow:hidden;text-align:center}
+.c11-s{position:absolute;left:0;right:0;top:0;font-size:clamp(17px,1.4vw,21px);transform:translateY(4.2em);transition:transform 0s .7s}
+.c11-s.an{transform:none;transition:transform .7s var(--k)}
+
+/* ================= 12 Titel gross, Wand daneben */
+.w12{display:grid;grid-template-columns:5fr 7fr;gap:clamp(28px,4vw,64px);align-items:stretch}
+.w12-l{display:flex;flex-direction:column;justify-content:space-between;padding:6px 0}
+.w12-t{font-size:clamp(64px,7.6vw,124px);line-height:.98;color:var(--creme)}
+.w12-sz{position:relative;min-height:6.4em;overflow:hidden}
+.w12-s{position:absolute;left:0;right:0;bottom:0;font-size:clamp(19px,1.6vw,24px);line-height:1.4;font-family:var(--titel);color:var(--creme);transform:translateY(8em);transition:transform 0s .8s}
+.w12-s.an{transform:none;transition:transform .8s var(--k)}
+.w12-r{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);gap:6px;height:min(88vh,860px);overflow:hidden}
+.w12-z{position:relative;cursor:pointer;outline:none;transform:translateY(100%);transition:transform 1.4s var(--k)}
+.w12.da .w12-z{transform:none}
+.w12-z .hv-f{position:absolute;inset:0;--rand:8px}
+.w12-z img{transition:transform .9s var(--k)} .w12-z.an img{transform:scale(1.04)}
+.w12-z::after{content:'';position:absolute;inset:0;border-radius:8px;background:#000;opacity:.32;transition:opacity .5s;pointer-events:none}
+.w12-z.an::after{opacity:0}
+
+/* ================= 13 Von oben nach unten */
+.o13-e{display:flex;gap:6px;margin-bottom:6px;overflow:hidden}
+.o13-f{flex:0 0 auto;min-width:0;transform:translateY(100%);transition:transform 1.4s var(--k)}
+.o13-e.da .o13-f{transform:none}
+.o13-f{flex-grow:0;flex-shrink:1}
+.o13-e0 .o13-f{height:clamp(260px,30vw,460px)} .o13-e1 .o13-f{height:clamp(220px,22vw,340px)} .o13-e2 .o13-f{height:clamp(280px,30vw,460px)} .o13-e3 .o13-f{height:clamp(240px,26vw,400px)}
+.o13-e img{transform:scale(1.1);transition:transform 2.2s var(--k)} .o13-e.da img{transform:none}
+
+/* ================= 14 Die Doppelseite */
+.d14-kopf{text-align:center} .d14-kopf .kz{justify-content:center}
+.d14-t{font-size:clamp(56px,7.4vw,120px);line-height:1;color:var(--creme)}
+.d14{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,36px);height:min(92vh,900px);overflow:hidden}
+.d14-l{transform:translateY(100%);transition:transform 1.5s var(--k)}
+.d14-r{display:grid;grid-template-rows:1fr 1fr 1fr;gap:6px;transform:translateY(100%);transition:transform 1.5s var(--k);transition-delay:.12s}
+.d14.da .d14-l,.d14.da .d14-r{transform:none}
+.d14 img{transform:scale(1.12);transition:transform 2.4s var(--k)} .d14.da img{transform:none}
+.d14-falz{position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(var(--gold-l),var(--gold),var(--gold-l));transform:scaleY(0);transform-origin:50% 0;transition:transform 1.6s var(--k) .3s}
+.d14.da .d14-falz{transform:none}
+
+/* ================= 15 Spalten im eigenen Takt */
+.t15{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:6px;height:min(118vh,1180px);overflow:hidden;border-radius:8px}
+.t15-s{display:grid;gap:6px;align-content:start}
+.t15-f{height:clamp(260px,26vw,400px)}
+.t15-s0,.t15-s2{transform:translateY(calc(140px - var(--p)*260px))}
+.t15-s1{transform:translateY(calc(-40px - var(--p)*90px))}
+.t15-s1 .t15-f:nth-child(2n){height:clamp(200px,20vw,300px)}
+
+/* ================= 16 Wo das Licht sitzt */
+.l16{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:clamp(280px,28vw,430px) clamp(280px,28vw,430px);gap:6px;overflow:hidden}
+.l16-f{transform:translateY(100%);transition:transform 1.4s var(--k)}
+.l16.da .l16-f{transform:none}
+.l16-f img{transform-origin:var(--o);transform:scale(1.9);transition:transform 2.8s var(--k2);transition-delay:calc(.2s + var(--n)*.12s)}
+.l16.da .l16-f img{transform:none}
+
+/* ================= 17 Die Bühne */
+.b17{display:grid;gap:6px;padding:0 6px;overflow:hidden}
+.b17-r{display:grid;grid-template-columns:1fr 2fr 1fr;gap:6px;height:min(62vh,600px);transform:translateY(100%);transition:transform 1.5s var(--k)}
+.b17-r2{transition-delay:.12s}
+.b17.da .b17-r{transform:none}
+.b17-m img{transform:scale(1.14);transition:transform 2.6s var(--k)} .b17.da .b17-m img{transform:none}
+.b17-zl{margin-top:22px;text-align:center;color:var(--text2)}
+
+/* ================= 18 Ein Bild, ganz gross */
+.g18-sek{padding-top:0}
+.g18{position:relative;height:100vh;min-height:620px;overflow:hidden}
+.g18-b{position:absolute;inset:0;--rand:0}
+.g18-b img{object-position:50% 60%;transform:scale(calc(1.12 - var(--p)*.12))}
+.g18 {--p:0}
+.g18-text{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:40px;padding-bottom:clamp(40px,7vh,80px)}
+.g18-text .hv-kopf{margin:0}
+.g18-text .t-kap{font-size:clamp(56px,7vw,116px);line-height:.98}
+.g18-text,.g18-text p{text-shadow:0 0 30px rgba(0,0,0,.95),0 0 10px rgba(0,0,0,.85)}
+.g18-zl{display:grid;gap:10px}
+.g18-zl p{font-size:15px;line-height:1.5;color:var(--creme)}
+.g18-l{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;padding:6px;overflow:hidden}
+.g18-f{height:min(44vh,420px);transform:translateY(100%);transition:transform 1.3s var(--k);transition-delay:calc(var(--n)*.06s)}
+.g18-l.da .g18-f{transform:none}
+
+/* ================= 19 Jedes Bild im eigenen Format */
+.j19-r{display:flex;gap:6px;margin-bottom:6px;overflow:hidden}
+.j19-f{min-width:0;transform:translateY(100%);transition:transform 1.4s var(--k)}
+.j19-r.da .j19-f{transform:none}
+.j19-r img{transform:scale(1.1);transition:transform 2.2s var(--k)} .j19-r.da img{transform:none}
+
+/* ================= 20 Die Fuge in Gold */
+.f20{position:relative;display:grid;gap:4px;padding:4px;background:var(--gold);border-radius:10px;grid-template-columns:repeat(4,minmax(0,1fr));
+ grid-template-rows:clamp(200px,19vw,300px) clamp(200px,19vw,300px) clamp(200px,19vw,300px);grid-template-areas:"a a b c" "a a d e" "f g h h";overflow:hidden}
+.f20{transform:scaleY(.0001) ;transform-origin:50% 0;transition:transform 1s var(--k)}
+.f20.da{transform:none}
+.f20-f{--rand:4px;transform:translateY(calc(100% + 8px));transition:transform 1.3s var(--k);transition-delay:calc(.7s + var(--n)*.06s)}
+.f20.da .f20-f{transform:none}
+.f20-h,.f20-v{display:none}
+
+/* ================= Handy */
+@media (max-width:760px){
+ .k1{height:200vh} .k1-wand,.m3-r,.l16{grid-template-columns:1fr 1fr}
+ .w2{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:46vw;grid-template-areas:none}.w2 .hv-f{grid-area:auto!important}.w2 .hv-f:first-child{grid-column:1/-1}
+ .m3{grid-template-columns:1fr;height:auto} .m3-mos{height:auto;width:100%;aspect-ratio:3/4} .m3-r{grid-template-rows:none;grid-auto-rows:52vw}
+ .b4-reihe{grid-template-columns:1fr 1fr} .b4-breit{aspect-ratio:4/3}
+ .a5-r,.a5-spiegel{grid-template-columns:1fr} .a5-spiegel .a5-b{order:0} .a5-b,.a5-t{height:62vw}
+ .s6{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;padding:0 4px} .s6-s{height:62vh} .s6-zl{grid-template-columns:1fr;width:auto;text-align:left} .s6-zl p{text-align:left}
+ .t7{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;height:auto} .t7-m{grid-column:1/-1;order:-1;height:92vw;border-radius:999px 999px 8px 8px / 160px 160px 8px 8px} .t7-fl{height:100vw}
+ .g8{grid-template-columns:repeat(3,minmax(0,1fr));height:auto;grid-auto-rows:auto} .g8-f{height:62vw}
+ .l9-reihe{grid-template-columns:1fr 1fr} .l9-o:last-child,.l9-u:last-child{grid-column:1/-1} .l9-o,.l9-u{height:46vw}
+ .z10-r{grid-template-columns:repeat(5,minmax(0,1fr))} .z10-b{aspect-ratio:4/3.4} .z10-sz{height:5em}
+ .c11-rahmen{aspect-ratio:4/3} .c11-sz{height:5.2em}
+ .w12{grid-template-columns:1fr} .w12-r{height:130vw} .w12-sz{min-height:7.6em}
+ .o13-e{flex-wrap:wrap} .o13-f{flex-basis:calc(50% - 3px)!important} .o13-e0 .o13-f{flex-basis:100%!important} .o13-e3 .o13-f,.o13-e2 .o13-f{height:64vw}
+ .d14{grid-template-columns:1fr;height:auto} .d14-l{height:110vw} .d14-r{grid-template-rows:none;grid-auto-rows:62vw} .d14-falz{display:none}
+ .t15{height:150vw} .t15-f{height:48vw}
+ .l16{grid-template-rows:none;grid-auto-rows:56vw}
+ .b17-r{grid-template-columns:1fr 2fr 1fr;height:56vw}
+ .g18{height:auto;min-height:0} .g18-b{position:relative;height:72vh} .g18-text{grid-template-columns:1fr;position:relative;margin-top:-34vh;padding-bottom:30px}
+ .g18-l{grid-template-columns:repeat(3,minmax(0,1fr))} .g18-f{height:48vw}
+ .j19-r{flex-wrap:wrap} .j19-f{flex-basis:calc(50% - 3px)!important;aspect-ratio:auto!important;height:48vw}
+ .f20{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:44vw;grid-template-areas:none} .f20-f{grid-area:auto!important} .f20-f:first-child{grid-column:1/-1}
+ .ov{font-size:12.5px;padding:12px}
+}
+.ruhig .hv *,.ruhig .hv{transition:none!important}
+@media (prefers-reduced-motion:reduce){.hv *{transition:none!important;transform:none!important}}

@@ -1,0 +1,221 @@
+/* Gut zu wissen · 15 Fassungen (31.10.2026). Bewegung nur transform/opacity; .da setzt wild.js am Abschnitt bzw. fq.js an einzelnen Paaren. */
+
+/* ---------- Gemeinsam */
+.fq .fq-t{margin:0;font-size:clamp(40px,5vw,72px);line-height:1.02}
+.fq .fq-gross{font-size:clamp(52px,7.4vw,112px);line-height:1}
+.fq .fq-mittel{font-size:clamp(34px,4vw,56px)}
+.fq .fq-z{display:block;overflow:hidden;padding:0 .08em .18em;margin:0 -.08em -.18em}
+.fq .fq-z>span{display:block;transform:translateY(115%);transition:transform 1.25s var(--k)}
+.fq .fq-z+.fq-z>span{transition-delay:.12s}
+.fq.da .fq-z>span{transform:none}
+.fq .fq-kz{opacity:0;transform:translateY(40px);transition:transform 1.2s var(--k),opacity .9s var(--k)}
+.fq.da .fq-kz{opacity:1;transform:none}
+.fq-zwei{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(30px,5vw,90px);align-items:start}
+.fq h3.titel{margin:0;font-weight:400}
+.fq-bild{position:relative;margin:0;overflow:hidden;background:var(--nacht3) var(--lq) center/cover no-repeat;border-radius:var(--rand);box-shadow:var(--schatten)}
+.fq-bild img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.12);transition:transform 1.8s var(--k)}
+.fq.da .fq-bild img{transform:scale(1)}
+
+/* Aufklappen */
+.fq-akk{display:grid}
+.fq-akk details{border-top:1px solid var(--gold-ll);opacity:0;transform:translateY(40px);transition:transform 1.1s var(--k),opacity .8s var(--k);transition-delay:calc(.25s + var(--n) * .08s)}
+.fq.da .fq-akk details{opacity:1;transform:none}
+.fq-akk details:last-child{border-bottom:1px solid var(--gold-ll)}
+.fq-akk summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 36px;align-items:center;gap:16px;padding:24px 0;font-family:var(--titel);font-size:clamp(24px,2.6vw,38px);line-height:1.15}
+.fq-akk summary::-webkit-details-marker{display:none}
+.fq-pm{width:36px;height:36px;border-radius:50%;box-shadow:inset 0 0 0 1px var(--gold-l);position:relative;transition:background .5s}
+.fq-pm::before,.fq-pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;margin:-.75px 0 0 -7px;background:var(--gold)}
+.fq-pm::after{transform:rotate(90deg);transition:transform .6s var(--k)}
+.fq-akk details[open] .fq-pm::after{transform:rotate(0)}
+.fq-akk summary:hover .fq-pm{background:var(--gold-ll)}
+.fq-a{padding:0 0 26px}
+.fq-a p{margin:0;color:var(--text2);max-width:60ch;font-size:clamp(17px,1.3vw,19px);line-height:1.6}
+.fq-akk details[open] .fq-a{animation:fqAuf .7s var(--k)}
+@keyframes fqAuf{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- 01 Mit Bild */
+.fq01-bild{aspect-ratio:4/5;width:min(100%,440px);margin-top:clamp(30px,4vw,50px)}
+
+/* ---------- 02 Das Bild antwortet mit */
+.fq02-rahmen{position:relative;aspect-ratio:4/5;width:min(100%,440px);margin-top:clamp(30px,4vw,50px)}
+.fq02-rahmen .fq-bild{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--k)}
+.fq02-rahmen .fq-bild img{transform:scale(1.08);transition:transform 1.6s var(--k)}
+.fq02-rahmen .fq-bild.an{opacity:1}
+.fq02-rahmen .fq-bild.an img{transform:scale(1)}
+
+/* ---------- 03 Alles offen */
+.fq03-raster{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,4vw,60px) clamp(40px,6vw,100px);margin-top:clamp(50px,6vw,90px)}
+.fq03-p{padding-top:26px;border-top:1px solid var(--gold-l);opacity:0;transform:translateY(50px);transition:transform 1.2s var(--k),opacity .8s var(--k);transition-delay:calc((var(--n) % 2) * .12s)}
+.fq03-p.da{opacity:1;transform:none}
+.fq03-p h3{font-size:clamp(26px,2.6vw,38px);line-height:1.15;color:var(--creme)}
+.fq03-p p{margin:14px 0 0;color:var(--text2);font-size:clamp(17px,1.3vw,19px);line-height:1.6}
+
+/* ---------- 04 Ein Gespräch */
+.fq04-in{max-width:1000px}
+.fq04-kopf{margin-bottom:clamp(40px,5vw,70px)}
+.fq04-paar{display:grid;gap:14px;margin-top:clamp(34px,4vw,56px)}
+.fq04-q{justify-self:end;text-align:right;max-width:24ch;margin:0;font-size:clamp(28px,3vw,44px);line-height:1.12;color:var(--gold);opacity:0;transform:translateY(40px);transition:transform 1.1s var(--k),opacity .8s var(--k)}
+.fq04-x{justify-self:start;max-width:46ch;margin:0;padding:18px 22px;border-radius:4px 18px 18px 18px;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-ll);color:var(--text);font-size:clamp(17px,1.35vw,20px);line-height:1.6;
+ opacity:0;transform:translateY(40px);transition:transform 1.1s var(--k) .35s,opacity .8s var(--k) .35s}
+.fq04-paar.da .fq04-q,.fq04-paar.da .fq04-x{opacity:1;transform:none}
+
+/* ---------- 05 Sieben Bierdeckel */
+.fq05-kopf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,30ch);gap:0 clamp(30px,5vw,80px);align-items:end}
+.fq05-kopf .fq-kz{grid-column:1/-1}
+.fq05-kopf .text{margin:0 0 .6em}
+.fq05-tisch{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,2.4vw,36px);margin-top:clamp(44px,5vw,70px);perspective:1200px}
+.fq05-d{width:clamp(200px,17vw,250px);aspect-ratio:1;padding:0;border:0;background:none;cursor:pointer;color:inherit;font:inherit;
+ opacity:0;transform:translateY(-60px) rotate(calc(var(--r) * 3));transition:transform 1.1s cubic-bezier(.3,1.3,.5,1),opacity .6s var(--k);transition-delay:calc(.3s + var(--n) * .09s)}
+.fq.da .fq05-d{opacity:1;transform:rotate(var(--r))}
+.fq05-in{position:relative;display:block;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,1.2,.5,1)}
+.fq05-d.um .fq05-in{transform:rotateY(180deg)}
+.fq05-v,.fq05-h{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:12px;border-radius:50%;padding:13%;text-align:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;
+ box-shadow:inset 0 0 0 1px rgba(160,127,58,.55),inset 0 0 0 9px var(--creme),inset 0 0 0 10px rgba(160,127,58,.35),var(--schatten)}
+.fq05-v{background:var(--creme);color:var(--dunkel)}
+.fq05-v b{font-weight:400;font-size:clamp(20px,1.9vw,26px);line-height:1.15}
+.fq05-v i{font:500 10.5px/1 var(--lauf);font-style:normal;letter-spacing:.17em;text-transform:uppercase;color:#A07F3A}
+.fq05-h{background:var(--nacht3);color:var(--text);transform:rotateY(180deg);box-shadow:inset 0 0 0 1px var(--gold-l),inset 0 0 0 9px var(--nacht3),inset 0 0 0 10px var(--gold-ll),var(--schatten)}
+.fq05-h span{font-size:clamp(14px,1.1vw,16px);line-height:1.5}
+.fq05-d:hover .fq05-in{transform:translateY(-4px)} .fq05-d.um:hover .fq05-in{transform:rotateY(180deg) translateY(-4px)}
+.fq05-d:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:50%}
+
+/* ---------- 06 Wie eine Getränkekarte */
+.fq06-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,90px);align-items:start}
+.fq06-karte{display:grid;justify-items:center;padding:clamp(30px,3.6vw,56px);border-radius:6px;box-shadow:var(--schatten),inset 0 0 0 1px rgba(160,127,58,.4),inset 0 0 0 9px var(--creme),inset 0 0 0 10px rgba(160,127,58,.25);
+ transform:translateY(60px) rotate(-2deg);opacity:0;transition:transform 1.5s var(--k) .2s,opacity .9s var(--k) .2s}
+.fq.da .fq06-karte{transform:none;opacity:1}
+.fq06-logo{width:50px;color:var(--dunkel)} .fq06-logo svg{width:100%;height:auto;display:block}
+.fq06-karte>.etikett{margin:14px 0 22px;color:#8F6E2E}
+.fq06-akk{width:100%}
+.fq06-akk details{border-top:0!important;border-bottom:0!important;opacity:1;transform:none}
+.fq06-akk summary{grid-template-columns:auto minmax(20px,1fr) 30px;padding:14px 0;font-size:clamp(20px,1.8vw,26px);color:var(--dunkel)}
+.fq06-akk summary::after{content:"";order:2;height:2px;align-self:end;margin-bottom:.4em;background-image:radial-gradient(circle,rgba(27,21,18,.45) 1px,transparent 1.4px);background-size:7px 2px;background-repeat:repeat-x}
+.fq06-akk summary span{order:1} .fq06-akk summary .fq-pm{order:3}
+.fq06-akk .fq-pm{width:30px;height:30px;box-shadow:inset 0 0 0 1px rgba(160,127,58,.5)}
+.fq06-akk .fq-pm::before,.fq06-akk .fq-pm::after{background:#8F6E2E;width:12px;margin-left:-6px}
+.fq06-akk .fq-a{padding:0 0 14px}
+.fq06-akk .fq-a p{color:rgba(27,21,18,.74);font-style:italic;font-size:16px}
+
+/* ---------- 07 Sieben Stichworte */
+.fq07-reihe{display:flex;flex-wrap:wrap;gap:8px clamp(18px,2.6vw,40px);margin-top:clamp(40px,5vw,64px);padding-bottom:18px;border-bottom:1px solid var(--gold-ll)}
+.fq07-w{position:relative;padding:6px 0;border:0;background:none;cursor:pointer;font:400 clamp(20px,1.9vw,28px)/1.2 var(--titel);color:var(--text3);transition:color .5s}
+.fq07-w::after{content:"";position:absolute;left:0;right:0;bottom:-19px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .7s var(--k)}
+.fq07-w:hover{color:var(--text)} .fq07-w.an{color:var(--gold)} .fq07-w.an::after{transform:scaleX(1)}
+.fq07-buehne{display:grid;margin-top:clamp(40px,5vw,64px)}
+.fq07-tafel{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(30px,5vw,80px);align-items:center;visibility:hidden;opacity:0;transition:opacity .4s,visibility 0s .4s}
+.fq07-tafel.an{visibility:visible;opacity:1;transition:opacity .5s}
+.fq07-tafel h3{font-size:clamp(34px,4vw,60px);line-height:1.08}
+.fq07-tafel h3 span{display:block;transform:translateY(40px);transition:transform 1s var(--k)}
+.fq07-tafel p{margin:22px 0 0;max-width:50ch;color:var(--text2);font-size:clamp(18px,1.45vw,22px);line-height:1.6;transform:translateY(30px);transition:transform 1s var(--k) .1s}
+.fq07-tafel.an h3 span,.fq07-tafel.an p{transform:none}
+.fq07-bild{aspect-ratio:4/5;width:min(100%,380px);justify-self:end}
+
+/* ---------- 08 Ein Band zum Blättern */
+.fq08-kopf{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:30px}
+.fq08-kopf .text{margin:0 0 .6em;color:var(--text3)}
+.fq08-band{scroll-padding-inline:max(4vw,calc((100vw - var(--innen)) / 2));margin-top:clamp(40px,5vw,64px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:10px 0 40px}
+.fq08-band::-webkit-scrollbar{display:none}
+.fq08-spur{display:flex;gap:clamp(16px,2vw,28px);padding:0 max(4vw,calc((100vw - var(--innen)) / 2));width:max-content}
+.fq08-k{width:clamp(260px,26vw,340px);scroll-snap-align:start;display:flex;flex-direction:column;gap:14px;padding:14px 14px 26px;border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);
+ opacity:0;transform:translateY(70px);transition:transform 1.2s var(--k),opacity .8s var(--k);transition-delay:calc(.2s + var(--n) * .08s)}
+.fq.da .fq08-k{opacity:1;transform:none}
+.fq08-k .fq-bild{aspect-ratio:4/3;border-radius:10px;box-shadow:none}
+.fq08-k h3{padding:6px 8px 0;font-size:clamp(22px,1.9vw,27px);line-height:1.15}
+.fq08-k p{margin:0;padding:0 8px;color:var(--text2);font-size:16px;line-height:1.55}
+
+/* ---------- 09 An der Goldlinie */
+.fq09-kopf{text-align:center;display:grid;justify-items:center}
+.fq09-kz{justify-content:center}
+.fq09-weg{position:relative;margin-top:clamp(50px,6vw,90px);display:grid;gap:clamp(26px,3vw,44px)}
+.fq09-weg::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold-ll)}
+.fq09-linie{position:absolute;left:50%;top:0;bottom:0;width:1px;margin-left:0;background:var(--gold);transform-origin:top;transform:scaleY(0);box-shadow:0 0 12px rgba(216,178,100,.6)}
+.fq09-p{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 clamp(40px,6vw,100px)}
+.fq09-p>div{opacity:0;transform:translateY(40px);transition:transform 1.1s var(--k),opacity .8s var(--k)}
+.fq09-p.l>div{grid-column:1;text-align:right} .fq09-p.r>div{grid-column:2}
+.fq09-p.da>div{opacity:1;transform:none}
+.fq09-punkt{position:absolute;left:50%;top:14px;width:13px;height:13px;margin-left:-6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px var(--nacht),0 0 16px rgba(216,178,100,.7);transform:scale(0);transition:transform .7s cubic-bezier(.3,1.5,.5,1)}
+.fq09-p.da .fq09-punkt{transform:scale(1)}
+.fq09-p h3{font-size:clamp(24px,2.4vw,34px);line-height:1.15}
+.fq09-p p{margin:12px 0 0;color:var(--text2);font-size:clamp(16px,1.25vw,18px);line-height:1.6}
+.fq09-p.l p{margin-left:auto;max-width:44ch} .fq09-p.r p{max-width:44ch}
+
+/* ---------- 10 Hell wie ein Plakat */
+.fq.fq10-sek{padding-top:clamp(72px,9vw,120px)!important;background:var(--creme)}
+.fq10-sek .titel{color:var(--dunkel)}
+.fq10-akk details{border-color:rgba(160,127,58,.35)!important}
+.fq10-akk summary{color:var(--dunkel)}
+.fq10-akk .fq-pm{background:var(--rot);box-shadow:none}
+.fq10-akk .fq-pm::before,.fq10-akk .fq-pm::after{background:var(--creme)}
+.fq10-akk summary:hover .fq-pm{background:var(--rot)}
+.fq10-akk .fq-a p{color:rgba(27,21,18,.74)}
+
+/* ---------- 11 Eine Frage nach der anderen */
+.fq11-in{text-align:center;display:grid;justify-items:center}
+.fq11-kz{justify-content:center}
+.fq11-buehne{display:grid;grid-template-columns:56px minmax(0,1fr) 56px;align-items:center;gap:clamp(16px,3vw,50px);width:100%;max-width:1100px;margin-top:clamp(44px,5vw,70px)}
+.fq11-s-wrap{display:grid;min-height:clamp(260px,24vw,320px);align-items:center}
+.fq11-s{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .35s,visibility 0s .35s}
+.fq11-s.an{visibility:visible;opacity:1;transition:opacity .45s}
+.fq11-s h3{font-size:clamp(36px,4.6vw,70px);line-height:1.06;overflow:hidden;padding-bottom:.12em}
+.fq11-s h3 span{display:block;transform:translateY(110%);transition:transform 1s var(--k)}
+.fq11-s.an h3 span{transform:none}
+.fq11-s p{margin:24px auto 0;max-width:52ch;color:var(--text2);font-size:clamp(18px,1.45vw,22px);line-height:1.6;transform:translateY(24px);transition:transform 1s var(--k) .15s}
+.fq11-s.an p{transform:none}
+.fq11-pf{width:56px;height:56px;border-radius:50%;border:0;background:var(--gold);color:var(--nacht);cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 22px -10px rgba(0,0,0,.7);transition:transform .6s var(--k)}
+.fq11-pf svg{width:20px;height:20px} .fq11-pf.zur svg{transform:rotate(180deg)}
+.fq11-pf:hover{transform:translateY(-3px)}
+.fq11-punkte{display:flex;gap:12px;margin-top:clamp(30px,4vw,48px)}
+.fq11-pt{width:10px;height:10px;padding:0;border:0;border-radius:50%;background:var(--gold-l);cursor:pointer;transition:background .4s,transform .4s}
+.fq11-pt.an{background:var(--gold);transform:scale(1.3)}
+
+/* ---------- 12 Zettel an der Theke */
+.fq12-wand{columns:3 300px;column-gap:clamp(20px,2.4vw,34px);margin-top:clamp(44px,5vw,70px)}
+.fq12-z{break-inside:avoid;position:relative;display:block;margin:0 0 clamp(20px,2.4vw,34px);padding:34px 28px 28px;border-radius:3px;box-shadow:var(--schatten-k),inset 0 0 0 1px rgba(160,127,58,.25);
+ opacity:0;transform:translateY(-50px) rotate(calc(var(--r) * 4));transition:transform 1.1s cubic-bezier(.3,1.25,.5,1),opacity .6s var(--k)}
+.fq12-z.da{opacity:1;transform:rotate(var(--r))}
+.fq12-nadel{position:absolute;left:50%;top:12px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--rot);box-shadow:0 3px 6px rgba(0,0,0,.35),inset 0 -2px 0 rgba(0,0,0,.2)}
+.fq12-z h3{font-size:clamp(23px,2vw,29px);line-height:1.15;color:var(--dunkel)}
+.fq12-z p{margin:12px 0 0;color:rgba(27,21,18,.76);font-size:16.5px;line-height:1.55}
+
+/* ---------- 13 Frage links, Antwort rechts */
+.fq13-tab{margin-top:clamp(44px,5vw,70px)}
+.fq13-z{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(24px,4vw,70px);padding:clamp(22px,2.4vw,32px) 0;align-items:baseline}
+.fq13-z:last-child{border-bottom:1px solid var(--gold-ll)}
+.fq13-l{position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold-l);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--k)}
+.fq13-z.da .fq13-l{transform:scaleX(1)}
+.fq13-z h3,.fq13-z p{opacity:0;transform:translateY(30px);transition:transform 1.1s var(--k) .15s,opacity .8s var(--k) .15s}
+.fq13-z.da h3,.fq13-z.da p{opacity:1;transform:none}
+.fq13-z h3{font-size:clamp(24px,2.5vw,36px);line-height:1.15}
+.fq13-z p{margin:0;color:var(--text2);font-size:clamp(17px,1.3vw,19px);line-height:1.6;max-width:56ch}
+
+/* ---------- 14 Antwort mit Bild */
+.fq14-akk{margin-top:clamp(44px,5vw,70px)}
+.fq14-akk summary{font-size:clamp(28px,3.2vw,48px)}
+.fq14-akk .fq-a{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,4vw,70px);align-items:start;padding-bottom:34px}
+.fq14-bild{aspect-ratio:4/3;width:min(100%,420px);justify-self:end}
+
+/* ---------- 15 In der Mitte */
+.fq15-in{display:grid;justify-items:center;text-align:center}
+.fq15-kz{justify-content:center}
+.fq15-akk{width:min(100%,960px);margin-top:clamp(44px,5vw,70px)}
+.fq15-akk details{border:0!important}
+.fq15-akk summary{grid-template-columns:1fr;justify-items:center;padding:16px 0;font-size:clamp(28px,3.4vw,52px);color:var(--text3);transition:color .6s}
+.fq15-akk summary:hover{color:var(--text)}
+.fq15-akk .fq-pm{display:none}
+.fq15-akk details[open] summary{color:var(--gold);text-shadow:0 0 24px rgba(216,178,100,.35)}
+.fq15-akk .fq-a{padding:0 0 26px}
+.fq15-akk .fq-a p{margin:0 auto;max-width:52ch}
+
+/* ---------- Schmal */
+@media (max-width:760px){
+  .fq-zwei,.fq05-kopf,.fq06-g,.fq07-tafel,.fq08-kopf,.fq13-z{grid-template-columns:minmax(0,1fr)}
+  .fq03-raster{grid-template-columns:minmax(0,1fr)}
+  .fq07-bild,.fq14-bild{justify-self:start}
+  .fq09-weg::before,.fq09-linie{left:8px} .fq09-punkt{left:8px}
+  .fq09-p{grid-template-columns:minmax(0,1fr);padding-left:34px} .fq09-p.l>div,.fq09-p.r>div{grid-column:1;text-align:left} .fq09-p.l p{margin-left:0}
+  .fq11-buehne{grid-template-columns:44px minmax(0,1fr) 44px;gap:8px} .fq11-pf{width:44px;height:44px}
+  .fq14-akk .fq-a{grid-template-columns:minmax(0,1fr)}
+  .fq05-d{width:min(78vw,280px)}
+}
+.ruhig .fq *,.ruhig .fq{transition:none!important;animation:none!important}
+@media (prefers-reduced-motion:reduce){.fq *{transition:none!important;animation:none!important}}

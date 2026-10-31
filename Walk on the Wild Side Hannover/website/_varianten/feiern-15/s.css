@@ -1,0 +1,427 @@
+/* Wild Side · Feiern, «Wie viele seid ihr?» und «Privates Dinner»: je 15 Darstellungen (30.10.2026).
+   Bewegung nur über transform und opacity; scrollgetriebenes läuft in einem Takt in s.js. */
+
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:380px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+
+/* Gemeinsam */
+.fb{position:relative;margin:0;overflow:hidden;background:var(--nacht3) var(--lq) center/cover}
+.fb img{width:100%;height:100%;object-fit:cover;display:block}
+.vx a{color:inherit}
+.vx .etikett{display:block}
+.vx small{display:block;font-size:14px;color:var(--text3);margin-top:6px;letter-spacing:.02em}
+.hell.vx small,.vx .hell small{color:rgba(27,21,18,.55)}
+.w-kopf,.d-kopf{max-width:720px}
+.w-kopf .text,.d-kopf .text{margin-top:22px}
+.w-kopf.mitte,.d-kopf.mitte{margin:0 auto;text-align:center}
+.w-kopf.mitte .kz,.d-kopf.mitte .kz{justify-content:center}
+.w-kopf.mitte .text,.d-kopf.mitte .text{margin-left:auto;margin-right:auto}
+.d-kopf .knoepfe{margin-top:30px}
+.d-gaenge{margin-top:30px;border-top:1px solid var(--gold-l)}
+.d-gaenge>div{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--gold-l);opacity:0;transform:translateY(30px);transition:transform 1.1s var(--k),opacity .8s var(--k);transition-delay:calc(.5s + var(--n)*.14s)}
+.da .d-gaenge>div{opacity:1;transform:none}
+.d-gaenge p{margin:0;font:400 clamp(20px,1.7vw,25px)/1.25 var(--titel);color:var(--creme)}
+.hell .d-gaenge>div{border-color:rgba(160,127,58,.3)} .hell .d-gaenge p{color:var(--dunkel)} .hell .d-gaenge{border-color:rgba(160,127,58,.3)}
+.vx .knoepfe{margin-top:30px}
+[data-pin] .innen{width:var(--innen);margin:0 auto}
+.ruhig .vx *{transition:none!important}
+.fr-rahmen{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.fr-rahmen rect{width:calc(100% - 16px);height:calc(100% - 16px);fill:none;stroke:#B8934A;stroke-width:1.1;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset 2.6s cubic-bezier(.22,1,.36,1) .5s}
+.ok .fr-rahmen rect{stroke-dashoffset:0}
+
+/* ========== WIE VIELE ========== */
+
+/* w01 Die Zahl als Fenster */
+.w1-liste{margin-top:clamp(40px,5vw,70px);display:grid;gap:clamp(10px,2vw,26px)}
+.w1-z{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);align-items:center;gap:clamp(20px,3vw,48px);border-top:1px solid var(--gold-l);padding-top:clamp(10px,2vw,26px)}
+.w1-z:nth-child(2){grid-template-columns:minmax(0,1fr) minmax(0,1.7fr)} .w1-z:nth-child(2) .w1-svg{order:2} .w1-z:nth-child(2) .w1-t{text-align:right}
+.w1-svg{width:100%;height:auto;display:block;overflow:visible}
+.w1-svg text{font:400 300px/1 var(--titel);letter-spacing:-.02em}
+.w1-z:nth-child(2) .w1-svg text{text-anchor:end;transform:translateX(1000px)}
+.w1-bild{will-change:transform}
+.w1-kontur{fill:none;stroke:var(--gold);stroke-width:1.2;opacity:.55}
+.w1-z:nth-child(2) .w1-kontur{text-anchor:end;transform:translateX(1000px)}
+.w1-t b{display:block;font-size:clamp(30px,3vw,46px);color:var(--creme);margin-top:12px}
+.w1-z{opacity:0;transform:translateY(60px);transition:transform 1.3s var(--k),opacity 1s var(--k);transition-delay:calc(var(--n)*.16s)}
+.w1-z.ok{opacity:1;transform:none}
+
+/* w02 Die Bögen */
+.w2-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,36px);margin-top:clamp(44px,5vw,72px);align-items:end}
+.w2-b{display:block;text-align:center;opacity:0;transform:translateY(calc(90px + var(--n)*60px));transition:transform 1.7s var(--k),opacity 1.1s var(--k);transition-delay:calc(var(--n)*.14s)}
+.w2-bild{aspect-ratio:3/4.2;border-radius:999px 999px 10px 10px;box-shadow:var(--schatten),inset 0 0 0 1px var(--gold-l)}
+.w2-bild img{transform:scale(1.18);transition:transform 2.6s var(--k2);transition-delay:calc(.2s + var(--n)*.14s)}
+.w2-b .etikett{margin-top:26px} .w2-b b{display:block;font-size:clamp(28px,2.6vw,40px);color:var(--creme);margin-top:10px}
+.w2-reihe.ok .w2-b{opacity:1;transform:none} .w2-reihe.ok .w2-bild img{transform:none}
+.w2-b:hover .w2-bild img{transform:scale(1.04);transition-delay:0s;transition-duration:1.2s}
+
+/* w03 Die Gästeliste */
+.w3-liste{margin-top:clamp(40px,5vw,70px);position:relative}
+.w3-z{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) auto 56px;align-items:center;gap:30px;padding:clamp(18px,2.4vw,32px) 0;transition:background .5s}
+.w3-z:hover{background:var(--gold-ll)}
+.w3-l{position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold-l);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--k);transition-delay:calc(var(--n,3)*.18s)}
+.w3-end{top:auto;bottom:0}
+.w3-zahl{display:block;overflow:hidden;font-size:clamp(70px,10vw,150px);line-height:1;color:var(--creme)}
+.w3-zahl span{display:block;transform:translateY(105%);transition:transform 1.3s var(--k);transition-delay:calc(.2s + var(--n)*.18s)}
+.w3-name b{display:block;font-size:clamp(28px,2.7vw,42px);color:var(--creme);margin-top:10px}
+.w3-g{font-size:15px;color:var(--text3)}
+.w3-pf{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--nacht);transform:scale(.6);opacity:0;transition:transform .9s var(--k),opacity .6s;transition-delay:calc(.6s + var(--n)*.18s)}
+.w3-pf svg{width:18px;height:18px}
+.w3-name,.w3-g{opacity:0;transform:translateY(24px);transition:transform 1.1s var(--k),opacity .8s;transition-delay:calc(.35s + var(--n)*.18s)}
+.w3-liste.ok .w3-l{transform:none} .w3-liste.ok .w3-zahl span{transform:none} .w3-liste.ok .w3-pf,.w3-liste.ok .w3-name,.w3-liste.ok .w3-g{opacity:1;transform:none}
+
+/* w04 Der Zähler */
+.w4-pin{height:300vh;position:relative;margin-top:clamp(30px,4vw,50px)}
+.w4-buehne{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
+.w4-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,5vw,80px);align-items:center}
+.w4-zahl{font-size:clamp(130px,19vw,290px);line-height:.9;color:var(--creme);margin:10px 0 0;font-variant-numeric:lining-nums tabular-nums}
+.w4-fs{position:relative;height:130px;margin-top:20px}
+.w4-f{position:absolute;inset:0;opacity:0;transform:translateY(30px);transition:transform .8s var(--k),opacity .5s}
+.w4-f.an{opacity:1;transform:none}
+.w4-f b{display:block;font-size:clamp(30px,2.8vw,44px);color:var(--creme);margin-top:12px}
+.w4-skala{height:3px;background:var(--gold-ll);border-radius:2px;margin-top:10px;overflow:hidden}
+.w4-skala i{display:block;height:100%;background:var(--gold);transform:scaleX(var(--p,0));transform-origin:left}
+.w4-bilder{position:relative;aspect-ratio:4/5;max-height:78vh;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten)}
+.w4-bild{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
+.w4-bild img{transform:scale(1.08);transition:transform 2.4s var(--k2)}
+.w4-bild.an{opacity:1} .w4-bild.an img{transform:none}
+
+/* w05 Die Tischkarten */
+.w5-tisch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,44px);margin-top:clamp(50px,6vw,80px);perspective:1400px}
+.w5-k{display:block;transform-origin:50% 100%;transform:rotateX(78deg);opacity:0;transition:transform 1.5s cubic-bezier(.2,.9,.3,1.08),opacity .6s;transition-delay:calc(var(--n)*.2s)}
+.w5-v{background:var(--creme);color:var(--dunkel);border-radius:6px;padding:clamp(34px,3.6vw,56px) clamp(24px,2.6vw,40px);text-align:center;min-height:clamp(320px,30vw,420px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+ box-shadow:inset 0 0 0 1px rgba(160,127,58,.35),inset 0 0 0 9px var(--creme),inset 0 0 0 10px rgba(160,127,58,.5),0 40px 60px -30px rgba(0,0,0,.9);position:relative;transition:transform .6s var(--k)}
+.w5-v::after{content:"";position:absolute;left:8%;right:8%;bottom:-14px;height:14px;background:radial-gradient(50% 100% at 50% 0,rgba(0,0,0,.6),transparent)}
+.w5-v .etikett{color:#8F6E2E}
+.w5-v b{font-size:clamp(28px,2.6vw,40px);margin-top:16px;color:var(--dunkel)}
+.w5-v>i{display:block;width:40px;height:1px;background:#B8934A;margin:22px auto}
+.w5-g{margin:0 0 26px;font-size:clamp(22px,1.9vw,28px);color:var(--dunkel)}
+.w5-v .weiter{color:#8F6E2E;border-color:rgba(143,110,46,.3)}
+.w5-tisch.ok .w5-k{transform:none;opacity:1}
+.w5-k:hover .w5-v{transform:translateY(-8px)}
+
+/* w06 Das Lineal */
+.w6-lineal{position:relative;margin-top:clamp(44px,5vw,70px);padding-left:120px;display:grid;gap:14px}
+.w6-linie{position:absolute;left:96px;top:0;bottom:0;width:1px;background:var(--gold-ll)}
+.w6-linie b{position:absolute;inset:0;background:var(--gold);transform:scaleY(var(--l,0));transform-origin:top}
+.w6-r{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:end;height:calc(var(--h)*1.6vw + 140px);min-height:200px;
+ opacity:0;transform:translateY(50px);transition:transform 1.3s var(--k),opacity .9s;transition-delay:calc(var(--n)*.15s)}
+.w6-r.ok{opacity:1;transform:none}
+.w6-m{position:absolute;left:-120px;top:0;width:84px;text-align:right;font-size:clamp(26px,2.4vw,38px);color:var(--gold)}
+.w6-m::after{content:"";position:absolute;right:-17px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.w6-bild{height:100%;border-radius:var(--rand);box-shadow:var(--schatten)}
+.w6-t b{display:block;font-size:clamp(28px,2.6vw,40px);color:var(--creme);margin-top:12px}
+.w6-t{padding-bottom:8px}
+
+/* w07 Die Plätze */
+.w7-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:end}
+.w7-fs{display:grid;gap:8px}
+.w7-f{display:block;padding:16px 20px;border-radius:var(--rand);box-shadow:inset 0 0 0 1px var(--gold-l);transition:background .4s,box-shadow .4s}
+.w7-f b{display:block;font-size:clamp(24px,2vw,30px);color:var(--creme);margin-top:8px}
+.w7-f.an{background:var(--gold-ll);box-shadow:inset 0 0 0 1px var(--gold)}
+.w7-plan{position:relative;margin-top:clamp(44px,5vw,70px);aspect-ratio:16/6.4;border-radius:var(--rand-g);background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.w7-tisch{position:absolute;left:6%;right:6%;top:31%;height:18%;border-radius:8px;background:var(--nacht4);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.w7-s{position:absolute;width:clamp(12px,1.3vw,20px);height:clamp(12px,1.3vw,20px);margin:-.65vw 0 0 -.65vw;border-radius:50%;background:var(--nacht3);box-shadow:inset 0 0 0 1.5px var(--gold-l);
+ opacity:0;transform:scale(.3);transition:transform .7s cubic-bezier(.2,.9,.3,1.3),opacity .4s,background .5s,box-shadow .5s;transition-delay:calc(var(--n)*.035s)}
+.w7-plan.ok .w7-s{opacity:1;transform:none}
+.w7-plan[data-f=dinner] .w7-s.d,.w7-plan[data-f=tafel] .w7-s.t,.w7-plan[data-f=bar] .w7-s{background:var(--gold);box-shadow:0 0 14px rgba(216,178,100,.55)}
+.w7-plan.ok .w7-s{transition-delay:calc(var(--n)*.035s),calc(var(--n)*.035s),0s,0s}
+.w7-plan.fertig .w7-s{transition-delay:0s}
+.w7-leg{position:absolute;left:6%;right:6%;bottom:-34px;display:flex!important;justify-content:space-between;color:var(--text3)}
+.w7-plan{margin-bottom:34px}
+
+/* w08 Die Bildbalken */
+.w8-liste{display:grid;gap:clamp(14px,1.6vw,22px);margin-top:clamp(44px,5vw,70px)}
+.w8-r{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;align-items:center}
+.w8-streifen{position:relative;width:calc(var(--w)*100%);height:clamp(140px,13vw,200px);border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten)}
+.w8-bild{position:absolute;inset:0}
+.w8-platte{position:absolute;inset:-1px;background:var(--nacht2);transform:translateX(0);transition:transform 1.5s var(--k);transition-delay:calc(.2s + var(--n)*.2s)}
+.w8-t b{display:block;font-size:clamp(26px,2.3vw,36px);color:var(--creme);margin-top:10px}
+.w8-t{opacity:0;transform:translateY(20px);transition:transform 1s var(--k),opacity .8s;transition-delay:calc(.8s + var(--n)*.2s)}
+.w8-liste.ok .w8-platte{transform:translateX(101%)} .w8-liste.ok .w8-t{opacity:1;transform:none}
+.w8-r:hover .w8-bild img{transform:scale(1.04)} .w8-bild img{transition:transform 1.2s var(--k)}
+
+/* w09 Die Rahmen */
+.w9-wand{display:flex;align-items:flex-end;justify-content:center;gap:clamp(24px,4vw,64px);margin-top:clamp(50px,6vw,90px);padding-bottom:10px;border-bottom:1px solid var(--gold-l)}
+.w9-r{position:relative;display:block;flex:0 0 calc(var(--s)*30%);text-align:center;transform-origin:50% -24px;transform:translateY(-60px) rotate(calc(var(--w)*4));opacity:0;
+ transition:transform 1.8s cubic-bezier(.3,1.5,.4,1),opacity .6s;transition-delay:calc(var(--n)*.18s)}
+.w9-nagel{position:absolute;left:50%;top:-30px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--gold)}
+.w9-nagel::before,.w9-nagel::after{content:"";position:absolute;top:4px;width:1px;height:34px;background:var(--gold-l);transform-origin:top}
+.w9-nagel::before{transform:rotate(38deg)} .w9-nagel::after{transform:rotate(-38deg)}
+.w9-rahmen{padding:12px;background:linear-gradient(145deg,#E2C47E,#A7843F 55%,#D8B264);border-radius:3px;box-shadow:var(--schatten)}
+.w9-bild{aspect-ratio:4/5;box-shadow:inset 0 0 0 1px rgba(0,0,0,.4)}
+.w9-t{margin-top:28px}
+.w9-t b{display:block;font-size:clamp(24px,2.2vw,34px);color:var(--creme);margin-top:10px}
+.w9-wand.ok .w9-r{opacity:1;transform:rotate(var(--w))}
+.w9-r:hover{transform:rotate(0)!important;transition-duration:.8s;transition-delay:0s}
+
+/* w10 Die Karte */
+.w10-raster{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:stretch}
+.w10-karte{position:relative;border-radius:10px;padding:clamp(36px,4.4vw,64px);box-shadow:var(--schatten);transform:translateY(80px) rotate(-1.4deg);opacity:0;transition:transform 1.6s var(--k),opacity 1s}
+.w10-karte.ok{transform:none;opacity:1}
+.w10-karte .kz .uhr{color:#8F6E2E} .w10-karte .kz .was{color:rgba(27,21,18,.55)} .w10-karte .kz i{background:#B8934A}
+.w10-zeilen{margin-top:clamp(30px,3vw,46px)}
+.w10-z{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:end;padding:18px 0;border-top:1px solid rgba(160,127,58,.3)}
+.w10-n .etikett{color:#8F6E2E} .w10-n b{display:block;font-size:clamp(26px,2.4vw,38px);margin-top:8px;color:var(--dunkel)}
+.w10-p{height:1px;margin-bottom:12px;background:repeating-linear-gradient(90deg,#B8934A 0 2px,transparent 2px 7px);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--k);transition-delay:calc(.8s + var(--n)*.2s)}
+.w10-g{font-size:clamp(22px,2vw,30px);color:var(--dunkel);white-space:nowrap}
+.w10-karte.ok .w10-p{transform:none}
+.w10-z:hover .w10-g{color:var(--plakatrot)}
+.w10-bild{border-radius:var(--rand);box-shadow:var(--schatten);transform:translateY(160px);opacity:0;transition:transform 1.9s var(--k) .15s,opacity 1.1s .15s}
+.w10-bild.ok{transform:none;opacity:1}
+
+/* w11 Die Ringe */
+.w11-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.w11-fs{margin-top:34px;display:grid;gap:8px}
+.w11-f{display:block;padding:14px 0 14px 20px;border-left:2px solid var(--gold-l);transition:border-color .4s,transform .5s var(--k)}
+.w11-f b{display:block;font-size:clamp(24px,2vw,30px);color:var(--text2);margin-top:8px;transition:color .4s}
+.w11-f.an{border-color:var(--gold);transform:translateX(8px)} .w11-f.an b{color:var(--creme)}
+.w11-feld{position:relative;aspect-ratio:1;max-width:620px;width:100%;margin-left:auto}
+.w11-ring{position:absolute;left:50%;top:50%;border-radius:50%;box-shadow:inset 0 0 0 1px var(--gold-l);transform:translate(-50%,-50%) scale(.2);opacity:0;transition:transform 1.6s var(--k),opacity .8s,box-shadow .5s,background .5s;transition-delay:calc(var(--n)*.25s)}
+.w11-ring.r0{width:47%;height:47%;z-index:3} .w11-ring.r1{width:72%;height:72%;z-index:2} .w11-ring.r2{width:100%;height:100%;z-index:1}
+.w11-ring.an{box-shadow:inset 0 0 0 2px var(--gold);background:var(--gold-ll)}
+.w11-mk{position:absolute;left:50%;top:-6px;transform:translate(-50%,-50%);background:var(--nacht);padding:4px 10px}
+.w11-feld.ok .w11-ring{transform:translate(-50%,-50%);opacity:1}
+.w11-mitte{position:absolute;left:50%;top:50%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;z-index:4;pointer-events:none;box-shadow:var(--schatten)}
+.w11-bild{position:absolute;inset:0;opacity:0;transition:opacity .7s}
+.w11-bild.an{opacity:1}
+
+/* w12 Die Glühbirnen */
+.w12-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,36px);margin-top:clamp(50px,6vw,80px)}
+.w12-k{display:block;text-align:center}
+.w12-schild{display:flex;justify-content:center;gap:clamp(8px,1vw,16px);padding:clamp(30px,3vw,46px) 10px;border-radius:var(--rand-g);background:#0D0908;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);margin-bottom:26px}
+.w12-ziff{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(3px,.45vw,7px);width:clamp(54px,5.2vw,84px)}
+.w12-ziff i{aspect-ratio:1;border-radius:50%;background:rgba(216,178,100,.06)}
+.w12-ziff i.b{background:#FFE7B0;box-shadow:0 0 6px 1px rgba(255,200,110,.9),0 0 18px 3px rgba(240,170,70,.35);opacity:.08;transition:opacity .25s;transition-delay:calc(var(--j)*.022s)}
+.w12-reihe.ok .w12-ziff i.b{opacity:1}
+.w12-k b{display:block;font-size:clamp(28px,2.6vw,40px);color:var(--creme);margin-top:10px}
+
+/* w13 Das Band */
+.w13-pin{height:300vh;position:relative;margin-top:clamp(30px,4vw,50px)}
+.w13-buehne{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.w13-band{display:flex;width:300vw;will-change:transform}
+.w13-t{flex:0 0 100vw;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center;padding:0 calc((100vw - min(1240px,92vw))/2)}
+.w13-bild{height:min(72vh,680px);border-radius:var(--rand);box-shadow:var(--schatten)}
+.w13-zahl{font-size:clamp(90px,11vw,170px);line-height:.9;color:var(--gold);margin:0 0 20px}
+.w13-text b{display:block;font-size:clamp(34px,3.4vw,52px);color:var(--creme);margin-top:12px}
+.w13-text .weiter{margin-top:30px}
+.w13-punkte{display:flex;gap:10px;margin-top:28px}
+.w13-punkte i{width:40px;height:3px;border-radius:2px;background:var(--gold-l);transition:background .4s}
+.w13-punkte i.an{background:var(--gold)}
+
+/* w14 Der Tisch wächst */
+.w14-feld{margin-top:clamp(50px,6vw,90px);position:relative}
+.w14-marken{position:relative;height:150px}
+.w14-mk{position:absolute;bottom:20px;left:calc(var(--x)*100%);transform:translateX(-100%);text-align:right;padding-right:18px;border-right:1px solid var(--gold-l);opacity:.25;transition:opacity .6s,border-color .6s}
+.w14-mk b{display:block;font-size:clamp(20px,2vw,30px);color:var(--creme);margin-top:8px;white-space:nowrap}
+.w14-mk.an{opacity:1;border-color:var(--gold)}
+.w14-tafel{position:relative;height:clamp(110px,10vw,150px)}
+.w14-platte{position:absolute;left:0;right:0;top:30%;height:40%;border-radius:8px;background:linear-gradient(90deg,#3A2B1F,#4A3726);box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);transform:scaleX(var(--t,.3));transform-origin:left}
+.w14-s{position:absolute;top:8%;width:clamp(14px,1.3vw,20px);height:clamp(14px,1.3vw,20px);border-radius:50%;background:var(--gold);box-shadow:0 0 12px rgba(216,178,100,.5);transform:scale(0);transition:transform .5s cubic-bezier(.2,.9,.3,1.4)}
+.w14-s.u{top:auto;bottom:8%}
+.w14-s.an{transform:none}
+
+/* w15 Die Wand */
+.w15-wand{display:flex;gap:6px;margin-top:clamp(44px,5vw,70px)}
+.w15-b{flex:var(--g) 1 0;display:block;min-width:0;opacity:0;transform:translateY(-80px);transition:transform 1.6s var(--k),opacity 1s;transition-delay:calc(var(--n)*.2s)}
+.w15-bild{height:clamp(380px,40vw,560px)}
+.w15-b:first-child .w15-bild{border-radius:var(--rand) 0 0 var(--rand)} .w15-b:last-child .w15-bild{border-radius:0 var(--rand) var(--rand) 0}
+.w15-bild img{transition:transform 1.4s var(--k)} .w15-b:hover .w15-bild img{transform:scale(1.04)}
+.w15-b .etikett{margin-top:22px;padding-top:16px;border-top:2px solid var(--gold)}
+.w15-b b{display:block;font-size:clamp(26px,2.3vw,36px);color:var(--creme);margin-top:10px}
+.w15-wand.ok .w15-b{opacity:1;transform:none}
+
+/* ========== DINNER ========== */
+
+/* d01 Die Menükarte, breit */
+.d1-karte{position:relative;border-radius:10px;padding:clamp(36px,4.6vw,70px);box-shadow:var(--schatten);transform-origin:50% 0;transform:scaleY(.9) translateY(40px);opacity:0;transition:transform 1.6s var(--k),opacity 1s}
+.d1-karte.ok{transform:none;opacity:1}
+.d1-karte .kz .uhr{color:#8F6E2E} .d1-karte .kz .was{color:rgba(27,21,18,.55)} .d1-karte .kz i{background:#B8934A}
+.d1-oben{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:end}
+.d1-spalten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,34px);margin-top:clamp(40px,4.4vw,64px);padding-top:clamp(30px,3vw,44px);border-top:1px solid rgba(160,127,58,.35)}
+.d1-sp{opacity:0;transform:translateY(60px);transition:transform 1.3s var(--k),opacity .9s;transition-delay:calc(.5s + var(--n)*.16s)}
+.d1-karte.ok .d1-sp{opacity:1;transform:none}
+.d1-bild{aspect-ratio:4/4.4;border-radius:6px;margin-bottom:22px}
+.d1-sp .etikett{color:#8F6E2E} .d1-sp p{margin:10px 0 0;font-size:clamp(22px,1.9vw,28px);color:var(--dunkel)}
+
+/* d02 Die Tafel von oben */
+.d2{padding-top:0!important;padding-bottom:0!important}
+.d2-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(100vh,1000px)}
+.d2-bild{position:relative;overflow:hidden}
+.d2-fb{position:absolute;left:0;right:0;top:-12%;height:124%;will-change:transform}
+.d2-text{padding:clamp(60px,8vw,120px) max(4vw,calc((100vw - min(1240px,92vw))/2)) clamp(60px,8vw,120px) clamp(36px,5vw,90px);display:flex;flex-direction:column;justify-content:center}
+
+/* d03 Die Speisenfolge als Weg */
+.d3-weg{position:relative;margin-top:clamp(50px,6vw,90px);display:grid;gap:clamp(40px,6vw,90px)}
+.d3-linie{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold);transform:scaleY(var(--l,0));transform-origin:top}
+.d3-weg::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--gold-ll)}
+.d3-st{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(50px,8vw,130px);align-items:center}
+.d3-st.rechts .d3-bild{order:2} .d3-st.rechts .d3-t{text-align:right}
+.d3-bild{aspect-ratio:4/3.4;border-radius:var(--rand);box-shadow:var(--schatten)}
+.d3-t p{margin:12px 0 0;font-size:clamp(28px,2.8vw,44px);line-height:1.15;color:var(--creme)}
+.d3-mk{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--nacht);box-shadow:inset 0 0 0 2px var(--gold)}
+.d3-st .d3-bild,.d3-st .d3-t{opacity:0;transform:translateY(70px);transition:transform 1.4s var(--k),opacity 1s}
+.d3-st .d3-t{transition-delay:.15s}
+.d3-st.ok .d3-bild,.d3-st.ok .d3-t{opacity:1;transform:none}
+.mitte-k{display:flex;justify-content:center;margin-top:clamp(50px,6vw,80px)!important}
+
+/* d04 Rudi und Momo */
+.d4-bild{position:relative;border-radius:var(--rand-g);overflow:hidden;box-shadow:var(--schatten)}
+.d4-fb{aspect-ratio:16/8.2}
+.d4-platte{position:absolute;inset:-1px;background:var(--nacht);transform-origin:bottom;transition:transform 1.6s var(--k)}
+.d4-bild.ok .d4-platte{transform:translateY(101%)}
+.d4-fb img{transform:scale(1.1);transition:transform 2.6s var(--k2)} .d4-bild.ok .d4-fb img{transform:none}
+.d4-unten{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);margin-top:clamp(40px,5vw,70px);align-items:start}
+.d4-unten .d-gaenge{margin-top:0}
+
+/* d05 Drei Teller */
+.d5-kopf{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:end}
+.d5-kopf .text{margin:0}
+.d5-tisch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3.4vw,54px);margin-top:clamp(50px,6vw,90px)}
+.d5-t{text-align:center;opacity:0;transform:translateY(-70px) rotate(var(--w)) scale(1.08);transition:transform 1.5s cubic-bezier(.2,.85,.3,1.02),opacity .7s;transition-delay:calc(var(--n)*.22s)}
+.d5-bild{aspect-ratio:1;border-radius:50%;box-shadow:0 40px 60px -26px rgba(0,0,0,.95),0 0 0 8px var(--nacht2),0 0 0 9px var(--gold-l)}
+.d5-t .etikett{margin-top:34px} .d5-t p{margin:10px auto 0;max-width:16ch;font-size:clamp(22px,1.9vw,28px);color:var(--creme)}
+.d5-tisch.ok .d5-t{opacity:1;transform:none}
+
+/* d06 Das gedruckte Menü */
+.d6-raster{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(20px,3vw,50px);align-items:center}
+.d6-bild{aspect-ratio:3/4.4;border-radius:var(--rand);box-shadow:0 30px 60px -28px rgba(27,21,18,.6);opacity:0;transition:transform 1.8s var(--k),opacity 1s}
+.d6-bild.l{transform:translateY(140px)} .d6-bild.r{transform:translateY(240px);transition-delay:.15s}
+.d6-bild.ok{transform:none;opacity:1}
+.d6-karte{text-align:center}
+.d6-karte .kz .uhr{color:#8F6E2E} .d6-karte .kz .was{color:rgba(27,21,18,.55)} .d6-karte .kz i{background:#B8934A}
+.d6-karte .text{margin:24px auto 0}
+.d6-strich{display:block;width:60px;height:1px;background:#B8934A;margin:34px auto}
+.d6-g{opacity:0;transform:translateY(30px);transition:transform 1.1s var(--k),opacity .8s;transition-delay:calc(.4s + var(--n)*.16s)}
+.d6-g .etikett{color:#8F6E2E} .d6-g p{margin:10px 0 0;font-size:clamp(22px,2vw,30px);color:var(--dunkel)}
+.d6-orn{display:block;width:7px;height:7px;margin:22px auto;transform:rotate(45deg);border:1px solid #B8934A}
+.d6-karte.ok .d6-g{opacity:1;transform:none}
+.d6-karte .knoepfe{justify-content:center;display:flex}
+
+/* d07 Die Bildwand */
+.d7-wand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,clamp(170px,16vw,250px));gap:6px}
+.d7-f{opacity:0;transform:translateY(calc(60px + var(--n)*14px));transition:transform 1.5s var(--k),opacity 1s;transition-delay:calc(var(--n)*.08s)}
+.d7-f:first-child{border-radius:var(--rand) 0 0 0} .d7-f:nth-child(4){border-radius:0 var(--rand) 0 0} .d7-f:nth-child(5){border-radius:0 0 0 var(--rand)} .d7-f:nth-child(8){border-radius:0 0 var(--rand) 0}
+.d7-text{grid-area:2/2/3/4;background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l);display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,3vw,46px);opacity:0;transform:scale(.94);transition:transform 1.3s var(--k) .5s,opacity .9s .5s}
+.d7-text .t-kap{font-size:clamp(30px,3vw,48px)}
+.d7-text .knoepfe{margin-top:22px}
+.d7-wand.ok .d7-f,.d7-wand.ok .d7-text{opacity:1;transform:none}
+.d7-unten{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);margin-top:clamp(40px,5vw,64px);align-items:start}
+.d7-unten .text{margin:0} .d7-unten .d-gaenge{margin-top:0}
+.d7-unten .d-gaenge>div{opacity:1;transform:none}
+
+/* d08 Der Abend läuft */
+.d8-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px)}
+.d8-links{position:relative}
+.d8-bilder{position:sticky;top:12vh;height:76vh;border-radius:var(--rand);overflow:hidden;box-shadow:var(--schatten)}
+.d8-bild{position:absolute;inset:0;opacity:0;transition:opacity .9s}
+.d8-bild img{transform:scale(1.08);transition:transform 2.4s var(--k2)}
+.d8-bild.an{opacity:1} .d8-bild.an img{transform:none}
+.d8-gaenge{margin-top:clamp(40px,6vh,70px)}
+.d8-g{min-height:46vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--gold-l);opacity:.3;transition:opacity .6s}
+.d8-g.an{opacity:1}
+.d8-nr{font-size:clamp(50px,5vw,80px);color:var(--gold);line-height:1;margin-bottom:18px}
+.d8-g p{margin:12px 0 0;font-size:clamp(30px,3vw,46px);line-height:1.15;color:var(--creme)}
+
+/* d09 Die Klappkarte */
+.d9-kopf{text-align:center;margin-bottom:clamp(40px,5vw,64px)}
+.d9-karte{position:relative;perspective:2200px;max-width:1100px;margin:0 auto}
+.d9-innen{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:10px;box-shadow:var(--schatten);min-height:clamp(520px,46vw,640px)}
+.d9-l{padding:16px}
+.d9-bild{height:100%;border-radius:6px}
+.d9-r{padding:clamp(30px,4vw,60px);display:flex;flex-direction:column;justify-content:center}
+.d9-r .text{margin:0}
+.d9-deckel{position:absolute;left:50%;top:0;bottom:0;width:50%;transform-origin:0 50%;transform-style:preserve-3d;transform:rotateY(0);transition:transform 2s cubic-bezier(.6,.05,.2,1) .3s;z-index:3}
+.d9-vorn,.d9-hinten{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:0 10px 10px 0}
+.d9-vorn{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:inset 0 0 0 1px rgba(160,127,58,.4),inset 0 0 0 12px var(--creme),inset 0 0 0 13px rgba(160,127,58,.6)}
+.d9-vorn .etikett{color:#8F6E2E} .d9-vorn b{font-size:clamp(40px,4vw,62px);margin:20px 0;color:var(--dunkel)} .d9-vorn i{width:50px;height:1px;background:#B8934A;margin-bottom:20px}
+.d9-hinten{transform:rotateY(180deg);padding:16px;background:var(--creme2);border-radius:10px 0 0 10px}
+.d9-hinten .d9-bild{border-radius:6px}
+.d9-karte.ok .d9-deckel{transform:rotateY(-180deg)}
+.d9-innen .d9-l{visibility:hidden}
+
+/* d10 Das Band der Teller */
+.d10-oben{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start}
+.d10-oben .text{margin:0}
+.d10-fahrt{margin-top:clamp(50px,6vw,90px);overflow:hidden}
+.d10-band{display:flex;gap:6px;width:max-content;padding-left:calc((100vw - min(1240px,92vw))/2);will-change:transform}
+.d10-f{flex:0 0 clamp(240px,22vw,340px);aspect-ratio:4/5}
+.d10-f:first-child{border-radius:var(--rand) 0 0 var(--rand)} .d10-f:last-child{border-radius:0 var(--rand) var(--rand) 0}
+
+/* d11 Die drei Karten */
+.d11-kopf{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:end}
+.d11-kopf .text{margin:0}
+.d11-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,34px);margin-top:clamp(50px,6vw,80px);perspective:1600px}
+.d11-k{background:var(--nacht2);border-radius:var(--rand-g);overflow:hidden;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);transform-origin:0 50%;transform:rotateY(70deg);opacity:0;transition:transform 1.5s var(--k),opacity .7s;transition-delay:calc(var(--n)*.2s)}
+.d11-bild{aspect-ratio:4/4.3}
+.d11-t{padding:26px 28px 32px}
+.d11-t p{margin:10px 0 0;font-size:clamp(22px,1.9vw,28px);line-height:1.25;color:var(--creme)}
+.d11-reihe.ok .d11-k{transform:none;opacity:1}
+
+/* d12 Text steht, Bilder laufen */
+.d12-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px)}
+.d12-fest{position:sticky;top:14vh}
+.d12-rechts{display:grid;gap:clamp(14px,2vw,24px)}
+.d12-b{opacity:0;transform:translateY(90px);transition:transform 1.5s var(--k),opacity 1s}
+.d12-b.ok{opacity:1;transform:none}
+.d12-bild{aspect-ratio:4/4.6;border-radius:var(--rand);box-shadow:var(--schatten)}
+.d12-b:nth-child(4) .d12-bild{aspect-ratio:4/3}
+
+/* d13 Die Tafel quer */
+.d13-oben{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:end}
+.d13-oben .text{margin:0}
+.d13-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;border:0;margin-top:clamp(44px,5vw,70px)}
+.d13-g>div{display:block;border-bottom:0;border-top:2px solid var(--gold);padding:18px 0 0}
+.d13-g p{margin-top:10px}
+.d13-streifen{position:relative;height:clamp(260px,24vw,360px);overflow:hidden;margin-top:clamp(30px,3vw,44px)}
+.d13-dreh{position:absolute;left:50%;top:50%;width:clamp(260px,24vw,360px);height:130vw;transform:translate(-50%,-50%) rotate(-90deg)}
+.d13-bild{position:absolute;inset:0;transform:translateY(var(--y,0px))}
+.d13-bild img{object-position:50% 50%}
+
+/* d14 Küche und Bar */
+.d14-kopf{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:end}
+.d14-kopf .text{margin:0}
+.d14-raster{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,2.4vw,34px);margin-top:clamp(50px,6vw,80px)}
+.d14-sp{background:var(--nacht2);border-radius:var(--rand-g);padding:16px 16px 34px;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);opacity:0;transform:translateY(calc(100px + var(--n)*80px));transition:transform 1.7s var(--k),opacity 1s;transition-delay:calc(var(--n)*.14s)}
+.d14-raster.ok .d14-sp{opacity:1;transform:none}
+.d14-bild{aspect-ratio:16/11;border-radius:10px;margin-bottom:28px}
+.d14-wer{display:block;font-size:clamp(44px,4.4vw,70px);color:var(--creme);line-height:1;padding:0 18px}
+.d14-sp>.etikett{padding:12px 18px 0}
+.d14-z{margin:26px 18px 0;padding-top:18px;border-top:1px solid var(--gold-l)}
+.d14-z p{margin:10px 0 0;font-size:clamp(22px,1.9vw,28px);color:var(--creme)}
+
+/* d15 Der grosse Satz */
+.d15-kopf .d15-h{font-size:clamp(54px,7.4vw,118px);line-height:1}
+.d15-raster{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);margin-top:clamp(44px,5vw,70px);align-items:end}
+.d15-reihe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.d15-b{position:relative}
+.d15-bild{aspect-ratio:3/4.4}
+.d15-b:first-child .d15-ab{border-radius:var(--rand) 0 0 var(--rand)} .d15-b:last-child .d15-ab{border-radius:0 var(--rand) var(--rand) 0}
+.d15-o,.d15-u{position:absolute;left:-1px;right:-1px;height:calc(50% + 1px);background:var(--nacht);transition:transform 1.5s var(--k);transition-delay:calc(var(--n)*.18s);z-index:2}
+.d15-o{top:-1px} .d15-u{top:50%}
+.d15-b>.fb{position:relative}
+.d15-ab{position:relative;overflow:hidden}
+.d15-reihe.ok .d15-o{transform:translateY(-101%)} .d15-reihe.ok .d15-u{transform:translateY(101%)}
+.d15-b .etikett{margin-top:22px} .d15-b p{margin:10px 0 0;font-size:clamp(20px,1.7vw,26px);line-height:1.25;color:var(--creme)}
+.d15-text .text{margin:0}
+
+/* Handy */
+@media (max-width:860px){
+ .w1-z,.w1-z:nth-child(2){grid-template-columns:1fr} .w1-z:nth-child(2) .w1-svg{order:0} .w1-z:nth-child(2) .w1-t{text-align:left}
+ .w2-reihe,.w5-tisch,.w12-reihe,.d1-spalten,.d5-tisch,.d11-reihe,.d14-raster,.d15-reihe{grid-template-columns:1fr}
+ .w3-z{grid-template-columns:1fr auto;gap:10px 20px} .w3-g{display:none}
+ .w4-raster,.w7-raster,.w10-raster,.w11-raster,.d1-oben,.d2-raster,.d4-unten,.d5-kopf,.d8-raster,.d10-oben,.d11-kopf,.d12-raster,.d13-oben,.d14-kopf,.d15-raster,.d7-unten,.d9-innen{grid-template-columns:1fr}
+ .w4-bilder{max-height:40vh} .w4-zahl{font-size:110px}
+ .w6-lineal{padding-left:70px} .w6-linie{left:52px} .w6-m{left:-70px;width:44px;font-size:22px} .w6-r{grid-template-columns:1fr;height:auto}
+ .w6-bild{height:180px}
+ .w8-r{grid-template-columns:1fr} .w9-wand{flex-direction:column;align-items:center} .w9-r{flex-basis:auto;width:calc(var(--s)*80%)}
+ .w13-t{grid-template-columns:1fr} .w13-bild{height:40vh}
+ .w14-marken{height:auto;display:grid;gap:14px;margin-bottom:20px} .w14-mk{position:static;transform:none;text-align:left;border-right:0;border-left:1px solid var(--gold-l);padding:0 0 0 14px}
+ .d2-bild{height:70vh} .d3-st{grid-template-columns:1fr;gap:20px} .d3-st.rechts .d3-bild{order:0} .d3-st.rechts .d3-t{text-align:left} .d3-linie,.d3-weg::before,.d3-mk{display:none}
+ .d6-raster{grid-template-columns:1fr 1fr} .d6-karte{grid-column:1/-1;order:-1}
+ .d7-wand{grid-template-columns:1fr 1fr;grid-template-rows:none} .d7-wand>*{grid-area:auto!important;aspect-ratio:1} .d7-text{grid-column:1/-1!important;aspect-ratio:auto!important}
+ .d8-links{display:none} .d8-g{min-height:auto;padding:30px 0;opacity:1}
+ .d9-deckel{display:none} .d9-innen .d9-l{visibility:visible;height:50vh}
+ .d12-fest{position:static} .d13-g{grid-template-columns:1fr}
+}

@@ -1,0 +1,49 @@
+/* Drink-Kacheln im Schachbrett: nur Fläche, Rahmen und Schriftfarbe ändern sich. */
+.vschild{position:fixed;z-index:200;left:16px;bottom:16px;width:330px;margin:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:11px 16px;border-radius:12px;
+ background:var(--nacht);color:var(--creme);font:500 10.5px/1.2 var(--lauf);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 18px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px var(--gold-l);pointer-events:none}
+.vschild b{font-weight:500;color:var(--gold)} .vschild span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap} .vschild i{font-style:normal;opacity:.6}
+@media (max-width:600px){.vschild{width:auto;right:16px}}
+#karte{--rosa:#FEE1E6;--kartrot:#D30625}
+
+/* 01 Die Valentinskarte: das Rosa der echten Karte, Name und Preis in ihrem Rot */
+.kk01 .ka-d{background:var(--rosa)}
+.kk01 .ka-d .titel,.kk01 .ka-d span{color:var(--kartrot)} .kk01 .ka-d p{color:rgba(160,20,50,.72)}
+
+/* 02 Rosa und Rot im Wechsel: oben Rosa, unten das Rot der Karte */
+.kk02 .ka-d{background:var(--rosa)}
+.kk02 .ka-d .titel,.kk02 .ka-d span{color:var(--kartrot)} .kk02 .ka-d p{color:rgba(160,20,50,.72)}
+.kk02 .ka-x:nth-child(n+5) .ka-d{background:var(--kartrot)}
+.kk02 .ka-x:nth-child(n+5) .ka-d .titel,.kk02 .ka-x:nth-child(n+5) .ka-d span{color:var(--rosa)} .kk02 .ka-x:nth-child(n+5) .ka-d p{color:rgba(254,225,230,.8)}
+
+/* 03 Das Eckschild: Nacht-Platte mit Gold-Haarlinie innen */
+.kk03 .ka-d{background:var(--nacht2);box-shadow:inset 0 0 0 1px var(--gold-l)}
+.kk03 .ka-d .titel{color:var(--text)} .kk03 .ka-d p{color:var(--text2)} .kk03 .ka-d span{color:var(--gold)}
+
+/* 04 Der Goldrahmen: wie das Kastenschild an der Hausecke, Goldrahmen mit Abstand zur Kante */
+.kk04 .ka-d{background:var(--nacht);position:relative;padding:clamp(34px,3.6vw,54px)}
+.kk04 .ka-d::before{content:"";position:absolute;inset:12px;border:1px solid var(--gold);border-radius:2px;opacity:.7}
+.kk04 .ka-d .titel{color:var(--text)} .kk04 .ka-d p{color:var(--text2)} .kk04 .ka-d span{color:var(--gold)}
+
+/* 05 Die Karte bei Nacht: dunkle Platte, Name im Rosa der Karte */
+.kk05 .ka-d{background:var(--nacht3)}
+.kk05 .ka-d .titel{color:var(--rosa)} .kk05 .ka-d p{color:var(--text2)} .kk05 .ka-d span{color:#FF5C78}
+
+/* 06 Das Rot der Wortmarke */
+.kk06 .ka-d{background:var(--rot)}
+.kk06 .ka-d .titel,.kk06 .ka-d span{color:var(--creme)} .kk06 .ka-d p{color:rgba(242,233,220,.85)}
+
+/* 07 Die Decke: das Ultramarin unter dem Gewölbe, Schrift Creme */
+.kk07 .ka-d{background:var(--blau)}
+.kk07 .ka-d .titel,.kk07 .ka-d span{color:var(--creme)} .kk07 .ka-d p{color:rgba(242,233,220,.78)}
+
+/* 08 Das Plakat: Creme der SESSION-Plakate mit Ultramarin-Schrift und Plakatrot als Preis */
+.kk08 .ka-d{background:#EBE2D8}
+.kk08 .ka-d .titel{color:var(--blau)} .kk08 .ka-d p{color:rgba(26,0,170,.72)} .kk08 .ka-d span{color:var(--plakatrot)}
+
+/* 09 Gold: der Rahmen des Schilds als Fläche */
+.kk09 .ka-d{background:var(--gold)}
+.kk09 .ka-d .titel,.kk09 .ka-d span{color:var(--nacht)} .kk09 .ka-d p{color:rgba(19,14,13,.72)}
+
+/* 10 Valentin im Dunkeln: Nacht-Platte, Rand und Preis im Rot der Karte */
+.kk10 .ka-d{background:var(--nacht2);box-shadow:inset 0 0 0 1px rgba(211,6,37,.6)}
+.kk10 .ka-d .titel{color:var(--text)} .kk10 .ka-d p{color:var(--text2)} .kk10 .ka-d span{color:#FF4A63}

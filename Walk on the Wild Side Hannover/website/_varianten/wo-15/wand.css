@@ -1,0 +1,188 @@
+/* Wild Side · Besuch, Abschnitt «Wo · Die Ecke», 15 Fassungen (31.10.2026). Alles unter .wo15, nur transform, deckend. */
+.wo15 figure{margin:0}
+.wo15 .w-txt{min-width:0;container-type:inline-size}
+.wo15 .w-t{font-size:clamp(30px,min(7.4vw,10.4cqi),112px);line-height:.98;margin:0}
+.wo15 .w-t .z{padding-bottom:.16em;margin-bottom:-.16em}
+.wo15 .w-s{margin:clamp(20px,2vw,28px) 0 0;font-size:clamp(17px,1.35vw,20px);line-height:1.62;max-width:56ch}
+.hell.wo15 .w-s{color:rgba(27,21,18,.74)}
+.wo15 .w-z{margin-top:clamp(24px,2.4vw,34px)}
+.wo15 .w-z div{font-size:clamp(15.5px,1.15vw,17px)}
+.wo15 .w-k{margin-top:clamp(24px,2.4vw,34px)}
+.wo15 .w-b{min-height:0;width:100%;justify-self:stretch}
+.wo15 .w-b img{position:absolute;inset:0}
+/* Auftritt deckend: Text steigt, ohne Einblenden */
+.wo15 .w-txt>*,.wo15 .w-k,.wo15 .w-z{transition:transform 1.3s var(--k)}
+.wo15:not(.da) .w-txt>.w-s{transform:translateY(50px)} .wo15:not(.da) .w-txt>.w-z{transform:translateY(70px)} .wo15:not(.da) .w-txt>.w-k{transform:translateY(90px)}
+.wo15 .w-txt>.w-s{transition-delay:.12s} .wo15 .w-txt>.w-z{transition-delay:.22s} .wo15 .w-txt>.w-k{transition-delay:.32s}
+.wo15 .kz.sw{opacity:1}
+
+/* 01 Das Schild im Hochformat */
+.v01-g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.v01-b{min-height:clamp(560px,52vw,760px)}
+.v01-b img{transform:scale(1.22)!important;transition:transform 3.2s var(--k)!important} .v01.da .v01-b img{transform:scale(1)!important}
+.v01 .w-txt{display:flex;flex-direction:column;justify-content:center}
+
+/* 02 Die Dreizehn */
+.v02-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.v02 .w-txt{display:flex;flex-direction:column;justify-content:center}
+.v02-13{font-size:clamp(200px,28vw,420px);line-height:.8;margin:0 0 0 -.04em;color:var(--dunkel);letter-spacing:-.04em}
+.v02-13 .z{padding-bottom:.1em;margin-bottom:0}
+.v02-13 .z>span{transition-duration:1.8s!important}
+.v02-t{font-size:clamp(30px,min(6vw,10.2cqi),84px);margin-top:clamp(6px,.8vw,12px)}
+.v02-r{display:flex;flex-direction:column;justify-content:center}
+.v02-b{aspect-ratio:4/3;max-width:740px;transition:transform 1.8s var(--k)} .v02:not(.da) .v02-b{transform:translateY(80px) scale(.92)}
+.v02-r .w-z{transition:transform 1.4s var(--k) .2s} .v02:not(.da) .v02-r .w-z{transform:translateY(70px)}
+.v02-r .w-k{transition:transform 1.4s var(--k) .3s} .v02:not(.da) .v02-r .w-k{transform:translateY(90px)}
+
+/* 03 Der Weg in drei Bildern */
+.v03-kopf{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:end}
+.v03-kopf .w-t{font-size:clamp(30px,min(6.4vw,10.2cqi),100px)}
+.v03-kopf>.w-s{margin:0;transition:transform 1.3s var(--k) .15s} .v03:not(.da) .v03-kopf>.w-s{transform:translateY(50px)}
+.v03-weg{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:clamp(44px,5vw,72px);padding-top:34px}
+.v03-linie{position:absolute;left:0;right:0;top:0;height:1px;background:#A07F3A;transform-origin:left;transform:scaleX(0);transition:transform 2.2s var(--k) .2s}
+.v03.da .v03-linie{transform:none}
+.v03-h{position:relative;transition:transform 1.5s cubic-bezier(.34,1.42,.5,1);transition-delay:calc(.35s + var(--n)*.22s)}
+.v03:not(.da) .v03-h{transform:translateY(110px)}
+.v03-h::before{content:"";position:absolute;left:0;top:-38px;width:9px;height:9px;border-radius:50%;background:#A07F3A}
+.v03-b{aspect-ratio:4/5}
+.v03-u{margin:16px 0 0;display:flex;flex-direction:column;gap:6px}
+.v03-u b{font-weight:400;font-size:clamp(24px,2.2vw,32px);color:var(--dunkel);line-height:1.1}
+.v03-u span{font-size:15.5px;color:rgba(27,21,18,.66)}
+.v03-fuss{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(30px,4vw,64px);align-items:end;margin-top:clamp(36px,4vw,56px)}
+.v03-fuss .w-z,.v03-fuss .w-k{margin-top:0}
+
+/* 04 Panorama */
+.wo15 .v04-b{aspect-ratio:21/9;max-width:1120px;margin:0 auto;border-radius:6px}
+.v04-b img{transform:scale(var(--z,1.16))!important;transition:none!important}
+.v04-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);margin:clamp(40px,4.4vw,64px) auto 0;max-width:1120px;align-items:start}
+.v04 .w-txt+.w-txt .w-z{margin-top:6px}
+
+/* 05 Tag und Nacht */
+.v05-bilder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:clamp(40px,4.6vw,66px)}
+.v05-f{margin:0}
+.v05-b{aspect-ratio:4/3;transform:translateY(var(--p,0px))}
+.v05-b img{transform:none!important}
+.v05-f figcaption{margin-top:14px;font:500 11.5px/1 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:#A07F3A}
+.v05-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:start}
+.v05-g .w-t{font-size:clamp(30px,min(6.4vw,10.2cqi),100px)}
+.v05-g .w-txt+.w-txt .w-z{margin-top:6px}
+
+/* 06 Die Visitenkarte */
+.v06{perspective:1600px}
+.v06-karte{background:var(--nacht2);color:var(--text);border-radius:8px;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);padding:clamp(30px,4.6vw,72px);
+  transform-origin:50% 100%;transition:transform 1.9s cubic-bezier(.22,1.2,.36,1)}
+.v06:not(.da) .v06-karte{transform:rotateX(-24deg) translateY(90px)}
+.v06-o{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(30px,4vw,64px);align-items:center}
+.v06-logo{display:block;width:clamp(90px,10vw,150px);color:var(--rot)} .v06-logo svg{display:block;width:100%;height:auto}
+.v06-o .w-t{font-size:clamp(30px,min(7vw,10.4cqi),108px);color:var(--creme)}
+.wo15 .v06-o .w-s{color:var(--text2)}
+.v06-u{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(30px,4vw,64px);align-items:end;margin-top:clamp(30px,3.6vw,52px);padding-left:calc(clamp(90px,10vw,150px) + clamp(30px,4vw,64px))}
+.v06-z{margin-top:0;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,3vw,48px)}
+.wo15 .v06-z div{color:var(--text2);border-color:var(--gold-l)!important} .wo15 .v06-z a{color:var(--gold)}
+.wo15 .v06-z div:nth-last-child(2){border-bottom:1px solid var(--gold-l)}
+.v06-u .w-k{margin-top:0}
+
+/* 07 Am Abend */
+.v07-g{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.v07 .w-txt{display:flex;flex-direction:column;justify-content:center}
+.wo15.v07 .w-t{color:var(--creme)} .wo15.v07 .w-s{color:var(--text2)} .wo15.v07 .zeilen a{color:var(--gold)}
+.v07-b{min-height:clamp(560px,52vw,760px)}
+.v07-b img{transform:translateY(var(--p,0%)) scale(1.18)!important;transition:none!important}
+
+/* 08 Die Tafel */
+.v08-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.wo15 .v08-b{aspect-ratio:16/10;margin-top:clamp(26px,2.6vw,36px);max-width:720px}
+.v08-tafel{background:var(--nacht2);border-radius:8px;box-shadow:inset 0 0 0 1px var(--gold-l),var(--schatten);padding:clamp(28px,3.4vw,52px);display:flex}
+.v08-z{flex:1;display:flex;flex-direction:column;margin:0}
+.v08-z div{flex:1;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:clamp(14px,1.6vw,22px) 0;border-color:var(--gold-l)!important;color:var(--creme)!important;
+  font-family:var(--titel);font-size:clamp(22px,2vw,30px)!important;line-height:1.2;transition:transform 1.4s var(--k);transition-delay:calc(.25s + var(--n)*.12s)}
+.v08-z div:first-child{border-top:0} .v08-z div:last-child{border-bottom:0!important}
+.v08-z .etikett{color:var(--gold)!important;font-family:var(--lauf);padding:0} .v08-z a{color:var(--creme)!important}
+.v08:not(.da) .v08-z div{transform:translateY(60px)}
+
+/* 09 Zwei Hochformate */
+.v09-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.v09-bilder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-height:clamp(540px,50vw,740px)}
+.v09-2{transition:transform 1.9s var(--k) .35s} .v09:not(.da) .v09-2{transform:translateY(120px) scale(.88)}
+.v09 .w-txt{display:flex;flex-direction:column;justify-content:center}
+
+/* 10 Titel in voller Breite */
+.v10-t{font-size:clamp(46px,9.2vw,150px);white-space:nowrap}
+.v10-g{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.9fr) minmax(0,1fr);gap:clamp(28px,3.4vw,56px);margin-top:clamp(36px,4vw,60px);align-items:stretch}
+.v10-b{aspect-ratio:auto;min-height:100%}
+.v10 .w-txt{display:flex;flex-direction:column;justify-content:space-between}
+.v10-s{margin-top:0}
+.v10-z{margin-top:0;transition:transform 1.4s var(--k) .3s} .v10:not(.da) .v10-z{transform:translateY(70px)}
+
+/* 11 Das Strassenschild */
+.v11-g{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.v11 .w-txt{display:flex;flex-direction:column;justify-content:center}
+.v11-pfosten{perspective:900px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.v11-schild{margin:0;max-width:100%;display:inline-flex;align-items:center;gap:.5em;background:#FBF7F0;color:#141110;border-radius:8px;
+  box-shadow:inset 0 0 0 4px #FBF7F0,inset 0 0 0 7px #141110,0 22px 40px -22px rgba(0,0,0,.55);font:600 clamp(30px,4.2vw,62px)/1 var(--lauf);letter-spacing:-.01em;
+  padding:.36em .62em .4em;transform-origin:50% 0;transition:transform 1.8s cubic-bezier(.3,1.7,.45,1)}
+.v11-a b{font-weight:600;padding-left:.5em;border-left:3px solid #141110}
+.v11-c{font-size:clamp(20px,2.4vw,34px);transition-delay:.35s}
+.v11:not(.da) .v11-schild{transform:rotateX(-92deg)}
+.v11-b{min-height:clamp(560px,50vw,740px)}
+
+/* 12 Von der Bahn bis zur Tür */
+.v12-g{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(36px,5vw,80px);align-items:start}
+.v12-l{position:sticky;top:110px}
+.v12-b{height:min(calc(100vh - 150px),780px);min-height:520px}
+.v12-weg{position:relative;margin-top:clamp(34px,3.6vw,52px);padding-left:38px;display:flex;flex-direction:column;gap:clamp(30px,3.4vw,48px)}
+.v12-linie{position:absolute;left:4px;top:8px;bottom:8px;width:1px;background:#A07F3A;transform-origin:top;transform:scaleY(var(--s,0))}
+.v12-h{position:relative}
+.v12-h::before{content:"";position:absolute;left:-38px;top:12px;width:9px;height:9px;border-radius:50%;background:#A07F3A}
+.v12-h b{display:block;font-weight:400;font-size:clamp(28px,2.8vw,42px);line-height:1.08;color:var(--dunkel)}
+.v12-h p{margin:10px 0 0;font-size:clamp(16.5px,1.25vw,19px);line-height:1.6;color:rgba(27,21,18,.72)}
+
+/* 13 Die Zeilen quer */
+.v13-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:center}
+.v13-b{aspect-ratio:4/3;max-width:740px}
+.v13-leiste{display:grid;grid-template-columns:1fr 1fr 1.2fr 1fr 1.25fr;margin-top:clamp(44px,5vw,72px);border-top:1px solid rgba(160,127,58,.4);border-bottom:1px solid rgba(160,127,58,.4)}
+.v13-leiste>div{display:flex;flex-direction:column;gap:12px;padding:clamp(20px,2.2vw,30px) clamp(14px,1.6vw,24px);border-left:1px solid rgba(160,127,58,.3);font-size:clamp(15px,1.1vw,16.5px);line-height:1.5;color:rgba(27,21,18,.78);
+  transition:transform 1.3s var(--k);transition-delay:calc(.3s + var(--n)*.1s);overflow-wrap:anywhere}
+.v13-leiste>div:first-child{border-left:0;padding-left:0}
+.v13-leiste a{color:#8F6E2E}
+.v13:not(.da) .v13-leiste>div{transform:translateY(60px)}
+
+/* 14 Das Fenster in der Mitte */
+.v14-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.8fr) minmax(0,1fr);gap:clamp(28px,3.4vw,56px);align-items:stretch}
+.v14 .w-txt{display:flex;flex-direction:column;justify-content:center}
+.v14-t{font-size:clamp(30px,min(7vw,17.6cqi),112px)}
+.v14-b{min-height:clamp(560px,50vw,720px);transition:transform 2.4s var(--k) .1s} .v14:not(.da) .v14-b{transform:translateY(160px) scale(.94)}
+.v14-g>.w-txt:last-child{justify-content:stretch}
+.v14-z{flex:1;display:flex;flex-direction:column;margin-top:0!important} .v14-z div{flex:1;align-content:center}
+
+/* 15 Der Aushang */
+.v15-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:stretch}
+.v15-b{min-height:100%;aspect-ratio:auto}
+.v15-aushang{background:#2A211C;border-radius:4px;padding:14px;box-shadow:var(--schatten);transform-origin:50% -40px;transition:transform 2.2s cubic-bezier(.3,1.6,.4,1)}
+.v15:not(.da) .v15-aushang{transform:rotate(-5deg) translateY(-30px)}
+.v15-innen{background:var(--creme);color:var(--dunkel);height:100%;padding:clamp(28px,3.4vw,52px);box-shadow:inset 0 0 0 1px rgba(160,127,58,.35);container-type:inline-size}
+.v15-logo{display:block;width:64px;color:var(--rot);margin-bottom:24px} .v15-logo svg{display:block;width:100%;height:auto}
+.v15-innen .kz .was{color:rgba(27,21,18,.5)} .v15-innen .w-t{color:var(--dunkel);font-size:clamp(30px,min(6vw,10.4cqi),92px)}
+.v15-z div{color:rgba(27,21,18,.74);border-color:rgba(160,127,58,.3)!important} .v15-z a{color:#8F6E2E} .v15-z .etikett{color:#A07F3A}
+.v15-innen .knopf{background:var(--dunkel);color:var(--creme)} .v15-innen .knopf i{background:var(--gold);color:var(--dunkel)}
+
+@media (max-width:1150px){.wo15 .v06-z{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:900px){
+  .v06-u{padding-left:0}
+  .v01-g,.v02-g,.v03-kopf,.v03-fuss,.v04-g,.v05-g,.v07-g,.v08-g,.v09-g,.v10-g,.v11-g,.v12-g,.v13-g,.v14-g,.v15-g,.v06-o,.v06-u{grid-template-columns:minmax(0,1fr)}
+  .v03-weg,.v05-bilder{grid-template-columns:minmax(0,1fr);gap:28px}
+  .v03-linie{display:none} .v03-h::before{display:none}
+  .v01-b,.v07-b,.v11-b,.v14-b{min-height:0;aspect-ratio:4/5}
+  .v09-bilder{min-height:0;aspect-ratio:8/5;width:100%}
+  .v12-l{position:static} .v12-b{height:auto;min-height:0;aspect-ratio:4/5}
+  .v13-leiste{grid-template-columns:minmax(0,1fr)} .v13-leiste>div{border-left:0;padding-left:0;border-top:1px solid rgba(160,127,58,.3)}
+  .v10-t{white-space:normal}
+  .v06-z{grid-template-columns:minmax(0,1fr)}
+  .v15-b{aspect-ratio:4/3;min-height:0}
+  .v10-b{aspect-ratio:4/3;min-height:0}
+  .v02-13{font-size:44vw}
+}
+.ruhig .wo15 *,.ruhig .wo15{transition:none!important}
+@media (prefers-reduced-motion:reduce){.wo15 *{transform:none!important;transition:none!important}}
+
+.kap.wo15.v07,.kap.wo15.v15{padding-top:clamp(72px,9vw,120px)}

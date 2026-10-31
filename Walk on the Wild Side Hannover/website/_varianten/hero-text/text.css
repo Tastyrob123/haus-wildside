@@ -1,0 +1,157 @@
+/* Walk on the Wild Side · 15 Textanordnungen auf dem heutigen Auftakt (29.10.2026). Foto, Verlauf und Logo wie heute; nur Text und Knöpfe anders. */
+
+@media (min-width:761px){
+  .ht .at-titel{max-width:none}
+  .ht .at-titel .z{white-space:nowrap}
+
+  /* 01 Über die ganze Breite: der Satz in einer Zeile über die ganze Breite, unten auf der Kante */
+  .t01 .innen{padding:110px 0 40px}
+  .t01 .t-oben{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:16px 60px;align-items:end}
+  .t01 .at-logo{grid-column:1/-1;margin-bottom:6px}
+  .t01 .at-satz{margin:0;max-width:42ch}
+  .t01 .t-r{display:flex;flex-direction:column;align-items:flex-end;max-width:52vw}
+  .t01 .t-r .at-zeile{flex-wrap:wrap}
+  .t01 .t-r .at-zeile{margin-top:0;justify-content:flex-end}
+  .t01 .t-r .knoepfe{margin-top:22px}
+  .t01 .at-titel{font-size:clamp(48px,7.7vw,140px);line-height:.95;margin-top:clamp(22px,3vh,36px);letter-spacing:-.02em}
+  .t01 .at-weiter{bottom:auto;top:36px}
+
+  /* 02 Treppe: jede Zeile eine Stufe weiter nach rechts, der Rest steigt mit */
+  .t02 .innen{padding:70px 0 40px}
+  .t02 .at-logo{width:clamp(76px,6.4vw,104px);margin-bottom:16px}
+  .t02 .at-titel{font-size:clamp(44px,6.4vw,112px);line-height:.98}
+  .t02 .at-titel .z:nth-child(2){padding-left:1.15em} .t02 .at-titel .z:nth-child(3){padding-left:2.3em} .t02 .at-titel .z:nth-child(4){padding-left:3.45em}
+  .t02 .t-fuss{margin-left:calc(clamp(44px,6.4vw,112px) * 3.45)}
+  .t02 .t-fuss .at-satz{margin-top:26px;max-width:40ch}
+
+  /* 03 Wie ein Zeitungskopf: oben eine Leiste mit Zeiten, Logo und Adresse, unten der Titel gross mit dem Satz daneben */
+  .t03 .t-kopf{position:absolute;z-index:4;top:30px;left:50%;transform:translateX(-50%);width:var(--innen);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:30px;padding-bottom:20px;border-bottom:1px solid var(--gold-l)}
+  .t03 .t-kopf .etikett{text-align:center}
+  .t03 .t-kopf .ort{font:500 11.5px/1.4 var(--lauf);letter-spacing:.17em;text-transform:uppercase;color:var(--text2);text-align:right}
+  .t03 .t-mlogo{width:clamp(70px,6vw,96px);margin:0}
+  .t03 .innen{padding:200px 0 60px}
+  .t03 .t-unten{display:grid;grid-template-columns:auto minmax(0,30ch);justify-content:start;gap:30px clamp(36px,4vw,64px);align-items:end}
+  .t03 .at-titel{font-size:clamp(48px,7.6vw,132px);line-height:.98}
+  .t03 .t-r .at-satz{margin-top:0;max-width:40ch}
+  .t03 .at-weiter{display:none}
+
+  /* 04 Keine Karte: der Kern der Bar als Überschrift, Momos Antwort darunter in Gold */
+  .t04 .t-dach{margin:0 0 18px}
+  .t04 .at-titel{font-size:clamp(48px,7.4vw,128px)}
+  .t04 .t-antwort{margin:22px 0 0;font-family:var(--titel);font-size:clamp(24px,2.5vw,40px);line-height:1.24;color:var(--gold);max-width:none}
+
+  /* 05 Mit Zeiten-Spalte: rechts neben dem Titel eine schmale Tafel mit den Abenden, die Knöpfe darunter */
+  .t05 .t-zwei{display:grid;grid-template-columns:auto clamp(280px,22vw,330px);justify-content:start;gap:clamp(40px,5vw,90px);align-items:end}
+  .t05 .t-spalte{border-left:1px solid var(--gold-l);padding-left:clamp(26px,2.6vw,40px)}
+  .t05 .t-z{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--gold-ll)}
+  .t05 .t-z:first-child{padding-top:0}
+  .t05 .t-z .etikett{color:var(--text2)}
+  .t05 .t-z b{font:400 clamp(19px,1.6vw,24px)/1.1 var(--titel);color:var(--gold);white-space:nowrap}
+  .t05 .t-spalte .knoepfe{margin-top:26px;flex-direction:column;align-items:stretch}
+  .t05 .t-spalte .knopf{justify-content:space-between}
+  .t05 .at-weiter{display:none}
+
+  /* 06 Knöpfe als Zeilen: zwei grosse Wege in der Titelschrift, getrennt von Goldlinien */
+  .t06 .innen{padding:140px 0 48px}
+  .t06 .t-wege{margin-top:26px;width:min(620px,48vw);border-bottom:1px solid var(--gold-l)}
+  .t06 .t-weg{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:11px 0;border-top:1px solid var(--gold-l);font:400 clamp(24px,2.3vw,36px)/1 var(--titel);color:var(--creme);transition:padding 1.2s var(--k)}
+  .t06 .t-weg i{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--nacht);display:grid;place-items:center;flex:none;box-shadow:0 10px 22px -10px rgba(0,0,0,.8);transition:transform 1.2s var(--k)}
+  .t06 .t-weg.rot i{background:var(--rot);color:var(--creme);box-shadow:0 14px 30px -12px rgba(240,50,63,.6)}
+  .t06 .t-weg i svg{width:20px;height:20px}
+  .t06 .t-weg:hover{padding-left:12px} .t06 .t-weg:hover i{transform:translateX(-6px)}
+
+  /* 07 Breit statt hoch: Titel und Satz nebeneinander auf einer Linie, darunter ein Band mit Zeiten und Knöpfen */
+  .t07 .t-zwei{display:grid;grid-template-columns:auto minmax(0,31ch);justify-content:start;gap:20px clamp(40px,5vw,90px);align-items:end}
+  .t07 .t-zwei .at-satz{margin:0 0 .5em;max-width:38ch}
+  .t07 .at-titel{font-size:clamp(46px,7vw,122px)}
+  .t07 .t-band{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-top:34px;padding-top:24px;border-top:1px solid var(--gold-l)}
+  .t07 .t-band .at-zeile{margin:0} .t07 .t-band .knoepfe{margin:0;flex-wrap:nowrap}
+
+  /* 08 Zweifarbig: «was du magst.» im Rot des Logos, die Knöpfe stehen am Ende der Zeile */
+  .t08 .t-reihe{display:flex;align-items:flex-end;gap:clamp(30px,3.6vw,60px);flex-wrap:wrap}
+  .t08 .at-titel{font-size:clamp(46px,7vw,122px)}
+  .t08 .at-titel .z:nth-child(2)>span{color:var(--rot)}
+  .t08 .t-reihe .knoepfe{margin:0 0 .3em;flex-direction:column;align-items:stretch}
+  .t08 .t-reihe .knopf{justify-content:space-between}
+
+  /* 09 Mittig, Knöpfe links und rechts: der Satz steht zwischen den beiden Wegen */
+  .t09 .innen{display:flex;flex-direction:column;align-items:center;text-align:center;padding:120px 0 52px}
+  .t09 .at-hof{background:linear-gradient(90deg,rgba(19,14,13,.92) 0%,rgba(19,14,13,.6) 22%,rgba(19,14,13,.2) 50%,rgba(19,14,13,.45) 100%),linear-gradient(0deg,rgba(19,14,13,.96) 0%,rgba(19,14,13,.7) 32%,rgba(19,14,13,0) 62%)}
+  .t09 .at-logo{position:absolute;left:0;top:clamp(60px,9vh,110px);width:clamp(90px,9vw,150px);margin:0}
+  .t09 .at-titel{font-size:clamp(48px,7.6vw,132px)}
+  .t09 .t-flanke{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:30px;width:100%;margin-top:30px}
+  .t09 .t-flanke .knopf.rot{justify-self:end} .t09 .t-flanke .knopf:last-child{justify-self:start}
+  .t09 .t-flanke .at-satz{margin:0;max-width:40ch}
+  .t09 .at-zeile{justify-content:center;margin-top:26px}
+
+  /* 10 Fliesstext: der Titel und der Satz laufen als ein Absatz, die Wörter steigen nacheinander auf */
+  .t10 .t-fluss{max-width:min(860px,60vw);font:400 clamp(20px,1.9vw,30px)/1.32 var(--titel);color:var(--text)}
+  .t10 .t-gross{display:block;font-size:clamp(48px,7.2vw,124px);line-height:1;margin:0 0 .3em;color:var(--creme)}
+  .t10 .t-gross .z{white-space:nowrap}
+  .t10 .innen{padding:90px 0 44px}
+  .t10 .at-logo{width:clamp(76px,6.4vw,104px);margin-bottom:18px}
+  .t10 .t-w{display:inline-block;opacity:0;transform:translateY(.4em);transition:transform .9s var(--k),opacity .7s ease;transition-delay:calc(.6s + var(--w)*.045s)}
+  .t10.da .t-w{opacity:1;transform:none}
+
+  /* 11 Laufband unten: Zeiten und Adresse laufen langsam über den unteren Rand */
+  .t11 .innen{padding:96px 0 110px}
+  .t11 .at-logo{width:clamp(90px,8vw,130px);margin-bottom:24px}
+  .t11 .at-titel{font-size:clamp(46px,7.2vw,124px)}
+  .t11 .t-lauf{position:absolute;z-index:4;left:0;right:0;bottom:0;overflow:hidden;border-top:1px solid var(--gold-l);background:rgba(19,14,13,.92);padding:16px 0}
+  .t11 .t-spur{display:flex;gap:28px;width:max-content;animation:t11lauf 60s linear infinite;font:400 clamp(17px,1.4vw,22px)/1 var(--titel);color:var(--gold);white-space:nowrap}
+  .t11 .t-spur i{font-style:normal;color:var(--text3)}
+  @keyframes t11lauf{to{transform:translateX(-50%)}}
+  .t11 .at-weiter{display:none}
+
+  /* 12 Gross und klein: «Du sagst,» riesig, «was du magst.» kleiner darunter eingerückt, der Rest folgt der Einrückung */
+  .t12 .t-gk .t-g{font-size:clamp(64px,11vw,190px);line-height:.92}
+  .t12 .t-gk .t-k{font-size:clamp(34px,4.6vw,80px);line-height:1.05;padding-left:calc(clamp(64px,11vw,190px) * 1.32);margin-top:.12em}
+  .t12 .t-fuss{margin-left:calc(clamp(64px,11vw,190px) * 1.32)}
+  .t12 .t-fuss .at-satz{margin-top:22px;max-width:42ch}
+
+  /* 13 Rote Linie: unter «was du magst.» zieht sich ein roter Strich wie von Hand */
+  .t13 .at-titel{font-size:clamp(48px,7.4vw,128px)}
+  .t13 .t-strich>span{position:relative}
+  .t13 .t-strich{padding-bottom:.18em}
+  .t13 .t-linie{position:absolute;left:-.04em;right:-.02em;bottom:-.2em;width:calc(100% + .06em);height:.3em;overflow:visible}
+  .t13 .t-linie path{fill:none;stroke:var(--rot);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s cubic-bezier(.6,.1,.3,1) 1.3s;vector-effect:non-scaling-stroke}
+  .t13.da .t-linie path{stroke-dashoffset:0}
+
+  /* 14 Zeiten senkrecht: die Abende stehen senkrecht am linken Rand, der Titel rückt nach rechts */
+  .t14 .innen{display:flex;gap:clamp(30px,3.4vw,60px);align-items:flex-end}
+  .t14 .t-senk{flex:none;display:flex;flex-direction:column;align-items:center;gap:16px;writing-mode:vertical-rl;transform:rotate(180deg);font:500 11.5px/1 var(--lauf);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding:4px 0}
+  .t14 .t-senk span:last-child{color:var(--text2)}
+  .t14 .t-senk i{display:block;width:1px;height:46px;background:var(--gold-l)}
+  .t14 .at-titel{font-size:clamp(48px,7.4vw,128px)}
+
+  /* 15 Als Zitat: der Titel ist Momos Satz, mit hängenden Anführungszeichen */
+  .t15 .t-zitat{position:relative;display:inline-block}
+  .t15 .t-qa,.t15 .t-qe{position:absolute;font:400 clamp(120px,13vw,230px)/1 var(--titel);color:var(--rot)}
+  .t15 .t-qa{left:-.44em;top:-.58em}
+  .t15 .t-qe{right:-.48em;bottom:-.62em}
+  .t15 .at-titel{font-size:clamp(48px,7.2vw,124px)}
+  .t15 .t-wer{margin:30px 0 0;color:var(--gold)}
+}
+
+@media (min-width:761px) and (max-width:1180px){
+  .t05 .t-zwei{grid-template-columns:auto 240px;gap:36px} .t05 .t-z b{font-size:17px} .t05 .t-spalte{padding-left:22px}
+  .t05 .innen{padding-top:230px}
+}
+@media (max-width:760px){
+  .t03 .t-kopf{display:none}
+  .t11 .t-lauf{position:relative;z-index:4;overflow:hidden;padding:12px 0;border-top:1px solid var(--gold-l)}
+  .t11 .t-spur{display:flex;gap:20px;width:max-content;animation:t11lauf 60s linear infinite;font:400 16px/1 var(--titel);color:var(--gold);white-space:nowrap}
+  .t11 .t-spur i{font-style:normal}
+  .t11{flex-direction:column;justify-content:flex-end}
+  .t14 .t-senk{display:none}
+  .t15 .t-qa,.t15 .t-qe{display:none}
+  .t06 .t-weg{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-top:1px solid var(--gold-l);font:400 22px/1 var(--titel);color:var(--creme)}
+  .t06 .t-weg i{width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--nacht);display:grid;place-items:center}
+  .t06 .t-weg.rot i{background:var(--rot);color:var(--creme)} .t06 .t-weg i svg{width:18px;height:18px}
+  .t06 .t-wege{margin-top:26px;border-bottom:1px solid var(--gold-l)}
+  .t08 .at-titel .z:nth-child(2)>span{color:var(--rot)}
+  .t13 .t-linie{display:none}
+  .t10 .t-gross{font-size:clamp(38px,11vw,48px)} .t10 .t-fluss{font:400 20px/1.35 var(--titel)}
+}
+@keyframes t11lauf{to{transform:translateX(-50%)}}
+.ruhig .t10 .t-w{opacity:1;transform:none} .ruhig .t11 .t-spur{animation:none} .ruhig .t13 .t-linie path{stroke-dashoffset:0}

@@ -1,0 +1,15 @@
+{
+ "station": "07-baumeister",
+ "zustand": "liegt vor",
+ "stand": "Neubau 28.10.2026 nach Roberts Ablehnung des ersten Baus: Startseite «ein Abend an der Ecke, 19 bis 2 Uhr» und fünf Unterseiten, Prata/Hanken, Eckschild-Oberfläche, Konzept _kette/06-konzepter/KONZEPT-2026-10-28.md",
+ "notiz": "Startseite (Auftakt Eckschild) und 5 Unterseiten + Impressum/Datenschutz, http://localhost:8766/. Geprüft WebKit 1440, 1000, 390: keine Fehler, kein seitliches Verrutschen, kein Bild doppelt je Seite. Nächste Stationen: Bilder (8), Prüfer (9).",
+ "liegt_vor": true,
+ "geprueft": "WebKit 1440/1000/390/320 ohne Überlauf und Fehler; jede Ansicht als Bild angesehen (_qa/neu-*.jpg)",
+ "offen": [
+  "Bilder nachschärfen (Station 8)",
+  "Prüfer (Station 9) in eigenem Chat",
+  "Impressum: Betreiber",
+  "Rechte vor dem Online-Gehen"
+ ],
+ "datum": "2026-10-28"
+}
