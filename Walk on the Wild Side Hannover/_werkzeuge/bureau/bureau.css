@@ -240,7 +240,8 @@ textarea.cu-ein{display:block;resize:none;overflow:hidden;height:auto;min-height
 textarea.ws-langfeld{display:block;width:100%;box-sizing:border-box;resize:none;overflow:hidden;min-height:44px;line-height:1.35}
 /* Google-Texte und Frühere Fassungen: der Text in der Vorschau-Kachel und in den Tasten steht auf der Kante des Texts darüber (Kriterium 6);
    die Kachel und die erste Taste hängen dafür um ihren Innenabstand in den Rand der Platte hinaus */
-.ws-gt__vorschau{margin-inline:-18px}
+.ws-gt__vorschau{margin-left:-18px}
+@media (min-width:561px){.ws-gt__vorschau{margin-right:-18px}}
 #ws-mitte > section.ws-karte > .ws-reihe > .ws-taste:first-child{margin-left:-15px}
 .ws.wo-app .ws-aufgaben > .wo-ag > .wo-ag__b{align-self:stretch;width:auto}   /* das Bild füllt die Kachel ganz, auch in der breiten ersten */
 /* Hinweis für Gäste: zwei Felder nebeneinander stehen auf einer Linie, auch wenn eine Beschriftung zwei Zeilen braucht (Kriterium 3) */
