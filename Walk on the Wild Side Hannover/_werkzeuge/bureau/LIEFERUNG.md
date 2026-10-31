@@ -29,7 +29,7 @@ status: aktiv
 
 ## Wie geprüft
 
-- **Schnelle Prüfung** (`tor-schnell.js`, Chromium, 40 Zustände, Tiefe 2, 1440/1280/1000/390) je Schlüssel `schaufenster` und `schaufenster-anleitung`; Funde gelesen, repariert, wiederholt (Ergebnis siehe Schlussmeldung an den Oberchef).
+- **Schnelle Prüfung** (`tor-schnell.js`, Chromium, höchstens 40 Zustände, Tiefe 2, 1440/1280/1000/390), letzter Lauf 31.10.2026 19:34 UTC: `schaufenster` 40 Zustände (Stichproben 40/40/60), **0 Funde**, nichts «nicht erreicht», keine Skriptfehler; `schaufenster-anleitung` 19 Zustände (19/19/37), **0 Funde**, nichts «nicht erreicht». Sechs Runden: Kopf-Titel (Prata über der Zeile), Häufig gebraucht (Spalten), Foto tauschen (Kachelbreite, Einzelwörter), Zeiten & Preise und Google-Texte (Kanten), Gastschichten («Ändern»), lange Felder, Knöpfe in Fenstern, Auswahl optisch mittig, Fund «kennung» (Antwort ohne Stand, siehe Festigkeit).
 - **Bedient** auf einem Wegwerf-Server (eigene Daten, eigene Probe-Kopie `_probe-schaufenster`): DJ-Abend anlegen, Name tippen (Leiste gelb), Cmd+S, Quittung, Veröffentlichen mit Fenster (nennt den DJ-Abend), Probe-Kopie zeigt den neuen Abend in Kontaktbogen und Flyer, Ursprung zurückgeholt; Text ändern, speichern, veröffentlichen, Frühere Fassungen; Google-Titel im umbrechenden Feld getippt (Leiste zählt, Vorschau schreibt mit). Keine Konsolenfehler.
 - **Gleich wie gebaut:** Plakatwand, Kontaktbogen und Flyer aus dem Ursprung neu gezeichnet = die gebauten Seiten Byte für Byte.
 - **Auge:** Übersicht, DJ-Abende, Bereich, Foto tauschen, Angaben, Google-Texte, Zeiten & Preise, Gastschichten, Hinweis, Entwurf, Frühere Fassungen, Rundgang, Prüfseite, Anleitung bei 1440/1280/1000/390 angesehen.
