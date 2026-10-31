@@ -37,18 +37,18 @@
       const d = el('<i></i>', 'b linie' + (raute && !farbe ? ' raute' : '')); d.style.cssText = `margin:${abstand};${breite(g) || 'width:100%'};${g.al === 'left' ? 'margin-left:0' : g.al === 'right' ? 'margin-right:0' : ''}`;
       const i = d.firstChild; if (g.st) i.style.height = (g.st * PX).toFixed(2) + 'mm'; if (farbe) i.style.background = farbe; return d; };
     const foto = id => { const b = bilder.find(x => x.id === id); if (!b) return null; const g = G[id] || {};
-      const d = el(`<img src="/assets/bild/${esc(b.k)}-1000.webp" alt="">`, 'b foto'); d.style.cssText = `${breite(g) || 'width:60%'};${g.al === 'left' ? 'margin-left:0' : g.al === 'right' ? 'margin-right:0' : ''}`;
+      const d = el(`<img src="/assets/bild/${esc(b.k)}-960.webp" alt="">`, 'b foto'); d.style.cssText = `${breite(g) || 'width:60%'};${g.al === 'left' ? 'margin-left:0' : g.al === 'right' ? 'margin-right:0' : ''}`;
       if (g.ar) { const im = d.firstChild; im.style.aspectRatio = g.ar; im.style.objectFit = 'cover'; im.style.objectPosition = `${g.ox == null ? 50 : g.ox}% ${g.oy == null ? 50 : g.oy}%`; } return d; };
     const fotosNach = nach => bilder.filter(b => b.nach === nach).map(b => foto(b.id)).filter(Boolean);
 
     function blocke(pt, mitSiegel) {   // Reihenfolge wie im Brief am Bildschirm; jeder Block bleibt unzerteilt, ausser langen Absätzen
       const L = [], zg = G.zeichen || {};
-      const z = el(`<img src="${MARKE}" width="365" height="67" alt="Culinarium">`, 'b zeichen'); z.style.width = (64 * (zg.s || 1)).toFixed(1) + 'mm'; L.push({ e: z, k: 'kopf' });
+      const z = el(`<img src="${MARKE}" width="1296" height="1600" alt="Walk on the Wild Side">`, 'b zeichen'); z.style.width = (24 * (zg.s || 1)).toFixed(1) + 'mm'; L.push({ e: z, k: 'kopf' });
       const eigen = k => G[k] && typeof G[k].t === 'string' && G[k].t.trim() && G[k].t !== GKOPF[k];
       if (eigen('haus')) L.push({ e: el(zeilen(kt('haus')), 'b haus'), k: 'kopf', stil: stil('haus', 14.5) });
       if (eigen('zeile')) L.push({ e: el(zeilen(kt('zeile')), 'b zeile'), k: 'kopf', stil: stil('zeile', 6.4) });
       const l1 = linie('linie1', '4.5mm auto 5mm', true); if (l1) L.push({ e: l1, k: 'kopf' });
-      L.push({ e: el(`<div><dt>An</dt><dd>${esc(daten.name)}${daten.kontakt ? `<small>${esc(daten.kontakt)}</small>` : ''}</dd></div><div><dt>Von</dt><dd>${esc(daten.absender || 'Culinarium')}</dd></div>`, 'b an'), k: 'an' });
+      L.push({ e: el(`<div><dt>An</dt><dd>${esc(daten.name)}${daten.kontakt ? `<small>${esc(daten.kontakt)}</small>` : ''}</dd></div><div><dt>Von</dt><dd>${esc(daten.absender || 'Walk on the Wild Side')}</dd></div>`, 'b an'), k: 'an' });
       const l2 = linie('linie2', '4mm auto 4mm', false); if (l2) L.push({ e: l2, k: 'kopf' });
       L.push({ e: el(`<div class="betreff-l">Betreff</div><div class="betreff b" style="${stil('betreff', pt)}">${zeilen(daten.betreff)}</div>`, 'b'), k: 'betreff', abstand: '5mm' });
       fotosNach('kopf').forEach(f => L.push({ e: f, k: 'foto' }));
@@ -64,7 +64,7 @@
       s.innerHTML = '<div class="rahmen"><i class="ecke a"></i><i class="ecke b"></i><i class="ecke c"></i><i class="ecke d"></i></div><div class="koerper"></div><div class="fuss"></div>';
       s.querySelector('.fuss').innerHTML = zeilen(kt('fuss')) + '<span class="nr" hidden></span>';
       wurzel.appendChild(s); const k = s.querySelector('.koerper');
-      if (!erste) k.appendChild(el(`<img src="${MARKE}" width="365" height="67" alt="Culinarium">`, 'kleinkopf'));
+      if (!erste) k.appendChild(el(`<img src="${MARKE}" width="1296" height="1600" alt="Walk on the Wild Side">`, 'kleinkopf'));
       return k;
     }
     const passt = k => k.scrollHeight <= k.clientHeight + 0.5;
@@ -130,7 +130,7 @@
 
     await Promise.all(["10pt \'Prata\'", "10pt \'Hanken\'"].map(f => document.fonts.load(f, 'AaÄäÖöÜüéèàç«»–·')));   // alle Schnitte zuerst laden, sonst bleibt Text im Druck unsichtbar
     await document.fonts.ready;
-    await Promise.all([ZEICHEN, ...bilder.map(b => `/assets/bild/${b.k}-1000.webp`)].map(u => new Promise(r => { const i = new Image(); i.onload = i.onerror = r; i.src = u; })));   // Bilder zuerst laden, sonst stimmen die Höhen beim Messen nicht
+    await Promise.all([ZEICHEN, ...bilder.map(b => `/assets/bild/${b.k}-960.webp`)].map(u => new Promise(r => { const i = new Image(); i.onload = i.onerror = r; i.src = u; })));   // Bilder zuerst laden, sonst stimmen die Höhen beim Messen nicht
     let seiten = 0, pt = 10.5;
     for (const [grad, siegel] of [[11, true], [10.7, true], [10.4, true], [10.2, true], [10.5, false], [10.2, false], [9.9, false]]) { pt = grad; seiten = setze(grad, siegel); if (seiten === 1) break; }
     if (seiten > 1) { pt = 10.5; seiten = setze(10.5, true); }

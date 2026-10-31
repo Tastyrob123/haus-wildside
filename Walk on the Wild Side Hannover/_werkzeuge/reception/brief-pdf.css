@@ -1,4 +1,4 @@
-/* Brief als PDF (A4): wird von brief_pdf.js (Chromium auf dem Server) gesetzt, nicht am Bildschirm benutzt. Briefpapier des Landgasthof Ruedihus (wie ruedihus.css «Der Brief»): Blatt, feiner Goldrahmen, Kopf mit dem Zeichen, Fusszeile auf jeder Seite. */
+/* Brief als PDF (A4): wird von brief_pdf.js (Chromium auf dem Server) gesetzt, nicht am Bildschirm benutzt. Briefpapier der Bar (Aufbau aus dem Culinarium): Blatt, feiner Goldrahmen, Kopf mit dem Zeichen, Fusszeile auf jeder Seite. */
 @font-face{font-family:'Prata';font-style:normal;font-weight:400;src:url('../../assets/schrift/prata-latin.woff2') format('woff2')}
 @font-face{font-family:'Hanken';font-weight:300 700;src:url('../../assets/schrift/hanken-latin.woff2') format('woff2')}
 @font-face{font-family:'Hanken';font-weight:300 700;src:url('../../assets/schrift/hanken-latin.woff2') format('woff2')}
@@ -52,17 +52,16 @@ body{font-family:'Hanken',system-ui,sans-serif;color:#322725}
 .kleinkopf b{font-family:'Prata',Georgia,serif;font-weight:400;text-transform:uppercase;letter-spacing:.16em;font-size:8.5pt}
 .fuss,.seitenzahl{font-family:'Hanken',system-ui,sans-serif}
 
-/* ================= Culinarium Hannover (28.10.2026) =================
-   Keine Zierecken aus dem Vorbild; statt der Raute das «x» von «Momo x Rudi» (einziges Ornament des Kleids, wie --cu-x in kleid/wildside.css).
-   Die Plakatzeile «A UNiQUE EXPERiENCE BY MOMO X RUDI» so geschrieben wie auf den Plakaten (kleines i bleibt) und höchstens .06em gesperrt:
-   ab .1em zerfällt sie in der PDF Buchstabe für Buchstabe (Master Abschnitt 9, Versalien-Sperrung). */
+/* ================= Walk on the Wild Side Hannover (31.10.2026) =================
+   Keine Zierecken aus dem Vorbild, kein Zierzeichen; die Linie trägt in der Mitte einen kleinen Gold-Punkt (wie der Knauf des Eckschilds).
+   Die Unterzeile («Eure Nachbarschafts-Mixology-Bar») höchstens .06em gesperrt: ab .1em zerfällt sie in der PDF Buchstabe für Buchstabe (Master Abschnitt 9). */
 .ecke{display:none}
 .linie.raute i::after{/* kein «x» als Zierzeichen (Robert 30.10.2026): ein kleiner Punkt in Kerze */width:5mm;height:2.4mm;transform:translate(-50%,-50%);border-radius:0;box-shadow:none;
   background:#faf5e9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 12'%3E%3Ccircle cx='12' cy='6' r='1.6' fill='%23d5af63'/%3E%3C/svg%3E") center/contain no-repeat}
 .zeile{text-transform:none;letter-spacing:.06em;padding-left:0}
 
-/* Gestaltung 28.10.2026: Kopf = Rudis Original; Folgeseiten kleiner; Linie mit dem «x» aus der Schrift statt Raute */
+/* Kopf = die Wortmarke der Bar in Rot; Folgeseiten kleiner; Linie mit dem Gold-Punkt statt Raute */
 .zeichen{margin:0 auto 1mm}
-.kleinkopf img{width:30mm}
+.kleinkopf img{width:10mm}
 .linie.raute i::after{content:'';width:1.6mm;height:1.6mm;transform:translate(-50%,-50%);border-radius:50%;background:#cb9c3d;box-shadow:none;padding:0}   /* Robert 29.10.: kein x, Punkt auf der Mitte */
 .linie.raute i{background:linear-gradient(90deg,rgba(203,156,61,0),rgba(203,156,61,.75) 18%,rgba(203,156,61,.75) calc(50% - 3.4mm),transparent calc(50% - 3.4mm),transparent calc(50% + 3.4mm),rgba(203,156,61,.75) calc(50% + 3.4mm),rgba(203,156,61,.75) 82%,rgba(203,156,61,0))}

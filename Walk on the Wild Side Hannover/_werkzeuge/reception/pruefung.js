@@ -9,7 +9,7 @@
     'ÜBERSETZEN': ['«Die Übersetzung kam unvollständig zurück.»', 'Der Assistent hat nicht alles übersetzt.', '«Neu übersetzen» klicken.'],
     PDF: ['Das PDF liess sich nicht setzen.', 'Auf dem Rechner fehlt node mit Chromium (Playwright), oder der Satz brauchte über zwei Minuten.', 'Oben unter «Brief» nachsehen, was fehlt. Bis dahin: Brief kopieren oder ⌘P im Brief.'],
     KONFLIKT: ['«Dieser Brief wurde inzwischen in einem anderen Fenster geändert.»', 'Zwei Fenster (oder zwei Personen) haben denselben Brief offen; das andere hat zuerst gespeichert. Nichts wurde überschrieben.', 'Eigene Änderung kopieren, «Neu laden», ansehen, was das andere Fenster geändert hat, und die eigene Änderung wieder einsetzen.'],
-    FORMULAR: ['«Bitte Name und E-Mail oder Telefon angeben.»', 'In der Warteliste der Website fehlte der Kontakt.', 'Nichts zu tun; der Gast sieht den Hinweis selbst.'],
+    FORMULAR: ['«Bitte Name und E-Mail oder Telefon angeben.»', 'Im Formular der Website (Reservieren oder Feiern) fehlte der Kontakt.', 'Nichts zu tun; der Gast sieht den Hinweis selbst.'],
     EINGABE: ['Eine Eingabe wurde abgewiesen.', 'Feld leer, zu lang oder in falscher Form.', 'Den Hinweis in der Meldung lesen und das Feld anpassen.'],
     NAME: ['«Bitte deinen Namen eintragen.»', 'Jede Änderung am Wissen trägt einen Namen, damit man später weiss, wer was eingetragen hat.', 'Vor- und Nachname eintragen; der Name bleibt im Browser gemerkt.'],
     WISSEN: ['Eine Änderung am Wissen ging nicht.', 'Die Zeile oder der Eintrag gibt es nicht mehr, oder der Text fehlt.', 'Neu laden und noch einmal versuchen.'],

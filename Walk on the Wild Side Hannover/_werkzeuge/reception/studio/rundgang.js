@@ -1,4 +1,4 @@
-/* Rundgang von La Réception · Culinarium Hannover (28.10.2026, Kopie aus der Taverne zum Schäfli), Kopie aus dem Schlössli, dort aus dem Ruedihus; dort übernommen aus La Réception des Carlton-Europe (studio/rundgang.js dort, nur gelesen), dort aus dem Grand Beau-Rivage; Schlüssel des Hauses «rundgang-rh-…». */
+/* Rundgang des Gästebuchs · Walk on the Wild Side Hannover (31.10.2026, Kopie aus dem Culinarium, dort aus der Taverne zum Schäfli, dem Schlössli und dem Ruedihus). */
 /* Kurzer Rundgang beim ersten Öffnen eines Werkzeugs (Robert 16.10.2026: «einmal ganz kurz zeigen, hier kannst du das machen,
    da das, damit man weiss, wo man gelandet ist»). Ein Lichtkegel liegt auf dem echten Bedienelement, daneben eine Karte mit
    zwei, drei Sätzen. Je Werkzeug und Browser einmal; wieder aufrufen über «Kurzer Rundgang» im Rand oder ?rundgang.
@@ -46,9 +46,9 @@
     ] },
     reception: { name: (window.WO ? WO.name('gaeste') : 'Werkzeug'), schritte: [
       { ziel: ['#ansicht .wo-sb'], titel: 'Das ist ' + (window.WO ? WO.name('gaeste') : 'das Werkzeug').replace(/^Das /, 'das ').replace(/^Der /, 'der ').replace(/^Die /, 'die '),
-        text: 'Hier landet, was Gäste über deine Website schreiben: wer auf die Warteliste für den nächsten Abend will, wer einen Platz an der Tafel sucht, wer die lange Tafel für eine eigene Feier möchte. Dazu die Fragen, die Gäste dem Chat auf der Website stellen.' },
+        text: 'Hier landet, was Gäste über deine Website schreiben: wer einen Platz an der Theke reservieren will, wer ein Privates Dinner plant, wer auf der Empore oder in der ganzen Bar feiern möchte. Dazu die Fragen, die Gäste dem Chat auf der Website stellen.' },
       { ziel: ['#ansicht .wo-aufg', '#rand [data-gehe="eingang"]', '#ansicht .re-spalte'], titel: 'Anfragen, die direkt bei dir landen',   /* Tor 3: die Anfragen, nicht die Begrüssung */
-        text: 'Jede Anfrage steht hier mit Tag, Plätzen und Wünschen für die Küche, dazu ein Hinweis, wenn der Termin noch offen ist oder mehr Gäste kommen wollen, als die Tafel Plätze hat. Den Brief im Ton deiner Website schreibt der Assistent auf Knopfdruck.' },
+        text: 'Jede Anfrage steht hier mit Abend, Plätzen und Wünschen, dazu ein Hinweis, wenn die Bar an dem Tag sonst zu ist oder die Zahl der Gäste nicht zum Format passt. Den Brief im Ton deiner Website schreibt der Assistent auf Knopfdruck.' },
       { ziel: ['#rand [data-gehe="gefragt"]', '#rand .wo-rand__g', '#rand'], titel: 'Was Gäste wissen wollen',   /* Tor 3: «Das wurde gefragt» */
         text: 'Alle Fragen an den Chat. Du siehst, was Gäste beschäftigt und wo der Chat noch eine Antwort von dir braucht.' },
       { ziel: ['#k-probe', '#kopf .wo-kopf__r', '#rand [data-probe]'], oben: true, titel: 'Probier es selbst',
@@ -56,11 +56,11 @@
     ] },
     savoir: { name: 'Das weiss der Chat', schritte: [
       { ziel: ['#ansicht .wo-sb'], titel: 'Das Gedächtnis des Chats',
-        text: 'Hier steht alles, was der Chat über Culinarium weiss. Er antwortet nur mit dem, was hier steht, und erfindet nichts dazu.' },
+        text: 'Hier steht alles, was der Chat über die Bar weiss. Er antwortet nur mit dem, was hier steht, und erfindet nichts dazu.' },
       { ziel: ['#w-ein'], titel: 'Neues lernt er von dir',
-        text: 'Der Termin des nächsten Abends, ein neues Plakat, ein Dirty-Chicken-Tag: hineinschreiben oder als Link und Datei dazulegen, und der Chat weiss es.' },
+        text: 'Der nächste DJ-Abend, ein neues Plakat, ein Konzert am Donnerstag: hineinschreiben oder als Link und Datei dazulegen, und der Chat weiss es.' },
       { ziel: ['#ansicht .sb-idx'], titel: 'Geordnet wie das Haus',
-        text: 'Der Abend, Tickets, Drinks und Küche, die Bar, der Weg: alles auf einen Blick und jederzeit zu berichtigen.' },
+        text: 'Zeiten, Drinks und Preise, Programm, Feiern, der Weg: alles auf einen Blick und jederzeit zu berichtigen.' },
       { ziel: ['#ansicht .wi-probe'], titel: 'Vorher ausprobieren',
         text: 'Frag wie ein Gast und sieh, was der Chat antworten würde.' }
     ] },

@@ -71,7 +71,7 @@
 
 /* Die Anfrage: dunkle Karte, Name in Creme, Angaben mit Goldlinien */
 .re-d{position:relative;padding:30px clamp(22px,2.6vw,40px) 26px;border-radius:26px;background:var(--insel);box-shadow:var(--insel-s);color:#e9dcc8;overflow:hidden}
-.re-d::before{content:'';position:absolute;inset:0;background:url('../../assets/zeichen/tapete-dunkel.svg') 0 0/168px 168px;opacity:.16;pointer-events:none}
+.re-d::before{content:'';position:absolute;inset:0;background:linear-gradient(transparent,transparent);opacity:.16;pointer-events:none}
 .re-d>*{position:relative}
 .re-d__kopf{display:flex;align-items:center;gap:20px}
 .re-d__n{flex:1;min-width:0}

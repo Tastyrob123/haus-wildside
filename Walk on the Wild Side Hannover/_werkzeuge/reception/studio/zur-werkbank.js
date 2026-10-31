@@ -1,9 +1,9 @@
-/* Der Gastgeber (La Réception) · Landgasthof Ruedihus: übernommen aus La Réception des Carlton-Europe (dort aus control/zur-werkbank.js, Le Bureau), dort aus dem Grand Beau-Rivage (assets/js/zur-werkbank.js dort, 16.10.2026), Schlüssel des Hauses «rh-wb». */
+/* Das Gästebuch · Walk on the Wild Side Hannover (Kopie aus dem Culinarium, dort aus dem Ruedihus): übernommen aus La Réception des Carlton-Europe (dort aus control/zur-werkbank.js, Le Bureau), dort aus dem Grand Beau-Rivage (assets/js/zur-werkbank.js dort, 16.10.2026), Schlüssel des Hauses «rh-wb». */
 /* «Zur Werkbank» (Robert 12.10.2026): ein Knopf unten links auf jeder Seite, die man aus der Werkbank heraus öffnet.
    Eine Datei für alle Seiten, sie bringt Aussehen und Verhalten selbst mit (eigener Schattenbaum, kein Stylesheet der Seite greift hinein).
 
    In der Werkbank selbst (werkbank/, werkbank/en/ …) zeigt sie nichts, sondern hängt an jeden Link, der hinausführt, die Herkunft:
-   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «rh-wb»), nimmt den Zusatz wieder aus der Adresse
+   ?wb=<Sprache>.<Abschnitt>. Die Zielseite merkt sich das für die Sitzung (sessionStorage «wildside-wb»), nimmt den Zusatz wieder aus der Adresse
    und zeigt den Knopf, auch über alle weiteren Klicks. Ohne diese Herkunft erscheint nichts: ein Gast des Hauses sieht den Knopf nie.
    Eingebettet (Laptop der Werkbank, Vorschau in Le Bureau) erscheint er auch nicht.
 
@@ -49,7 +49,7 @@
   var OHNE_SPRACHE = /^(control|_?werkzeuge|studio|mission-control|reception|marke|maison|imprimerie|mails|werkbank\/anleitung)\/|^mappe/;   // gibt es nur deutsch: Sprache der Werkbank gilt
   var FREMD_ZIEL = /^https:\/\/drucksachen-studio\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):8963$/;   // L’Imprimerie auf eigener Adresse
   var HERKUNFT = /^https:\/\/[a-z0-9-]+\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):\d{2,5}$/;   // von wo eine Werkbank herkommen darf
-  var SCHL = 'culinarium-wb';
+  var SCHL = 'wildside-wb';   // Schlüssel des Hauses, gleich in allen Werkzeugen
 
   var tag = document.currentScript || document.querySelector('script[src*="zur-werkbank.js"]');
   var src = tag && tag.src || '';
