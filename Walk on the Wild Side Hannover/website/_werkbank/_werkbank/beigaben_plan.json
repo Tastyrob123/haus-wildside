@@ -1,39 +1,6 @@
 {
  "druck": [
   {
-   "id": "menuerolle",
-   "name": "Menü-Rolle mit Banderole",
-   "format": "Banderole 210 × 40 mm, Menü A5 quer zum Rollen",
-   "vorschau": [
-    [
-     "rolle-band",
-     1
-    ],
-    [
-     "rolle-menue",
-     2
-    ]
-   ],
-   "satz": "Das Menü liegt gerollt auf jedem Teller, eine Banderole mit dem C hält es zusammen. Der Gast öffnet es selbst.",
-   "seiten": 2,
-   "karton": [
-    [
-     "rolle-band",
-     90,
-     "Banderole"
-    ],
-    [
-     "rolle-menue",
-     70,
-     "Menü zum Rollen"
-    ]
-   ],
-   "titel": [
-    "Das Menü",
-    "als Rolle."
-   ]
-  },
-  {
    "id": "streichholz",
    "name": "Streichholzbriefchen",
    "format": "Briefchen 50 × 110 mm (gefalzt 50 × 40)",
@@ -43,7 +10,7 @@
      1
     ]
    ],
-   "satz": "Für die Kerzen an der Tafel, zum Mitnehmen nach dem Abend. Außen das C auf der Nacht.",
+   "satz": "Für die Kerzen auf den Tischen und zum Mitnehmen nach dem letzten Drink. Außen die Wortmarke im Goldrahmen, innen die Zeiten und die Ecke.",
    "seiten": 1,
    "karton": [
     [
@@ -60,19 +27,19 @@
   {
    "id": "faehnchen",
    "name": "Drink-Fähnchen",
-   "format": "Fähnchen 30 × 20 mm, gefalzt am Stäbchen",
+   "format": "Fähnchen 60 × 20 mm, in der Mitte am Stäbchen gefalzt",
    "vorschau": [
     [
      "faehnchen",
      1
     ]
    ],
-   "satz": "Am Stäbchen im Glas: welche Technik in diesem Drink steckt. Drei Fähnchen für Momos drei Techniken.",
+   "satz": "Am Stäbchen im Glas: welche von Momos drei Techniken in diesem Drink steckt. Milk Washing, Fat Washing, Enzyme.",
    "seiten": 1,
    "karton": [
     [
      "faehnchen",
-     80,
+     66,
      ""
     ]
    ],
@@ -82,69 +49,84 @@
    ]
   },
   {
-   "id": "rezept",
-   "name": "Rezeptkarte eines Drinks",
+   "id": "wahlkarte",
+   "name": "Was magst du?",
    "format": "A6 quer, 148 × 105 mm",
    "vorschau": [
     [
-     "rezept",
+     "wahlkarte",
      1
     ]
    ],
-   "satz": "Die Technik eines Drinks in vier Schritten, zum Nachmachen zu Hause. Momo erklärt sie am Tisch.",
+   "satz": "Momos drei Fragen zum Ankreuzen: der Geschmack, das Glas, was hinein soll. Für volle Abende, wenn die Theke dicht ist, und für alle, die erst überlegen wollen.",
    "seiten": 1,
    "karton": [
     [
-     "rezept",
-     50,
+     "wahlkarte",
+     84,
      ""
     ]
    ],
    "titel": [
-    "Ein Rezept",
-    "zum Mitnehmen."
+    "Was",
+    "magst du?"
    ]
   },
   {
-   "id": "gutschein",
-   "name": "Gutschein für einen Abend",
-   "format": "DL quer, 210 × 99 mm, zwei Seiten, Umschlag DL",
+   "id": "serviette",
+   "name": "Cocktailservietten",
+   "format": "Serviette 125 × 125 mm, gefaltet 62,5 mm",
    "vorschau": [
     [
-     "gs-vorn",
+     "serviette",
      1
     ],
     [
-     "gs-hinten",
+     "serviette-n",
      2
-    ],
-    [
-     "gs-umschlag",
-     3
     ]
    ],
-   "satz": "Vorne Rudis Plakat ganz mit seiner Wortmarke und «Ein Abend an der langen Tafel», hinten für wen, von wem, wie viele, gültig bis und die Nummer. Wert und Gültigkeit stehen in Klammern, bis das Haus sie festlegt. Dazu ein Umschlag auf der Nacht, auch als PDF zum Verschicken.",
-   "seiten": 3,
+   "satz": "Zwei Fassungen: Creme mit der roten Wortmarke, die Nacht der Bar mit Goldrahmen und Momos Satz. Gefaltet liegt das Motiv oben.",
+   "seiten": 2,
    "karton": [
     [
-     "gs-vorn",
-     90,
-     "Vorderseite"
+     "serviette",
+     46,
+     "Creme"
     ],
     [
-     "gs-hinten",
-     90,
-     "Rückseite"
-    ],
-    [
-     "gs-umschlag",
-     90,
-     "Umschlag"
+     "serviette-n",
+     46,
+     "Nacht"
     ]
    ],
    "titel": [
-    "Einen Abend",
-    "verschenken."
+    "Eine Serviette",
+    "unter dem Glas."
+   ]
+  },
+  {
+   "id": "windlicht",
+   "name": "Banderole fürs Windlicht",
+   "format": "Banderole 210 × 50 mm",
+   "vorschau": [
+    [
+     "windlicht",
+     1
+    ]
+   ],
+   "satz": "Um das Glas mit der Kerze gelegt, auf jedem Tisch unter dem Gewölbe: die Wortmarke links und rechts, dazwischen der Titel der Seite «Das Haus».",
+   "seiten": 1,
+   "karton": [
+    [
+     "windlicht",
+     92,
+     ""
+    ]
+   ],
+   "titel": [
+    "Ein Band",
+    "ums Windlicht."
    ]
   }
  ]

@@ -108,9 +108,54 @@ def welle_html(b, h, farbe_a, farbe_b, x=0, y=0, **k):
 
 
 def birnen(x, y, text, groesse, farbe=GOLD, anker='middle', sperr=.12):
-    """NEGRONI wie die Glühbirnen-Schrift über der Vitrine: Buchstaben aus Lichtpunkten (gestrichelte Kontur, runde Enden)."""
-    return (f'<text x="{x}" y="{y}" text-anchor="{anker}" font-family="Hanken Grotesk" font-weight="600" font-size="{groesse}" letter-spacing="{sperr}em" '
-            f'fill="{farbe}" fill-opacity=".22" stroke="{farbe}" stroke-width="{groesse * .075:.2f}" stroke-linecap="round" stroke-dasharray="0 {groesse * .14:.2f}">{text}</text>')
+    """NEGRONI wie die Glühbirnen-Schrift über der Vitrine: Buchstaben aus Lichtpunkten. Die Punkte sitzen auf den Konturen von Hanken SemiBold
+    (fontTools), als Kreise gezeichnet, damit im PDF keine Schrift als «Type 3» landet (gestrichelte Schrift würde Chromium so schreiben)."""
+    from fontTools.ttLib import TTFont
+    from fontTools.pens.basePen import BasePen
+    f = TTFont(os.path.join(ROOT, '_werkbank', 'fonts', 'HankenGrotesk-SemiBold.ttf'))
+    gs, cmap, upm = f.getGlyphSet(), f.getBestCmap(), f['head'].unitsPerEm
+    s = groesse / upm
+
+    class Pen(BasePen):
+        def __init__(self):
+            super().__init__(gs); self.wege, self.akt = [], []
+        def _moveTo(self, p):
+            self.akt = [p]; self.wege.append(self.akt)
+        def _lineTo(self, p):
+            self.akt.append(p)
+        def _curveToOne(self, a, b, c):
+            p0 = self.akt[-1]
+            for i in range(1, 9):
+                t_ = i / 8
+                self.akt.append(tuple((1 - t_) ** 3 * p0[k] + 3 * (1 - t_) ** 2 * t_ * a[k] + 3 * (1 - t_) * t_ ** 2 * b[k] + t_ ** 3 * c[k] for k in (0, 1)))
+        def _qCurveToOne(self, a, b):
+            p0 = self.akt[-1]
+            for i in range(1, 9):
+                t_ = i / 8
+                self.akt.append(tuple((1 - t_) ** 2 * p0[k] + 2 * (1 - t_) * t_ * a[k] + t_ ** 2 * b[k] for k in (0, 1)))
+        def _closePath(self):
+            if self.akt: self.akt.append(self.akt[0])
+
+    namen = [cmap[ord(c)] for c in text]
+    breite = sum(gs[n].width for n in namen) * s + sperr * groesse * (len(text) - 1)
+    x0 = x - (breite / 2 if anker == 'middle' else 0)
+    abstand, r = groesse * .13, groesse * .042
+    punkte = ''
+    for n in namen:
+        pen = Pen(); gs[n].draw(pen)
+        for weg in pen.wege:
+            rest = 0
+            for (ax, ay), (bx, by) in zip(weg, weg[1:]):
+                l = math.hypot(bx - ax, by - ay) * s
+                d = rest
+                while d <= l:
+                    q = d / l if l else 0
+                    px, py = x0 + (ax + (bx - ax) * q) * s, y - (ay + (by - ay) * q) * s
+                    punkte += f'<circle cx="{px:.2f}" cy="{py:.2f}" r="{r:.2f}"/>'
+                    d += abstand
+                rest = d - l
+        x0 += gs[n].width * s + sperr * groesse
+    return f'<g fill="{farbe}">{punkte}</g>'
 
 
 def stuecke(*_):

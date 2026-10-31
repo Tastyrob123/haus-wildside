@@ -226,14 +226,6 @@
   },
   {
    "id": "s29",
-   "b": 40,
-   "h": 40,
-   "name": "Die Wortmarke mit rotem Ring",
-   "satz": "Rund, 40 mm.",
-   "form": "M20.0 0A20.0 20.0 0 1 1 19.99 0Z"
-  },
-  {
-   "id": "s30",
    "b": 52,
    "h": 70,
    "name": "Unter dieser Decke.",
@@ -241,7 +233,7 @@
    "form": "M0 26.0A26.0 26.0 0 0 1 52 26.0V67A3 3 0 0 1 49 70H3A3 3 0 0 1 0 67Z"
   },
   {
-   "id": "s31",
+   "id": "s30",
    "b": 56,
    "h": 56,
    "name": "Samstags legt jemand auf.",

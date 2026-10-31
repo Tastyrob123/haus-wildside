@@ -70,7 +70,7 @@ def hinten(k, rand=0):
     satz = (k['satz'][:1].upper() + k['satz'][1:]) if k['satz'] else ''
     links = (f'<div class="abs" style="left:{r + 10}mm;top:{r + 12}mm;width:54mm;bottom:{r + 12}mm;display:flex;flex-direction:column;justify-content:space-between">'
              f'<div>{et(oben, 1.8, GOLDT, .16)}<div style="height:3mm"></div>'
-             f'<div style="font-family:Prata;font-size:6.2mm;line-height:1.14;color:{TINTE}">{e(k["name"])}</div><div style="height:2.6mm"></div>'
+             f'<div style="font-family:Prata;font-size:6.2mm;line-height:1.14;color:{TINTE}">{e(k["name"]).rsplit(" ", 1)[0] + chr(160) + e(k["name"]).rsplit(" ", 1)[1] if " " in k["name"] else e(k["name"])}</div><div style="height:2.6mm"></div>'
              f'<i style="display:block;width:8mm;height:.35mm;background:{linie}"></i><div style="height:2.6mm"></div>'
              + (f'<div style="font-family:\'Hanken Grotesk\';font-size:3mm;line-height:1.45;color:{TINTE}">{e(unten)}</div>' if unten else '')
              + (f'<div style="font-family:\'Hanken Grotesk\';font-size:2.8mm;line-height:1.45;color:{LEISE}">{e(satz)}</div>' if satz else '')
