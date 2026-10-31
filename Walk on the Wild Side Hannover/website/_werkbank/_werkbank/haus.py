@@ -366,8 +366,11 @@ b,strong{font-weight:500}
 :root{--sans:'Hanken Grotesk','Sans Ersatz',system-ui,-apple-system,'Segoe UI',sans-serif!important;--mono:'Hanken Etikett','Hanken Grotesk',ui-monospace,monospace!important}
 /* Schrift mittig (Abnahme-Tor 31.10.: Prata-Ziffern im Register 2 px zu hoch, «01» im Befund 1 px zu weit links) */
 .rgc-p{padding:9px 10px 5px!important}
-.ins-m{padding:8.7px 16px 7.3px!important}
-.sbf-z{padding:7.7px 9px 6.3px!important}.sbf-z[data-i="0"]{padding-left:10px!important;padding-right:8px!important}   /* «01»: die Eins steht in Hanken weiter links */
+/* Reiter der Werkzeuge und Ziffern der Befunde: symmetrisch, letzter Buchstabe ohne Sperrung (ins-mitte-js), Chromium setzt Hanken 0,7 px höher als WebKit */
+.ins-m{padding:8px 16px!important}
+.ins-m .tm-l,.sbf-z .tm-l{letter-spacing:0}
+@supports not (font:-apple-system-body){.ins-m>.tm{position:relative;top:.7px}.sbf-b .sbf-z>.tm{top:.7px!important}}
+.sbf-z{padding:7px 9px!important;letter-spacing:0!important}.sbf-z[data-i="0"]{padding-left:9.5px!important;padding-right:8.5px!important}   /* «01»: die Eins steht in Hanken weiter links (Chromium und WebKit gleich) */
 @media(max-width:600px){.auftakt__fuss .runter i{display:none}.auftakt__fuss .runter{gap:0}}   /* am Handy alle Zeilen auf einer Kante */
 /* Die Wortmarke als Zeichen steht in ihrem Rot (Rot nur als Punkt: Logo), nie in Gold */
 svg:has(> use[href="#hz"]){color:#f0323f!important;fill:#f0323f}
@@ -460,6 +463,11 @@ def nach_bau():
             '#papier img.frei{filter:none!important;box-shadow:none!important}</style>')
     if 'id="sb-ruhe"' not in t:
         t = t.replace('</head>', ruhe + '</head>', 1)
+    if 'id="ins-mitte-js"' not in t:   # Reiter der Werkzeuge: Text in .tm, letzter Buchstabe in .tm-l ohne Sperrung (wie knopf_mitte.js)
+        t = t.replace('</body>', "<script id=\"ins-mitte-js\">(function(){function m(){document.querySelectorAll('.ins-m').forEach(function(k){var t=k.firstChild;"
+                      "if(!t||t.nodeType!==3||!t.textContent.trim())return;var x=t.textContent.replace(/\\s+$/,'');var s=document.createElement('span');s.className='tm';"
+                      "s.textContent=x.slice(0,-1);var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);s.appendChild(l);k.replaceChild(s,t)})}"
+                      "m();addEventListener('load',m)})();</script></body>", 1)
     if 'id="brett-hilfe"' not in t:
         t = t.replace('</body>', BRETT_HILFE + '</body>', 1)
     if 'id="cv-hoehen"' not in t:
