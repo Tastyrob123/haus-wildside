@@ -340,3 +340,7 @@ body.ma{margin:0;background:var(--raum);color:var(--tinte);font:400 17px/1.62 va
 
 /* 30.10.2026: in der Reihe der fünf Fenster (breite Schirme) passt jeder Name in eine Zeile, die Titel stehen auf einer Grundlinie (1000 px: 21 px). Am Handy (Bänder) gilt die normale Grösse. */
 @media (min-width:801px){.m-f5__t b{font-size:min(clamp(1.5rem,2.1vw,2.15rem),calc((20vw - 3px - 2 * clamp(16px,1.8vw,26px)) / 9.6))}}
+/* schmal (31.10.2026): «Besuchszahlen als Beispiel» steht als eigene Zeile unter dem Datum, nie zerrissen und nie ein «·» am Zeilenende */
+@media (max-width:700px){.m-f5 .rw-kopf__bsp:not([hidden]){display:block}.m-f5 .rw-kopf__bsp .rw-pkt{display:none}}
+/* schmal: die Zeile der Bar für sich, darunter Adresse · Ort (nie ein «·» am Zeilenende) */
+@media (max-width:800px){.m-f5__ort>span:first-child{display:block}.m-f5__ort>span:first-child+.rw-pkt{display:none}}
