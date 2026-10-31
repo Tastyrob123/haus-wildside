@@ -66,6 +66,23 @@ def nachbau():
         if os.path.exists(os.path.join(HIER, o, 'index.html')):
             nach(o)
             zeile_ganz.anwenden(os.path.join(HIER, o)); text_mitte.anwenden(os.path.join(HIER, o))
+            knopf_mitte(os.path.join(HIER, o, 'index.html'))
+
+
+def knopf_mitte(pfad):
+    """Block aus knopf_mitte.css und knopf_mitte.js nach dem Block von text_mitte.py einfügen (wiederholbar). Für werkbank/ übernehmbar:
+    dieselbe Funktion auf jede Seite anwenden, nachdem text_mitte.anwenden gelaufen ist."""
+    w = os.path.dirname(os.path.abspath(__file__))
+    css = open(os.path.join(w, 'knopf_mitte.css'), encoding='utf-8').read()
+    js = open(os.path.join(w, 'knopf_mitte.js'), encoding='utf-8').read().strip()
+    # Handy: Seitentitel (Prata 40 px) etwas kleiner, «Eure Unterlagen,» lief in WebKit bei 390 bis 394 px (Tor in Actions, 31.10.2026)
+    css += '\n@media(max-width:480px){h1.t1{font-size:min(40px,9.4vw)}}'
+    block = f'<style id="knopf-mitte">{css}</style><script id="knopf-mitte-js">{js}</script>'
+    t = open(pfad, encoding='utf-8').read()
+    t = re.sub(r'<style id="knopf-mitte">.*?</style><script id="knopf-mitte-js">.*?</script>', '', t, flags=re.S)
+    i = t.rfind('</body>')
+    t = t[:i] + block + t[i:]
+    open(pfad, 'w', encoding='utf-8').write(t)
 
 
 if __name__ == '__main__':

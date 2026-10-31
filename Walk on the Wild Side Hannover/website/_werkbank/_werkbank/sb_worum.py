@@ -19,7 +19,7 @@ BELEGT = [  # Zeile, Wert, Quelle; nur, was auf der Website steht
     ('Offen', 'Do 19–1, Fr/Sa 19–2 Uhr', 'Zeiten der Bar', True),
     ('Donnerstag', 'ab und zu live, ohne Eintritt', 'Seite Programm', True),
     ('Privates Dinner', '10 bis 14 Gäste', 'Seite Feiern', _beleg(r'Privates Dinner 10 bis 14 Gäste')),
-    ('Die lange Tafel', '10 bis 20 Gäste, 4 Stunden', 'Seite Feiern', _beleg(r'10–20 Gäste an der Tafel')),
+    ('Die lange Tafel', '10 bis 20 Gäste, vier Stunden', 'Seite Feiern', _beleg(r'10–20 Gäste an der Tafel')),
     ('Die ganze Bar', 'ab 30 Gästen, 49, 59 oder 79 € pro Person', 'Seite Feiern', _beleg(r'49 € pro Person') and _beleg(r'79 € pro Person')),
 ]
 
@@ -71,7 +71,7 @@ setze('feste',nf.format(v.mehr));setze('lunch',nf.format(v.frei));setze('fest',n
 
 
 CSS = '''
-.vt-feld__w--text{font-family:var(--serif);font-size:1.18rem;line-height:1.3;text-align:right;max-width:58%}
+.vt-feld__w--text{font-family:var(--serif);font-size:1.18rem;line-height:1.3;text-align:right;max-width:58%;border:0!important;box-shadow:none!important;background:none!important;padding:0!important;width:auto!important;min-width:0!important;height:auto!important;text-wrap:balance}
 /* Blatt des Rechenbeispiels (Bauart des Blatts aus rh_angebot.py des Ruedihus) */
 .ag-blatt{position:relative;padding:clamp(28px,3.8vw,64px);border-radius:clamp(22px,2.4vw,34px);background:linear-gradient(rgba(251,252,254,.94),rgba(251,252,254,.94)),var(--weiss) url(../assets/zeichen/tapete-hell.svg) 50% 0/224px auto;color:var(--tinte);box-shadow:inset 0 1px 0 #fff,0 50px 70px -46px rgba(0,0,0,.95)}
 .ag-blatt::before,.ag-blatt::after{content:"";position:absolute;pointer-events:none;border:1px solid rgba(15,54,120,.4);border-radius:clamp(14px,1.6vw,24px);inset:clamp(10px,1.1vw,16px)}

@@ -40,16 +40,16 @@ def impressum_html(css, zurueck, zurueck_text='Zurück zur Übersicht'):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Impressum und Datenschutz · Tasty Studios</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#16151a">
+<meta name="theme-color" content="#130e0d">
 <style>
-:root{{--nacht:#16151a;--papier:#faf4f4;--tinte:#26242d;--taupe:#5b5763;--gold:#ef7649}}
-@font-face{{font-family:'Petrona SB';src:url({css}assets/schrift/fraunces-soft.woff2) format('woff2');font-weight:100 900;font-display:swap}}
-@font-face{{font-family:'Instrument CE';src:url({css}assets/schrift/instrument.woff2) format('woff2');font-display:swap}}
-html{{background:var(--papier)}}body{{margin:0;color:var(--tinte);font:400 17px/1.62 'Instrument CE',system-ui,sans-serif}}
+:root{{--nacht:#130e0d;--papier:#f2e9dc;--tinte:#1b1512;--taupe:#6e5d4e;--gold:#d8b264}}
+@font-face{{font-family:'Prata';src:url({css}assets/schrift/prata-latin.woff2) format('woff2');font-weight:400;font-display:swap}}
+@font-face{{font-family:'Hanken Grotesk';src:url({css}assets/schrift/hanken-latin.woff2) format('woff2');font-weight:100 900;font-display:swap}}
+html{{background:var(--papier)}}body{{margin:0;color:var(--tinte);font:400 17px/1.62 'Hanken Grotesk',system-ui,sans-serif}}
 .ip-s{{max-width:760px;margin:0 auto;padding:clamp(40px,7vw,96px) 16px clamp(60px,9vw,120px)}}
 .ip-z{{display:inline-flex;gap:8px;color:var(--taupe);text-decoration:none;font-size:15px}}.ip-z:hover{{color:var(--tinte)}}
-h1{{font:340 clamp(2rem,4vw,3.2rem)/1.1 'Petrona SB',Georgia,serif;margin:28px 0 8px}}
-h2{{font:340 clamp(1.3rem,2.2vw,1.7rem)/1.2 'Petrona SB',Georgia,serif;margin:44px 0 6px;padding-top:28px;border-top:1px solid rgba(38,36,45,.16)}}
+h1{{font:400 clamp(2rem,4vw,3.2rem)/1.1 'Prata',Georgia,serif;margin:28px 0 8px}}
+h2{{font:400 clamp(1.3rem,2.2vw,1.7rem)/1.2 'Prata',Georgia,serif;margin:44px 0 6px;padding-top:28px;border-top:1px solid rgba(38,36,45,.16)}}
 .ip-k{{margin:22px 0 2px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe)}}
 p{{margin:0}}a{{color:var(--tinte)}}
 </style>
