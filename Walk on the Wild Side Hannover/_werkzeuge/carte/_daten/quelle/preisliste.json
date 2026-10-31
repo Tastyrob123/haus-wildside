@@ -10,7 +10,7 @@
  "foto": "flaschen",
  "titel": "Die Preise der Bar",
  "datum": "Für Feiern im Wild Side",
- "mit": "Geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr",
+ "mit": "Für die lange Tafel und die ganze Bar",
  "rubriken": [
   {
    "titel": "Was ein Drink kostet",
@@ -88,6 +88,6 @@
    ]
   }
  ],
- "hinweis": "Alle Preise in Euro, brutto. Ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.",
+ "hinweis": "Pauschale und Budget: geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr, ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. Alle Preise in Euro, brutto. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.",
  "quelle": "website/unter.py PREISE, PAUSCHALE und tafel() (Angebotsmappe der Bar, _quelle/angebote-pdf/Wild Side Angebote.pdf)"
 }

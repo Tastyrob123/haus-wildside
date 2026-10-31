@@ -1,4 +1,4 @@
-/* Das Gästebuch · Walk on the Wild Side Hannover (Kopie aus dem Culinarium, dort aus dem Ruedihus): übernommen aus La Réception des Carlton-Europe (dort aus control/zur-werkbank.js, Le Bureau), dort aus dem Grand Beau-Rivage (assets/js/zur-werkbank.js dort, 16.10.2026), Schlüssel des Hauses «rh-wb». */
+/* Das Gästebuch · Walk on the Wild Side Hannover (Kopie aus dem Culinarium, dort aus dem Ruedihus): übernommen aus La Réception des Carlton-Europe (dort aus control/zur-werkbank.js, Le Bureau), dort aus dem Stamm-Hauses (assets/js/zur-werkbank.js dort, 16.10.2026), Schlüssel des Hauses «rh-wb». */
 /* «Zur Werkbank» (Robert 12.10.2026): ein Knopf unten links auf jeder Seite, die man aus der Werkbank heraus öffnet.
    Eine Datei für alle Seiten, sie bringt Aussehen und Verhalten selbst mit (eigener Schattenbaum, kein Stylesheet der Seite greift hinein).
 

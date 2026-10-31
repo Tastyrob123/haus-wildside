@@ -259,7 +259,7 @@ class H(BaseHTTPRequestHandler):
             if rel == '_werkzeuge/reception/api/anfragen':   # Eingang öffnen: zuerst abholen, was online liegt
                 reception.online_abholen()
             if rel.startswith('_werkzeuge/reception/api/'):
-                gast()   # lädt den Chat einmal und hängt La Réception und das Gedächtnis an (wie serve.py des Grand Beau-Rivage)
+                gast()   # lädt den Chat einmal und hängt La Réception und das Gedächtnis an (wie serve.py des Stamm-Hauses)
                 return self.sende(200, reception.get(rel.rsplit('/', 1)[1], parse_qs(u.query)))
             if rel == 'api/gast':
                 g = gast()

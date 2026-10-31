@@ -488,7 +488,7 @@
     bau(c, i, seite) {
       const u = c.w, H = c.h, quadrat = H < u * 1.12;
       grund(c, seite, 'creme', null);
-      const rx = +Math.max(u * .052, DS.SICHER + 1).toFixed(2), fussH = +Math.max(u * .075, 7).toFixed(2);
+      const rx = +Math.max(u * .052, DS.SICHER + 1).toFixed(2), fussH = +Math.max(u * .085, 8).toFixed(2);
       const fy0 = rx, fy1 = +(H - rx * .55 - fussH).toFixed(2), fw = u - 2 * rx, fh = fy1 - fy0;
       foto(c, i.grundbild || 'welle-1', rx, fy0, fw, fh, { slot: 'grundbild' });
       if (i.bild) {
@@ -507,10 +507,10 @@
       if (zt) plMass(c, zt, wr * .92, t.gr * .3);
       plMass(c, dt, wr * .95, t.gr * .78);
       let yb = fy1 - fh * .045;
-      if (zt) { zt.y = +(yb - zt.h).toFixed(2); c.el.push(zt); yb = zt.y + zt.h * .06; }
+      if (zt) { zt.y = +(yb - zt.h).toFixed(2); c.el.push(zt); yb = zt.y - zt.gr * .12; }
       dt.y = +(yb - dt.h).toFixed(2); c.el.push(dt);
       if (i.name) { const n = tx(c, 'plakat', i.name, fw * .4, t.gr * .2, blau, { slot: 'name', ausr: 'r', x: xr - fw * .4, zeile: 1.12 }); n.y = +(fy0 + fh * (quadrat ? .5 : .47)).toFixed(2); c.el.push(n); }
-      const Z = c.M.zeichen2 || c.M.zeichen, zh = fussH * .92, zw = +(zh / Z.verh).toFixed(2);
+      const Z = c.M.zeichen2 || c.M.zeichen, zh = fussH * .96, zw = +(zh / Z.verh).toFixed(2);
       c.el.push({ id: neueId(), typ: 'zeichen', z: 2, x: rx, y: +(fy1 + (H - fy1 - zh) / 2).toFixed(2), w: zw, farbe: 'logo', deck: 1 });
       const f = tx(c, 'mono', i.fuss || WS_FUSS, fw * .5, Math.max(1.5, u * .016), blau, { slot: 'fuss', ausr: 'r', x: rx + fw * .5, zeile: 1.45, sperr: .08 });
       f.y = +(fy1 + (H - fy1 - f.h) / 2).toFixed(2); c.el.push(f);
@@ -530,22 +530,25 @@
       const x0 = rx, items = [];
       const Z = c.M.zeichen2 || c.M.zeichen, zh = +(u * (quadrat ? .1 : .12)).toFixed(2), zw = +(zh / Z.verh).toFixed(2);
       const kopf = { id: neueId(), typ: 'zeichen', z: 2, x: x0, y: 0, w: zw, farbe: 'logo', deck: 1 };
-      const zeile = tx(c, 'kapitale', i.ueber || c.M.zeile || '', bw, Math.max(1.6, u * .022), farbe, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1.2, sperr: .02 });
-      const titel = tx(c, 'kapitale', i.titel || '', bw, Math.max(3, u * .052), farbe, { slot: 'titel', ausr: 'l', x: x0, zeile: 1.08, sperr: .01 });
-      plMass(c, titel, bw, u * .056);
+      const fk = Object.keys(DS.FORMATE).find(k => DS.FORMATE[k].b === c.w && DS.FORMATE[k].h === c.h) || 'a4h';
+      const MIN = { a3h: [15, 6, 2.6], a4h: [15, 6, 2.6], a5h: [11, 4.2, 2], a6h: [6, 2.1, 1.5], q148: [6, 2.1, 1.5], story: [7, 3.6, 1.6], insta: [7, 3.6, 1.6], ig11: [7, 3.6, 1.6] }[fk] || [6, 2.1, 1.5];
+      const zeile = tx(c, 'mono', i.ueber || c.M.zeile || '', bw, Math.max(MIN[2], u * .022), farbe, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1.2, sperr: .06 });
+      const titel = tx(c, 'kapitale', i.titel || '', bw, Math.max(MIN[0], u * .072), farbe, { slot: 'titel', ausr: 'l', x: x0, zeile: 1.08, sperr: .01 });
+      plMass(c, titel, bw, Math.max(MIN[0] * 1.05, u * .08));
+      if (titel.gr < MIN[0]) { titel.gr = MIN[0]; titel.h = DS.mess(titel).h; }
       const datum = [i.tag, i.zeit].filter(Boolean).join('    ');
-      const d = datum ? tx(c, 'kursiv', datum, bw, Math.max(1.8, u * .024), farbe, { slot: 'tag', ausr: 'l', x: x0, zeile: 1.3 }) : null;
-      const t = i.text ? tx(c, 'text', i.text, bw * .92, Math.max(1.8, u * .023), farbe, { slot: 'text', ausr: 'l', x: x0, zeile: 1.42 }) : null;
-      const f = tx(c, 'kursiv', i.fuss || WS_FUSS, bw * .6, Math.max(1.6, u * .02), farbe, { slot: 'fuss', ausr: 'l', x: x0, zeile: 1.35 });
-      const s = c.s8, liste = sauber([kopf, u * .022, zeile, u * .04, titel, u * .032, d, d && u * .024, t]);
+      const d = datum ? tx(c, 'kursiv', datum, bw, Math.max(MIN[1], u * .032), farbe, { slot: 'tag', ausr: 'l', x: x0, zeile: 1.3 }) : null;
+      const t = i.text ? tx(c, 'text', i.text, bw * .96, Math.max(MIN[1], u * .031), farbe, { slot: 'text', ausr: 'l', x: x0, zeile: 1.38 }) : null;
+      const f = tx(c, 'mono', i.fuss || WS_FUSS, bw * .7, Math.max(MIN[2], u * .02), farbe, { slot: 'fuss', ausr: 'l', x: x0, zeile: 1.45, sperr: .06 });
+      const liste = sauber([kopf, u * .022, zeile, u * .03, titel, u * .03, d, d && u * .02, t]);
       const yF = H - rx - f.h; f.y = +yF.toFixed(2);
-      const yTop = rx + bh + u * .045, frei = yF - u * .04 - yTop;
-      foto(c, i.bild, rx, rx, bw, bh);
-      stapelMitte(c, liste, yTop, yTop + frei);
-      // die Gruppe beginnt oben unter dem Bild wie auf den echten Plakaten, nicht in der Mitte
-      const grp = c.el.filter(e => liste.includes(e)); const dy = Math.min(...grp.map(e => e.y)) - yTop;
-      if (dy > u * .02) grp.forEach(e => { e.y = +(e.y - dy * .55).toFixed(2); });
-      c.el.push(f); void s;
+      const luft = u * .045, Hg = stapelHoehe(c, liste);
+      let bhx = Math.min(bh, yF - luft * 2 - Hg - rx);   // reicht der Platz nicht, wird das Bild flacher, nie die Schrift kleiner
+      bhx = Math.max(bhx, Math.min(bh, H * .3));
+      foto(c, i.bild, rx, rx, bw, +bhx.toFixed(2));
+      const yTop = rx + bhx + luft;
+      stapelMitte(c, liste, yTop, Math.min(yF - luft, yTop + Hg));
+      c.el.push(f);
     },
   };
   V.plakatganz = {

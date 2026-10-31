@@ -225,6 +225,7 @@ function kopfLeiste() {
   /* Die Stube: lokal _werkzeuge/maison/, online /maison/ (Werkzeug-Master Abschnitt 9); das Kleid kennt nur den lokalen Weg */
   $$('#kopf a.wo-kn--rund').forEach(a => { if (/\/_?werkzeuge\/maison\/$|\/maison\/$/.test(a.getAttribute('href') || '')) { a.href = STUBE; a.dataset.tip = STUBE_N; a.setAttribute('aria-label', STUBE_N + ', zu allen Werkzeugen'); } });
   $$('#kopf [data-gehe]').forEach(a => a.onclick = e => { e.preventDefault(); gehe(a.dataset.gehe); });
+  $$('#kopf a.wo-kn').forEach(a => { const t = (a.textContent || '').trim(); if (t && !a.getAttribute('aria-label')) a.setAttribute('aria-label', t); });   /* registre-haus.css blendet die Beschriftung des runden Knopfs aus, der Name bleibt */
 }
 function rand() {
   const u = S.d.summe, an = S.ansicht, gruppen = [];
@@ -425,7 +426,7 @@ function start() {
   const d = S.d, u = d.summe, v = d.vorher;
   const gruss = /[?&]gruss=tag/.test(location.search) ? 'Guten Tag.' : WO.gruss();
   const satzS = 'Wer deine Website besucht hat: woher die Gäste kommen, welche Seiten sie ansehen, wie lange sie bleiben und wer einen Tisch reservieren oder feiern will. Gezählt ohne Cookies, nie mit Namen.';
-  let aus = kopf(esc(NAME + ' · ' + WO.haus.name), `${gruss}<br><em>Wer war zu Besuch?</em>`, satzS, zeitraum(), chipsStart(d)) + hinweisBeispiel();   // einheitliches Startbild der Werkzeuge (WO.startbild)
+  let aus = kopf(esc(NAME + ' · ' + WO.haus.name), `${gruss}<br><em>Wer war <span class="nw">zu Besuch?</span></em>`, satzS, zeitraum(), chipsStart(d)) + hinweisBeispiel();   // einheitliches Startbild der Werkzeuge (WO.startbild)
   if (d.leer) return aus + leer();
   const viele = d.je_tag.length, schritt = viele <= 7 ? 1 : viele <= 31 ? 5 : 15;
   aus += `<div class="zahlen">
@@ -457,7 +458,7 @@ function start() {
 
 function besuche() {
   const d = S.d;
-  let aus = kopf('Besuche', 'Jeder Besuch, <em>Schritt für Schritt.</em>', 'Wann jemand kam, von wo, was er sich ansah und wie lange. Ohne Namen: ein Besuch ist ein Ort, eine Uhrzeit und ein Weg durch die Seiten.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Besuche', 'Jeder Besuch, <em>Schritt <span class="nw">für Schritt.</span></em>', 'Wann jemand kam, von wo, was er sich ansah und wie lange. Ohne Namen: ein Besuch ist ein Ort, eine Uhrzeit und ein Weg durch die Seiten.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const alle = d.besuche.map((b, i) => [b, i]);
   const nach = { alle: alle, buchung: alle.filter(x => x[0].buchung), anfrage: alle.filter(x => x[0].anfrage), kontakt: alle.filter(x => x[0].kontakt), handy: alle.filter(x => x[0].g === 'handy') };
@@ -502,7 +503,7 @@ function detail(b) {
 
 function herkunft() {
   const d = S.d;
-  let aus = kopf('Herkunft', 'Woher <em>die Gäste kommen.</em>', 'Land und Ort nennt die Verbindung, die Sprache ist die des Browsers (die Website gibt es auf Deutsch). «Gekommen über» zeigt, von welcher Website der Gast zu dir fand.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Herkunft', 'Woher <em>die <span class="nw">Gäste kommen.</span></em>', 'Land und Ort nennt die Verbindung, die Sprache ist die des Browsers (die Website gibt es auf Deutsch). «Gekommen über» zeigt, von welcher Website der Gast zu dir fand.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const de = d.laender.find(x => x.k === 'DE'), ges = d.summe.besuche;
   const region = (d.orte || []).filter(x => x.l === 'DE' && HANNOVER.includes(x.k)).reduce((a, x) => a + x.n, 0);
@@ -527,7 +528,7 @@ function herkunft() {
 
 function zeit() {
   const d = S.d;
-  let aus = kopf('Zeit', 'Wann Gäste <em>vorbeischauen.</em>', 'Zu welcher Stunde und an welchem Wochentag die Besuche beginnen. Uhrzeit in Hannover. So siehst du, wann sich ein Beitrag zum nächsten DJ-Abend oder Konzert am ehesten lohnt.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Zeit', 'Wann <span class="nw">Gäste <em>vorbeischauen.</em></span>', 'Zu welcher Stunde und an welchem Wochentag die Besuche beginnen. Uhrzeit in Hannover. So siehst du, wann sich ein Beitrag zum nächsten DJ-Abend oder Konzert am ehesten lohnt.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const st = d.stunden, wt = d.raster.map(r => r.reduce((a, x) => a + x, 0));
   const spitze = st.indexOf(Math.max(...st)), wspitze = wt.indexOf(Math.max(...wt));
@@ -559,7 +560,7 @@ function raster(r) {
 
 function seiten() {
   const d = S.d;
-  let aus = kopf('Seiten', 'Was sich Gäste <em>ansehen.</em>', 'Jede Seite der Website mit der Zahl der Aufrufe, der Zeit, die Gäste im Schnitt darauf bleiben, und wie oft sie auf dem Weg eines Gastes lag, der danach einen Tisch reservierte oder eine Feier anfragte.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Seiten', 'Was sich <span class="nw">Gäste <em>ansehen.</em></span>', 'Jede Seite der Website mit der Zahl der Aufrufe, der Zeit, die Gäste im Schnitt darauf bleiben, und wie oft sie auf dem Weg eines Gastes lag, der danach einen Tisch reservierte oder eine Feier anfragte.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const max = Math.max(1, ...d.seiten.map(x => x.n));
   aus += `<section class="blatt tabelle">
@@ -573,7 +574,7 @@ function seiten() {
 
 function verlauf() {
   const d = S.d, u = d.summe, v = d.vorher;
-  let aus = kopf('Verlauf', 'Wie sich die Besuche <em>entwickeln.</em>', `Die letzten ${n(d.tage)} Tage neben den ${n(d.tage)} Tagen davor (${esc(datum(v.von))} bis ${esc(datum(v.bis))}). Hell im Hintergrund: derselbe Tag im Zeitraum davor.`, zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Verlauf', 'Wie sich die <span class="nw">Besuche <em>entwickeln.</em></span>', `Die letzten ${n(d.tage)} Tage neben den ${n(d.tage)} Tagen davor (${esc(datum(v.von))} bis ${esc(datum(v.bis))}). Hell im Hintergrund: derselbe Tag im Zeitraum davor.`, zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const viele = d.je_tag.length, schritt = viele <= 7 ? 1 : viele <= 31 ? 5 : 15;
   const zeile = (name, a, b, fmt = n, umgekehrt) => `<div class="vz"><span>${name}</span><b>${a == null ? '–' : fmt(a)}</b><em>${b == null ? '–' : fmt(b)}</em>${vergleich(a, b, umgekehrt)}</div>`;
@@ -612,7 +613,7 @@ function linie(werte) {   /* kleine Verlaufslinie als SVG, Fläche darunter in K
 
 function buchung() {
   const d = S.d, w = d.werte;
-  let aus = kopf('Zum Tisch', 'Wie oft ein Besuch <em>an den Tisch führt.</em>', 'Einen Tisch reservierst du auf «Besuch», eine Feier fragst du auf «Feiern» an. Hier steht, wie oft ein Besuch dahin führt, welche Seiten der Gast vorher ansah, dazu der Knopf «Reservieren», Anruf in der Bar, Instagram, der Weg zu Culinarium und Dirty Chicken und die Karte nach Linden.', zeitraum()) + hinweisBeispiel();
+  let aus = kopf('Zum Tisch', 'Wie oft ein Besuch <em>an den <span class="nw">Tisch führt.</span></em>', 'Einen Tisch reservierst du auf «Besuch», eine Feier fragst du auf «Feiern» an. Hier steht, wie oft ein Besuch dahin führt, welche Seiten der Gast vorher ansah, dazu der Knopf «Reservieren», Anruf in der Bar, Instagram, der Weg zu Culinarium und Dirty Chicken und die Karte nach Linden.', zeitraum()) + hinweisBeispiel();
   if (d.leer) return aus + leer();
   const k = (key, name, text, ohne) => { const x = w[key] || {}, da = x.von > 0;
     return `<div class="wert blatt"><span class="mono">${name}</span><b>${da ? prozent(x.anteil) : '–'}</b><p>${da ? text(x) : ohne}</p></div>`; };
@@ -649,7 +650,7 @@ function trichter(w) {
 }
 
 function zaehlung() {
-  return kopf('So wird gezählt', `Was ${KLEIN} <em>weiss und was nicht.</em>`, NAME + ' zählt so wenig wie möglich und so viel wie nötig, damit du siehst, was deine Website leistet. Nach der Datenschutz-Grundverordnung\u00a0(DSGVO).') + `
+  return kopf('So wird gezählt', `Was ${KLEIN} <em>weiss und <span class="nw">was nicht.</span></em>`, NAME + ' zählt so wenig wie möglich und so viel wie nötig, damit du siehst, was deine Website leistet. Nach der Datenschutz-Grundverordnung\u00a0(DSGVO).') + `
   <div class="zwei">
     <section class="blatt liste-txt"><h3>Was gezählt wird</h3><ul>
       <li>Welche Seite geöffnet wurde, wann und wie lange sie im Vordergrund war</li>

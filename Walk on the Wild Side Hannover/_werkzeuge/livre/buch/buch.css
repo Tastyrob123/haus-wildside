@@ -282,3 +282,4 @@ button{font:inherit;color:inherit}
 .vg--wild .wm{aspect-ratio:1296/1600;object-fit:contain}
 img{height:auto}
 .plakat img{height:auto;aspect-ratio:3/4}
+@media (max-width:900px){.titel__wm{width:min(170px,44vw)}}

@@ -1,23 +1,22 @@
 #!/usr/bin/env python3
-"""La Carte · Culinarium Hannover — Prüfungen der Karten (28.10.2026, Muster: pruefe.py der Tafel im Schäfli). Für «wortlaut» muss der Server laufen
-(python3 _werkzeuge/carte/serve.py, Port aus CARTE_PORT, Standard 9083).
+"""Die Pairing-Karte · Walk on the Wild Side Hannover — Prüfungen der Karten (31.10.2026, Vorlage: pruefe.py der Pairing-Karte im Culinarium, dort
+aus der Tafel im Schäfli). Für «wortlaut» muss der Server laufen (python3 _werkzeuge/carte/serve.py, Port aus CARTE_PORT, Standard 9083).
 
-    python3 _werkzeuge/carte/pruefe.py rund        Satz von La Carte = Satz des Projekts, Zeichen für Zeichen (pruef/rund.js, Grundstand)
+    python3 _werkzeuge/carte/pruefe.py rund        Satz der Pairing-Karte = Satz des Projekts, Zeichen für Zeichen (satz.js dokument() gegen satz/u-<karte>.html, Grundstand)
     python3 _werkzeuge/carte/pruefe.py wortlaut    jede Karte aus dem veröffentlichten Stand drucken und Wort für Wort gegen ihre Quelle prüfen
-                                                   (_daten/quelle/<karte>.json, aus der Website gelesen): gezählt je Wort, Gross und Klein gleich;
-                                                   erlaubt dazu nur, was der Satz bewusst gibt (Fusszeile, «Ticket», «Upgrade nach Wahl», Titel «Menü»)
-    python3 _werkzeuge/carte/pruefe.py website     die Karten des Werkzeugs in der Form der Website (web.py zeilen) = die Menükarten, die die
-                                                   Website heute zeigt (website/abende_info.py KARTEN): Gang, Teller, Drink, Upgrade, Preis je Abend
+                                                   (_daten/quelle/<karte>.json): gezählt je Wort, Gross und Klein gleich; erlaubt dazu nur, was der Satz
+                                                   bewusst gibt (Fusszeile, «Je Drink», das Datum von «Die Karte»)
+    python3 _werkzeuge/carte/pruefe.py website     die Karten des Werkzeugs in der Form der Website (web.py zeilen) = ihre Quelle (Rubriken, Namen, Zutaten, Preise)
     python3 _werkzeuge/carte/pruefe.py schrift     jede PDF: nur feste Schnitte (pdffonts, kein Type 3), keine zerfallenen Wörter (pdftotext)
     python3 _werkzeuge/carte/pruefe.py alles
-Nur gelesen wird website/; geschrieben wird nur nach pruef/aus/."""
+Nur gelesen wird website/; geschrieben wird nur nach /tmp/pairing-karte-pruef/."""
 import collections, json, os, re, subprocess, sys, unicodedata
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HIER)
-AUS = os.path.join(HIER, 'pruef', 'aus')
+AUS = os.environ.get('CARTE_PRUEF_AUS') or '/tmp/pairing-karte-pruef'
 QD = os.path.join(HIER, '_daten', 'quelle')
-KARTEN = sorted(f[:-5] for f in os.listdir(QD) if f.endswith('.json') and f.startswith('abend'))
+KARTEN = sorted(f[:-5] for f in os.listdir(QD) if f.endswith('.json') and f != 'pruefung.json')
 
 
 def druck(z, art='stand'):
@@ -29,9 +28,22 @@ def druck(z, art='stand'):
     return p
 
 
+RUND_JS = r"""
+const fs = require('fs'), path = require('path'), S = require(path.join(process.argv[1], 'satz', 'satz.js'));
+S.zeichen(JSON.parse(fs.readFileSync(path.join(process.argv[1], 'satz', 'zeichen.json'), 'utf8')));
+let ok = true;
+for (const f of fs.readdirSync(path.join(process.argv[1], 'satz')).filter(f => /^u-.*\.html$/.test(f))) {
+  const z = f.slice(2, -5), d = JSON.parse(fs.readFileSync(path.join(process.argv[1], '_daten', 'grundstand', z + '.json'), 'utf8'));
+  const gleich = S.dokument(d) === fs.readFileSync(path.join(process.argv[1], 'satz', f), 'utf8');
+  ok = ok && gleich; console.log(z + ': ' + (gleich ? 'Zeichen für Zeichen gleich' : 'ANDERS'));
+}
+process.exit(ok ? 0 : 1);
+"""
+
+
 def rund():
-    r = subprocess.run(['node', os.path.join(HIER, 'pruef', 'rund.js')], capture_output=True, text=True)
-    print(r.stdout.strip())
+    r = subprocess.run(['node', '-e', RUND_JS, HIER], capture_output=True, text=True)
+    print((r.stdout + r.stderr).strip())
     return r.returncode == 0
 
 
@@ -56,11 +68,9 @@ def _soll(q):
     if q['art'] == 'abend':
         a = q['abend']
         t = a['tage'][0]
-        teile = [v for k, v in t.items() if k not in ('zu', 'hinweis') and v] + [a['preis'], a['mit'], a['motto'] or a['titel'] or 'Menü']
-        teile += ['Amuse Bouche' if t['amuse'] or t['amuse_z'] else '', 'Apéritif' if t['aperitif'] or t['aperitif_z'] else '', 'Vorspeise' if t['vorspeise'] or t['vorspeise_z'] else '',
-                  'Hauptgang' if t['haupt'] or t['haupt_z'] else '', 'Dessert' if t['dessert'] or t['dessert_z'] else '', 'Absacker' if t['absacker'] or t['absacker_z'] else '']
+        teile = [v for k, v in t.items() if k not in ('zu', 'hinweis') and v] + [a['preis'], a['mit'], a['motto'] or a['titel'] or 'Die Karte', a['zusatz'], a['hinweis']]
         return ' '.join(teile)
-    teile = [x for g in q['gaenge'] for x in (g['gang'], g['teller'], g['drink'])] + q['upgrade'] + [q['preis'], q['mit'], q['motto'] or q['titel'] or 'Menü', q['datum']]
+    teile = [q['titel'], q['datum'], q['mit'], q.get('hinweis', '')] + [x for r in q['rubriken'] for x in [r['titel']] + [y for e in r['eintraege'] for y in (e['name'], e['zutaten'], e['preis'])]]
     return ' '.join(teile)
 
 
@@ -72,12 +82,10 @@ def wortlaut():
         p = druck(z)
         neu = _w(_text(p))
         alt = _w(_soll(q))
-        dazu_ok = _w(satz_bau.FUSS + ' Ticket')
-        if q.get('upgrade'):
-            dazu_ok += _w('Upgrade nach Wahl')
-        if q['art'] == 'abend':   # Datum setzt der Satz aus dem Tag («Fr 21. und Sa 22. Februar 2025»), dazu der Satz zum Beispiel
-            dazu_ok += _w('Fr Sa und Januar Februar März April Mai Juni Juli August September Oktober November Dezember 0123456789 2024 2025 2026 2027 '
-                          + ' '.join(str(i) for i in range(1, 32)) + ' Beispiel bitte die Gänge des nächsten Abends eintragen')
+        dazu_ok = _w(satz_bau.FUSS + ' Je Drink')
+        if q['art'] == 'abend':   # das Datum setzt der Satz aus dem Tag («Ab Samstag, 14. Februar 2026»)
+            dazu_ok += _w('Ab Montag Dienstag Mittwoch Donnerstag Freitag Samstag Sonntag Januar Februar März April Mai Juni Juli August September Oktober November Dezember 2025 2026 2027 2028 '
+                          + ' '.join(str(i) for i in range(1, 32)))
         fehlt, dazu = alt - neu, (neu - alt) - collections.Counter({k: 10 ** 6 for k in dazu_ok})
         gleich = not fehlt and not dazu
         ok = ok and gleich
@@ -90,24 +98,21 @@ def wortlaut():
 
 
 def website():
-    """Daten von La Carte (Stand) in der Form der Website = KARTEN der Website. Teller: « / » der Karte = « | » der Website (Trennzeichen, satz_bau.rudi)."""
-    import carte, web, karten_lesen
-    karten, _info, _abende, _t = karten_lesen.quellen()
+    """Daten der Pairing-Karte (Stand) in der Form der Website (web.py zeilen) = Quelle (karten_lesen.py); Zutaten: « · » der Karte = « | » der Quelle."""
+    import carte, web
     ok = True
-    n = lambda t: re.sub(r'\s*[|/]\s*', ' / ', (t or '').strip())
+    n = lambda t: re.sub(r'\s*[|·]\s*', ' | ', (t or '').strip())
     for z in carte.ZIELE:
         if z == 'abend':
             continue
         s = carte._lies(carte._p('stand', z))
-        ist = web.zeilen(s)
-        k = karten[s['key']]
-        soll_g = [(g, n(t), d) for g, t, d in k['gaenge']]
-        ist_g = [(g, n(t), d) for g, t, d in ist['gaenge']]
+        ist = [(r['titel'], [(e['name'], n(e['zutaten']), e['preis']) for e in r['eintraege']]) for r in web.zeilen(s)['rubriken']]
         q = json.load(open(os.path.join(QD, z + '.json'), encoding='utf-8'))
-        gleich = soll_g == ist_g and list(k.get('upgrade') or []) == ist['upgrade'] and ist['preis'] == q['preis']
+        soll = [(r['titel'], [(e['name'], n(e['zutaten']), e['preis']) for e in r['eintraege']]) for r in q['rubriken']]
+        gleich = ist == soll
         ok = ok and gleich
-        print(f'{z} ({s["key"]}): ' + ('wie die Website' if gleich else f'ANDERS: {ist_g} ≠ {soll_g} oder Preis {ist["preis"]} ≠ {q["preis"]}'))
-    print('\nKarten gegen die Website:', 'gleich' if ok else 'ABWEICHUNGEN')
+        print(f'{z}: ' + ('wie die Quelle' if gleich else f'ANDERS: {ist} ≠ {soll}'))
+    print('\nKarten gegen die Quelle:', 'gleich' if ok else 'ABWEICHUNGEN')
     return ok
 
 

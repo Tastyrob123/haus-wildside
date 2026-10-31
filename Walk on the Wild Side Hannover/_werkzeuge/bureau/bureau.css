@@ -206,3 +206,7 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
   .ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child{grid-column:span 2}
   .ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:last-child .wo-ag__b{aspect-ratio:32/9}
 }
+/* Sieben Bereiche: der siebte steht nie allein schmal in seiner Reihe (dort zerfiel sein kurzer Satz Wort für Wort), er nimmt die ganze Reihe */
+@media (min-width:1101px){
+  .ws.wo-app .wo-ber:has(>.wo-bk:nth-child(7):last-child)>.wo-bk:last-child{grid-column:1 / -1!important}
+}

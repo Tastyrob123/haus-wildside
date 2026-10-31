@@ -636,7 +636,7 @@
     c0.el.forEach(el => { if (el.typ === 'linie' && el.w > .072 * Math.min(c0.w, c0.h) && el.w < .2 * Math.min(c0.w, c0.h)) { const m = el.x + el.w / 2; el.w = +(.07 * Math.min(c0.w, c0.h)).toFixed(2); el.x = +(m - el.w / 2).toFixed(2); } if (el.typ !== 'text') return; if (el.rolle === 'titel' && versalZeile(el.text)) { el.rolle = 'kapitale'; el.sperr = .06; el.gr = +(el.gr * .7).toFixed(2); el.h = DS.mess(el).h; } const m = mindest(c, el.rolle, el.slot); if (el.gr < m) { el.gr = +m.toFixed(2); el.h = DS.mess(el).h; } });
     void seite;
   }
-  for (const k of ['plakatrueck']) {
+  for (const k of []) {   // Wild Side: das weisse Plakat setzt seine Grade selbst nach den Mindestgraden (vorlagen.js)
     const alt = V[k] || ALT[k]; if (!alt) continue;
     V[k] = Object.assign({}, alt, { bau(c, i, seite) { alt.bau(c, i, seite); mindestNach(c, seite); } });
   }

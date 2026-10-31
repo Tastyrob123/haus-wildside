@@ -229,3 +229,20 @@
 .rg .besuch__n small .besuch__r{display:flex;flex-wrap:wrap;margin-left:-14px;clip-path:inset(-6px -6px -6px 14px)}
 .rg .besuch__n small .besuch__s{white-space:nowrap}
 .rg .besuch__n small .besuch__s::before{content:'·';display:inline-block;width:14px;text-align:center}
+
+/* ===== Nachtbau Wild Side, schnelle Prüfung 31.10.2026 ===== */
+/* Titel: die letzten zwei Wörter bleiben zusammen (Kriterium 7, kein Wort allein in der letzten Zeile) */
+.rg .nw{white-space:nowrap}
+/* Etiketten in Hanken Grotesk, unter ihrem vollen Namen (Stilblatt des Hauses: Versalien nur in Hanken Grotesk); dieselbe Datei wie das Kleid */
+@font-face{font-family:'Hanken Grotesk';font-weight:300 700;font-display:swap;src:url('/assets/schrift/hanken-latin.woff2') format('woff2')}
+.rg{--mono:'Hanken Grotesk','Hanken','Helvetica Neue',Arial,system-ui,sans-serif}
+/* Titel der Ansicht im Kopf: Prata ist höher als die Zeile, die Unterlängen lagen ausserhalb des Kastens (gemessen 31.10.2026); die Titel sind kurz und kürzen nie */
+.rg #kopf .wo-kopf__mitte b{overflow:visible;text-overflow:clip}
+/* Runder Knopf «Website ansehen» (Kopf bei schmalen Fenstern): die versteckte Beschriftung lag ausserhalb des Knopfs; der Name steht als aria-label */
+.rg #kopf .wo-kn--gold.wo-kn--klein>span{display:none}
+/* Handy: die Wahlen über der Besuchsliste, Schrift optisch mittig (gemessen 1,1 px zu hoch) */
+@media (max-width:600px){.rg .wahl3.wo-seg.wahl3--filter button{padding:12px 14px 10px}}
+/* Karte eines Besuchs: der Ort bricht nie mitten im Wort («Hildeshei-m»); in schmalen Karten steht das Etikett über dem Ort */
+.rg .besuchsblatt h2{overflow-wrap:normal;word-break:normal;hyphens:manual}
+.rg .besuchsblatt__kopf{flex-wrap:wrap-reverse}
+.rg .besuchsblatt__kopf>div{flex:1 1 220px;min-width:0}

@@ -1,17 +1,17 @@
-"""La Carte · Culinarium Hannover — die Karten als Daten für die Website (28.10.2026, C27 in der Form des Hauses).
+"""Die Pairing-Karte · Walk on the Wild Side Hannover — die Karten als Daten für die Website (31.10.2026, C27 in der Form des Hauses;
+Vorlage: web.py der Pairing-Karte im Culinarium).
 
-Die Website zeigt die Menükarte jedes Abends im Fenster des Abends (abende.html, gebaut aus website/abende_info.py KARTEN: je Gang Gang, Teller, Drink).
-Dieses Modul liest aus jeder veröffentlichten Karte genau diese Form (zeilen) und schreibt alle Karten nach karten.json:
+Die Website zeigt die Klassiker (drinks.html) und die Preise der Bar (tafel.html), gebaut aus website/unter.py (klassiker, PREISE, PAUSCHALE).
+Dieses Modul liest aus jeder veröffentlichten Karte ihre Rubriken mit Name, Zutaten und Preis (zeilen) und schreibt alle Karten nach karten.json:
   _werkzeuge/carte/anschluss/karten.json          immer nach dem Veröffentlichen (im Revier des Werkzeugs, ändert die Website nicht)
   _kette/10-kartenmacher/karten.json               Paket der Kette, Station 10 (python3 _werkzeuge/carte/web.py kette)
-Schlüssel = Plakat-ID des Abends wie in website/bau.py ABENDE («ohne-2023» für den Abend ohne Plakat). Die Website liest die Datei erst, wenn ihr
-Bau sie vor abende_info.KARTEN nimmt (Einbau in website/, nicht Revier von La Carte; bis dahin bleibt jede Seite Byte für Byte, wie sie ist).
-Der nächste Abend steht unter «naechster» mit Datum, ohne Plakat-ID (die gibt es erst mit dem Beitrag des Hauses)."""
+Die Website liest die Datei erst, wenn ihr Bau sie vor unter.py nimmt (Einbau in website/, nicht Revier der Pairing-Karte; bis dahin bleibt
+jede Seite Byte für Byte, wie sie ist). «Die Karte» (wechselnd, Momos Drinks) steht unter «karte» mit dem Abend, von dem an sie gilt."""
 import datetime, json, os, re, sys
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 HAUS = os.path.dirname(os.path.dirname(HIER))
-GAENGE = [('amuse', 'Amuse Bouche'), ('aperitif', 'Apéritif'), ('vorspeise', 'Vorspeise'), ('haupt', 'Hauptgang'), ('dessert', 'Dessert'), ('absacker', 'Absacker')]
+GAENGE = [('d1', 'Drink 1'), ('d2', 'Drink 2'), ('d3', 'Drink 3'), ('d4', 'Drink 4'), ('d5', 'Drink 5'), ('d6', 'Drink 6')]
 
 
 def _klasse(n):
@@ -28,16 +28,16 @@ def _text(x):
 
 
 def zeilen(d):
-    """Gänge der Karte als [(Gang, Teller, Drink)], Preis, Upgrade; ausgeblendete Einträge zählen nicht."""
+    """Rubriken der Karte als [{titel, eintraege: [{name, zutaten, preis}]}]; ausgeblendete Einträge zählen nicht."""
     if d.get('art') == 'abend':
         w = d['abend']
         t = w['tage'][0]
-        g = [(name, t.get(k, '').strip(), t.get(k + '_z', '').strip()) for k, name in GAENGE if (t.get(k, '') + t.get(k + '_z', '')).strip()]
-        return dict(ab=w['ab'], titel=w.get('titel', ''), motto=w.get('motto', ''), mit=w.get('mit', ''), preis=w.get('preis', ''), gaenge=g, upgrade=[],
+        e = [dict(name=t.get(k, '').strip(), zutaten=t.get(k + '_z', '').strip(), preis='') for k, _ in GAENGE if (t.get(k, '') + t.get(k + '_z', '')).strip()]
+        return dict(ab=w['ab'], titel=w.get('motto') or w.get('titel', ''), mit=w.get('mit', ''), preis=w.get('preis', ''), rubriken=[dict(titel=w.get('mit', ''), eintraege=e)],
                     beispiel=bool(w.get('beispiel')))
-    gaenge, upgrade, preis = [], [], ''
+    rubriken = []
 
-    def geh(x, im_upgrade=False):
+    def geh(x):
         if not isinstance(x, dict) or x.get('aus'):
             return
         if x.get('fn') == 'seite':
@@ -47,44 +47,38 @@ def zeilen(d):
         if x.get('fn') != 'el':
             return
         kl = _klasse(x)
-        nonlocal preis
-        if 'sb-upg' in kl:
-            for y in x['a'][2:]:
-                geh(y, True)
+        if 'sb-h' in kl:
+            rubriken.append(dict(titel=_text(x).strip(), eintraege=[]))
             return
         if 'sb-m' in kl:
-            f = {k: '' for k in ('sb-gn', 'sb-n', 'sb-dr')}
+            f = {k: '' for k in ('sb-n', 'sb-dr', 'sb-mp')}
             for y in x['a'][2:]:
                 if isinstance(y, dict) and y.get('fn') == 'el' and not y.get('aus'):
                     for k in f:
                         if k in _klasse(y):
                             f[k] = _text(y).strip()
-            if im_upgrade:
-                upgrade.append(f['sb-n'])
-            else:
-                gaenge.append((f['sb-gn'], f['sb-n'], f['sb-dr']))
-            return
-        if 'sb-p' in kl:
-            preis = ' '.join(_text(y).strip() for y in x['a'][2:][0]['a'][2:] if isinstance(y, dict) and y['a'][0] in ('b', 'small'))
+            if not rubriken:
+                rubriken.append(dict(titel='', eintraege=[]))
+            rubriken[-1]['eintraege'].append(dict(name=f['sb-n'], zutaten=f['sb-dr'], preis=f['sb-mp']))
             return
         for y in x['a'][2:]:
-            geh(y, im_upgrade)
+            geh(y)
     for s in d.get('seiten', []):
         geh(s)
-    return dict(ab=d.get('ab', ''), preis=preis, gaenge=gaenge, upgrade=upgrade)
+    return dict(rubriken=rubriken)
 
 
 def karten_json(K, ziele, lies):
     """Alle veröffentlichten Karten (Stand) in der Form der Website."""
-    aus = {'stand': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'quelle': 'La Carte (_werkzeuge/carte/_daten/stand/)', 'abende': {}, 'naechster': None}
+    aus = {'stand': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'quelle': 'Die Pairing-Karte (_werkzeuge/carte/_daten/stand/)', 'karten': {}, 'karte': None}
     for z in ziele:
         s = lies(os.path.join(K, 'stand', z + '.json'))
         if not s:
             continue
         if z == 'abend':
-            aus['naechster'] = zeilen(s)
+            aus['karte'] = zeilen(s)
         else:
-            aus['abende'][s.get('key') or z] = dict(zeilen(s), karte=z, name=s.get('name', ''))
+            aus['karten'][z] = dict(zeilen(s), name=s.get('name', ''))
     return aus
 
 
@@ -109,7 +103,7 @@ if __name__ == '__main__':
     d = karten_json(carte.K, carte.ZIELE, carte._lies)
     if sys.argv[1:] == ['kette']:
         schreib(os.path.join(HAUS, '_kette', '10-kartenmacher', 'karten.json'), d)
-        print('_kette/10-kartenmacher/karten.json:', len(d['abende']), 'Abende + nächster Abend')
+        print('_kette/10-kartenmacher/karten.json:', len(d['karten']), 'Karten + Die Karte')
     else:
         schreib(os.path.join(HIER, 'anschluss', 'karten.json'), d)
-        print('anschluss/karten.json:', len(d['abende']), 'Abende + nächster Abend')
+        print('anschluss/karten.json:', len(d['karten']), 'Karten + Die Karte')

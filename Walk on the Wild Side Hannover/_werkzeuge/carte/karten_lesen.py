@@ -94,12 +94,13 @@ def lesen():
                              'website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine')
     pausch = [(k + ' · ' + t, z, p + ',00') for k, t, z, p in q['pauschale']]
     aus['preisliste'] = karte('preisliste', 'Die Preise der Bar', 'Für Feiern und Gesellschaften', 'Weitere Karten', 'flaschen', 'Die Preise der Bar',
-                              'Für Feiern im Wild Side', 'Geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr',
+                              'Für Feiern im Wild Side', 'Für die lange Tafel und die ganze Bar',
                               [('Was ein Drink kostet', [(t, '', p) for t, p in q['preise']]),
                                ('Pauschale pro Person', pausch),
                                ('Budget', [('Service und Raum', '', '500,00'), ('Euer Budget für Drinks', 'Lässt sich nach oben frei anpassen', 'ab 1.000,00')])],
                               'website/unter.py PREISE, PAUSCHALE und tafel() (Angebotsmappe der Bar, _quelle/angebote-pdf/Wild Side Angebote.pdf)',
-                              hinweis='Alle Preise in Euro, brutto. Ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.')
+                              hinweis='Pauschale und Budget: geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr, ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. '
+                                      'Alle Preise in Euro, brutto. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.')
     pruefe(aus, q)
     return aus
 

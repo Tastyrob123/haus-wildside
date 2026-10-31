@@ -309,7 +309,8 @@ body.lc{min-height:100vh;color:var(--tinte);font-family:var(--sans);font-size:15
 /* Messlauf 30.10.2026 (Kriterium 35): gesperrte Schrift in Knöpfen ohne Knauf optisch mittig (Sperrung nach dem letzten Buchstaben ausgleichen); Etikett «Neu» auf Versalhöhe */
 .kn:not(.kn--klein):not(:has(i)){padding-left:22.9px;padding-right:21.1px}
 @supports (font:-apple-system-body){.kn:not(.kn--klein):not(:has(i)){padding-left:22px;padding-right:22px}}   /* WebKit hängt keine Sperrung an, dort bleibt es symmetrisch */
-.kn--klein:not(:has(i)){padding-left:16.75px}
+.kn--klein:not(:has(i)){padding-left:17.6px;padding-right:15.25px}   /* Wild Side 31.10.2026 (Tor K35): Hanken, Sperrung nach dem letzten Buchstaben ausgeglichen */
+@supports (font:-apple-system-body){.kn--klein:not(:has(i)){padding-left:16px;padding-right:16px}}
 .chip{text-box:trim-both cap alphabetic;padding-block:6.85px}
 /* Tor 30.10.2026 (K2, K7): kein Text abgeschnitten, auch nicht mit «…»; Zutaten und Untertitel brechen um, Titel ausgewogen */
 .r__t span{white-space:normal;overflow:visible;text-overflow:clip;text-wrap:pretty}
@@ -338,3 +339,9 @@ aside.wo-rand .modus__t{text-wrap:pretty}   /* Tor 5 30.10.2026 (K7): kein Wort 
 .prot div > span:last-child{text-wrap:balance}   /* kein Wort allein in der letzten Zeile */
 .gesund div span{text-wrap:balance}   /* «2023» nie allein in der zweiten Zeile */
 .fenster .satz{text-wrap:pretty}
+/* Wild Side 31.10.2026 (Tor K2): Prata ragt über die Zeilenhöhe 1,1 hinaus, der Titel in der Mitte des Kopfs galt als «gekürzt»; Raum oben und unten
+   wie im Schaufenster (bureau.css), ohne die Höhe des Kopfs zu ändern */
+@media (min-width:901px){#oben .wo-kopf__mitte b{padding-block:5px;margin-block:-5px}}
+/* Wild Side 31.10.2026 (Tor K35): Hanken sitzt in den Knöpfen 0,5 px zu hoch; die Schrift rückt 0,5 px nach unten, der Knauf bleibt in der Mitte */
+.kn{padding-top:1px}
+.kn i{margin-top:-1px}
