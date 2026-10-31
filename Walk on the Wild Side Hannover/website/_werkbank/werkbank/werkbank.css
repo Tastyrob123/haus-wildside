@@ -1069,7 +1069,8 @@ b,strong{font-weight:500}
 :root{--sans:'Hanken Grotesk','Sans Ersatz',system-ui,-apple-system,'Segoe UI',sans-serif!important;--mono:'Hanken Etikett','Hanken Grotesk',ui-monospace,monospace!important}
 /* Schrift mittig (Abnahme-Tor 31.10.: Prata-Ziffern im Register 2 px zu hoch, «01» im Befund 1 px zu weit links) */
 .rgc-p{padding:9px 10px 5px!important}
-.sbf-z{padding:7.7px 8.5px 6.3px 9.5px!important}
+.ins-m{padding:8.7px 16px 7.3px!important}
+.sbf-z{padding:7.7px 9px 6.3px!important}.sbf-z[data-i="0"]{padding-left:10px!important;padding-right:8px!important}   /* «01»: die Eins steht in Hanken weiter links */
 @media(max-width:600px){.auftakt__fuss .runter i{display:none}.auftakt__fuss .runter{gap:0}}   /* am Handy alle Zeilen auf einer Kante */
 /* Die Wortmarke als Zeichen steht in ihrem Rot (Rot nur als Punkt: Logo), nie in Gold */
 svg:has(> use[href="#hz"]){color:#f0323f!important;fill:#f0323f}

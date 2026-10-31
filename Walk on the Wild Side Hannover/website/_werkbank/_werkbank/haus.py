@@ -366,6 +366,7 @@ b,strong{font-weight:500}
 :root{--sans:'Hanken Grotesk','Sans Ersatz',system-ui,-apple-system,'Segoe UI',sans-serif!important;--mono:'Hanken Etikett','Hanken Grotesk',ui-monospace,monospace!important}
 /* Schrift mittig (Abnahme-Tor 31.10.: Prata-Ziffern im Register 2 px zu hoch, «01» im Befund 1 px zu weit links) */
 .rgc-p{padding:9px 10px 5px!important}
+.ins-m{padding:8.7px 16px 7.3px!important}
 .sbf-z{padding:7.7px 9px 6.3px!important}.sbf-z[data-i="0"]{padding-left:10px!important;padding-right:8px!important}   /* «01»: die Eins steht in Hanken weiter links */
 @media(max-width:600px){.auftakt__fuss .runter i{display:none}.auftakt__fuss .runter{gap:0}}   /* am Handy alle Zeilen auf einer Kante */
 /* Die Wortmarke als Zeichen steht in ihrem Rot (Rot nur als Punkt: Logo), nie in Gold */
@@ -480,8 +481,11 @@ def nach_bau():
     _ft = os.path.join(ROOT, 'feed', '_tafeln.html')
     if os.path.exists(_ft):
         _s = open(_ft, encoding='utf-8').read()
-        if 'noindex' not in _s:
-            _s = _s.replace('<head>', '<head><meta name="robots" content="noindex, nofollow">', 1) if '<head>' in _s else '<meta name="robots" content="noindex, nofollow">' + _s
+        if 'noindex' not in _s:   # nach <head> bzw. nach dem Doctype, nie davor (sonst Quirks-Modus)
+            if '<head>' in _s:
+                _s = _s.replace('<head>', '<head><meta name="robots" content="noindex, nofollow">', 1)
+            elif _s.lower().startswith('<!doctype html>'):
+                _s = _s[:15] + '<meta name="robots" content="noindex, nofollow">' + _s[15:]
             open(_ft, 'w', encoding='utf-8').write(_s)
     import sb_ki   # Seite «KI und eure Daten», Karte «Ein Vorschlag.» allein und als PDF (Robert 20.10.2026)
     sb_ki.bau()
