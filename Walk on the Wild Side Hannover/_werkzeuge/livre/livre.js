@@ -70,7 +70,7 @@ de: {
   d_tapete: 'Tapete', d_tapete_s: 'Das Sternmuster der Website, gezogen aus den Rippen des Gewölbes an der Decke: Gold auf Nacht und Gold tief auf Creme. Immer leise, nie als Motiv.',
   d_farben: 'Farben', d_farben_s: 'Ein Klick kopiert den Wert. Gold rahmt, Rot steht nur als Punkt, Ultramarin und Plakatrot gehören zu den DJ-Abenden.', d_schriften: 'Schriften',
   d_schriften_s: 'Zwei Schriften, frei lizenziert, genau die Dateien der Website. Für die Website als WOFF2, für Druck und Programme als ZIP mit TTF und Lizenz.',
-  hell: 'für helle Flächen', dunkel: 'für dunkle Flächen', kopiert: 'Kopiert', regeln: 'In den Hausregeln nachschlagen',
+  hell: 'für helle Flächen', dunkel: 'für dunkle Flächen', kopiert: 'Kopiert', kopieren: 'kopieren', regeln: 'In den Hausregeln nachschlagen',
   v_rot: 'Rot · Hauptform', v_creme: 'Creme · auf Nacht', v_nacht: 'Nacht · auf Creme', v_vorlage: 'Vorlage · Website 2020', v_heute: 'Profilbild', v_alle: 'Alle',
   v_dunkel: 'Auf Nacht', v_hell: 'Auf Creme', v_t_dunkel: 'Auf Nacht',
   p_titel: 'Markenprüfung', p_satz: 'Lad einen Entwurf hoch, etwa ein Plakat für den nächsten DJ-Abend, einen Beitrag oder den Flyer einer Agentur. Die Farben werden gemessen, Bild, Schrift, Zeichen und Ton beurteilt Claude.',
@@ -257,9 +257,9 @@ function bilder() {
     <div class="li-mehr" id="li-mehr"></div>`;
 }
 function kachel(f, i) {
-  return `<button class="li-f li-f--${f.f}${f.b === 'plakate' ? ' li-f--plakat' : ''}" type="button" data-k="${esc(f.k)}" data-r style="--i:${i % 6}" aria-label="${esc(titelVon(f))}">
+  const ki = f.art === 'ki' ? ` data-ki="${esc(t('ki'))}" title="${esc(t('ki_lang'))}"` : f.art === 'fremd' ? ` data-ki="${esc(t('fremd'))}" data-ki-art="fremd" title="${esc(t('fremd_lang'))}"` : '';
+  return `<button class="li-f li-f--${f.f}${f.b === 'plakate' ? ' li-f--plakat' : ''}" type="button" data-k="${esc(f.k)}" data-r style="--i:${i % 6}" aria-label="${esc(titelVon(f))}"${ki}>
     <img src="${esc(f.fs)}" alt="" loading="lazy" decoding="async" draggable="false">
-    ${f.art === 'ki' ? `<span class="li-ki" title="${esc(t('ki_lang'))}">${esc(t('ki'))}</span>` : f.art === 'fremd' ? `<span class="li-ki li-ki--fremd" title="${esc(t('fremd_lang'))}">${esc(t('fremd'))}</span>` : ''}
     <span class="li-f__n">${esc(titelVon(f))}</span></button>`;
 }
 function raster(neu = false, mehr = false) {
@@ -398,7 +398,7 @@ function vorherNachher(v, setze) {
 function dateien() {
   const D = Object.fromEntries(S.d.dateien.map(x => [x.k, x]));
   const gr = n => { const b = S.d.groessen[n]; return b ? (b > 1e6 ? (b / 1e6).toFixed(1).replace('.', ',') + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB') : ''; };
-  const knoepfe = liste => liste.filter(n => !n.endsWith('.webp') || liste.length === 1).map(n => `<a class="kn kn--klein ${/\.(png|json|ase|css)$/.test(n) ? 'kn--linie' : ''}" href="${DAT}${esc(n)}" download title="${esc(n)} · ${gr(n)}">${esc(n.split('.').pop().toUpperCase())}<i>${PU}</i></a>`).join('');
+  const knoepfe = liste => liste.filter(n => !n.endsWith('.webp') || liste.length === 1).map(n => `<a class="kn kn--klein ${/\.(png|json|ase|css)$/.test(n) ? 'kn--linie' : ''}" href="${DAT}${esc(n)}" download title="${esc(n)} · ${gr(n)}">${esc(n.split('.').pop().toUpperCase())}${liste.filter(x => !x.endsWith('.webp') || liste.length === 1).length === 1 ? ' ' + esc(t('laden')).toLowerCase() : ''}<i>${PU}</i></a>`).join('');
   const block = (k, titel, satz, inhalt, i) => `<section class="li-d" id="d-${k}" data-r style="--i:${i % 2}"><header><h2 class="li-d__t">${zwei(titel)}</h2><p class="leise">${esc(satz)}</p></header>${inhalt}</section>`;
   const vname = (g, v) => g === 'tapete' && v.k === 'dunkel' ? t('v_t_dunkel') : t('v_' + v.k);
   const tafeln = (g, breit) => `<div class="li-tafeln ${breit ? 'li-tafeln--breit' : ''}">${D[g].var.map(v => `<figure class="li-tafel li-tafel--${v.grund}">
@@ -406,10 +406,10 @@ function dateien() {
       <figcaption><span><b>${esc(vname(g, v))}</b><small>${v.px ? zahl(v.px[0]) + ' auf ' + zahl(v.px[1]) + ' px' : ''}</small></span><span class="li-kn">${knoepfe(v.dateien)}</span></figcaption></figure>`).join('')}</div>`;
   const gruppen = S.d.gruppen.map(g => {
     const fs = S.d.farben.filter(f => f.g === g.k); if (!fs.length) return '';
-    return `<div class="li-fg${g.k === 'druck' ? ' li-fg--druck' : ''}${g.bild ? ' li-fg--bild' : ''}">${g.bild ? `<figure class="li-fg__b${/^listen\//.test(g.bild) ? ' li-fg__b--text' : ''}"><img src="${esc(g.bild)}" alt="" loading="lazy" decoding="async"><figcaption>${esc(g.bild_t || '')}</figcaption></figure>` : ''}<div class="li-fg__t"><h3>${esc(g.n)}</h3><p class="leise">${esc(g.s)}</p><div class="li-farben">${fs.map((f, i) => `<button class="li-farbe${f.b ? ' li-farbe--bild' : ''}" type="button" data-kopie="${f.h}" style="--c:${f.h};--i:${i % 6}">${f.b ? `<span class="li-farbe__b"><img src="${esc(f.b)}" alt="" loading="lazy" decoding="async"></span>` : ''}
+    return `<div class="li-fg${g.k === 'druck' ? ' li-fg--druck' : ''}${g.bild ? ' li-fg--bild' : ''}">${g.bild ? `<figure class="li-fg__b${/^listen\//.test(g.bild) ? ' li-fg__b--text' : ''}"><img src="${esc(g.bild)}" alt="" loading="lazy" decoding="async"><figcaption>${esc(g.bild_t || '')}</figcaption></figure>` : ''}<div class="li-fg__t"><h3>${esc(g.n)}</h3><p class="leise">${esc(g.s)}</p><div class="li-farben">${fs.map((f, i) => `<div class="li-farbe${f.b ? ' li-farbe--bild' : ''}" role="button" tabindex="0" aria-label="${esc(f.n)} ${f.h} ${esc(t('kopieren'))}" data-kopie="${f.h}" style="--c:${f.h};--i:${i % 6}">${f.b ? `<span class="li-farbe__b"><img src="${esc(f.b)}" alt="" loading="lazy" decoding="async"></span>` : ''}
       <span class="li-farbe__f"><span class="li-farbe__ok">${esc(t('kopiert'))}</span></span>
       <span class="li-farbe__n"><b>${esc(f.n)}</b><small>${esc(f.r).replace(/\//g, '/<wbr>')}</small></span>
-      <span class="li-farbe__w"><span data-kopie-w="${f.h}">${f.h}</span><span class="li-farbe__rgb" data-kopie-w="rgb(${f.rgb.join(', ')})">RGB <i>${f.rgb.join(' · ')}</i></span></span></button>`).join('')}</div></div></div>`;
+      <span class="li-farbe__w"><span data-kopie-w="${f.h}">${f.h}</span><span class="li-farbe__rgb" data-kopie-w="rgb(${f.rgb.join(', ')})">RGB <i>${f.rgb.join(' · ')}</i></span></span></div>`).join('')}</div></div></div>`;
   }).join('');
   /* Tor 3 S (30.10.2026): Muster mit Trenner (« / », « · ») in ganze Glieder geteilt; der Trenner steht nur zwischen zwei Gliedern derselben Zeile (livre.css .li-teile) */
   const glieder = p => { const m = p.match(/ ([\/·]) /); if (!m) return esc(p).replace(/ (\S+)$/, '&nbsp;$1'); return `<span class="li-teile" style="--tr:'${m[1]}'">${p.split(' ' + m[1] + ' ').map(x => `<i>${esc(x).replace(/ /g, '&nbsp;')}</i>`).join('')}</span>`; };
@@ -433,6 +433,7 @@ function kopiere(w, el) {
 }
 function dateienLeben() {
   $$('[data-kopie]').forEach(b => b.onclick = e => { const w = e.target.closest('[data-kopie-w]'); kopiere(w ? w.dataset.kopieW : b.dataset.kopie, b); });
+  $$('[data-kopie][role="button"]').forEach(b => b.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); kopiere(b.dataset.kopie, b); } });
 }
 
 /* ---------------------------------------------------------------- Markenprüfung */

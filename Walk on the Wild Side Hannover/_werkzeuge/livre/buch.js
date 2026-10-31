@@ -14,6 +14,7 @@
     const w = k.dataset.hex, ok = () => { k.classList.add('kopiert'); setTimeout(() => k.classList.remove('kopiert'), 1400); melde('Kopiert · ' + w); };
     if (navigator.clipboard && isSecureContext) navigator.clipboard.writeText(w).then(ok, ok); else ok();
   }));
+  document.querySelectorAll('[data-hex][role="button"]').forEach(k => k.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); k.click(); } }));
   /* Auftritt: was im ersten Bild steht, hebt sich der Reihe nach (höchstens vier Stufen), alles darunter beim Hereinkommen; nie unsichtbar */
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
   document.documentElement.classList.add('bewegt');

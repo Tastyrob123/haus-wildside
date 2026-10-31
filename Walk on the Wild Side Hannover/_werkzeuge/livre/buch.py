@@ -28,8 +28,18 @@ def bild(k, alt=None, pos='50% 50%', gross=False, lazy=False):
             f' width="{f["w"]}" height="{f["h"]}"{" loading=\"lazy\"" if lazy else ""} style="object-position:{pos}">')
 
 
+FARBE_WM = {'rot': '#F0323F', 'creme': '#F2E9DC', 'nacht': '#1B1512'}
+
+
+def symbol():
+    """Die Wortmarke einmal als Symbol (Pfade aus dateien/, gebaut von bau.py), jede Verwendung über <use>, Farbe über color."""
+    s = open(os.path.join(HIER, 'dateien', f'{S}-wortmarke-rot.svg'), encoding='utf-8').read()
+    innen = re.search(r'<title>[^<]*</title>(.*)</svg>', s, flags=re.S).group(1).replace('#F0323F', 'currentColor')
+    return f'<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="ws" viewBox="0 0 1296 1600">{innen}</symbol></defs></svg>'
+
+
 def marke(farbe, klasse='', label='Walk on the Wild Side'):
-    return f'<img class="wm {klasse}" src="dateien/{S}-wortmarke-{farbe}.svg" alt="{e(label)}" width="1296" height="1600" decoding="async">'
+    return f'<svg class="wm {klasse}" viewBox="0 0 1296 1600" style="color:{FARBE_WM[farbe]}" role="img" aria-label="{e(label)}"><use href="#ws"/></svg>'
 
 
 PFEIL = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4"/></svg>'
@@ -51,8 +61,8 @@ def faecher():
     for g in L['gruppen']:
         fs = [f for f in L['farben'] if f['g'] == g['k']]
         knoepfe = ''.join(
-            f'<button class="fa" type="button" data-hex="{f["h"]}" style="--c:{f["h"]}" aria-label="{e(f["n"])} {f["h"]} kopieren">'
-            f'<span class="fa__f"><span class="fa__ok">kopiert</span></span><span class="fa__n"><b>{e(f["n"])}</b><small>{e(f["r"])}</small><code>{f["h"]}</code></span></button>'
+            f'<div class="fa" role="button" tabindex="0" data-hex="{f["h"]}" style="--c:{f["h"]}" aria-label="{e(f["n"])} {f["h"]} kopieren">'
+            f'<span class="fa__f"><span class="fa__ok">kopiert</span></span><span class="fa__n"><b>{e(f["n"])}</b><small>{e(f["r"])}</small><code>{f["h"]}</code></span></div>'
             for f in fs)
         out.append(f'<div class="fg" data-r><div class="fg__t"><h3>{e(g["n"])}</h3><p>{e(g["s"])}</p></div><div class="fg__f">{knoepfe}</div></div>')
     return ''.join(out)
@@ -147,9 +157,9 @@ def seite():
   <ul class="regel-liste" data-r><li><b>Warm bleibt warm.</b> Kein Filter, der das Licht der Bar kühlt.</li><li><b>Kein Teller als Hauptbild.</b> Teller und lange Tafel erzählen Culinarium.</li><li><b>Nie unscharf.</b> Lieber ein kleineres Bild als ein hineingezoomtes.</li><li><b>Fotos von Gästen und Presse</b> nur mit Erlaubnis der Fotografen.</li></ul>
 </div></section>'''
 
-    dinge = [('fb-2023-negroni', 'NEGRONI in Glühbirnen', 'Der Schriftzug über der Vitrine, bei Konzerten auch «love». Er darf als Licht einmal angehen, nie als Schrift nachgebaut werden.'),
+    dinge = [('negroni', 'NEGRONI in Glühbirnen', 'Der Schriftzug über der Vitrine, bei Konzerten auch «love». Er darf als Licht einmal angehen, nie als Schrift nachgebaut werden.'),
              ('schild', 'Das Eckschild', 'Schwarzes Kastenschild mit Goldrahmen an der Hausecke, nachts beleuchtet. Daraus kommen Platten und Knöpfe.'),
-             ('decke-flach', 'Die Decke', 'Der Druck eines Kathedralen-Gewölbes über dem ganzen Raum. Aus seinen Rippen kommt die Tapete.'),
+             ('decke-hoch', 'Die Decke', 'Der Druck eines Kathedralen-Gewölbes über dem ganzen Raum. Aus seinen Rippen kommt die Tapete.'),
              ('ja-2025', 'Die weissen Plakate', 'Creme mit roter Schrift: «Eure Nachbarschafts-Mixology-Bar», Silvester, Jahrestage. Daher kommt das Creme.')]
     gegenstaende = f'''<section class="blatt hell" id="dinge"><div class="in">
   {kopf(8, 'Gegenstände', ('Was nur', 'diese Bar hat.'), 'Vier Dinge machen die Bar unverwechselbar. Sie liefern Farbe, Form und Licht für jede Gestaltung; keines wird als Zeichnung nachgemacht.')}
@@ -176,7 +186,7 @@ def seite():
   <div class="fuss__wm">{marke("rot")}</div>
   <div class="fuss__t"><p class="etikett">Die Hausregeln · Stand Oktober 2026</p><p class="fuss__a">Haasemannstraße 13, Ecke Rampenstraße<br>30449 Hannover-Linden</p>
     <dl class="fuss__z"><div><dt>Donnerstag</dt><dd>19 bis 1 Uhr</dd></div><div><dt>Freitag</dt><dd>19 bis 2 Uhr</dd></div><div><dt>Samstag</dt><dd>19 bis 2 Uhr</dd></div></dl>
-    <p class="fuss__kn"><a class="kn kn--nacht" href="./"><span>Zurück zum Markenbuch</span><i>{ZURUECK}</i></a></p></div>
+    <p class="fuss__l"><a href="./">Zurück zum Markenbuch</a></p></div>
 </div></footer>'''
 
     leiste = f'''<nav class="leiste" aria-label="Die Hausregeln">
@@ -200,11 +210,12 @@ def seite():
 <link rel="stylesheet" href="buch/buch.css?v={_v('buch/buch.css')}">
 </head>
 <body>
+{symbol()}
 {leiste}
 <main>
 {titel}
 {haltung}
-{fenster('negroni', 'Good Drinks, Good Music, Good Energy.', 'So steht es unter den Beiträgen der Bar.', '50% 35%')}
+{fenster('theke', 'Good Drinks, Good Music, Good Energy.', 'So steht es unter den Beiträgen der Bar.', '50% 55%')}
 {zeichen}
 {farben}
 {session}

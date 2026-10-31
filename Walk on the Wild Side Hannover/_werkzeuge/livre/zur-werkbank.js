@@ -145,7 +145,7 @@
        Im Stylesheet bleiben nur die Schrift und der Druck. */
     var lage = document.createElement('style');
     lage.textContent =
-      '@font-face{font-family:"ZW Mono";font-style:normal;font-weight:400;font-display:swap;src:local("DM Mono"),url("' + (tag && tag.getAttribute('data-schrift') || (WURZEL || basis) + 'assets/schrift/DMMono-normal-400.woff2') + '")}' +
+      '@font-face{font-family:"ZW Hanken";font-style:normal;font-weight:300 700;font-display:swap;src:url("' + (tag && tag.getAttribute('data-schrift') || (WURZEL || basis) + 'assets/schrift/hanken-latin.woff2') + '")}' +
       '@media print{#zur-werkbank{display:none!important}}';
     document.head.appendChild(lage);
     var setz = function (k, v) { wirt.style.setProperty(k, v, 'important'); };
@@ -173,7 +173,7 @@
       '<style>' +
       ':host{direction:ltr}' +
       'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:999px;' +
-      'font:400 11.5px/1 "ZW Mono","DM Mono",ui-monospace,"SF Mono",Menlo,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",monospace;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
+      'font:500 11.5px/1 "ZW Hanken",Hanken,"Helvetica Neue",Arial,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
       'color:#121c3c;background:linear-gradient(180deg,#fdf9f1 0%,#f1e6d1 46%,#dccaa6 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
       'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(130,108,53,.32),inset 0 0 0 1px rgba(176,147,79,.62),0 0 0 1px rgba(9,17,39,.28),0 12px 22px -12px rgba(9,17,39,.6);' +
       'transition:transform .55s cubic-bezier(.32,.72,0,1)}' +

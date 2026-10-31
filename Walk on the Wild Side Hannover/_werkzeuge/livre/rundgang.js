@@ -1,5 +1,5 @@
 /* Rundgang (R18): Kopie aus dem Markenbuch von Culinarium, in den Farben von Walk on the Wild Side (Nacht, Gold, Creme, Rot als Punkt; Schild fest über der Leiste, Fehlerbuch 10a 20.10.2026), Gang für Le Livre,
-   dazu aus dem Schlössli: fehlt das Ziel eines Schritts, steht die Karte über dem Arbeitsbereich (Endprüfung 19.10.2026). */
+   dazu aus einem früheren Haus: fehlt das Ziel eines Schritts, steht die Karte über dem Arbeitsbereich (Endprüfung 19.10.2026). */
 /* Kurzer Rundgang beim ersten Öffnen eines Werkzeugs (Robert 16.10.2026: «einmal ganz kurz zeigen, hier kannst du das machen,
    da das, damit man weiss, wo man gelandet ist»). Ein Lichtkegel liegt auf dem echten Bedienelement, daneben eine Karte mit
    zwei, drei Sätzen. Je Werkzeug und Browser einmal; wieder aufrufen über «Kurzer Rundgang» im Rand oder ?rundgang.
@@ -81,7 +81,7 @@
     return window.WO && WO.randZiel ? WO.randZiel(e) : null;   /* Handy: Ziel im zugeklappten Rand, das Kleid klappt ihn auf (30.10.2026) */
   }
   function finde(liste) { for (var i = 0; i < liste.length; i++) { var e = sichtbar(liste[i]); if (e) return e; } return null; }
-  /* Endprüfung 19.10.2026 (Schlössli): fehlt das Ziel eines Schritts (andere Ansicht, Handy), erscheint die Karte trotzdem, über dem Arbeitsbereich; kein Schritt wird übersprungen */
+  /* Endprüfung 19.10.2026: fehlt das Ziel eines Schritts (andere Ansicht, Handy), erscheint die Karte trotzdem, über dem Arbeitsbereich; kein Schritt wird übersprungen */
   function zielOderFlaeche(liste) { return finde(liste) || finde(['#ansicht', '#arbeit', 'main', '#oben', '#kopf', '.sb', 'body']); }
 
   function starte(w) {
