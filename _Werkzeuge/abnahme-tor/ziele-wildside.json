@@ -7,8 +7,9 @@
  "stil": {
   "trenner": "|",
   "trennerFalsch": "[A-Za-zÄÖÜäöü]\\s+/\\s+[A-Za-zÄÖÜäöü]",
-  "versalienNur": "Mono",
-  "versalienErlaubt": "Mono|plakat|marke|wortmarke"
+  "versalienNur": "Hanken",
+  "versalienErlaubt": "Hanken|Anton|plakat|marke|wortmarke",
+  "grund": "Wild Side: Etiketten in Hanken 500 gesperrt und in Versalien (website/assets/wild.css, 22× text-transform:uppercase); Titel in Prata nie in Versalien. Gilt, solange stilblatt.json fehlt; sonst zählen dessen Rollen."
  },
  "stilblatt": "/Users/robertreff/Desktop/Website-Projekte/Walk on the Wild Side Hannover/_werkzeuge/imprimerie/haeuser/wildside/stilblatt.json",
  "ziele": [
