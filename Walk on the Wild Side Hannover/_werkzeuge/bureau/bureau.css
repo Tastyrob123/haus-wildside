@@ -213,6 +213,7 @@ body.ws.wo-app{background-color:var(--wo-papier);background-image:var(--wo-tapet
   .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:first-child{grid-column:1 / -1!important}
   .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:not(:first-child){grid-column:auto!important}
   .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:first-child .wo-ag__b{aspect-ratio:32/9}
+  .ws.wo-app .wo-aufg.ws-aufgaben:has(>.wo-ag:nth-child(7):last-child)>.wo-ag:not(:first-child) .wo-ag__b{aspect-ratio:16/9}   /* Paare gleich hoch, Titel auf einer Grundlinie */
 }
 /* Sieben Bereiche: der siebte steht nie allein schmal in seiner Reihe (dort zerfiel sein kurzer Satz Wort für Wort), er nimmt die ganze Reihe */
 @media (min-width:1101px){

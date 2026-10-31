@@ -236,15 +236,20 @@
 /* Etiketten in Hanken Grotesk, unter ihrem vollen Namen (Stilblatt des Hauses: Versalien nur in Hanken Grotesk); dieselbe Datei wie das Kleid */
 @font-face{font-family:'Hanken Grotesk';font-weight:300 700;font-display:swap;src:url('/assets/schrift/hanken-latin.woff2') format('woff2')}
 .rg{--mono:'Hanken Grotesk','Hanken','Helvetica Neue',Arial,system-ui,sans-serif}
-/* Titel der Ansicht im Kopf: Prata ist höher als die Zeile, die Unterlängen lagen ausserhalb des Kastens (gemessen 31.10.2026); die Titel sind kurz und kürzen nie */
-.rg #kopf .wo-kopf__mitte b{overflow:visible;text-overflow:clip}
-/* Runder Knopf «Website ansehen» (Kopf bei schmalen Fenstern): die versteckte Beschriftung lag ausserhalb des Knopfs; der Name steht als aria-label */
-@media (min-width:901px) and (max-width:1240px){.rg #kopf .wo-kn--gold.wo-kn--klein>span{display:none}}
+/* Kopftitel und runder Knopf «Website ansehen»: seit dem 31.10.2026 im Kleid gelöst (Tresen), hier nichts mehr eigen; registre.js setzt den Namen als aria-label */
 /* Handy: die Wahlen über der Besuchsliste, Schrift optisch mittig (gemessen 1,1 px zu hoch) */
 @media (max-width:600px){.rg .wahl3.wo-seg.wahl3--filter button{padding:12px 14px 10px}}
 /* Karte eines Besuchs: der Ort bricht nie mitten im Wort («Hildeshei-m»); in schmalen Karten steht das Etikett über dem Ort */
 .rg .besuchsblatt h2{overflow-wrap:normal;word-break:normal;hyphens:manual}
 .rg .besuchsblatt__kopf{flex-wrap:wrap-reverse}
 .rg .besuchsblatt__kopf>div{flex:1 1 220px;min-width:0}
-/* Wahlen über der Besuchsliste am Handy: endet die Zahl auf 1, rückte die Schrift optisch 1,1 px nach links (Messung 31.10.2026); 1 px Ausgleich */
-@media (max-width:600px){.rg .wahl3.wo-seg.wahl3--filter button.eins{padding-left:15px;padding-right:13px}}
+/* Wahlen über der Besuchsliste am Handy: jeder Knopf so breit wie seine Beschriftung (gleiche Luft links und rechts), Schrift am Anfang statt «mittig»:
+   die Mitte der Glyphen bei «· 71» lag je nach Engine 1 px links (Chromium) oder rechts (WebKit), ein Ausgleich passte nie für beide (Cloud-Prüfung 31.10.2026) */
+@media (max-width:600px){.rg .wahl3.wo-seg.wahl3--filter button{text-align:start;justify-content:flex-start}}
+/* Kopf eines Blatts dicht an seiner Rangliste: in kleinen Blättern («Gerät») lag zwischen Titel und erster Zeile ein Loch von 14 % der Höhe (WebKit) */
+.rg .blatt>header+.rang{margin-top:-4px}
+/* «Neben dem Zeitraum davor»: das Blatt ist so hoch wie sein Nachbar «Woche für Woche»; die Zeilen verteilen sich über die ganze Höhe statt unten 13 % frei zu lassen */
+.rg .vergleich{display:flex;flex-direction:column}
+.rg .vergleich .vz:not(.vz--kopf){flex:1 1 auto;align-items:center}
+/* «Zum Tisch»: in einer Reihe verschieden lange Sätze; der Satz steht in seiner Zeile mittig, die Karte bleibt ausgewogen */
+@media (min-width:621px){.rg .werte .wert>p{align-self:center}}

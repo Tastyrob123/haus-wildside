@@ -465,8 +465,7 @@ function besuche() {
   const l = nach[S.filter] || alle;
   if (!l.some(x => x[1] === S.wahl)) S.wahl = l.length ? l[0][1] : -1;
   const b = d.besuche[S.wahl];
-  /* «eins»: endet die Zahl auf 1, steht die Schrift optisch zu weit links (die 1 hat rechts viel Fleisch); registre-haus.css gleicht 1 px aus */
-  const f = (k, name) => `<button type="button" data-filter="${k}" class="${S.filter === k ? 'an' : ''}${/1$/.test(n(nach[k].length)) ? ' eins' : ''}" aria-pressed="${S.filter === k}">${name} · ${n(nach[k].length)}</button>`;
+  const f = (k, name) => `<button type="button" data-filter="${k}" class="${S.filter === k ? 'an' : ''}" aria-pressed="${S.filter === k}">${name} · ${n(nach[k].length)}</button>`;
   aus += `<div class="wahl3 wo-seg wahl3--filter" role="group" aria-label="Auswahl">${f('alle', 'Alle')}${f('buchung', 'Zum Tisch')}${f('anfrage', 'Formular begonnen')}${f('kontakt', 'Anruf oder Instagram')}${f('handy', 'Am Handy')}</div>`;
   if (!l.length) return aus + `<div class="leer-hinweis"><b>Kein Besuch in dieser Auswahl.</b> In diesem Zeitraum ging noch niemand diesen Weg.</div>`;
   let letzter = '';
@@ -626,7 +625,7 @@ function buchung() {
     ${k('booking', 'Über «Feiern»', x => n(x.zahl) + ' von ' + n(x.von) + ' Wegen zum Tisch waren eine Anfrage zum Feiern, ' + mal(x.anfrage, 'ein Tisch wurde', 'Tische wurden') + ' reserviert', 'Noch niemand kam zum Tisch.')}
     ${k('abbruch', 'Reservieren ohne Abschicken', x => n(x.zahl) + ' von ' + n(x.von) + ' Mal begonnen, ohne dass die Reservierung abgeschickt wurde', 'Reservieren wurde noch nicht begonnen.')}
     ${k('tisch', 'Feier-Anfrage begonnen', x => mal_(x.zahl) + ' im Formular auf «Feiern» begonnen, bei ' + n(x.von) + ' ' + auf(x.von), 'Noch kein Aufruf.')}
-    ${k('anfrage', '«Reservieren» angeklickt', x => mal_(x.zahl) + ' der Knopf «Reservieren» in der Leiste einer Seite, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.start) + ' auf der Startseite', 'Noch kein Aufruf.')}
+    ${k('anfrage', '«Reservieren» angeklickt', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.start) + ' auf der Startseite', 'Noch kein Aufruf.')}
     ${k('kontakt', 'Anruf oder Instagram', x => mal_(x.anruf) + ' die Nummer der Bar, ' + mal_(x.mail) + ' Instagram der Bar, bei ' + n(x.von) + ' ' + auf(x.von), 'Noch kein Aufruf.')}
     ${k('chat', 'Weiter zu Culinarium oder Dirty Chicken', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.dc) + ' auf der Startseite', 'Noch kein Aufruf.')}
     ${k('route', 'Karte geöffnet', x => mal_(x.zahl) + ' angeklickt, bei ' + n(x.von) + ' ' + auf(x.von) + ', davon ' + n(x.weg) + ' auf «Besuch»', 'Noch kein Aufruf.')}

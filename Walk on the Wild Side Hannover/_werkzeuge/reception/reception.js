@@ -309,8 +309,8 @@ function textBrief(a, e, rtl) {   // «Als Text»: Betreff und Text als Felder (
 const GKOPF = { haus: 'Walk on the Wild Side', zeile: 'Eure Nachbarschafts-Mixology-Bar · Hannover-Linden', fuss: 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover-Linden\nTelefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover' };   // Adresse und Telefon: Fuss der Website und Feiern; Zeile: die weissen Plakate der Bar («Eure Nachbarschafts-Mixology-Bar»); keine Mail-Adresse (nicht belegt)
 /* Fotos des Hauses zum Einfügen in den Brief (website/assets/bild/<k>-480|960.webp, Register BILD in website/bau.py) */
 const BRIEFBILDER = [['an-empore-tafel', 'Die lange Tafel'], ['anstossen', 'Anstossen'], ['glas-negroni', 'Ein Negroni'], ['momo-giesst', 'Momo mixt'],
-  ['glas-coupe', 'Ein Drink von Momo'], ['dg-siphon', 'Schaum aus dem Siphon'], ['theke', 'Die Theke'], ['decke-raum', 'Das Gewölbe'],
-  ['negroni', 'Negroni / Glühbirnen'], ['voll', 'Ein voller Abend'], ['konzert', 'Live am Donnerstag'], ['schild-ecke', 'Das Schild an der Ecke'], ['fenster', 'Die Fenster der Bar'], ['pl-ecke', 'Die Hausecke']];
+  ['glas-coupe', 'Ein Drink von Momo'], ['dg-siphon', 'Der Siphon'], ['theke', 'Die Theke'], ['decke-raum', 'Das Gewölbe'],
+  ['negroni', 'Negroni / Glühbirnen'], ['voll', 'Ein voller Abend'], ['konzert', 'Live am Donnerstag'], ['schild-ecke', 'Das Eckschild'], ['fenster', 'Die Fenster der Bar'], ['pl-ecke', 'Die Hausecke']];
 const SCHRIFT = { serif: 'font-family:var(--serif)', sans: 'font-family:var(--sans)', mono: 'font-family:var(--mono)', cinzel: 'font-family:var(--caps)', versal: 'font-family:var(--caps);letter-spacing:.16em;text-transform:uppercase' };
 const TEXTART = { normal: 'font-style:normal;font-weight:400;text-transform:none;letter-spacing:0', versal: 'text-transform:uppercase;letter-spacing:.06em' };   // Wild Side: nie kursiv, nie fett; Versalien wie die Etiketten der Website
 /* Hauspalette, gleich in La Carte, La Réception und L’Imprimerie (Absprache 16.10.2026) */
@@ -782,7 +782,7 @@ function hinweise(a) {
   const h = a.hinweise || [];
   return h.length ? `<ul class="re-hinw" aria-label="Hinweise">${h.map(x => `<li class="re-hinw__p re-hinw--${esc(x.art)}">${WO.ic(HINW_ZEICHEN[x.art] || 'mail')}<span>${esc(x.text)}</span></li>`).join('')}</ul>` : '';
 }
-const hinwKurz = a => (a.hinweise || []).map(x => ({ ruhetag: 'Bar sonst zu', gruppe: 'Format prüfen', allergie: 'Rudi fragen', anzahlung: 'Anzahlung' }[x.art])).filter(Boolean);
+const hinwKurz = a => (a.hinweise || []).map(x => ({ ruhetag: 'Bar sonst zu', gruppe: 'Format prüfen', allergie: 'Rudi fragen' }[x.art])).filter(Boolean);   // die Anzahlung gilt bei jeder Feier: nur im Detail, nicht in jeder Karte
 function detail(a) {
   const e = a.entwurf, laeuft = S.schreibt[a.id], bearb = S.bearbeiten === a.id, offen = e ? (e.text.match(KLAMMER) || []).length : 0;
   /* Robert 20.10.2026: «super unübersichtlich … nicht richtig formatiert»: drei ruhige Gruppen statt einer Wand aus Feldern (Wann und wie viele · Gast · Woher) */

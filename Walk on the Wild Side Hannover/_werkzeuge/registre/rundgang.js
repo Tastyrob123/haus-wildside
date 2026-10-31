@@ -7,7 +7,7 @@
   if (window.self !== window.top && !ERZWINGEN) return;
   var NAME = (window.WO && WO.name('besuche')) || 'Besuche', KLEIN = NAME.replace(/^(Die|Das|Der) /, function (m) { return m.toLowerCase(); });   /* Name nur aus dem Kleid des Hauses */
   var G = { name: NAME, schritte: [
-    { ziel: ['#ansicht .wo-sb'], titel: 'Das ist ' + KLEIN,
+    { ziel: ['#ansicht .wo-sb'], titel: 'Das ist <span style="white-space:nowrap">' + KLEIN + '</span>',   /* der Name bricht nie, kein Wort allein in der letzten Zeile (WebKit, Cloud-Prüfung 31.10.2026) */
       text: 'Wer deine Website besucht hat: woher die Gäste kommen, was sie interessiert und wer einen Tisch reservieren oder feiern will.' },
     { ziel: ['#rand', '#kopf .wo-kopf__ber'], titel: 'Acht Ansichten',
       text: 'Besuche und Herkunft, Zeit und Verlauf, Seiten und Zum Tisch, dazu «So wird gezählt». Ein Klick wechselt, der Zeitraum gilt überall.' },
