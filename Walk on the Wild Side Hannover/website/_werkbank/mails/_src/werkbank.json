@@ -1,68 +1,62 @@
 [
  [
   "01",
-  "01-ticket",
-  "Dein Ticket",
-  "Kommt gleich nach der Buchung: Abend, Beginn, Plätze und der Weg zur Bar, das Ticket zum Vorzeigen."
+  "01-reservierung",
+  "Dein Platz ist reserviert",
+  "Kommt gleich nach der Reservierung: Abend, Uhrzeit, Plätze und der Weg zur Ecke Haasemannstraße."
  ],
  [
   "02",
-  "02-warteliste",
-  "Auf der Warteliste",
-  "Kommt nach dem Eintrag auf der Warteliste: welcher Abend, wie viele Plätze, und dass wir uns melden, sobald einer frei wird."
+  "02-anfrage-feier",
+  "Eure Anfrage ist da",
+  "Kommt gleich nach der Anfrage über «Feiern»: was angefragt ist, und dass Derya und Momo sich mit einem Angebot melden."
  ],
  [
   "03",
-  "03-frei",
-  "Ein Platz ist frei",
-  "Kommt, wenn für einen vollen Abend ein Platz frei wird: an die Gäste auf der Warteliste, mit dem Weg zum Buchen."
+  "03-angebot-feier",
+  "Das Angebot für euren Abend",
+  "Das Angebot für eine geschlossene Gesellschaft: Pauschale pro Gast mit den Preisen der Bar, Anzahlung, was nach 2 Uhr gilt."
  ],
  [
   "04",
   "04-erinnerung",
-  "Morgen an der Tafel",
-  "Kommt am Tag vor dem Abend: wann es losgeht, wie man hinfindet, und dass man Unverträgliches noch sagen kann."
+  "Morgen bei uns",
+  "Kommt am Tag vor dem reservierten Abend: wann, wie viele, wie man hinfindet, und wen man anruft, wenn sich etwas ändert."
  ],
  [
   "05",
   "05-danke",
   "Danke für den Abend",
-  "Kommt am Morgen danach: ein Dank, die Karte des Abends zum Nachlesen und der Weg auf die Liste für den nächsten."
+  "Kommt am Tag danach: ein Dank, die Zeiten der Bar und der Weg zum Programm der nächsten Wochen."
  ],
  [
   "06",
-  "06-termin",
-  "Der nächste Abend steht",
-  "Kommt an die Gäste der Liste, sobald der nächste Abend feststeht: Datum, Beginn, Preis und der Weg zum Buchen, vor allen anderen."
+  "06-session",
+  "SESSION am Samstag",
+  "Kommt vor einem DJ-Abend: wer auflegt, wann, und dass es ohne Eintritt ist. Hier mit dem Abend vom 17.10.2026."
  ],
  [
   "07",
   "07-rueckblick",
-  "Rückblick mit Fotos",
-  "Kommt eine Woche nach dem Abend: ein paar Fotos von der Tafel und der Weg zu allen Bildern auf Instagram."
+  "So war der Geburtstag",
+  "Kommt ein paar Tage nach einem Fest: ein Rückblick auf den Geburtstag der Bar und der Weg zu den Fotos auf Instagram."
  ],
  [
   "08",
-  "08-feier",
-  "Eure Feier an der Tafel",
-  "Antwort auf eine Anfrage für einen Geburtstag oder eine Feier: was möglich ist, wie viele Plätze, und wie es weitergeht."
+  "08-gutschein",
+  "Ein Abend als Geschenk",
+  "Geht an die Beschenkte: wer ihr den Abend schenkt, was er wert ist, bis wann, und der Gutschein als PDF im Anhang."
  ],
  [
   "09",
-  "09-dirty-chicken",
-  "Dirty Chicken ist zurück",
-  "Kommt vor einem Pop-up von Dirty Chicken: wann, wo, und dass es ohne Anmeldung geht."
+  "09-stammgaeste",
+  "Für dich zuerst",
+  "Kommt an Stammgäste vor einem Fest: Silvester ab mittags, und ein Platz an der Theke wird für sie freigehalten."
  ],
  [
   "10",
-  "10-stammgaeste",
-  "Für dich zuerst",
-  "Kommt an Gäste, die schon an der Tafel sassen: ein Platz am nächsten Abend wird für sie freigehalten, bevor er für alle aufgeht."
- ],
- [
-  "11",
-  "11-gutschein",
-  "Ein Abend als Geschenk",
-  "Geht an den Beschenkten: wer ihm den Abend schenkt, für wie viele, bis wann, und der Gutschein als PDF im Anhang."
+  "10-neue-karte",
+  "Momos neue Karte",
+  "Kommt, wenn die Karte wechselt: was neu ist, wie Momo arbeitet, was ein Drink kostet."
  ]
 ]
