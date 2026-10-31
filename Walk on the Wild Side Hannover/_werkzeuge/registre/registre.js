@@ -465,7 +465,8 @@ function besuche() {
   const l = nach[S.filter] || alle;
   if (!l.some(x => x[1] === S.wahl)) S.wahl = l.length ? l[0][1] : -1;
   const b = d.besuche[S.wahl];
-  const f = (k, name) => `<button type="button" data-filter="${k}" class="${S.filter === k ? 'an' : ''}" aria-pressed="${S.filter === k}">${name} · ${n(nach[k].length)}</button>`;
+  /* «eins»: endet die Zahl auf 1, steht die Schrift optisch zu weit links (die 1 hat rechts viel Fleisch); registre-haus.css gleicht 1 px aus */
+  const f = (k, name) => `<button type="button" data-filter="${k}" class="${S.filter === k ? 'an' : ''}${/1$/.test(n(nach[k].length)) ? ' eins' : ''}" aria-pressed="${S.filter === k}">${name} · ${n(nach[k].length)}</button>`;
   aus += `<div class="wahl3 wo-seg wahl3--filter" role="group" aria-label="Auswahl">${f('alle', 'Alle')}${f('buchung', 'Zum Tisch')}${f('anfrage', 'Formular begonnen')}${f('kontakt', 'Anruf oder Instagram')}${f('handy', 'Am Handy')}</div>`;
   if (!l.length) return aus + `<div class="leer-hinweis"><b>Kein Besuch in dieser Auswahl.</b> In diesem Zeitraum ging noch niemand diesen Weg.</div>`;
   let letzter = '';

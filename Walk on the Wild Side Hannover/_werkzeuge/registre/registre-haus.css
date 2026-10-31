@@ -246,5 +246,5 @@
 .rg .besuchsblatt h2{overflow-wrap:normal;word-break:normal;hyphens:manual}
 .rg .besuchsblatt__kopf{flex-wrap:wrap-reverse}
 .rg .besuchsblatt__kopf>div{flex:1 1 220px;min-width:0}
-/* Wahlen über der Besuchsliste: Zahlen ohne Tabellenbreite, sonst liess die breite «1» am Ende die Schrift optisch nach links rücken (gemessen 1,1 px bei «· 71») */
-.rg .wahl3--filter button{font-variant-numeric:proportional-nums}
+/* Wahlen über der Besuchsliste am Handy: endet die Zahl auf 1, rückte die Schrift optisch 1,1 px nach links (Messung 31.10.2026); 1 px Ausgleich */
+@media (max-width:600px){.rg .wahl3.wo-seg.wahl3--filter button.eins{padding-left:15px;padding-right:13px}}

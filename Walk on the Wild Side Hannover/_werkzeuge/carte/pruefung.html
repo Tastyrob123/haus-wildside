@@ -10,8 +10,8 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/assets/oberflaeche/kleid/wildside-zeichen.svg" type="image/svg+xml">
 <script src="/_werkzeuge/carte/fehlermelder.js?v=1"></script>
-<link rel="stylesheet" href="/_werkzeuge/carte/carte.css?v=3">
-<link rel="stylesheet" href="/_werkzeuge/carte/tafel.css?v=1">
+<link rel="stylesheet" href="/_werkzeuge/carte/carte.css?v=ws2">
+<link rel="stylesheet" href="/_werkzeuge/carte/tafel.css?v=ws1">
 <style>
 body.anl{padding:0}
 .anl main{max-width:900px;margin:0 auto;padding:54px 24px 90px}
@@ -27,7 +27,9 @@ body.anl{padding:0}
 .rep p{margin:0;font-size:14px}
 .rep .kn[data-scharf]{--o:#b8473d;--m:#B3261E;--u:#6e130d}
 .pr-quit{margin-top:12px;font-size:14px;min-height:1.4em}
-@media (max-width:560px){.rep div{flex-direction:column;align-items:stretch}.anl .gesund div{flex-direction:column}.anl .gesund div b{max-width:none;text-align:left}}
+@media (max-width:560px){.rep div{flex-direction:column;align-items:stretch}.anl .gesund div{flex-direction:column}.anl .gesund div b{max-width:100%;text-align:left;white-space:normal;flex:0 1 auto}}
+/* Tor K7 (390): kein Wort allein in der letzten Titelzeile */
+.anl h1,.anl h2{text-wrap:balance}
 </style>
 <link rel="stylesheet" href="/_werkzeuge/carte/auftritte.css?v=1">
 </head>

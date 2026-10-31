@@ -298,3 +298,4 @@ svg.wm{display:block;width:auto;height:auto;aspect-ratio:1296/1600;fill:currentC
 .nein--farbe svg.wm{color:#2BA84A!important;filter:none}
 .leiste svg.leiste__wm{width:30px;height:37px;flex:none}
 .k4__b{aspect-ratio:3/4}
+.ort-z{display:inline-flex;align-items:center;gap:14px;white-space:nowrap}

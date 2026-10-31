@@ -425,3 +425,8 @@ html.probe-offen{overflow:visible}
 /* Kopf 901 bis 1240 px: «Website ansehen» ist nur noch der runde Knauf (kleid/wildside.css versteckt die Beschriftung mit clip); die Beschriftung bekommt
    zusätzlich Schriftgrösse 0, sonst misst die Regel «randlos» den versteckten Text ausserhalb des Knopfs. Der Name für Vorleser bleibt. */
 @media (min-width:901px) and (max-width:1240px){.wo-kopf .wo-kn--gold.wo-kn--klein>span{font-size:0}}
+/* Felder in den Fenstern: die helle Fläche auch als Grundfarbe (nicht nur als Verlauf), damit Platzhalter und Text gegen das Feld stehen, nicht gegen die dunkle Platte dahinter (Regel «blass») */
+.feld input,.feld textarea,.fz input,.fz textarea{background-color:#ECE4D8}
+@media (max-width:700px){#ansicht .sb-t__k h2{font-size:19px}}
+/* Hauptweg im Werkzeug wie das Eckschild (CHARAKTER.md 4): Rot mit Creme-Knauf, helle Schrift; Nebenwege bleiben Nacht mit Goldlinie */
+.kn--gold,.sp.gelb{--o:#F65562;--m:#F0323F;--u:#C8202D;--t:#FFF6EC;--licht:rgba(255,225,225,.45);--kante:rgba(90,10,15,.45);--tf:rgba(19,14,13,.55);--ko:#FFFBF5;--ku:#EFE3D2;--kt:#C8202D;--klicht:rgba(255,240,230,.5)}

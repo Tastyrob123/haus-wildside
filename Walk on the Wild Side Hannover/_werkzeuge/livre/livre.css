@@ -653,3 +653,8 @@ body.li{background:linear-gradient(rgba(239,230,216,.86),rgba(239,230,216,.86)),
 /* Bildunterschrift der Kacheln: kleiner, damit sie auch in schmalen Kacheln in wenigen Zeilen steht (Regel «spalte») */
 .li-f__n{font-size:.74rem!important;line-height:1.25;left:12px;bottom:12px;max-width:calc(100% - 24px)}
 @media (min-width:901px) and (max-width:1240px){.wo-kopf .wo-kn--gold.wo-kn--klein>span{display:none}}
+/* Ergebnis links auf einer Kante: Bild und Unterschrift auf der Kante der Farbplatte darunter (22 px) */
+.li-erg__l .li-erg__bild{padding:22px}
+.li-erg__l .li-erg__bild figcaption{padding:12px 0 0!important}
+/* Handy: Kacheln ohne Unterschrift (sie steht gross im Fenster des Fotos), nur die Plakate behalten ihre Zeile */
+@media (max-width:600px){.li-f:not(.li-f--plakat) .li-f__n{display:none}}

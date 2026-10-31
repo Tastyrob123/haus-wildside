@@ -821,7 +821,7 @@ function abendSchieben(r, leeren) {
   const M = SATZ.ABEND;
   if (leeren) {   // der nächste Donnerstag ab heute (die Bar öffnet Donnerstag bis Samstag), mindestens eine Woche nach der bisherigen Karte
     const heute = M.iso(new Date()), ab = M.freitag(heute > D.abend.ab ? heute : M.iso(M.datum(D.abend.ab, 7)));
-    return frage('Neue Karte <em>anlegen?</em>', `Die Karte gilt dann ${M.spanne(ab).replace(/^Ab/, 'ab')}. Die Drinks werden geleert, Zeile, Preis und Fusszeile bleiben, der Name der Karte auch (mit den Pfeilen verschiebst du das Datum). Die bisherige Karte bleibt unter «Frühere Fassungen».`, 'Neue Karte',
+    return frage('Neue <em>Karte&nbsp;anlegen?</em>', `Die Karte gilt dann ${M.spanne(ab).replace(/^Ab/, 'ab')}. Die Drinks werden geleert, Zeile, Preis und Fusszeile bleiben, der Name der Karte auch (mit den Pfeilen verschiebst du das Datum). Die bisherige Karte bleibt unter «Frühere Fassungen».`, 'Neue Karte',
       () => tun(() => { D.abend.tage = D.abend.tage.map(() => M.leererTag()); D.abend.ab = ab; beispielWeg(); }, 'Neue Karte angelegt', 'Jetzt Momos Drinks eintragen: Name und Zutaten.'));
   }
   const neu = M.iso(M.datum(D.abend.ab, 7 * r));

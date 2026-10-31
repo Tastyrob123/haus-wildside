@@ -172,14 +172,14 @@
     baum.innerHTML =
       '<style>' +
       ':host{direction:ltr}' +
-      'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:999px;' +
+      'a{position:relative;overflow:hidden;isolation:isolate;box-sizing:border-box;display:inline-flex;align-items:center;gap:11px;height:44px;padding:0 20px 0 5px;border-radius:14px;' +
       'font:500 11.5px/1 "ZW Hanken",Hanken,"Helvetica Neue",Arial,"PingFang SC","Apple SD Gothic Neo","Geeza Pro",sans-serif;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;text-decoration:none;' +
-      'color:#121c3c;background:linear-gradient(180deg,#fdf9f1 0%,#f1e6d1 46%,#dccaa6 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
-      'box-shadow:inset 0 1px 0 #fff,inset 0 -3px 0 rgba(130,108,53,.32),inset 0 0 0 1px rgba(176,147,79,.62),0 0 0 1px rgba(9,17,39,.28),0 12px 22px -12px rgba(9,17,39,.6);' +
+      'color:#EDE4D8;background:linear-gradient(180deg,#261E1A 0%,#1C1513 50%,#130E0D 100%);cursor:pointer;-webkit-tap-highlight-color:transparent;' +
+      'box-shadow:inset 0 0 0 1px rgba(216,178,100,.5),0 12px 22px -12px rgba(0,0,0,.7);' +
       'transition:transform .55s cubic-bezier(.32,.72,0,1)}' +
-      'a::after{content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:38%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.85) 50%,transparent 100%);transform:translateX(-180%) skewX(-18deg);transition:transform 0s}' +
-      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#7D433A,#301916);color:#f7efdd;' +
-      'box-shadow:inset 0 1px 0 rgba(190,206,255,.4),inset 0 -2px 0 rgba(0,0,0,.4),0 0 0 1px rgba(230,210,162,.45);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
+      'a::after{content:"";position:absolute;z-index:-1;top:-20%;bottom:-20%;left:0;width:38%;background:linear-gradient(100deg,transparent 0%,rgba(216,178,100,.25) 50%,transparent 100%);transform:translateX(-180%) skewX(-18deg);transition:transform 0s}' +
+      'i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#F1E2BE,#D8B264 60%,#A07F3A);color:#130E0D;' +
+      'box-shadow:0 2px 5px -2px rgba(0,0,0,.5);transition:transform .6s cubic-bezier(.32,.72,0,1)}' +
       'svg{display:block;width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}' +
       'span{display:block;padding-top:1px}' +
       ':host([lang="zh"]) a,:host([lang="ko"]) a,:host([lang="ar"]) a{letter-spacing:.04em;font-size:13px;text-transform:none}' +

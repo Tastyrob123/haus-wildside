@@ -2,7 +2,9 @@
 (function () {
   var z = document.getElementById('wsp-zurueck'); if (z) z.href = '/_werkzeuge/bureau/';
   var n = window.WO_HAUS && WO_HAUS.namen && WO_HAUS.namen.website;
-  if (n) { document.querySelectorAll('[data-werkzeug]').forEach(function (e) { e.textContent = n; }); document.title = 'Prüfung · ' + n + ' · ' + WO_HAUS.name; }
+  /* welt.js des Stamms füllt [data-werkzeug] erst nach dem Laden mit seinem Weltnamen («Le Bureau»): der Name des Hauses wird danach noch einmal gesetzt */
+  function setze() { if (n) { document.querySelectorAll('[data-werkzeug]').forEach(function (e) { if (e.textContent !== n) e.textContent = n; }); document.title = 'Prüfung · ' + n + ' · ' + WO_HAUS.name; } }
+  setze(); document.addEventListener('DOMContentLoaded', setze); window.addEventListener('load', function () { setze(); setTimeout(setze, 200); });
 })();
 /* DJ-Abende (Wild Side 31.10.2026, Vorlage: Termine des Culinarium): eigener Teil der Prüfung (Quelle website/bau.py › LINEUP, Stellen der Seiten, Speicher,
    Sicherung) und die Lexikon-Einträge der Stichworte aus termine.py und termine-ansicht.js. Das Lexikon des Stamms bleibt unverändert; diese Einträge

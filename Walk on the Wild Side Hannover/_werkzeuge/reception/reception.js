@@ -988,7 +988,7 @@ function nachtragenFenster(x) {
 // Die letzten zwei Wörter bleiben zusammen: nie ein Wort allein in der letzten Zeile (Messlauf 30.10.2026, WebKit gleicht text-wrap:balance nicht aus)
 const zusammen = t => t.replace(/ (\S+)$/, '\u00a0$1');
 /* Titel (Tor 3, 30.10.2026): kurzes letztes Wortpaar zusammenhalten, damit nie ein Wort allein in der letzten Zeile steht */
-const paar = t => t.replace(/ (\S+) (\S+)$/, (m, a, b) => (a.length + b.length < 14 ? ' ' + a + '\u00a0' + b : m));
+const paar = t => t.replace(/ (\S+) (\S+)$/, (m, a, b) => (a.length + b.length < 14 || /^(&amp;|&|und)$/.test(a) ? ' ' + a + '\u00a0' + b : m));   // «& Reservieren» bleibt beisammen (Tor, einzelwort)
 function nachgetragenS() {
   const l = S.nachgetragen;
   return kopf('Vom Team nachgetragen', 'Was der Chat <em>von dir weiss.</em>',

@@ -77,7 +77,7 @@ def seite():
     <div class="titel__t">
       <p class="etikett" data-r>Die Hausregeln · Oktober 2026</p>
       <h1 data-r>Walk on the <em>Wild Side.</em></h1>
-      <p class="titel__ort" data-r>Nachbarschafts-Mixology-Bar <i></i> <span>Haasemannstraße 13</span> <i></i> <span>Hannover-Linden</span></p>
+      <p class="titel__ort" data-r>Nachbarschafts-Mixology-Bar <i></i> <span class="ort-z">Haasemannstraße 13 <i></i> Hannover-Linden</span></p>
       <p class="titel__lead" data-r>Alles, was die Bar erkennbar macht, an einem Ort: die Wortmarke, die Farben und ihre Rollen, die Farben der DJ-Abende, die Schriften, das Eckschild als Form, die Bilder, die Gegenstände des Raums und der Ton. Damit jedes neue Stück, ob Plakat, Beitrag oder Karte, aussieht wie aus einem Guss.</p>
       <p class="titel__kn" data-r><a class="kn kn--rot" href="#haltung"><span>Lesen</span><i>{RUNTER}</i></a></p>
     </div>
