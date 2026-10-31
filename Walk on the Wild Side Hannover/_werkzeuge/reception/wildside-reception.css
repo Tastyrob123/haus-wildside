@@ -413,18 +413,18 @@ html.probe-offen{overflow:visible}
    und eine Karte mit Hinweis galt als «zerfallen». Ruhiger ist es auch: alle Fotos einer Liste auf einer Oberkante. */
 .re-a>.re-a__bild,.re-a>.re-a__st{align-self:start}
 /* Prata hat hohe Ober- und tiefe Unterlängen: der Titel in der Kopfmitte bekommt die Zeilenhöhe, die die Schrift braucht (Regel «gekuerzt», sonst schnitt die Box unten ab) */
-.wo-kopf__mitte b{line-height:1.4}
+#kopf.wo-kopf .wo-kopf__mitte b{line-height:1.32}
 /* Schrift in den Knöpfen des Werkzeugs optisch mittig (Regel text-mitte, Hanken sitzt 0,5 px hoch): 1 px mehr oben, 1 px weniger unten */
 .kn{padding-top:1px}
 .ws-wahl{padding-top:11px;padding-bottom:9px}
 /* Notiz «Vor dem Senden» (Regel «kante»): Satz und Punkte stehen auf einer Kante, das Kästchen hängt links davor im Rand */
 .re-notiz li{padding-left:0}.re-notiz li::before{left:-16px}
 /* Regel «einzelwort»: Fragen in Karten umbrechen ausgewogen; im Gruss bleibt «hat geschrieben?» beisammen */
-.re-a__n b{text-wrap:balance}
+.re #ansicht .re-a .re-a__n b,.re-a .re-a__n b{text-wrap:balance}
 .re-zs{white-space:nowrap}
 /* Kopf 901 bis 1240 px: «Website ansehen» ist nur noch der runde Knauf (kleid/wildside.css versteckt die Beschriftung mit clip); die Beschriftung bekommt
    zusätzlich Schriftgrösse 0, sonst misst die Regel «randlos» den versteckten Text ausserhalb des Knopfs. Der Name für Vorleser bleibt. */
-@media (min-width:901px) and (max-width:1240px){.wo-kopf .wo-kn--gold.wo-kn--klein>span{font-size:0}}
+@media (min-width:901px) and (max-width:1240px){.wo-kopf .wo-kn--gold.wo-kn--klein>span{font-size:0;letter-spacing:0;word-spacing:0}}
 /* Felder in den Fenstern: die helle Fläche auch als Grundfarbe (nicht nur als Verlauf), damit Platzhalter und Text gegen das Feld stehen, nicht gegen die dunkle Platte dahinter (Regel «blass») */
 .feld input,.feld textarea,.fz input,.fz textarea{background-color:#ECE4D8}
 @media (max-width:700px){#ansicht .sb-t__k h2{font-size:19px}}
