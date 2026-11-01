@@ -452,7 +452,7 @@
     const ev = typ === 'event', laeuft = ev && new Date(a.von + 'T00:00') <= heute0();
     const foto = ev ? a.fotos[0] : a.foto, dazu = Z ? ((ev ? Z.anlass[a.k] : Z.abteilung[a.k]) || {}).n || 0 : 0, zahl = zahlDE((ev ? anlassListe(a).length : a.vorlagen.length) + dazu);
     return `<div class="wo" data-${typ}="${a.k}" role="button" tabindex="0" style="--i:${i}" aria-label="${esc(ev ? anlassTitel(a) : a.t)}">
-      <span class="wo__k"><span class="wo__bild" ${ev && i > 5 ? `data-bg="${DS.bildUrl(DS.M, foto, true)}"` : `style="background-image:url('${DS.bildUrl(DS.M, foto, true)}')"`}></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${laeuft ? 'Läuft · ' : ''}${esc(a.z)}</span>` : ''}</span>
+      <span class="wo__k"><span class="wo__bild" style="background-image:url('${DS.bildUrl(DS.M, foto, true)}')"></span><span class="wo__licht"></span>${ev ? `<span class="wo__datum">${laeuft ? 'Läuft · ' : ''}${esc(a.z)}</span>` : ''}</span>
       <span class="wo__n"><span><b>${zus(ev ? anlassTitel(a) : a.t)}</b><small>${ev ? WO[a.wo] + ' · ' : ''}${zahl === 1 ? 'Eine Vorlage' : zahl + ' Vorlagen'}</small></span><i>${PFEIL_SVG}</i></span></div>`;
   }
   /* Eine fertige Vorlage als Karte: echte Vorschau, Klick öffnet sie im Studio (ohne KI, ohne Kosten) */

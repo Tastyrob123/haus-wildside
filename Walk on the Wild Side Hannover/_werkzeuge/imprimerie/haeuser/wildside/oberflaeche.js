@@ -51,6 +51,7 @@
     var hilf = document.createElement('div');
     hilf.innerHTML = WO.startbild({ werkzeug: 'druck', art: 'voll', h1: ' ', satz: ' ', knoepfe: ' ' });
     var sb = hilf.firstChild; sb.classList.add('ws-sb');
+    [].forEach.call(sb.querySelectorAll('img'), function (im) { im.loading = 'eager'; im.decoding = 'sync'; im.setAttribute('fetchpriority', 'high'); });   // Startbild sofort, auch nach dem Wechsel aus mail.html (Tor WebKit 1.11.)
     if (h) { h.classList.add('wo-sb__h'); sb.querySelector('.wo-sb__h').replaceWith(h); }
     if (s) { s.classList.add('wo-sb__satz'); sb.querySelector('.wo-sb__satz').replaceWith(s); }
     var kn = sb.querySelector('.wo-sb__kn'); kn.textContent = '';
