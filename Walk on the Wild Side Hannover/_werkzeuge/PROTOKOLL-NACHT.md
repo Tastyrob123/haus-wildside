@@ -21,6 +21,11 @@ Auftrag: `AUFTRAG-NACHT.md`, `CLAUDE.md` («Der Deal»). Stamm: Werkzeuge und We
 | 22:41 | Container-Neustart: Server und Verweise neu eingerichtet, Agenten fortgesetzt, nichts verloren (alles war committet) |
 | 22:50 | Voller Probelauf über alles (`[schnell]`, main) |
 
+| 23:20 | Abschlusslauf über alles (Zweig): 26 Teile ausgewertet, zwei Rechner der Besucherliste hingen 50 min beim Einrichten (GitHub, nicht unser Code) → Lauf nach Werkbank/KI abgebrochen, Auswertung geschrieben |
+| 00:15 | Werkbank: Ziffern-Knöpfe in WebKit (Weiche `-apple-system-body` erkennt WebKit unter Linux nicht → Chromium-Weiche); Nachprüfung Werkbank + Besucherliste auf main (`main-teil`) |
+| 00:20 | Tresen und Plakatwerkstatt letzte Funde; Nachprüfung Zweig (`…-teil`): Tresen 0, Plakatwerkstatt 0, Mail-Seite 20 → behoben |
+| – | Ablauf `schnell.yml`: Teilprüfungen schreiben nach `<zweig>-teil`, die volle Tafel `<zweig>-schnell` bleibt stehen |
+
 ## Prüfregeln geschärft (mit Beleg, nie Funde wegerklärt)
 
 - **Versalien (Stil):** Wild Side setzt Etiketten in Hanken 500 gesperrt in Versalien (`website/assets/wild.css`, 22× `text-transform:uppercase`). Ziellisten-Fallback `stil.versalienNur = Hanken`; das Stilblatt `imprimerie/haeuser/wildside/stilblatt.json` führt die Rolle «etikett» mit Hanken und Versalien.
