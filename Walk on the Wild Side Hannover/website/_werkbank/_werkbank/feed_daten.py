@@ -148,12 +148,12 @@ JAHR = [
     (H(deckblatt('dg-siphon', 'Wie Momo arbeitet', 'Drei Techniken aus dem Labor', '1 / 4'), 'cover'),
      'Milk Washing, Fat Washing, Enzyme: Wisch dich durch. Momo hat Biotechnologie studiert, bevor er hinter die Bar ging, und man schmeckt es.'),
     (F('wf-klar', 'drink', .5, .55), 'Klar wie Wasser, weich wie Sahne: Milk Washing. Die Milch bindet die Trübstoffe und wird wieder abgefiltert.'),
-    (F('an-team', 'mensch', .5, .5), 'Das Team vor der Rückbar, über allen der NEGRONI-Schriftzug.'),
+    (F('pl-theke', 'mensch', .5, .45), 'Momo hinter der Theke, unter der Kante das gelbe Lichtband.'),   # statt des Teamfotos mit Rudi (Robert 1.11.2026: Rudi gehört zum Culinarium)
     (F('momo-lacht', 'mensch', .55, .45), 'Momo hinter der Bar. Erst fragt er, dann mixt er, und manchmal lacht er dabei.'),
     # ---- Dezember 2026
     (H(tafel('Drei Jahre Wild Side.', satz='Mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste.', fuss='Der Geburtstag der Bar', ton='w', kicker='Im Winter'), 'text'),
      'Die neue Wild Side wird drei. Wir feiern mit DJs, Mexikanern und einem Drink zur Begrüssung für die ersten Gäste. Den Abend kündigen wir hier an.'),
-    (F('feste-anstossen', 'leute', .5, .4), 'Anstossen draussen an der Ecke. So soll es zum Geburtstag wieder aussehen.'),
+    (F('glas-trinkt', 'leute', .5, .4), 'Der erste Schluck aus dem Stielglas. Auf den Geburtstag freuen wir uns schon.'),   # statt eines Fotos aus dem Culinarium-Material, ohne Personal im Bild
     (H(tafel('91 Punkte.', satz='Falstaff Bar Guide 2027, Kategorie Cocktailbars. Drinks: 47 von 50.', fuss='Danke an alle an der Bar', kicker='Falstaff Bar Guide 2027'), 'text'),
      'Falstaff Bar Guide 2027: 91 Punkte für das Wild Side, in der Kategorie Cocktailbars. Drinks 47 von 50, Style 18 von 20, Service 18 von 20. Danke an euch alle, die mit uns an der Bar stehen.'),
     (F('glas-coupe', 'drink', .5, .5), 'Im Coupe, mit Schaum, dahinter Kerzen. Für alle, die cremig sagen.'),
