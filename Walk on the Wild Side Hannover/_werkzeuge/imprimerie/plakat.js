@@ -118,7 +118,7 @@
   function pruefeLesbar() {
     const p = $('#bkPruefung'); if (!p) return;
     const schlecht = TEILE.filter(([k]) => k !== 'kopf' && (k !== 'zusatz' || ($('#pkZusatz') || { value: '' }).value.trim()) && lesbar(k) < 4.5);
-    const kopf = lesbar('kopf') < 2.5;   // SESSION ist das grosse Zeichen der Plakate (Ultramarin auf den Wellen wie bei der Bar): 2,5:1 genügt
+    const gk = zustand().gestalt.kopf, kopf = !(gk.farbe === 'blau' && !gk.feld) && lesbar('kopf') < 3;   // SESSION in Ultramarin auf den Wellen ist das Zeichen der Plakate der Bar; sonst gilt für die grosse Schrift 3:1
     if (!schlecht.length && !kopf) { p.className = 'bk-pruefung bk-pruefung--gut'; p.textContent = 'Gut lesbar: jeder Text hebt sich genug vom Grund ab.'; return; }
     const namen = schlecht.map(([, n]) => n).concat(kopf ? ['SESSION'] : []);
     p.className = 'bk-pruefung bk-pruefung--hinweis';
