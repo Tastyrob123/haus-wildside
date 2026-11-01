@@ -914,3 +914,5 @@ if __name__ == '__main__':
     baue()
     if callable(getattr(H, 'nach_bau', None)):   # Haus-eigener Schritt nach dem Bau (Grand Beau-Rivage: Werkbank in fünf weiteren Sprachen)
         H.nach_bau()
+    if K.RUECKSPRUNG:
+        K.ruecksprung().einsetzen(K.ROOT)   # letzter Schritt: Rücksprung in jede Seite der Werkbank-Ordner, auch in die der Haus-Skripte (Robert 1.11.2026)

@@ -53,8 +53,26 @@ def lies(name, ersatz=None):
     return json.load(open(p, encoding='utf-8')) if os.path.exists(p) else ersatz
 
 
+# Rücksprung an, ausser haus.RUECKSPRUNG = False; Grand Beau-Rivage wird nie angefasst
+RUECKSPRUNG = getattr(H, 'RUECKSPRUNG', True) and 'beau-rivage' not in ROOT.lower()
+
+
+def ruecksprung():
+    """Die Kit-Fassung von ruecksprung.py (nicht eine gleichnamige Datei im _werkbank des Hauses)."""
+    import importlib.util
+    m = sys.modules.get('kit_ruecksprung')
+    if not m:
+        sp = importlib.util.spec_from_file_location('kit_ruecksprung', os.path.join(KIT, 'ruecksprung.py'))
+        m = importlib.util.module_from_spec(sp); sp.loader.exec_module(m); sys.modules['kit_ruecksprung'] = m
+    return m
+
+
 def schreib(pfad, text):
     os.makedirs(os.path.dirname(pfad), exist_ok=True)
+    if pfad.endswith('.html') and RUECKSPRUNG:   # Rücksprung (Robert 1.11.2026): Zurück im Browser landet auf der alten Höhe, nie ganz oben
+        rs = ruecksprung()
+        if rs.gehoert_dazu(ROOT, pfad):
+            text = rs.seite(text)
     open(pfad, 'w', encoding='utf-8').write(text)
 
 
