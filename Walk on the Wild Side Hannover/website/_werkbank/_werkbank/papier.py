@@ -158,6 +158,12 @@ def us_welle(ident, a, b):
 
 
 def untersetzer_alle():
+    """1.11.2026: neu gesetzt in untersetzer_neu.py (Robert: «nicht richtig mittig»); untersetzer_alt() bleibt nur als Herkunft."""
+    import untersetzer_neu
+    return untersetzer_neu.alle()
+
+
+def untersetzer_alt():
     U = []
     wm_h = 1600 / 1296
     # sechs auf Creme: Wortmarke in Rot, SESSION-Wellen in Rot, Creme und Ultramarin
@@ -227,6 +233,10 @@ def plakatwerkstatt():
     mehr = []
     for d in liste:
         k = d['k']
+        if k in N.PLAKAT_NACHBAU:   # Nachbauten echter Plakate zeigt die Werkbank nicht (Robert 1.11.2026)
+            for f in [x for x in os.listdir(img) if x.startswith('pw-' + k + '.') or x.startswith('pw-' + k + '-r.')] + [x for x in os.listdir(pdf) if x == f'{H.KURZ}-{k}.pdf']:
+                os.remove(os.path.join(img if f.endswith('.webp') else pdf, f))
+            continue
         namen = []
         for j, v in enumerate(d['vorschau']):
             nm = (k if k == 'gutschein' else 'pw-' + k) + ('' if j == 0 else '-r')

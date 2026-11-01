@@ -26,43 +26,8 @@
    "seiten": 2
   },
   {
-   "id": "pw-session-ghazouani-brothers",
-   "name": "Ghazouani Brothers, 17.10.2026",
-   "seiten": 1
-  },
-  {
-   "id": "pw-session-aushang-a3",
-   "name": "SESSION · Aushang A3",
-   "seiten": 1
-  },
-  {
-   "id": "pw-session-story",
-   "name": "SESSION · Story",
-   "seiten": 1
-  },
-  {
    "id": "pw-session-programm",
    "name": "Die DJ-Abende",
-   "seiten": 1
-  },
-  {
-   "id": "pw-konzert-live-am-donnerstag",
-   "name": "Live am Donnerstag",
-   "seiten": 1
-  },
-  {
-   "id": "pw-silvester-fruehshoppen",
-   "name": "Silvester Frühshoppen",
-   "seiten": 1
-  },
-  {
-   "id": "pw-tanz-in-den-mai",
-   "name": "Tanz in den Mai",
-   "seiten": 1
-  },
-  {
-   "id": "pw-gastschicht-musa",
-   "name": "Gastschicht · Musa",
    "seiten": 1
   },
   {
@@ -129,35 +94,35 @@
  "etiketten": [
   {
    "id": "u01",
-   "name": "Die Wortmarke"
+   "name": "Die Wortmarke in Rot"
   },
   {
    "id": "u02",
-   "name": "SESSION"
+   "name": "Die Wortmarke auf der Nacht"
   },
   {
    "id": "u03",
-   "name": "Wortmarke in der Welle"
+   "name": "NEGRONI"
   },
   {
    "id": "u04",
-   "name": "Du sagst, was du magst."
+   "name": "SESSION"
   },
   {
    "id": "u05",
-   "name": "Erst der Drink, dann die Musik."
+   "name": "Du sagst, was du magst."
   },
   {
    "id": "u06",
-   "name": "91 Punkte"
-  },
-  {
-   "id": "u07",
    "name": "Das Eckschild"
   },
   {
+   "id": "u07",
+   "name": "91 Punkte"
+  },
+  {
    "id": "u08",
-   "name": "NEGRONI"
+   "name": "Wortmarke in der Welle"
   },
   {
    "id": "u09",
@@ -165,15 +130,15 @@
   },
   {
    "id": "u10",
-   "name": "Die Adresse"
+   "name": "Das Gewölbe"
   },
   {
    "id": "u11",
-   "name": "Instagram"
+   "name": "Die Ecke"
   },
   {
    "id": "u12",
-   "name": "Seit 2018 in Linden"
+   "name": "Momo gießt ein"
   }
  ]
 }

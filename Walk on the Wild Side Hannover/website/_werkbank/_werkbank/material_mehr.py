@@ -12,6 +12,7 @@ import glob, json, os, re, shutil
 import kern as K
 from kern import H, ROOT, W, e, kap, kn, PF
 import material as M
+import papier_neu as N   # PLAKAT_NACHBAU (Robert 1.11.2026)
 
 ZIEL = M.ZIEL
 FEHLT = []
@@ -79,7 +80,7 @@ def plakatwerkstatt():
     zeilen = ''
     k0 = 0
     for x in liste:
-        if x['k'] in schon or not x.get('pdf'):
+        if x['k'] in schon or not x.get('pdf') or x['k'] in N.PLAKAT_NACHBAU:   # keine Nachbauten echter Plakate (Robert 1.11.2026)
             continue
         name = x['n'].replace('·', '–')
         h = lege('02 Drucksachen', os.path.join(IMPR, x['pdf']), f"{H.NAME} {re.sub(r'[/:?’]', ' ', name).strip()}.pdf")
@@ -96,7 +97,7 @@ def plakatwerkstatt():
 
 
 AUSLAGE = [   # (Quelle, Klasse, links %, oben %, Breite %, Drehung): ein Stapel aus dem, was in den Ordnern liegt
-    (os.path.join(IMPR, 'session-aushang-a3.jpg'), 'blattbild', 2, 6, 34, -6),
+    (os.path.join(IMPR, 'tischaufsteller-du-sagst.jpg'), 'blattbild', 2, 6, 34, -6),
     (os.path.join(IMPR, 'karte-preise-der-bar.jpg'), 'blattbild', 33, 0, 32, 3),
     (os.path.join(IMPR, 'instagram-falstaff.jpg'), 'blattbild', 63, 10, 33, -3),
     ('03 Untersetzer/Bilder/Untersetzer 91 Punkte.png', 'form', 20, 58, 25, 8),

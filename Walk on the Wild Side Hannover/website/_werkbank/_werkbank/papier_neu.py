@@ -158,6 +158,12 @@ def birnen(x, y, text, groesse, farbe=GOLD, anker='middle', sperr=.12):
     return f'<g fill="{farbe}">{punkte}</g>'
 
 
+# Nachbauten echter Plakate der Bar (Robert 1.11.2026: «selbst generiert oder von denen? sieht sonst panne aus»): die Werkbank zeigt nur eigene Formate.
+# Die Plakatwerkstatt behält sie als Vorlagen; Drucksachen-Seite, Material und Zählung lassen sie weg. «Die DJ-Abende» (A5-Programm) ist ein eigenes Format.
+PLAKAT_NACHBAU = {'session-ghazouani-brothers', 'session-aushang-a3', 'session-story', 'silvester-fruehshoppen', 'tanz-in-den-mai',
+                  'konzert-live-am-donnerstag', 'gastschicht-musa'}
+
+
 def satz_namen(*namen):
     """Satzdateien: die Familiennamen, die der Kit fest schreibt (DM Mono, Instrument Sans), heissen wie die Schrift, die gesetzt wird."""
     from kern import W

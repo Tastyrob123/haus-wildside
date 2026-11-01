@@ -8,7 +8,19 @@ from PIL import Image
 
 HIER = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEHR = json.load(open(os.path.join(HIER, '_werkbank', 'papier_mehr.json'), encoding='utf-8'))['druck'] if os.path.exists(os.path.join(HIER, '_werkbank', 'papier_mehr.json')) else []
-ZAHL = {20: 'zwanzig', 5: 'fünf', 12: 'zwölf'}
+ZAHL = {20: 'zwanzig', 5: 'fünf', 12: 'zwölf', 13: 'dreizehn', 14: 'vierzehn'}
+# Untersetzer neu (1.11.2026): Texte aus haus.py › PAPIER_SEITE passend zu den neuen Motiven
+UNTERSETZER_TEXT = [
+    ('sechs auf Creme mit roter Wortmarke und den Wellen der Plakate, sechs auf der Nacht der Bar mit Goldlinie.',
+     'die Wortmarke gross, vier Fotos der Bar, die Wellen der SESSION-Plakate, Momos Satz, Falstaff und die Zeiten, jedes Motiv genau in der Mitte.'),
+    ('Die Wortmarke kommt aus eurem Logo, die Wellen von den SESSION-Plakaten, die Goldlinie vom Eckschild.',
+     'Die Wortmarke kommt aus eurem Logo, die Fotos aus der Bar, die Wellen von den SESSION-Plakaten, die Goldlinie vom Eckschild.')]
+
+
+def untersetzer(t):
+    for a, b in UNTERSETZER_TEXT:
+        t = t.replace(a, b)
+    return t
 
 
 def nach(ordner, fn=None):
@@ -28,8 +40,8 @@ def nach(ordner, fn=None):
 def drucksachen(t):
     k = len(MEHR)
     alt = 'Papier, das bei euch an der Theke, an der Tür oder im Umschlag landen könnte. Was nicht passt, lasst ihr einfach weg.'
-    neu = (f'Fünf Ideen für Papier im Stil der Bar, dazu die {ZAHL.get(k, k)} Drucksachen, die die Plakatwerkstatt schon fertig gesetzt hat: '
-           'Plakate, Karten, Aufsteller, Flyer und Gutschein, jede als PDF zum Herunterladen. Was nicht passt, lasst ihr einfach weg.')
+    neu = (f'Fünf Ideen für Papier im Stil der Bar, dazu {ZAHL.get(k, k)} weitere Drucksachen aus der Plakatwerkstatt: '
+           'Karten, Aufsteller, Angebote, Flyer und Gutschein, jede als PDF zum Herunterladen. Eure Plakate gestaltet ihr selbst, die stehen hier nicht. Was nicht passt, lasst ihr einfach weg.')
     t = t.replace(alt, neu)
     # Abschnitte der Plakatwerkstatt: Knopf heisst «PDF herunterladen» und lädt die Datei
     for d in MEHR:
@@ -87,8 +99,8 @@ def knopf_mitte(pfad):
 
 
 if __name__ == '__main__':
-    nach('untersetzer')
+    nach('untersetzer', untersetzer)
     nach('drucksachen', drucksachen)
-    vorschau('untersetzer', 'u03.webp')
+    vorschau('untersetzer', 'u04.webp')
     vorschau('drucksachen', 'karte.webp')
     nachbau()

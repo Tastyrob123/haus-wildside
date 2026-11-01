@@ -226,9 +226,9 @@ FEED = dict(art='bogen', bogen=[1, 2, 3, 4, 5, 6, 7, 8, 9], bogen_zeile='Die ers
             text1='', text2='Tippt auf den Bildschirm, dann scrollt ihr durch den Feed wie am Handy.', kacheln=[])
 PAPIER = dict(
     etik_text='An der Theke stehen Momos Drinks auf Untersetzern: zwölf Ideen mit der Wortmarke, dem Eckschild und den Wellen der SESSION-Plakate.',
-    druck_text='Von der Karte bis zum Plakat für die Tür, dazu <a href="../sticker/index.html" target="_blank" rel="noopener">Sticker</a> und <a href="../beigaben/index.html" target="_blank" rel="noopener">Beigaben</a>.',
+    druck_text='Von der Karte am Tresen bis zum Aushang für die Tür, dazu <a href="../sticker/index.html" target="_blank" rel="noopener">Sticker</a> und <a href="../beigaben/index.html" target="_blank" rel="noopener">Beigaben</a>.',
     orte_e=[(3, 6, 28, -3), (36, 6, 28, 2), (69, 6, 28, -2), (3, 54, 28, 2), (36, 54, 28, -3), (69, 54, 28, 3)],
-    orte_d=[('karte', 3, 16, 29, -3, 0), ('pw-session-aushang-a3', 35.5, 16, 29, 2, 0), ('pw-tanz-in-den-mai', 68, 16, 29, -2, 0)])   # Robert 1.11.2026: drei echte Drucksachen der Bar, nie nur ein Blatt
+    orte_d=[('karte', 3, 16, 29, -3, 0), ('aufsteller', 35.5, 16, 29, 2, 0), ('visitenkarte', 68, 16, 29, -2, 0)])   # Robert 1.11.2026: drei eigene Drucksachen, keine Plakat-Nachbauten
 PAPIER_SEITE = dict(
     breit={'karte', 'karte-r', 'briefbogen', 'umschlag', 'gutschein', 'gutschein-r'},
     formen=set(),
@@ -257,7 +257,7 @@ MATERIAL = dict(
     text='Was für den Entwurf neu entstanden ist, liegt sortiert in einem Ordner: die Karten als PDF, die Drucksachen, die Untersetzer, die Sticker, die Beigaben, die Postkarten, die Beiträge für Instagram und eure Wortmarke als Datei.',
     streu=[(bild('wf-coupes-oben'), 'Gläser mit Goldrand', -4, '-0.05'), (bild('rm-glaeser'), 'Hinter der Theke', 3, '0.04'), (bild('wf-pink'), 'Ein Drink mit Schaum', -2, '-0.07'),
            (bild('wf-giesst'), 'Momo gießt ein', 4, '0.05'), (bild('wf-erdbeer'), 'Highball mit Erdbeere', -3, '-0.04')],
-    druck_satz='Von der Karte für die Theke bis zum Plakat für die Tür.',
+    druck_satz='Von der Karte für die Theke bis zum Aushang für die Tür.',
     zeichen=[('Eure Wortmarke', '../../_werkzeuge/oberflaeche/kleid/wildside-marke.svg', 'Walk on the Wild Side Wortmarke.svg')],
     zeichen_satz='Die Wortmarke der Bar als Zeichnung, die in jeder Größe scharf bleibt.',
     auslage=[])
@@ -270,7 +270,7 @@ KAPITEL = {
     'seiten': dict(text='Eine Seite aussuchen, mit den Pfeilen weiterblättern. Rechts dieselbe Stelle am Handy, mit «Öffnen» seid ihr auf der echten Seite.'),
     'unterlagen': dict(text=UNTERLAGEN['text']),
     'gaeste': dict(text='Wer vorbeikommen will, will vorher wissen, wann offen ist, ob noch Platz ist und wie er hinfindet. Wer feiern will, sucht Format und Preis. Auf der neuen Seite steht das an einem Ort.'),
-    'papier': dict(text='Für das Wild Side ist einiges entstanden: zwölf Untersetzer für Momos Drinks, Drucksachen von der Karte bis zum Plakat für die Tür, Mails für eure Gäste und eine Postkarte zu jedem DJ-Abend.'),
+    'papier': dict(text='Für das Wild Side ist einiges entstanden: zwölf Untersetzer für Momos Drinks, Drucksachen von der Karte bis zum Aushang für die Tür, Mails für eure Gäste und eine Postkarte zu jedem DJ-Abend.'),
     'material': dict(text='Wer eine Datei braucht, findet sie hier: jede Karte als PDF, jede Drucksache, jeden Untersetzer und eure Wortmarke in voller Schärfe.'),
     'geprueft': dict(text='Bevor etwas davon zu euch kommt, wird es geöffnet, gelesen und gedrückt: am Handy wie am Rechner, jede Karte gegen eure Angaben, jedes Werkzeug in jedem Schritt. Das Blatt fasst es zusammen, der Bericht erzählt es ganz.'),
     'schluss': dict(text='Sagt mir offen, was euch am Entwurf gefällt und was nicht. Ändern lässt sich alles.'),
