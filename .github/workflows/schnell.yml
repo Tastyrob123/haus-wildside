@@ -112,9 +112,13 @@ jobs:
           path: ergebnis
           retention-days: 14
       - name: Ergebnis auf den Zweig «ergebnis» legen (an den Commit gebunden)
+        env:
+          NACHRICHT: ${{ github.event.head_commit.message }}
+          NUR: ${{ inputs.nur }}
         run: |
           git config user.name "schnelle-pruefung"; git config user.email "pruefung@users.noreply.github.com"
-          Z="ergebnis/laeufe/${GITHUB_REF_NAME//\//-}-schnell"
+          # Teilprüfung ([schnell: …] oder nur=…) in eigenen Ordner «-teil», die volle Tafel «-schnell» bleibt stehen (Oberchef 1.11.2026)
+          if [ -n "$NUR" ] || printf '%s' "$NACHRICHT" | grep -q '\[schnell:'; then Z="ergebnis/laeufe/${GITHUB_REF_NAME//\//-}-teil"; else Z="ergebnis/laeufe/${GITHUB_REF_NAME//\//-}-schnell"; fi
           if git fetch --depth 1 origin ergebnis 2>/dev/null; then git worktree add -f /tmp/erg FETCH_HEAD; else git worktree add --detach /tmp/erg; (cd /tmp/erg && git rm -rqf . >/dev/null 2>&1 || true); fi
           cd /tmp/erg && rm -rf "$Z" && mkdir -p "$Z" && cp -r "$GITHUB_WORKSPACE/ergebnis/." "$Z/"
           python3 "$GITHUB_WORKSPACE/cloud/uebersicht.py" ergebnis/laeufe > index.html || true

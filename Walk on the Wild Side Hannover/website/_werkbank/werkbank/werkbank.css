@@ -1072,7 +1072,7 @@ b,strong{font-weight:500}
 /* Reiter der Werkzeuge und Ziffern der Befunde: symmetrisch, letzter Buchstabe ohne Sperrung (ins-mitte-js), Chromium setzt Hanken 0,7 px höher als WebKit */
 .ins-m{padding:8px 16px!important}
 .ins-m .tm-l,.sbf-z .tm-l{letter-spacing:0}
-@supports not (font:-apple-system-body){.ins-m>.tm{position:relative;top:.7px}.sbf-b .sbf-z>.tm{top:.7px!important}}
+@supports (interpolate-size:allow-keywords){.ins-m>.tm{position:relative;top:.7px}.sbf-b .sbf-z>.tm{top:.7px!important}}   /* nur Chromium: WebKit unter Linux kennt -apple-system-body nicht (Oberchef 1.11.) */
 .sbf-z{padding:7px 9px!important;letter-spacing:0!important}.sbf-z[data-i="0"]{padding-left:9.5px!important;padding-right:8.5px!important}   /* «01»: die Eins steht in Hanken weiter links (Chromium und WebKit gleich) */
 @media(max-width:600px){.auftakt__fuss .runter i{display:none}.auftakt__fuss .runter{gap:0}}   /* am Handy alle Zeilen auf einer Kante */
 /* Die Wortmarke als Zeichen steht in ihrem Rot (Rot nur als Punkt: Logo), nie in Gold */
