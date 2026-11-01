@@ -127,7 +127,7 @@
     const buehne = document.createElement('span'); buehne.className = 'stueck__buehne';
     const satz = document.createElement('span'); satz.className = 'stueck__satz';
     if (art.leer) {
-      const p = blatt('a5h', null, 'hell', null, basis, 'papier--leer'); p.innerHTML = '<span class="papier__plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>';
+      const p = blatt('a5h', null, 'hell', null, basis, 'papier--leer'); p.innerHTML = '<span class="papier__plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><small class="papier__wort">Leer beginnen</small></span>';
       satz.appendChild(p);
     } else if (fkey === 'insta') {
       const [v, t] = vorlageFuerVorschau(art);
@@ -496,7 +496,7 @@
   function leerStueck(attr, f, basis, info) {
     const [W, H] = groesse(f, basis);
     const p = document.createElement('span'); p.className = 'papier papier--vorn papier--leer'; p.style.width = W + 'px'; p.style.height = H + 'px';
-    p.innerHTML = `<span class="papier__plus">${PLUS}</span>`;
+    p.innerHTML = `<span class="papier__plus">${PLUS}<small class="papier__wort">Leer beginnen</small></span>`;   // Wort im Blatt: die Karte ist nie eine leere Fläche (Tor WebKit 31.10.)
     return stueckKarte(attr, 0, [p], H, 'Leeres Blatt', info, 'Öffnen');
   }
   function nimmVorlageKv(nr) { const { x, kontext } = kvListe[nr]; st().oeffne(kvDoc(x, kontext)); zu(); }

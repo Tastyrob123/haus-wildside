@@ -200,7 +200,7 @@
     const q = new URLSearchParams(location.search);
     if (q.get('hilfe') === 'video') video();
     else if (q.get('hilfe') === 'fuehrung') starte(0);
-    else if (!gesehen() && !q.has('demo') && window.self === window.top) willkommen();   // in der Werkbank (im Laptop-Bildschirm) keine Begrüssung
+    else if (!gesehen() && !q.has('demo') && window.self === window.top && !/\/mail\.html($|[?#])/.test(document.referrer || '')) willkommen();   // wer aus «Newsletter & E-Mail» herüberkommt, ist schon in der Werkstatt: keine Begrüssung über der Übersicht (Tor 31.10.)   // in der Werkbank (im Laptop-Bildschirm) keine Begrüssung
   }
   if (window.__ST) los(); else document.addEventListener('ds:bereit', los, { once: true });
   window.DSHilfe = { willkommen, starte, video, hilfeMenue, zu };
