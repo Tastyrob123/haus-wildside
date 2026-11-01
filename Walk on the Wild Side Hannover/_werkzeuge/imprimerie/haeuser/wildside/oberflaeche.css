@@ -99,3 +99,7 @@ button.wo-marke-w{border:0;background:none;padding:0;cursor:pointer;text-align:l
 
 /* Demo-Check 21.10.2026: Zahl im gewählten (dunklen) Eintrag des Rands war fast unsichtbar (dunkelgrau auf dunkler Fläche) */
 #start .ms-nav button.an em{color:rgba(245,243,239,.66)}
+/* Handy, sobald «Zurück zur Drucksache» im Kopf steht: das Zeichen weicht, damit die Suche Platz für «Arten suchen …» hat und nichts rechts übersteht (Tor 1.11.2026, WebKit 390: Seite 416 px, Platzhalter abgeschnitten) */
+@media (max-width:600px){.ms-kopf:has(#startZu:not([hidden])) .ws-marke{display:none}}
+/* Handy: Feld «Etwa: ein Plakat» über die ganze Breite, der Knopf darunter (Tor 1.11.2026, WebKit 390: Platzhalter brauchte zwei Zeilen) */
+@media (max-width:600px){.start__direkt{flex-wrap:wrap;border-radius:24px;padding:10px 10px 10px 18px}.start__direkt textarea{flex:1 1 calc(100% - 40px);min-width:0}.start__direkt .knopf--voll{flex:1 1 100%;width:100%;justify-content:space-between}}
