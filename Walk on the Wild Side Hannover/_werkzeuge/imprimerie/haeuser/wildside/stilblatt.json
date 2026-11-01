@@ -109,7 +109,8 @@
    "plakat",
    "plakathoch",
    "plakatrueck",
-   "programm"
+   "programm",
+   "valentin"
   ],
   "ausnahme_zeitleiste": "Elemente mit ausr 'l' in Paaren (Uhrzeit Hanken 500 | Schritt) duerfen links stehen, wenn der Block als Ganzes mittig ist",
   "ausnahmen_quer": [

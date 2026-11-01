@@ -94,13 +94,13 @@ for d, n, t, b in GAST:
                    "tag": d.replace('.', ' | ').replace(' | 20', ' | '), "zeit": "", "text": t, "fuss": PL_FUSS}))
 
 KARTE = [
-    v('Drunk in Love · Valentinskarte', 'am Tisch, an der Bar', 'dlh', 'karte', 'creme', {"ueber": "Cupid’s Signature Drinks", "titel": "Drunk in Love", "text": "",
+    v('Drunk in Love · Valentinskarte', 'am Tisch, an der Bar', 'dlh', 'valentin', 'hell', {"ueber": "Valentinstag 2026", "datum": "Cupid’s Signature Drinks", "titel": "Drunk in Love", "text": "",
       "liste": [{"name": "Frensh 26", "detail": "Gin | Bergamotte | Nori | Schaumwein", "preis": "12"},
                 {"name": "Whey Bramble", "detail": "Gin | Lemon Scrub | Vetiver | Whey Berry Soda", "preis": "12"},
                 {"name": "Pink Lady", "detail": "Kakaobutter fat-washed Rum | Himbeerpüree | Agave | Limette", "preis": "12"},
                 {"name": "Karamella", "detail": "Havana 7 Jahre | Portwein | Johannisbeere | Karamell | schwarze Walnüsse | Limette", "preis": "12"}],
       "fuss": "Valentinstag 2026 · Walk on the Wild Side"}),
-    v('Die Preise der Bar', 'an der Bar', 'a5h', 'karte', 'dunkel', {"ueber": "Was ein Drink kostet", "titel": "Die Preise der Bar", "text": "Alle Preise brutto.",
+    v('Die Preise der Bar', 'an der Bar', 'a5h', 'preisliste', 'dunkel', {"ueber": "Was ein Drink kostet", "titel": "Die Preise der Bar", "text": "Alle Preise brutto.",
       "liste": [{"name": "Signature Drinks", "detail": "", "preis": "12,00"}, {"name": "Alkoholfreie Drinks", "detail": "", "preis": "11,00"},
                 {"name": "Longdrinks", "detail": "", "preis": "10,00"}, {"name": "Wein und Spritz", "detail": "", "preis": "8,00"},
                 {"name": "Sekt auf Eis", "detail": "", "preis": "6,00"}, {"name": "Bier", "detail": "", "preis": "4,00"},

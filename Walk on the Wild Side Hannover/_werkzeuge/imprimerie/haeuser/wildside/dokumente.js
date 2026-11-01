@@ -697,6 +697,93 @@
   });
 
 
+  /* ---------- Valentinskarte «Drunk in Love» (Robert 1.11.2026: «Da muss mehr Valentins-Vibe transportiert werden»): im Charakter der echten Karte
+     der Bar: rosa Grund, «DRUNK IN» kräftig (Titan One) und «LOVE» als Pinselschrift, Drinks in Rot mit dem Preis auf derselben Linie,
+     der rote Leopard mit Herzen und Coupe unten rechts. Achse links wie auf der Karte der Bar (el.frei: nicht an die Mittelachse gebunden). ---------- */
+  const LIEBE = { grund: '#FEE1E6', rot: '#D7102F', tinte: '#B3132E', leise: '#C4485C' };
+  V.valentin = Object.assign({}, ALT.karte, {
+    name: 'Valentinskarte', wofuer: 'Karte zum Valentinstag im Stil der Bar: rosa Grund, roter Leopard, Drinks mit Preis',
+    bau(c0, i, seite) {
+      const c = erweitere(c0); c.stil.ausr = 'l'; seite.grund = LIEBE.grund; seite.tapete = null;
+      const u = c.u, PT = .3528, rand = Math.max(7, .085 * u), cw = c.w - 2 * rand;
+      const T = (rolle, text, w, gr, farbe, o = {}) => { const el = tx(c, rolle, text, w, gr, farbe, Object.assign({ ausr: 'l', frei: true }, o)); el.gr = +Math.max(gr, mindest(c, rolle, o.slot)).toFixed(2); el.h = DS.mess(el).h; return el; };
+      const liste = (i.liste || []).filter(e => e && (e.name || e.preis));
+      // Leopard unten rechts, so gross, wie es das Format erlaubt
+      const lw = Math.min(c.w * .62, c.h * .36 * 674 / 873), lh = lw * 873 / 674;
+      c.el.push({ id: id(), typ: 'bild', bild: 'valentin-leopard', x: +(c.w - lw - rand * .35).toFixed(2), y: +(c.h - lh - rand * .35).toFixed(2), w: +lw.toFixed(2), h: +lh.toFixed(2), fx: .5, fy: .5, zoom: 1, slot: 'leopard' });
+      // Kopf: Wortmarke oben rechts, «DRUNK IN» / «LOVE», darunter Anlass
+      const zw = Math.max(11, .12 * u); c.el.push(zeichen(c, zw, null, { x: +(c.w - rand - zw).toFixed(2), y: +(rand * .9).toFixed(2) }));
+      const woerter = String(i.titel || 'Drunk in Love').trim().split(/\s+/), letzt = woerter.pop(), vorn = woerter.join(' ');
+      const t1 = T('liebe', vorn.toUpperCase(), cw - zw - 2, .16 * u, LIEBE.rot, { slot: 'titel', zeile: .95 });
+      const g1 = Math.min(t1.gr, t1.gr * (cw - zw - 3) / (DS.mess(Object.assign({}, t1, { w: 1e5 })).bw + .1)); t1.gr = +g1.toFixed(2); t1.h = DS.mess(t1).h;
+      const t2 = T('pinsel', letzt.toUpperCase(), cw, t1.gr * 1.25, LIEBE.rot, { zeile: .9 });
+      let y = rand * 1.7; t1.x = rand; t1.y = +y.toFixed(2); c.el.push(t1); y += t1.h * .92;
+      t2.x = +(rand + cw * .32).toFixed(2); t2.w = +(cw * .68).toFixed(2); t2.y = +y.toFixed(2); c.el.push(t2); y += t2.h + .02 * u;
+      const anlass = [i.ueber, i.datum].filter(Boolean).join(' · ');
+      if (anlass) { const a = gliederSatz(T('liebetext', anlass.toUpperCase(), cw, 8.5 * PT, LIEBE.rot, { slot: 'ueber', sperr: .08 }), DRUCK_MIN); a.h = DS.mess(a).h; a.x = rand; a.y = +y.toFixed(2); c.el.push(a); y += a.h; }
+      // Drinks: Name links, Preis rechts auf derselben Linie, Zutaten darunter; die Liste füllt den Platz bis über den Leopard
+      const yOben = y + .07 * u, yUnten = c.h - lh * .78 - .03 * u, pw = .16 * cw;
+      const posten = k => liste.map((e, n) => {
+        const ng = Math.max(11 * PT, .046 * u * k), dg = Math.max(8.5 * PT, .031 * u * k);
+        const name = e.name ? T('liebetext', e.name.toUpperCase(), cw - pw, ng, LIEBE.rot, { slot: `liste.${n}.name`, sperr: .04, zeile: 1.15 }) : null;
+        const preis = e.preis ? T('liebetext', e.preis, pw, ng, LIEBE.rot, { slot: `liste.${n}.preis`, ausr: 'r', zeile: 1.15 }) : null;
+        const det = e.detail ? gliederSatz(T('liebeleise', e.detail, cw * .8, dg, LIEBE.leise, { slot: `liste.${n}.detail`, zeile: 1.35 }), DRUCK_MIN) : null;
+        if (det) det.h = DS.mess(det).h;
+        return { name, preis, det, h: (name ? name.h : 0) + (det ? dg * .35 + det.h : 0) };
+      });
+      // so gross wie möglich; zwischen den Drinks höchstens 2,2 Zeilen Luft (Stilblatt: kein Loch)
+      const zl = k => Math.max(8.5 * PT, .031 * u * k) * 1.35;
+      let k = 2.6, p = posten(k), H = () => p.reduce((s, x) => s + x.h, 0);
+      while (k > .6 && H() + (p.length - 1) * zl(k) * 1.5 > (yUnten - yOben)) { k *= .96; p = posten(k); }
+      const gap = Math.min(zl(k) * 1.5, Math.max(zl(k) * 1.1, ((yUnten - yOben) - H()) / Math.max(1, p.length - 1)));
+      let yy = yOben + Math.max(0, ((yUnten - yOben) - H() - gap * (p.length - 1)) / 2);
+      p.forEach(x => {
+        if (x.name) { x.name.x = rand; x.name.y = +yy.toFixed(2); c.el.push(x.name); }
+        if (x.preis) { x.preis.x = +(c.w - rand - pw).toFixed(2); x.preis.y = +yy.toFixed(2); c.el.push(x.preis); }
+        if (x.det) { x.det.x = rand; x.det.y = +(yy + (x.name ? x.name.h : 0) + x.det.gr * .35).toFixed(2); c.el.push(x.det); }
+        yy += x.h + gap;
+      });
+      // Fuss unten links neben dem Leopard
+      const fuss = String(i.fuss != null ? i.fuss : 'Walk on the Wild Side').split(' · ').filter(x => x && x !== i.ueber && x !== i.datum).join('\n');   // der Anlass steht schon oben
+      const f = T('liebeleise', fuss, c.w * .58, 8.5 * PT, LIEBE.tinte, { slot: 'fuss', zeile: 1.35 });
+      f.x = rand; f.y = +(c.h - rand - f.h).toFixed(2); c.el.push(f);
+    },
+  });
+
+  /* ---------- Preisliste als Tabelle (Robert 1.11.2026 zu «Die Preise der Bar»: «sieht viel zu gequetscht aus alles»): Kopf mittig, darunter
+     je Posten eine Zeile mit dem Namen links und dem Preis rechts, feine Goldlinie zwischen den Zeilen; Schrift so gross, dass die Tabelle das Blatt füllt. ---------- */
+  V.preisliste = Object.assign({}, ALT.karte, {
+    name: 'Preisliste', wofuer: 'Preise als Tabelle: Name links, Preis rechts',
+    bau(c0, i, seite) {
+      const c = erweitere(c0); c.stil.ausr = 'c'; grund(c, seite); const r = rahmen(c), u = c.u, Z = zweck(c), PT = .3528;
+      const kf = kopfFuss(c, i, r), innen = r + .1 * u, cw = c.w - 2 * innen, y0 = kf.oben + .05 * u, y1 = kf.unten - .05 * u;
+      const liste = (i.liste || []).filter(e => e && (e.name || e.preis));
+      const grad = (el, g) => { el.gr = +Math.max(g, mindest(c, el.rolle, el.slot)).toFixed(2); el.h = DS.mess(el).h; return el; };
+      const bau = k => {
+        const tg = Z.titel * u * .95, mg = Math.max(8.5 * PT, Z.mono * u);
+        const items = [zeichen(c, Z.zeichen * u * .55), Z.zeichen * u * .2, i.ueber && tx(c, 'mono', i.ueber, cw, mg, c.T.mono, { slot: 'ueber' }), i.ueber && tg * .3,
+          ausgewogen(c, tx(c, 'titel', i.titel || '', cw, tg, c.T.titel, { slot: 'titel', zeile: 1.06 })), tg * .35,
+          i.text && ausgewogen(c, tx(c, 'text', i.text, cw, Math.max(9.5 * PT, Z.text * u), c.T.text, { slot: 'text', deck: .85 })), i.text && tg * .35,
+          linie(c, .08 * u), tg * .55];
+        const ng = Math.max(13 * PT, .052 * u * k), pg = Math.max(12 * PT, .046 * u * k), zl = ng * 1.3;
+        liste.forEach((e, n) => {
+          const a = e.name ? grad(tx(c, 'titel', e.name, cw * .74, ng, c.T.titel, { slot: `liste.${n}.name`, ausr: 'l', frei: true, zeile: 1.15 }), ng) : null;
+          const b = e.preis ? grad(tx(c, 'mono', e.preis, cw * .24, pg, c.T.mono, { slot: `liste.${n}.preis`, ausr: 'r', frei: true, sperr: .04, zeile: 1.15 }), pg) : null;
+          const teile = [];
+          const h = Math.max(a ? a.h : 0, b ? b.h : 0);
+          if (a) { a.x = +innen.toFixed(2); a.y0 = (h - a.h) / 2; teile.push(a); }
+          if (b) { b.x = +(innen + cw * .76).toFixed(2); b.y0 = (h - b.h) / 2 + (a ? (a.h - b.h) * .12 : 0); teile.push(b); }
+          if (n) items.push(zl * .45 * k, linie(c, cw, { x: +innen.toFixed(2), staerke: Math.max(.2, .0012 * u), deck: .45 }), zl * .45 * k);
+          items.push({ typ: 'reihe', teile, h });
+        });
+        return sauber(items);
+      };
+      const g = passend(c, bau, (y1 - y0) * .95, 2.4, .5);
+      optischReihen(c, g, y0, y1);
+    },
+  });
+
+
   /* ---------- Druckschärfe: Fotos und Plakate nie unter 150 dpi (Druckprüfung). die echten Plakate gibt es nur in Instagram-Grösse:
      sie stehen dann kleiner, ganz und mit mehr Rand, statt hochgerechnet zu werden. ---------- */
   const DPI = 152, mmMax = key => { const b = (DS.M && DS.M.bildIndex || {})[key]; return b && b.w ? { w: b.w / DPI * 25.4, h: b.h / DPI * 25.4 } : null; };

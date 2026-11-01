@@ -67,7 +67,7 @@
     if (el.r) { g.beginPath(); g.roundRect(0, 0, cw, ch, el.r * cw / el.w); g.clip(); }
     g.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
     void b;
-    return { cv, png: !!el.r || !!(b && b.datei), dpi: sw / (el.w / 25.4) };
+    return { cv, png: !!el.r || !!(b && (b.datei || b.alpha)), dpi: sw / (el.w / 25.4) };   // freigestellte Zeichnungen (Leopard der Valentinskarte) behalten ihre Transparenz
   }
 
   /* ---------- Zerlegen ---------- */
@@ -253,7 +253,7 @@
       const rot = (el, t) => out.push({ stufe: 'rot', id: el ? el.id : null, seite: i, stil: true, text: `${seite}Stil: ${t}` });
       for (const el of texte) {
         const t = String(el.text), buch = t.replace(/[^A-Za-zÄÖÜäöüß]/g, '');
-        if (!erlaubt.includes(el.rolle)) rot(el, `${kurz(el)} hat eine fremde Schriftrolle (${el.rolle || 'keine'})`);
+        if (!erlaubt.includes(el.rolle) && !(aufbau === 'valentin' && ['liebe', 'pinsel', 'liebetext', 'liebeleise'].includes(el.rolle))) rot(el, `${kurz(el)} hat eine fremde Schriftrolle (${el.rolle || 'keine'})`);
         if ((st.verboten && st.verboten.versalien_in_rolle || []).includes(el.rolle) && buch.length >= 4 && buch === buch.toUpperCase()) rot(el, `${kurz(el)} steht in Versalien; Titel und Gerichte setzt das Haus nie in Versalien`);
         if (['titel', 'text', 'kursiv'].includes(el.rolle) && / \/ /.test(t)) rot(el, `${kurz(el)} trennt mit «/»; Zutaten und Glieder trennt die Bar mit «|»`);
         const z = ZIER.find(c => t.includes(c)); if (z) rot(el, `${kurz(el)} enthält das Zierzeichen «${z}»; Schmuck ist nur das «C» des Hauses`);
@@ -275,7 +275,7 @@
         const zq = ach.zweispaltig_quer, zwei = zq && (zq.aufbauten || []).includes(aufbau) && (zq.formate || []).includes(doc.formatKey);
         const gruppe = l => l.length ? (Math.min(...l.map(el => el.x)) + Math.max(...l.map(el => el.x + el.w))) / 2 : f.b / 2;
         const zl = zwei ? texte.filter(el => el.x + el.w / 2 < f.b / 2) : [], zr = zwei ? texte.filter(el => el.x + el.w / 2 >= f.b / 2) : [], axL = gruppe(zl), axR = gruppe(zr);
-        for (const el of texte) { if (el.rolle === 'mono' && el.ausr === 'l') continue; if (zeitleiste && el.ausr === 'l') continue; if (el.ausr === 'l' && nebenUhr(el)) continue;
+        for (const el of texte) { if (el.frei) continue; /* el.frei: Tabellen und Valentinskarte stehen bewusst nicht auf der Mittelachse (Robert 1.11.) */ if (el.rolle === 'mono' && el.ausr === 'l') continue; if (zeitleiste && el.ausr === 'l') continue; if (el.ausr === 'l' && nebenUhr(el)) continue;
           const ab = Math.abs(el.x + el.w / 2 - (zwei ? (zl.includes(el) ? axL : axR) : achseX));
           if (el.ausr && el.ausr !== 'c') rot(el, `${kurz(el)} steht ${el.ausr === 'l' ? 'linksbündig' : 'rechtsbündig'} auf einer mittigen Seite; das Haus setzt auf eine Mittelachse`);
           else if (ab > (ach.mittig_toleranz_mm || .8)) rot(el, `${kurz(el)} steht ${Math.round(ab * 10) / 10} mm neben der Mittelachse`); } }

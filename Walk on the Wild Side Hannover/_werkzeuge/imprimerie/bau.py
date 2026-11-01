@@ -228,6 +228,10 @@ def main():
         'plakat': ('Rammetto One', 'RammettoOne-400.ttf', 'SESSION-Plakate: «SESSION», «SIP & SOUNDS», Datum «17|10», breite fette Versalien wie auf den echten Plakaten (OFL)'),
         'plakatfett': ('Rammetto One', 'RammettoOne-400.ttf', 'Grosse Zahlen und Namen auf den SESSION-Plakaten'),
         'kopf': ('Rammetto One', 'RammettoOne-400.ttf', 'Kopfzeile der SESSION-Plakate'),
+        'liebe': ('Titan One', 'TitanOne-400.ttf', 'Valentinskarte: «DRUNK IN» kräftig wie auf der Karte der Bar (OFL)'),
+        'pinsel': ('Caveat Brush', 'CaveatBrush-400.ttf', 'Valentinskarte: «LOVE» in Pinselschrift (OFL)'),
+        'liebetext': ('Montserrat 600', 'Montserrat-600.ttf', 'Valentinskarte: Drinks und Preise (OFL)'),
+        'liebeleise': ('Montserrat 500', 'Montserrat-500.ttf', 'Valentinskarte: Zutaten (OFL)'),
     }
 
     tapete(os.path.join(Z, 'tapete-dunkel.webp'), F['gold'], .10)
@@ -304,6 +308,13 @@ def main():
     for f in os.listdir(os.path.join(Z, 'mail')):
         if f.endswith('.jpg') and not f.startswith('_') and f[:-4] not in da:
             os.remove(os.path.join(Z, 'mail', f))
+    # Valentinskarte (Robert 1.11.2026, «mehr Valentins-Vibe»): der rote Leopard mit Herzen und Coupe, freigestellt von der Pairing-Karte (carte/satz/bild/leopard.png)
+    lp = os.path.join(HIER, '..', 'carte', 'satz', 'bild', 'leopard.png')
+    if os.path.exists(lp):
+        im = Image.open(lp).convert('RGBA'); im = im.crop(im.getbbox())
+        im.save(os.path.join(Z, 'bilder', 'valentin-leopard.webp'), 'WEBP', quality=92, method=6)
+        mi = im.copy(); mi.thumbnail((400, 400)); mi.save(os.path.join(Z, 'mini', 'valentin-leopard.webp'), 'WEBP', quality=85)
+        bilder.append(dict(key='valentin-leopard', alt='Der rote Leopard mit Herzen und Coupe der Valentinskarte «Drunk in Love»', w=im.width, h=im.height, gruppe='Plakate', quelle='Valentinskarte der Bar (freigestellt)', alpha=True))
     bilder.sort(key=lambda b: (ROLLEN.index(b['gruppe']), b['key']))
     json.dump(motive, open(os.path.join(Z, 'motive.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     druckfassungen()
