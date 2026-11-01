@@ -104,12 +104,28 @@
    "id": "u01",
    "b": 94,
    "h": 94,
-   "name": "Die Wortmarke",
-   "satz": "Das Logo der Bar in Rot auf dem Creme der weissen Plakate, ringsum «Nachbarschafts-Mixology-Bar».",
+   "name": "Die Wortmarke in Rot",
+   "satz": "Das Logo der Bar gross in Rot auf dem Creme der weissen Plakate.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
    "id": "u02",
+   "b": 94,
+   "h": 94,
+   "name": "Die Wortmarke auf der Nacht",
+   "satz": "Das Logo in Creme auf der Nacht der Bar, mit Goldlinie wie das Eckschild.",
+   "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
+  },
+  {
+   "id": "u03",
+   "b": 94,
+   "h": 94,
+   "name": "NEGRONI",
+   "satz": "Die Glühbirnen-Schrift über der Vitrine, als Foto mitten im Kreis.",
+   "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
+  },
+  {
+   "id": "u04",
    "b": 94,
    "h": 94,
    "name": "SESSION",
@@ -117,31 +133,23 @@
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
-   "id": "u03",
-   "b": 94,
-   "h": 94,
-   "name": "Wortmarke in der Welle",
-   "satz": "Die Wortmarke mitten in den SESSION-Wellen.",
-   "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
-  },
-  {
-   "id": "u04",
-   "b": 94,
-   "h": 94,
-   "name": "Du sagst, was du magst.",
-   "satz": "Der Satz der Bar aus Momos Frage, mit dem roten Punkt.",
-   "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
-  },
-  {
    "id": "u05",
    "b": 94,
    "h": 94,
-   "name": "Erst der Drink, dann die Musik.",
-   "satz": "Die Wellen in Ultramarin, dazu der Satz der Programm-Seite.",
+   "name": "Du sagst, was du magst.",
+   "satz": "Der Satz der Bar in Prata, darunter der rote Punkt.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
    "id": "u06",
+   "b": 94,
+   "h": 94,
+   "name": "Das Eckschild",
+   "satz": "Das beleuchtete Schild an der Hausecke bei Nacht, genau in der Mitte.",
+   "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
+  },
+  {
+   "id": "u07",
    "b": 94,
    "h": 94,
    "name": "91 Punkte",
@@ -149,19 +157,11 @@
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
-   "id": "u07",
-   "b": 94,
-   "h": 94,
-   "name": "Das Eckschild",
-   "satz": "Das schwarze Kastenschild mit Goldrahmen an der Hausecke, darin die Wortmarke.",
-   "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
-  },
-  {
    "id": "u08",
    "b": 94,
    "h": 94,
-   "name": "NEGRONI",
-   "satz": "Die Glühbirnen-Schrift über der Vitrine, als Lichtpunkte in Gold.",
+   "name": "Wortmarke in der Welle",
+   "satz": "Die Wortmarke mitten in den Wellen, in Ultramarin wie die Schrift der SESSION-Plakate.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
@@ -169,31 +169,31 @@
    "b": 94,
    "h": 94,
    "name": "Die Zeiten",
-   "satz": "Donnerstag bis Samstag ab 19 Uhr, so wie im Fuss der Website.",
+   "satz": "Donnerstag bis Samstag ab 19 Uhr: die Tage links, die Zeiten rechts.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
    "id": "u10",
    "b": 94,
    "h": 94,
-   "name": "Die Adresse",
-   "satz": "Haasemannstraße 13, Ecke Rampenstraße: die Ecke mit dem Schild.",
+   "name": "Das Gewölbe",
+   "satz": "Die Decke über der Theke, von unten gesehen.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
    "id": "u11",
    "b": 94,
    "h": 94,
-   "name": "Instagram",
-   "satz": "Wo die Bar ihre Abende ankündigt: @walkonthewildside_hannover.",
+   "name": "Die Ecke",
+   "satz": "Haasemannstraße 13, Ecke Rampenstraße: die Ecke mit dem Schild.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   },
   {
    "id": "u12",
    "b": 94,
    "h": 94,
-   "name": "Seit 2018 in Linden",
-   "satz": "Seit 2018 ist Momo in Linden zu Hause, so steht es auf der Startseite.",
+   "name": "Momo gießt ein",
+   "satz": "Momo hinter der Theke beim Eingießen.",
    "form": "M47.0 0.0A47.0 47.0 0 1 1 46.99 0.0Z"
   }
  ],
