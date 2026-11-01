@@ -123,6 +123,7 @@ const LANG = /^(Beschreibung|Übersetzung|Zutaten|Gericht|Text)/;
 function artVon(pfad, d = D) { const k = pfad.split('.'), e = liesPfad(d, k.slice(0, -2).join('.')); return SATZ.art(liesPfad(d, pfad), istKnoten(e) ? e : null); }
 function titelVon(n, art) {
   const f = SATZ.felder(n, art || SATZ.art(n));
+  if ((art || SATZ.art(n)) === 'titel' && f.length > 1) return f.map(x => String(x.wert)).join(' ').replace(/\s+/g, ' ').trim();   // Valentinsreihe: «Drunk in» + «Love» sind ein Titel
   const w = f.find(x => /^(Name|Tag|Rubrik|Titel|Zwischentitel|Überschrift|Gericht)/.test(x.name) && String(x.wert).trim()) || f.find(x => String(x.wert).trim() && !x.preis);
   return w ? String(w.wert).replace(/\s+/g, ' ').trim() : (FN[art] || 'Eintrag');
 }
