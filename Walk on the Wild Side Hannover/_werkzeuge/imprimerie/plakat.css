@@ -162,3 +162,6 @@
 @media (max-width:1099px){.bk{grid-template-columns:minmax(0,1fr)}.bk-vorschau{position:static;order:-1}}
 @media (max-width:640px){.bk-teil{padding:18px 16px 20px}.bk-felder{grid-template-columns:minmax(0,1fr)}.bk-regler{grid-template-columns:minmax(0,1fr)}
   .bk-unten .kn{width:100%;justify-content:space-between}}
+/* «Vorschlag übernehmen» als kleiner Knopf mit Rand und Luft (Tor 1.11.: Beschriftung lag 0 px am Knopfrand) */
+#bkVorschlag{padding:8px 14px;margin-top:6px;border-radius:999px;box-shadow:0 0 0 1px currentColor;line-height:1.2}
+@supports (interpolate-size:allow-keywords){#bkVorschlag{padding-left:calc(14px + .16em)}}

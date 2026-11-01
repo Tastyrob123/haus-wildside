@@ -14,9 +14,13 @@
 .en-form input:focus-visible,.en-form select:focus-visible,.en-form textarea:focus-visible{outline:0;box-shadow:inset 0 1px 2px rgba(28,21,19,.12),0 0 0 1.5px var(--messing)}
 .en-unten{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;min-width:0}
 .en-formate{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
-.en-formate button{height:40px;padding:0 16px 0 calc(16px + .12em);border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;
+.en-formate button{height:40px;padding:0 16px;border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;
   box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14));cursor:pointer}
 .en-formate button.an{color:#fffbf5;background:var(--navy)}
+/* WebKit setzt nach dem letzten Buchstaben keinen Sperrabstand, Chromium schon: Ausgleich nur in Chromium (Tor 1.11.: 0.7 px in WebKit) */
+@supports (interpolate-size:allow-keywords){.en-formate button{padding-left:calc(16px + .12em)}}
+/* Ort: «Haasemannstraße 13» braucht bei 1000 etwas mehr Platz als ein Drittel (Tor 1.11.: 180 px in 178 px) */
+@media (min-width:761px) and (max-width:1199px){.en-felder input#enOrt{font-size:14px;padding-left:11px;padding-right:11px}}
 .en-knoepfe{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:12px;min-width:0;margin-left:auto}
 .en-knoepfe>.kn{flex:0 1 auto;width:auto;min-width:0;max-width:100%}
 .en-wurf{box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14))}
