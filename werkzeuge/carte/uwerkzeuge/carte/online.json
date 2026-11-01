@@ -1,0 +1,6 @@
+{
+ "name": "Die Pairing-Karte",
+ "hinweis": "wildside-carte, 31.10.2026: Online-Teil NICHT gebaut und nicht hochgeladen (Auftrag: nichts online). Diese Andock-Datei nennt nur Stand-Weg und Prüfweg für den Tresen (M13).",
+ "stand": "/_werkzeuge/carte/api/status",
+ "pruefung": {"weg": "/_werkzeuge/carte/", "kurz": false}
+}

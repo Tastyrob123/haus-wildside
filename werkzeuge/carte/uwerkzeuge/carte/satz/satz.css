@@ -1,0 +1,162 @@
+/* Die Pairing-Karte · Walk on the Wild Side Hannover — Satz der Karten der Bar (31.10.2026, satz_bau.py und satz.js ABEND). Eine Datei für Vorschau,
+   PDF und Werkbank. Farben und Schriften der Website (CHARAKTER.md Abschnitt 4, website/assets/wild.css): Creme wie die weissen Plakate der Bar,
+   Nacht, Gold nur als Haarlinie (der Rahmen des Eckschilds), Rot nur als Punkt (die Wortmarke); Titel und Namen in Prata (eine Stärke), Lauf und
+   Etiketten in Hanken Grotesk, Preise mit Ziffern gleicher Breite. Nie fett, nie kursiv. Masse in mm, Schrift in pt über --s (blatt.js passt je Seite an,
+   damit nichts überläuft). Feste Schnitte statt variabler Schriften (fonts_statisch.py): Chromium bettet variable Schriften als «Type 3» ein, die
+   Apple-Vorschau zeigt sie weich (Fehlerbuch 10a, 21.10.2026). Gesperrte Versalien höchstens .08em, sonst liest pdftotext Buchstabe für Buchstabe. */
+@font-face{font-family:'Prata Satz';src:url('../fonts/Prata-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'Hanken Satz';src:url('../fonts/Hanken-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'Hanken Satz';src:url('../fonts/Hanken-500.ttf') format('truetype');font-weight:500;font-style:normal;font-display:block}
+:root{--creme:#F2E9DC;--nacht:#130E0D;--platte:#1C1513;--tinte:#1C1513;--leise:#5E524A;--gold:#D8B264;--golddunkel:#7A5C24;--rot:#F0323F;--linie:rgba(122,92,36,.34)}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#1C1513;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.blatt{--s:1;position:relative;overflow:hidden;margin:8mm auto;background:var(--creme);color:var(--tinte);display:flex;flex-direction:column;
+  font-family:'Hanken Satz',Arial,sans-serif;font-weight:400;font-size:calc(9.4pt*var(--s));line-height:1.45;font-variant-numeric:tabular-nums;page-break-after:always;break-after:page}
+:where(.blatt) :where(h1,h2,h3,h4,p){margin:0;padding:0;font-weight:inherit}
+:where(.blatt) b{font-weight:400}   /* nie fett (Kleid des Hauses) */
+/* der Rahmen des Eckschilds als Gold-Haarlinie innen, wie die Platten der Website */
+.blatt::before{content:'';position:absolute;inset:8mm;border:.3mm solid var(--gold);border-radius:3mm;pointer-events:none}
+.inhalt{position:relative;z-index:1;flex:1;min-height:0;padding:20mm 26mm 4mm;display:flex;flex-direction:column}
+.ufuss2{position:relative;z-index:1;flex:none;margin:0 26mm;padding:3mm 0 14mm;border-top:.2mm solid var(--linie);font-family:'Hanken Satz',Arial,sans-serif;font-size:6.8pt;letter-spacing:.02em;text-align:center;color:var(--leise)}   /* ohne Versalien: «ß» bliebe sonst nicht «ß» */
+
+/* Kopf: Wortmarke (Rot), Titel der Karte, Anlass oder «gilt ab», Zeile darunter */
+.sb-quer{flex:1 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;text-align:center}
+.sb-oben{display:flex;flex-direction:column;align-items:center}
+.sb-zeichen{display:block;color:var(--rot)}
+.ws-wm{display:block;width:calc(30mm*min(var(--s),1.1));height:auto}   /* die Wortmarke wächst bei kurzen Karten nur wenig mit */
+.sb-band{font-family:'Prata Satz',Georgia,serif;font-weight:400;font-size:calc(30pt*var(--s));line-height:1.08;letter-spacing:0;color:var(--nacht);margin-top:calc(7mm*var(--s))}
+.sb-datum{font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.6pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:var(--golddunkel);margin-top:calc(3.4mm*var(--s))}
+.sb-mit{font-size:calc(9.4pt*var(--s));color:var(--leise);margin-top:calc(1.6mm*var(--s))}
+
+/* Rubriken und Einträge: Name in Prata, Preis rechts, Zutaten klein in Versalien darunter (wie die Valentinskarte der Bar) */
+.sb-menue{display:flex;flex-direction:column;justify-content:center;align-items:stretch;text-align:left;padding:calc(4mm*var(--s)) 0;width:100%;max-width:140mm}
+.sb-r{break-inside:avoid}
+.sb-r+.sb-r{margin-top:calc(8mm*var(--s))}
+.sb-h{display:flex;align-items:center;gap:3mm;font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.6pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:var(--golddunkel);margin-bottom:calc(3mm*var(--s))}
+.sb-h::after{content:'';flex:1;height:.2mm;background:var(--gold)}
+.sb-m{display:grid;grid-template-columns:1fr auto;column-gap:6mm;align-items:baseline;break-inside:avoid;padding:calc(2.1mm*var(--s)) 0}
+.sb-n,.sb-band,.sb-dr{text-wrap:balance}
+.sb-n{grid-column:1;font-family:'Prata Satz',Georgia,serif;font-weight:400;font-size:calc(13pt*var(--s));line-height:1.25;color:var(--nacht)}
+.sb-mp{grid-column:2;font-family:'Hanken Satz',Arial,sans-serif;font-size:calc(11pt*var(--s));line-height:1.25;color:var(--nacht);white-space:nowrap;text-align:right}
+.sb-dr{grid-column:1/-1;font-size:calc(7.2pt*var(--s));letter-spacing:.06em;text-transform:uppercase;color:var(--leise);line-height:1.5;margin-top:calc(1mm*var(--s))}
+.sb-gn{display:none}
+.sb-tr.bruch{display:block;height:0;overflow:hidden;font-size:0;line-height:0}   /* Trenner, an dem die Zeile bricht (blatt.js trennerAmRand) */
+.sb-gang{display:none}
+/* Hinweis und Zusatz unter der Karte */
+.sb-unten{display:flex;flex-direction:column;align-items:center;max-width:130mm}
+.sb-hinweis{margin-top:calc(3mm*var(--s));font-size:calc(8.6pt*var(--s));color:var(--leise);text-wrap:balance}
+.sb-zusatz{margin-top:calc(2.4mm*var(--s));font-size:calc(8.6pt*var(--s));color:var(--leise);text-wrap:balance}
+
+/* Preis je Drink («Die Karte») als ruhige Marke zwischen zwei Gold-Haarlinien: Angabe klein, Zahl in Prata, Währung klein */
+.sb-lunchpreis{display:block;padding:calc(2.2mm*var(--s)) 10mm;border-top:.2mm solid var(--gold);border-bottom:.2mm solid var(--gold)}
+.sb-lunchpreis .sb-p{display:flex;justify-content:center}
+.sb-lunchpreis .sb-p>span{display:flex;align-items:baseline;gap:2.4mm}
+.sb-p em{font-style:normal;font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:var(--golddunkel)}
+.sb-p b{font-family:'Prata Satz',Georgia,serif;font-weight:400;font-size:calc(17pt*var(--s));line-height:1;color:var(--nacht)}
+.sb-p small{font-family:'Hanken Satz',Arial,sans-serif;font-size:calc(7pt*var(--s));letter-spacing:.06em;color:var(--leise)}
+
+/* Gestalten (Fortgeschritten): Stile, die satz.js an ein Element legt (nie fett, nie kursiv: «kursiv» und «medium» gibt es hier nicht) */
+[data-gf]{font-family:var(--gf)!important}
+[data-gc]{color:var(--gc)!important}
+[data-ga="versal"]{text-transform:uppercase!important;letter-spacing:.06em}
+[data-ga="normal"]{text-transform:none!important;letter-spacing:0!important}
+[data-gal]{text-align:var(--gal)!important;justify-content:var(--gai)!important;align-items:var(--gai)}
+[data-gz]{line-height:var(--gz)!important}
+@media print{html,body{background:none}.blatt{margin:0}}
+/* Flächen wachsen, schrumpfen aber nie: sonst läuft Inhalt unbemerkt übereinander statt dass blatt.js die Schrift einpasst (Fehlerbuch 9) */
+.sb-quer,.sb-menue{flex:1 0 auto;min-height:auto}
+.sb-menue{flex:0 0 auto}
+
+/* ================================================================ Valentinsreihe «Drunk in Love» / «Dishes in Love» (01.11.2026)
+   Robert: «Finde deren mit Pink Panther und Schriftarten viel schöner!» Darum im Charakter des Originals (Beitrag der Bar vom 03.02.2026): rosa Grund,
+   Titel in kräftiger runder Display-Schrift, das letzte Wort in Pinselschrift rosa mit orangem Versatz, Namen und Preise in Rot, Zutaten gesperrt,
+   der Leopard mit Herzen und Cocktailglas aus der Karte der Bar (freigestellt, bilder_satz.py). Besser gesetzt: Preise auf einer Linie, ruhiger
+   Rhythmus, Rubrik mit feiner Linie, die Wortmarke der Bar klein oben rechts. Schriften: Titan One, Caveat Brush, Montserrat (google/fonts, feste Schnitte). */
+@font-face{font-family:'Titan Satz';src:url('../fonts/TitanOne-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'Pinsel Satz';src:url('../fonts/CaveatBrush-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'Montserrat Satz';src:url('../fonts/Montserrat-500.ttf') format('truetype');font-weight:500;font-style:normal;font-display:block}
+@font-face{font-family:'Montserrat Satz';src:url('../fonts/Montserrat-600.ttf') format('truetype');font-weight:600;font-style:normal;font-display:block}
+.ws-love{--l-grund:#FEE1E6;--l-rot:#D7102F;--l-tinte:#B3132E;--l-leise:#C4485C;--l-rosa:#F27BB7;--l-orange:#F7943A;background:var(--l-grund);color:var(--l-tinte);font-family:'Montserrat Satz',Arial,sans-serif;font-weight:500}
+.ws-love::before{display:none}
+.ws-love .inhalt{padding:22mm 24mm 4mm}
+.ws-love .sb-quer{align-items:stretch;text-align:left;justify-content:flex-start;gap:calc(9mm*var(--s))}
+.ws-love .sb-oben{align-items:flex-start}
+.ws-love .sb-zeichen{position:absolute;right:14mm;top:13mm;color:var(--l-rot)}
+.ws-love .ws-wm{width:15mm}
+.ws-love .sb-band{margin:0;font-family:'Titan Satz',Arial,sans-serif;font-weight:400;text-transform:uppercase;color:var(--l-rot);line-height:.95;letter-spacing:.01em;text-wrap:nowrap}
+.ws-love .sb-b1{display:block;font-size:calc(50pt*var(--s))}
+.ws-love .sb-b2{display:block;margin:calc(-1.5mm*var(--s)) 0 0 calc(48mm*var(--s));font-family:'Pinsel Satz',cursive;text-transform:uppercase;font-size:calc(58pt*var(--s));
+  line-height:1;letter-spacing:.04em;color:var(--l-rosa);text-shadow:.7mm .6mm 0 var(--l-orange)}
+.ws-love .sb-datum{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(7.6pt*var(--s));letter-spacing:.08em;color:var(--l-rot);margin-top:calc(5mm*var(--s))}
+.ws-love .sb-mit{font-size:calc(9.6pt*var(--s));color:var(--l-leise);margin-top:calc(1.2mm*var(--s))}
+.ws-love .sb-menue{max-width:none;width:100%;padding:0}
+.ws-love .sb-r+.sb-r{margin-top:calc(8mm*var(--s))}
+.ws-love .sb-h{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(9.4pt*var(--s));letter-spacing:.06em;color:var(--l-rot);margin-bottom:calc(3.4mm*var(--s))}
+.ws-love .sb-h::after{background:var(--l-rot);opacity:.35;height:.25mm}
+.ws-love .sb-m{column-gap:8mm;padding:calc(2.6mm*var(--s)) 0}
+.ws-love .sb-n{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(12pt*var(--s));letter-spacing:.04em;text-transform:uppercase;color:var(--l-rot);line-height:1.25}
+.ws-love .sb-mp{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(12pt*var(--s));color:var(--l-rot)}
+.ws-love .sb-dr{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.4pt*var(--s));letter-spacing:.08em;color:var(--l-leise);margin-top:calc(1.3mm*var(--s));max-width:120mm}
+.ws-love .sb-deko{position:absolute;z-index:0;pointer-events:none;right:13mm;bottom:20mm;width:70mm;height:auto}
+.ws-love .sb-deko[src$="coupe.png"]{width:30mm;right:42mm;top:22mm;bottom:auto}
+.ws-love .ufuss2{border-top:.25mm solid rgba(215,16,47,.3);color:var(--l-leise);font-family:'Montserrat Satz',Arial,sans-serif;margin:0 24mm}
+/* «Drunk in Love»: die Drinks stehen links neben dem Leoparden, nichts läuft unter die Zeichnung */
+.ws-love:has(.sb-deko[src$="leopard.png"]) .sb-menue{width:62%}
+
+/* ================================================================ Angebot für Feiern «Die Preise der Bar» (01.11.2026)
+   Robert: «das kann man auch nochmal schöner machen». Original der Bar: schwarz mit Neon-Foto «No Negroni without Campari». Hier Nacht mit dem
+   Neon über die ganze Breite, darunter die drei Pauschalen als Spalten mit Foto und grossem Preis, die Preise der Bar in zwei Spalten mit Punktlinie,
+   Service und Budget als zwei Felder mit Gold-Haarlinie. Fotos aus website/assets/bild (bilder_satz.py). */
+.ws-nacht{background:#130E0D;color:#F2E9DC}
+.ws-nacht::before{inset:7mm;border-color:rgba(216,178,100,.45);z-index:2}
+.ws-nacht .sb-held{position:absolute;left:0;right:0;top:0;height:108mm;margin:0;z-index:0;overflow:hidden}
+.ws-nacht .sb-held img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
+.ws-nacht .sb-held::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,14,13,.05) 0%,rgba(19,14,13,.15) 45%,rgba(19,14,13,.92) 88%,#130E0D 100%)}
+.ws-nacht .inhalt{padding:74mm 20mm 4mm}
+.ws-nacht .sb-quer{justify-content:flex-start;align-items:stretch;gap:calc(7mm*var(--s))}
+.ws-nacht .sb-oben{align-items:flex-start;text-align:left}
+.ws-nacht .sb-zeichen{position:absolute;right:14mm;top:13mm;color:#F0323F}
+.ws-nacht .ws-wm{width:16mm}
+.ws-nacht .sb-band{margin:0;font-size:calc(34pt*var(--s));color:#F2E9DC}
+.ws-nacht .sb-datum{color:#D8B264;margin-top:calc(2.4mm*var(--s))}
+.ws-nacht .sb-mit{color:rgba(242,233,220,.72)}
+.ws-nacht .sb-menue{max-width:none;width:100%;padding:0}
+.ws-nacht .sb-h{color:#D8B264}
+.ws-nacht .sb-h::after{background:rgba(216,178,100,.5)}
+.ws-nacht .sb-n{color:#F2E9DC}
+.ws-nacht .sb-mp{color:#E4C88A;font-family:'Prata Satz',Georgia,serif}
+.ws-nacht .sb-mp::after{content:' €'}
+.ws-nacht .sb-dr{color:rgba(242,233,220,.62)}
+/* Pauschale: drei Spalten, je Foto, Name, was dabei ist, grosser Preis */
+.ws-nacht .sb-r--bild{display:grid;grid-template-columns:repeat(3,1fr);column-gap:5mm}
+.ws-nacht .sb-r--bild .sb-h{grid-column:1/-1}
+.ws-nacht .sb-r--bild .sb-m{display:flex;flex-direction:column;padding:0 0 calc(3mm*var(--s));border-radius:3mm;background:#1C1513;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.4);overflow:hidden}
+.ws-nacht .sb-mb{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.ws-nacht .sb-r--bild .sb-n{order:2;padding:calc(3mm*var(--s)) 4mm 0;font-size:calc(11pt*var(--s));line-height:1.25}
+.ws-nacht .sb-r--bild .sb-dr{order:3;padding:0 4mm;font-size:calc(6.4pt*var(--s));letter-spacing:.05em}
+.ws-nacht .sb-r--bild .sb-mp{order:4;margin-top:auto;padding:calc(3mm*var(--s)) 4mm 0;text-align:left;font-size:calc(24pt*var(--s));line-height:1}
+/* Was ein Drink kostet: zwei Spalten mit Punktlinie */
+.ws-nacht.ws-feier .sb-r1{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm}
+.ws-nacht.ws-feier .sb-r1 .sb-h{grid-column:1/-1}
+.ws-nacht.ws-feier .sb-r1 .sb-m{grid-template-columns:auto 1fr auto;padding:calc(1.6mm*var(--s)) 0}
+.ws-nacht.ws-feier .sb-r1 .sb-m::before{content:'';grid-column:2;grid-row:1;align-self:end;margin:0 2mm 1.3mm;border-bottom:.3mm dotted rgba(216,178,100,.55)}
+.ws-nacht.ws-feier .sb-r1 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-size:calc(10pt*var(--s))}
+.ws-nacht.ws-feier .sb-r1 .sb-mp{grid-column:3;font-size:calc(13pt*var(--s))}
+/* Budget: zwei Felder mit Gold-Haarlinie, der Betrag gross */
+.ws-nacht.ws-feier .sb-r2{display:grid;grid-template-columns:1fr 1fr;column-gap:5mm}
+.ws-nacht.ws-feier .sb-r2 .sb-h{grid-column:1/-1}
+.ws-nacht.ws-feier .sb-r2 .sb-m{display:flex;flex-direction:column;padding:calc(3.2mm*var(--s)) 5mm;border-radius:3mm;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.55)}
+.ws-nacht.ws-feier .sb-r2 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.4pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:#D8B264}
+.ws-nacht.ws-feier .sb-r2 .sb-mp{order:3;text-align:left;font-size:calc(22pt*var(--s));margin-top:calc(1.6mm*var(--s))}
+.ws-nacht.ws-feier .sb-r2 .sb-dr{order:4;text-transform:none;letter-spacing:0;font-size:calc(7.6pt*var(--s))}
+.ws-nacht .sb-unten{max-width:none;align-items:flex-start;text-align:left}
+.ws-nacht .sb-held img[src$="momo-giesst.webp"]{object-position:50% 12%}
+/* «Die Karte» auf Nacht: Preis je Drink als Marke mit Gold-Haarlinien, hell */
+.ws-nacht .sb-lunchpreis{border-color:rgba(216,178,100,.6)}
+.ws-nacht .sb-p em{color:#D8B264}
+.ws-nacht .sb-p b{color:#F2E9DC}
+.ws-nacht .sb-p small{color:rgba(242,233,220,.62)}
+.ws-nacht .sb-menue .sb-m{border-bottom:.2mm solid rgba(216,178,100,.18)}
+.ws-nacht .sb-r--bild .sb-m{border-bottom:0}
+.ws-nacht .sb-hinweis{color:rgba(242,233,220,.62);font-size:calc(7.8pt*var(--s))}
+.ws-nacht .ufuss2{color:rgba(242,233,220,.5);border-top-color:rgba(216,178,100,.3);margin:0 20mm}

@@ -1,0 +1,83 @@
+/* kleid/wildside.js · Hauswerte für oberflaeche.js (Walk on the Wild Side Hannover, Nachbarschafts-Mixology-Bar in Linden-Mitte, Haasemannstraße 13; Oberchef 31.10.2026).
+   Im <head> VOR allen Stilen laden (ohne defer). Rahmen «Die Bühne»: Kopf dunkel wie die Nacht der Bar (#130E0D), Raum hell wie das Creme der weissen Plakate (#F2E9DC).
+   Liegt unter _werkzeuge/oberflaeche/ und wird von den Werkzeug-Servern unter /assets/oberflaeche/ ausgeliefert (einziger Schreiber: Tresen bzw. Oberchef).
+   Fotos und Schriften kommen aus der Website (/assets/bild/<schlüssel>-<breite>.webp, /assets/schrift/), Wortmarke aus /assets/oberflaeche/kleid/wildside-marke.svg#wm. */
+window.WO_HAUS = { kurz: 'wildside', name: 'Wild Side', voll: 'Walk on the Wild Side Hannover', ort: 'Hannover-Linden', bar: 'Walk on the Wild Side', welt: 'bar', rahmen: 'buehne', anrede: 'du',   /* die Bar duzt (Website, Instagram) */
+  /* Aussenfoto des Startbilds: das Eckschild an der Hausecke bei Nacht (Bildregister der Website, Schlüssel «schild-ecke», CHARAKTER.md 3 und 5) */
+  foto: '/assets/bild/schild-ecke-960.webp', fotoKlein: '/assets/bild/schild-ecke-480.webp', fotoFarbe: '#2a1d17',
+  fotoStufen: [480, 960], fotoAlt: 'Die Ecke Haasemannstraße am Abend, Gäste vor der Tür',   /* Stufen der Website (website/bilder.py: 480/960/1536), Alt-Text aus dem Bildregister */
+  /* Zeichen im Ring: die echte Wortmarke (drei Zeilen WALK / ON THE / WILD SIDE), nachgezogen aus dem Logo der Bar (_quelle/logo/wildside-logo-nachgezogen.svg), unverändert */
+  zeichen: '/assets/oberflaeche/kleid/wildside-zeichen.svg', zeichenMass: 0.81, wortmarke: '/assets/oberflaeche/kleid/wildside-marke.svg#wm', wortmarkeMass: 0.81,
+  /* Namen der sieben Werkzeuge: die EINE Stelle. Gleicher Satz wie im Culinarium (Robert 28./29.10.2026, Satz A «An der Bar»); Dateien, Schlüssel und Adressen bleiben (maison, bureau, carte …). */
+  namen: { zentrale: 'Der Tresen', website: 'Das Schaufenster', karten: 'Die Pairing-Karte', gaeste: 'Das Gästebuch', marke: 'Das Markenbuch', besuche: 'Die Besucherliste', druck: 'Die Plakatwerkstatt' },
+  saetze: { zentrale: 'Hier beginnt alles: ein Blick auf alle Werkzeuge und ihren Stand.',
+    website: 'Die Website selbst pflegen: Texte, Fotos, Zeiten, DJ-Abende, Hinweise.',
+    karten: 'Die wechselnde Karte von Momo schreiben, daraus entstehen Karte und PDF.',
+    gaeste: 'Fragen der Gäste zu Zeiten, Plätzen, Feiern und DJ-Abenden, mit Antwortentwurf.',
+    marke: 'Wortmarke, Fotos, Farben und Schriften der Bar an einem Ort.',
+    besuche: 'Wer die Website besucht: woher, wann, welche Seiten, wer reservieren oder feiern will.',
+    druck: 'Plakate für DJ-Abende und Feste, Karten und Beiträge in der Sprache der Bar entwerfen.' },
+  wege: { zentrale: '/_werkzeuge/maison/', website: '/_werkzeuge/bureau/', karten: '/_werkzeuge/carte/', gaeste: '/_werkzeuge/reception/', marke: '/_werkzeuge/livre/', besuche: '/_werkzeuge/registre/', druck: '/_werkzeuge/imprimerie/' },
+  /* Prüfserver je Werkzeug (cloud/haus.json); Wege zwischen Werkzeugen immer 127.0.0.1, nie localhost (Fehlerbuch 10a) */
+  ports: { zentrale: 9281, website: 9282, karten: 9283, gaeste: 9284, marke: 9285, besuche: 9286, druck: 9287, werkbank: 9288, website_lokal: 8766 } };
+/* Lokal (Prüfserver je Werkzeug) zeigen die Wege zu den ANDEREN Werkzeugen auf deren eigenen Server unter 127.0.0.1, nie auf den eigenen Port
+   (Fund culinarium-reception 28.10.2026: der Knopf «La Maison» öffnete /_werkzeuge/maison/ auf 9284 ohne Stand-Wege; Fehlerbuch 10a). Online bleiben sie relativ.
+   Wer selbst schon absolute Wege setzt: nur Wege umschreiben, die noch mit «/» beginnen (WO_HAUS.wegeLokal = true zeigt, dass es hier geschah). */
+(function () {
+  if (!/^(127\.0\.0\.1|localhost)$/.test(location.hostname)) return;
+  Object.keys(WO_HAUS.wege).forEach(function (k) {
+    var p = WO_HAUS.ports[k], w = WO_HAUS.wege[k];
+    if (p && String(p) !== location.port && w.charAt(0) === '/') WO_HAUS.wege[k] = 'http://127.0.0.1:' + p + w;
+  });
+  WO_HAUS.wegeLokal = true;
+})();
+document.documentElement.setAttribute('data-wo-haus', WO_HAUS.kurz);
+document.documentElement.setAttribute('data-wo-rahmen', WO_HAUS.rahmen);
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+/* Bewegung der Werkzeuge (29.10.2026): bewegung.js neben oberflaeche.js, async und mit wenig Vorrang nachgeladen, damit es nie vor dem ersten Knopf steht */
+(function () {
+  var me = document.currentScript, s = document.createElement('script');
+  s.src = (me && me.src ? new URL('../bewegung.js', me.src).href : '/assets/oberflaeche/bewegung.js') + '?v=3';   /* Fassung hochzählen, wenn bewegung.js sich ändert */
+  s.async = true; s.setAttribute('fetchpriority', 'low'); document.head.appendChild(s);
+})();
+/* Titel fliegen zeilenweise hoch (Kriterium 37, 30.10.2026). WO_ZEILEN(el) setzt jedes Wort eines Titels in <span class="wo-w"> und schreibt die Zeile als --z daran;
+   die Wörter einer Zeile steigen zusammen, Zeile für Zeile gestaffelt. Ändert sich dabei der Umbruch (Silbentrennung, sehr lange Wörter), bleibt der Titel unberührt.
+   Hier im Kleid (ohne defer), damit der Titel des Startbilds schon vor dem ersten Bild geteilt ist; bewegung.js nutzt dieselbe Funktion für die Zwischentitel. */
+window.WO_ZEILEN = function (el) {
+  if (!el || el.hasAttribute('data-wo-zl')) return !!(el && el.classList.contains('wo-zl'));
+  var h0 = el.offsetHeight; if (!h0) return false;   /* verborgen: später, wenn er zu sehen ist */
+  el.setAttribute('data-wo-zl', '');
+  var w0 = Math.max(el.scrollWidth, el.clientWidth), roh = el.innerHTML, tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), t, ts = [];
+  while ((t = tw.nextNode())) if (/\S/.test(t.data) && !t.parentNode.closest('svg')) ts.push(t);
+  if (!ts.length) return false;
+  ts.forEach(function (t) {
+    var f = document.createDocumentFragment();
+    t.data.split(/(\s+)/).forEach(function (s) {
+      if (!s) return;
+      if (/^\s+$/.test(s)) { f.appendChild(document.createTextNode(s)); return; }
+      var w = document.createElement('span'); w.className = 'wo-w'; w.textContent = s; f.appendChild(w);
+    });
+    t.parentNode.replaceChild(f, t);
+  });
+  if (el.offsetHeight !== h0 || el.scrollWidth > w0 + 1) { el.innerHTML = roh; return false; }
+  var z = -1, oben = -1e9, halb = parseFloat(getComputedStyle(el).fontSize) * 0.5;
+  el.querySelectorAll('.wo-w').forEach(function (w) { var y = w.getBoundingClientRect().top; if (y > oben + halb) { z++; oben = y; } if (z) w.style.setProperty('--z', z); });
+  el.classList.add('wo-zl');
+  return true;
+};
+/* Der Titel des Startbilds: geteilt, sobald er im Dokument steht (vor dem ersten Bild, der Auftritt beginnt erst nach 0,18 s) */
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('MutationObserver' in window)) return;
+  var plan = 0;
+  function teile() {
+    plan = 0;
+    document.querySelectorAll('.wo-sb__h:not([data-wo-zl])').forEach(function (h) {
+      if (document.documentElement.classList.contains('still')) return;
+      var a = h.getAnimations ? h.getAnimations() : [];
+      if (a.some(function (x) { return (x.currentTime || 0) > 120; })) { h.setAttribute('data-wo-zl', ''); return; }   /* läuft schon: bleibt ein Block, nie zurückspringen */
+      WO_ZEILEN(h);
+    });
+  }
+  new MutationObserver(function () { if (!plan && document.querySelector('.wo-sb__h:not([data-wo-zl])')) { plan = 1; Promise.resolve().then(teile); } })
+    .observe(document.documentElement, { childList: true, subtree: true });
+})();

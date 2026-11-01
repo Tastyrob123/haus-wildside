@@ -1,0 +1,40 @@
+{
+ "zeit": "2026-10-27T10:20:00+01:00",
+ "art": "nachricht",
+ "name": "Sophie Wagner",
+ "kontakt": "sophie.wagner@example.com",
+ "datum": "",
+ "personen": 1,
+ "anliegen": "Fragt, ob es an DJ-Abenden Eintritt kostet.",
+ "sprache": "de",
+ "gespraech": "beispiel-6",
+ "verlauf": [
+  {
+   "rolle": "user",
+   "text": "Kostet es an den DJ-Abenden Eintritt?"
+  },
+  {
+   "rolle": "assistant",
+   "text": "Konzerte und DJ-Abende sind ohne Eintritt. Magst du dem Team noch etwas schreiben? Dann brauche ich deinen Namen und eine E-Mail-Adresse."
+  },
+  {
+   "rolle": "user",
+   "text": "Sophie Wagner, sophie.wagner@example.com. Ich wollte nur sichergehen."
+  },
+  {
+   "rolle": "assistant",
+   "text": "Danke. Dies ist ein Entwurf von Tasty Studios: Die Anfrage geht nicht an das Team, sie liegt nur zur Ansicht im Gästebuch."
+  }
+ ],
+ "status": "erledigt",
+ "beispiel": true,
+ "abteilung": "Nachrichten",
+ "entwurf": {
+  "betreff": "DJ-Abende ohne Eintritt",
+  "text": "Hallo Sophie,\n\nschön, dass du zu einem der DJ-Abende kommen willst. Konzerte und DJ-Abende sind bei uns ohne Eintritt.\n\nSamstags legt rund einmal im Monat jemand auf, von 21 bis 1 Uhr; den nächsten Abend kündigen wir auf Instagram an.\n\nBis bald an der Ecke\n\nDerya und Momo\nWalk on the Wild Side",
+  "team": "Grundlage: Besuch «Gut zu wissen» (ohne Eintritt), Programm («Die DJ-Abende», samstags 21 bis 1 Uhr).\nOffen: nichts.",
+  "vorlage": "",
+  "absender": "Telefon +49 163 3909578 · +49 174 9916296 · Instagram @walkonthewildside_hannover",
+  "zeit": "2026-10-27T10:20:00+01:00"
+ }
+}

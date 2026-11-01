@@ -1,0 +1,132 @@
+[
+ {
+  "vor": [
+   0,
+   10,
+   20
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Wann habt ihr heute offen?",
+  "buchung": true,
+  "antwort": "Donnerstag bis Samstag ab 19 Uhr.\n- Donnerstag: 19 bis 1 Uhr\n- Freitag und Samstag: 19 bis 2 Uhr\n- Sonntag bis Mittwoch: geschlossen",
+  "thema": ""
+ },
+ {
+  "vor": [
+   0,
+   8,
+   55
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Was kostet ein Drink bei euch?",
+  "antwort": "Ein Signature Drink kostet 12 Euro.\n- Alkoholfreie Drinks: 11 Euro\n- Longdrinks: 10 Euro\n- Wein und Spritz: 8 Euro, Bier 4 Euro",
+  "thema": "",
+  "buchung": false
+ },
+ {
+  "vor": [
+   1,
+   19,
+   5
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Was ist Milk Washing?",
+  "antwort": "Milch bindet die Trübstoffe und wird wieder abgefiltert. Was bleibt, ist klar wie Wasser und weich wie Sahne.",
+  "thema": "",
+  "buchung": false
+ },
+ {
+  "vor": [
+   1,
+   13,
+   40
+  ],
+  "sprache": "de",
+  "belegt": false,
+  "thema": "Hund",
+  "frage": "Darf ich meinen Hund mitbringen?",
+  "antwort": "Dazu steht nichts in meinen Unterlagen. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @walkonthewildside_hannover",
+  "buchung": false
+ },
+ {
+  "vor": [
+   2,
+   17,
+   25
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Wann ist der nächste DJ-Abend?",
+  "antwort": "Samstags legt rund einmal im Monat jemand auf, von 21 bis 1 Uhr. Den nächsten Abend kündigt die Bar auf Instagram an.\n- Eintritt: keiner\n- Zuletzt: Ghazouani Brothers am 17.10.2026",
+  "thema": "",
+  "buchung": false
+ },
+ {
+  "vor": [
+   2,
+   9,
+   10
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Wie komme ich zu euch?",
+  "antwort": "Mit der Stadtbahn bis Am Küchengarten, dann zwei Minuten zu Fuss.\n- Adresse: Haasemannstraße 13, 30449 Hannover-Linden\n- Ecke: Haasemannstraße, Ecke Rampenstraße\n- Bahn: Linien 9 und 17",
+  "thema": "",
+  "buchung": false
+ },
+ {
+  "vor": [
+   3,
+   12,
+   30
+  ],
+  "sprache": "de",
+  "belegt": false,
+  "thema": "Nussallergie beim Dinner",
+  "frage": "Kocht Rudi beim Dinner auch ohne Nüsse?",
+  "antwort": "Dazu steht nichts in meinen Unterlagen; beim Privaten Dinner klärt Rudi das mit dir. Frag am besten direkt:\n- Telefon der Bar: +49 163 3909578\n- Instagram: @walkonthewildside_hannover",
+  "buchung": false
+ },
+ {
+  "vor": [
+   3,
+   15,
+   45
+  ],
+  "sprache": "en",
+  "belegt": true,
+  "frage": "Do you have non-alcoholic drinks?",
+  "antwort": "Yes, made with the same care: shrub, soda, herbs, clear juice. Alcohol-free drinks are 11 euros.",
+  "thema": "",
+  "buchung": false
+ },
+ {
+  "vor": [
+   4,
+   11,
+   0
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Was kostet die ganze Bar für eine Feier?",
+  "antwort": "Ab dreissig Gästen gehört euch die ganze Bar von 19 bis 2 Uhr, mit einem Preis pro Gast.\n- Kategorie 1: Bier, Wein, Spritz, 49 €\n- Kategorie 2: dazu Longdrinks, 59 €\n- Kategorie 3: dazu fünf Signature Cocktails, 79 €",
+  "thema": "",
+  "buchung": false
+ },
+ {
+  "vor": [
+   4,
+   18,
+   20
+  ],
+  "sprache": "de",
+  "belegt": true,
+  "frage": "Kann ich mit 15 Leuten Geburtstag feiern?",
+  "antwort": "Ja, zehn bis zwanzig Gäste feiern an der langen Tafel auf der Empore.\n- Dauer: vier Stunden, unten läuft die Bar weiter\n- Drinks: ihr legt vorher ein Budget fest\n- Anfragen: auf der Seite Feiern",
+  "thema": "",
+  "buchung": false
+ }
+]

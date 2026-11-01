@@ -1,0 +1,240 @@
+{
+ "stand": "2026-11-01 02:48:06",
+ "quelle": "Die Pairing-Karte (_werkzeuge/carte/_daten/stand/)",
+ "karten": {
+  "klassiker": {
+   "rubriken": [
+    {
+     "titel": "Die Klassiker",
+     "eintraege": [
+      {
+       "name": "Negroni",
+       "zutaten": "Gin · Wermut · Bitter · auf Eis gerührt",
+       "preis": ""
+      },
+      {
+       "name": "Paloma",
+       "zutaten": "Tequila · Grapefruit · Limette · Soda",
+       "preis": ""
+      },
+      {
+       "name": "Mexikaner",
+       "zutaten": "Der scharfe Shot des Hauses",
+       "preis": ""
+      },
+      {
+       "name": "Ohne Alkohol",
+       "zutaten": "Shrub · Soda · Kräuter · klarer Saft",
+       "preis": ""
+      }
+     ]
+    }
+   ],
+   "name": "Die Klassiker"
+  },
+  "drunk-in-love": {
+   "rubriken": [
+    {
+     "titel": "Cupid’s Signature Drinks",
+     "eintraege": [
+      {
+       "name": "Frensh 26",
+       "zutaten": "Gin · Bergamotte · Nori · Schaumwein",
+       "preis": "12"
+      },
+      {
+       "name": "Whey Bramble",
+       "zutaten": "Gin · Lemon Shrub · Vetiver · Whey Berry Soda",
+       "preis": "12"
+      },
+      {
+       "name": "Pink Lady",
+       "zutaten": "Kakaobutter-Fat-Washed Rum · Himbeerpüree · Agave · Limette",
+       "preis": "12"
+      },
+      {
+       "name": "Karamella",
+       "zutaten": "Havana 7 Jahre · Portwein · Johannisbeere · Karamell · schwarze Walnüsse · Limette",
+       "preis": "12"
+      }
+     ]
+    }
+   ],
+   "name": "Drunk in Love"
+  },
+  "dishes-in-love": {
+   "rubriken": [
+    {
+     "titel": "Wild Side Temptation",
+     "eintraege": [
+      {
+       "name": "Bergamotten Schaumwein",
+       "zutaten": "Auster · Granita",
+       "preis": "15"
+      }
+     ]
+    },
+    {
+     "titel": "Sharing Dishes for Love Birds & Friends",
+     "eintraege": [
+      {
+       "name": "Sauerteigbrot",
+       "zutaten": "Butter · Maldon",
+       "preis": "6"
+      },
+      {
+       "name": "Kichererbsen Hummus",
+       "zutaten": "geräucherte Paprika · Oliven Öl",
+       "preis": "8"
+      },
+      {
+       "name": "Stracciatella Creme",
+       "zutaten": "Dill Öl · dunkle Trauben · Basilikum Pesto",
+       "preis": "8"
+      },
+      {
+       "name": "Rosa gegarte Entenbrust",
+       "zutaten": "Teriyaki Jus · Pak Choi",
+       "preis": "12"
+      },
+      {
+       "name": "Bœuf Bourguignon",
+       "zutaten": "Kartoffel Mousseline · eingelegte Paprika · Schmand",
+       "preis": "12"
+      },
+      {
+       "name": "Geschmorter Hokkaido",
+       "zutaten": "Süsskartoffel Honig · Kartoffel Mousseline · Wirsing",
+       "preis": "11"
+      }
+     ]
+    },
+    {
+     "titel": "The Sweet End",
+     "eintraege": [
+      {
+       "name": "Dunkle Schokolade",
+       "zutaten": "Oliven Öl · Maldon",
+       "preis": "8"
+      }
+     ]
+    }
+   ],
+   "name": "Dishes in Love"
+  },
+  "preisliste": {
+   "rubriken": [
+    {
+     "titel": "Pauschale pro Person",
+     "eintraege": [
+      {
+       "name": "Kategorie 1 · Bier, Wein, Spritz",
+       "zutaten": "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "preis": "49,00"
+      },
+      {
+       "name": "Kategorie 2 · Dazu Longdrinks",
+       "zutaten": "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "preis": "59,00"
+      },
+      {
+       "name": "Kategorie 3 · Dazu fünf Signature Cocktails",
+       "zutaten": "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "preis": "79,00"
+      }
+     ]
+    },
+    {
+     "titel": "Was ein Drink kostet",
+     "eintraege": [
+      {
+       "name": "Signature Drinks",
+       "zutaten": "",
+       "preis": "12,00"
+      },
+      {
+       "name": "Alkoholfreie Drinks",
+       "zutaten": "",
+       "preis": "11,00"
+      },
+      {
+       "name": "Longdrinks",
+       "zutaten": "",
+       "preis": "10,00"
+      },
+      {
+       "name": "Wein und Spritz",
+       "zutaten": "",
+       "preis": "8,00"
+      },
+      {
+       "name": "Sekt auf Eis",
+       "zutaten": "",
+       "preis": "6,00"
+      },
+      {
+       "name": "Bier",
+       "zutaten": "",
+       "preis": "4,00"
+      },
+      {
+       "name": "Alkoholfreie Getränke",
+       "zutaten": "",
+       "preis": "3,00"
+      }
+     ]
+    },
+    {
+     "titel": "Budget",
+     "eintraege": [
+      {
+       "name": "Service und Raum",
+       "zutaten": "",
+       "preis": "500,00"
+      },
+      {
+       "name": "Euer Budget für Drinks",
+       "zutaten": "Lässt sich nach oben frei anpassen",
+       "preis": "ab 1.000,00"
+      }
+     ]
+    }
+   ],
+   "name": "Die Preise der Bar"
+  }
+ },
+ "karte": {
+  "ab": "2026-02-14",
+  "titel": "Drunk in Love",
+  "mit": "Cupid’s Signature Drinks",
+  "preis": "12,00 EUR",
+  "rubriken": [
+   {
+    "titel": "Cupid’s Signature Drinks",
+    "eintraege": [
+     {
+      "name": "Frensh 26",
+      "zutaten": "Gin | Bergamotte | Nori | Schaumwein",
+      "preis": ""
+     },
+     {
+      "name": "Whey Bramble",
+      "zutaten": "Gin | Lemon Shrub | Vetiver | Whey Berry Soda",
+      "preis": ""
+     },
+     {
+      "name": "Pink Lady",
+      "zutaten": "Kakaobutter-Fat-Washed Rum | Himbeerpüree | Agave | Limette",
+      "preis": ""
+     },
+     {
+      "name": "Karamella",
+      "zutaten": "Havana 7 Jahre | Portwein | Johannisbeere | Karamell | schwarze Walnüsse | Limette",
+      "preis": ""
+     }
+    ]
+   }
+  ],
+  "beispiel": true
+ }
+}

@@ -1,0 +1,44 @@
+/* Plakatwerkstatt · Ideen-Engine «Event beschreiben» (engine.js), Walk on the Wild Side 1.11.2026. Kleid wie «DJ-Abend anlegen» (plakat.css):
+   Blatt-Flächen, Etiketten in Mono-Versalien, runde Formatknöpfe. Alles mit min-width:0, nichts ragt rechts hinaus (Robert: «darf niemals passieren»). */
+#msEngine{min-width:0;max-width:100%;container-type:inline-size;container-name:engine}
+.en-form{display:flex;flex-direction:column;gap:20px;min-width:0;margin:6px 0 18px;padding:24px 26px 26px;border-radius:14px;
+  background:var(--wo-blatt,#fffbf5);box-shadow:0 1px 0 #fff inset,0 24px 50px -30px rgba(28,21,19,.45),0 0 0 1px var(--wo-linie,rgba(28,21,19,.14))}
+.en-felder{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 18px;min-width:0}
+.en-felder .en-breit{grid-column:span 3}
+.en-felder label:first-child{grid-column:span 2}
+.en-form label{display:flex;flex-direction:column;gap:7px;min-width:0}
+.en-form label>span{font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--wo-akzent,#7a5c24)}
+.en-form input,.en-form select,.en-form textarea{width:100%;min-width:0;box-sizing:border-box;padding:11px 13px;border:0;border-radius:10px;font:400 16px/1.35 var(--sans);color:var(--tinte);
+  background:#fff;box-shadow:inset 0 1px 2px rgba(28,21,19,.12),0 0 0 1px var(--wo-linie,rgba(28,21,19,.14))}
+.en-form textarea{resize:vertical;min-height:64px}
+.en-form input:focus-visible,.en-form select:focus-visible,.en-form textarea:focus-visible{outline:0;box-shadow:inset 0 1px 2px rgba(28,21,19,.12),0 0 0 1.5px var(--messing)}
+.en-unten{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;min-width:0}
+.en-formate{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.en-formate button{height:40px;padding:0 16px;border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;
+  box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14));cursor:pointer}
+.en-formate button.an{color:#fffbf5;background:var(--navy)}
+/* WebKit setzt nach dem letzten Buchstaben keinen Sperrabstand, Chromium schon: Ausgleich nur in Chromium (Tor 1.11.: 0.7 px in WebKit) */
+@supports (interpolate-size:allow-keywords){.en-formate button{padding-left:calc(16px + .12em)}}
+/* Ort: «Haasemannstraße 13» braucht bei 1000 etwas mehr Platz als ein Drittel (Tor 1.11.: 180 px in 178 px) */
+@media (min-width:761px) and (max-width:1199px){.en-felder input#enOrt{font-size:14px;padding-left:11px;padding-right:11px}}
+.en-knoepfe{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:12px;min-width:0;margin-left:auto}
+.en-knoepfe>.kn{flex:0 1 auto;width:auto;min-width:0;max-width:100%}
+.en-wurf{box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14))}
+.en-wurf i svg,.en-los i svg,#enLos i svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.en-hinweis{min-height:1.5em;margin:0 0 22px;font:14px/1.5 var(--sans);color:var(--wo-leise,#5e524a)}
+.en-hinweis:empty{display:none}
+/* sechs Ideen: 3 × 2 breit, 2 × 3 mittel, eine Spalte schmal; keine Restreihe */
+.en-ideen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 26px;min-width:0;margin:0 0 60px}
+.en-karte{display:flex;flex-direction:column;gap:14px;min-width:0}
+.en-blatt{display:flex;align-items:flex-end;justify-content:flex-start;min-width:0;overflow:hidden;padding:2px 0 8px}
+.en-blatt .blatt{flex:none;border-radius:2px;box-shadow:0 1px 1px rgba(28,21,19,.18),0 18px 34px -16px rgba(28,21,19,.55);transition:transform .6s cubic-bezier(.22,.68,.26,1)}
+@media (hover:hover){.en-karte:hover .en-blatt .blatt{transform:translateY(-4px)}}
+.en-text{display:flex;flex-direction:column;gap:6px;min-width:0}
+.en-text b{font:340 23px/1.15 var(--serif);color:var(--tinte);font-variation-settings:'SOFT' 100}
+.en-text p{margin:0;font:14px/1.5 var(--sans);color:var(--tinte);text-wrap:pretty}
+.en-text small{font:10px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--wo-leise,#5e524a)}
+.en-los{align-self:flex-start;margin-top:auto;max-width:100%}
+@container engine (max-width:860px){.en-ideen{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container engine (max-width:540px){.en-ideen{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.en-form{padding:20px 18px}.en-felder{grid-template-columns:minmax(0,1fr)}.en-felder .en-breit,.en-felder label:first-child{grid-column:auto}}
+@media (max-width:599px){.en-ideen{grid-template-columns:minmax(0,1fr)}.en-unten .en-knoepfe,.en-unten .en-knoepfe .kn{width:100%}.en-unten .en-knoepfe .kn{justify-content:space-between}}

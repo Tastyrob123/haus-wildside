@@ -1,0 +1,4151 @@
+{
+ "haus": "Walk on the Wild Side Hannover",
+ "ort": "Hannover-Linden",
+ "fotos": [
+  {
+   "k": "decke-raum",
+   "t": {
+    "de": "Der Raum unter der Decke, links die Rückbar, hinten die Stufen nach oben"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 4284,
+   "h": 5712,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/decke-raum-2400.webp",
+   "fm": "../../assets/bild/decke-raum-1600.webp",
+   "fs": "../../assets/bild/decke-raum-480.webp"
+  },
+  {
+   "k": "decke-flach",
+   "t": {
+    "de": "Die Decke über der Bar, darunter Rückbar und Wandlampen"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1200,
+   "h": 900,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/decke-flach-1200.webp",
+   "fm": "../../assets/bild/decke-flach-1200.webp",
+   "fs": "../../assets/bild/decke-flach-480.webp"
+  },
+  {
+   "k": "decke-bar",
+   "t": {
+    "de": "Blick unter der Decke auf die Rückbar mit dem NEGRONI-Schriftzug"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/decke-bar-1080.webp",
+   "fm": "../../assets/bild/decke-bar-1080.webp",
+   "fs": "../../assets/bild/decke-bar-480.webp"
+  },
+  {
+   "k": "decke-hoch",
+   "t": {
+    "de": "Die Decke, darunter die Theke mit gelbem Licht"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/decke-hoch-2400.webp",
+   "fm": "../../assets/bild/decke-hoch-1600.webp",
+   "fs": "../../assets/bild/decke-hoch-480.webp"
+  },
+  {
+   "k": "fenster",
+   "t": {
+    "de": "Von der Strasse durchs Fenster: die Rückbar, oben spiegelt sich die Decke"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fenster-1536.webp",
+   "fm": "../../assets/bild/fenster-1536.webp",
+   "fs": "../../assets/bild/fenster-480.webp"
+  },
+  {
+   "k": "schild",
+   "t": {
+    "de": "Das beleuchtete Schild an der Hausecke: Walk on the Wild Side"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/schild-1536.webp",
+   "fm": "../../assets/bild/schild-1536.webp",
+   "fs": "../../assets/bild/schild-480.webp"
+  },
+  {
+   "k": "schild-ecke",
+   "t": {
+    "de": "Die Ecke Haasemannstrasse am Abend, Gäste vor der Tür"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/schild-ecke-1536.webp",
+   "fm": "../../assets/bild/schild-ecke-1536.webp",
+   "fs": "../../assets/bild/schild-ecke-480.webp"
+  },
+  {
+   "k": "momo-giesst",
+   "t": {
+    "de": "Momo giesst einen Drink an der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/momo-giesst-1536.webp",
+   "fm": "../../assets/bild/momo-giesst-1536.webp",
+   "fs": "../../assets/bild/momo-giesst-480.webp"
+  },
+  {
+   "k": "momo-lacht",
+   "t": {
+    "de": "Momo hinter der Bar, oben der NEGRONI-Schriftzug"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/momo-lacht-1536.webp",
+   "fm": "../../assets/bild/momo-lacht-1536.webp",
+   "fs": "../../assets/bild/momo-lacht-480.webp"
+  },
+  {
+   "k": "schaum",
+   "t": {
+    "de": "Schaum aus dem Siphon auf einen Sour"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/schaum-1536.webp",
+   "fm": "../../assets/bild/schaum-1536.webp",
+   "fs": "../../assets/bild/schaum-480.webp"
+  },
+  {
+   "k": "rueckbar",
+   "t": {
+    "de": "Die Rückbar durchs Fenster, am Tresen wird gemixt"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/rueckbar-1536.webp",
+   "fm": "../../assets/bild/rueckbar-1536.webp",
+   "fs": "../../assets/bild/rueckbar-480.webp"
+  },
+  {
+   "k": "rueckbar-breit",
+   "t": {
+    "de": "Die Rückbar mit Flaschen und der beleuchteten Vitrine"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1200,
+   "h": 900,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/rueckbar-breit-1200.webp",
+   "fm": "../../assets/bild/rueckbar-breit-1200.webp",
+   "fs": "../../assets/bild/rueckbar-breit-480.webp"
+  },
+  {
+   "k": "negroni",
+   "t": {
+    "de": "Der NEGRONI-Schriftzug aus Glühbirnen über der Vitrine mit Gläsern"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/negroni-1536.webp",
+   "fm": "../../assets/bild/negroni-1536.webp",
+   "fs": "../../assets/bild/negroni-480.webp"
+  },
+  {
+   "k": "voll",
+   "t": {
+    "de": "Ein voller Abend an den Tischen vor der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/voll-1536.webp",
+   "fm": "../../assets/bild/voll-1536.webp",
+   "fs": "../../assets/bild/voll-480.webp"
+  },
+  {
+   "k": "theke",
+   "t": {
+    "de": "Die Theke mit dem gelben Licht unter der Kante"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1200,
+   "h": 1600,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/theke-1200.webp",
+   "fm": "../../assets/bild/theke-1200.webp",
+   "fs": "../../assets/bild/theke-480.webp"
+  },
+  {
+   "k": "glas-kerze",
+   "t": {
+    "de": "Ein Drink auf dem dunklen Tisch, dahinter Kerzen"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-kerze-1536.webp",
+   "fm": "../../assets/bild/glas-kerze-1536.webp",
+   "fs": "../../assets/bild/glas-kerze-480.webp"
+  },
+  {
+   "k": "glas-rot",
+   "t": {
+    "de": "Ein roter Drink im Stielglas neben Kerzen"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-rot-1536.webp",
+   "fm": "../../assets/bild/glas-rot-1536.webp",
+   "fs": "../../assets/bild/glas-rot-480.webp"
+  },
+  {
+   "k": "glas-sour",
+   "t": {
+    "de": "Ein Sour auf der Theke"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2916,
+   "h": 3888,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-sour-2400.webp",
+   "fm": "../../assets/bild/glas-sour-1600.webp",
+   "fs": "../../assets/bild/glas-sour-480.webp"
+  },
+  {
+   "k": "glas-hand",
+   "t": {
+    "de": "Ein Gast hält einen hellen Drink"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-hand-1536.webp",
+   "fm": "../../assets/bild/glas-hand-1536.webp",
+   "fs": "../../assets/bild/glas-hand-480.webp"
+  },
+  {
+   "k": "glas-trinkt",
+   "t": {
+    "de": "Ein Gast trinkt aus einem Stielglas"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-trinkt-1536.webp",
+   "fm": "../../assets/bild/glas-trinkt-1536.webp",
+   "fs": "../../assets/bild/glas-trinkt-480.webp"
+  },
+  {
+   "k": "glas-negroni",
+   "t": {
+    "de": "Ein Negroni-Glas auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 4284,
+   "h": 5712,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-negroni-2400.webp",
+   "fm": "../../assets/bild/glas-negroni-1600.webp",
+   "fs": "../../assets/bild/glas-negroni-480.webp"
+  },
+  {
+   "k": "glas-zwei",
+   "t": {
+    "de": "Zwei Drinks auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 4284,
+   "h": 5712,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-zwei-2400.webp",
+   "fm": "../../assets/bild/glas-zwei-1600.webp",
+   "fs": "../../assets/bild/glas-zwei-480.webp"
+  },
+  {
+   "k": "glas-coupe",
+   "t": {
+    "de": "Ein Drink mit Schaum im Coupe-Glas, dahinter Kerzen"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/glas-coupe-1536.webp",
+   "fm": "../../assets/bild/glas-coupe-1536.webp",
+   "fs": "../../assets/bild/glas-coupe-480.webp"
+  },
+  {
+   "k": "anstossen",
+   "t": {
+    "de": "Zwei Gäste stossen über dem Tisch an"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/anstossen-1638.webp",
+   "fm": "../../assets/bild/anstossen-1600.webp",
+   "fs": "../../assets/bild/anstossen-480.webp"
+  },
+  {
+   "k": "freundinnen",
+   "t": {
+    "de": "Zwei Gäste an der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/freundinnen-1536.webp",
+   "fm": "../../assets/bild/freundinnen-1536.webp",
+   "fs": "../../assets/bild/freundinnen-480.webp"
+  },
+  {
+   "k": "saengerin",
+   "t": {
+    "de": "Eine Sängerin am Mikrofon in der Bar"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/saengerin-1536.webp",
+   "fm": "../../assets/bild/saengerin-1536.webp",
+   "fs": "../../assets/bild/saengerin-480.webp"
+  },
+  {
+   "k": "saengerin-kunde",
+   "t": {
+    "de": "Eine Sängerin am Mikrofon unter der Decke der Bar"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "haus",
+   "q": "Von der Bar geschickt (30. Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/saengerin-kunde-1638.webp",
+   "fm": "../../assets/bild/saengerin-kunde-1600.webp",
+   "fs": "../../assets/bild/saengerin-kunde-480.webp"
+  },
+  {
+   "k": "saengerin-sw",
+   "t": {
+    "de": "Eine Sängerin am Mikrofon, schwarzweiss"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/saengerin-sw-1536.webp",
+   "fm": "../../assets/bild/saengerin-sw-1536.webp",
+   "fs": "../../assets/bild/saengerin-sw-480.webp"
+  },
+  {
+   "k": "tuer-rot",
+   "t": {
+    "de": "Durch die Tür auf den roten Boden"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tuer-rot-1536.webp",
+   "fm": "../../assets/bild/tuer-rot-1536.webp",
+   "fs": "../../assets/bild/tuer-rot-480.webp"
+  },
+  {
+   "k": "flaschen",
+   "t": {
+    "de": "Flaschen in der Rückbar"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/flaschen-1536.webp",
+   "fm": "../../assets/bild/flaschen-1536.webp",
+   "fs": "../../assets/bild/flaschen-480.webp"
+  },
+  {
+   "k": "derya",
+   "t": {
+    "de": "Derya Ivkin an der Bar mit einem Continental Sour (Foto: Ilona Hottmann, Neue Presse)"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3000,
+   "h": 1985,
+   "art": "fremd",
+   "q": "Neue Presse, 11. Januar 2024, Foto: Ilona Hottmann",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/derya-2400.webp",
+   "fm": "../../assets/bild/derya-1600.webp",
+   "fs": "../../assets/bild/derya-480.webp"
+  },
+  {
+   "k": "terrasse",
+   "t": {
+    "de": "Gäste auf der Terrasse vor der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 960,
+   "h": 720,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 11. Juni 2021",
+   "u": "https://scontent-mnl3-2.xx.fbcdn.net/v/t1.6435-9/198742172_3029501060612035_8490254458399367721_n.jpg?stp=dst-jpg_tt6&cstp=mx960x720&ctp=s960x720&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=pQU4G53uTCcQ7kNvwF3BYkF&_nc_oc=AdqCwLNCOqMh9Ms1lXcQbrnhvHSftj_KUNTAZUPJ89YGzus5UslXsCPKVTgO-hmaink&_nc_zt=23&_nc_ht=scontent-mnl3-2.xx&_nc_gid=aQAc3Dm28rPrLPBtiv0_7Q&_nc_ss=732a8&oh=00_AQNhv5fBrNWD9W0OfdzkhCvyIIL9oxqdYu71obRTucfgHA&oe=6B066E5F",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/terrasse-960.webp",
+   "fm": "../../assets/bild/terrasse-960.webp",
+   "fs": "../../assets/bild/terrasse-480.webp"
+  },
+  {
+   "k": "paloma",
+   "t": {
+    "de": "Tequila und Palomas für die Paloma-Nacht"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1440,
+   "h": 960,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 16. Juni 2025",
+   "u": "https://www.instagram.com/p/DK-GT7TITWD/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/paloma-1440.webp",
+   "fm": "../../assets/bild/paloma-1440.webp",
+   "fs": "../../assets/bild/paloma-480.webp"
+  },
+  {
+   "k": "karte-love",
+   "t": {
+    "de": "Die Karte «Drunk in Love» zum Valentinstag 2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 3. Februar 2026",
+   "u": "https://www.instagram.com/p/DUT3HDnCMo1/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/karte-love-1080.webp",
+   "fm": "../../assets/bild/karte-love-1080.webp",
+   "fs": "../../assets/bild/karte-love-480.webp"
+  },
+  {
+   "k": "karte-dishes",
+   "t": {
+    "de": "Die Teller zum Valentinstag 2026, «Dishes in Love»"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 3. Februar 2026",
+   "u": "https://www.instagram.com/p/DUT3HDnCMo1/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/karte-dishes-1080.webp",
+   "fm": "../../assets/bild/karte-dishes-1080.webp",
+   "fs": "../../assets/bild/karte-dishes-480.webp"
+  },
+  {
+   "k": "valentin",
+   "t": {
+    "de": "Wild Side x Rudi in Love, Valentinstag 2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 3. Februar 2026",
+   "u": "https://www.instagram.com/p/DUT3HDnCMo1/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/valentin-1080.webp",
+   "fm": "../../assets/bild/valentin-1080.webp",
+   "fs": "../../assets/bild/valentin-480.webp"
+  },
+  {
+   "k": "p-0906",
+   "t": {
+    "de": "Plakat SESSION mit Björn, 06.09.2025"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1350,
+   "h": 1687,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 31. August 2025",
+   "u": "https://www.instagram.com/p/DOCMXG-iC59/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-0906-1350.webp",
+   "fm": "../../assets/bild/p-0906-1350.webp",
+   "fs": "../../assets/bild/p-0906-480.webp"
+  },
+  {
+   "k": "p-2211",
+   "t": {
+    "de": "Plakat SESSION mit Moury, 22.11.2025"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1350,
+   "h": 1687,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 17. November 2025",
+   "u": "https://www.instagram.com/p/DRK_iVDiChc/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-2211-1350.webp",
+   "fm": "../../assets/bild/p-2211-1350.webp",
+   "fs": "../../assets/bild/p-2211-480.webp"
+  },
+  {
+   "k": "p-2401",
+   "t": {
+    "de": "Plakat SESSION mit Loverence, 24.01.2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1350,
+   "h": 1687,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 14. Januar 2026",
+   "u": "https://www.instagram.com/p/DTf-jwUCObe/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-2401-1350.webp",
+   "fm": "../../assets/bild/p-2401-1350.webp",
+   "fs": "../../assets/bild/p-2401-480.webp"
+  },
+  {
+   "k": "p-2103",
+   "t": {
+    "de": "Plakat SESSION mit Moury, 21.03.2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1350,
+   "h": 1687,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 13. März 2026",
+   "u": "https://www.instagram.com/p/DV1fl7MCO3q/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-2103-1350.webp",
+   "fm": "../../assets/bild/p-2103-1350.webp",
+   "fs": "../../assets/bild/p-2103-480.webp"
+  },
+  {
+   "k": "p-1605",
+   "t": {
+    "de": "Plakat SESSION mit Jojo und Reza, 16.05.2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1814,
+   "h": 2418,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 11. Mai 2026",
+   "u": "https://www.instagram.com/p/DYNDzMgIR7M/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-1605-1814.webp",
+   "fm": "../../assets/bild/p-1605-1600.webp",
+   "fs": "../../assets/bild/p-1605-480.webp"
+  },
+  {
+   "k": "p-0509",
+   "t": {
+    "de": "Plakat SESSION, 05.09.2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1136,
+   "h": 1440,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 2. September 2026",
+   "u": "https://www.instagram.com/p/DcxmPV3oZbA/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-0509-1136.webp",
+   "fm": "../../assets/bild/p-0509-1136.webp",
+   "fs": "../../assets/bild/p-0509-480.webp"
+  },
+  {
+   "k": "p-0310",
+   "t": {
+    "de": "Plakat SESSION mit Jojo und Reza, 03.10.2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1584,
+   "h": 2112,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 29. September 2026",
+   "u": "https://www.instagram.com/p/Dd3Vx4lolo3/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-0310-1584.webp",
+   "fm": "../../assets/bild/p-0310-1584.webp",
+   "fs": "../../assets/bild/p-0310-480.webp"
+  },
+  {
+   "k": "p-1710",
+   "t": {
+    "de": "Plakat SESSION mit den Ghazouani Brothers, 17.10.2026"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1408,
+   "h": 1888,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 13. Oktober 2026",
+   "u": "https://www.instagram.com/p/DecaAh8oxYw/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/p-1710-1408.webp",
+   "fm": "../../assets/bild/p-1710-1408.webp",
+   "fs": "../../assets/bild/p-1710-480.webp"
+  },
+  {
+   "k": "konzert-love",
+   "t": {
+    "de": "Ein Duo spielt in der Bar, dahinter Glühbirnen-Buchstaben"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1799,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 7. Juni 2024",
+   "u": "https://scontent-mnl3-3.xx.fbcdn.net/v/t39.30808-6/470666827_18482902648044484_2731926067980163353_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1799&ctp=s1440x1799&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4vCS1E-G1PcQ7kNvwHkETGT&_nc_oc=AdoW6o4DW8x0XrWsUuXqil8UkrFl5ZWwIKDgFman6eEJ-UbVWHI4Nztte0opHAGQX1o&_nc_zt=23&_nc_ht=scontent-mnl3-3.xx&_nc_gid=J82HyLgX-TcfMLDIlGKIUQ&_nc_ss=732a8&oh=00_AQNew37cDkdSf3JpkOUv84VKQV2jJDXwWSSSVy_y6duFig&oe=6AE4CF8B",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/konzert-love-1440.webp",
+   "fm": "../../assets/bild/konzert-love-1440.webp",
+   "fs": "../../assets/bild/konzert-love-480.webp"
+  },
+  {
+   "k": "decke-2017",
+   "t": {
+    "de": "Das Kirchengewölbe"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "quer",
+   "w": 2048,
+   "h": 1473,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 24. Oktober 2017",
+   "u": "https://scontent-mnl3-3.xx.fbcdn.net/v/t39.30808-6/500741332_4151811788380951_4546769767710016802_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1473&ctp=s2048x1473&_nc_cat=109&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=M28mmnkCrlcQ7kNvwFRSkUT&_nc_oc=AdoKF94QFgSFF4TD9HKvLMur9CNV9qShgZ9xKxnZsW8ol4KGGN3AVNA0Ddh7GJiXzkw&_nc_zt=23&_nc_ht=scontent-mnl3-3.xx&_nc_gid=BrwTeJCeJEtvpatbsIkvuw&_nc_ss=732a8&oh=00_AQPHBd1NleBvtUqn99En7V_jf03cPorjdiUiWrFjdThGOg&oe=6AE4E56F",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/decke-2017-2048.webp",
+   "fm": "../../assets/bild/decke-2017-1600.webp",
+   "fs": "../../assets/bild/decke-2017-480.webp"
+  },
+  {
+   "k": "tafel-glaeser",
+   "t": {
+    "de": "Momo seiht Drinks für eine ganze Tafel ab"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1200,
+   "h": 1500,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 15. Januar 2025",
+   "u": "https://www.instagram.com/p/DE1rV7YML5A/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tafel-glaeser-1200.webp",
+   "fm": "../../assets/bild/tafel-glaeser-1200.webp",
+   "fs": "../../assets/bild/tafel-glaeser-480.webp"
+  },
+  {
+   "k": "fw-tafel",
+   "t": {
+    "de": "Die lange Tafel am Fenster, gedeckt mit Brot, Gläsern und Menükarten"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1638,
+   "h": 1024,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-tafel-1638.webp",
+   "fm": "../../assets/bild/fw-tafel-1600.webp",
+   "fs": "../../assets/bild/fw-tafel-480.webp"
+  },
+  {
+   "k": "ft-raum-abend",
+   "t": {
+    "de": "Der Raum am Abend, Gäste an der Theke und hinten an den Tischen"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3200,
+   "h": 2000,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ft-raum-abend-2400.webp",
+   "fm": "../../assets/bild/ft-raum-abend-1600.webp",
+   "fs": "../../assets/bild/ft-raum-abend-480.webp"
+  },
+  {
+   "k": "ft-theke-gaeste",
+   "t": {
+    "de": "Gäste an der Theke, hinten wird gemixt"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3024,
+   "h": 1890,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ft-theke-gaeste-2400.webp",
+   "fm": "../../assets/bild/ft-theke-gaeste-1600.webp",
+   "fs": "../../assets/bild/ft-theke-gaeste-480.webp"
+  },
+  {
+   "k": "ft-runde-stoesst-an",
+   "t": {
+    "de": "Eine Runde stösst mit kleinen Gläsern an"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3200,
+   "h": 2000,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ft-runde-stoesst-an-2400.webp",
+   "fm": "../../assets/bild/ft-runde-stoesst-an-1600.webp",
+   "fs": "../../assets/bild/ft-runde-stoesst-an-480.webp"
+  },
+  {
+   "k": "ft-momo-mixt-gast",
+   "t": {
+    "de": "Momo schüttelt einen Drink, daneben ein Gast"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 3200,
+   "h": 2000,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ft-momo-mixt-gast-2400.webp",
+   "fm": "../../assets/bild/ft-momo-mixt-gast-1600.webp",
+   "fs": "../../assets/bild/ft-momo-mixt-gast-480.webp"
+  },
+  {
+   "k": "dg-shaker",
+   "t": {
+    "de": "Momo schüttelt einen Drink, daneben ein Gast"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 5304,
+   "h": 6630,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-shaker-2400.webp",
+   "fm": "../../assets/bild/dg-shaker-1600.webp",
+   "fs": "../../assets/bild/dg-shaker-480.webp"
+  },
+  {
+   "k": "dg-coupes",
+   "t": {
+    "de": "Coupes mit Goldrand in einer Reihe"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-coupes-1638.webp",
+   "fm": "../../assets/bild/dg-coupes-1600.webp",
+   "fs": "../../assets/bild/dg-coupes-480.webp"
+  },
+  {
+   "k": "dg-flaschen",
+   "t": {
+    "de": "Flaschen auf der Rückbar"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-flaschen-1536.webp",
+   "fm": "../../assets/bild/dg-flaschen-1536.webp",
+   "fs": "../../assets/bild/dg-flaschen-480.webp"
+  },
+  {
+   "k": "dg-abseihen",
+   "t": {
+    "de": "Ein Drink wird durch ein Sieb in eine Reihe Gläser abgeseiht"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-abseihen-1536.webp",
+   "fm": "../../assets/bild/dg-abseihen-1536.webp",
+   "fs": "../../assets/bild/dg-abseihen-480.webp"
+  },
+  {
+   "k": "dg-behaelter",
+   "t": {
+    "de": "Glasbehälter mit Zapfhahn auf der Rückbar"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-behaelter-1536.webp",
+   "fm": "../../assets/bild/dg-behaelter-1536.webp",
+   "fs": "../../assets/bild/dg-behaelter-480.webp"
+  },
+  {
+   "k": "dg-giessen",
+   "t": {
+    "de": "Ein Drink wird durch ein Sieb in ein Coupe gegossen"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2562,
+   "h": 3416,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-giessen-2400.webp",
+   "fm": "../../assets/bild/dg-giessen-1600.webp",
+   "fs": "../../assets/bild/dg-giessen-480.webp"
+  },
+  {
+   "k": "dg-schaumglas",
+   "t": {
+    "de": "Ein Drink mit Schaum in der Hand"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-schaumglas-1638.webp",
+   "fm": "../../assets/bild/dg-schaumglas-1600.webp",
+   "fs": "../../assets/bild/dg-schaumglas-480.webp"
+  },
+  {
+   "k": "wf-sour",
+   "t": {
+    "de": "Ein Drink mit Schaum, dahinter eine Flasche"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 4754,
+   "h": 7127,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-sour-2400.webp",
+   "fm": "../../assets/bild/wf-sour-1600.webp",
+   "fs": "../../assets/bild/wf-sour-480.webp"
+  },
+  {
+   "k": "wf-pink",
+   "t": {
+    "de": "Ein heller Drink mit Schaum bei Kerzenlicht"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-pink-1536.webp",
+   "fm": "../../assets/bild/wf-pink-1536.webp",
+   "fs": "../../assets/bild/wf-pink-480.webp"
+  },
+  {
+   "k": "wf-zwei",
+   "t": {
+    "de": "Zwei Drinks nebeneinander auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-zwei-1638.webp",
+   "fm": "../../assets/bild/wf-zwei-1600.webp",
+   "fs": "../../assets/bild/wf-zwei-480.webp"
+  },
+  {
+   "k": "wf-erdbeer",
+   "t": {
+    "de": "Ein Longdrink mit Eis und Erdbeere"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-erdbeer-1638.webp",
+   "fm": "../../assets/bild/wf-erdbeer-1600.webp",
+   "fs": "../../assets/bild/wf-erdbeer-480.webp"
+  },
+  {
+   "k": "wf-nick",
+   "t": {
+    "de": "Ein klarer Drink in einem Stielglas"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 5304,
+   "h": 7952,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-nick-2400.webp",
+   "fm": "../../assets/bild/wf-nick-1600.webp",
+   "fs": "../../assets/bild/wf-nick-480.webp"
+  },
+  {
+   "k": "wf-highball",
+   "t": {
+    "de": "Ein heller Longdrink im hohen Glas"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-highball-1536.webp",
+   "fm": "../../assets/bild/wf-highball-1536.webp",
+   "fs": "../../assets/bild/wf-highball-480.webp"
+  },
+  {
+   "k": "wf-tablett",
+   "t": {
+    "de": "Eine Reihe heller Drinks auf dem Tablett"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2530,
+   "h": 3373,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-tablett-2400.webp",
+   "fm": "../../assets/bild/wf-tablett-1600.webp",
+   "fs": "../../assets/bild/wf-tablett-480.webp"
+  },
+  {
+   "k": "wf-coupe-tisch",
+   "t": {
+    "de": "Ein Drink im Coupe auf dem Holztisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2731,
+   "h": 3641,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-coupe-tisch-2400.webp",
+   "fm": "../../assets/bild/wf-coupe-tisch-1600.webp",
+   "fs": "../../assets/bild/wf-coupe-tisch-480.webp"
+  },
+  {
+   "k": "dg-siphon",
+   "t": {
+    "de": "Schaum aus dem Siphon auf einen Drink"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2498,
+   "h": 3330,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-siphon-2400.webp",
+   "fm": "../../assets/bild/dg-siphon-1600.webp",
+   "fs": "../../assets/bild/dg-siphon-480.webp"
+  },
+  {
+   "k": "wf-klar",
+   "t": {
+    "de": "Ein klarer Drink mit Rosmarin, daneben ein kleines Schälchen"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 5304,
+   "h": 7952,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/wf-klar-2400.webp",
+   "fm": "../../assets/bild/wf-klar-1600.webp",
+   "fs": "../../assets/bild/wf-klar-480.webp"
+  },
+  {
+   "k": "dg-feige",
+   "t": {
+    "de": "Ein Drink mit einer Feigenscheibe im Glas"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dg-feige-1638.webp",
+   "fm": "../../assets/bild/dg-feige-1600.webp",
+   "fs": "../../assets/bild/dg-feige-480.webp"
+  },
+  {
+   "k": "tafel-teller",
+   "t": {
+    "de": "Ein Teller vom privaten Dinner, daneben Zitronen und Blumen"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1200,
+   "h": 1500,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 15. Januar 2025",
+   "u": "https://www.instagram.com/p/DE1rV7YML5A/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tafel-teller-1200.webp",
+   "fm": "../../assets/bild/tafel-teller-1200.webp",
+   "fs": "../../assets/bild/tafel-teller-480.webp"
+  },
+  {
+   "k": "tafel-drink",
+   "t": {
+    "de": "Ein Drink zum Menü"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1799,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 15. Januar 2025",
+   "u": "https://www.instagram.com/p/DE1rV7YML5A/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tafel-drink-1440.webp",
+   "fm": "../../assets/bild/tafel-drink-1440.webp",
+   "fs": "../../assets/bild/tafel-drink-480.webp"
+  },
+  {
+   "k": "culinarium-teller",
+   "t": {
+    "de": "Ein Teller an der langen Tafel"
+   },
+   "b": "nachbarn",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/culinarium-teller-2400.webp",
+   "fm": "../../assets/bild/culinarium-teller-1600.webp",
+   "fs": "../../assets/bild/culinarium-teller-480.webp"
+  },
+  {
+   "k": "dirty-chicken",
+   "t": {
+    "de": "Ein Dirty-Chicken-Sandwich"
+   },
+   "b": "nachbarn",
+   "s": "jahr",
+   "f": "quadrat",
+   "w": 1440,
+   "h": 1440,
+   "art": "fremd",
+   "q": "Foto von Dirty Chicken, Rudis Pop-up im selben Haus",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/dirty-chicken-1440.webp",
+   "fm": "../../assets/bild/dirty-chicken-1440.webp",
+   "fs": "../../assets/bild/dirty-chicken-480.webp"
+  },
+  {
+   "k": "nb-cu-bete",
+   "t": {
+    "de": "Rote Bete mit Schaum, dahinter der Drink zum Gang"
+   },
+   "b": "nachbarn",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/nb-cu-bete-1638.webp",
+   "fm": "../../assets/bild/nb-cu-bete-1600.webp",
+   "fs": "../../assets/bild/nb-cu-bete-480.webp"
+  },
+  {
+   "k": "nb-dc-burger",
+   "t": {
+    "de": "Ein Chicken-Sandwich im Papier"
+   },
+   "b": "nachbarn",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2954,
+   "h": 3938,
+   "art": "fremd",
+   "q": "Foto von Dirty Chicken, Rudis Pop-up im selben Haus",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/nb-dc-burger-2400.webp",
+   "fm": "../../assets/bild/nb-dc-burger-1600.webp",
+   "fs": "../../assets/bild/nb-dc-burger-480.webp"
+  },
+  {
+   "k": "silvester",
+   "t": {
+    "de": "Ein Glas Sekt über der vollen Bar unter der Decke"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 18. Dezember 2024",
+   "u": "https://www.instagram.com/p/DDuvG1Rs7kq/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/silvester-1440.webp",
+   "fm": "../../assets/bild/silvester-1440.webp",
+   "fs": "../../assets/bild/silvester-480.webp"
+  },
+  {
+   "k": "culinarium-tafel",
+   "t": {
+    "de": "Gäste an der langen Tafel, gedeckt mit Kerzen und Karten"
+   },
+   "b": "nachbarn",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/culinarium-tafel-1536.webp",
+   "fm": "../../assets/bild/culinarium-tafel-1536.webp",
+   "fs": "../../assets/bild/culinarium-tafel-480.webp"
+  },
+  {
+   "k": "feste-anstossen",
+   "t": {
+    "de": "Gäste stossen am Tisch an"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 5304,
+   "h": 7952,
+   "art": "fremd",
+   "q": "Foto von Rudi (Culinarium) von einem Abend in der Bar; die Rechte liegen bei Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/feste-anstossen-2400.webp",
+   "fm": "../../assets/bild/feste-anstossen-1600.webp",
+   "fs": "../../assets/bild/feste-anstossen-480.webp"
+  },
+  {
+   "k": "gast-musa",
+   "t": {
+    "de": "Musa und Momo an der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 26. Februar 2024",
+   "u": "https://www.instagram.com/p/C30ngEIrNQM/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/gast-musa-1440.webp",
+   "fm": "../../assets/bild/gast-musa-1440.webp",
+   "fs": "../../assets/bild/gast-musa-480.webp"
+  },
+  {
+   "k": "gast-havn",
+   "t": {
+    "de": "Gastschicht aus dem Havn an der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 8. März 2024",
+   "u": "https://www.instagram.com/p/C4QsQhqM2s1/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/gast-havn-1440.webp",
+   "fm": "../../assets/bild/gast-havn-1440.webp",
+   "fs": "../../assets/bild/gast-havn-480.webp"
+  },
+  {
+   "k": "gast-nils",
+   "t": {
+    "de": "Nils Lutterbach vom Lovis in Berlin"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 10. April 2024",
+   "u": "https://www.instagram.com/p/C5ljExNs6kE/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/gast-nils-1440.webp",
+   "fm": "../../assets/bild/gast-nils-1440.webp",
+   "fs": "../../assets/bild/gast-nils-480.webp"
+  },
+  {
+   "k": "gast-cold",
+   "t": {
+    "de": "Gastbartender von Cold Drinks and More"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1295,
+   "h": 1619,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 16. Mai 2024",
+   "u": "https://www.instagram.com/p/C7Bco_FsO1O/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/gast-cold-1295.webp",
+   "fm": "../../assets/bild/gast-cold-1295.webp",
+   "fs": "../../assets/bild/gast-cold-480.webp"
+  },
+  {
+   "k": "gast-enlil",
+   "t": {
+    "de": "Enlil Arevalo mit einem Drink"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 14. Oktober 2024",
+   "u": "https://www.instagram.com/p/DBHXxmYM0vY/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/gast-enlil-1440.webp",
+   "fm": "../../assets/bild/gast-enlil-1440.webp",
+   "fs": "../../assets/bild/gast-enlil-480.webp"
+  },
+  {
+   "k": "alt-theke",
+   "t": {
+    "de": "Die Theke unter der Decke, Foto der ersten Website der Bar"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1200,
+   "h": 1600,
+   "art": "haus",
+   "q": "Foto der ersten Website der Bar (wildside-hannover.de, aus dem Webarchiv)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/alt-theke-1200.webp",
+   "fm": "../../assets/bild/alt-theke-1200.webp",
+   "fs": "../../assets/bild/alt-theke-480.webp"
+  },
+  {
+   "k": "alt-raum",
+   "t": {
+    "de": "Der Raum mit Theke und Stufen, Foto der ersten Website der Bar"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1200,
+   "h": 1600,
+   "art": "haus",
+   "q": "Foto der ersten Website der Bar (wildside-hannover.de, aus dem Webarchiv)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/alt-raum-1200.webp",
+   "fm": "../../assets/bild/alt-raum-1200.webp",
+   "fs": "../../assets/bild/alt-raum-480.webp"
+  },
+  {
+   "k": "alt-rueckbar",
+   "t": {
+    "de": "Die Rückbar mit Regalen und Vitrine, Foto der ersten Website der Bar"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1200,
+   "h": 900,
+   "art": "haus",
+   "q": "Foto der ersten Website der Bar (wildside-hannover.de, aus dem Webarchiv)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/alt-rueckbar-1200.webp",
+   "fm": "../../assets/bild/alt-rueckbar-1200.webp",
+   "fs": "../../assets/bild/alt-rueckbar-480.webp"
+  },
+  {
+   "k": "alt-decke",
+   "t": {
+    "de": "Die Decke über dem Raum mit den Wandlampen, Foto der ersten Website der Bar"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1200,
+   "h": 900,
+   "art": "haus",
+   "q": "Foto der ersten Website der Bar (wildside-hannover.de, aus dem Webarchiv)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/alt-decke-1200.webp",
+   "fm": "../../assets/bild/alt-decke-1200.webp",
+   "fs": "../../assets/bild/alt-decke-480.webp"
+  },
+  {
+   "k": "fb-2020-bar",
+   "t": {
+    "de": "Zwei Gäste an der Bar im rosa Licht, Juni 2020"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1236,
+   "h": 899,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 17. Juni 2020",
+   "u": "https://scontent-mnl1-2.xx.fbcdn.net/v/t1.6435-9/104291973_2743375295891281_4035683231393923059_n.jpg?stp=dst-jpg_tt6&cstp=mx1236x899&ctp=s1236x899&_nc_cat=105&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=xtEgxabFgiYQ7kNvwHIvgot&_nc_oc=AdoYuvkBQsUhOgT667TUagpMQA5Yc_Z2LIkW4k1815yFeM2cVJpGb1fKtuCx7a0La4M&_nc_zt=23&_nc_ht=scontent-mnl1-2.xx&_nc_gid=k04hfctjP3nsQqkbsDa8uA&_nc_ss=732a8&oh=00_AQMMkD2q1xkDGhO4qyUludoSq6hfQzWjnnnPMpjkABDIqQ&oe=6B0677E5",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fb-2020-bar-1236.webp",
+   "fm": "../../assets/bild/fb-2020-bar-1236.webp",
+   "fs": "../../assets/bild/fb-2020-bar-480.webp"
+  },
+  {
+   "k": "fb-2023-negroni",
+   "t": {
+    "de": "Die Rückbar mit dem NEGRONI-Schriftzug, November 2023"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 12. November 2023",
+   "u": "https://scontent-mnl1-2.xx.fbcdn.net/v/t39.30808-6/486341472_1083316663810073_4681158524633293791_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1800&ctp=s1440x1800&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7uPo7QSu6uoQ7kNvwHqf-J0&_nc_oc=AdplclWcHPYpHt9Z8huVZt1MJJsv4P8jR0WoH9qPIWnh6yCcSsrEj4AghZwHQOllHEE&_nc_zt=23&_nc_ht=scontent-mnl1-2.xx&_nc_gid=KHk9keY5SAWCzOFwaGmP_g&_nc_ss=732a8&oh=00_AQMD4IsJ3rjPhjd9fUtLFgaGzwMVKjAFC_KN3G6845_FsA&oe=6AE4CD90",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fb-2023-negroni-1440.webp",
+   "fm": "../../assets/bild/fb-2023-negroni-1440.webp",
+   "fs": "../../assets/bild/fb-2023-negroni-480.webp"
+  },
+  {
+   "k": "momo-flaschen",
+   "t": {
+    "de": "Momo hinter den Flaschen an der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/momo-flaschen-1536.webp",
+   "fm": "../../assets/bild/momo-flaschen-1536.webp",
+   "fs": "../../assets/bild/momo-flaschen-480.webp"
+  },
+  {
+   "k": "fe-theke",
+   "t": {
+    "de": "Gäste an der Theke, dahinter wird gemixt"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-theke-2400.webp",
+   "fm": "../../assets/bild/fe-theke-1600.webp",
+   "fs": "../../assets/bild/fe-theke-480.webp"
+  },
+  {
+   "k": "fe-highball",
+   "t": {
+    "de": "Ein roter Highball auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 4284,
+   "h": 5712,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-highball-2400.webp",
+   "fm": "../../assets/bild/fe-highball-1600.webp",
+   "fs": "../../assets/bild/fe-highball-480.webp"
+  },
+  {
+   "k": "fe-zwei",
+   "t": {
+    "de": "Zwei Drinks auf dem Tisch, dahinter die Rückbar"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 2268,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-zwei-2268.webp",
+   "fm": "../../assets/bild/fe-zwei-1600.webp",
+   "fs": "../../assets/bild/fe-zwei-480.webp"
+  },
+  {
+   "k": "fe-coupe",
+   "t": {
+    "de": "Ein Gast hält eine Coupe mit hellem Drink"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-coupe-2400.webp",
+   "fm": "../../assets/bild/fe-coupe-1600.webp",
+   "fs": "../../assets/bild/fe-coupe-480.webp"
+  },
+  {
+   "k": "fe-serviette",
+   "t": {
+    "de": "Ein Drink im Stielglas auf der Serviette"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-serviette-2400.webp",
+   "fm": "../../assets/bild/fe-serviette-1600.webp",
+   "fs": "../../assets/bild/fe-serviette-480.webp"
+  },
+  {
+   "k": "fe-minze",
+   "t": {
+    "de": "Ein Drink mit Minze auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-minze-2400.webp",
+   "fm": "../../assets/bild/fe-minze-1600.webp",
+   "fs": "../../assets/bild/fe-minze-480.webp"
+  },
+  {
+   "k": "fe-old",
+   "t": {
+    "de": "Ein Drink mit Orangenzeste in der Hand"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-old-2400.webp",
+   "fm": "../../assets/bild/fe-old-1600.webp",
+   "fs": "../../assets/bild/fe-old-480.webp"
+  },
+  {
+   "k": "pf-raum",
+   "t": {
+    "de": "Der leere Raum am frühen Abend: Theke mit Licht, Stufen, Tische an der Wand"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1200,
+   "h": 840,
+   "art": "fremd",
+   "q": "Foto von Stadtwohnungen Linden; die Rechte liegen dort",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/pf-raum-1200.webp",
+   "fm": "../../assets/bild/pf-raum-1200.webp",
+   "fs": "../../assets/bild/pf-raum-480.webp"
+  },
+  {
+   "k": "pf-schild",
+   "t": {
+    "de": "Die beiden Schilder an der Hausecke, davor bunte Papierfahnen"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1440,
+   "h": 963,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 16. Juni 2025",
+   "u": "https://scontent-mnl3-3.xx.fbcdn.net/v/t51.75761-15/504338592_18517713880044484_6136256925668141718_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x963&ctp=s1440x963&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KVot_TZ2w-YQ7kNvwFoBVTT&_nc_oc=AdqbWmmY1pOPOHRjuDmsm2c6Na7d8QDV0uJAFUcAo6aC3XQ-Sm84YTw268wAoatUkAI&_nc_zt=23&_nc_ht=scontent-mnl3-3.xx&_nc_gid=Y2tL_tleUQYCWdxYG58fMQ&_nc_ss=732a8&oh=00_AQNarW84l27CHdqlHPy4tLHrk4CVsdGecJBeHeGSQHHKkQ&oe=6AE4E46A",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/pf-schild-1440.webp",
+   "fm": "../../assets/bild/pf-schild-1440.webp",
+   "fs": "../../assets/bild/pf-schild-480.webp"
+  },
+  {
+   "k": "pf-momo-rudi",
+   "t": {
+    "de": "Momo und Rudi von Culinarium am Valentinsabend 2026"
+   },
+   "b": "nachbarn",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1350,
+   "h": 985,
+   "art": "fremd",
+   "q": "Momo und Rudi am Valentinsabend 2026, Foto von Culinarium",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/pf-momo-rudi-1350.webp",
+   "fm": "../../assets/bild/pf-momo-rudi-1350.webp",
+   "fs": "../../assets/bild/pf-momo-rudi-480.webp"
+  },
+  {
+   "k": "konzert-scharf",
+   "t": {
+    "de": "Konzert in der Bar: Gitarren und Kontrabass unter der Decke"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "quer",
+   "w": 4096,
+   "h": 2737,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 4. März 2024. Licht und Schärfe mit KI nachgeschärft",
+   "u": "",
+   "ue": true,
+   "alt": false,
+   "vn": true,
+   "fl": "../../assets/bild/konzert-scharf-2400.webp",
+   "fm": "../../assets/bild/konzert-scharf-1600.webp",
+   "fs": "../../assets/bild/konzert-scharf-480.webp"
+  },
+  {
+   "k": "uw-tische",
+   "t": {
+    "de": "Gäste an der Biertischgarnitur, Christi Limmerfahrt 2025"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-tische-1440.webp",
+   "fm": "../../assets/bild/uw-tische-1440.webp",
+   "fs": "../../assets/bild/uw-tische-480.webp"
+  },
+  {
+   "k": "uw-tanz",
+   "t": {
+    "de": "Tanzen auf der Strasse, Christi Limmerfahrt 2025"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-tanz-1440.webp",
+   "fm": "../../assets/bild/uw-tanz-1440.webp",
+   "fs": "../../assets/bild/uw-tanz-480.webp"
+  },
+  {
+   "k": "uw-singen",
+   "t": {
+    "de": "Eine Sängerin unter den Sonnenschirmen, Christi Limmerfahrt 2025"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-singen-1440.webp",
+   "fm": "../../assets/bild/uw-singen-1440.webp",
+   "fs": "../../assets/bild/uw-singen-480.webp"
+  },
+  {
+   "k": "uw-sonne",
+   "t": {
+    "de": "Gäste in der Abendsonne, Christi Limmerfahrt 2025"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-sonne-1440.webp",
+   "fm": "../../assets/bild/uw-sonne-1440.webp",
+   "fs": "../../assets/bild/uw-sonne-480.webp"
+  },
+  {
+   "k": "uw-lachen",
+   "t": {
+    "de": "Ein Gast lacht in der Menge, Christi Limmerfahrt 2025"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-lachen-1440.webp",
+   "fm": "../../assets/bild/uw-lachen-1440.webp",
+   "fs": "../../assets/bild/uw-lachen-480.webp"
+  },
+  {
+   "k": "uw-bank",
+   "t": {
+    "de": "Auf der Bank am Küchengarten, Christi Limmerfahrt 2025"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-bank-1440.webp",
+   "fm": "../../assets/bild/uw-bank-1440.webp",
+   "fs": "../../assets/bild/uw-bank-480.webp"
+  },
+  {
+   "k": "uw-kiez",
+   "t": {
+    "de": "Volle Strasse zwischen den Ständen, Christi Limmerfahrt am Küchengarten"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-kiez-1080.webp",
+   "fm": "../../assets/bild/uw-kiez-1080.webp",
+   "fs": "../../assets/bild/uw-kiez-480.webp"
+  },
+  {
+   "k": "uw-stuehle",
+   "t": {
+    "de": "Liegestühle und Sonnenschirme am Küchengarten"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-stuehle-1080.webp",
+   "fm": "../../assets/bild/uw-stuehle-1080.webp",
+   "fs": "../../assets/bild/uw-stuehle-480.webp"
+  },
+  {
+   "k": "uw-buehne",
+   "t": {
+    "de": "Eine Sängerin auf der Bühne am Küchengarten"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-buehne-1080.webp",
+   "fm": "../../assets/bild/uw-buehne-1080.webp",
+   "fs": "../../assets/bild/uw-buehne-480.webp"
+  },
+  {
+   "k": "uw-glas",
+   "t": {
+    "de": "Ein roter Drink im Becher, mit Minze"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-glas-1080.webp",
+   "fm": "../../assets/bild/uw-glas-1080.webp",
+   "fs": "../../assets/bild/uw-glas-480.webp"
+  },
+  {
+   "k": "uw-fahnen",
+   "t": {
+    "de": "Bunte Fahnen über den Biertischen am Küchengarten"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-fahnen-1080.webp",
+   "fm": "../../assets/bild/uw-fahnen-1080.webp",
+   "fs": "../../assets/bild/uw-fahnen-480.webp"
+  },
+  {
+   "k": "uw-buden",
+   "t": {
+    "de": "Stände und Gäste am Küchengarten"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-buden-1080.webp",
+   "fm": "../../assets/bild/uw-buden-1080.webp",
+   "fs": "../../assets/bild/uw-buden-480.webp"
+  },
+  {
+   "k": "uw-pl-limmer",
+   "t": {
+    "de": "Plakat Christi Limmerfahrt, 14. und 15. Mai, am Küchengarten"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 28. April 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DXqr_efDUuB/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-pl-limmer-1080.webp",
+   "fm": "../../assets/bild/uw-pl-limmer-1080.webp",
+   "fs": "../../assets/bild/uw-pl-limmer-480.webp"
+  },
+  {
+   "k": "uw-pl-okt",
+   "t": {
+    "de": "Plakat Oktoberfest am Stephansplatz, 31.10. bis 01.11."
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @event.klub, Beitrag vom 22. Oktober 2026; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Dey3ATejQj2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-pl-okt-1080.webp",
+   "fm": "../../assets/bild/uw-pl-okt-1080.webp",
+   "fs": "../../assets/bild/uw-pl-okt-480.webp"
+  },
+  {
+   "k": "uw-pl-limmer25",
+   "t": {
+    "de": "Plakat Christi Limmerfahrt, 29. und 30. Mai, am Küchengarten"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @trustory.linden, Beitrag vom 22. Mai 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DJ8lGS2s3WI/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-pl-limmer25-1080.webp",
+   "fm": "../../assets/bild/uw-pl-limmer25-1080.webp",
+   "fs": "../../assets/bild/uw-pl-limmer25-480.webp"
+  },
+  {
+   "k": "uw-fahnen25",
+   "t": {
+    "de": "Fahnen zwischen den Bäumen am Küchengarten"
+   },
+   "b": "unterwegs",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1080,
+   "h": 1350,
+   "art": "fremd",
+   "q": "Instagram von @trustory.linden, Beitrag vom 22. Mai 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DJ8lGS2s3WI/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/uw-fahnen25-1080.webp",
+   "fm": "../../assets/bild/uw-fahnen25-1080.webp",
+   "fs": "../../assets/bild/uw-fahnen25-480.webp"
+  },
+  {
+   "k": "fe-probe",
+   "t": {
+    "de": "Drei Gläser zum Probieren auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "quer",
+   "w": 4640,
+   "h": 2610,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-probe-2400.webp",
+   "fm": "../../assets/bild/fe-probe-1600.webp",
+   "fs": "../../assets/bild/fe-probe-480.webp"
+  },
+  {
+   "k": "fe-negroni",
+   "t": {
+    "de": "Ein Drink in der Hand unter dem NEGRONI-Schriftzug"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 4284,
+   "h": 5712,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fe-negroni-2400.webp",
+   "fm": "../../assets/bild/fe-negroni-1600.webp",
+   "fs": "../../assets/bild/fe-negroni-480.webp"
+  },
+  {
+   "k": "fw-highballs",
+   "t": {
+    "de": "Zwei Highballs auf dem Tisch, dahinter die Theke"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 3024,
+   "h": 4032,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-highballs-2400.webp",
+   "fm": "../../assets/bild/fw-highballs-1600.webp",
+   "fs": "../../assets/bild/fw-highballs-480.webp"
+  },
+  {
+   "k": "fw-a57",
+   "t": {
+    "de": "Am Tresen wird eingeschenkt"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 17. Mai 2024",
+   "u": "https://scontent-mnl3-3.xx.fbcdn.net/v/t39.30808-6/470611680_18482891383044484_3538422938998121153_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1800&ctp=s1440x1800&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0wdjET8eTXgQ7kNvwERjbxN&_nc_oc=AdpvWD2uiTfBUJDLfPzoNACdv90ywSDpt7K738Vfv6A-xKMUO4jsH17do0VTX8fAbLY&_nc_zt=23&_nc_ht=scontent-mnl3-3.xx&_nc_gid=A__8pIJ0MyyY3oww7_9S_A&_nc_ss=732a8&oh=00_AQPEyVjUTsfS0hWpBMgs1AoRtVLMYDIM1C-z-82Qjmn8AQ&oe=6AE4DDB2",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a57-1440.webp",
+   "fm": "../../assets/bild/fw-a57-1440.webp",
+   "fs": "../../assets/bild/fw-a57-480.webp"
+  },
+  {
+   "k": "fw-a45",
+   "t": {
+    "de": "Hinter der Bar wird gegossen"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a45-1440.webp",
+   "fm": "../../assets/bild/fw-a45-1440.webp",
+   "fs": "../../assets/bild/fw-a45-480.webp"
+  },
+  {
+   "k": "fw-h19",
+   "t": {
+    "de": "Drinks werden über den Tresen gereicht"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1638,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h19-1638.webp",
+   "fm": "../../assets/bild/fw-h19-1600.webp",
+   "fs": "../../assets/bild/fw-h19-480.webp"
+  },
+  {
+   "k": "fw-h33",
+   "t": {
+    "de": "Ein Glas neben der Kerze"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h33-1536.webp",
+   "fm": "../../assets/bild/fw-h33-1536.webp",
+   "fs": "../../assets/bild/fw-h33-480.webp"
+  },
+  {
+   "k": "fw-h30",
+   "t": {
+    "de": "Ein Tisch im Kerzenlicht"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h30-1440.webp",
+   "fm": "../../assets/bild/fw-h30-1440.webp",
+   "fs": "../../assets/bild/fw-h30-480.webp"
+  },
+  {
+   "k": "fw-a55",
+   "t": {
+    "de": "Die Karte des Abends neben der Kerze"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 7. Dezember 2023",
+   "u": "https://www.instagram.com/p/C0j1thbsh_y/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a55-1440.webp",
+   "fm": "../../assets/bild/fw-a55-1440.webp",
+   "fs": "../../assets/bild/fw-a55-480.webp"
+  },
+  {
+   "k": "fw-h11",
+   "t": {
+    "de": "Zwei Gläser auf der Theke"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h11-1440.webp",
+   "fm": "../../assets/bild/fw-h11-1440.webp",
+   "fs": "../../assets/bild/fw-h11-480.webp"
+  },
+  {
+   "k": "fw-h41",
+   "t": {
+    "de": "Ein roter Highball an der Bar"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @xwithjess, Beitrag vom 20. Dezember 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DDz7J1ps4m-/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h41-1440.webp",
+   "fm": "../../assets/bild/fw-h41-1440.webp",
+   "fs": "../../assets/bild/fw-h41-480.webp"
+  },
+  {
+   "k": "fw-h1",
+   "t": {
+    "de": "Zwei Drinks mit Orange auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h1-1440.webp",
+   "fm": "../../assets/bild/fw-h1-1440.webp",
+   "fs": "../../assets/bild/fw-h1-480.webp"
+  },
+  {
+   "k": "fw-a31",
+   "t": {
+    "de": "Flaschen in der Rückbar"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a31-1536.webp",
+   "fm": "../../assets/bild/fw-a31-1536.webp",
+   "fs": "../../assets/bild/fw-a31-480.webp"
+  },
+  {
+   "k": "fw-h16",
+   "t": {
+    "de": "Das Flaschenregal"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h16-1536.webp",
+   "fm": "../../assets/bild/fw-h16-1536.webp",
+   "fs": "../../assets/bild/fw-h16-480.webp"
+  },
+  {
+   "k": "fw-h37",
+   "t": {
+    "de": "Ein roter Drink neben der Flasche"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1798,
+   "art": "fremd",
+   "q": "Instagram von @xwithjess, Beitrag vom 20. Dezember 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DDz7J1ps4m-/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h37-1440.webp",
+   "fm": "../../assets/bild/fw-h37-1440.webp",
+   "fs": "../../assets/bild/fw-h37-480.webp"
+  },
+  {
+   "k": "fw-h18",
+   "t": {
+    "de": "Gäste am Tisch"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h18-1536.webp",
+   "fm": "../../assets/bild/fw-h18-1536.webp",
+   "fs": "../../assets/bild/fw-h18-480.webp"
+  },
+  {
+   "k": "fw-a14",
+   "t": {
+    "de": "Ein Gast mit Drink"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @lizzas.diaryy, Beitrag vom 28. November 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C0MQYiKtBvW/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a14-1440.webp",
+   "fm": "../../assets/bild/fw-a14-1440.webp",
+   "fs": "../../assets/bild/fw-a14-480.webp"
+  },
+  {
+   "k": "fw-h42",
+   "t": {
+    "de": "Ein Gast mit einem Sour"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 24. März 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C46WyDtsKbl/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h42-1440.webp",
+   "fm": "../../assets/bild/fw-h42-1440.webp",
+   "fs": "../../assets/bild/fw-h42-480.webp"
+  },
+  {
+   "k": "fw-a12",
+   "t": {
+    "de": "Der Raum am 9. November 2023"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "haus",
+   "q": "Instagram der Bar (@walkonthewildside_hannover), Beitrag vom 9. November 2023",
+   "u": "https://www.instagram.com/p/CzbxDQMMKQ3/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a12-1440.webp",
+   "fm": "../../assets/bild/fw-a12-1440.webp",
+   "fs": "../../assets/bild/fw-a12-480.webp"
+  },
+  {
+   "k": "fw-h7",
+   "t": {
+    "de": "In der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1536,
+   "h": 2048,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h7-1536.webp",
+   "fm": "../../assets/bild/fw-h7-1536.webp",
+   "fs": "../../assets/bild/fw-h7-480.webp"
+  },
+  {
+   "k": "fw-a9",
+   "t": {
+    "de": "Die gedeckte Tafel"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a9-1440.webp",
+   "fm": "../../assets/bild/fw-a9-1440.webp",
+   "fs": "../../assets/bild/fw-a9-480.webp"
+  },
+  {
+   "k": "fw-h46",
+   "t": {
+    "de": "Zwei Gäste mit Drinks"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 24. März 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C46WyDtsKbl/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h46-1440.webp",
+   "fm": "../../assets/bild/fw-h46-1440.webp",
+   "fs": "../../assets/bild/fw-h46-480.webp"
+  },
+  {
+   "k": "fw-a3",
+   "t": {
+    "de": "Zwei Drinks am Fenster"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @xwithjess, Beitrag vom 6. August 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C-VADi2sNFU/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a3-1440.webp",
+   "fm": "../../assets/bild/fw-a3-1440.webp",
+   "fs": "../../assets/bild/fw-a3-480.webp"
+  },
+  {
+   "k": "fw-a47",
+   "t": {
+    "de": "Zwei Gläser mit Gin"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a47-1440.webp",
+   "fm": "../../assets/bild/fw-a47-1440.webp",
+   "fs": "../../assets/bild/fw-a47-480.webp"
+  },
+  {
+   "k": "fw-h21",
+   "t": {
+    "de": "Zwei Gin Tonic an der Bar"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h21-1440.webp",
+   "fm": "../../assets/bild/fw-h21-1440.webp",
+   "fs": "../../assets/bild/fw-h21-480.webp"
+  },
+  {
+   "k": "fw-a36",
+   "t": {
+    "de": "Ein Drink im Abendlicht"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a36-1440.webp",
+   "fm": "../../assets/bild/fw-a36-1440.webp",
+   "fs": "../../assets/bild/fw-a36-480.webp"
+  },
+  {
+   "k": "fw-h31",
+   "t": {
+    "de": "Ein Sommerabend vor der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h31-1440.webp",
+   "fm": "../../assets/bild/fw-h31-1440.webp",
+   "fs": "../../assets/bild/fw-h31-480.webp"
+  },
+  {
+   "k": "fw-a58",
+   "t": {
+    "de": "Tanzen auf der Strasse"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a58-1440.webp",
+   "fm": "../../assets/bild/fw-a58-1440.webp",
+   "fs": "../../assets/bild/fw-a58-480.webp"
+  },
+  {
+   "k": "fw-a49",
+   "t": {
+    "de": "Sonne vor der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a49-1440.webp",
+   "fm": "../../assets/bild/fw-a49-1440.webp",
+   "fs": "../../assets/bild/fw-a49-480.webp"
+  },
+  {
+   "k": "fw-a46",
+   "t": {
+    "de": "Zwei Bartender hinter dem Tresen"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "fremd",
+   "q": "Instagram von @twopointsview, Beitrag vom 1. Juni 2025; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/DKW3aKaNbjt/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a46-1440.webp",
+   "fm": "../../assets/bild/fw-a46-1440.webp",
+   "fs": "../../assets/bild/fw-a46-480.webp"
+  },
+  {
+   "k": "fw-a17",
+   "t": {
+    "de": "Ein Gast an der Bar"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 20. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9pIhtHs57s/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a17-1440.webp",
+   "fm": "../../assets/bild/fw-a17-1440.webp",
+   "fs": "../../assets/bild/fw-a17-480.webp"
+  },
+  {
+   "k": "fw-h3",
+   "t": {
+    "de": "Gäste im Raum"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 20. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9pIhtHs57s/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-h3-1440.webp",
+   "fm": "../../assets/bild/fw-h3-1440.webp",
+   "fs": "../../assets/bild/fw-h3-480.webp"
+  },
+  {
+   "k": "fw-a8",
+   "t": {
+    "de": "Ein Gast auf der Bank"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 30. April 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C6YS0yFs-kk/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a8-1440.webp",
+   "fm": "../../assets/bild/fw-a8-1440.webp",
+   "fs": "../../assets/bild/fw-a8-480.webp"
+  },
+  {
+   "k": "fw-a28",
+   "t": {
+    "de": "Ein Gast trinkt"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @lizzas.diaryy, Beitrag vom 28. November 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C0MQYiKtBvW/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a28-1440.webp",
+   "fm": "../../assets/bild/fw-a28-1440.webp",
+   "fs": "../../assets/bild/fw-a28-480.webp"
+  },
+  {
+   "k": "fw-a7",
+   "t": {
+    "de": "Gäste am Abend"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1799,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 30. April 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C6YS0yFs-kk/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a7-1440.webp",
+   "fm": "../../assets/bild/fw-a7-1440.webp",
+   "fs": "../../assets/bild/fw-a7-480.webp"
+  },
+  {
+   "k": "fw-a15",
+   "t": {
+    "de": "Ein Drink wird gereicht"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a15-1440.webp",
+   "fm": "../../assets/bild/fw-a15-1440.webp",
+   "fs": "../../assets/bild/fw-a15-480.webp"
+  },
+  {
+   "k": "fw-a52",
+   "t": {
+    "de": "Am Tisch"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a52-1440.webp",
+   "fm": "../../assets/bild/fw-a52-1440.webp",
+   "fs": "../../assets/bild/fw-a52-480.webp"
+  },
+  {
+   "k": "fw-a53",
+   "t": {
+    "de": "Ein Glas auf dem Tisch"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a53-1440.webp",
+   "fm": "../../assets/bild/fw-a53-1440.webp",
+   "fs": "../../assets/bild/fw-a53-480.webp"
+  },
+  {
+   "k": "fw-a1",
+   "t": {
+    "de": "Im Raum"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 30. April 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C6YS0yFs-kk/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/fw-a1-1440.webp",
+   "fm": "../../assets/bild/fw-a1-1440.webp",
+   "fs": "../../assets/bild/fw-a1-480.webp"
+  },
+  {
+   "k": "tf-oben",
+   "t": {
+    "de": "Die gedeckte Tafel von oben"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-oben-1440.webp",
+   "fm": "../../assets/bild/tf-oben-1440.webp",
+   "fs": "../../assets/bild/tf-oben-480.webp"
+  },
+  {
+   "k": "tf-dessert",
+   "t": {
+    "de": "Ein Dessert wird an die Tafel gestellt"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-dessert-1440.webp",
+   "fm": "../../assets/bild/tf-dessert-1440.webp",
+   "fs": "../../assets/bild/tf-dessert-480.webp"
+  },
+  {
+   "k": "tf-l3",
+   "t": {
+    "de": "Ein Gang an der Tafel"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 20. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9pIhtHs57s/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-l3-1440.webp",
+   "fm": "../../assets/bild/tf-l3-1440.webp",
+   "fs": "../../assets/bild/tf-l3-480.webp"
+  },
+  {
+   "k": "tf-l5",
+   "t": {
+    "de": "Ein Teller an der Tafel, dahinter die Runde"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 20. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9pIhtHs57s/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-l5-1440.webp",
+   "fm": "../../assets/bild/tf-l5-1440.webp",
+   "fs": "../../assets/bild/tf-l5-480.webp"
+  },
+  {
+   "k": "tf-l8",
+   "t": {
+    "de": "Ein Teller mit Sauce an der Tafel"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @luisaverfuerth, Beitrag vom 20. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9pIhtHs57s/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-l8-1440.webp",
+   "fm": "../../assets/bild/tf-l8-1440.webp",
+   "fs": "../../assets/bild/tf-l8-480.webp"
+  },
+  {
+   "k": "tf-h1",
+   "t": {
+    "de": "Ein Gang mit Kräutern"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-h1-1440.webp",
+   "fm": "../../assets/bild/tf-h1-1440.webp",
+   "fs": "../../assets/bild/tf-h1-480.webp"
+  },
+  {
+   "k": "tf-h2",
+   "t": {
+    "de": "Ein Teller mit Erbsen und Kresse"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1800,
+   "art": "fremd",
+   "q": "Instagram von @hannoverfoodie, Beitrag vom 15. Oktober 2023; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/Cyah0yBsSyQ/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/tf-h2-1440.webp",
+   "fm": "../../assets/bild/tf-h2-1440.webp",
+   "fs": "../../assets/bild/tf-h2-480.webp"
+  },
+  {
+   "k": "an-empore",
+   "t": {
+    "de": "Die lange Tafel auf der Empore am Fenster"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 858,
+   "h": 1144,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-empore-858.webp",
+   "fm": "../../assets/bild/an-empore-858.webp",
+   "fs": "../../assets/bild/an-empore-480.webp"
+  },
+  {
+   "k": "pl-theke",
+   "t": {
+    "de": "Momo hinter der Theke, unter der Kante das gelbe Lichtband"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1280,
+   "h": 1600,
+   "art": "haus",
+   "q": "Von der Bar geschickt (30. Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/pl-theke-1280.webp",
+   "fm": "../../assets/bild/pl-theke-1280.webp",
+   "fs": "../../assets/bild/pl-theke-480.webp"
+  },
+  {
+   "k": "pl-empore",
+   "t": {
+    "de": "Die lange Tafel auf der Empore, gedeckt mit Grün"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1144,
+   "h": 1527,
+   "art": "fremd",
+   "q": "Instagram von @voronov_irina, Beitrag vom 24. Juli 2024; die Rechte liegen beim Fotografen",
+   "u": "https://www.instagram.com/p/C9z2rj1MRb2/",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/pl-empore-1144.webp",
+   "fm": "../../assets/bild/pl-empore-1144.webp",
+   "fs": "../../assets/bild/pl-empore-480.webp"
+  },
+  {
+   "k": "pl-ecke",
+   "t": {
+    "de": "Die Ecke Haasemannstraße und Rampenstraße mit dem Schild der Bar"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1024,
+   "h": 576,
+   "art": "fremd",
+   "q": "Foto von En Primeur Club; die Rechte liegen dort",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/pl-ecke-1024.webp",
+   "fm": "../../assets/bild/pl-ecke-1024.webp",
+   "fs": "../../assets/bild/pl-ecke-480.webp"
+  },
+  {
+   "k": "an-party",
+   "t": {
+    "de": "Gäste feiern mit erhobenen Gläsern"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 904,
+   "h": 1356,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-party-904.webp",
+   "fm": "../../assets/bild/an-party-904.webp",
+   "fs": "../../assets/bild/an-party-480.webp"
+  },
+  {
+   "k": "an-party-sw",
+   "t": {
+    "de": "Ein Abend in der Bar, schwarzweiss"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1436,
+   "h": 1914,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-party-sw-1436.webp",
+   "fm": "../../assets/bild/an-party-sw-1436.webp",
+   "fs": "../../assets/bild/an-party-sw-480.webp"
+  },
+  {
+   "k": "an-dj",
+   "t": {
+    "de": "Das DJ-Pult im Licht"
+   },
+   "b": "musik",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 590,
+   "h": 1033,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-dj-590.webp",
+   "fm": "../../assets/bild/an-dj-590.webp",
+   "fs": "../../assets/bild/an-dj-480.webp"
+  },
+  {
+   "k": "an-dinner",
+   "t": {
+    "de": "Die gedeckte Tafel mit Brot, Zitronen und Menükarte"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 615,
+   "h": 820,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-dinner-615.webp",
+   "fm": "../../assets/bild/an-dinner-615.webp",
+   "fs": "../../assets/bild/an-dinner-480.webp"
+  },
+  {
+   "k": "an-loge",
+   "t": {
+    "de": "Ein Saal mit langen, weiss gedeckten Tafeln"
+   },
+   "b": "tafel",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 590,
+   "h": 792,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-loge-590.webp",
+   "fm": "../../assets/bild/an-loge-590.webp",
+   "fs": "../../assets/bild/an-loge-480.webp"
+  },
+  {
+   "k": "ev-theke",
+   "t": {
+    "de": "Die Theke mit den Barhockern im gelben Licht"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 832,
+   "h": 1110,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ev-theke-832.webp",
+   "fm": "../../assets/bild/ev-theke-832.webp",
+   "fs": "../../assets/bild/ev-theke-480.webp"
+  },
+  {
+   "k": "an-campari",
+   "t": {
+    "de": "Leuchtschrift NO NEGRONI WITHOUT CAMPARI"
+   },
+   "b": "raum",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 922,
+   "h": 1229,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-campari-922.webp",
+   "fm": "../../assets/bild/an-campari-922.webp",
+   "fs": "../../assets/bild/an-campari-480.webp"
+  },
+  {
+   "k": "an-sours",
+   "t": {
+    "de": "Eine Reihe Sours mit Schaum"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 801,
+   "h": 1068,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-sours-801.webp",
+   "fm": "../../assets/bild/an-sours-801.webp",
+   "fs": "../../assets/bild/an-sours-480.webp"
+  },
+  {
+   "k": "an-glaeser",
+   "t": {
+    "de": "Gläser werden für eine Runde gefüllt"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 656,
+   "h": 820,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-glaeser-656.webp",
+   "fm": "../../assets/bild/an-glaeser-656.webp",
+   "fs": "../../assets/bild/an-glaeser-480.webp"
+  },
+  {
+   "k": "an-sour",
+   "t": {
+    "de": "Ein Sour mit Schaum neben der Kerze"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 656,
+   "h": 820,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-sour-656.webp",
+   "fm": "../../assets/bild/an-sour-656.webp",
+   "fs": "../../assets/bild/an-sour-480.webp"
+  },
+  {
+   "k": "ja-2018",
+   "t": {
+    "de": "Ein Abend im Wild Side, September 2018"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1920,
+   "h": 1080,
+   "art": "fremd",
+   "q": "Standbild aus einem Film von Niemand Gin über die Bar (Vimeo, September 2018)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ja-2018-1920.webp",
+   "fm": "../../assets/bild/ja-2018-1600.webp",
+   "fs": "../../assets/bild/ja-2018-480.webp"
+  },
+  {
+   "k": "ja-2025",
+   "t": {
+    "de": "Plakat Two Years, Anniversary Night am 5. Dezember 2025"
+   },
+   "b": "plakate",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1440,
+   "h": 1920,
+   "art": "haus",
+   "q": "Facebook der Bar, Beitrag vom 2. Oktober 2025",
+   "u": "https://scontent-mnl3-3.xx.fbcdn.net/v/t51.82787-15/559842628_18538092493044484_7559739536250009002_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1920&ctp=s1440x1920&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2Sy69VXnHwAQ7kNvwH7R4gP&_nc_oc=AdpjC0iQflS05_UxbQI-zemE4mufbEP5iI9dcn9ipy4Ro6r8lrecFeGzpioMNgF5wFk&_nc_zt=23&_nc_ht=scontent-mnl3-3.xx&_nc_gid=RPnQBVyl49VEoFrxdfYpdw&_nc_ss=732a8&oh=00_AQMmRwBzXy8yDatHUP6n_yuMfP_FPXAlpTMNXXPsC3OOeQ&oe=6AE4CA5D",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ja-2025-1440.webp",
+   "fm": "../../assets/bild/ja-2025-1440.webp",
+   "fs": "../../assets/bild/ja-2025-480.webp"
+  },
+  {
+   "k": "ja-2027",
+   "t": {
+    "de": "Der Raum unter der Decke, Theke mit Licht und die Stufen"
+   },
+   "b": "jahre",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 1200,
+   "h": 1600,
+   "art": "fremd",
+   "q": "Google-Eintrag der Bar, Foto eines Gastes oder des Hauses; die Rechte liegen beim Fotografen",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/ja-2027-1200.webp",
+   "fm": "../../assets/bild/ja-2027-1200.webp",
+   "fs": "../../assets/bild/ja-2027-480.webp"
+  },
+  {
+   "k": "an-team",
+   "t": {
+    "de": "Das Team vor der Rückbar mit dem NEGRONI-Schriftzug"
+   },
+   "b": "leute",
+   "s": "jahr",
+   "f": "quer",
+   "w": 1488,
+   "h": 1116,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-team-1488.webp",
+   "fm": "../../assets/bild/an-team-1488.webp",
+   "fs": "../../assets/bild/an-team-480.webp"
+  },
+  {
+   "k": "an-negroni",
+   "t": {
+    "de": "Ein Negroni ganz nah"
+   },
+   "b": "drinks",
+   "s": "jahr",
+   "f": "hoch",
+   "w": 775,
+   "h": 1033,
+   "art": "haus",
+   "q": "Aus der Angebotsmappe der Bar «Wild Side Angebote» (Oktober 2026)",
+   "u": "",
+   "ue": false,
+   "alt": false,
+   "vn": false,
+   "fl": "../../assets/bild/an-negroni-775.webp",
+   "fm": "../../assets/bild/an-negroni-775.webp",
+   "fs": "../../assets/bild/an-negroni-480.webp"
+  }
+ ],
+ "dateien": [
+  {
+   "k": "logo",
+   "var": [
+    {
+     "k": "rot",
+     "grund": "dunkel",
+     "dateien": [
+      "wildside-hannover-wortmarke-rot.svg",
+      "wildside-hannover-wortmarke-rot.png"
+     ],
+     "px": [
+      1600,
+      1975
+     ]
+    },
+    {
+     "k": "creme",
+     "grund": "dunkel",
+     "dateien": [
+      "wildside-hannover-wortmarke-creme.svg",
+      "wildside-hannover-wortmarke-creme.png"
+     ],
+     "px": [
+      1600,
+      1975
+     ]
+    },
+    {
+     "k": "nacht",
+     "grund": "hell",
+     "dateien": [
+      "wildside-hannover-wortmarke-nacht.svg",
+      "wildside-hannover-wortmarke-nacht.png"
+     ],
+     "px": [
+      1600,
+      1975
+     ]
+    }
+   ]
+  },
+  {
+   "k": "website",
+   "var": [
+    {
+     "k": "vorlage",
+     "grund": "hell",
+     "dateien": [
+      "wildside-hannover-logo-vorlage-2020.png"
+     ],
+     "px": [
+      162,
+      200
+     ]
+    },
+    {
+     "k": "heute",
+     "grund": "hell",
+     "dateien": [
+      "wildside-hannover-instagram-profilbild.jpg"
+     ],
+     "px": [
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "k": "tapete",
+   "var": [
+    {
+     "k": "dunkel",
+     "grund": "dunkel",
+     "dateien": [
+      "wildside-hannover-tapete-dunkel.png",
+      "wildside-hannover-tapete-dunkel.svg",
+      "wildside-hannover-tapete-dunkel.webp"
+     ],
+     "farbe": "#130E0D",
+     "px": [
+      1200,
+      1200
+     ]
+    },
+    {
+     "k": "hell",
+     "grund": "hell",
+     "dateien": [
+      "wildside-hannover-tapete-hell.png",
+      "wildside-hannover-tapete-hell.svg",
+      "wildside-hannover-tapete-hell.webp"
+     ],
+     "farbe": "#F2E9DC",
+     "px": [
+      1200,
+      1200
+     ]
+    }
+   ]
+  },
+  {
+   "k": "farben",
+   "var": [
+    {
+     "k": "alle",
+     "grund": "hell",
+     "dateien": [
+      "wildside-hannover-farben.css",
+      "wildside-hannover-farben.json",
+      "wildside-hannover-farben.ase"
+     ]
+    }
+   ]
+  },
+  {
+   "k": "schriften",
+   "var": [
+    {
+     "k": "alle",
+     "grund": "hell",
+     "dateien": [
+      "wildside-hannover-schriften.zip"
+     ]
+    }
+   ]
+  }
+ ],
+ "farben": [
+  {
+   "k": "nacht",
+   "n": "Nacht",
+   "h": "#130E0D",
+   "rgb": [
+    19,
+    14,
+    13
+   ],
+   "r": "Grund der dunklen Flächen: die Bar nach 19 Uhr",
+   "g": "nacht",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "platte",
+   "n": "Platte",
+   "h": "#1C1513",
+   "rgb": [
+    28,
+    21,
+    19
+   ],
+   "r": "Platten und Karten auf Nacht, wie das Eckschild",
+   "g": "nacht",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "platte-hell",
+   "n": "Platte hell",
+   "h": "#261E1A",
+   "rgb": [
+    38,
+    30,
+    26
+   ],
+   "r": "gehobene Platte, Kachel auf Platte",
+   "g": "nacht",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "holz",
+   "n": "Holz",
+   "h": "#33281F",
+   "rgb": [
+    51,
+    40,
+    31
+   ],
+   "r": "tiefste Kante, Fugen zwischen Fotos",
+   "g": "nacht",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "text",
+   "n": "Schrift auf Nacht",
+   "h": "#EDE4D8",
+   "rgb": [
+    237,
+    228,
+    216
+   ],
+   "r": "Lesetext auf dunklem Grund, nie reines Weiss",
+   "g": "nacht",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "creme",
+   "n": "Creme",
+   "h": "#F2E9DC",
+   "rgb": [
+    242,
+    233,
+    220
+   ],
+   "r": "die weissen Plakate der Bar: Grund der hellen Kapitel",
+   "g": "creme",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "creme-2",
+   "n": "Creme 2",
+   "h": "#E7DCCB",
+   "rgb": [
+    231,
+    220,
+    203
+   ],
+   "r": "Fläche auf Creme, Kachel im hellen Kapitel",
+   "g": "creme",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "creme-3",
+   "n": "Creme 3",
+   "h": "#D9CBB6",
+   "rgb": [
+    217,
+    203,
+    182
+   ],
+   "r": "Linie und Rand auf Creme",
+   "g": "creme",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "dunkel",
+   "n": "Schrift auf Creme",
+   "h": "#1B1512",
+   "rgb": [
+    27,
+    21,
+    18
+   ],
+   "r": "Lesetext und Titel auf Creme, nie reines Schwarz",
+   "g": "creme",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "gold",
+   "n": "Gold",
+   "h": "#D8B264",
+   "rgb": [
+    216,
+    178,
+    100
+   ],
+   "r": "der Rahmen des Eckschilds: nur Haarlinie, Etikett, Knauf",
+   "g": "gold",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "gold-tief",
+   "n": "Gold tief",
+   "h": "#A07F3A",
+   "rgb": [
+    160,
+    127,
+    58
+   ],
+   "r": "Etikett auf Creme, wo Gold zu hell steht",
+   "g": "gold",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "rot",
+   "n": "Rot",
+   "h": "#F0323F",
+   "rgb": [
+    240,
+    50,
+    63
+   ],
+   "r": "die Farbe der Wortmarke: nur als Punkt, Hauptknopf und Logo",
+   "g": "gold",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "ultramarin",
+   "n": "Ultramarin",
+   "h": "#1A00AA",
+   "rgb": [
+    26,
+    0,
+    170
+   ],
+   "r": "die Schrift der SESSION-Plakate, nur bei den DJ-Abenden",
+   "g": "session",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "plakatrot",
+   "n": "Plakatrot",
+   "h": "#D21C0A",
+   "rgb": [
+    210,
+    28,
+    10
+   ],
+   "r": "die Wellen der SESSION-Plakate, nur bei den DJ-Abenden",
+   "g": "session",
+   "woher": "Wert der Website (wild.css)"
+  },
+  {
+   "k": "plakatcreme",
+   "n": "Plakatcreme",
+   "h": "#EBE2D8",
+   "rgb": [
+    235,
+    226,
+    216
+   ],
+   "r": "der Grund der SESSION-Plakate",
+   "g": "session",
+   "woher": "gemessen an den SESSION-Plakaten der Bar"
+  }
+ ],
+ "gruppen": [
+  {
+   "k": "nacht",
+   "n": "Nacht und Platte",
+   "s": "Die dunklen Flächen, so wie die Bar nach 19 Uhr unter der Decke steht. Platten liegen wie das Eckschild auf der Nacht, geschrieben wird in einem warmen Hell.",
+   "bild": "../../assets/bild/pf-schild-1440.webp",
+   "bild_t": "Die beiden Schilder an der Hausecke: schwarz mit Goldrahmen. Daraus kommen Nacht, Platte und das Gold."
+  },
+  {
+   "k": "creme",
+   "n": "Creme",
+   "s": "Das Creme der weissen Plakate der Bar. Es trägt die hellen Kapitel; darauf wird in einem warmen Dunkel gelesen.",
+   "bild": "listen/farbe-creme.webp",
+   "bild_t": "So steht Creme mit dunkler Schrift auf der Website."
+  },
+  {
+   "k": "gold",
+   "n": "Gold und Rot",
+   "s": "Gold ist der Rahmen des Eckschilds an der Hausecke: Haarlinie, Etikett, Knauf. Rot ist die Wortmarke, und nur als Punkt.",
+   "bild": "../../assets/bild/negroni-1536.webp",
+   "bild_t": "Der NEGRONI-Schriftzug aus Glühbirnen über der Vitrine: das Licht, aus dem Gold und Rot kommen."
+  },
+  {
+   "k": "session",
+   "n": "Die DJ-Abende",
+   "s": "Die Farben der SESSION-Plakate, gemessen an den Plakaten: rot-cremefarbene Wellen und Ultramarin für die Schrift. Sie gehören nur zu den DJ-Abenden.",
+   "bild": "../../assets/bild/p-1710-1408.webp",
+   "bild_t": "Das SESSION-Plakat vom 17. Oktober 2026: Wellen in Plakatrot und Creme, Schrift in Ultramarin."
+  }
+ ],
+ "glanz": [],
+ "groessen": {
+  "wildside-hannover-farben.ase": 682,
+  "wildside-hannover-farben.css": 1353,
+  "wildside-hannover-farben.json": 3143,
+  "wildside-hannover-instagram-profilbild.jpg": 50762,
+  "wildside-hannover-logo-vorlage-2020.png": 22957,
+  "wildside-hannover-marke.zip": 1144653,
+  "wildside-hannover-schriften.zip": 132020,
+  "wildside-hannover-tapete-dunkel.png": 164004,
+  "wildside-hannover-tapete-dunkel.svg": 36015,
+  "wildside-hannover-tapete-dunkel.webp": 126772,
+  "wildside-hannover-tapete-hell.png": 159448,
+  "wildside-hannover-tapete-hell.svg": 36015,
+  "wildside-hannover-tapete-hell.webp": 102410,
+  "wildside-hannover-wortmarke-creme.png": 135062,
+  "wildside-hannover-wortmarke-creme.svg": 17679,
+  "wildside-hannover-wortmarke-nacht.png": 134647,
+  "wildside-hannover-wortmarke-nacht.svg": 17679,
+  "wildside-hannover-wortmarke-rot.png": 136533,
+  "wildside-hannover-wortmarke-rot.svg": 17679
+ },
+ "bereiche": [
+  "raum",
+  "drinks",
+  "leute",
+  "musik",
+  "tafel",
+  "plakate",
+  "unterwegs",
+  "jahre",
+  "nachbarn"
+ ],
+ "schriften": [
+  {
+   "k": "t",
+   "n": "Prata",
+   "d": "prata-latin.woff2",
+   "r": "Titel",
+   "e": "400, eine Stärke; nie fett, nie kursiv",
+   "p": "Du sagst, was du magst.",
+   "w": 400,
+   "bild": "listen/schrift-t.webp"
+  },
+  {
+   "k": "s",
+   "n": "Hanken Grotesk",
+   "d": "hanken-latin.woff2",
+   "r": "Lesetext",
+   "e": "400, 17 px, Zeilenabstand 1,6",
+   "p": "An der Bar sagst du, was du magst, und Momo macht dir einen Drink daraus.",
+   "w": 400,
+   "bild": "listen/schrift-s.webp"
+  },
+  {
+   "k": "e",
+   "n": "Hanken Grotesk",
+   "d": "hanken-latin.woff2",
+   "r": "Etiketten und Knöpfe",
+   "e": "500, 11,5 px, Versalien, 0,17 em gesperrt",
+   "p": "DONNERSTAG BIS SAMSTAG AB 19 UHR",
+   "w": 500,
+   "bild": "listen/schrift-e.webp"
+  },
+  {
+   "k": "z",
+   "n": "Hanken Grotesk",
+   "d": "hanken-latin.woff2",
+   "r": "Zeiten, Daten, Preise",
+   "e": "Tage in Hanken, Uhrzeiten in Prata wie im Fuss der Website; Preise und Listen mit gleich breiten Ziffern",
+   "p": "Donnerstag 19 bis 1 Uhr",
+   "w": 400,
+   "bild": "listen/schrift-z.webp"
+  }
+ ],
+ "namen": {
+  "zentrale": "Der Tresen",
+  "website": "Das Schaufenster",
+  "karten": "Die Pairing-Karte",
+  "gaeste": "Das Gästebuch",
+  "marke": "Das Markenbuch",
+  "besuche": "Die Besucherliste",
+  "druck": "Die Plakatwerkstatt"
+ },
+ "zusammen": {
+  "wf-fe-tequila": "paloma",
+  "fw-derya": "derya",
+  "fw-sour": "glas-sour",
+  "fw-a4": "gast-musa",
+  "pl-tisch": "fw-h19",
+  "an-empore-tafel": "fw-a9",
+  "wf-raum": "momo-lacht",
+  "konzert": "konzert-scharf",
+  "ja-2024": "konzert-love",
+  "dirty-burger": "nb-dc-burger",
+  "ja-2023": "fb-2023-negroni"
+ },
+ "ton": {
+  "eigene_worte": [
+   "Nachbarschafts-Mixology-Bar",
+   "Du sagst, was du magst",
+   "Good Drinks, Good Music, Good Energy",
+   "Let’s go wild",
+   "Momos sexy Drinks",
+   "Wild Side Tradition"
+  ],
+  "nicht": [
+   "Sie",
+   "keine Karte",
+   "einmal im Jahr eine Karte",
+   "Cocktail-Lounge",
+   "exklusiv",
+   "Event-Location",
+   "Superlative"
+  ]
+ },
+ "stand": {
+  "fotos": 183,
+  "haus": 51,
+  "frei": 0,
+  "ki": 0,
+  "fremd": 132,
+  "partner": 0,
+  "ue": 1,
+  "vn": 1,
+  "original": 163,
+  "dateien": 19,
+  "datum": "31.10.2026"
+ }
+}

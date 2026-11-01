@@ -1,0 +1,917 @@
+{
+ "decke-raum": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-52.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "decke-flach": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-54.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "decke-bar": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-05.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "decke-hoch": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-42.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fenster": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-46-ohne-rand.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "schild": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-25.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "schild-ecke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-09.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "momo-giesst": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-31.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "momo-lacht": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-12.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "schaum": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-50.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "rueckbar": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-37.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "rueckbar-breit": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-40.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "negroni": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-11.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "voll": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-01.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "theke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-06.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-kerze": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-47.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-rot": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-41.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-sour": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-44.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-hand": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-48.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-trinkt": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-36.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-negroni": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-26.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-zwei": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-33.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "glas-coupe": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-04.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "anstossen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-23.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "freundinnen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-34.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "saengerin": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-32.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "saengerin-kunde": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/kunde-2026-10-30/pdf7-000.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "saengerin-sw": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-39.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tuer-rot": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-38.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "flaschen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-43.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "derya": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/presse/bilder/2024-01-11_np_derya-ivkin-continental-sour.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "terrasse": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2021-06-11_fb_3029501057278702.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "paloma": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2025-06-16_walkonthewildside_hannover_DK-GT7TITWD-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "karte-love": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-02-03_walkonthewildside_hannover_DUT3HDnCMo1-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "karte-dishes": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-02-03_walkonthewildside_hannover_DUT3HDnCMo1-3.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "valentin": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-02-03_walkonthewildside_hannover_DUT3HDnCMo1-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-0906": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2025-08-31_walkonthewildside_hannover_DOCMXG-iC59-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-2211": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2025-11-17_walkonthewildside_hannover_DRK_iVDiChc-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-2401": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-01-14_walkonthewildside_hannover_DTf-jwUCObe-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-2103": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-03-13_walkonthewildside_hannover_DV1fl7MCO3q-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-1605": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-05-11_walkonthewildside_hannover_DYNDzMgIR7M-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-0509": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-09-02_walkonthewildside_hannover_DcxmPV3oZbA-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-0310": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-09-29_walkonthewildside_hannover_Dd3Vx4lolo3-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "p-1710": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2026-10-13_walkonthewildside_hannover_DecaAh8oxYw-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "konzert-love": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2024-06-07_fb_876524861155922.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "decke-2017": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2017-10-24_fb_2044517982443686.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tafel-glaeser": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2025-01-15_walkonthewildside_hannover_DE1rV7YML5A-3.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-tafel": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/aus-culinarium/fenster/tafel-gedeckt-16x10.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ft-raum-abend": {
+  "druck": "Walk on the Wild Side Hannover/website/_varianten/fenster-tafel-15/quelle/raum-abend.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ft-theke-gaeste": {
+  "druck": "Walk on the Wild Side Hannover/website/_varianten/fenster-tafel-15/quelle/theke-gaeste.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ft-runde-stoesst-an": {
+  "druck": "Walk on the Wild Side Hannover/website/_varianten/fenster-tafel-15/quelle/runde-stoesst-an.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ft-momo-mixt-gast": {
+  "druck": "Walk on the Wild Side Hannover/website/_varianten/fenster-tafel-15/quelle/momo-mixt-gast.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-shaker": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-coupes": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-flaschen": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-abseihen": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-behaelter": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-giessen": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-schaumglas": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-sour": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-pink": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-zwei": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-erdbeer": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-nick": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-highball": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-tablett": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-coupe-tisch": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-siphon": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "wf-klar": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "dg-feige": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "tafel-teller": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2025-01-15_walkonthewildside_hannover_DE1rV7YML5A-4.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tafel-drink": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2025-01-15_walkonthewildside_hannover_DE1rV7YML5A-5.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "culinarium-teller": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-15.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "dirty-chicken": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/aus-culinarium/dirty-chicken/2026-06-03_dirtychicken.hannover_DZId0KMoAtq-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "nb-cu-bete": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "nb-dc-burger": {
+  "druck": null,
+  "ausschnitt": null,
+  "original": null
+ },
+ "silvester": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2024-12-18_walkonthewildside_hannover_DDuvG1Rs7kq-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "culinarium-tafel": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/aus-culinarium/vom-kunden/3901.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "feste-anstossen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/aus-culinarium/vom-kunden/4574.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "gast-musa": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2024-02-26_walkonthewildside_hannover_C30ngEIrNQM-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "gast-havn": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2024-03-08_walkonthewildside_hannover_C4QsQhqM2s1-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "gast-nils": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2024-04-10_walkonthewildside_hannover_C5ljExNs6kE-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "gast-cold": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2024-05-16_walkonthewildside_hannover_C7Bco_FsO1O-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "gast-enlil": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2024-10-14_walkonthewildside_hannover_DBHXxmYM0vY-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "alt-theke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/web-archiv/bilder/103_506957808_theke-hochformat_1200x1600.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "alt-raum": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/web-archiv/bilder/103_506957810_bar-raum-hochformat_1200x1600.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "alt-rueckbar": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/web-archiv/bilder/103_506957807_backbar-regale_1200x900.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "alt-decke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/web-archiv/bilder/103_506957809_raum-decke-lampen_1200x900.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fb-2020-bar": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2020-06-17_fb_2743375292557948.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fb-2023-negroni": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2023-11-12_fb_748224287319314.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "momo-flaschen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-08.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-theke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-28.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-highball": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-29.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-zwei": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-45.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-coupe": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-55.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-serviette": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-56.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-minze": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-10.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-old": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-19.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "pf-raum": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/portale/stadtwohnungenlinden_wild.jpeg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "pf-schild": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2025-06-16_fb_1150755357066203.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "pf-momo-rudi": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/valentin/momo-rudi-2026.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "konzert-scharf": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ki/konzert-4k.png",
+  "ausschnitt": null,
+  "original": "Walk on the Wild Side Hannover/_quelle/facebook/2024-03-04_fb_816535553821520.jpg"
+ },
+ "uw-tische": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-10.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-tanz": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-18.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-singen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-5.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-sonne": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-7.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-lachen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-6.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-bank": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-13.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-kiez": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-10.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-stuehle": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-5.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-buehne": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-4.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-glas": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-9.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-fahnen": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-6.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-buden": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-8.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-pl-limmer": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-04-28_event.klub_DXqr_efDUuB-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-pl-okt": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2026-10-22_event.klub_Dey3ATejQj2-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-pl-limmer25": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-05-22_trustory.linden_DJ8lGS2s3WI-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "uw-fahnen25": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-05-22_trustory.linden_DJ8lGS2s3WI-10.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-probe": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-17.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fe-negroni": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-35.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-highballs": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-24.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a57": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2024-05-17_fb_862746769200398.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a45": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h19": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-18.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h33": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-51.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h30": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-4.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a55": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2023-12-07_walkonthewildside_hannover_C0j1thbsh_y-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h11": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-8.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h41": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2024-12-20_xwithjess_DDz7J1ps4m--1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h1": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-6.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a31": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-22.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h16": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-49.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h37": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2024-12-20_xwithjess_DDz7J1ps4m--2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h18": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-20.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a14": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-11-28_lizzas.diaryy_C0MQYiKtBvW-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h42": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-03-24_luisaverfuerth_C46WyDtsKbl-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a12": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig/2023-11-09_walkonthewildside_hannover_CzbxDQMMKQ3-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h7": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-14.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a9": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-8.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h46": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-03-24_luisaverfuerth_C46WyDtsKbl-5.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a3": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2024-08-06_xwithjess_C-VADi2sNFU-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a47": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-4.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h21": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-7.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a36": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-5.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h31": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-8.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a58": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-15.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a49": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-11.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a46": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/ig-dritte/2025-06-01_twopointsview_DKW3aKaNbjt-3.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a17": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-20_luisaverfuerth_C9pIhtHs57s-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-h3": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-20_luisaverfuerth_C9pIhtHs57s-4.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a8": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-04-30_luisaverfuerth_C6YS0yFs-kk-9.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a28": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-11-28_lizzas.diaryy_C0MQYiKtBvW-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a7": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-04-30_luisaverfuerth_C6YS0yFs-kk-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a15": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a52": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-7.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a53": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-3.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "fw-a1": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-04-30_luisaverfuerth_C6YS0yFs-kk-10.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-oben": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-6.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-dessert": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-l3": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-20_luisaverfuerth_C9pIhtHs57s-3.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-l5": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-20_luisaverfuerth_C9pIhtHs57s-5.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-l8": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-20_luisaverfuerth_C9pIhtHs57s-8.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-h1": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "tf-h2": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2023-10-15_hannoverfoodie_Cyah0yBsSyQ-2.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-empore": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-039.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "pl-theke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/kunde-2026-10-30/wa-bar.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "pl-empore": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/neu-2026-10/2024-07-24_voronov_irina_C9z2rj1MRb2-3-ohne-rand.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "pl-ecke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/portale/enprimeurclub_hero1.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-party": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-045.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-party-sw": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-020.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-dj": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-048.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-dinner": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-042.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-loge": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-051.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ev-theke": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-001.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-campari": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-008.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-sours": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-011.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-glaeser": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-057.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-sour": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-038.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ja-2018": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/presse/bilder/2018-09-11_vimeo_niemand-gin-walk-on-the-wildside.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ja-2025": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/facebook/2025-10-02_fb_1238918918249846.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "ja-2027": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/google-maps/google-53.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-team": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-060.jpg",
+  "ausschnitt": null,
+  "original": null
+ },
+ "an-negroni": {
+  "druck": "Walk on the Wild Side Hannover/_quelle/angebote-pdf/img-023.jpg",
+  "ausschnitt": null,
+  "original": null
+ }
+}
