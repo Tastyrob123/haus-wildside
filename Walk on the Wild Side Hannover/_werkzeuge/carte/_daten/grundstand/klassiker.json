@@ -19,7 +19,21 @@
   {
    "fn": "seite",
    "a": [
-    " data-max=\"1.6\" class=\"blatt ws\" data-b=\"210\" data-h=\"297\" style=\"width:210mm;height:297mm\"",
+    " data-max=\"1.6\" class=\"blatt ws ws-nacht\" data-b=\"210\" data-h=\"297\" style=\"width:210mm;height:297mm\"",
+    {
+     "fn": "el",
+     "a": [
+      "figure",
+      " class=\"sb-held\"",
+      {
+       "fn": "el",
+       "a": [
+        "img",
+        " src=\"bild/negroni.webp\" alt=\"\""
+       ]
+      }
+     ]
+    },
     {
      "fn": "el",
      "a": [

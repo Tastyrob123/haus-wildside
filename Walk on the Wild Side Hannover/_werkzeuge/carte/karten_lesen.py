@@ -98,9 +98,10 @@ def lesen():
                                   kleid='love', bilder={'deko': 'coupe.png'})
     aus['klassiker'] = karte('klassiker', 'Die Klassiker', 'An jedem Abend', 'Weitere Karten', 'negroni', 'Die Klassiker', 'Auch ohne Frage',
                              'Ein paar Drinks gehören fest zum Haus.', [('Die Klassiker', [(n, erster_satz(s), '') for n, s in q['klassiker']])],
-                             'website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine')
+                             'website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine',
+                             kleid='nacht', bilder={'held': 'negroni.webp'})
     pausch = [(k + ' · ' + t, z, p + ',00') for k, t, z, p in q['pauschale']]
-    aus['preisliste'] = karte('preisliste', 'Die Preise der Bar', 'Für Feiern und Gesellschaften', 'Weitere Karten', 'flaschen', 'Die Preise der Bar',
+    aus['preisliste'] = karte('preisliste', 'Die Preise der Bar', 'Für Feiern und Gesellschaften', 'Weitere Karten', 'an-campari', 'Die Preise der Bar',
                               'Für Feiern im Wild Side', 'Für die lange Tafel und die ganze Bar',
                               [('Pauschale pro Person', pausch),
                                ('Was ein Drink kostet', [(t, '', p) for t, p in q['preise']]),

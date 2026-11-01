@@ -92,9 +92,10 @@ def unten(d):
 
 
 def blatt(inhalt, mx='1.6', d=None):
-    """Ein Blatt A4 hoch. kleid 'love': rosa Grund, die Zeichnung der Bar (deko) unten rechts; 'feier': Nacht mit Foto der Bar oben (held)."""
+    """Ein Blatt A4 hoch. kleid 'love': rosa Grund, die Zeichnung der Bar (deko) unten rechts; 'nacht': Nacht mit Foto der Bar oben (held);
+    'feier': wie 'nacht', dazu Pauschalen als Spalten, Preise zweispaltig, Budget als Felder."""
     d = d or {}
-    kl = ' ws-' + d['kleid'] if d.get('kleid') else ''
+    kl = {'love': ' ws-love', 'feier': ' ws-nacht ws-feier', 'nacht': ' ws-nacht'}.get(d.get('kleid', ''), '')
     held = f'<figure class="sb-held"><img src="bild/{d["held"]}" alt=""></figure>' if d.get('held') else ''
     deko = f'<img class="sb-deko" src="bild/{d["deko"]}" alt="">' if d.get('deko') else ''
     return (f'<section data-max="{mx}" class="blatt ws{kl}" data-b="210" data-h="297" style="width:210mm;height:297mm">'

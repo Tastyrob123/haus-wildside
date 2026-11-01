@@ -107,48 +107,56 @@ html,body{margin:0;padding:0;background:#1C1513;-webkit-print-color-adjust:exact
    Robert: «das kann man auch nochmal schöner machen». Original der Bar: schwarz mit Neon-Foto «No Negroni without Campari». Hier Nacht mit dem
    Neon über die ganze Breite, darunter die drei Pauschalen als Spalten mit Foto und grossem Preis, die Preise der Bar in zwei Spalten mit Punktlinie,
    Service und Budget als zwei Felder mit Gold-Haarlinie. Fotos aus website/assets/bild (bilder_satz.py). */
-.ws-feier{background:#130E0D;color:#F2E9DC}
-.ws-feier::before{inset:7mm;border-color:rgba(216,178,100,.45);z-index:2}
-.ws-feier .sb-held{position:absolute;left:0;right:0;top:0;height:108mm;margin:0;z-index:0;overflow:hidden}
-.ws-feier .sb-held img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
-.ws-feier .sb-held::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,14,13,.05) 0%,rgba(19,14,13,.15) 45%,rgba(19,14,13,.92) 88%,#130E0D 100%)}
-.ws-feier .inhalt{padding:74mm 20mm 4mm}
-.ws-feier .sb-quer{justify-content:flex-start;align-items:stretch;gap:calc(7mm*var(--s))}
-.ws-feier .sb-oben{align-items:flex-start;text-align:left}
-.ws-feier .sb-zeichen{position:absolute;right:14mm;top:13mm;color:#F0323F}
-.ws-feier .ws-wm{width:16mm}
-.ws-feier .sb-band{margin:0;font-size:calc(34pt*var(--s));color:#F2E9DC}
-.ws-feier .sb-datum{color:#D8B264;margin-top:calc(2.4mm*var(--s))}
-.ws-feier .sb-mit{color:rgba(242,233,220,.72)}
-.ws-feier .sb-menue{max-width:none;width:100%;padding:0}
-.ws-feier .sb-h{color:#D8B264}
-.ws-feier .sb-h::after{background:rgba(216,178,100,.5)}
-.ws-feier .sb-n{color:#F2E9DC}
-.ws-feier .sb-mp{color:#E4C88A;font-family:'Prata Satz',Georgia,serif}
-.ws-feier .sb-mp::after{content:' €'}
-.ws-feier .sb-dr{color:rgba(242,233,220,.62)}
+.ws-nacht{background:#130E0D;color:#F2E9DC}
+.ws-nacht::before{inset:7mm;border-color:rgba(216,178,100,.45);z-index:2}
+.ws-nacht .sb-held{position:absolute;left:0;right:0;top:0;height:108mm;margin:0;z-index:0;overflow:hidden}
+.ws-nacht .sb-held img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
+.ws-nacht .sb-held::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,14,13,.05) 0%,rgba(19,14,13,.15) 45%,rgba(19,14,13,.92) 88%,#130E0D 100%)}
+.ws-nacht .inhalt{padding:74mm 20mm 4mm}
+.ws-nacht .sb-quer{justify-content:flex-start;align-items:stretch;gap:calc(7mm*var(--s))}
+.ws-nacht .sb-oben{align-items:flex-start;text-align:left}
+.ws-nacht .sb-zeichen{position:absolute;right:14mm;top:13mm;color:#F0323F}
+.ws-nacht .ws-wm{width:16mm}
+.ws-nacht .sb-band{margin:0;font-size:calc(34pt*var(--s));color:#F2E9DC}
+.ws-nacht .sb-datum{color:#D8B264;margin-top:calc(2.4mm*var(--s))}
+.ws-nacht .sb-mit{color:rgba(242,233,220,.72)}
+.ws-nacht .sb-menue{max-width:none;width:100%;padding:0}
+.ws-nacht .sb-h{color:#D8B264}
+.ws-nacht .sb-h::after{background:rgba(216,178,100,.5)}
+.ws-nacht .sb-n{color:#F2E9DC}
+.ws-nacht .sb-mp{color:#E4C88A;font-family:'Prata Satz',Georgia,serif}
+.ws-nacht .sb-mp::after{content:' €'}
+.ws-nacht .sb-dr{color:rgba(242,233,220,.62)}
 /* Pauschale: drei Spalten, je Foto, Name, was dabei ist, grosser Preis */
-.ws-feier .sb-r0{display:grid;grid-template-columns:repeat(3,1fr);column-gap:5mm}
-.ws-feier .sb-r0 .sb-h{grid-column:1/-1}
-.ws-feier .sb-r0 .sb-m{display:flex;flex-direction:column;padding:0 0 calc(3mm*var(--s));border-radius:3mm;background:#1C1513;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.4);overflow:hidden}
-.ws-feier .sb-mb{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
-.ws-feier .sb-r0 .sb-n{order:2;padding:calc(3mm*var(--s)) 4mm 0;font-size:calc(11pt*var(--s));line-height:1.25}
-.ws-feier .sb-r0 .sb-dr{order:3;padding:0 4mm;font-size:calc(6.4pt*var(--s));letter-spacing:.05em}
-.ws-feier .sb-r0 .sb-mp{order:4;margin-top:auto;padding:calc(3mm*var(--s)) 4mm 0;text-align:left;font-size:calc(24pt*var(--s));line-height:1}
+.ws-nacht .sb-r--bild{display:grid;grid-template-columns:repeat(3,1fr);column-gap:5mm}
+.ws-nacht .sb-r--bild .sb-h{grid-column:1/-1}
+.ws-nacht .sb-r--bild .sb-m{display:flex;flex-direction:column;padding:0 0 calc(3mm*var(--s));border-radius:3mm;background:#1C1513;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.4);overflow:hidden}
+.ws-nacht .sb-mb{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.ws-nacht .sb-r--bild .sb-n{order:2;padding:calc(3mm*var(--s)) 4mm 0;font-size:calc(11pt*var(--s));line-height:1.25}
+.ws-nacht .sb-r--bild .sb-dr{order:3;padding:0 4mm;font-size:calc(6.4pt*var(--s));letter-spacing:.05em}
+.ws-nacht .sb-r--bild .sb-mp{order:4;margin-top:auto;padding:calc(3mm*var(--s)) 4mm 0;text-align:left;font-size:calc(24pt*var(--s));line-height:1}
 /* Was ein Drink kostet: zwei Spalten mit Punktlinie */
-.ws-feier .sb-r1{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm}
-.ws-feier .sb-r1 .sb-h{grid-column:1/-1}
-.ws-feier .sb-r1 .sb-m{grid-template-columns:auto 1fr auto;padding:calc(1.6mm*var(--s)) 0}
-.ws-feier .sb-r1 .sb-m::before{content:'';grid-column:2;grid-row:1;align-self:end;margin:0 2mm 1.3mm;border-bottom:.3mm dotted rgba(216,178,100,.55)}
-.ws-feier .sb-r1 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-size:calc(10pt*var(--s))}
-.ws-feier .sb-r1 .sb-mp{grid-column:3;font-size:calc(13pt*var(--s))}
+.ws-nacht.ws-feier .sb-r1{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm}
+.ws-nacht.ws-feier .sb-r1 .sb-h{grid-column:1/-1}
+.ws-nacht.ws-feier .sb-r1 .sb-m{grid-template-columns:auto 1fr auto;padding:calc(1.6mm*var(--s)) 0}
+.ws-nacht.ws-feier .sb-r1 .sb-m::before{content:'';grid-column:2;grid-row:1;align-self:end;margin:0 2mm 1.3mm;border-bottom:.3mm dotted rgba(216,178,100,.55)}
+.ws-nacht.ws-feier .sb-r1 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-size:calc(10pt*var(--s))}
+.ws-nacht.ws-feier .sb-r1 .sb-mp{grid-column:3;font-size:calc(13pt*var(--s))}
 /* Budget: zwei Felder mit Gold-Haarlinie, der Betrag gross */
-.ws-feier .sb-r2{display:grid;grid-template-columns:1fr 1fr;column-gap:5mm}
-.ws-feier .sb-r2 .sb-h{grid-column:1/-1}
-.ws-feier .sb-r2 .sb-m{display:flex;flex-direction:column;padding:calc(3.2mm*var(--s)) 5mm;border-radius:3mm;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.55)}
-.ws-feier .sb-r2 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.4pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:#D8B264}
-.ws-feier .sb-r2 .sb-mp{order:3;text-align:left;font-size:calc(22pt*var(--s));margin-top:calc(1.6mm*var(--s))}
-.ws-feier .sb-r2 .sb-dr{order:4;text-transform:none;letter-spacing:0;font-size:calc(7.6pt*var(--s))}
-.ws-feier .sb-unten{max-width:none;align-items:flex-start;text-align:left}
-.ws-feier .sb-hinweis{color:rgba(242,233,220,.62);font-size:calc(7.8pt*var(--s))}
-.ws-feier .ufuss2{color:rgba(242,233,220,.5);border-top-color:rgba(216,178,100,.3);margin:0 20mm}
+.ws-nacht.ws-feier .sb-r2{display:grid;grid-template-columns:1fr 1fr;column-gap:5mm}
+.ws-nacht.ws-feier .sb-r2 .sb-h{grid-column:1/-1}
+.ws-nacht.ws-feier .sb-r2 .sb-m{display:flex;flex-direction:column;padding:calc(3.2mm*var(--s)) 5mm;border-radius:3mm;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.55)}
+.ws-nacht.ws-feier .sb-r2 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.4pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:#D8B264}
+.ws-nacht.ws-feier .sb-r2 .sb-mp{order:3;text-align:left;font-size:calc(22pt*var(--s));margin-top:calc(1.6mm*var(--s))}
+.ws-nacht.ws-feier .sb-r2 .sb-dr{order:4;text-transform:none;letter-spacing:0;font-size:calc(7.6pt*var(--s))}
+.ws-nacht .sb-unten{max-width:none;align-items:flex-start;text-align:left}
+.ws-nacht .sb-held img[src$="momo-giesst.webp"]{object-position:50% 12%}
+/* «Die Karte» auf Nacht: Preis je Drink als Marke mit Gold-Haarlinien, hell */
+.ws-nacht .sb-lunchpreis{border-color:rgba(216,178,100,.6)}
+.ws-nacht .sb-p em{color:#D8B264}
+.ws-nacht .sb-p b{color:#F2E9DC}
+.ws-nacht .sb-p small{color:rgba(242,233,220,.62)}
+.ws-nacht .sb-menue .sb-m{border-bottom:.2mm solid rgba(216,178,100,.18)}
+.ws-nacht .sb-r--bild .sb-m{border-bottom:0}
+.ws-nacht .sb-hinweis{color:rgba(242,233,220,.62);font-size:calc(7.8pt*var(--s))}
+.ws-nacht .ufuss2{color:rgba(242,233,220,.5);border-top-color:rgba(216,178,100,.3);margin:0 20mm}

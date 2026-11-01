@@ -51,6 +51,6 @@ if __name__ == '__main__':
     os.makedirs(AUS, exist_ok=True)
     freistellen('leopard-2x.jpg', 'leopard.png', 700)
     freistellen('coupe-2x.jpg', 'coupe.png', 420)
-    for k in ('an-campari', 'an-sours', 'an-glaeser', 'an-negroni'):
+    for k in ('an-campari', 'an-sours', 'an-glaeser', 'an-negroni', 'negroni', 'momo-giesst'):
         foto(k, k + '.webp')
     print('\n'.join(sorted(os.listdir(AUS))))

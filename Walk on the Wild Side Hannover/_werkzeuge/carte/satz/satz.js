@@ -330,7 +330,9 @@
   function tagLeer(tg) { return !tg.zu && GAENGE.every(function (g) { return leer(tg[g[0]]) && leer(tg[g[0] + '_z']); }); }
   function leererTag() { var tg = { zu: false, hinweis: '' }; GAENGE.forEach(function (g) { tg[g[0]] = ''; tg[g[0] + '_z'] = ''; }); return tg; }
   var MT_CSS = '';   // das Blatt trägt die Klassen des Satzes (satz/satz.css), keine eigenen Stile
-  var SEITE_AT = ' data-max="1.6" class="blatt ws" data-b="210" data-h="297" style="width:210mm;height:297mm"';
+  var SEITE_AT = ' data-max="1.6" class="blatt ws ws-nacht" data-b="210" data-h="297" style="width:210mm;height:297mm"';
+  /* Robert 01.11.2026 (mehr Charakter der Bar statt Creme): «Die Karte» auf Nacht, oben Momo, der giesst (satz/bild, bilder_satz.py), wie die Klassiker */
+  function held() { return { fn: 'el', a: ['figure', ' class="sb-held"', { fn: 'el', a: ['img', ' src="bild/momo-giesst.webp" alt=""'] }] }; }
   function zeile(t) { return String(t).trim().replace(/\s*\|\s*/g, ' · '); }   // Zutaten mit « · » wie die Website (satz_bau.py zeile)
   function el(tag, kl, kinder, mehr) { var n = { fn: 'el', a: [tag, kl ? ' class="' + kl + '"' : ''].concat(kinder || []) }; if (mehr) Object.keys(mehr).forEach(function (k) { n[k] = mehr[k]; }); return n; }
   function preisMarke(t) {   // «12,00 EUR» als Marke: Angabe «Je Drink», Zahl gross, Währung klein; der Wortlaut bleibt
@@ -375,9 +377,9 @@
         zaehl[k] = (zaehl[k] || 0) + 1; x.lk = 't0.' + k + (zaehl[k] > 1 ? zaehl[k] : '');
         if (WL[x.lk]) x.lage = JSON.parse(JSON.stringify(WL[x.lk]));
       });
-      aus.push({ fn: 'seite', a: [SEITE_AT, el('div', 'inhalt', [el('div', 'sb-quer', [obenEl, menue, untenEl])]), fuss] });
+      aus.push({ fn: 'seite', a: [SEITE_AT, held(), el('div', 'inhalt', [el('div', 'sb-quer', [obenEl, menue, untenEl])]), fuss] });
     });
-    if (!aus.length) aus.push({ fn: 'seite', a: [SEITE_AT, el('div', 'inhalt', [el('div', 'sb-quer', [el('div', 'sb-oben', [el('h2', 'sb-band', [w.titel || 'Die Karte'])]), el('div', 'sb-menue', [P(FOLGT, 'sb-dr')])])])] });
+    if (!aus.length) aus.push({ fn: 'seite', a: [SEITE_AT, held(), el('div', 'inhalt', [el('div', 'sb-quer', [el('div', 'sb-oben', [el('h2', 'sb-band', [w.titel || 'Die Karte'])]), el('div', 'sb-menue', [P(FOLGT, 'sb-dr')])])])] });
     return aus;
   }
   function abendAnwenden(d) { d.seiten = abendSeiten(d.abend); d.teile = []; return d; }
