@@ -26,6 +26,16 @@ def main():
         masse['b-' + n] = webp(os.path.join(PR, n + '.png'), 'b-' + n, 377)
     for x in json.load(open(os.path.join(W, 'papier_plan.json')))['etiketten'][:6]:
         masse['k-' + x['id']] = webp(os.path.join(PR, x['id'] + '.png'), 'k-' + x['id'], 340)
+    # Kapitel Karten: die zwei Blätter im Fächer (Kit bau.py › H.FAECHER, img/pdf-<i>.webp) aus den neuen PDFs der Pairing-Karte
+    import subprocess, tempfile
+    for i, ziel in enumerate(('drunk-in-love', 'preisliste')):
+        q = os.path.join(ROOT, 'unterlagen', 'pdf', ziel + '.pdf')
+        alt = os.path.join(IMG, f'pdf-{i}.webp')
+        if os.path.exists(q) and os.path.exists(alt):
+            breite = Image.open(alt).width
+            with tempfile.TemporaryDirectory() as tmp:
+                subprocess.run(['pdftoppm', '-f', '1', '-l', '1', '-r', '110', '-png', '-singlefile', q, os.path.join(tmp, 'p')], check=True)
+                masse[f'pdf-{i}'] = webp(os.path.join(tmp, 'p.png'), f'pdf-{i}', breite, 86)
     p = os.path.join(ROOT, 'werkbank', 'index.html')
     t = open(p, encoding='utf-8').read()
     for alt, neu in TAUSCH.items():
