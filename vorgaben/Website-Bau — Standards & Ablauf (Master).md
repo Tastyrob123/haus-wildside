@@ -4753,3 +4753,17 @@ Robert am 16.10.2026: «Das brauchen wir auch noch.» Dreizehn Dinge, die ein Di
 | 13 | Hospitality-spezifische UX-Muster | Abschnitt 3a (Gäste-Funktionen: Buchen-Fenster, Tagespreis, Tisch, Gutschein, Pass-Berater, Gästekarte, Aufenthaltsplaner, Rezeption im Chat), Startseite als Aufenthalt aus Gastsicht | Als eigener Katalog mit Namen im UI-Fundus («Bereiche» hat die Seiten, nicht die Muster) |
 
 **Wirtschaftliches Modell dazu:** Gedanke vom 16.10.2026 (Transformation plus Portfolio-Retainer) steht in [[Angebot]], nicht entschieden. Hier nur der Hinweis, dass die Ausbaustufen des Cockpits (14.4, 14.8 Punkt 9) die Leistung je Stufe definieren.
+
+
+## Werkbank · Learnings Robert 1.11.2026 (Walk on the Wild Side, Culinarium)
+
+- Zurück im Browser landet auf der alten Höhe, nie ganz oben: `_werkbank/ruecksprung.js` (sessionStorage je Seite, back_forward ohne Auftakt, bfcache erhalten), eingesetzt von `ruecksprung.py` am Ende des Baus.
+- «Worum es geht» nur bei Hotels mit Buchungen über die Website; bei Restaurants und Bars streichen.
+- Portfolio-Projekte: kein Angebot, sondern «Die Übergabe» – alles gehört euch, es läuft so, bei Problemen melden, keine Bindung; «Laufende Betreuung – optional, aber empfohlen» (Sicherheitsupdates, Datenschutz, Server/Domain/Sicherungen, kleine Fehler).
+- Nie «Vertragspartner» schreiben (zu gebunden).
+- «Meine drei Orte» als Ticket (Kopfzeile, Perforation mit ausgeschnittenen Kerben, Abriss), nie als Kasten.
+- Keine Nachbauten der Plakate, die das Haus selbst gestaltet; nur eigene Formate zeigen. Ideen-Karten im Charakter der Originale des Hauses (z. B. Valentinskarte mit Leopard, Pink, Display + Handschrift).
+- Befund-Bilder zeigen, wovon der Befund spricht (Noten → Bewertungen).
+- Kapitel- und Kachelbilder immer mit drei Stücken; Auswahl nie an Dateinamen eines anderen Hauses hängen.
+- Jedes Haus eigene Ports (sonst öffnet «Bedienen» auf dem Mac das Werkzeug eines anderen Hauses).
+- Drucksachen: Lesetext mind. 8 pt, Fläche füllen, nichts gequetscht.
