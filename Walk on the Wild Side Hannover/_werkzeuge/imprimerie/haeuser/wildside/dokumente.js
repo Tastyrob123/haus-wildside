@@ -717,8 +717,8 @@
       const t1 = T('liebe', vorn.toUpperCase(), cw - zw - 2, .16 * u, LIEBE.rot, { slot: 'titel', zeile: .95 });
       const g1 = Math.min(t1.gr, t1.gr * (cw - zw - 3) / (DS.mess(Object.assign({}, t1, { w: 1e5 })).bw + .1)); t1.gr = +g1.toFixed(2); t1.h = DS.mess(t1).h;
       const t2 = T('pinsel', letzt.toUpperCase(), cw, t1.gr * 1.25, LIEBE.rot, { zeile: .9 });
-      let y = rand * 1.7; t1.x = rand; t1.y = +y.toFixed(2); c.el.push(t1); y += t1.h * .92;
-      t2.x = +(rand + cw * .32).toFixed(2); t2.w = +(cw * .68).toFixed(2); t2.y = +y.toFixed(2); c.el.push(t2); y += t2.h + .02 * u;
+      let y = rand * 1.7; t1.x = rand; t1.y = +y.toFixed(2); c.el.push(t1); y += t1.h;   // ohne Überlappung (Tor 1.11.: «DRUNK IN» überdeckte «LOVE»)
+      t2.x = +(rand + cw * .32).toFixed(2); t2.w = +(cw * .68).toFixed(2); t2.y = +y.toFixed(2); c.el.push(t2); y += t2.h + .03 * u;
       const anlass = [i.ueber, i.datum].filter(Boolean).join(' · ');
       if (anlass) { const a = gliederSatz(T('liebetext', anlass.toUpperCase(), cw, 8.5 * PT, LIEBE.rot, { slot: 'ueber', sperr: .08 }), DRUCK_MIN); a.h = DS.mess(a).h; a.x = rand; a.y = +y.toFixed(2); c.el.push(a); y += a.h; }
       // Drinks: Name links, Preis rechts auf derselben Linie, Zutaten darunter; die Liste füllt den Platz bis über den Leopard
