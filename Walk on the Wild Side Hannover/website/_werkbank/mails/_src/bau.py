@@ -4,7 +4,7 @@ Bauart aus mails/_src/bau.py des Culinarium (elf Mails, Band mit «Ganze Mail»)
 
 Die Fälle kommen aus der neuen Website der Bar: Reservieren (besuch.html, «Die Bar bestätigt»), Feiern mit Anfrage, Angebot und Anzahlung
 (tafel.html, Preise von dort gelesen, nie abgetippt), die DJ-Abende SESSION (LINEUP in website/bau.py), die Feste (programm.html),
-die wechselnde Karte von Momo (drinks.html). Im Du wie die Bar. Absender «Walk on the Wild Side», Gruss von Derya und Momo; die Bar hat
+die wechselnde Karte von Momo (drinks.html). Im Du wie die Bar. Absender «Walk on the Wild Side», Gruss der Bar ohne Namen («Dein Wild Side»); die Bar hat
 keine belegte Mailadresse: Kontakt über Telefon und Instagram (HAUS in website/bau.py). Fotos aus dem Bildregister der Website, unter 100 KB,
 mit Beschreibung; Tabellen und feste Stile, Titel in Prata (Georgia, wo ein Mailprogramm keine Schrift lädt), Lauf in Hanken Grotesk.
 Namen, Daten und Nummern der Gäste sind Beispielwerte und so beschriftet; Preise, Zeiten, Adresse, DJ-Abend und Feste sind die der Bar.
@@ -44,7 +44,7 @@ assert 'am 5. Dezember 2025 zwei' in _FESTE and 'Silvester ab mittags' in _FESTE
 TEL, TEL2, IG = HAUS['telefon'], HAUS['telefon2'], HAUS['ig_name']
 ADRESSE = f"Walk on the Wild Side · {HAUS['adresse']} · {HAUS['ort']}"
 ZEITEN = ' · '.join(f'{t} {z}' for t, z, _ in HAUS['zeiten'][:3]).replace('Freitag 19 bis 2 Uhr · Samstag 19 bis 2 Uhr', 'Freitag und Samstag 19 bis 2 Uhr')
-GRUSS = 'Derya und Momo'
+GRUSS = 'Dein Wild Side'   # Gruss der Bar, ohne Namen (Robert 1.11.2026)
 STAND = '31.10.2026'
 
 def e(t):
@@ -86,7 +86,7 @@ FAELLE = [
          karte=('Eure Anfrage', [('Format', 'Die lange Tafel'), ('Datum', 'Samstag, 16. Januar 2027'), ('Wie viele', '16 Gäste'), ('Anlass', 'Geburtstag'), ('Musik dazu', 'DJ')]),
          knopf=('Feiern im Wild Side', 'tafel.html'), dazu='Die lange Tafel gehört eurer Runde vier Stunden lang, unten läuft die Bar weiter.'),
     dict(nr='03', wann='Wenn das Angebot für eine Feier steht', ordner='03-angebot-feier', name='Das Angebot für euren Abend', satz=f'Das Angebot für eine geschlossene Gesellschaft: Pauschale pro Gast mit den Preisen der Bar, Anzahlung, was nach 2 Uhr gilt.',
-         betreff='Das Angebot für euren Abend im Wild Side', titel=('Euer Abend,', 'unser Angebot.'), foto='feste-anstossen', bsp=True,
+         betreff='Das Angebot für euren Abend im Wild Side', titel=('Euer Abend,', 'unser Angebot.'), foto='an-party', bsp=True,
          text=['Hallo Tim', f'Danke für das Gespräch. Für eure Weihnachtsfeier mit {GAESTE} Gästen gehört euch die ganze Bar, von 19 bis 2 Uhr: unter der Decke, an der Theke, auf der Empore.',
                f'Wir schlagen die Pauschale Kategorie {KAT} vor: Longdrinks, Bier, Wein, Spritzgetränke, Shots und alkoholfreie Getränke für {PAUSCHALE[KAT]} € pro Person. Mit Bier, Wein und Spritz sind es {PAUSCHALE[1]} €, mit fünf Signature Cocktails dazu {PAUSCHALE[3]} € pro Person.',
                f'Lieber mit Budget? Dann sind es {SERVICE} € für Service und Raum und ein Rahmen für die Drinks ab {BUDGET} €, den ihr selbst setzt.'],
@@ -112,7 +112,7 @@ FAELLE = [
          karte=('Der Abend', [('Wann', D0_LANG), ('Musik', MUSIK0), ('Am Deck', N0), ('Eintritt', 'frei')]),
          knopf=('Platz reservieren', 'besuch.html#reservieren'), dazu='Den nächsten Abend kündigt die Bar auf Instagram an, mit eigenem Plakat.'),
     dict(nr='07', wann='Nach einem Fest der Bar', ordner='07-rueckblick', name='So war der Geburtstag', satz='Kommt ein paar Tage nach einem Fest: ein Rückblick auf den Geburtstag der Bar und der Weg zu den Fotos auf Instagram.',
-         betreff='So war der zweite Geburtstag der Bar', titel=('So war', 'der Geburtstag.'), foto='feste-anstossen', bsp=False,
+         betreff='So war der zweite Geburtstag der Bar', titel=('So war', 'der Geburtstag.'), foto='voll', bsp=False,
          text=['Hallo Jonas', 'Am 5. Dezember 2025 ist die neue Wild Side zwei geworden. Danke, dass ihr mitgefeiert habt.',
                'Mit DJs, mit Mexikanern, dem scharfen Shot des Hauses, und einem Drink zur Begrüssung für die ersten Gäste. Ein paar Fotos stehen jetzt auf Instagram, vielleicht findest du dich wieder.'],
          karte=('Der Abend', [('Datum', '5. Dezember 2025'), ('Geburtstag', 'der zweite'), ('Musik', 'DJs'), ('Im Glas', 'Mexikaner, die ganze Nacht')]),
@@ -136,7 +136,7 @@ FAELLE = [
          karte=('Die neue Karte', [('Signature Drinks', f'{SIGNATURE} €'), ('Ohne Alkohol', f'{OHNE} €'), ('Techniken', 'Milk Washing, Fat Washing, Enzyme'), ('Ab', 'Donnerstag, 19 Uhr')]),
          knopf=('Die Drinks ansehen', 'drinks.html'), dazu='Am besten sagst du an der Bar, was du magst. Daraus wird dein Drink.'),
 ]
-FUSSBILD = 'an-team'
+FUSSBILD = 'negroni'   # die NEGRONI-Glühbirnen über der Vitrine, ohne Personen (Robert 1.11.2026: kein Teamfoto mit Rudi, er gehört zum Culinarium)
 
 
 def _alt(key):
@@ -161,7 +161,7 @@ def bilder():
         else:
             nh = round(w * 9 / 16)
             if nh < h:
-                y = round((h - nh) * {'schild-ecke': .55, 'theke': .45, FUSSBILD: .3, 'silvester': .4, 'momo-giesst': .35}.get(key, .5)); im = im.crop((0, y, w, y + nh))
+                y = round((h - nh) * {'schild-ecke': .55, 'theke': .45, FUSSBILD: .3, 'silvester': .4, 'momo-giesst': .35, 'an-party': .2}.get(key, .5)); im = im.crop((0, y, w, y + nh))
             stufen = ((1000, 80), (1000, 72), (1000, 64), (900, 66), (820, 64), (760, 62))
         for br, qu in stufen:
             k = im.resize((br, round(im.height * br / im.width)), Image.LANCZOS) if br < im.width else im
@@ -205,7 +205,7 @@ def mail(f, basis, img='../img/'):
   <tr><td align="center" style="padding:26px 30px 8px"><a href="{href}" style="display:inline-block;padding:9px 9px 9px 24px;border-radius:14px;background:{ROT};font:500 12px/22px {SANS};letter-spacing:.16em;text-transform:uppercase;color:#FFF6EC;text-decoration:none">{e(f['knopf'][0])}{knauf}</a></td></tr>
   <tr><td style="padding:14px 36px 30px"><p style="margin:0;font:400 15px/1.6 {SANS};color:{LEISE};text-align:center">{e(f['dazu'])}</p>
     <img src="{img}{FUSSBILD}.jpg" width="520" alt="{e(_alt(FUSSBILD))}" style="display:block;border:0;width:100%;max-width:520px;height:auto;margin:26px auto 0;border-radius:16px">
-    <p style="margin:18px 0 0;font:400 19px/1.4 {SERIF};color:{TINTE};text-align:center">Bis bald an der Bar,<br>{fest(GRUSS)}</p></td></tr>
+    <p style="margin:18px 0 0;font:400 19px/1.4 {SERIF};color:{TINTE};text-align:center">Bis bald an der Bar.<br>{fest(GRUSS)}</p></td></tr>
   <tr><td align="center" style="background:{TIEF};padding:26px 30px;border-top:1px solid rgba(216,178,100,.55)"><div style="font:400 13px/1.7 {SANS};color:#CBBBA6">{e(ADRESSE)}<br>{e(ZEITEN)}<br>{e(TEL)} · {e(IG)}</div></td></tr>
 </table>
 </td></tr></table>

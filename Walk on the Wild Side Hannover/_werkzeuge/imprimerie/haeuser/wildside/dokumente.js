@@ -17,7 +17,11 @@
   /* Mindestgrade je Format und Rolle (stilblatt.json › mindestgrade_mm); Drinks unter dem Gericht (slot «detail») dürfen bis 2,1 mm */
   const MIND = { a3h: [15, 6, 2.6], a4h: [15, 6, 2.6], a5h: [11, 4.2, 2], a5q: [11, 4.2, 2], a6h: [6, 2.1, 1.5], a6q: [6, 2.1, 1.5], dlh: [6, 2.1, 1.5], dlq: [6, 2.1, 1.5], q148: [6, 2.1, 1.5],
     a7q: [5, 2, 1.5], story: [7, 3.6, 1.6], insta: [7, 3.6, 1.6], ig11: [7, 3.6, 1.6], mail: [7, 3.6, 1.6], mailkopf: [5, 2.4, 1.5] };
-  function mindest(c, rolle, slot) {
+  /* Drucksachen: kein Text unter 8 pt (Robert 1.11.2026, «Mindestschriftgrösse für Lesetext auf Drucksachen 8 pt»); digitale Formate rechnen in Pixeln */
+  const DRUCK_MIN = 2.85;
+  const druck = c => { const f = DS.FORMATE[c.fk || '']; return !!f && !f.digital; };
+  function mindest(c, rolle, slot) { const v = mindest0(c, rolle, slot); return druck(c) ? Math.max(v, DRUCK_MIN) : v; }
+  function mindest0(c, rolle, slot) {
     const m = c.aufbau === 'menue' ? MIND.dlh : MIND[c.fk || '']; if (!m) return 0;   // Menükarte liegt am Platz: Mindestgrade der Tischkarte, in jedem Format (Stilblatt › mindestgrade_zweck)
     
     if (/\.(gang|preis)$/.test(slot || '') || rolle === 'mono' || rolle === 'plakat') return m[2];
@@ -27,6 +31,7 @@
   function tx(c, rolle, text, w, gr, farbe, o = {}) {
     if (c.fk === undefined && c.M) erweitere(c);
     if (o.slot !== null && o.slot !== undefined || rolle !== 'mono') gr = Math.max(gr, mindest(c, rolle, o.slot));
+    else if (druck(c)) gr = Math.max(gr, DRUCK_MIN);
     let t = String(text);
     // Titel: nie ein Wort allein in der letzten Zeile (die letzten zwei Wörter bleiben zusammen); Glieder-Zeilen regelt gliederSatz
     if (/^(titel|kapitale|plakat|plakatfett)$/.test(o.rolle || rolle) && !/\n/.test(t) && !/\s[|/·]\s/.test(t) && t.trim().split(/\s+/).length >= 3) {
@@ -186,7 +191,7 @@
     const bw = c.w - 2 * (r + .06 * c.u);
     let oben = abst, unten = c.h - abst;
     if (obenT) { const t = tx(c, 'mono', obenT, bw, gr, farbe, { slot: null, deck: .85, sperr: .08 }); t.y = +abst.toFixed(2); c.el.push(t); oben = abst + t.h; }
-    if (untenT) { const t = tx(c, 'mono', untenT, bw, gr, farbe, { slot: 'fuss', deck: .85, sperr: .08 }); ausgewogen(c, t); t.y = +(c.h - abst - t.h).toFixed(2); c.el.push(t); unten = t.y; }
+    if (untenT) { const t = tx(c, 'mono', untenT, bw, gr, farbe, { slot: 'fuss', deck: .85, sperr: .08 }); gliederSatz(t); ausgewogen(c, t); t.y = +(c.h - abst - t.h).toFixed(2); c.el.push(t); unten = t.y; }   // umbrechen nur an den Trennern (seit 8 pt Mindestgrad zweizeilig, 1.11.)
     if (!obenT) oben = c.h - unten;   // ohne Kopfzeile: oben gleich viel Luft wie unten
     return { oben, unten };
   }
@@ -645,32 +650,49 @@
   /* ---------- Programm («Die nächsten Abende»): Zeichen, Etikett, Titel, Linie und die Termine als eine Gruppe auf der optischen Mitte, über die Höhe verteilt
      (Tor 29.10.: «Die / nächsten Abende», Linie klebte am ersten Datum, unten leer) ---------- */
   V.programm = Object.assign({}, ALT.programm, {
+    /* Programm wie ein Konzertprogramm (Robert 1.11.2026: «die einzelnen Gigs sehr schlecht lesbar»): je Abend eine Zeile, links das Datum gross
+       in der Titelschrift, rechts der Name deutlich und darunter die Zeit; feine Goldlinie zwischen den Abenden, die Liste füllt das Blatt.
+       Grade nie unter Datum 15 pt, Name 13,5 pt, Zeit 9,5 pt (Lesetext auf Drucksachen mindestens 8 pt). */
     bau(c0, i, seite) {
       if (!istHaus(c0)) return ALT.programm.bau(c0, i, seite);
       const c = erweitere(c0); c.stil.ausr = 'c'; grund(c, seite); const r = rahmen(c);
-      const kf = kopfFuss(c, i, r), u = c.u, Z = zweck(c), bw = c.w - 2 * (r + .08 * u);
-      const y0 = kf.oben + .07 * u, y1 = kf.unten - .07 * u, termine = (i.termine || []).filter(t => t && (t.wann || t.was || t.wo));
-      let eng = false;   // viele Termine mit ganzen Sätzen («Wie es kam»): kleineres Zeichen, Sätze in Textgrösse, weniger Luft zwischen den Terminen
+      const kf = kopfFuss(c, i, r), u = c.u, Z = zweck(c), bw = c.w - 2 * (r + .08 * u), PT = .3528;
+      const y0 = kf.oben + .05 * u, y1 = kf.unten - .05 * u, termine = (i.termine || []).filter(t => t && (t.wann || t.was || t.wo));
+      // Datum kurz («17.10.»); liegen alle Abende im selben Jahr, steht das Jahr einmal im Etikett
+      const jahre = [...new Set(termine.map(t => (String(t.wann || '').match(/^\d{1,2}\.\d{1,2}\.(\d{4})$/) || [])[1]).filter(Boolean))];
+      const kurz = w => jahre.length === 1 ? String(w || '').replace(/^(\d{1,2}\.\d{1,2}\.)\d{4}$/, '$1') : String(w || '');
+      const ueber = i.ueber ? i.ueber + (jahre.length === 1 && !String(i.ueber).includes(jahre[0]) ? ' · ' + jahre[0] : '') : '';
+      const grad = (el, g) => { el.gr = +g.toFixed(2); el.h = DS.mess(el).h; return el; };
       const bau = k => {
-        const tg = Z.titel * u * k, xg = Z.text * u * Math.min(k, 1.3), mg = Z.mono * u * Math.min(k, 1.25);
-        const titel = tx(c, 'titel', i.titel || '', bw, tg * (String(i.titel || '').length <= 16 ? 1.25 : 1), c.T.titel, { slot: 'titel', zeile: 1.08 });
-        if (String(i.titel || '').trim().split(/\s+/).length <= 3 && zeilen(titel) > 1) {   // kurzer Titel auf eine Zeile («Die nächsten Abende»), solange der Mindestgrad hält
-          const ganz = DS.mess(Object.assign({}, titel, { text: titel.text.replace(/\u00a0/g, ' '), w: 1e5 })).bw, g1 = titel.gr * (titel.w - .5) / ganz;
-          if (g1 >= titel._min) { titel.text = titel.text.replace(/\u00a0/g, ' '); titel.gr = +g1.toFixed(2); titel.h = DS.mess(titel).h; }
-        }
-        ausgewogen(c, titel);
-        const zw = Math.min(titel.gr * 1.3, Z.zeichen * u * 1.1) * (eng ? .55 : .8), zl = xg * 1.35, lu = v => Math.min(v, zl * 2.2);
-        const items = [zeichen(c, zw), lu(zw * .42), i.ueber && tx(c, 'mono', i.ueber, bw, mg, c.T.mono, { slot: 'ueber' }), i.ueber && lu(tg * .38),
-          titel, lu(titel.gr * .5), linie(c, .08 * u), lu(titel.gr * .7)];
-        termine.forEach((t, n) => items.push(
-          t.wann && tx(c, 'mono', t.wann, bw, mg * 1.15, c.T.mono, { slot: `termine.${n}.wann`, sperr: .08 }), t.wann && xg * .4,
-          t.was && ausgewogen(c, tx(c, 'text', t.was, bw, xg * (eng ? 1 : 1.2), c.T.text, { slot: `termine.${n}.was` })), t.was && xg * .3,
-          t.wo && ausgewogen(c, gliederSatz(tx(c, 'mono', t.wo, bw, mg, c.T.mono, { slot: `termine.${n}.wo` }))), n < termine.length - 1 && lu(xg * (eng ? 1.1 : 1.9))));
+        const tg = Z.titel * u * k * .9, mg = Math.max(8.5 * PT, Z.mono * u * Math.min(k, 1.2));
+        const titel = ausgewogen(c, tx(c, 'titel', i.titel || '', bw, tg, c.T.titel, { slot: 'titel', zeile: 1.08 }));
+        const zw = Math.min(titel.gr * 1.1, Z.zeichen * u) * .62;
+        const items = [zeichen(c, zw), zw * .38, ueber && tx(c, 'mono', ueber, bw, mg, c.T.mono, { slot: 'ueber' }), ueber && titel.gr * .3,
+          titel, titel.gr * .42, linie(c, .08 * u), titel.gr * .62];
+        const dg = Math.max(15 * PT, 6.4 * k), ng = Math.max(13.5 * PT, 5.2 * k), zg = Math.max(9.5 * PT, 3.3 * k);
+        const breite = Math.min(bw, .8 * c.w), gap = dg * .85;
+        const daten = termine.map(t => grad(tx(c, 'titel', kurz(t.wann), breite, dg, c.T.titel, { ausr: 'l', slot: null, zeile: 1 }), dg));
+        const dw = Math.max(0, ...daten.map(a => DS.mess(Object.assign({}, a, { w: 1e5 })).bw)) + .5, sw = breite - dw - gap;
+        const namen = termine.map(t => t.was ? grad(tx(c, 'text', t.was, sw, ng, c.T.text, { ausr: 'l', slot: null, zeile: 1.12 }), ng) : null);
+        const zeiten = termine.map(t => t.wo ? grad(tx(c, 'mono', t.wo, sw, zg, c.T.mono, { ausr: 'l', slot: null, sperr: .06 }), zg) : null);
+        const nw = Math.max(0, ...namen.concat(zeiten).filter(Boolean).map(e => DS.mess(Object.assign({}, e, { w: 1e5 })).bw)) + .5;
+        const block = Math.min(breite, dw + gap + nw), xa = (c.w - block) / 2, bx = xa + dw + gap;   // die Liste als Ganzes mittig, Datum und Name an je einer Kante
+        const lw = Math.min(breite, block + 2 * gap), lx = (c.w - lw) / 2;
+        termine.forEach((t, n) => {
+          const a = daten[n]; a.x = +xa.toFixed(2); a.w = +dw.toFixed(2);
+          const b = namen[n], z = zeiten[n]; if (b) b.w = +(c.w - bx - (c.w - block) / 2 + .5).toFixed(2); if (z) z.w = b ? b.w : +(block - dw - gap + .5).toFixed(2);
+          let hr = 0; const teile = [a];
+          if (b) { b.x = +bx.toFixed(2); b.y0 = 0; teile.push(b); hr = b.h; }
+          if (z) { z.x = +bx.toFixed(2); z.y0 = hr + (b ? zg * .5 : 0); teile.push(z); hr = z.y0 + z.h; }
+          const off = Math.max(0, (a.h - hr) / 2); if (b) b.y0 += off; if (z) z.y0 += off;
+          a.y0 = Math.max(0, (hr - a.h) / 2);
+          if (n) items.push(dg * .5, linie(c, lw, { x: +lx.toFixed(2), staerke: Math.max(.2, .0012 * u), deck: .5 }), dg * .5);
+          items.push({ typ: 'reihe', teile, h: Math.max(hr, a.h) });
+        });
         return sauber(items);
       };
-      let g = passend(c, bau, (y1 - y0) * .76, 1.9, .5);
-      if (stapelH(c, g) > (y1 - y0) * .78) { eng = true; g = passend(c, bau, (y1 - y0) * .76, 1.9, .4); }
-      optisch(c, g, y0, y1);
+      const g = passend(c, bau, (y1 - y0) * .97, 1.8, .4);
+      optischReihen(c, g, y0, y1);
     },
   });
 

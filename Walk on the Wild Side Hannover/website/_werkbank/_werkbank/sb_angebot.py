@@ -1,102 +1,18 @@
 #!/usr/bin/env python3
-"""Werkbank Wild Side, Kapitel VIII «Das Angebot» (Werkbank-Chat 28.10.2026; Aufbau aus sb_angebot.py des Schäfli, dort nach dem Schlössli und dem
-Grand Beau-Rivage, nur gelesen und kopiert): Register → Zusammenfassung → Was dazugehört (steht / läuft / braucht euch / Idee) → Wie es gebaut ist + eure Daten
-→ So geht’s weiter → Karte «Ein Vorschlag.» (Eigentum, Betreuung, Wo die KI arbeitet, Link zur Seite «KI und eure Daten», PDF). Nur Belegtes: Zahlen
-gezählt aus dem gebauten Stand, KI-Stellen aus den Werkzeugen. Kein Gang «Der Preis» mehr (Robert 29.10.2026), Betreuung als Gang II.
-Kein Preis in der Werkbank, keine KI-Kosten auf der Karte."""
-import html, json, os, urllib.request
+"""Werkbank Wild Side, Kapitel VIII «Die Übergabe» (Robert 1.11.2026, ersetzt das frühere Angebot): Alles gehört euch, es läuft so, keine Bindung;
+laufende Betreuung optional, aber empfohlen. Dazu die Karte «Die Übergabe.» (werkbank/karte.html und PDF, gebaut von sb_ki.py). Keine Preise."""
+import html, os
 
 e = html.escape
 W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
 
-BETREUUNG = None   # Robert 28.10.2026 über den Oberchef: «Kein Betrag auf der Werkbank, die Stelle bleibt ohne Zahl.» Kein Platzhalter, der nach fehlender Angabe aussieht
-DATUM = 'Hamburg, 1. November 2026'   # Absender und Ort immer Hamburg, nie der Ort des Hauses (Demo-Check Schäfli 21.10.2026)
+DATUM = 'Hamburg, 1. November 2026'   # Absender und Ort immer Hamburg
 PDF_NAME = 'vorschlag-wildside.pdf'
 PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>'
 ORN = '<div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div>'
-
-
-def _j(p, leer):
-    try:
-        return json.load(open(p, encoding='utf-8'))
-    except Exception:
-        return leer
-
-
-def _fotos():
-    try:
-        import rh_werkzeuge as WK
-        weg = WK.ADRESSEN.get('livre')
-        return json.load(urllib.request.urlopen(weg.rstrip('/') + '/api/stand', timeout=4)).get('fotos') if weg else None
-    except Exception:
-        return None
-
-
-def zahlen(z):
-    p = _j(os.path.join(W, 'papier_plan.json'), {'druck': [], 'etiketten': []})
-    u = _j(os.path.join(W, 'unterlagen.json'), [])
-    feed = len(_j(os.path.join(ROOT, 'feed', 'feed.json'), {'posts': []})['posts'])
-    return dict(seiten=z['seiten'], gaeste_seiten=z.get('gaeste_seiten', z['seiten']), karten=len(u), druck=len(p['druck']), unter=len(p['etiketten']), mails=z.get('mails', 0), feed=feed, fotos=_fotos())
-
-
-ZAHLWORT = {3: 'drei', 4: 'vier', 5: 'fünf', 6: 'sechs', 7: 'sieben', 8: 'acht', 9: 'neun', 10: 'zehn', 11: 'elf', 12: 'zwölf', 15: 'fünfzehn'}
-wort = lambda n: ZAHLWORT.get(n, str(n))
-
-
-def inhalt(z):
-    Z = zahlen(z)
-    teile = [f'die Website mit {wort(Z["seiten"])} Seiten', 'sieben Werkzeuge für euch']
-    if Z['karten']: teile.append(f'{wort(Z["karten"])} Karten für eure Drinks' if Z['karten'] > 1 else 'eure Karte im neuen Satz')
-    if Z['druck']: teile.append(f'{wort(Z["druck"])} Ideen für Papier')
-    if Z['unter']: teile.append(f'{wort(Z["unter"])} Untersetzer für die Theke')
-    if Z['mails']: teile.append(f'{wort(Z["mails"])} Vorlagen für Mails')
-    if Z['feed']: teile.append(f'ein Feed mit {Z["feed"]} Beiträgen')
-    zus = [f'Für das Wild Side steht hier der ganze Auftritt: {", ".join(teile[:-1])} und {teile[-1]}. Jedes Stück lässt sich hier öffnen.',
-           'Für den Start braucht es euch an drei Stellen: wer ins Impressum kommt, euer Wort zu Fotos und Plakaten und einen prüfenden Blick auf Drinks, DJ-Abende und Preise. Nach sechs Wochen steht die Seite unter eurer eigenen Adresse.',
-           'Um Seite, Werkzeuge und KI kümmere ich mich auch danach: Server, Sicherungen und Updates, und ihr hört spätestens am nächsten Werktag von mir.']
-    steht = [f'{wort(Z["seiten"]).capitalize()} Seiten: {wort(Z["gaeste_seiten"])} für eure Gäste, dazu Impressum und Datenschutz', 'Alle DJ-Abende seit 2025 mit ihren Plakaten',
-             'Platz reservieren und Feiern anfragen, im Entwurf gespielt']
-    if Z['karten']: steht.append('Jede Karte auch als PDF')
-    if Z['druck'] or Z['unter']: steht.append(', '.join(x for x in (f'{wort(Z["druck"]).capitalize()} Drucksachen' if Z['druck'] else '', f'{wort(Z["unter"])} Untersetzer' if Z['unter'] else '') if x))
-    if Z['mails']: steht.append(f'{wort(Z["mails"]).capitalize()} Mails an eure Gäste')
-    if Z['feed']: steht.append(f'{Z["feed"]} Beiträge für Instagram')
-    if Z['fotos']: steht.append(f'Das Markenbuch mit {Z["fotos"]} Fotos')
-    steht += ['Der Chat für eure Gäste und die Seite auf Englisch', 'Beigaben, darunter ein Gutschein']   # online bzw. fertig seit 29.10. (Tor 30.10.); zehn Punkte, zwei gleich lange Spalten   # online seit 29.10. (Tor 30.10.)
-    import rh_werkzeuge as WK
-    _n = [w[1] for w in WK.WERKZEUGE]
-    laeuft = [_n[0] + ', ' + ', '.join(x[:1].lower() + x[1:] for x in _n[1:-1]) + ' und ' + _n[-1][:1].lower() + _n[-1][1:]]   # ein Satz: kein Trenner am Zeilenanfang (Tor 30.10.)
-    umfang = [('Steht, zum Anklicken', steht), ('Läuft im Entwurf, zieht mit um', laeuft),
-              ('Braucht etwas von euch', ['Wer ins Impressum kommt', 'Euer Wort zu Fotos und Plakaten', 'Einen prüfenden Blick auf Drinks und Preise'])]   # «Eine Idee, noch nicht gebaut» entfällt: Chat, Gutschein und /en/ stehen (Tor 30.10.)
-    return zus, umfang
-
-
-AUFBAU = ['Die Seiten liegen fertig gebaut auf dem Server, darum laden sie schnell.', 'Jedes Werkzeug läuft für sich, mit eigenem Zugang.',
-          'Reservierungen und Anfragen kommen im Werkzeug an, nie als lose Nachricht.', 'Ein DJ-Abend wird einmal eingetragen und stimmt danach überall auf der Seite.', 'Nichts wird überschrieben, jede alte Fassung lässt sich zurückholen.']
 DATEN = ['Die Seite setzt keine Cookies und verfolgt niemanden.', 'Der Chat kennt nur, was auf euren Seiten und Karten steht.', 'Karten- und Zahlungsdaten haben im Chat nichts verloren.',
          'Ab dem Start meldet sich jede Person mit eigenem Passwort an.', 'Bis zum Start findet keine Suchmaschine den Entwurf.']
-
-WOCHEN = [  # «So geht's weiter»: Titel, ein bis zwei Sätze (Robert 29.10.2026: «einfacher fassen und easier», kein Formular, keine Wochen)
-    ('Montag, 2. November, 17\u00a0Uhr', 'Wir setzen uns zusammen und gehen kurz durch, was ihr euch wünscht und wer was beisteuert. Zugänge klären wir dabei gleich mit.'),
-    ('In Ruhe anschauen', 'Ihr schaut euch alles in Ruhe an. Was euch auffällt, bessere ich am selben Tag nach.'),
-    ('Eure Bilder', 'Fotos und Plakate, die ihr freigebt, kommen rein. So steht jeder DJ-Abend mit seinem eigenen Plakat da.'),
-    ('Die Werkzeuge', 'Ich zeige euch die Werkzeuge, jedes kurz und gemeinsam, bis es sich leicht anfühlt.'),
-    ('Online', 'Die Seite geht unter eurer Adresse online, Impressum und Datenschutz stehen an ihrem Platz. In den ersten Wochen schaue ich täglich drauf.')]
-WOCHEN_SATZ = 'Kein starrer Plan. Wenn gerade ein DJ-Abend oder eine Feier ansteht, schieben wir einfach.'
-
-EIGENTUM = ['Was entsteht, gehört dem Walk on the Wild Side: Website, Code, Karten, Drucksachen, Beiträge und Fotos.', 'Domain, Server und Zugänge stehen auf euren Namen.',
-            'Die Rechte an Fotos und Plakaten bleiben bei euch und euren Fotografen.', 'Wenn wir uns einmal trennen, geht alles mit euch.']
-PREIS = []   # Robert 29.10.2026: über Geld wird in der Werkbank nicht gesprochen; der Gang «Der Preis» ist gestrichen
-PREIS_FUSS = ''
-DANACH = ['Server und Domain, Sicherungen, Updates, Sicherheit und Datenschutz.', 'Fehler in den sieben Werkzeugen behebe ich; fällt etwas aus, geht das vor.',
-          'Kommt ein DJ-Abend dazu oder ändert sich die Karte, weiß es auch die KI.', 'Ihr hört spätestens am nächsten Werktag von mir. Die Inhalte pflegt ihr.',
-          'Bis zum Start wird geändert, bis ihr zufrieden seid.', 'Druckerei und Fotografen rechnen weiter direkt mit euch ab.']
-KI_SATZ = 'An drei Stellen arbeitet KI mit. Sie läuft über ein Konto, das euch gehört, mit einer Grenze je Monat, die ich einrichte. Fällt die KI weg, arbeitet jede Stelle ohne sie weiter. Im Entwurf antworten die Stellen mit beschrifteten Proben.'
-import rh_werkzeuge as _WK
-KI = [  # Titel, Werkzeug, Satz (dieselben Stellen wie auf der Seite «KI und eure Daten», sb_ki.py; kein Betrag hier, Memory «KI-Kosten nur auf KI-Seite»)
-    ('Der Chat für eure Gäste', _WK.NAMEN['reception'], 'Gibt Gästen Auskunft aus euren Seiten und Karten, auch spät in der Nacht. Ausprobieren lässt er sich im Werkzeug für die Gäste.'),
-    ('Antwort auf eine Anfrage', _WK.NAMEN['reception'], 'Schreibt zu jeder Frage einen Entwurf im Ton der Bar. Hinaus geht er erst, wenn jemand von euch ihn gelesen hat.'),
-    ('Eine Markenprüfung', _WK.NAMEN['livre'], 'Legt einen fremden Entwurf neben Farben, Wortmarke und Schriften des Wild Side. Nichts davon wird gespeichert.')]
 
 
 def bilder(webp, haus):
@@ -122,6 +38,10 @@ def angebot(k):
       <div>{h('02', 'Was ihr bekommt')}{liste(BEKOMMT)}</div>
       <div>{h('03', 'Eure Daten und die eurer Gäste')}{liste(DATEN)}</div>
     </div>
+    <div class="sag-blatt sag-zwei" id="sag-betreuung" data-a="heben">
+      <div>{h('04', 'Laufende Betreuung')}<p class="sag-opt">Optional, aber empfohlen. Keine Bindung, ihr entscheidet.</p></div>
+      <div>{liste(WARTUNG[:4])}</div>
+    </div>
     <div class="sag-buehne" id="sag-vorschlag">{karte_html()}</div>
   </div>
 </section>'''
@@ -129,15 +49,16 @@ def angebot(k):
 
 UEBERGABE = ['Alles, was hier liegt, ist für euch gemacht und gehört euch: die Website, die sieben Werkzeuge, die Drucksachen und alle Dateien.',
              'Es läuft so, wie ihr es hier seht. Wenn etwas nicht klappt, meldet ihr euch bei mir.',
-             'Es gibt keine Bindung und keinen Vertrag. Wer möchte, bekommt eine monatliche Wartung dazu, freiwillig und nicht verpflichtend.']
+             'Es gibt keine Bindung und keinen Vertrag. Empfohlen ist eine laufende Betreuung: Ich halte die Seite jeden Monat sicher und aktuell. Sie ist freiwillig, ihr entscheidet.']
 BEKOMMT = ['Die neue Website mit allen Seiten, für das Handy und den Rechner', 'Sieben Werkzeuge für Karte, DJ-Abende, Gäste, Marke und Plakate',
            'Eure Karten neu gesetzt, auch als PDF', 'Drucksachen, Untersetzer, Sticker und Postkarten zum Drucken', 'Mails an eure Gäste und ein Feed für Instagram',
            'Alle Dateien sortiert in einem Ordner, dazu eure Wortmarke']
 UEBERGABE_KARTE = ['Website, Werkzeuge, Karten, Drucksachen, Beiträge und Dateien gehören dem Walk on the Wild Side.', 'Domain, Server und Zugänge stehen auf euren Namen.',
                    'Die Rechte an Fotos und Plakaten bleiben bei euch und euren Fotografen.']
 LAEUFT = ['Alles läuft so, wie ihr es hier seht.', 'Klappt etwas nicht, meldet ihr euch bei mir.', 'Keine Bindung, kein Vertrag.']
-WARTUNG = ['Wenn ihr möchtet, kümmere ich mich jeden Monat um Sicherheitsupdates, Anpassungen beim Datenschutz und Ähnliches.',
-           'Freiwillig und nicht verpflichtend. Ihr sagt Bescheid, wenn ihr es wollt, und genauso, wenn nicht mehr.']
+WARTUNG = ['Jeden Monat Sicherheitsupdates für Seite und Werkzeuge.', 'Anpassungen beim Datenschutz, wenn sich Regeln ändern.',
+           'Server, Domain und Sicherungen im Blick.', 'Kleine Fehler behebe ich, sobald ihr sie meldet.',
+           'Optional, aber empfohlen. Ihr sagt Bescheid, wenn ihr sie wollt, und genauso, wenn nicht mehr.']
 
 
 def karte_html():
@@ -152,7 +73,7 @@ def karte_html():
         </header>
         {ORN}{gang('I', 'Was euch gehört')}{zeilen(UEBERGABE_KARTE)}
         {ORN}{gang('II', 'Wie es läuft')}{zeilen(LAEUFT)}
-        {ORN}{gang('III', 'Auf Wunsch: Wartung')}{zeilen(WARTUNG)}
+        {ORN}{gang('III', 'Laufende Betreuung – optional, aber empfohlen')}{zeilen(WARTUNG)}
         <p class="mn-ki"><a class="kn kn--klein" href="ki.html">Mehr zu KI und euren Daten<i>{PF}</i></a></p>
         <footer class="mn-ende"><i></i><span>{e(DATUM)}</span><i></i></footer>
         <p class="mn-pdf"><a class="kn kn--klein" href="{PDF_NAME}" download>Als PDF speichern<i>{PF}</i></a></p>
@@ -160,7 +81,8 @@ def karte_html():
 
 
 CSS = '''
-/* ---------- Kapitel VIII «Das Angebot» (sb_angebot.py, 20.10.2026, Aufbau nach dem Rivage, Kleid der Bar): helle Blätter auf der Nacht ---------- */
+/* ---------- Kapitel VIII «Die Übergabe» (sb_angebot.py): helle Blätter auf der Nacht ---------- */
+.sag-opt{margin:14px 0 0;font-family:var(--serif);font-size:clamp(1.15rem,1.5vw,1.4rem);line-height:1.35;color:var(--tinte)}
 .sag .kopfzeile{margin-bottom:clamp(30px,3.4vw,54px)}
 .sag-reg{display:flex;flex-wrap:wrap;gap:8px clamp(18px,2.6vw,44px);justify-content:center;margin:0 auto clamp(40px,4.6vw,72px);padding-bottom:18px;border-bottom:1px solid rgba(162,182,207,.28)}
 .sag-reg a{display:inline-flex;align-items:baseline;gap:9px;font:400 12.5px/1.2 var(--serif);letter-spacing:.22em;text-transform:uppercase;color:var(--creme);text-decoration:none;opacity:.82;transition:opacity .4s}
