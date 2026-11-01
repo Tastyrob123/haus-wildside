@@ -78,5 +78,32 @@ a.kn>.tm,button.kn>.tm,.uwahl button>.tm,.uschalter button>.tm,.wahl button>.tm,
 .uwahl button,.uschalter button,.wahl button,.vh-wahl button{display:inline-flex;align-items:center;justify-content:center}
 .tm-l{letter-spacing:0}
 
-@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}</style><script id="knopf-mitte-js">(function(){function m(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var t=k.firstChild;if(t&&t.nodeType===3&&t.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=t.textContent;k.replaceChild(s,t);t=s}if(!t||t.nodeType!==1||!t.classList.contains('tm')||t.querySelector('.tm-l'))return;var x=t.textContent.replace(/\s+$/,'');if(x.length<2)return;var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);t.textContent=x.slice(0,-1);t.appendChild(l)})}m();addEventListener('load',m)})();</script></body>
+@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}</style><script id="knopf-mitte-js">(function(){function m(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var t=k.firstChild;if(t&&t.nodeType===3&&t.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=t.textContent;k.replaceChild(s,t);t=s}if(!t||t.nodeType!==1||!t.classList.contains('tm')||t.querySelector('.tm-l'))return;var x=t.textContent.replace(/\s+$/,'');if(x.length<2)return;var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);t.textContent=x.slice(0,-1);t.appendChild(l)})}m();addEventListener('load',m)})();</script><script id="ruecksprung">(function () {
+  var K = 'rs:' + location.pathname, d = document.documentElement;
+  function merk() { try { var y = String(Math.round(window.scrollY || 0)); sessionStorage.setItem(K, y); if (document.getElementById('rh-zurueck')) sessionStorage.setItem('wb-y', y); } catch (e) {} }
+  var t = 0;
+  addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(merk, 150); }, { passive: true });
+  addEventListener('pagehide', merk);
+  document.addEventListener('click', function (ev) { if (ev.target.closest && ev.target.closest('a[href]')) merk(); }, true);
+  var nav = null; try { nav = performance.getEntriesByType('navigation')[0]; } catch (e) {}
+  if (!nav || nav.type !== 'back_forward') return;
+  if (document.getElementById('rh-zurueck')) return;   /* die Startseite stellt die Höhe selbst her (rh-zurueck liest «wb-y», das hier laufend mitgeschrieben wird) */
+  var y = null; try { y = sessionStorage.getItem(K); } catch (e) {}
+  if (y === null || !/^\d+$/.test(y) || +y < 40) return;
+  y = +y;
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  var st = document.createElement('style');
+  st.textContent = 'html.rs-sofort,html.rs-sofort *{transition:none!important;animation-duration:0s!important;animation-delay:0s!important;scroll-behavior:auto!important}';
+  document.head.appendChild(st); d.classList.add('rs-sofort');
+  var weg = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (k) { addEventListener(k, function () { weg = true; }, { once: true, passive: true }); });
+  function oben() { var g = y + innerHeight * 1.2; [].forEach.call(document.querySelectorAll('[data-a],.zt,.roll,img.ld'), function (e) { var r = e.getBoundingClientRect(); if (r.top + scrollY < g) e.classList.add('da'); }); }
+  function geh() { if (!weg) { window.scrollTo(0, y); oben(); } }
+  function los() {
+    geh(); requestAnimationFrame(function () { geh(); requestAnimationFrame(function () { d.classList.remove('rs-sofort'); }); });
+    var n = 0, iv = setInterval(function () { n++; if (Math.abs(scrollY - y) > 40) geh(); if (n >= 12 || weg) clearInterval(iv); }, 150);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', los); else los();
+  addEventListener('load', function () { if (Math.abs(scrollY - y) > 40) geh(); });
+})();</script></body>
 </html>

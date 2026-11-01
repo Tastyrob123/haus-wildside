@@ -77,8 +77,14 @@ def nachbau():
     for o in SEITEN:
         if os.path.exists(os.path.join(HIER, o, 'index.html')):
             nach(o)
-            zeile_ganz.anwenden(os.path.join(HIER, o)); text_mitte.anwenden(os.path.join(HIER, o))
-            knopf_mitte(os.path.join(HIER, o, 'index.html'))
+            zeile_ganz.anwenden(os.path.join(HIER, o))
+            # text_mitte.anwenden lässt seit 1.11. Seiten ohne den Block aus; frisch gebaute Papier-Seiten bekommen ihn hier (Pfeile der Rundknöpfe)
+            p = os.path.join(HIER, o, 'index.html')
+            t = re.sub(r'<style id="text-mitte">.*?</style><script id="text-mitte-js">.*?</script>', '', open(p, encoding='utf-8').read(), flags=re.S)
+            t = re.sub(r'<style id="knopf-mitte">.*?</style><script id="knopf-mitte-js">.*?</script>', '', t, flags=re.S)
+            i = t.rfind('</body>')
+            open(p, 'w', encoding='utf-8').write(t[:i] + text_mitte.BLOCK + t[i:])
+            knopf_mitte(p)
 
 
 def knopf_mitte(pfad):
