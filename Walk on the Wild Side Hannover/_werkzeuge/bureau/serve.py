@@ -8,6 +8,7 @@ Werkzeugen des Hauses (beim Start legt beschreibung.anlegen() die Beschreibung i
   /assets/oberflaeche/…        gemeinsamer Werkzeug-Rahmen des Hauses (_werkzeuge/oberflaeche/, Kleid wildside)
   /assets/…                    Schriften und Fotos der Website (website/assets/, nur gelesen)
   /_werkzeuge/bureau/api/termine…   DJ-Abende (termine.py): Entwurf, Stand, Verlauf; index.html und programm.html der Probe-Kopie werden mit dem Stand gefüllt
+  /_werkzeuge/bureau/api/gaeste…    Gastschichten (gaeste.py), gleich gebaut; programm.html wird zusätzlich mit ihrem Stand gefüllt
   /_werkzeuge/bureau/vorschau/…      die Probe-Kopie mit den DJ-Abenden des Entwurfs (Vorschau in der Ansicht «DJ-Abende»)
   alles andere                 wie der Server des Stamms (unterbau/serve.py): /api/…, /stamm/…, /werkzeuge/website/…, /haeuser/…
 Sicherheit (Master Werkzeug-Bau 5.2/5.3, S01–S03): hört nur auf 127.0.0.1, nur Anfragen an diese Adresse (421), schreibende Wege nur von der
@@ -32,6 +33,7 @@ sys.path.insert(0, str(STAMM / 'unterbau'))
 import serve as stamm  # noqa: E402  (Server des Stamms: Wege, Speicher, Dateien)
 sys.path.insert(0, str(HIER))
 import termine as T  # noqa: E402  (DJ-Abende, Daten aus website/bau.py › LINEUP)
+import gaeste as G  # noqa: E402  (Gastschichten, Daten aus website/unter.py › programm() › gaeste)
 import beschreibung as B  # noqa: E402  (Beschreibung des Hauses für den Stamm, Probe-Kopie)
 
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get('BUREAU_PORT', '9282'))
@@ -210,9 +212,10 @@ class Antwort(stamm.Antwort):
             roh = roh.replace("function fehler(e) {\n", "function fehler(e) {\n  try { fetch('/_werkzeuge/bureau/api/fehler', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: (String((e && (e.fehler || e.message)) || e) + ' @ ' + String((e && e.stack) || new Error().stack)).slice(0, 395), stichwort: 'spur', wo: Z.ansicht + ' ' + innerWidth }) }); } catch (x) {}\n", 1)
         return roh.encode('utf-8')
 
-    def _termine(self, methode, weg):
-        """DJ-Abende (termine.py). GET: Lage · GET pruefung · POST speichern / veroeffentlichen / verwerfen / zurueckholen."""
+    def _termine(self, methode, weg, M=T, feld='termine'):
+        """DJ-Abende (termine.py) oder Gastschichten (gaeste.py, M=G). GET: Lage · GET pruefung · POST speichern / veroeffentlichen / verwerfen / zurueckholen."""
         import json
+        T = M   # noqa: N806  (gleicher Ablauf für beide Listen)
         try:
             if methode == 'GET' and weg == '':
                 return self._json(200, T.lage())
@@ -226,7 +229,7 @@ class Antwort(stamm.Antwort):
                 return self._json(400, {'fehler': 'Die Anfrage ist kein gültiges JSON', 'stichwort': 'anfrage-unlesbar'})
             erw = str(d.get('erwartet') or '')
             if weg == 'speichern':
-                return self._json(200, T.speichern(d.get('termine'), erw))
+                return self._json(200, T.speichern(d.get(feld), erw))
             if weg == 'veroeffentlichen':
                 return self._json(200, T.veroeffentlichen(erw, d.get('notiz') or ''))
             if weg == 'verwerfen':
@@ -253,6 +256,15 @@ class Antwort(stamm.Antwort):
                 s['zuletzt'] = {'zeit': z, 'was': 'DJ-Abende'}
         except T.Fehler as e:
             s = dict(s, termine={'fehler': e.text, 'stichwort': e.stichwort})
+        try:
+            l = G.lage()
+            n = G.wartend(l)
+            s = dict(s, aenderungen=int(s.get('aenderungen') or 0) + n, gaeste={'wartet': n, 'zahl': len(l['entwurf'] if l['entwurf'] is not None else l['stand'])})
+            z = (l.get('zuletzt') or {}).get('zeit')
+            if z and z > ((s.get('zuletzt') or {}).get('zeit') or ''):
+                s['zuletzt'] = {'zeit': z, 'was': 'Gastschichten'}
+        except G.Fehler as e:
+            s = dict(s, gaeste={'fehler': e.text, 'stichwort': e.stichwort})
         return self._json(200, s)
 
     def _probe_datei(self, teil, rest, termine, ordner='_probe'):
@@ -267,6 +279,11 @@ class Antwort(stamm.Antwort):
                 roh = T.ausliefern(roh.decode('utf-8'), rest, termine).encode('utf-8')
             except T.Fehler:
                 pass   # Quelle oder Stelle unlesbar: die Seite, wie sie ist (sie zeigt dann ihre gebauten DJ-Abende), die Prüfung meldet es
+        if rest == 'programm.html':
+            try:
+                roh = G.ausliefern(roh.decode('utf-8'), termine).encode('utf-8')
+            except G.Fehler:
+                pass   # ebenso: die Seite zeigt ihre gebauten Gastschichten
         self.send_response(200)
         self.send_header('Content-Type', stamm.mimetypes.guess_type(ziel.name)[0] or 'application/octet-stream')
         self.send_header('Content-Length', str(len(roh)))
@@ -323,6 +340,8 @@ class Antwort(stamm.Antwort):
             return self._ueberblick()
         if pfad.startswith('/_werkzeuge/bureau/api/termine'):
             return self._termine(methode, pfad[len('/_werkzeuge/bureau/api/termine'):].strip('/'))
+        if pfad.startswith('/_werkzeuge/bureau/api/gaeste'):
+            return self._termine(methode, pfad[len('/_werkzeuge/bureau/api/gaeste'):].strip('/'), G, 'gaeste')
         if methode == 'GET' and pfad.startswith('/_werkzeuge/bureau/vorschau/'):
             return self._probe_datei('online', pfad[len('/_werkzeuge/bureau/vorschau/'):] or 'index.html', 'entwurf')
         m = re.fullmatch(r'/werkzeuge/website/(_probe[\w-]*)/wildside/online/((?:index|programm)\.html)', pfad) if methode == 'GET' else None

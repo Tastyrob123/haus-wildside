@@ -69,7 +69,7 @@ def beschreibung():
     website = [
         ('start', 'Startseite', 'Der erste Eindruck: die Ecke bei Nacht, wer die Bar führt, was Momo mixt, die Decke, die DJ-Abende, die lange Tafel und die Nachbarn im Haus.', ['index.html'], 'schild'),
         ('drinks', 'Drinks', 'Was magst du? Das Gespräch an der Bar, wie Momo arbeitet, die Klassiker und die Sonderkarte «Drunk in Love».', ['drinks.html'], 'momo-giesst'),
-        ('programm', 'Programm', 'Die Woche, Gastschichten, die Feste und die Bar unterwegs. Die DJ-Abende hast du in einer eigenen Ansicht.', ['programm.html'], 'konzert'),
+        ('programm', 'Programm', 'Die Woche, die Feste und die Bar unterwegs. DJ-Abende und Gastschichten haben eigene Ansichten.', ['programm.html'], 'konzert'),
         ('feiern', 'Feiern', 'Private Dinner, die lange Tafel, die ganze Bar mit Pauschalen und Preisliste, Musik und grosse Events, mit Anfrage.', ['tafel.html'], 'an-empore-tafel'),
         ('haus', 'Das Haus', 'Der Raum unter der Decke, Derya und Momo, was bisher geschah und die Auszeichnungen.', ['haus.html'], 'decke-raum'),
         ('besuch', 'Besuch', 'Wann die Bar offen hat, wo sie steht, Reservieren und die Fragen der Gäste.', ['besuch.html'], 'fenster'),
@@ -88,18 +88,10 @@ def beschreibung():
         'kopie': {'unter': 'website', 'ordner': ['assets']},
         'gesperrt': [],
         # DJ-Abende: eigene Ansicht (die Plakate der Plakatwand, der Kontaktbogen und der Flyer der Startseite entstehen aus der Liste der Abende)
-        'auslassen': ['.pw-wand', '.kb-gross', '.kb-bogen', '#flyer', '.wo-tafel', '.vk-rueck', '.vi-spiegel', '.f03-marke', '.et9-logo'],   # dazu: Logos der Nachbarn und der Portale sind Zeichen, keine tauschbaren Fotos
+        'auslassen': ['.pw-wand', '.kb-gross', '.kb-bogen', '#flyer', '.wo-tafel', '.vk-rueck', '.vi-spiegel', '.f03-marke', '.et9-logo', '.vk-reihe'],   # Gastschichten (.vk-reihe): eigene Ansicht wie die DJ-Abende   # dazu: Logos der Nachbarn und der Portale sind Zeichen, keine tauschbaren Fotos
         'vorschau': {'ohne_skripte': [], 'zusatz_css': '.fenster{overflow:clip}@media (hover:none){[data-ws-e],img[data-ws-b]{cursor:pointer}}'},
         'bereiche': {
             **{k: {'an': False} for k in ('zimmer', 'preisstufen', 'packages', 'saele', 'unterlagen', 'stellen')},
-            'gaeste': {
-                'name': 'Gastschichten',
-                'satz': 'Wer neben Momo hinterm Tresen stand, mit Datum, Name, Satz und Foto, so wie es auf der Seite «Programm» steht. Was nicht mehr gezeigt werden soll, blendest du aus.',
-                'quellen': [{'seite': 'programm.html', 'jedes': '.vk-reihe article.vk-p', 'felder': [
-                    {'key': 'name', 'label': 'Gast', 'art': 'text', 'wo': '.vk-satz h3', 'titel': True},
-                    {'key': 'datum', 'label': 'Datum', 'art': 'text', 'wo': '.vk-satz .etikett'},
-                    {'key': 'satz', 'label': 'Satz zum Gast', 'art': 'text', 'wo': '.vk-satz p'},
-                    {'key': 'bild', 'label': 'Foto', 'art': 'bild', 'wo': '.vk-bild img', 'kann_fehlen': True}]}]},
         },
         'zahlen': {'muster': ZAHL_EUR},
         'kleid': {'foto': 'schild-ecke'},

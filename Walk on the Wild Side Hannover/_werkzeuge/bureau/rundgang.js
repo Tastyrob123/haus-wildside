@@ -13,7 +13,7 @@
     { ziel: ['#ws-mitte .wo-sb', '#ws-kopf'], titel: 'Das ist ' + IM_SATZ,
       text: 'Hier pflegst du die Website der Bar selbst: jeden Text, jedes Foto, die Öffnungszeiten, Telefon und Adresse, die Texte für Google. Ohne Agentur, ohne Wartezeit.' },
     { ziel: ['html.wo-rand-auf #ws-rand .wo-rand__g:has([data-ws-nav="e:termine"])', '#ws-rand [data-ws-nav="e:termine"]', '#ws-mitte .wo-aufg > .wo-ag', '#ws-rand'], titel: 'Die DJ-Abende',
-      text: 'Wer samstags an der Bar auflegt, steht unter «DJ-Abende»: Tag, Name und das Plakat des Abends. Daraus hängen Plakatwand und Kontaktbogen auf der Seite «Programm», der neueste liegt als Flyer auf der Startseite.' },
+      text: 'Wer samstags an der Bar auflegt, steht unter «DJ-Abende»: Tag, Name und das Plakat des Abends. Daraus hängen Plakatwand und Kontaktbogen auf der Seite «Programm», der neueste liegt als Flyer auf der Startseite. Wer als Gast hinterm Tresen stand, legst du unter «Gastschichten» mit «Neue Gastschicht» an.' },
     { ziel: ['#ws-mitte .wo-ber > .wo-bk'], titel: 'Die Website, Bereich für Bereich',
       text: 'Jede Seite der Website hat hier ihren Platz, von der Startseite über Drinks und Feiern bis zum Besuch. Du änderst direkt auf der Seite, so wie die Gäste sie sehen.' },
     { ziel: ['#ws-rand', '[data-wo-rand-knopf]'], titel: 'Einmal ändern, überall richtig',
