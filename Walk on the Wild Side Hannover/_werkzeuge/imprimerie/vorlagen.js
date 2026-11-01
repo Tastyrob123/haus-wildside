@@ -484,9 +484,14 @@
   const WS_FUSS = 'HAASEMANNSTR. 13\n30449 HANNOVER';
   V.plakat = {
     name: 'SESSION-Plakat', wofuer: 'DJ-Abend wie die SESSION-Plakate der Bar: rot-cremefarbene Wellen, Ultramarin-Schrift, das Gesicht des Abends in Schwarzweiss, Datum und Uhrzeit, Wortmarke und Adresse',
-    slots: ['bild', 'grundbild', 'ueber', 'unter', 'name', 'tag*', 'zeit', 'fuss'],
+    slots: ['bild', 'grundbild', 'ueber', 'unter', 'name', 'tag*', 'zeit', 'zusatz', 'fuss'],
+    /* Baukasten «DJ-Abend anlegen» (Robert 1.11.2026: «wie Datum und die Schriften gesetzt werden – blau auf rot-weiss – muss flexibler sein, weil man
+       das so nicht gut lesen kann»): i.gestalt = { kopf, name, datum, zusatz } je mit farbe (Hausfarbe), feld ('' | 'creme' | 'nacht': Fläche hinter dem
+       Text), groesse ('S' | 'M' | 'L') und lage ('ol' | 'or' | 'ml' | 'mr' | 'ul' | 'ur'); i.bildlage = { fx, fy, zoom } für den Ausschnitt des Fotos.
+       Ohne gestalt steht das Plakat wie bisher. */
     bau(c, i, seite) {
-      const u = c.w, H = c.h, quadrat = H < u * 1.12;
+      const u = c.w, H = c.h, quadrat = H < u * 1.12, G = i.gestalt || null;
+      const g = k => (G && G[k]) || {}, GR = { S: .8, M: 1, L: 1.22 };
       grund(c, seite, 'creme', null);
       const rx = +Math.max(u * .052, DS.SICHER + 1).toFixed(2), fussH = +Math.max(u * .085, 8).toFixed(2);
       const fy0 = rx, fy1 = +(H - rx * .55 - fussH).toFixed(2), fw = u - 2 * rx, fh = fy1 - fy0;
@@ -494,22 +499,59 @@
       if (i.bild) {
         const b = (c.M.bildIndex || {})[i.bild] || { w: 3, h: 4 }, ia = b.w / b.h;
         const ph = +(fh * (quadrat ? .7 : H > u * 1.6 ? .56 : .66)).toFixed(2), pw = +Math.min(fw * (quadrat ? .5 : .66), ph * Math.max(.72, Math.min(1.1, ia))).toFixed(2);
-        foto(c, i.bild, +(rx + fw * .06).toFixed(2), +(fy1 - ph).toFixed(2), pw, ph, { slot: 'bild' });
+        const bl = i.bildlage || {};
+        foto(c, i.bild, +(rx + fw * .06).toFixed(2), +(fy1 - ph).toFixed(2), pw, ph, { slot: 'bild', fx: bl.fx != null ? +bl.fx : .5, fy: bl.fy != null ? +bl.fy : .5, zoom: bl.zoom != null ? Math.max(1, +bl.zoom) : 1 });
       }
-      const blau = 'blau', x0 = rx + fw * .035, w0 = fw * .93;
-      const t = tx(c, 'plakat', i.ueber || 'SESSION', w0, u * .14, blau, { slot: 'ueber', ausr: 'l', x: x0, zeile: 1 });
-      plMass(c, t, w0 * .97, u * .2); t.y = +(fy0 + fh * .035).toFixed(2); c.el.push(t);
+      const blau = 'blau', x0 = rx + fw * .035, w0 = fw * .93, xr = rx + fw * .965;
+      const farbe = (k, def) => g(k).farbe || (g(k).feld === 'nacht' ? 'creme' : def);
+      // Fläche hinter einem Text (Hinterlegung): so breit wie die gesetzte Schrift, mit etwas Rand
+      const felder = [];
+      const feld = (k, els) => {
+        const f = g(k).feld; if (!f || !els.length) return;
+        const p = Math.max(1.2, Math.min(...els.map(e => e.gr)) * .28);
+        let l = 1e9, r = -1e9, o = 1e9, un = -1e9;
+        els.forEach(e => { const bw = DS.mess(Object.assign({}, e, { w: e.w })).bw || e.w; const x1 = e.ausr === 'r' ? e.x + e.w - bw : e.ausr === 'c' ? e.x + (e.w - bw) / 2 : e.x;
+          l = Math.min(l, x1); r = Math.max(r, x1 + bw); o = Math.min(o, e.y); un = Math.max(un, e.y + e.h); });
+        felder.push({ id: neueId(), typ: 'flaeche', x: +(l - p).toFixed(2), y: +(o - p * .7).toFixed(2), w: +(r - l + 2 * p).toFixed(2), h: +(un - o + p * 1.2).toFixed(2), r: +(p * .5).toFixed(2), farbe: f === 'nacht' ? 'nacht' : 'creme', deck: 1, slot: 'feld.' + k });
+      };
+      const texte = [];
+      // Kopf: SESSION und SIP & SOUNDS oben links (die Marke des Abends, Lage fest)
+      const kg = GR[g('kopf').groesse] || 1;
+      const t = tx(c, 'plakat', i.ueber || 'SESSION', w0, u * .14, farbe('kopf', blau), { slot: 'ueber', ausr: 'l', x: x0, zeile: 1 });
+      plMass(c, t, w0 * .97 * Math.min(1, kg), u * .2 * kg); t.y = +(fy0 + fh * .035).toFixed(2); texte.push(t);
       let y = t.y + t.h + .12 * t.gr;   // Inhaltsfläche der Plakatschrift (1,13 em) ragt über die Zeile: so berühren sich SESSION und SIP & SOUNDS nicht
-      if (i.unter) { const s = tx(c, 'plakat', i.unter, fw * .5, t.gr * .3, blau, { slot: 'unter', ausr: 'l', x: x0 + t.gr * .02, zeile: 1.15 }); s.y = +y.toFixed(2); c.el.push(s); }
-      const xr = rx + fw * .965, wr = fw * .55;
-      const zt = i.zeit ? tx(c, 'plakat', i.zeit, wr, t.gr * .3, blau, { slot: 'zeit', ausr: 'r', x: xr - wr, zeile: 1 }) : null;
-      const dt = tx(c, 'plakat', i.tag || '', wr, t.gr * .78, blau, { slot: 'tag', ausr: 'r', x: xr - wr, zeile: 1 });
-      if (zt) plMass(c, zt, wr * .92, t.gr * .3);
-      plMass(c, dt, wr * .95, t.gr * .78);
-      let yb = fy1 - fh * .045;
-      if (zt) { zt.y = +(yb - zt.h).toFixed(2); c.el.push(zt); yb = zt.y - .075 * (zt.gr + dt.gr); }
-      dt.y = +(yb - dt.h).toFixed(2); c.el.push(dt);
-      if (i.name) { const n = tx(c, 'plakat', i.name, fw * .4, t.gr * .2, blau, { slot: 'name', ausr: 'r', x: xr - fw * .4, zeile: 1.12 }); n.y = +(fy0 + fh * (quadrat ? .5 : .47)).toFixed(2); c.el.push(n); }
+      const kopf = [t];
+      if (i.unter) { const s = tx(c, 'plakat', i.unter, fw * .5, t.gr * .3, farbe('kopf', blau), { slot: 'unter', ausr: 'l', x: x0 + t.gr * .02, zeile: 1.15 }); s.y = +y.toFixed(2); texte.push(s); kopf.push(s); y = s.y + s.h; }
+      const kopfUnten = y;
+      feld('kopf', kopf);
+      // Datum und Uhrzeit als Block
+      const dgr = GR[g('datum').groesse] || 1, dl = g('datum').lage || 'ur', wr = fw * .55;
+      const links = /l$/.test(dl), xa = links ? x0 : xr - wr, ausr = links ? 'l' : 'r';
+      const zt = i.zeit ? tx(c, 'plakat', i.zeit, wr, t.gr * .3 * dgr, farbe('datum', blau), { slot: 'zeit', ausr, x: xa, zeile: 1 }) : null;
+      const dt = tx(c, 'plakat', i.tag || '', wr, t.gr * .78 * dgr, farbe('datum', blau), { slot: 'tag', ausr, x: xa, zeile: 1 });
+      if (zt) plMass(c, zt, wr * .92 * Math.min(1, dgr), t.gr * .3 * dgr);
+      plMass(c, dt, wr * .95 * Math.min(1, dgr), t.gr * .78 * dgr);
+      const blockH = dt.h + (zt ? zt.h + .075 * (zt.gr + dt.gr) : 0);
+      let yb = /^o/.test(dl) ? Math.max(kopfUnten + fh * .04, fy0 + fh * .3) + blockH : /^m/.test(dl) ? fy0 + fh * .55 + blockH / 2 : fy1 - fh * .045;
+      if (zt) { zt.y = +(yb - zt.h).toFixed(2); yb = zt.y - .075 * (zt.gr + dt.gr); }
+      dt.y = +(yb - dt.h).toFixed(2);
+      if (zt) texte.push(zt); texte.push(dt);
+      feld('datum', [dt].concat(zt ? [zt] : []));
+      // Name des Abends
+      if (i.name) {
+        const ngr = GR[g('name').groesse] || 1, nl = g('name').lage || 'mr', nw = fw * .4 * Math.max(1, ngr), nlinks = /l$/.test(nl);
+        const n = tx(c, 'plakat', i.name, nw, t.gr * .2 * ngr, farbe('name', blau), { slot: 'name', ausr: nlinks ? 'l' : 'r', x: nlinks ? x0 : xr - nw, zeile: 1.12 });
+        n.y = +(/^o/.test(nl) ? kopfUnten + fh * .04 : /^u/.test(nl) ? (G && /^u/.test(dl) && /l$/.test(dl) === nlinks ? dt.y - fh * .04 - n.h : fy1 - fh * .045 - n.h) : fy0 + fh * (quadrat ? .5 : .47)).toFixed(2);
+        texte.push(n); feld('name', [n]);
+      }
+      // Zusatzzeile (frei: «FREE ENTRY», «B2B MIT …»)
+      if (i.zusatz) {
+        const zg = GR[g('zusatz').groesse] || 1, zl = g('zusatz').lage || 'or', zw2 = fw * .5, zlinks = /l$/.test(zl);
+        const z = tx(c, 'plakat', String(i.zusatz).toUpperCase(), zw2, t.gr * .17 * zg, farbe('zusatz', blau), { slot: 'zusatz', ausr: zlinks ? 'l' : 'r', x: zlinks ? x0 : xr - zw2, zeile: 1.12 });
+        z.y = +(/^o/.test(zl) ? kopfUnten + fh * .015 : /^m/.test(zl) ? fy0 + fh * .4 : fy1 - fh * .045 - z.h).toFixed(2);
+        texte.push(z); feld('zusatz', [z]);
+      }
+      felder.forEach(f => c.el.push(f)); texte.forEach(e => c.el.push(e));
       const Z = c.M.zeichen2 || c.M.zeichen, zh = fussH * .96, zw = +(zh / Z.verh).toFixed(2);
       c.el.push({ id: neueId(), typ: 'zeichen', z: 2, x: rx, y: +(fy1 + (H - fy1 - zh) / 2).toFixed(2), w: zw, farbe: 'logo', deck: 1 });
       const f = tx(c, 'mono', i.fuss || WS_FUSS, fw * .5, Math.max(1.5, u * .016), blau, { slot: 'fuss', ausr: 'r', x: rx + fw * .5, zeile: 1.45, sperr: .08 });

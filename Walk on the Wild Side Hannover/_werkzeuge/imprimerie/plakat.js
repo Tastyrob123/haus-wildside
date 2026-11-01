@@ -1,7 +1,7 @@
 /* Plakatwerkstatt · Walk on the Wild Side Hannover (31.10.2026, Form der Plakatwerkstatt des Stammhauses): zwei Ansichten.
    1. «Plakat-Grund» (#msMotive): die rot-cremefarbenen Wellen der SESSION-Plakate und die Gesichter in Schwarzweiss, jedes gleich als SESSION-Plakat;
       «Als Plakat öffnen» öffnet es im Editor.
-   2. «DJ-Abend anlegen» (#msAbend): Name, Stil, Samstag und Uhrzeit → drei bis fünf SESSION-Plakate in verschiedenen Wellen und Gesichtern, sofort und ohne KI;
+   2. «DJ-Abend anlegen» (#msAbend): Baukasten mit Live-Vorschau (1.11.2026): Angaben, eigenes Foto (wird schwarzweiss), Plakat-Grund, Schrift lesbar setzen;
       eins wählen, dann im Editor wie gewohnt: Foto tauschen (das Gesicht des Abends), Texte als Ebenen, Speichern, PDF A3 und PNG 4:5 / 9:16.
    Gesetzt wird mit dem Aufbau «plakat» (vorlagen.js). Nur Lesen: Marke (DS.M), motive.json. */
 (function () {
@@ -60,34 +60,175 @@
     G.forEach((g, i) => box.appendChild(karte(plakatDoc({ welle: W[i % W.length], gesicht: g, titel: alt(g) }), alt(g).replace(/, schwarzweiss$/, ''), 'Schwarzweiss, für das Gesicht des Abends', 'Als Plakat öffnen')));
   }
 
-  /* ---------- 2 DJ-Abend anlegen ---------- */
-  function formular() {
-    const f = $('#pkFreitag'); if (!f || f.options.length) return;
-    samstage(16).forEach((d, i) => { const o = document.createElement('option'); o.value = d.toISOString().slice(0, 10); o.textContent = tag(d); if (!i) o.selected = true; f.appendChild(o); });
+  /* ---------- 2 DJ-Abend anlegen: Baukasten mit Live-Vorschau (Robert 1.11.2026) ----------
+     Eine feste Vorlage (das SESSION-Plakat), dazu frei: das Foto des Abends (hochladen, auch in Farbe, wird hier im Browser schwarzweiss;
+     oder ein Gesicht der Bar), der Plakat-Grund (die Wellen), und für Kopf, Name, Datum und Zusatzzeile je Farbe, Hinterlegung, Grösse und Lage.
+     Die Lesbarkeit wird mitgerechnet (Kontrast unter 4,5:1 → Hinweis mit Vorschlag). Ohne KI, ohne Server: Fotos liegen wie «Meine Medien» im Browser. */
+  const SPEICHER = 'ds-wildside-djabend';
+  const FARBEN = [['blau', 'Ultramarin'], ['rot', 'Plakatrot'], ['creme', 'Creme'], ['nacht', 'Nacht']];
+  const TEILE = [['kopf', 'SESSION und SIP & SOUNDS'], ['name', 'Name'], ['datum', 'Datum und Uhrzeit'], ['zusatz', 'Zusatzzeile']];
+  const LAGEN = { kopf: [['ol', 'Oben links']], name: [['mr', 'Mitte rechts'], ['or', 'Oben rechts'], ['ur', 'Unten rechts'], ['ul', 'Unten links']],
+    datum: [['ur', 'Unten rechts'], ['ul', 'Unten links'], ['or', 'Oben rechts'], ['mr', 'Mitte rechts']], zusatz: [['or', 'Oben rechts'], ['mr', 'Mitte rechts'], ['ur', 'Unten rechts'], ['ul', 'Unten links']] };
+  /* gleich gut lesbar: Name und Datum auf einem Creme-Feld, die Zusatzzeile hell auf Nacht; SESSION bleibt wie auf den Plakaten der Bar */
+  const START = { kopf: { farbe: 'blau', feld: '', groesse: 'M', lage: 'ol' }, name: { farbe: 'blau', feld: 'creme', groesse: 'M', lage: 'mr' },
+    datum: { farbe: 'blau', feld: 'creme', groesse: 'M', lage: 'ur' }, zusatz: { farbe: 'creme', feld: 'nacht', groesse: 'M', lage: 'or' } };
+  let BK = null, zeichnen = 0;
+  const lies = () => { try { return JSON.parse(localStorage.getItem(SPEICHER) || 'null'); } catch (e) { return null; } };
+  const merke = () => { try { localStorage.setItem(SPEICHER, JSON.stringify(BK)); } catch (e) { } };
+  function zustand() {
+    if (BK) return BK;
+    const alt = lies() || {};
+    BK = { bild: alt.bild || null, welle: alt.welle || null, bildlage: alt.bildlage || { fx: .5, fy: .5, zoom: 1 }, format: alt.format || 'insta',
+      gestalt: JSON.parse(JSON.stringify(START)) };
+    TEILE.forEach(([k]) => Object.assign(BK.gestalt[k], (alt.gestalt || {})[k] || {}));
+    return BK;
   }
-  function vorschlagen(ev) {
+  /* Kontrast nach WCAG */
+  const hex = f => (DS.M.farben || {})[f] || f;
+  const lum = h => { const n = parseInt(String(hex(h)).slice(1), 16), c = [n >> 16 & 255, n >> 8 & 255, n & 255].map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; };
+  const kontrast = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+  function lesbar(k) {   // schlechtester Kontrast gegen das, was hinter dem Text liegt: das Feld, sonst Rot und Creme der Wellen
+    const s = zustand().gestalt[k], f = s.farbe || 'blau', hinter = s.feld ? [s.feld === 'nacht' ? 'nacht' : 'creme'] : ['rot', 'creme'];
+    return Math.min(...hinter.map(h => kontrast(f, h)));
+  }
+  function werte() {
+    const name = $('#pkThema').value.trim(), zeit = $('#pkGast').value.trim() || '9 PM TO 1 AM', zusatz = ($('#pkZusatz') || { value: '' }).value.trim();
+    const sa = new Date(($('#pkFreitag').value || samstage(1)[0].toISOString().slice(0, 10)) + 'T12:00:00');
+    return { name: name || 'Name des DJs', zeit, zusatz, samstag: sa };
+  }
+  function bauDoc(format, welle) {
+    const s = zustand(), w = werte(), G = gesichter();
+    const bild = s.bild && DS.M.bildIndex[s.bild] ? s.bild : G[0];
+    const doc = plakatDoc({ name: w.name, zeit: w.zeit, samstag: w.samstag, welle: welle || s.welle || wellen()[0], gesicht: bild, format: format || s.format });
+    const q = doc.seiten[0].quelle || {};
+    const inh = Object.assign({}, q.inhalt || {}, { gestalt: JSON.parse(JSON.stringify(s.gestalt)), bildlage: Object.assign({}, s.bildlage), zusatz: w.zusatz ? w.zusatz.toUpperCase() : '' });
+    return DS.dokument(DS.M, { name: doc.name, format: format || s.format, seiten: [{ vorlage: 'plakat', ton: 'session', inhalt: inh }] });
+  }
+  function vorschau() {
+    clearTimeout(zeichnen);
+    zeichnen = setTimeout(() => {
+      const box = $('#bkBlatt'); if (!box || !window.DSStudio) return;
+      const breit = matchMedia('(min-width:1100px)').matches, F = DS.FORMATE[zustand().format] || { b: 4, h: 5 };
+      const h = breit ? Math.min(560, innerHeight - 220) : Math.min(480, Math.round((box.clientWidth || 320) * F.h / F.b));
+      try { const v = DSStudio.miniBox(bauDoc(), 0, Math.max(260, h)); box.replaceChildren(v); } catch (e) { console.warn(e); }
+      const w = werte(); $('#bkUnter').textContent = `${w.name} · ${tag(w.samstag)} · ${(DS.FORMATE[zustand().format] || {}).name || ''}`;
+      pruefeLesbar(); merke();
+    }, 90);
+  }
+  function pruefeLesbar() {
+    const p = $('#bkPruefung'); if (!p) return;
+    const schlecht = TEILE.filter(([k]) => k !== 'kopf' && (k !== 'zusatz' || ($('#pkZusatz') || { value: '' }).value.trim()) && lesbar(k) < 4.5);
+    const kopf = lesbar('kopf') < 3;   // SESSION ist gross: 3:1 genügt
+    if (!schlecht.length && !kopf) { p.className = 'bk-pruefung bk-pruefung--gut'; p.textContent = 'Gut lesbar: jeder Text hebt sich genug vom Grund ab.'; return; }
+    const namen = schlecht.map(([, n]) => n).concat(kopf ? ['SESSION'] : []);
+    p.className = 'bk-pruefung bk-pruefung--hinweis';
+    p.innerHTML = `<span>Schwer zu lesen auf den Wellen: ${esc(namen.join(', '))}. Vorschlag: ein Creme-Feld dahinter, die Schrift in Ultramarin.</span> <button type="button" class="ms-lnk" id="bkVorschlag">Vorschlag übernehmen</button>`;
+    $('#bkVorschlag').addEventListener('click', () => {
+      schlecht.forEach(([k]) => Object.assign(zustand().gestalt[k], { feld: 'creme', farbe: 'blau' }));
+      if (kopf) Object.assign(zustand().gestalt.kopf, { farbe: 'blau', feld: 'creme' });
+      zeichneSchrift(); vorschau();
+    });
+  }
+  /* Foto des Abends: hochladen → schwarzweiss (Graustufen, etwas mehr Kontrast) → eigenes Foto im Browser */
+  async function schwarzweiss(datei) {
+    let bild;
+    try { bild = await createImageBitmap(datei, { imageOrientation: 'from-image' }); }
+    catch (e) { bild = await new Promise((ok, nein) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => nein(new Error('Dieses Bildformat kann der Browser nicht lesen (HEIC öffnet Safari). Bitte als JPG oder PNG speichern.')); i.src = URL.createObjectURL(datei); }); }
+    const k = Math.min(1, 3600 / Math.max(bild.width, bild.height)), cv = document.createElement('canvas'); cv.width = Math.round(bild.width * k); cv.height = Math.round(bild.height * k);
+    const g = cv.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(bild, 0, 0, cv.width, cv.height);
+    const d = g.getImageData(0, 0, cv.width, cv.height), p = d.data;
+    for (let j = 0; j < p.length; j += 4) { let l = .2126 * p[j] + .7152 * p[j + 1] + .0722 * p[j + 2]; l = (l - 128) * 1.18 + 128; l = l < 0 ? 0 : l > 255 ? 255 : l; p[j] = p[j + 1] = p[j + 2] = l; }
+    g.putImageData(d, 0, 0);
+    const blob = await new Promise(ok => cv.toBlob(ok, 'image/jpeg', .92));
+    return new File([blob], (datei.name || 'foto').replace(/\.[^.]+$/, '') + ' schwarzweiss.jpg', { type: 'image/jpeg' });
+  }
+  async function hochladen(ev) {
+    const d = ev.target.files && ev.target.files[0]; ev.target.value = ''; if (!d) return;
+    const m = $('#bkMeldung'); m.textContent = 'Das Foto wird schwarzweiss …';
+    try {
+      const sw = await schwarzweiss(d);
+      const neu = await DS.eigene.hinzu(DS.M, [sw], t => { m.textContent = t; });
+      if (!neu.length) throw new Error('Das Foto liess sich nicht lesen.');
+      const s = zustand(); s.bild = neu[0]; s.bildlage = { fx: .5, fy: .5, zoom: 1 };
+      m.textContent = neu.fluechtig ? 'Fertig, schwarzweiss. Dieser Browser behält es nur bis zum Schliessen.' : 'Fertig, schwarzweiss. Das Foto bleibt in diesem Browser.';
+      zeichneFotos(); regler(); vorschau();
+    } catch (e) { m.textContent = e.message || 'Das Foto liess sich nicht lesen.'; }
+  }
+  function zeichneFotos() {
+    const box = $('#bkFotos'); if (!box) return;
+    const s = zustand(), G = gesichter(), eig = (DS.M.bilder || []).filter(b => b.eigen && / schwarzweiss$/.test(b.alt || '')).map(b => b.key);
+    const alle = eig.concat(G), akt = s.bild && DS.M.bildIndex[s.bild] ? s.bild : G[0];
+    box.innerHTML = alle.map(k => { const b = DS.M.bildIndex[k] || {}; return `<button type="button" class="bk-foto${k === akt ? ' an' : ''}" data-bkbild="${esc(k)}" aria-pressed="${k === akt}" aria-label="${esc(b.alt || k)}"><img src="${esc(DS.bildUrl(DS.M, k, true))}" alt="" loading="lazy"></button>`; }).join('');
+    box.querySelectorAll('[data-bkbild]').forEach(b => b.addEventListener('click', () => { s.bild = b.dataset.bkbild; s.bildlage = { fx: .5, fy: .5, zoom: 1 }; zeichneFotos(); regler(); vorschau(); }));
+  }
+  function regler() {
+    const s = zustand(); [['bkZoom', 'zoom'], ['bkFx', 'fx'], ['bkFy', 'fy']].forEach(([id, k]) => { const r = $('#' + id); if (r) r.value = s.bildlage[k]; });
+  }
+  function zeichneGruende() {
+    const box = $('#bkGruende'); if (!box) return;
+    const s = zustand(), W = wellen(), akt = s.welle || W[0];
+    box.innerHTML = W.map((w, i) => `<button type="button" class="bk-grund${w === akt ? ' an' : ''}" data-bkgrund="${esc(w)}" aria-pressed="${w === akt}" aria-label="${esc((MOTIVE[i] || {}).titel || 'Wellen ' + (i + 1))}"><img src="${esc(DS.bildUrl(DS.M, w, true))}" alt="" loading="lazy"></button>`).join('');
+    box.querySelectorAll('[data-bkgrund]').forEach(b => b.addEventListener('click', () => { s.welle = b.dataset.bkgrund; zeichneGruende(); vorschau(); }));
+  }
+  function zeichneSchrift() {
+    const box = $('#bkSchrift'); if (!box) return;
+    const s = zustand();
+    box.innerHTML = TEILE.map(([k, n]) => { const g = s.gestalt[k];
+      return `<fieldset class="bk-zeile" data-bkteil="${k}"><legend>${esc(n)}</legend>
+        <span class="bk-farben" role="group" aria-label="Farbe">${FARBEN.map(([f, fn]) => `<button type="button" class="bk-farbe${g.farbe === f ? ' an' : ''}" data-f="${f}" style="--f:${esc(hex(f))}" aria-pressed="${g.farbe === f}" aria-label="${esc(fn)}" title="${esc(fn)}"></button>`).join('')}</span>
+        <label><span>Feld</span><select data-k="feld"><option value=""${!g.feld ? ' selected' : ''}>Ohne</option><option value="creme"${g.feld === 'creme' ? ' selected' : ''}>Creme</option><option value="nacht"${g.feld === 'nacht' ? ' selected' : ''}>Nacht</option></select></label>
+        <label><span>Grösse</span><select data-k="groesse">${['S', 'M', 'L'].map(x => `<option${g.groesse === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label>
+        ${LAGEN[k].length > 1 ? `<label><span>Lage</span><select data-k="lage">${LAGEN[k].map(([v, t]) => `<option value="${v}"${g.lage === v ? ' selected' : ''}>${esc(t)}</option>`).join('')}</select></label>` : ''}
+      </fieldset>`; }).join('');
+    box.querySelectorAll('[data-bkteil]').forEach(fs => {
+      const k = fs.dataset.bkteil;
+      fs.querySelectorAll('.bk-farbe').forEach(b => b.addEventListener('click', () => { s.gestalt[k].farbe = b.dataset.f; fs.querySelectorAll('.bk-farbe').forEach(x => { x.classList.toggle('an', x === b); x.setAttribute('aria-pressed', x === b); }); vorschau(); }));
+      fs.querySelectorAll('select').forEach(sel => sel.addEventListener('change', () => { s.gestalt[k][sel.dataset.k] = sel.value; vorschau(); }));
+    });
+  }
+  function formular() {
+    const f = $('#pkFreitag'); if (!f) return;
+    if (!f.options.length) samstage(16).forEach((d, i) => { const o = document.createElement('option'); o.value = d.toISOString().slice(0, 10); o.textContent = tag(d); if (!i) o.selected = true; f.appendChild(o); });
+    zustand(); zeichneFotos(); zeichneGruende(); zeichneSchrift(); regler();
+    document.querySelectorAll('[data-bkformat]').forEach(b => { const an = b.dataset.bkformat === zustand().format; b.classList.toggle('an', an); b.setAttribute('aria-pressed', an); });
+    vorschau();
+  }
+  function karten(liste, titelFn, unterFn) {
+    const box = $('#pkVorschlaege'); box.innerHTML = ''; box.dataset.n = liste.length; const gr = fach(box, liste.length);
+    liste.forEach((x, i) => box.appendChild(karte(x.doc, titelFn(x, i), unterFn(x, i), 'Diesen bearbeiten', gr)));
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function vorschlagen(ev) {   // «Im Editor öffnen»: das Plakat genau so, wie es rechts steht
     if (ev) ev.preventDefault();
-    const name = $('#pkThema').value.trim(), zeit = $('#pkGast').value.trim() || '9 PM TO 1 AM', stil = $('#pkKonzept').value.trim();
-    const zahl = +(document.querySelector('[data-pkzahl].an') || { dataset: { pkzahl: 4 } }).dataset.pkzahl;
-    const sa = new Date($('#pkFreitag').value + 'T12:00:00');
-    const box = $('#pkVorschlaege');
-    if (name.length < 2) { $('#pkThema').focus(); box.innerHTML = '<p class="pk-leer">Wer legt auf? Den Namen eintragen, zum Beispiel «Moury».</p>'; return; }
-    box.innerHTML = `<p class="pk-hinweis">${zahl} Plakate für ${esc(name)} am ${esc(tag(sa))}${stil ? ' · ' + esc(stil) : ''}. Im Editor das Foto tauschen: das Gesicht des Abends in Schwarzweiss.</p>`;
-    box.dataset.n = zahl;
-    const G = gesichter(), W = wellen(), gr = fach(box, zahl);
-    for (let i = 0; i < zahl; i++) {
-      const doc = plakatDoc({ name, zeit, samstag: sa, welle: W[i % W.length], gesicht: G[(i * 4) % G.length] });
-      box.appendChild(karte(doc, `Vorschlag ${i + 1}`, `Wellen ${(i % W.length) + 1} · ${tag(sa)}`, 'Diesen bearbeiten', gr));
-    }
+    if ($('#pkThema').value.trim().length < 2) { $('#pkThema').focus(); $('#bkMeldung').textContent = ''; $('#pkThema').setAttribute('aria-invalid', 'true'); $('#bkUnter').textContent = 'Wer legt auf? Den Namen eintragen, zum Beispiel «Moury».'; return; }
+    $('#pkThema').removeAttribute('aria-invalid');
+    DSStudio.oeffne(bauDoc()); if (DSStart.offen()) DSStart.zu();
+  }
+  function alleFormate() {
+    const w = werte();
+    karten([['insta', 'Instagram 4:5'], ['story', 'Story 9:16'], ['a3h', 'A3 zum Aushang']].map(([f, t]) => ({ doc: bauDoc(f), t })), x => x.t, () => `${w.name} · ${tag(w.samstag)}`);
+  }
+  function varianten() {
+    const w = werte(), W = wellen();
+    karten(W.slice(0, 6).map((we, i) => ({ doc: bauDoc(null, we), i })), (x, i) => `Wellen ${i + 1}`, () => `${w.name} · ${tag(w.samstag)}`);
+  }
+  function verdrahten() {
+    $('#pkForm') && $('#pkForm').addEventListener('submit', vorschlagen);
+    ['pkThema', 'pkGast', 'pkZusatz', 'pkFreitag'].forEach(id => { const e = $('#' + id); if (e) e.addEventListener(e.tagName === 'SELECT' ? 'change' : 'input', vorschau); });
+    const d = $('#bkDatei'); if (d) d.addEventListener('change', hochladen);
+    [['bkZoom', 'zoom'], ['bkFx', 'fx'], ['bkFy', 'fy']].forEach(([id, k]) => { const r = $('#' + id); if (r) r.addEventListener('input', () => { zustand().bildlage[k] = +r.value; vorschau(); }); });
+    document.querySelectorAll('[data-bkformat]').forEach(b => b.addEventListener('click', () => { zustand().format = b.dataset.bkformat; document.querySelectorAll('[data-bkformat]').forEach(x => { x.classList.toggle('an', x === b); x.setAttribute('aria-pressed', x === b); }); vorschau(); }));
+    $('#bkFormate') && $('#bkFormate').addEventListener('click', alleFormate);
+    $('#bkVarianten') && $('#bkVarianten').addEventListener('click', varianten);
+    addEventListener('resize', () => { if ($('#msAbend') && !$('#msAbend').hidden) vorschau(); });
   }
 
   function zeige(a) { if (a === 'motive') zeichneMotive(); if (a === 'abend') formular(); }
   async function los() {
     try { MOTIVE = await (await fetch(DS.M.basis + 'motive.json', { cache: 'no-cache' })).json(); } catch (e) { MOTIVE = []; }
     const z = $('#pkZahl'); if (z) z.textContent = MOTIVE.length + gesichter().length;
-    $('#pkForm') && $('#pkForm').addEventListener('submit', vorschlagen);
-    document.querySelectorAll('[data-pkzahl]').forEach(b => b.addEventListener('click', () => { document.querySelectorAll('[data-pkzahl]').forEach(x => x.classList.toggle('an', x === b)); }));
-    formular();
+    verdrahten();
+    if ($('#msAbend') && !$('#msAbend').hidden) formular();
   }
   window.DSPlakat = { zeige, plakatDoc, samstage, freitage: samstage, motive: () => MOTIVE };
   if (window.DS && DS.M && window.DSStudio) los(); else document.addEventListener('ds:bereit', los, { once: true });

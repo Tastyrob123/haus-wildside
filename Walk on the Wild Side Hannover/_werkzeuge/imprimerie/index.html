@@ -234,15 +234,41 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
         <div class="vb__alle" id="abAlle"></div>
       </div>
       <div id="msAbend" hidden>
-        <div class="ms-titel"><h1>DJ-Abend anlegen</h1><span class="ms-leise">Wer legt auf, an welchem Samstag, von wann bis wann: Die Plakatwerkstatt setzt drei bis fünf SESSION-Plakate in den Wellen der Bar, sofort und ohne KI. Eins wählen und im Editor fertig machen: das Gesicht des Abends, Texte, Format.</span></div>
-        <form class="pk-form" id="pkForm" autocomplete="off">
-          <label><span>Wer legt auf</span><input id="pkThema" maxlength="60" placeholder="Zum Beispiel: Moury"></label>
-          <label><span>Uhrzeit wie auf dem Plakat</span><input id="pkGast" maxlength="30" placeholder="Zum Beispiel: 9 PM TO 1 AM"></label>
-          <label class="pk-breit"><span>Stil (für die Karte, nicht aufs Plakat)</span><textarea id="pkKonzept" maxlength="200" placeholder="Zum Beispiel: Old-School-Hip-Hop"></textarea></label>
-          <label><span>Samstag</span><select id="pkFreitag"></select></label>
-          <div class="pk-unten"><span class="pk-zahl">Vorschläge <button type="button" data-pkzahl="3">3</button><button type="button" data-pkzahl="4" class="an">4</button><button type="button" data-pkzahl="5">5</button></span>
-            <button class="kn knopf--voll glanz-kn" id="pkLos" type="submit"><span>Plakate anlegen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button></div>
-        </form>
+        <div class="ms-titel"><h1>DJ-Abend anlegen</h1><span class="ms-leise">Dein eigenes SESSION-Plakat: Foto des Abends hochladen (es wird schwarzweiss), den Plakat-Grund wählen und die Schrift so setzen, dass man sie gut lesen kann. Rechts steht das Plakat sofort, danach geht es im Editor weiter.</span></div>
+        <div class="bk">
+          <form class="bk-form" id="pkForm" autocomplete="off">
+            <section class="bk-teil"><h2><b>1</b>Angaben</h2>
+              <div class="bk-felder">
+                <label><span>Wer legt auf</span><input id="pkThema" maxlength="60" placeholder="Zum Beispiel: Moury"></label>
+                <label><span>Samstag</span><select id="pkFreitag"></select></label>
+                <label><span>Uhrzeit wie auf dem Plakat</span><input id="pkGast" maxlength="30" placeholder="Zum Beispiel: 9 PM TO 1 AM"></label>
+                <label><span>Zusatzzeile, frei</span><input id="pkZusatz" maxlength="40" placeholder="Zum Beispiel: Free Entry"></label>
+                <label class="bk-breit"><span>Stil, für dich (nicht aufs Plakat)</span><input id="pkKonzept" maxlength="120" placeholder="Zum Beispiel: Old-School-Hip-Hop"></label>
+              </div>
+            </section>
+            <section class="bk-teil"><h2><b>2</b>Foto des Abends</h2>
+              <p class="bk-satz">Ein Foto hochladen, gern auch in Farbe: Die Plakatwerkstatt macht es schwarzweiss. Es bleibt nur in diesem Browser. Oder eines der Gesichter der Bar wählen.</p>
+              <div class="bk-reihe"><label class="kn bk-hoch"><input type="file" id="bkDatei" accept="image/*,.heic,.heif"><span>Foto hochladen</span></label><span class="bk-meldung" id="bkMeldung" role="status" aria-live="polite"></span></div>
+              <div class="bk-fotos" id="bkFotos"></div>
+              <div class="bk-regler">
+                <label><span>Grösse</span><input type="range" id="bkZoom" min="1" max="2.5" step="0.05" value="1"></label>
+                <label><span>Links und rechts</span><input type="range" id="bkFx" min="0" max="1" step="0.01" value="0.5"></label>
+                <label><span>Oben und unten</span><input type="range" id="bkFy" min="0" max="1" step="0.01" value="0.5"></label>
+              </div>
+            </section>
+            <section class="bk-teil"><h2><b>3</b>Plakat-Grund</h2><div class="bk-gruende" id="bkGruende"></div></section>
+            <section class="bk-teil"><h2><b>4</b>Schrift</h2>
+              <p class="bk-satz">Für jeden Text: Farbe aus dem Haus, ein Feld dahinter, Grösse und Lage. Auf den Wellen liest sich Schrift auf einem Creme-Feld am besten.</p>
+              <div id="bkSchrift"></div><p class="bk-pruefung" id="bkPruefung" role="status" aria-live="polite"></p>
+            </section>
+            <div class="bk-unten">
+              <span class="bk-formate" role="group" aria-label="Format"><button type="button" data-bkformat="insta">Instagram 4:5</button><button type="button" data-bkformat="story">Story</button><button type="button" data-bkformat="a3h">A3</button></span>
+              <button class="kn knopf--voll glanz-kn" id="pkLos" type="submit"><span>Im Editor öffnen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+            </div>
+            <div class="bk-mehr"><button type="button" class="ms-lnk" id="bkFormate"><span>Alle drei Formate anlegen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button type="button" class="ms-lnk" id="bkVarianten"><span>In anderen Wellen zeigen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+          </form>
+          <aside class="bk-vorschau" aria-label="Vorschau des Plakats"><div class="bk-blatt" id="bkBlatt"></div><p class="bk-unter" id="bkUnter"></p></aside>
+        </div>
         <div class="pk-raster" id="pkVorschlaege"></div>
       </div>
       <div id="msMotive" hidden>
