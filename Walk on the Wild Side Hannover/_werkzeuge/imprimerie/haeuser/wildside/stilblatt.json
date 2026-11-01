@@ -79,6 +79,29 @@
     "plakathoch"
    ],
    "quelle": "«SESSION», «SIP & SOUNDS», Name, «17|10», «9 TO 1 AM» auf den SESSION-Plakaten seit September 2025: breite, sehr fette Versalien"
+  },
+  "event_plakate": {
+   "rolle": [
+    "egrotesk",
+    "eschmal",
+    "ehand",
+    "liebe"
+   ],
+   "schrift": [
+    "DS-egrotesk",
+    "Archivo Black",
+    "DS-eschmal",
+    "Anton",
+    "DS-ehand",
+    "Permanent Marker",
+    "DS-liebe",
+    "Titan One"
+   ],
+   "versalien": true,
+   "nur_bei": [
+    "engine"
+   ],
+   "quelle": "Event-Plakate der Bar in Versalien: «CHRISTI LIMMERFAHRT», «14/15. MAI», «AM KÜCHENGARTEN» in fetter Grotesk (website/assets/bild/uw-pl-limmer-1080.webp), «31.10.-01.11», «GOOD WINE - GOOD FOOD», «WANN/WO/DRINKS» (uw-pl-okt-1080.webp), «WILD SIDE x RUDI IN LOVE» (valentin-1080.webp). Gilt nur für die Plakat-Ideen der Ideen-Engine «Event beschreiben» (engine.js, 1.11.2026)."
   }
  },
  "verboten": {

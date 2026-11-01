@@ -318,7 +318,7 @@
     const W = F.b, H = F.h, k = W / 108, m = 8 * k;
     const pal = r.wahl([['#ffdbe2', '#e0141e', '#ff6f91', 'Rosa und Rot'], ['#ffe2cc', '#e5370f', '#ff9a3c', 'Pfirsich und Orange'], ['#ebdfff', '#5b2bd6', '#ff5fa8', 'Flieder und Violett'], ['#ffd6e0', '#c8102e', '#f08a24', 'Rosa und Kirsche']]);
     const [grund, rot, akz] = pal, el = [];
-    const kopf = passe(txt('egrotesk', 'WALK ON THE WILD SIDE' + (E.partner[0] ? ' × ' + E.partner[0].toUpperCase() : ''), m, m + 1 * k, W - 2 * m, 2.6 * k, rot, { sperr: .06, zeile: 1 }), W - 2 * m);
+    const kopf = passe(txt('egrotesk', 'WALK ON THE WILD SIDE' + (E.partner[0] ? ' & ' + E.partner[0].toUpperCase() : ''), m, m + 1 * k, W - 2 * m, 2.6 * k, rot, { sperr: .06, zeile: 1 }), W - 2 * m);
     const n = E.titel.length > 28 ? 3 : E.titel.length > 13 ? 2 : 1;
     const titel = passe(txt('liebe', teile(E.titel.toUpperCase(), n), m, 0, W - 2 * m, 13 * k, rot, { zeile: .98 }), W - 2 * m, H * .3);
     titel.y = f2(H * .42 - titel.h / 2);
@@ -412,16 +412,21 @@
         const key = bildEintragen(e.svg, F, `${STIL_NAMEN[s]} · ${E.name}`);
         const bild = { id: neueId(), typ: 'bild', bild: key, x: -DS.B, y: -DS.B, w: F.b + 2 * DS.B, h: F.h + 2 * DS.B, fx: .5, fy: .5, zoom: 1, slot: 'bild' };
         const doc = { id: 'd' + Date.now().toString(36) + i, name: `${E.name} · ${STIL_NAMEN[s]}`, formatKey: E.format, format: { b: F.b, h: F.h },
-          seiten: [{ grund: e.grund, tapete: null, el: [bild].concat(e.el), frei: true, engine: e.stil || true }], hinweise: [], auftrag: 'Ideen-Engine: ' + E.name, geaendert: Date.now() };
-        IDEEN.push({ stil: s, doc, svg: e.svg, farben: e.farben, zweite: i === stile.length - 1, E });
+          seiten: [{ grund: e.grund, tapete: null, el: [bild].concat(e.el), frei: true, engine: s }], hinweise: [], auftrag: 'Ideen-Engine: ' + E.name, geaendert: Date.now() };
+        /* Vorschau ohne Beschnitt: das Bild endet an der Blattkante (sonst ragt es unsichtbar 3 mm über die Karte hinaus) */
+        const vdoc = JSON.parse(JSON.stringify(doc));
+        Object.assign(vdoc.seiten[0].el[0], { bild: bildEintragen(e.svg, F, `${STIL_NAMEN[s]} · ${E.name}`, true), x: 0, y: 0, w: F.b, h: F.h });
+        IDEEN.push({ stil: s, doc, vdoc, svg: e.svg, farben: e.farben, zweite: i === stile.length - 1, E });
       } catch (err) { console.warn('Idee', s, err); }
     }
-    alt.forEach(a => { const b = DS.M.bildIndex[a.doc.seiten[0].el[0].bild]; if (b && b.idee && !b.behalten) { try { URL.revokeObjectURL(b.url); } catch (e) { } delete DS.M.bildIndex[a.doc.seiten[0].el[0].bild]; } });
+    const weg = k => { const b = DS.M.bildIndex[k]; if (b && b.idee && !b.behalten) { try { URL.revokeObjectURL(b.url); } catch (e) { } delete DS.M.bildIndex[k]; } };
+    alt.forEach(a => { weg(a.doc.seiten[0].el[0].bild); weg(a.vdoc.seiten[0].el[0].bild); });
     zeichneIdeen(E);
   }
-  function bildEintragen(svg, F, alt) {
-    const key = 'idee-' + neueId(), url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
-    DS.M.bildIndex[key] = { key, alt, w: Math.round((F.b + 2 * DS.B) * 10), h: Math.round((F.h + 2 * DS.B) * 10), datei: true, url, miniUrl: url, gruppe: 'Plakat-Ideen', idee: true };
+  function bildEintragen(svg, F, alt, nurBlatt) {
+    if (nurBlatt) svg = svg.replace(/^<svg([^>]*?) width="[^"]*" height="[^"]*" viewBox="[^"]*"/, `<svg$1 width="${F.b * 10}" height="${F.h * 10}" viewBox="0 0 ${F.b} ${F.h}"`);
+    const B = nurBlatt ? 0 : DS.B, key = 'idee-' + neueId(), url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+    DS.M.bildIndex[key] = { key, alt, w: Math.round((F.b + 2 * B) * 10), h: Math.round((F.h + 2 * B) * 10), datei: true, url, miniUrl: url, gruppe: 'Plakat-Ideen', idee: true };
     return key;
   }
 
@@ -433,12 +438,12 @@
     box.innerHTML = `<div class="ms-titel"><h1>Event beschreiben</h1><span class="ms-leise">Name, Datum, Ort und ein paar Stichworte: Die Plakatwerkstatt setzt sechs eigene Plakat-Ideen im Stil der Event-Plakate der Bar, mit gerechneten Illustrationen, sofort und ohne KI. Eine wählen und im Editor fertig machen.</span></div>
       <form class="en-form" id="enForm" autocomplete="off" novalidate>
         <div class="en-felder">
-          <label class="en-breit"><span>Event</span><input id="enName" maxlength="60" placeholder="Zum Beispiel: ${esc(BEISPIEL.name)}"></label>
+          <label class="en-breit"><span>Event</span><input id="enName" maxlength="60" placeholder="${esc(BEISPIEL.name)}"></label>
           <label><span>Art</span><select id="enArt">${ARTEN.map(([k, n]) => `<option value="${k}">${esc(n)}</option>`).join('')}</select></label>
-          <label><span>Datum</span><input id="enDatum" maxlength="30" placeholder="Zum Beispiel: ${esc(BEISPIEL.datum)}"></label>
-          <label><span>Uhrzeit</span><input id="enZeit" maxlength="30" placeholder="Zum Beispiel: ${esc(BEISPIEL.zeit)}"></label>
+          <label><span>Datum</span><input id="enDatum" maxlength="30" placeholder="${esc(BEISPIEL.datum)}"></label>
+          <label><span>Uhrzeit</span><input id="enZeit" maxlength="30" placeholder="${esc(BEISPIEL.zeit)}"></label>
           <label><span>Ort</span><input id="enOrt" maxlength="60" value="${esc(STANDORT)}"></label>
-          <label class="en-breit"><span>Partner, wenn es welche gibt</span><input id="enPartner" maxlength="140" placeholder="Zum Beispiel: ${esc(BEISPIEL.partner)}"></label>
+          <label class="en-breit"><span>Partner, wenn es welche gibt</span><input id="enPartner" maxlength="140" placeholder="Tru Story, Rebe"></label>
           <label class="en-breit"><span>Stichworte und Stimmung</span><textarea id="enStimmung" maxlength="160" rows="2" placeholder="Zum Beispiel: ${esc(BEISPIEL.stimmung)}"></textarea></label>
         </div>
         <div class="en-unten">
@@ -484,7 +489,7 @@
     });
     neuGross();
   }
-  function neuGross() { document.querySelectorAll('#enIdeen .en-blatt').forEach((b, i) => IDEEN[i] && blatt(b, IDEEN[i].doc, b.clientWidth || 300)); }
+  function neuGross() { document.querySelectorAll('#enIdeen .en-blatt').forEach((b, i) => IDEEN[i] && blatt(b, IDEEN[i].vdoc, b.clientWidth || 300)); }
   function blatt(b, doc, bw) {
     const f = doc.format, B = DS.B, hmax = Math.min(560, Math.round(innerHeight * .78));
     let box = (bw - 2) * (f.h + 2 * B) / f.b; box = Math.min(box, hmax * (f.h + 2 * B) / f.h);

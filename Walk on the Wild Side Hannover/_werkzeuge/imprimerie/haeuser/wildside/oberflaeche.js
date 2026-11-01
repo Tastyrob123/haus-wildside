@@ -11,7 +11,7 @@
   /* Kopf-Fotos mit 800er-Fassung (kopf/<name>-800.webp) und Breite des Originals: das Foto steht bei 1440 rund 660, bei 1000 rund 385, am Handy rund 265 px breit,
      die 800er reicht dort; ab rund 1700 px Fensterbreite oder bei doppelter Dichte nimmt der Browser das Original (30.10.2026, Oberchef) */
   var B800 = { 'an-empore-tafel': 960, 'decke-raum': 900, fenster: 895, flaschen: 900, 'glas-coupe': 900, 'glas-kerze': 900, 'konzert-love': 961, 'momo-giesst': 900, negroni: 900, rueckbar: 900, 'saengerin-kunde': 960, schild: 900, 'schild-ecke': 900, theke: 900, 'tuer-rot': 900, voll: 900 };
-  var FOTO = { msAbend: 'saengerin-kunde', msMotive: 'konzert-love', msEvents: 'voll', msAbteilungen: 'decke-raum', msHinweise: 'tuer-rot', msNewsletter: 'glas-kerze', msFotos: 'momo-giesst', msMarke: 'negroni',
+  var FOTO = { msAbend: 'saengerin-kunde', msEngine: 'an-empore-tafel', msMotive: 'konzert-love', msEvents: 'voll', msAbteilungen: 'decke-raum', msHinweise: 'tuer-rot', msNewsletter: 'glas-kerze', msFotos: 'momo-giesst', msMarke: 'negroni',
     msLivre: 'decke-bar', msMeine: 'theke', msFreigegeben: 'rueckbar', msNeu: 'glas-coupe' };
   var WEBSITE = location.port === '9287' ? 'http://127.0.0.1:' + ((window.WO_HAUS && WO_HAUS.ports && WO_HAUS.ports.website_lokal) || 8766) + '/' : '/';
   var MARKE = function () { return WO.zeichen() + '<span><b>' + WO.esc(WO.name('druck')) + '</b><small>Drucksachen · ' + WO.esc(WO.haus.name) + '</small></span>'; };

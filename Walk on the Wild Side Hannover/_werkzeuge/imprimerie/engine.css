@@ -14,7 +14,7 @@
 .en-form input:focus-visible,.en-form select:focus-visible,.en-form textarea:focus-visible{outline:0;box-shadow:inset 0 1px 2px rgba(28,21,19,.12),0 0 0 1.5px var(--messing)}
 .en-unten{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;min-width:0}
 .en-formate{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
-.en-formate button{height:40px;padding:0 16px;border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;
+.en-formate button{height:40px;padding:0 16px 0 calc(16px + .12em);border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;
   box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14));cursor:pointer}
 .en-formate button.an{color:#fffbf5;background:var(--navy)}
 .en-knoepfe{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:12px;min-width:0;margin-left:auto}
@@ -26,7 +26,7 @@
 /* sechs Ideen: 3 × 2 breit, 2 × 3 mittel, eine Spalte schmal; keine Restreihe */
 .en-ideen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 26px;min-width:0;margin:0 0 60px}
 .en-karte{display:flex;flex-direction:column;gap:14px;min-width:0}
-.en-blatt{display:flex;align-items:flex-end;justify-content:center;min-width:0;overflow:hidden;padding:2px 0 8px}
+.en-blatt{display:flex;align-items:flex-end;justify-content:flex-start;min-width:0;overflow:hidden;padding:2px 0 8px}
 .en-blatt .blatt{flex:none;border-radius:2px;box-shadow:0 1px 1px rgba(28,21,19,.18),0 18px 34px -16px rgba(28,21,19,.55);transition:transform .6s cubic-bezier(.22,.68,.26,1)}
 @media (hover:hover){.en-karte:hover .en-blatt .blatt{transform:translateY(-4px)}}
 .en-text{display:flex;flex-direction:column;gap:6px;min-width:0}
