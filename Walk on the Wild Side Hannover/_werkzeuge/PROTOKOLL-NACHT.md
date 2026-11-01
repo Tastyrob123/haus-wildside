@@ -49,6 +49,16 @@ Auftrag: `AUFTRAG-NACHT.md`, `CLAUDE.md` («Der Deal»). Stamm: Werkzeuge und We
 - Website (nicht angefasst, gehört Roberts Website-Chat): Startseite sagt noch «Eine Getränkekarte gibt es im Wild Side nicht.» (widerspricht der Kundin 30.10.); Fuss verlinkt Culinarium/Dirty Chicken auf `localhost:8765`.
 - Wortmarke: die nachgezogene Vorlage zeigt WILD SIDE in der roten Fläche ohne die kleine Zeile «WALK ON THE»; so verbaut wie auf der Website.
 
+## Roberts Korrekturen am Morgen (1.11.2026) – als Regel für alle Werkbänke
+
+1. **«Worum es geht» streichen** bei Restaurants und Bars: «Bei Restaurants allgemein nicht notwendig … das bringt nur was bei Hotels, wenn man die Buchungen über die Website mit dem Mehrwert betiteln kann.» (Wild Side gestrichen; Culinarium hatte ihn schon nicht mehr.)
+2. **Kein Angebot, sondern Übergabe**, wenn Robert das Paket fürs Portfolio umsonst macht (Culinarium, Wild Side): «Ich übergebe, und wenn was nicht klappt, können die sich melden … will sie nicht binden … mit monatlicher Wartung kommen Sicherheitsupdates, Datenschutz-Anpassungen und Co., aber das ist nicht verpflichtend.»
+3. **Nicht «Vertragspartner»** (zu gebunden) – neutral formulieren.
+4. **«Meine drei Orte» als Ticket** (Kopfzeile, Perforation mit ausgeschnittenen Kerben, Abriss), nicht als Kasten – in beiden Häusern.
+5. **Befund-Bilder zeigen, wovon der Befund spricht** (Noten → die Bewertungen, nicht ein beliebiger Drink).
+6. **Bewegung auf jeder Seite jedes Werkzeugs** wie im Culinarium (bewegung.js aus dem Kleid) – Markenbuch-Hausregeln hatten keine.
+7. **Kapitelbild «Für draußen»**: immer drei Stücke, nie ein einzelnes Blatt am Rand (Auswahl suchte Culinarium-Dateinamen).
+
 ## Wo was liegt
 
 - Werkzeuge: `Walk on the Wild Side Hannover/_werkzeuge/<maison|bureau|carte|reception|livre|registre|imprimerie>/` (je `LIEFERUNG.md`), Kleid `oberflaeche/` (`UMSTELLUNG.md`).
