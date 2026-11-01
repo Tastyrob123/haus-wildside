@@ -260,9 +260,18 @@ button{font:inherit;color:inherit}
 .meldung.an{opacity:1;transform:translate(-50%,0)}
 
 /* Auftritt: nur transform, deckend ab dem ersten Bild */
-.bewegt [data-r]{transform:translateY(22px);transition:transform .9s var(--k) calc(var(--i,0) * 90ms)}
-.bewegt [data-r].da{transform:none}
-@media (prefers-reduced-motion:reduce){.bewegt [data-r]{transform:none;transition:none}}
+/* Bewegung wie im Culinarium und im Kleid (bewegung.js): Abend statt Feder, 1,25 s weich auslaufend; nur translate und scale, nie opacity */
+@keyframes bu-hoch{from{translate:0 var(--weg,30px);scale:var(--kl,.975)}}
+@keyframes bu-zoom{from{scale:1.12}}
+.bewegt [data-r]:not(.da){translate:0 30px;scale:.975}
+.bewegt [data-r].da:not(.steht){animation:bu-hoch 1.25s cubic-bezier(.19,1,.22,1) backwards;animation-delay:calc(var(--i,0) * 85ms)}
+.bewegt [data-r].da:not(.steht) :is(.k3__b,.k4__b,.vg--nb figure) img,.bewegt .mosaik figure[data-r].da:not(.steht) img,.bewegt .form-b[data-r].da:not(.steht) img{animation:bu-zoom 2.2s cubic-bezier(.19,1,.22,1) backwards;animation-delay:calc(var(--i,0) * 85ms)}
+.form-b{overflow:hidden;border-radius:18px}
+.bewegt [data-t] .w{display:inline-block}
+.bewegt [data-t]:not(.da) .w{translate:0 .6em}
+.bewegt [data-t].da:not(.steht) .w{animation:bu-hoch 1.25s cubic-bezier(.19,1,.22,1) backwards;--weg:.6em;--kl:1;animation-delay:calc(var(--i,0) * 85ms + var(--z,0) * 95ms)}
+.bewegt .fenster[data-z].da:not(.steht) .fenster__b img{animation:bu-zoom 2.6s cubic-bezier(.19,1,.22,1) backwards}
+@media (prefers-reduced-motion:reduce){.bewegt [data-r],.bewegt [data-t] .w,.bewegt img{animation:none!important;translate:none!important;scale:none!important}}
 
 /* ---------- Druck: A4 quer, je Kapitel eine Seite, nichts zerschnitten */
 @media print{
@@ -274,7 +283,7 @@ button{font:inherit;color:inherit}
   .blatt{padding:12mm 0}
   .in,.titel__in,.index{width:100%}
   .fenster__f{height:170mm}
-  [data-r]{transform:none!important}
+  [data-r],[data-t] .w,img{transform:none!important;translate:none!important;scale:none!important;animation:none!important}
   .k3,.lock,.regel,.fa,.plakat,.k4,.ton,.vg,.probe,.platte,.mosaik figure{break-inside:avoid}
   .mosaik{grid-auto-rows:60mm}
 }

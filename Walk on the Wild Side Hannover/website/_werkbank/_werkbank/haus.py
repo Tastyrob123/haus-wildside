@@ -295,7 +295,7 @@ GEPRUEFT_PUNKTE = [
     ('Eure Daten', 'Gäste bekommen keine Kekse in den Browser. Was sie reservieren oder anfragen, landet bei euch, und im Entwurf nie bei der echten Bar.'),
 ]
 GEPRUEFT_TRIO = [(bild('wf-theke'), 1.6, (.5, .5), 'An der Theke'), (bild('rueckbar'), 1.6, (.5, .5), 'Die Rückbar'), (bild('pl-ecke'), 1.6, (.5, .5), 'An der Ecke')]
-GEPRUEFT_OFFEN = 'Ein paar Fragen könnt nur ihr beantworten: wer Vertragspartner ist und ins Impressum kommt, wer an welchem Foto und Plakat die Rechte hat und wer welches Werkzeug bekommt.'
+GEPRUEFT_OFFEN = 'Ein paar Fragen könnt nur ihr beantworten: wer ins Impressum kommt, wer an welchem Foto und Plakat die Rechte hat und wer welches Werkzeug bekommt.'
 GEPRUEFT_EIN = 'Hier steht in einfachen Worten, was an Website, Karten und Werkzeugen angesehen und ausprobiert wurde, und was danach noch bei euch liegt.'
 GEPRUEFT_NAV = ['Website', 'Karten', 'Werkzeuge', 'Daten', 'Offen']
 PRUEF_WERKZEUGE = [   # aus den Commits «…: fertig – geprüft (…)» im git log vom 31.10.2026 (Zahl der geprüften Zustände, je 0 Funde)
@@ -319,7 +319,7 @@ GEPRUEFT_MEHR = [
         'Reservieren und Feiern anfragen laufen im Entwurf nur zur Probe; nichts davon erreicht die echte Bar.',
         'Suchmaschinen sehen den Entwurf nicht, bis ihr ihn freigebt.']),
     ('Was offen bleibt', 'auge', 'Das könnt nur ihr entscheiden.', [
-        'Wer Vertragspartner ist und im Impressum steht, und unter welcher E-Mail-Adresse die Bar erreichbar sein soll.',
+        'Wer im Impressum steht und unter welcher E-Mail-Adresse die Bar erreichbar sein soll.',
         'Wer an welchem Foto und an den Plakaten die Rechte hat.',
         'Im Entwurf öffnen sich die Werkzeuge ohne Anmeldung. Zum Umzug bekommt jede Person ihren eigenen Zugang.'])]
 PRUEFDATUM = _dt.date(2026, 10, 31)

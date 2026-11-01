@@ -35,7 +35,7 @@ BEFUNDE = [  # nr, was, wo, für die Gäste, fürs Haus, was wir tun würden, Au
          gaeste='Wer euch empfohlen bekommt, liest die Noten in Portalen, die andere führen, mit Fotos, die andere ausgesucht haben.',
          haus='Die 91 von Falstaff und die 4,8 bei Google stehen nirgends bei euch selbst.',
          tun='Falstaff, Google und NeoTaste auf der eigenen Seite nennen, mit Quelle, und Google die eigene Adresse geben.',
-         ganz='neotaste.jpg', nah=None),
+         ganz='noten-handy.jpg', nah=None),   # Robert 1.11.2026: das Bild zeigt die Noten (Website-Stelle «Drei Zahlen», haus.html#stimmen)
     dict(nr='04', was='Feiern stehen in einer PDF.',
          wo='Die Angebotsmappe der Bar (PDF): Privates Dinner, lange Tafel, ganze Bar mit Preisen. Als Kontakt nennt sie die E-Mail-Adresse von Culinarium.',
          gaeste='Wer feiern will, muss erst nach der Mappe fragen und dann per Nachricht oder Anruf anfragen.',
@@ -86,7 +86,7 @@ STARK = [  # was der heutige Auftritt gut macht (CHARAKTER.md 2–4, Portale)
 WEITERE = [  # die übrigen Punkte, die vorne nicht stehen
     ('Ein Kalender.', 'DJ-Abende, Konzerte und Feste stehen nur in Beiträgen; zwischen zwei Abenden steht nirgends, wann der nächste kommt.'),
     ('Die Köpfe.', 'Über Derya und Momo gibt es außerhalb von Instagram und zwei Zeitungsartikeln kaum eine Zeile.'),
-    ('Impressum und Datenschutz.', 'Zum Profil gibt es keins; auf einer eigenen Seite stehen sie, sobald feststeht, wer Vertragspartner ist.'),
+    ('Impressum und Datenschutz.', 'Zum Profil gibt es keins. Auf der eigenen Seite stehen beide mit euren Angaben, sobald sie online geht.'),
 ]
 
 

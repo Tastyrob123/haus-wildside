@@ -246,7 +246,7 @@ def anwenden(pfad):
     auftakt = nimm('auftakt').replace('Diese Werkbank ist', 'Diese Seite ist')
     brief = nimm('brief')
     worum = SW.blatt(k)
-    register = KP.register(kopf(0, 'Register', ['Acht Kapitel,', 'eine Bar.'], 'Vom Befund, wie das Wild Side heute im Netz steht, bis zum Vorschlag am Ende. Jedes Kapitel lässt sich direkt öffnen.'))
+    register = KP.register(kopf(0, 'Register', ['Acht Kapitel,', 'eine Bar.'], 'Vom Befund, wie das Wild Side heute im Netz steht, bis zur Übergabe am Ende. Jedes Kapitel lässt sich direkt öffnen.'))
     k1 = BE.abschnitt(k, kopfk)
     hs = kapitel('k2', nimm('handschrift'))
     livre = [w for w in WK.WERKZEUGE if w[0] == 'livre'][0]

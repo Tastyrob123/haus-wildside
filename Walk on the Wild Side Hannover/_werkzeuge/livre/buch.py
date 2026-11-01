@@ -53,8 +53,8 @@ KAP = [('haltung', 'Haltung'), ('zeichen', 'Zeichen'), ('farben', 'Farben'), ('s
 
 def kopf(nr, etikett, titel, lead):
     a, b = titel
-    return (f'<header class="mk" data-r><p class="mk__kap"><span>{nr:02d}</span><b>{e(etikett)}</b><i></i></p>'
-            f'<h2 class="mk__t">{e(a)} <em>{e(b)}</em></h2><p class="mk__lead">{lead}</p></header>')
+    return (f'<header class="mk"><p class="mk__kap" data-r><span>{nr:02d}</span><b>{e(etikett)}</b><i></i></p>'
+            f'<h2 class="mk__t" data-t>{e(a)} <em>{e(b)}</em></h2><p class="mk__lead" data-r>{lead}</p></header>')
 
 
 def faecher():
@@ -62,10 +62,10 @@ def faecher():
     for g in L['gruppen']:
         fs = [f for f in L['farben'] if f['g'] == g['k']]
         knoepfe = ''.join(
-            f'<div class="fa" role="button" tabindex="0" data-hex="{f["h"]}" style="--c:{f["h"]}" aria-label="{e(f["n"])} {f["h"]} kopieren">'
+            f'<div class="fa" role="button" tabindex="0" data-r data-hex="{f["h"]}" style="--c:{f["h"]}" aria-label="{e(f["n"])} {f["h"]} kopieren">'
             f'<span class="fa__f"><span class="fa__ok">kopiert</span></span><span class="fa__n"><b>{nb(f["n"])}</b><small>{e(f["r"])}</small><code>{f["h"]}</code></span></div>'
             for f in fs)
-        out.append(f'<div class="fg" data-r><div class="fg__t"><h3>{e(g["n"])}</h3><p>{e(g["s"])}</p></div><div class="fg__f">{knoepfe}</div></div>')
+        out.append(f'<div class="fg"><div class="fg__t" data-r><h3>{e(g["n"])}</h3><p>{e(g["s"])}</p></div><div class="fg__f">{knoepfe}</div></div>')
     return ''.join(out)
 
 
@@ -76,13 +76,13 @@ def seite():
     <div class="titel__wm" data-r>{marke("rot", "", "Walk on the Wild Side")}</div>
     <div class="titel__t">
       <p class="etikett" data-r>Die Hausregeln · Oktober 2026</p>
-      <h1 data-r>Walk on the <em>Wild Side.</em></h1>
+      <h1 data-t>Walk on the <em>Wild Side.</em></h1>
       <p class="titel__ort" data-r>Nachbarschafts-Mixology-Bar <i></i> <span class="ort-z">Haasemannstraße 13 <i></i> Hannover-Linden</span></p>
       <p class="titel__lead" data-r>Alles, was die Bar erkennbar macht, an einem Ort: die Wortmarke, die Farben und ihre Rollen, die Farben der DJ-Abende, die Schriften, das Eckschild als Form, die Bilder, die Gegenstände des Raums und der Ton. Damit jedes neue Stück, ob Plakat, Beitrag oder Karte, aussieht wie aus einem Guss.</p>
       <p class="titel__kn" data-r><a class="kn kn--rot" href="#haltung"><span>Lesen</span><i>{RUNTER}</i></a></p>
     </div>
   </div>
-  <nav class="index" aria-label="Inhalt">{"".join(f'<a href="#{k}"><span>{i + 1:02d}</span>{e(n)}</a>' for i, (k, n) in enumerate(KAP))}</nav>
+  <nav class="index" aria-label="Inhalt" data-r>{"".join(f'<a href="#{k}"><span>{i + 1:02d}</span>{e(n)}</a>' for i, (k, n) in enumerate(KAP))}</nav>
 </section>'''
 
     haltung = f'''<section class="blatt hell" id="haltung"><div class="in">
@@ -97,9 +97,9 @@ def seite():
   </div>
 </div></section>'''
 
-    fenster = lambda k, satz, unter, pos='50% 50%': f'''<section class="fenster" aria-label="{e(satz)}"><div class="fenster__f">
+    fenster = lambda k, satz, unter, pos='50% 50%': f'''<section class="fenster" data-z aria-label="{e(satz)}"><div class="fenster__f">
   <div class="fenster__b">{bild(k, None, pos, True, False)}</div>
-  <div class="fenster__t"><p class="fenster__s">{e(satz)}</p><p class="fenster__u">{e(unter)}</p></div></div></section>'''
+  <div class="fenster__t"><p class="fenster__s" data-t>{e(satz)}</p><p class="fenster__u" data-r>{e(unter)}</p></div></div></section>'''
 
     nein = lambda klasse, text: f'<figure class="nein nein--{klasse}"><div>{marke("rot")}</div><figcaption>{nb(text)}</figcaption></figure>'
     zeichen = f'''<section class="blatt dunkel" id="zeichen"><div class="in">

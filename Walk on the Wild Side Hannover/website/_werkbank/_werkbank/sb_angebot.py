@@ -11,7 +11,7 @@ W = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(W)
 
 BETREUUNG = None   # Robert 28.10.2026 über den Oberchef: «Kein Betrag auf der Werkbank, die Stelle bleibt ohne Zahl.» Kein Platzhalter, der nach fehlender Angabe aussieht
-DATUM = 'Hamburg, 31. Oktober 2026'   # Absender und Ort immer Hamburg, nie der Ort des Hauses (Demo-Check Schäfli 21.10.2026)
+DATUM = 'Hamburg, 1. November 2026'   # Absender und Ort immer Hamburg, nie der Ort des Hauses (Demo-Check Schäfli 21.10.2026)
 PDF_NAME = 'vorschlag-wildside.pdf'
 PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg>'
 ORN = '<div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div>'
@@ -53,7 +53,7 @@ def inhalt(z):
     if Z['mails']: teile.append(f'{wort(Z["mails"])} Vorlagen für Mails')
     if Z['feed']: teile.append(f'ein Feed mit {Z["feed"]} Beiträgen')
     zus = [f'Für das Wild Side steht hier der ganze Auftritt: {", ".join(teile[:-1])} und {teile[-1]}. Jedes Stück lässt sich hier öffnen.',
-           'Für den Start braucht es euch an drei Stellen: wer Vertragspartner ist und ins Impressum kommt, euer Wort zu Fotos und Plakaten und einen prüfenden Blick auf Drinks, DJ-Abende und Preise. Nach sechs Wochen steht die Seite unter eurer eigenen Adresse.',
+           'Für den Start braucht es euch an drei Stellen: wer ins Impressum kommt, euer Wort zu Fotos und Plakaten und einen prüfenden Blick auf Drinks, DJ-Abende und Preise. Nach sechs Wochen steht die Seite unter eurer eigenen Adresse.',
            'Um Seite, Werkzeuge und KI kümmere ich mich auch danach: Server, Sicherungen und Updates, und ihr hört spätestens am nächsten Werktag von mir.']
     steht = [f'{wort(Z["seiten"]).capitalize()} Seiten: {wort(Z["gaeste_seiten"])} für eure Gäste, dazu Impressum und Datenschutz', 'Alle DJ-Abende seit 2025 mit ihren Plakaten',
              'Platz reservieren und Feiern anfragen, im Entwurf gespielt']
@@ -67,7 +67,7 @@ def inhalt(z):
     _n = [w[1] for w in WK.WERKZEUGE]
     laeuft = [_n[0] + ', ' + ', '.join(x[:1].lower() + x[1:] for x in _n[1:-1]) + ' und ' + _n[-1][:1].lower() + _n[-1][1:]]   # ein Satz: kein Trenner am Zeilenanfang (Tor 30.10.)
     umfang = [('Steht, zum Anklicken', steht), ('Läuft im Entwurf, zieht mit um', laeuft),
-              ('Braucht etwas von euch', ['Wer Vertragspartner ist und ins Impressum kommt', 'Euer Wort zu Fotos und Plakaten', 'Einen prüfenden Blick auf Drinks und Preise'])]   # «Eine Idee, noch nicht gebaut» entfällt: Chat, Gutschein und /en/ stehen (Tor 30.10.)
+              ('Braucht etwas von euch', ['Wer ins Impressum kommt', 'Euer Wort zu Fotos und Plakaten', 'Einen prüfenden Blick auf Drinks und Preise'])]   # «Eine Idee, noch nicht gebaut» entfällt: Chat, Gutschein und /en/ stehen (Tor 30.10.)
     return zus, umfang
 
 
@@ -105,56 +105,54 @@ def bilder(webp, haus):
 
 
 def angebot(k):
+    """Kapitel VIII «Die Übergabe» (Robert 1.11.2026): alles gehört euch, es läuft so, keine Bindung, kein Vertrag; Wartung nur auf Wunsch.
+    Keine Preise, keine Wochen, keine Leistungstabelle."""
     bild, kopfk = k['bild'], k['kopfk']
-    zus, umfang = inhalt(k['z'])
-    reg = ''.join(f'<a href="#sag-{a}"><span>{n:02d}</span>{e(t)}</a>' for n, (a, t) in enumerate(
-        (('kurz', 'Zusammenfassung'), ('umfang', 'Umfang'), ('aufbau', 'Aufbau'), ('wochen', 'So geht’s weiter'), ('vorschlag', 'Ein Vorschlag')), 1))
     h = lambda n, t: f'<h3 class="sag-h"><span>{n}</span>{e(t)}</h3>'
     liste = lambda pp: '<ul class="sag-l">' + ''.join(f'<li>{e(p)}</li>' for p in pp) + '</ul>'
-    spalten = ''.join(f'<div class="sag-sp sag-sp--{i + 1}"><h4>{e(t)}</h4><ul>' + ''.join(f'<li>{e(p)}</li>' for p in pp) + '</ul></div>' for i, (t, pp) in enumerate(umfang))
-    wochen = ''.join(f'<li class="sag-s" data-a="auf" style="--i:{i}"><span class="sag-s__n">{i + 1:02d}</span><div><h4>{e(t)}</h4><p>{e(x)}</p></div></li>' for i, (t, x) in enumerate(WOCHEN))
     return f'''
 <section class="fl fl--nacht tapete-leicht blatt sag" id="k8">
   <div class="in">
-    {kopfk('k8', ['Was ihr', 'bekommt.'], 'Der Umfang, der Weg bis zum Start und am Ende der Vorschlag, alles auf einem Blatt.')}
-    <nav class="sag-reg" data-a="auf" aria-label="Auf diesem Blatt">{reg}</nav>
+    {kopfk('k8', ['Alles gehört', 'euch.'], 'Website, Werkzeuge, Drucksachen und Dateien: Ihr bekommt alles, so wie es hier liegt. Ohne Bindung, ohne Vertrag.')}
     <div class="sag-blatt sag-kurz" id="sag-kurz" data-a="heben">
       <figure class="sag-bild">{bild('sag-haus', 'Die Fenster des Walk on the Wild Side am Abend')}</figure>
-      <div class="sag-text">{h('01', 'Zusammenfassung')}{''.join(f'<p>{e(p)}</p>' for p in zus)}</div>
+      <div class="sag-text">{h('01', 'Die Übergabe')}{''.join(f'<p>{e(p)}</p>' for p in UEBERGABE)}</div>
     </div>
-    <div class="sag-blatt sag-umf" id="sag-umfang" data-a="heben">{h('02', 'Was dazugehört')}<div class="sag-spalten">{spalten}</div></div>
     <div class="sag-blatt sag-zwei" id="sag-aufbau" data-a="heben">
-      <div>{h('03', 'Wie es gebaut ist')}{liste(AUFBAU)}</div>
-      <div>{h('04', 'Eure Daten und die eurer Gäste')}{liste(DATEN)}</div>
-    </div>
-    <div class="sag-teil" id="sag-wochen">
-      <p class="sag-k">05 · So geht’s weiter</p>
-      <ol class="sag-weg">{wochen}</ol>
-      <p class="sag-satz">{e(WOCHEN_SATZ)}</p>
+      <div>{h('02', 'Was ihr bekommt')}{liste(BEKOMMT)}</div>
+      <div>{h('03', 'Eure Daten und die eurer Gäste')}{liste(DATEN)}</div>
     </div>
     <div class="sag-buehne" id="sag-vorschlag">{karte_html()}</div>
   </div>
 </section>'''
 
 
+UEBERGABE = ['Alles, was hier liegt, ist für euch gemacht und gehört euch: die Website, die sieben Werkzeuge, die Drucksachen und alle Dateien.',
+             'Es läuft so, wie ihr es hier seht. Wenn etwas nicht klappt, meldet ihr euch bei mir.',
+             'Es gibt keine Bindung und keinen Vertrag. Wer möchte, bekommt eine monatliche Wartung dazu, freiwillig und nicht verpflichtend.']
+BEKOMMT = ['Die neue Website mit allen Seiten, für das Handy und den Rechner', 'Sieben Werkzeuge für Karte, DJ-Abende, Gäste, Marke und Plakate',
+           'Eure Karten neu gesetzt, auch als PDF', 'Drucksachen, Untersetzer, Sticker und Postkarten zum Drucken', 'Mails an eure Gäste und ein Feed für Instagram',
+           'Alle Dateien sortiert in einem Ordner, dazu eure Wortmarke']
+UEBERGABE_KARTE = ['Website, Werkzeuge, Karten, Drucksachen, Beiträge und Dateien gehören dem Walk on the Wild Side.', 'Domain, Server und Zugänge stehen auf euren Namen.',
+                   'Die Rechte an Fotos und Plakaten bleiben bei euch und euren Fotografen.']
+LAEUFT = ['Alles läuft so, wie ihr es hier seht.', 'Klappt etwas nicht, meldet ihr euch bei mir.', 'Keine Bindung, kein Vertrag.']
+WARTUNG = ['Wenn ihr möchtet, kümmere ich mich jeden Monat um Sicherheitsupdates, Anpassungen beim Datenschutz und Ähnliches.',
+           'Freiwillig und nicht verpflichtend. Ihr sagt Bescheid, wenn ihr es wollt, und genauso, wenn nicht mehr.']
+
+
 def karte_html():
     zeilen = lambda pp: '<ul class="mn-l">' + ''.join(f'<li>{e(p)}</li>' for p in pp) + '</ul>'
     gang = lambda n, t: f'<p class="mn-gang"><span>{n}</span>{e(t)}</p>'
-    preis = ''
-    for t, r, s in PREIS:
-        unten = ('<ul class="mn-p__l">' + ''.join(f'<li>{e(x)}</li>' for x in s) + '</ul>') if isinstance(s, list) else f'<p class="mn-p__s">{e(s)}</p>'
-        preis += f'<li class="mn-p"><p class="mn-p__z"><b>{e(t)}</b><i></i><span>{e(r)}</span></p>{unten}</li>'
-    ki = ''.join(f'<li class="mn-p"><p class="mn-p__z"><b>{e(t)}</b><i></i><span>{e(w)}</span></p><p class="mn-p__s">{e(s)}</p></li>' for t, w, s in KI)
     return f'''<article class="mn" data-a="heben">
         <header class="mn-kopf">
           <img class="mn-zeichen" src="eigen/zeichen-kerze.svg" alt="" width="72" height="73">
           <p class="mn-haus">Walk on the Wild Side · Hannover-Linden</p>
-          <h3 class="mn-titel">Ein Vorschlag.</h3>
-          <p class="mn-unter">Was euch gehört und wer sich danach kümmert. Jeder Punkt ist offen fürs Gespräch.</p>
+          <h3 class="mn-titel">Die Übergabe.</h3>
+          <p class="mn-unter">Alles gehört euch. Ohne Bindung, ohne Vertrag.</p>
         </header>
-        {ORN}{gang('I', 'Was euch gehört')}{zeilen(EIGENTUM)}
-        {ORN}{gang('II', 'Laufende Betreuung')}{zeilen(DANACH)}
-        {ORN}{gang('III', 'Wo die KI arbeitet')}{zeilen([KI_SATZ])}<ul class="mn-l mn-preise">{ki}</ul>
+        {ORN}{gang('I', 'Was euch gehört')}{zeilen(UEBERGABE_KARTE)}
+        {ORN}{gang('II', 'Wie es läuft')}{zeilen(LAEUFT)}
+        {ORN}{gang('III', 'Auf Wunsch: Wartung')}{zeilen(WARTUNG)}
         <p class="mn-ki"><a class="kn kn--klein" href="ki.html">Mehr zu KI und euren Daten<i>{PF}</i></a></p>
         <footer class="mn-ende"><i></i><span>{e(DATUM)}</span><i></i></footer>
         <p class="mn-pdf"><a class="kn kn--klein" href="{PDF_NAME}" download>Als PDF speichern<i>{PF}</i></a></p>

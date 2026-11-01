@@ -74,7 +74,7 @@ OFFEN = ('Was ihr noch festlegt', 'Eure Datenschutzerklärung bekommt vor dem St
 QUELLEN = [('Anthropic: Training mit Daten', 'https://privacy.anthropic.com/en/articles/7996868-is-my-data-used-for-model-training'),
            ('Anthropic: Aufbewahrung', 'https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data')]
 NAV = ('<nav aria-label="Kapitel"><a href="#ki-blick">KI</a><a href="#ki-zahlen">In Zahlen</a><a href="#ki-stellen">Drei Stellen</a><a href="#ki-daten">Eure Daten</a>'
-       '<a href="#ki-ohne">Ohne KI</a><a href="#ki-hand">In eurer Hand</a><a href="index.html#sag-vorschlag">Zurück zum Vorschlag</a></nav>')
+       '<a href="#ki-ohne">Ohne KI</a><a href="#ki-hand">In eurer Hand</a><a href="index.html#sag-vorschlag">Zurück zur Übergabe</a></nav>')
 
 
 def titel(z1, z2, cls='t2', tag='h2'):
@@ -144,7 +144,7 @@ def hauptteil():
     </div>
     <div class="ag-blatt ki-offen" data-a="heben"><h3 class="ki-k__t">{e(OFFEN[0])}</h3><p>{e(OFFEN[1])}</p>
       <p class="ki-knoepfe"><a class="kn kn--klein" href="../datenschutz.html" target="_blank" rel="noopener">Datenschutz auf der neuen Seite<i>{PF}</i></a>
-      <a class="kn kn--klein" href="index.html#sag-vorschlag">Zurück zum Vorschlag<i>{PF}</i></a></p>
+      <a class="kn kn--klein" href="index.html#sag-vorschlag">Zurück zur Übergabe<i>{PF}</i></a></p>
       <p class="ki-quellen">Angaben des Anbieters, gelesen am {STAND}:</p><ul class="ki-quellen__l">{quellen}</ul></div>
   </div>
 </section>
@@ -191,7 +191,7 @@ def karte_seite(t):
     if not m:
         return None
     karte = m.group(0).replace('<article class="mn" data-a="heben">', '<article class="mn da">')
-    return _kopf(t, 'Ein Vorschlag') + '''
+    return _kopf(t, 'Die Übergabe') + '''
 <style>
 html,body{margin:0;background:var(--nacht,#0b1d3d)}
 body{min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:clamp(20px,4vw,64px) 16px}
