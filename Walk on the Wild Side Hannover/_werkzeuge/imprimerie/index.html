@@ -48,7 +48,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
  /* Werkzeug-Oberfläche «Die Bühne»: Paket des Hauses, dann die Hausschicht oberflaeche.* (Kopf, Rand, Startbilder wie in den anderen Werkzeugen) */
  +'<link rel="stylesheet" href="'+o+'grund.css?v=981c6e9a15"><link rel="stylesheet" href="'+o+'rahmen-buehne.css?v=d4b190fafe"><link rel="stylesheet" href="'+o+'kleid/wildside.css?v=86ae7e819c"><link rel="stylesheet" href="'+b+'oberflaeche.css?v=1-ws1">'
  +'<script src="'+o+'kleid/wildside.js?v=0faf36298c"><\/script><script src="'+o+'oberflaeche.js?v=0b1fa78a6c" defer><\/script><script src="'+b+'oberflaeche.js?v=0b1fa78a6cud081f5ae" defer><\/script>');})();</script>
-<link rel="stylesheet" href="plakat.css?v=21-ws1">
+<link rel="stylesheet" href="plakat.css?v=22-ws1">
 </head>
 <body>
 <header class="kopf">
@@ -234,7 +234,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
         <div class="vb__alle" id="abAlle"></div>
       </div>
       <div id="msAbend" hidden>
-        <div class="ms-titel"><h1>DJ-Abend anlegen</h1><span class="ms-leise">Dein eigenes SESSION-Plakat: Foto des Abends hochladen (es wird schwarzweiss), den Plakat-Grund wählen und die Schrift so setzen, dass man sie gut lesen kann. Rechts steht das Plakat sofort, danach geht es im Editor weiter.</span></div>
+        <div class="ms-titel"><h1>DJ-Abend anlegen</h1><span class="ms-leise">Dein eigenes SESSION-Plakat: Foto des Abends hochladen (es wird schwarzweiss), den Plakat-Grund wählen und die Schrift so setzen, dass man sie gut lesen kann. Die Vorschau zeigt jede Änderung sofort; «Plakate anlegen» setzt daraus die Formate und Varianten, «Diesen bearbeiten» öffnet den Editor.</span></div>
         <div class="bk">
           <form class="bk-form" id="pkForm" autocomplete="off">
             <section class="bk-teil"><h2><b>1</b>Angaben</h2>
@@ -247,8 +247,9 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
               </div>
             </section>
             <section class="bk-teil"><h2><b>2</b>Foto des Abends</h2>
-              <p class="bk-satz">Ein Foto hochladen, gern auch in Farbe: Die Plakatwerkstatt macht es schwarzweiss. Es bleibt nur in diesem Browser. Oder eines der Gesichter der Bar wählen.</p>
+              <p class="bk-satz">Ein Foto hochladen, gern auch in Farbe: Die Plakatwerkstatt macht es schwarzweiss. Es bleibt nur in diesem Browser. Oder ein Gesicht vom Plakat-Grund oder ein Foto des Hauses wählen (wird auch schwarzweiss).</p>
               <div class="bk-reihe"><label class="kn bk-hoch"><input type="file" id="bkDatei" accept="image/*,.heic,.heif"><span>Foto hochladen</span></label><span class="bk-meldung" id="bkMeldung" role="status" aria-live="polite"></span></div>
+              <div class="bk-fotowahl" role="group" aria-label="Fotos"><button type="button" data-bkquelle="grund" class="an" aria-pressed="true">Plakat-Grund</button><button type="button" data-bkquelle="haus" aria-pressed="false">Fotos des Hauses</button></div>
               <div class="bk-fotos" id="bkFotos"></div>
               <div class="bk-regler">
                 <label><span>Grösse</span><input type="range" id="bkZoom" min="1" max="2.5" step="0.05" value="1"></label>
@@ -262,10 +263,9 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
               <div id="bkSchrift"></div><p class="bk-pruefung" id="bkPruefung" role="status" aria-live="polite"></p>
             </section>
             <div class="bk-unten">
-              <span class="bk-formate" role="group" aria-label="Format"><button type="button" data-bkformat="insta">Instagram 4:5</button><button type="button" data-bkformat="story">Story</button><button type="button" data-bkformat="a3h">A3</button></span>
-              <button class="kn knopf--voll glanz-kn" id="pkLos" type="submit"><span>Im Editor öffnen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
+              <span class="bk-formate" role="group" aria-label="Format der Vorschau"><span class="bk-formate-titel">Vorschau als</span><button type="button" data-bkformat="insta">Instagram 4:5</button><button type="button" data-bkformat="story">Story</button><button type="button" data-bkformat="a3h">A3</button></span>
+              <button class="kn knopf--voll glanz-kn" id="pkLos" type="submit"><span>Plakate anlegen</span><i><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></i></button>
             </div>
-            <div class="bk-mehr"><button type="button" class="ms-lnk" id="bkFormate"><span>Alle drei Formate anlegen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button type="button" class="ms-lnk" id="bkVarianten"><span>In anderen Wellen zeigen</span><svg viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
           </form>
           <aside class="bk-vorschau" aria-label="Vorschau des Plakats"><div class="bk-blatt" id="bkBlatt"></div><p class="bk-unter" id="bkUnter"></p></aside>
         </div>
@@ -343,7 +343,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
 <script src="lelivre.js?v=c4-ws1"></script>
 <script src="siegel.js?v=1-ws1"></script>
 <script src="start.js?v=96-ws1"></script>
-<script src="plakat.js?v=27-ws1"></script>
+<script src="plakat.js?v=28-ws1"></script>
 <script src="fuehrung.js?v=41-ws1"></script>
 <script>/* Handy (R07, Prüfung 16.10.2026): die Seitenleiste mit den Bereichen war unter 900 px ganz weg. Der Knopf «Bereiche» klappt sie als Fach auf,
    nach der Wahl schliesst sie sich; Escape und Tippen daneben schliessen auch. */

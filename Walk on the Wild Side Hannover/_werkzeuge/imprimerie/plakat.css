@@ -129,13 +129,20 @@
 .bk-foto.an,.bk-grund.an{box-shadow:0 0 0 2.5px var(--navy),0 0 0 4px #fffbf5 inset}
 .bk-regler{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 18px;margin-top:16px}
 .bk-regler input{width:100%;accent-color:var(--navy)}
-.bk-zeile{display:grid;grid-template-columns:minmax(80px,1fr) auto minmax(92px,.9fr) minmax(70px,.6fr) minmax(168px,1.2fr);align-items:end;gap:10px 14px;margin:0;padding:12px 0;border:0;border-top:1px solid var(--wo-linie,rgba(28,21,19,.14))}
+/* Schrift-Zeilen: Name oben, darunter Farbe, Feld, Grösse, Lage; bricht um statt rechts überzustehen (Robert 1.11.: «darf niemals passieren, dass das rechts abgeschnitten ist») */
+.bk-zeile{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 14px;min-width:0;max-width:100%;margin:0;padding:14px 0;border-top:1px solid var(--wo-linie,rgba(28,21,19,.14))}
 .bk-zeile:first-child{border-top:0;padding-top:2px}
-.bk-zeile legend{float:left;padding:0;margin:0;align-self:center;font:500 14px/1.3 var(--sans);color:var(--tinte)}
-.bk-farben{display:flex;gap:6px;align-self:center}
+.bk-zname{flex:0 0 100%;margin:0;font:500 15px/1.3 var(--sans);color:var(--tinte)}
+.bk-farben{flex:0 0 100%;display:flex;flex-wrap:wrap;gap:6px}
+.bk-zeile label{flex:1 1 150px;max-width:100%}
+.bk-zeile label.bk-gr{flex:1 1 84px}
 .bk-zeile select{white-space:nowrap;text-overflow:ellipsis}
-.bk-farbe{width:30px;height:30px;padding:0;border:0;border-radius:50%;background:var(--f);cursor:pointer;box-shadow:inset 0 0 0 1px rgba(28,21,19,.25)}
-.bk-farbe.an{box-shadow:inset 0 0 0 1px rgba(28,21,19,.25),0 0 0 2px #fffbf5,0 0 0 4px var(--navy)}
+.bk-fotowahl{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.bk-fotowahl button{height:36px;padding:0 14px;border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--tinte);background:#fff;box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14));cursor:pointer}
+.bk-fotowahl button.an{color:#fffbf5;background:var(--navy)}
+.bk-fotos .bk-mehrfotos{grid-column:1/-1;justify-self:start}.bk-farbe{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 11px 0 6px;border:0;border-radius:999px;font:400 13px/1 var(--sans);color:var(--tinte);background:#fff;cursor:pointer;box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14))}
+.bk-farbe i{flex:none;width:20px;height:20px;border-radius:50%;background:var(--f);box-shadow:inset 0 0 0 1px rgba(28,21,19,.25)}
+.bk-farbe.an{font-weight:500;box-shadow:0 0 0 2px var(--navy)}
 .bk-pruefung{margin:12px 0 0;padding:12px 14px;border-radius:10px;font:14px/1.45 var(--sans)}
 .bk-pruefung:empty{display:none}
 .bk-pruefung--gut{color:#2d5a3a;background:rgba(45,90,58,.08)}
@@ -144,11 +151,12 @@
 .bk-formate{display:flex;flex-wrap:wrap;gap:8px}
 .bk-formate button{height:40px;padding:0 16px;border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14));cursor:pointer}
 .bk-formate button.an{color:#fffbf5;background:var(--navy)}
-.bk-mehr{display:flex;flex-wrap:wrap;gap:10px 26px}
+#pkVorschlaege{scroll-margin-top:96px}
+.bk-formate-titel{flex:0 0 100%;font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--wo-akzent,#7a5c24)}
 .bk-vorschau{position:sticky;top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;padding:22px;border-radius:14px;background:var(--creme,#ebe2d8)}
 .bk-blatt{display:flex;justify-content:center;width:100%;min-height:260px}
 .bk-blatt .blatt{box-shadow:0 1px 1px rgba(28,21,19,.18),0 18px 34px -16px rgba(28,21,19,.55)}
 .bk-unter{margin:0;text-align:center;font:10px/1.6 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--wo-leise,#5e524a)}
 @media (max-width:1099px){.bk{grid-template-columns:minmax(0,1fr)}.bk-vorschau{position:static;order:-1}}
 @media (max-width:640px){.bk-teil{padding:18px 16px 20px}.bk-felder{grid-template-columns:minmax(0,1fr)}.bk-regler{grid-template-columns:minmax(0,1fr)}
-  .bk-zeile{grid-template-columns:repeat(2,minmax(0,1fr))}.bk-zeile legend{grid-column:1/-1;float:none}.bk-farben{grid-column:1/-1}.bk-zeile label:nth-of-type(3){grid-column:1/-1}}
+  .bk-unten .kn{width:100%;justify-content:space-between}}

@@ -78,7 +78,7 @@
   function zustand() {
     if (BK) return BK;
     const alt = lies() || {};
-    BK = { bild: alt.bild || null, welle: alt.welle || null, bildlage: alt.bildlage || { fx: .5, fy: .5, zoom: 1 }, format: alt.format || 'insta',
+    BK = { bild: alt.bild || null, welle: alt.welle || null, bildlage: alt.bildlage || { fx: .5, fy: .5, zoom: 1 }, format: alt.format || 'insta', swVon: alt.swVon || {},
       gestalt: JSON.parse(JSON.stringify(START)) };
     TEILE.forEach(([k]) => Object.assign(BK.gestalt[k], (alt.gestalt || {})[k] || {}));
     return BK;
@@ -142,23 +142,52 @@
     const blob = await new Promise(ok => cv.toBlob(ok, 'image/jpeg', .92));
     return new File([blob], (datei.name || 'foto').replace(/\.[^.]+$/, '') + ' schwarzweiss.jpg', { type: 'image/jpeg' });
   }
+  async function alsEigenes(datei, m) {   // Datei → schwarzweiss → eigenes Foto im Browser, wird gleich das Foto des Abends
+    m.textContent = 'Das Foto wird schwarzweiss …';
+    const sw = await schwarzweiss(datei);
+    const neu = await DS.eigene.hinzu(DS.M, [sw], t => { m.textContent = t; });
+    if (!neu.length) throw new Error('Das Foto liess sich nicht lesen.');
+    const s = zustand(); s.bild = neu[0]; s.bildlage = { fx: .5, fy: .5, zoom: 1 };
+    m.textContent = neu.fluechtig ? 'Fertig, schwarzweiss. Dieser Browser behält es nur bis zum Schliessen.' : 'Fertig, schwarzweiss. Das Foto bleibt in diesem Browser.';
+    return neu[0];
+  }
   async function hochladen(ev) {
     const d = ev.target.files && ev.target.files[0]; ev.target.value = ''; if (!d) return;
-    const m = $('#bkMeldung'); m.textContent = 'Das Foto wird schwarzweiss …';
+    const m = $('#bkMeldung');
+    try { await alsEigenes(d, m); quelle = 'grund'; zeichneFotos(); regler(); vorschau(); }
+    catch (e) { m.textContent = e.message || 'Das Foto liess sich nicht lesen.'; }
+  }
+  /* Fotos des Hauses sind farbig: beim Wählen wird eine schwarzweisse Fassung angelegt (einmal je Foto, danach wiederverwendet) */
+  const NICHT = ['Schwarzweiss', 'Plakate', 'Plakat-Grund', 'Plakat-Motive', DS.eigene ? DS.eigene.GRUPPE : 'Eigene Fotos'], VORN = ['Die Leute', 'Musik & Feste'];   // erst Menschen und Musik, Plakate sind keine Fotos
+  const hausFotos = () => { const W = new Set(wellen()), rang = b => { const i = VORN.indexOf(b.gruppe); return i < 0 ? 9 : i; };
+    return (DS.M.bilder || []).filter(b => !b.eigen && !b.ki && !NICHT.includes(b.gruppe) && !W.has(b.key)).map((b, i) => [b, i]).sort((x, y) => rang(x[0]) - rang(y[0]) || x[1] - y[1]).map(x => x[0].key); };
+  let quelle = 'grund', hausAlle = false;
+  async function hausFoto(k) {
+    const s = zustand(), m = $('#bkMeldung'), b = DS.M.bildIndex[k] || {};
+    s.swVon = s.swVon || {};
+    if (s.swVon[k] && DS.M.bildIndex[s.swVon[k]]) { s.bild = s.swVon[k]; s.bildlage = { fx: .5, fy: .5, zoom: 1 }; m.textContent = 'Schwarzweiss gewählt.'; zeichneFotos(); regler(); vorschau(); return; }
     try {
-      const sw = await schwarzweiss(d);
-      const neu = await DS.eigene.hinzu(DS.M, [sw], t => { m.textContent = t; });
-      if (!neu.length) throw new Error('Das Foto liess sich nicht lesen.');
-      const s = zustand(); s.bild = neu[0]; s.bildlage = { fx: .5, fy: .5, zoom: 1 };
-      m.textContent = neu.fluechtig ? 'Fertig, schwarzweiss. Dieser Browser behält es nur bis zum Schliessen.' : 'Fertig, schwarzweiss. Das Foto bleibt in diesem Browser.';
+      const blob = await (await fetch(DS.bildUrl(DS.M, k, false))).blob();
+      const name = String(b.alt || k).replace(/[\\/:*?"<>|.]+/g, ' ').slice(0, 60) + '.jpg';
+      s.swVon[k] = await alsEigenes(new File([blob], name, { type: blob.type || 'image/jpeg' }), m);
       zeichneFotos(); regler(); vorschau();
     } catch (e) { m.textContent = e.message || 'Das Foto liess sich nicht lesen.'; }
   }
   function zeichneFotos() {
     const box = $('#bkFotos'); if (!box) return;
-    const s = zustand(), G = gesichter(), eig = (DS.M.bilder || []).filter(b => b.eigen && / schwarzweiss$/.test(b.alt || '')).map(b => b.key);
-    const alle = eig.concat(G), akt = s.bild && DS.M.bildIndex[s.bild] ? s.bild : G[0];
-    box.innerHTML = alle.map(k => { const b = DS.M.bildIndex[k] || {}; return `<button type="button" class="bk-foto${k === akt ? ' an' : ''}" data-bkbild="${esc(k)}" aria-pressed="${k === akt}" aria-label="${esc(b.alt || k)}"><img src="${esc(DS.bildUrl(DS.M, k, true))}" alt="" loading="lazy"></button>`; }).join('');
+    document.querySelectorAll('[data-bkquelle]').forEach(x => { const an = x.dataset.bkquelle === quelle; x.classList.toggle('an', an); x.setAttribute('aria-pressed', an); });
+    const s = zustand(), G = gesichter(), akt = s.bild && DS.M.bildIndex[s.bild] ? s.bild : G[0];
+    const knopf = (k, art) => { const b = DS.M.bildIndex[k] || {}, an = art === 'haus' ? (s.swVon || {})[k] === akt : k === akt;
+      return `<button type="button" class="bk-foto${an ? ' an' : ''}" data-${art === 'haus' ? 'bkhaus' : 'bkbild'}="${esc(k)}" aria-pressed="${an}" aria-label="${esc(b.alt || k)}" title="${esc(b.alt || k)}"><img src="${esc(DS.bildUrl(DS.M, k, true))}" alt="" loading="lazy"></button>`; };
+    if (quelle === 'haus') {
+      const H = hausFotos(), zeig = hausAlle ? H : H.slice(0, 24);
+      box.innerHTML = zeig.map(k => knopf(k, 'haus')).join('') + (H.length > zeig.length ? `<button type="button" class="ms-lnk bk-mehrfotos" id="bkMehrFotos"><span>Alle ${H.length} Fotos zeigen</span>${PFEIL}</button>` : '');
+      box.querySelectorAll('[data-bkhaus]').forEach(b => b.addEventListener('click', () => hausFoto(b.dataset.bkhaus)));
+      const mehr = $('#bkMehrFotos'); if (mehr) mehr.addEventListener('click', () => { hausAlle = true; zeichneFotos(); });
+      return;
+    }
+    const eig = (DS.M.bilder || []).filter(b => b.eigen && / schwarzweiss$/.test(b.alt || '')).map(b => b.key);
+    box.innerHTML = eig.concat(G).map(k => knopf(k, 'grund')).join('');
     box.querySelectorAll('[data-bkbild]').forEach(b => b.addEventListener('click', () => { s.bild = b.dataset.bkbild; s.bildlage = { fx: .5, fy: .5, zoom: 1 }; zeichneFotos(); regler(); vorschau(); }));
   }
   function regler() {
@@ -174,12 +203,12 @@
     const box = $('#bkSchrift'); if (!box) return;
     const s = zustand();
     box.innerHTML = TEILE.map(([k, n]) => { const g = s.gestalt[k];
-      return `<fieldset class="bk-zeile" data-bkteil="${k}"><legend>${esc(n)}</legend>
-        <span class="bk-farben" role="group" aria-label="Farbe">${FARBEN.map(([f, fn]) => `<button type="button" class="bk-farbe${g.farbe === f ? ' an' : ''}" data-f="${f}" style="--f:${esc(hex(f))}" aria-pressed="${g.farbe === f}" aria-label="${esc(fn)}" title="${esc(fn)}"></button>`).join('')}</span>
-        <label><span>Feld</span><select data-k="feld"><option value=""${!g.feld ? ' selected' : ''}>Ohne</option><option value="creme"${g.feld === 'creme' ? ' selected' : ''}>Creme</option><option value="nacht"${g.feld === 'nacht' ? ' selected' : ''}>Nacht</option></select></label>
-        <label><span>Grösse</span><select data-k="groesse">${['S', 'M', 'L'].map(x => `<option${g.groesse === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label>
+      return `<div class="bk-zeile" role="group" aria-label="${esc(n)}" data-bkteil="${k}"><p class="bk-zname">${esc(n)}</p>
+        <span class="bk-farben" role="group" aria-label="Farbe">${FARBEN.map(([f, fn]) => `<button type="button" class="bk-farbe${g.farbe === f ? ' an' : ''}" data-f="${f}" style="--f:${esc(hex(f))}" aria-pressed="${g.farbe === f}"><i></i>${esc(fn)}</button>`).join('')}</span>
+        <label><span>Hinterlegung</span><select data-k="feld"><option value=""${!g.feld ? ' selected' : ''}>Keine</option><option value="creme"${g.feld === 'creme' ? ' selected' : ''}>Creme-Feld</option><option value="nacht"${g.feld === 'nacht' ? ' selected' : ''}>Nacht-Feld</option></select></label>
+        <label class="bk-gr"><span>Grösse</span><select data-k="groesse">${['S', 'M', 'L'].map(x => `<option${g.groesse === x ? ' selected' : ''}>${x}</option>`).join('')}</select></label>
         ${LAGEN[k].length > 1 ? `<label><span>Lage</span><select data-k="lage">${LAGEN[k].map(([v, t]) => `<option value="${v}"${g.lage === v ? ' selected' : ''}>${esc(t)}</option>`).join('')}</select></label>` : ''}
-      </fieldset>`; }).join('');
+      </div>`; }).join('');
     box.querySelectorAll('[data-bkteil]').forEach(fs => {
       const k = fs.dataset.bkteil;
       fs.querySelectorAll('.bk-farbe').forEach(b => b.addEventListener('click', () => { s.gestalt[k].farbe = b.dataset.f; fs.querySelectorAll('.bk-farbe').forEach(x => { x.classList.toggle('an', x === b); x.setAttribute('aria-pressed', x === b); }); vorschau(); }));
@@ -193,33 +222,31 @@
     document.querySelectorAll('[data-bkformat]').forEach(b => { const an = b.dataset.bkformat === zustand().format; b.classList.toggle('an', an); b.setAttribute('aria-pressed', an); });
     vorschau();
   }
-  function karten(liste, titelFn, unterFn) {
-    const box = $('#pkVorschlaege'); box.innerHTML = ''; box.dataset.n = liste.length; const gr = fach(box, liste.length);
-    liste.forEach((x, i) => box.appendChild(karte(x.doc, titelFn(x, i), unterFn(x, i), 'Diesen bearbeiten', gr)));
-    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  function vorschlagen(ev) {   // «Im Editor öffnen»: das Plakat genau so, wie es rechts steht
+  /* «Plakate anlegen»: das gebaute Plakat in den drei Formaten, dazu dasselbe in den anderen Wellen; «Diesen bearbeiten» öffnet den Editor */
+  function vorschlagen(ev) {
     if (ev) ev.preventDefault();
-    if ($('#pkThema').value.trim().length < 2) { $('#pkThema').focus(); $('#bkMeldung').textContent = ''; $('#pkThema').setAttribute('aria-invalid', 'true'); $('#bkUnter').textContent = 'Wer legt auf? Den Namen eintragen, zum Beispiel «Moury».'; return; }
+    const box = $('#pkVorschlaege');
+    if ($('#pkThema').value.trim().length < 2) {
+      $('#pkThema').setAttribute('aria-invalid', 'true'); $('#pkThema').focus();
+      box.innerHTML = '<p class="pk-leer">Wer legt auf? Den Namen eintragen, zum Beispiel «Moury».</p>'; return;
+    }
     $('#pkThema').removeAttribute('aria-invalid');
-    DSStudio.oeffne(bauDoc()); if (DSStart.offen()) DSStart.zu();
-  }
-  function alleFormate() {
-    const w = werte();
-    karten([['insta', 'Instagram 4:5'], ['story', 'Story 9:16'], ['a3h', 'A3 zum Aushang']].map(([f, t]) => ({ doc: bauDoc(f), t })), x => x.t, () => `${w.name} · ${tag(w.samstag)}`);
-  }
-  function varianten() {
-    const w = werte(), W = wellen();
-    karten(W.slice(0, 6).map((we, i) => ({ doc: bauDoc(null, we), i })), (x, i) => `Wellen ${i + 1}`, () => `${w.name} · ${tag(w.samstag)}`);
+    const s = zustand(), w = werte(), W = wellen(), akt = s.welle || W[0], FN = { insta: 'Instagram 4:5', story: 'Story 9:16', a3h: 'A3 zum Aushang' };
+    const welleName = we => { const i = W.indexOf(we); return (MOTIVE[i] || {}).titel || 'Wellen ' + (i + 1); };
+    const liste = ['insta', 'story', 'a3h'].map(f => ({ doc: bauDoc(f), t: FN[f], u: `${welleName(akt)} · dein Plakat` }))
+      .concat(W.filter(we => we !== akt).map(we => ({ doc: bauDoc(null, we), t: welleName(we), u: `${FN[s.format] || ''} · gleiche Schrift und Foto` })));
+    box.innerHTML = `<p class="pk-hinweis">${liste.length} Plakate für ${esc(w.name)} am ${esc(tag(w.samstag))}: dein Plakat in drei Formaten und in den anderen Wellen. «Diesen bearbeiten» öffnet es im Editor.</p>`;
+    box.dataset.n = liste.length; const gr = fach(box, liste.length);
+    liste.forEach(x => box.appendChild(karte(x.doc, x.t, x.u, 'Diesen bearbeiten', gr)));
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function verdrahten() {
     $('#pkForm') && $('#pkForm').addEventListener('submit', vorschlagen);
-    ['pkThema', 'pkGast', 'pkZusatz', 'pkFreitag'].forEach(id => { const e = $('#' + id); if (e) e.addEventListener(e.tagName === 'SELECT' ? 'change' : 'input', vorschau); });
+    ['pkThema', 'pkGast', 'pkZusatz', 'pkFreitag'].forEach(id => { const e = $('#' + id); if (e) e.addEventListener(e.tagName === 'SELECT' ? 'change' : 'input', () => { e.removeAttribute('aria-invalid'); vorschau(); }); });
     const d = $('#bkDatei'); if (d) d.addEventListener('change', hochladen);
     [['bkZoom', 'zoom'], ['bkFx', 'fx'], ['bkFy', 'fy']].forEach(([id, k]) => { const r = $('#' + id); if (r) r.addEventListener('input', () => { zustand().bildlage[k] = +r.value; vorschau(); }); });
     document.querySelectorAll('[data-bkformat]').forEach(b => b.addEventListener('click', () => { zustand().format = b.dataset.bkformat; document.querySelectorAll('[data-bkformat]').forEach(x => { x.classList.toggle('an', x === b); x.setAttribute('aria-pressed', x === b); }); vorschau(); }));
-    $('#bkFormate') && $('#bkFormate').addEventListener('click', alleFormate);
-    $('#bkVarianten') && $('#bkVarianten').addEventListener('click', varianten);
+    document.querySelectorAll('[data-bkquelle]').forEach(b => b.addEventListener('click', () => { quelle = b.dataset.bkquelle; zeichneFotos(); }));
     addEventListener('resize', () => { if ($('#msAbend') && !$('#msAbend').hidden) vorschau(); });
   }
 
