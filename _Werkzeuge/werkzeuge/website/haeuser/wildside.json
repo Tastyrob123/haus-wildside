@@ -45,7 +45,8 @@
   ".vk-rueck",
   ".vi-spiegel",
   ".f03-marke",
-  ".et9-logo"
+  ".et9-logo",
+  ".vk-reihe"
  ],
  "vorschau": {
   "ohne_skripte": [],
@@ -69,44 +70,6 @@
   },
   "stellen": {
    "an": false
-  },
-  "gaeste": {
-   "name": "Gastschichten",
-   "satz": "Wer neben Momo hinterm Tresen stand, mit Datum, Name, Satz und Foto, so wie es auf der Seite «Programm» steht. Was nicht mehr gezeigt werden soll, blendest du aus.",
-   "quellen": [
-    {
-     "seite": "programm.html",
-     "jedes": ".vk-reihe article.vk-p",
-     "felder": [
-      {
-       "key": "name",
-       "label": "Gast",
-       "art": "text",
-       "wo": ".vk-satz h3",
-       "titel": true
-      },
-      {
-       "key": "datum",
-       "label": "Datum",
-       "art": "text",
-       "wo": ".vk-satz .etikett"
-      },
-      {
-       "key": "satz",
-       "label": "Satz zum Gast",
-       "art": "text",
-       "wo": ".vk-satz p"
-      },
-      {
-       "key": "bild",
-       "label": "Foto",
-       "art": "bild",
-       "wo": ".vk-bild img",
-       "kann_fehlen": true
-      }
-     ]
-    }
-   ]
   }
  },
  "zahlen": {
@@ -137,7 +100,7 @@
   {
    "key": "programm",
    "name": "Programm",
-   "satz": "Die Woche, Gastschichten, die Feste und die Bar unterwegs. Die DJ-Abende hast du in einer eigenen Ansicht.",
+   "satz": "Die Woche, die Feste und die Bar unterwegs. DJ-Abende und Gastschichten haben eigene Ansichten.",
    "seiten": [
     "programm.html"
    ],

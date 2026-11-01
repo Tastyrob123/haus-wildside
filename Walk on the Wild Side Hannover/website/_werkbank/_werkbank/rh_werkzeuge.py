@@ -324,7 +324,7 @@ html.ins-ruhe :is(.stapel .tel,.runter i,.zeile__z,.namenzug div,.wb-band__zug,.
 .ins-t.an>:nth-child(2){transition-delay:.06s}.ins-t.an>:nth-child(3){transition-delay:.1s}.ins-t.an>:nth-child(4){transition-delay:.14s}.ins-t.an>:nth-child(5){transition-delay:.18s}
 .ins-t__r{display:flex;align-items:center;justify-content:center;gap:16px;font-family:var(--mono);font-size:.72rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--gold)}
 .ins-t__r::before,.ins-t__r::after{content:'';flex:none;width:clamp(26px,3vw,46px);height:1px;background:rgba(220,198,143,.55)}
-.ins-t h3{margin-top:clamp(16px,1.6vw,22px);font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,4.2vw,4.3rem);line-height:1;color:#fbf6ea}
+.ins-t h3{margin-top:clamp(16px,1.6vw,22px);font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,3.3vw,3.5rem);line-height:1.05;color:#fbf6ea;max-width:100%;overflow-wrap:break-word;text-wrap:balance}   /* Robert 1.11.2026: «Die Plakatwerkstatt» lief rechts aus dem Bild – nie wieder abgeschnitten */
 .ins-t h3::after{content:'';display:block;width:clamp(54px,5vw,78px);height:1px;margin:clamp(20px,2vw,28px) auto 0;background:rgba(220,198,143,.7)}
 .ins-t__s{margin:clamp(20px,2vw,28px) auto 0;max-width:37ch;font-family:var(--serif);font-size:clamp(1.1rem,1.26vw,1.3rem);line-height:1.55;color:rgba(251,246,234,.9);text-wrap:balance}
 .ins-t__l{margin-top:clamp(24px,2.6vw,36px);text-align:left;border-bottom:1px solid rgba(220,198,143,.22)}

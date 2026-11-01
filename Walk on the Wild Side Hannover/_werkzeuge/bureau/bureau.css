@@ -284,7 +284,8 @@ textarea.gs-ein:focus-visible{outline:2px solid var(--wo-gold);outline-offset:2p
 .gs-f__foto{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:start}
 .gs-f__rahmen{margin:0;aspect-ratio:4/3;border-radius:var(--wo-r2);overflow:hidden;background:var(--wo-papier2)}
 .gs-f__bild{display:block;width:100%;height:100%;object-fit:cover}
-.gs-f__bild:not([src]),.gs-f__bild[src=""]{visibility:hidden}
+.gs-f__foto:has(.gs-f__bild[src=""]){grid-template-columns:minmax(0,1fr)}
+.gs-f__rahmen:has(.gs-f__bild[src=""]){display:none}   /* ohne gewähltes Foto keine leere Fläche */
 .gs-f__info{margin:0 0 8px;font-size:14px;color:var(--ws-leise)}
 .gs-f__hoch{margin:4px 0 8px}
 .gs-f__fehler{margin:0}

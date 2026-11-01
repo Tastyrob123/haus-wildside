@@ -57,28 +57,7 @@
   <div class="r mono"><a href="mailto:robert@tasty-studios.de">robert@tasty-studios.de</a><span>Stand 31.10.2026</span></div>
 </div></footer>
 <script src="../werkbank/werkbank.js?v=1793479021"></script>
-<style id="text-mitte">.tm{position:relative}
-@supports not (font:-apple-system-body){
-  .kn>.tm{top:.7px}.kn.kn--klein>.tm{top:0}
-  .wahl button>.tm,.vh-wahl button>.tm,.uwahl button>.tm,.uschalter button>.tm{top:1px;left:.065em}
-  .mb-kn>span{position:relative;top:.9px}
-  .sbf-z>.tm{top:.6px}
-}
-.rund[aria-label^="Zur"] svg,.rund[aria-label^="Vorig"] svg,.pf[aria-label^="Vorig"] svg{transform:translateX(.5px)}
-.rund[aria-label^="Weiter"] svg,.rund[aria-label^="Nächst"] svg,.pf[aria-label^="Nächst"] svg{transform:translateX(-.5px)}
-@supports (font:-apple-system-body){.pf[aria-label^="Vorig"] svg{transform:translate(.6px,.5px)}.pf[aria-label^="Nächst"] svg{transform:translate(-.6px,.5px)}}
-@supports not (font:-apple-system-body){.pf[aria-label^="Vorig"] svg{transform:translateX(.6px)}.pf[aria-label^="Nächst"] svg{transform:translateX(-.6px)}}</style><script id="text-mitte-js">(function(){function t(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var n=k.firstChild;if(n&&n.nodeType===3&&n.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=n.textContent;k.replaceChild(s,n)}})}t();addEventListener('load',t)})();</script><style id="knopf-mitte">/* knopf-mitte (Werkbank Papier, 31.10.2026): Beschriftung optisch mittig in Knöpfen, in Chromium und WebKit gleich, ohne Ausgleich je Engine.
-   Senkrecht: statt .tm{top:.7px} nur für Chromium (text_mitte.py) wird die Beschriftung auf Versalhöhe und Grundlinie beschnitten
-   (text-box: trim-both cap alphabetic); der Knopf zentriert dann genau die Versalien, unabhängig von Zeilenhöhe und Metrik der Engine.
-   Waagrecht: Chromium setzt die Sperrung auch hinter den letzten Buchstaben, WebKit nicht. knopf_mitte.js stellt den letzten Buchstaben
-   in <span class="tm-l"> ohne Sperrung, damit gibt es in keiner Engine einen Abstand am Ende.
-   Wird nach dem Block von text_mitte.py eingefügt und hebt dessen Verschiebungen auf. */
-a.kn>.tm,button.kn>.tm,.uwahl button>.tm,.uschalter button>.tm,.wahl button>.tm,.vh-wahl button>.tm,.sbf-z>.tm{
-  top:0!important;left:0!important;text-box:trim-both cap alphabetic}
-.uwahl button,.uschalter button,.wahl button,.vh-wahl button{display:inline-flex;align-items:center;justify-content:center}
-.tm-l{letter-spacing:0}
-
-@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}</style><script id="knopf-mitte-js">(function(){function m(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var t=k.firstChild;if(t&&t.nodeType===3&&t.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=t.textContent;k.replaceChild(s,t);t=s}if(!t||t.nodeType!==1||!t.classList.contains('tm')||t.querySelector('.tm-l'))return;var x=t.textContent.replace(/\s+$/,'');if(x.length<2)return;var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);t.textContent=x.slice(0,-1);t.appendChild(l)})}m();addEventListener('load',m)})();</script><script id="ruecksprung">(function () {
+<script id="ruecksprung">(function () {
   var K = 'rs:' + location.pathname, d = document.documentElement;
   function merk() { try { var y = String(Math.round(window.scrollY || 0)); sessionStorage.setItem(K, y); if (document.getElementById('rh-zurueck')) sessionStorage.setItem('wb-y', y); } catch (e) {} }
   var t = 0;
@@ -105,5 +84,26 @@ a.kn>.tm,button.kn>.tm,.uwahl button>.tm,.uschalter button>.tm,.wahl button>.tm,
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', los); else los();
   addEventListener('load', function () { if (Math.abs(scrollY - y) > 40) geh(); });
-})();</script></body>
+})();</script><style id="text-mitte">.tm{position:relative}
+@supports not (font:-apple-system-body){
+  .kn>.tm{top:.7px}.kn.kn--klein>.tm{top:0}
+  .wahl button>.tm,.vh-wahl button>.tm,.uwahl button>.tm,.uschalter button>.tm{top:1px;left:.065em}
+  .mb-kn>span{position:relative;top:.9px}
+  .sbf-z>.tm{top:.6px}
+}
+.rund[aria-label^="Zur"] svg,.rund[aria-label^="Vorig"] svg,.pf[aria-label^="Vorig"] svg{transform:translateX(.5px)}
+.rund[aria-label^="Weiter"] svg,.rund[aria-label^="Nächst"] svg,.pf[aria-label^="Nächst"] svg{transform:translateX(-.5px)}
+@supports (font:-apple-system-body){.pf[aria-label^="Vorig"] svg{transform:translate(.6px,.5px)}.pf[aria-label^="Nächst"] svg{transform:translate(-.6px,.5px)}}
+@supports not (font:-apple-system-body){.pf[aria-label^="Vorig"] svg{transform:translateX(.6px)}.pf[aria-label^="Nächst"] svg{transform:translateX(-.6px)}}</style><script id="text-mitte-js">(function(){function t(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var n=k.firstChild;if(n&&n.nodeType===3&&n.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=n.textContent;k.replaceChild(s,n)}})}t();addEventListener('load',t)})();</script><style id="knopf-mitte">/* knopf-mitte (Werkbank Papier, 31.10.2026): Beschriftung optisch mittig in Knöpfen, in Chromium und WebKit gleich, ohne Ausgleich je Engine.
+   Senkrecht: statt .tm{top:.7px} nur für Chromium (text_mitte.py) wird die Beschriftung auf Versalhöhe und Grundlinie beschnitten
+   (text-box: trim-both cap alphabetic); der Knopf zentriert dann genau die Versalien, unabhängig von Zeilenhöhe und Metrik der Engine.
+   Waagrecht: Chromium setzt die Sperrung auch hinter den letzten Buchstaben, WebKit nicht. knopf_mitte.js stellt den letzten Buchstaben
+   in <span class="tm-l"> ohne Sperrung, damit gibt es in keiner Engine einen Abstand am Ende.
+   Wird nach dem Block von text_mitte.py eingefügt und hebt dessen Verschiebungen auf. */
+a.kn>.tm,button.kn>.tm,.uwahl button>.tm,.uschalter button>.tm,.wahl button>.tm,.vh-wahl button>.tm,.sbf-z>.tm{
+  top:0!important;left:0!important;text-box:trim-both cap alphabetic}
+.uwahl button,.uschalter button,.wahl button,.vh-wahl button{display:inline-flex;align-items:center;justify-content:center}
+.tm-l{letter-spacing:0}
+
+@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}</style><script id="knopf-mitte-js">(function(){function m(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var t=k.firstChild;if(t&&t.nodeType===3&&t.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=t.textContent;k.replaceChild(s,t);t=s}if(!t||t.nodeType!==1||!t.classList.contains('tm')||t.querySelector('.tm-l'))return;var x=t.textContent.replace(/\s+$/,'');if(x.length<2)return;var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);t.textContent=x.slice(0,-1);t.appendChild(l)})}m();addEventListener('load',m)})();</script></body>
 </html>
