@@ -121,7 +121,8 @@ def main():
         fertig.append(lege([(blatt(UN + f), b, x, y, r, True) for f, (b, x, y, r) in zip(un[:3], orte)], 'unterlagen'))
     dr = liste('drucksachen/img')
     if len(dr) >= 3:
-        wahl = [f for f in ('karte.webp', 'ausgebucht.webp', 'dc-flyer.webp') if f in dr] or dr[:3]   # hell, dunkel, farbig: drei Stücke nebeneinander (Robert 29.10.2026)
+        wahl = [f for f in ('pw-session-aushang-a3.webp', 'karte.webp', 'pw-tanz-in-den-mai.webp') if f in dr]
+        if len(wahl) < 3: wahl = (wahl + [f for f in dr if f not in wahl])[:3]   # immer drei Stücke (Robert 1.11.2026: Mitte bei «Für draußen» war leer)   # hell, dunkel, farbig: drei Stücke nebeneinander (Robert 29.10.2026)
         fertig.append(lege([(blatt(D + f), 300, x, 500, r, True) for f, (x, r) in zip(wahl, ((170, -3), (500, 2), (830, -2)))], 'drucksachen'))
     us = liste('untersetzer/img', 'u')
     if len(us) >= 4:

@@ -273,7 +273,8 @@ def anwenden(pfad):
     gp = kapitel('k7', nimm('geprueft'))
     k8 = SA.angebot(k)
 
-    folge = [auftakt, brief, worum, register, k1, hs, vergleich, nimm('ideen'), nimm('gefuege'), nimm('seiten'), nimm('gaeste', False), un,
+    folge = [auftakt, brief, register,   # «Worum es geht» gestrichen (Robert 1.11.2026: bei Restaurants und Bars nicht nötig, nur bei Hotels mit Buchungen über die Website)
+             k1, hs, vergleich, nimm('ideen'), nimm('gefuege'), nimm('seiten'), nimm('gaeste', False), un,
              fen_haus, wk, pa, nimm('feed', False), material, gp, fen_tisch, k8, schluss()]
     t = t[:a] + vor_main + '\n'.join(x for x in folge if x) + '\n' + t[b:]
 
