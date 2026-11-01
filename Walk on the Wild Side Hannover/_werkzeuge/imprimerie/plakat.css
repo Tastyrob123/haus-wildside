@@ -107,7 +107,7 @@
 .bk-teil h2{display:flex;align-items:center;gap:12px;margin:0 0 14px;font:400 22px/1.2 var(--serif);color:var(--tinte)}
 .bk-teil h2 b{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font:500 13px/1 var(--sans);color:#fffbf5;background:var(--navy)}
 .bk-satz{margin:-4px 0 14px;font:14px/1.5 var(--sans);color:var(--wo-leise,#5e524a)}
-.bk-felder{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px}
+.bk-felder{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px 18px}   /* zwei Spalten nur, wenn die Beispiele ganz hineinpassen (Tor 1280: Platzhalter abgeschnitten) */
 .bk-felder .bk-breit{grid-column:1/-1}
 .bk label{display:flex;flex-direction:column;gap:7px;min-width:0}
 .bk label>span{font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--wo-akzent,#7a5c24)}
@@ -152,6 +152,8 @@
 .bk-formate button{height:40px;padding:0 16px;border:0;border-radius:999px;font:500 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--tinte);background:#fff;box-shadow:0 0 0 1px var(--wo-linie,rgba(28,21,19,.14));cursor:pointer}
 .bk-formate button.an{color:#fffbf5;background:var(--navy)}
 #pkVorschlaege{scroll-margin-top:96px}
+/* Schrift optisch mittig (Messlauf text-mitte): Chromium hängt die Sperrung nach dem letzten Buchstaben an, der Einzug gleicht das aus (wie maison.css) */
+@supports (interpolate-size:allow-keywords){.bk .bk-hoch>span{text-indent:.14em}.bk-fotowahl button{text-indent:.1em}.bk-formate button{text-indent:.12em}}
 .bk-formate-titel{flex:0 0 100%;font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--wo-akzent,#7a5c24)}
 .bk-vorschau{position:sticky;top:18px;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;padding:22px;border-radius:14px;background:var(--creme,#ebe2d8)}
 .bk-blatt{display:flex;justify-content:center;width:100%;min-height:260px}
