@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Die Pairing-Karte · Walk on the Wild Side Hannover — Prüfungen der Karten (31.10.2026, Vorlage: pruefe.py der Pairing-Karte im Culinarium, dort
-aus der Tafel im Schäfli). Für «wortlaut» muss der Server laufen (python3 _werkzeuge/carte/serve.py, Port aus CARTE_PORT, Standard 9083).
+aus der Tafel im Schäfli). Für «wortlaut» muss der Server laufen (python3 _werkzeuge/carte/serve.py, Port aus CARTE_PORT, Standard 9283).
 
     python3 _werkzeuge/carte/pruefe.py rund        Satz der Pairing-Karte = Satz des Projekts, Zeichen für Zeichen (satz.js dokument() gegen satz/u-<karte>.html, Grundstand)
     python3 _werkzeuge/carte/pruefe.py wortlaut    jede Karte aus dem veröffentlichten Stand drucken und Wort für Wort gegen ihre Quelle prüfen

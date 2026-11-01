@@ -7,9 +7,9 @@ status: aktiv
 
 Kopie des abgenommenen Markenbuchs von Culinarium Hannover, umgekleidet und mit den Hauswerten der Bar. Nichts online, nichts verschickt.
 
-**Adresse:** http://127.0.0.1:9085/_werkzeuge/livre/ · Hausregeln: http://127.0.0.1:9085/_werkzeuge/livre/buch.html · Anleitung: http://127.0.0.1:9085/_werkzeuge/livre/anleitung.html · Stand-Weg für den Tresen: http://127.0.0.1:9085/marke/livre.json
+**Adresse:** http://127.0.0.1:9285/_werkzeuge/livre/ · Hausregeln: http://127.0.0.1:9285/_werkzeuge/livre/buch.html · Anleitung: http://127.0.0.1:9285/_werkzeuge/livre/anleitung.html · Stand-Weg für den Tresen: http://127.0.0.1:9285/marke/livre.json
 
-Server: `python3 server.py 9085` im Ordner `_werkzeuge/livre` (Markenprüfung ohne Claude, Probe-Antwort). Neu bauen (nur in einer Sitzung mit `_quelle/`): `python3 bau.py && python3 buch.py`, Bilder der Anleitung `node anleitung_bilder.js && python3 anleitung_bau.py`.
+Server: `python3 server.py 9285` im Ordner `_werkzeuge/livre` (Markenprüfung ohne Claude, Probe-Antwort). Neu bauen (nur in einer Sitzung mit `_quelle/`): `python3 bau.py && python3 buch.py`, Bilder der Anleitung `node anleitung_bilder.js && python3 anleitung_bau.py`.
 
 ## Was steht
 

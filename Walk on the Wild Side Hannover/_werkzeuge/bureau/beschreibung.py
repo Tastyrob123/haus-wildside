@@ -81,7 +81,7 @@ def beschreibung():
     return {
         '_lies_mich': 'Beschreibung des Hauses für das Werkzeug «website» (Das Schaufenster · Website pflegen). Walk on the Wild Side Hannover: '
                       'Nachbarschafts-Mixology-Bar in Linden-Mitte, nur Deutsch. Jeder Text, jede Zahl, jedes Foto wird aus den gebauten Seiten gelesen '
-                      '(website/ des Projekts). Läuft im Rahmen des Hauses: http://127.0.0.1:9082/_werkzeuge/bureau/ (Walk on the Wild Side Hannover/_werkzeuge/bureau/). '
+                      '(website/ des Projekts). Läuft im Rahmen des Hauses: http://127.0.0.1:9282/_werkzeuge/bureau/ (Walk on the Wild Side Hannover/_werkzeuge/bureau/). '
                       'Geschrieben von _werkzeuge/bureau/beschreibung.py, nie von Hand ändern.',
         'seiten': [dict({'datei': d}, **({'foto': FOTO_SEITE[d]} if d in FOTO_SEITE else {})) for d in s],
         'sprachen': [],

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Die Pairing-Karte · Walk on the Wild Side Hannover (Vorlage: Pairing-Karte im Culinarium) — eigener Server (28.10.2026, Kopie aus der Tafel im Schäfli, dort aus Schlössli, Ruedihus,
-Waldhotel Doldenhorn und La Carte des Carlton-Europe). python3 _werkzeuge/carte/serve.py [port]   (Standard 9083)
+Waldhotel Doldenhorn und La Carte des Carlton-Europe). python3 _werkzeuge/carte/serve.py [port]   (Standard 9283)
 
 Liefert das Werkzeug (/_werkzeuge/carte/, darin auch Satz, Schriften und Fotos der Karte; die Werkzeug-Oberfläche kommt aus dem Haus unter
 /assets/oberflaeche/), die Wege /_werkzeuge/carte/api/… (carte.py) und,
@@ -19,7 +19,7 @@ OBERFLAECHE = os.path.join(WURZEL, '_werkzeuge', 'oberflaeche')   # gemeinsamer 
 sys.path.insert(0, HIER)
 import carte  # noqa: E402
 
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get('CARTE_PORT', '9083'))
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get('CARTE_PORT', '9283'))
 os.environ['CARTE_PORT'] = str(PORT)
 GROSS = 3_000_000
 # was aus dem Projekt gelesen werden darf (nur Dateien darunter, nie Python, nie Daten)

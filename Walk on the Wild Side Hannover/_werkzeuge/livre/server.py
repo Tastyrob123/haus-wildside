@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Das Markenbuch (Le Livre) · Walk on the Wild Side Hannover, lokaler Server (Port 9085; Kopie aus dem Markenbuch von Culinarium): liefert die Website (website/) unter / und Le Livre
+"""Das Markenbuch (Le Livre) · Walk on the Wild Side Hannover, lokaler Server (Port 9285; Kopie aus dem Markenbuch von Culinarium): liefert die Website (website/) unter / und Le Livre
 (_werkzeuge/livre/) nur lesend aus, das gemeinsame Kleid der Werkzeuge (_werkzeuge/oberflaeche/) unter /assets/oberflaeche/, und beantwortet /api/…:
-   python3 _werkzeuge/livre/server.py [port]           danach http://127.0.0.1:9085/_werkzeuge/livre/
+   python3 _werkzeuge/livre/server.py [port]           danach http://127.0.0.1:9285/_werkzeuge/livre/
    LIVRE_KI=1 python3 _werkzeuge/livre/server.py       Markenprüfung mit Claude (nur auf Roberts Wort, Regel 54); ohne den Schalter Probe-Antwort
 
 GET  /_werkzeuge/livre/api/stand                                   Zahlen für La Maison (Fotos, Dateien), Fotos ohne Original
@@ -25,7 +25,7 @@ UMLEITEN = {'/_werkzeuge/livre/': HIER, '/assets/oberflaeche/': os.path.join(PRO
 sys.path.insert(0, HIER)
 import livre as LV  # noqa: E402
 
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9085
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9285
 API = ('/_werkzeuge/livre/api/', '/marke/api/')
 OFFEN_MIT_STRICH = ('/_werkzeuge/livre/', '/_werkzeuge/imprimerie/', '/_werkzeuge/maison/', '/_werkzeuge/carte/', '/_werkzeuge/reception/', '/_werkzeuge/registre/', '/_werkzeuge/bureau/')   # die einzigen Ordner mit _ am Anfang, die ausgeliefert werden
 GESPERRT_ENDUNG = ('.py', '.pyc', '.md', '.log', '.jsonl', '.sh', '.env', '.gut', '.bak', '.diff')

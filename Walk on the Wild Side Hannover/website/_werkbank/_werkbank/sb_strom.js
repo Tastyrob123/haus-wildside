@@ -1,13 +1,13 @@
 // Aufnahmen der Beigaben für die Objekte der Werkbank (Wegweiser und Fuss «Alles auf einen Blick»), Wild Side (31.10.2026, Vorlage Culinarium).
-//   WB_PORT=9088 node _werkbank/sb_strom.js  →  _werkbank/ansichten/Strom/<name>-rechner.jpg (1440 × 900, doppelte Dichte), angebot-handy.jpg
+//   WB_PORT=9288 node _werkbank/sb_strom.js  →  _werkbank/ansichten/Strom/<name>-rechner.jpg (1440 × 900, doppelte Dichte), angebot-handy.jpg
 // Nur ansehen, nichts wird gespeichert oder abgeschickt. Seiten, die es noch nicht gibt, werden übersprungen.
 const path = require('path'), fs = require('fs');
 let PW; try { PW = require('playwright'); } catch (e) { PW = require('/opt/node-tools/node_modules/playwright'); }
 const { chromium } = PW;
-const HIER = __dirname, ROOT = path.join(HIER, '..'), B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
+const HIER = __dirname, ROOT = path.join(HIER, '..'), B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9288) + '/';
 const ZIEL = path.join(HIER, 'ansichten', 'Strom');
 const STUECKE = [['analyse', 'befund/index.html'], ['feed', 'feed/index.html'], ['geprueft', 'werkbank/geprueft/index.html'], ['angebot', 'werkbank/karte.html'],
-  ['markenbuch', 'http://127.0.0.1:9085/_werkzeuge/livre/buch.html']];   // die Hausregeln des Markenbuchs (Werkzeug-Server)
+  ['markenbuch', 'http://127.0.0.1:9285/_werkzeuge/livre/buch.html']];   // die Hausregeln des Markenbuchs (Werkzeug-Server)
 (async () => {
   fs.mkdirSync(ZIEL, { recursive: true });
   const b = await chromium.launch({ headless: true });

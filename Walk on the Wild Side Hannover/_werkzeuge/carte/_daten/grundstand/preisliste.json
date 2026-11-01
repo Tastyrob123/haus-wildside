@@ -19,7 +19,21 @@
   {
    "fn": "seite",
    "a": [
-    " data-max=\"1.6\" class=\"blatt ws\" data-b=\"210\" data-h=\"297\" style=\"width:210mm;height:297mm\"",
+    " data-max=\"1.6\" class=\"blatt ws ws-feier\" data-b=\"210\" data-h=\"297\" style=\"width:210mm;height:297mm\"",
+    {
+     "fn": "el",
+     "a": [
+      "figure",
+      " class=\"sb-held\"",
+      {
+       "fn": "el",
+       "a": [
+        "img",
+        " src=\"bild/an-campari.webp\" alt=\"\""
+       ]
+      }
+     ]
+    },
     {
      "fn": "el",
      "a": [
@@ -83,7 +97,136 @@
            "fn": "el",
            "a": [
             "section",
-            " class=\"sb-r\"",
+            " class=\"sb-r sb-r0 sb-r--bild\"",
+            {
+             "fn": "el",
+             "a": [
+              "p",
+              " class=\"sb-h\"",
+              "Pauschale pro Person"
+             ]
+            },
+            {
+             "fn": "el",
+             "a": [
+              "div",
+              " class=\"sb-m\"",
+              {
+               "fn": "el",
+               "a": [
+                "img",
+                " class=\"sb-mb\" src=\"bild/an-sours.webp\" alt=\"\""
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-n\"",
+                "Kategorie 1 · Bier, Wein, Spritz"
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-mp\"",
+                "49,00"
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-dr\"",
+                "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke"
+               ]
+              }
+             ]
+            },
+            {
+             "fn": "el",
+             "a": [
+              "div",
+              " class=\"sb-m\"",
+              {
+               "fn": "el",
+               "a": [
+                "img",
+                " class=\"sb-mb\" src=\"bild/an-glaeser.webp\" alt=\"\""
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-n\"",
+                "Kategorie 2 · Dazu Longdrinks"
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-mp\"",
+                "59,00"
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-dr\"",
+                "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke"
+               ]
+              }
+             ]
+            },
+            {
+             "fn": "el",
+             "a": [
+              "div",
+              " class=\"sb-m\"",
+              {
+               "fn": "el",
+               "a": [
+                "img",
+                " class=\"sb-mb\" src=\"bild/an-negroni.webp\" alt=\"\""
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-n\"",
+                "Kategorie 3 · Dazu fünf Signature Cocktails"
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-mp\"",
+                "79,00"
+               ]
+              },
+              {
+               "fn": "el",
+               "a": [
+                "p",
+                " class=\"sb-dr\"",
+                "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "fn": "el",
+           "a": [
+            "section",
+            " class=\"sb-r sb-r1\"",
             {
              "fn": "el",
              "a": [
@@ -259,115 +402,7 @@
            "fn": "el",
            "a": [
             "section",
-            " class=\"sb-r\"",
-            {
-             "fn": "el",
-             "a": [
-              "p",
-              " class=\"sb-h\"",
-              "Pauschale pro Person"
-             ]
-            },
-            {
-             "fn": "el",
-             "a": [
-              "div",
-              " class=\"sb-m\"",
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-n\"",
-                "Kategorie 1 · Bier, Wein, Spritz"
-               ]
-              },
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-mp\"",
-                "49,00"
-               ]
-              },
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-dr\"",
-                "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke"
-               ]
-              }
-             ]
-            },
-            {
-             "fn": "el",
-             "a": [
-              "div",
-              " class=\"sb-m\"",
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-n\"",
-                "Kategorie 2 · Dazu Longdrinks"
-               ]
-              },
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-mp\"",
-                "59,00"
-               ]
-              },
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-dr\"",
-                "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke"
-               ]
-              }
-             ]
-            },
-            {
-             "fn": "el",
-             "a": [
-              "div",
-              " class=\"sb-m\"",
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-n\"",
-                "Kategorie 3 · Dazu fünf Signature Cocktails"
-               ]
-              },
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-mp\"",
-                "79,00"
-               ]
-              },
-              {
-               "fn": "el",
-               "a": [
-                "p",
-                " class=\"sb-dr\"",
-                "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke"
-               ]
-              }
-             ]
-            }
-           ]
-          },
-          {
-           "fn": "el",
-           "a": [
-            "section",
-            " class=\"sb-r\"",
+            " class=\"sb-r sb-r2\"",
             {
              "fn": "el",
              "a": [

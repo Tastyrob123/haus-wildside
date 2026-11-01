@@ -1,8 +1,8 @@
 /* Bilder für die Anleitung (anleitung.html): ein Bildschirmfoto je Kapitel aus dem echten Werkzeug, Beispielwerte, 1512×900 → 1200 px breit.
-   node anleitung_bilder.js [basis]   (Server der Besucherliste muss laufen, eigener Port 9086; headless Chromium, JPEG über Pillow) */
+   node anleitung_bilder.js [basis]   (Server der Besucherliste muss laufen, eigener Port 9286; headless Chromium, JPEG über Pillow) */
 const path = require('path'), fs = require('fs');
 let PW; try { PW = require('playwright'); } catch (e) { PW = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright')); }
-const A = process.argv[2] || 'http://127.0.0.1:9086/_werkzeuge/registre/';
+const A = process.argv[2] || 'http://127.0.0.1:9286/_werkzeuge/registre/';
 const AUS = path.join(__dirname, 'anleitung');
 const K = [
   ['k01', 'start', 0, null], ['k02', 'start', 520, null], ['k03', 'besuche', 540, null], ['k04', 'besuche', 540, async p => { await p.click('[data-filter="buchung"]'); await p.waitForTimeout(500); }],

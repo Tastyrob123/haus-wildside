@@ -1,9 +1,9 @@
 /* Kurzfilme der Führung (hilfe/schritt-1…9.mp4 + .jpg) und Demo-Video (hilfe/demo.mp4, demo-poster.jpg, kapitel.json), aufgenommen an der Plakatwerkstatt
-   des Wild Side (Server :9087, Probe ohne KI). Playwright nimmt WebM auf, ffmpeg schneidet um das Ziel und wandelt in H.264.
+   des Wild Side (Server :9287, Probe ohne KI). Playwright nimmt WebM auf, ffmpeg schneidet um das Ziel und wandelt in H.264.
    NODE_PATH=$(npm root -g) node _bau/filme.js */
 const { chromium } = require('playwright'); const fs = require('fs'), path = require('path'), { execFileSync } = require('child_process');
 const H = path.join(__dirname, '..', 'hilfe'), TMP = fs.mkdtempSync('/tmp/ws-filme-');
-const URL = 'http://127.0.0.1:9087/_werkzeuge/imprimerie/';
+const URL = 'http://127.0.0.1:9287/_werkzeuge/imprimerie/';
 const W = 1440, HH = 900;
 async function seite(b, video) {
   const ctx = await b.newContext({ viewport: { width: W, height: HH }, recordVideo: video ? { dir: TMP, size: { width: W, height: HH } } : undefined });

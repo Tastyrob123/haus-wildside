@@ -13,62 +13,72 @@
  "mit": "Für die lange Tafel und die ganze Bar",
  "rubriken": [
   {
-   "titel": "Was ein Drink kostet",
-   "eintraege": [
-    {
-     "name": "Signature Drinks",
-     "zutaten": "",
-     "preis": "12,00"
-    },
-    {
-     "name": "Alkoholfreie Drinks",
-     "zutaten": "",
-     "preis": "11,00"
-    },
-    {
-     "name": "Longdrinks",
-     "zutaten": "",
-     "preis": "10,00"
-    },
-    {
-     "name": "Wein und Spritz",
-     "zutaten": "",
-     "preis": "8,00"
-    },
-    {
-     "name": "Sekt auf Eis",
-     "zutaten": "",
-     "preis": "6,00"
-    },
-    {
-     "name": "Bier",
-     "zutaten": "",
-     "preis": "4,00"
-    },
-    {
-     "name": "Alkoholfreie Getränke",
-     "zutaten": "",
-     "preis": "3,00"
-    }
-   ]
-  },
-  {
    "titel": "Pauschale pro Person",
    "eintraege": [
     {
      "name": "Kategorie 1 · Bier, Wein, Spritz",
      "zutaten": "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
-     "preis": "49,00"
+     "preis": "49,00",
+     "bild": "an-sours.webp"
     },
     {
      "name": "Kategorie 2 · Dazu Longdrinks",
      "zutaten": "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
-     "preis": "59,00"
+     "preis": "59,00",
+     "bild": "an-glaeser.webp"
     },
     {
      "name": "Kategorie 3 · Dazu fünf Signature Cocktails",
      "zutaten": "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
-     "preis": "79,00"
+     "preis": "79,00",
+     "bild": "an-negroni.webp"
+    }
+   ]
+  },
+  {
+   "titel": "Was ein Drink kostet",
+   "eintraege": [
+    {
+     "name": "Signature Drinks",
+     "zutaten": "",
+     "preis": "12,00",
+     "bild": ""
+    },
+    {
+     "name": "Alkoholfreie Drinks",
+     "zutaten": "",
+     "preis": "11,00",
+     "bild": ""
+    },
+    {
+     "name": "Longdrinks",
+     "zutaten": "",
+     "preis": "10,00",
+     "bild": ""
+    },
+    {
+     "name": "Wein und Spritz",
+     "zutaten": "",
+     "preis": "8,00",
+     "bild": ""
+    },
+    {
+     "name": "Sekt auf Eis",
+     "zutaten": "",
+     "preis": "6,00",
+     "bild": ""
+    },
+    {
+     "name": "Bier",
+     "zutaten": "",
+     "preis": "4,00",
+     "bild": ""
+    },
+    {
+     "name": "Alkoholfreie Getränke",
+     "zutaten": "",
+     "preis": "3,00",
+     "bild": ""
     }
    ]
   },
@@ -78,16 +88,21 @@
     {
      "name": "Service und Raum",
      "zutaten": "",
-     "preis": "500,00"
+     "preis": "500,00",
+     "bild": ""
     },
     {
      "name": "Euer Budget für Drinks",
      "zutaten": "Lässt sich nach oben frei anpassen",
-     "preis": "ab 1.000,00"
+     "preis": "ab 1.000,00",
+     "bild": ""
     }
    ]
   }
  ],
  "hinweis": "Pauschale und Budget: geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr, ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. Alle Preise in Euro, brutto. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.",
- "quelle": "website/unter.py PREISE, PAUSCHALE und tafel() (Angebotsmappe der Bar, _quelle/angebote-pdf/Wild Side Angebote.pdf)"
+ "quelle": "website/unter.py PREISE, PAUSCHALE und tafel() (Angebotsmappe der Bar, _quelle/angebote-pdf/Wild Side Angebote.pdf)",
+ "kleid": "feier",
+ "deko": "",
+ "held": "an-campari.webp"
 }

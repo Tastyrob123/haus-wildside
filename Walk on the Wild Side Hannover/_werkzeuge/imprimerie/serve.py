@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""L’Imprimerie · Walk on the Wild Side Hannover, eigener Prüfserver:  python3 serve.py [port]   (Standard 9087) → http://127.0.0.1:9087/_werkzeuge/imprimerie/
+"""L’Imprimerie · Walk on the Wild Side Hannover, eigener Prüfserver:  python3 serve.py [port]   (Standard 9287) → http://127.0.0.1:9287/_werkzeuge/imprimerie/
 Bildet die Wege des Hauses nach (Vorlage: Prüfserver der Plakatwerkstatt des Stammhauses), damit L’Imprimerie hier genau so läuft wie unter /_werkzeuge/imprimerie/
 und online (/werkzeuge/imprimerie/): Le Livre liegt daneben unter /_werkzeuge/livre/, die Fotos der Website unter /assets/bild/, das Oberflächen-Paket unter
 /assets/oberflaeche/ (_werkzeuge/oberflaeche/, Chat «wildside-maison»), Schriften und Zeichen der Website unter /assets/schrift/ und /assets/zeichen/. Alles nur lesend, nur diese Wege.
@@ -7,7 +7,7 @@ und online (/werkzeuge/imprimerie/): Le Livre liegt daneben unter /_werkzeuge/li
 KI: Ohne ausdrückliches IMPRIMERIE_KI=1 antwortet /api/entwurf mit einer Probe-Antwort aus den Vorlagen des Hauses (kostet nichts, Regel 54).
 Ein Schlüssel wird nie aus dem Vault gelesen; nur ANTHROPIC_API_KEY aus der Umgebung, und nur zusammen mit IMPRIMERIE_KI=1.
 Wache wie online (api/entwurf.py wache): fremde Herkunft 403, nur JSON 415, Grösse 413, 40 Entwürfe je Stunde und Absender 429.
-Markenprüfung (POST /_werkzeuge/livre/api/pruefen) geht an den Server von Le Livre (LIVRE_SERVER, Standard http://127.0.0.1:9085, _werkzeuge/livre/server.py des Hauses)."""
+Markenprüfung (POST /_werkzeuge/livre/api/pruefen) geht an den Server von Le Livre (LIVRE_SERVER, Standard http://127.0.0.1:9285, _werkzeuge/livre/server.py des Hauses)."""
 import glob, json, os, re, sys, time, urllib.error, urllib.request
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import unquote
@@ -21,7 +21,7 @@ import entwurf as E  # noqa: E402
 
 WEG = '/_werkzeuge/imprimerie/'
 KI = os.environ.get('IMPRIMERIE_KI') == '1' and bool(os.environ.get('ANTHROPIC_API_KEY'))
-LIVRE_SERVER = os.environ.get('LIVRE_SERVER', 'http://127.0.0.1:9085')
+LIVRE_SERVER = os.environ.get('LIVRE_SERVER', 'http://127.0.0.1:9285')
 NUR_LESEN = {   # Weg → Ordner, nur diese Dateiarten
     '/_werkzeuge/livre/livre.json': (os.path.join(LIVRE, 'livre.json'), None),
     '/_werkzeuge/livre/dateien/': (os.path.join(LIVRE, 'dateien'), r'\.(png|svg|webp|jpg|css|json|ase|zip|ttf|woff2?)$'),
@@ -325,6 +325,6 @@ class H(SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 9087
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 9287
     print(f'L’Imprimerie · Walk on the Wild Side Hannover: http://127.0.0.1:{port}{WEG}  (KI: {"echt" if KI else "Probe, ohne Kosten"})')
     ThreadingHTTPServer(('127.0.0.1', port), H).serve_forever()

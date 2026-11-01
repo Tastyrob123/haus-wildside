@@ -9,7 +9,7 @@ status: aktiv
 
 ## Einbinden (jedes Werkzeug gleich)
 
-Der Server des Werkzeugs liefert `/assets/oberflaeche/…` aus **diesem Ordner** und `/assets/…` sonst aus `website/assets/` (Fotos `/assets/bild/<schlüssel>-<breite>.webp`, Schriften `/assets/schrift/`). Muster: `_werkzeuge/maison/server.py` (`translate_path`, Port 9081).
+Der Server des Werkzeugs liefert `/assets/oberflaeche/…` aus **diesem Ordner** und `/assets/…` sonst aus `website/assets/` (Fotos `/assets/bild/<schlüssel>-<breite>.webp`, Schriften `/assets/schrift/`). Muster: `_werkzeuge/maison/server.py` (`translate_path`, Port 9281).
 
 ```html
 <script src="/assets/oberflaeche/kleid/wildside.js?v=1"></script>          <!-- vor allem anderen, ohne defer -->
@@ -21,12 +21,12 @@ Der Server des Werkzeugs liefert `/assets/oberflaeche/…` aus **diesem Ordner**
 <script src="/assets/oberflaeche/oberflaeche.js?v=1"></script>            <!-- vor dem Skript des Werkzeugs -->
 ```
 
-`?v=` beim Bau aus dem Inhalt bilden (M20), nie von Hand. Gerüst und Zeichen-Funktionen (`WO.kopf`, `WO.startbild`, `WO.rand`, `WO.leiste`, `WO.knopf`, `WO.name`) wie im Stamm. Musterseite mit jedem Baustein: http://127.0.0.1:9081/assets/oberflaeche/muster.html?haus=wildside (Server des Tresens).
+`?v=` beim Bau aus dem Inhalt bilden (M20), nie von Hand. Gerüst und Zeichen-Funktionen (`WO.kopf`, `WO.startbild`, `WO.rand`, `WO.leiste`, `WO.knopf`, `WO.name`) wie im Stamm. Musterseite mit jedem Baustein: http://127.0.0.1:9281/assets/oberflaeche/muster.html?haus=wildside (Server des Tresens).
 
 ## Werte des Hauses (nur lesen, nie abtippen)
 
 - **Namen der Werkzeuge:** nur `WO.name('<teil>')` bzw. `WO_HAUS.namen` (Teile: zentrale, website, karten, gaeste, marke, besuche, druck): Der Tresen · Das Schaufenster · Die Pairing-Karte · Das Gästebuch · Das Markenbuch · Die Besucherliste · Die Plakatwerkstatt (gleicher Satz wie im Culinarium, Robert 28./29.10.2026); je Werkzeug ein Satz in `WO_HAUS.saetze`. Python-Seiten lesen sie aus `kleid/wildside.js` (Regex auf `namen:`). Wechseln die Namen, ändert sich nur diese eine Zeile.
-- **Wege und Ports:** `WO_HAUS.wege` (`/_werkzeuge/<werkzeug>/`), `WO_HAUS.ports` (9081 Zentrale … 9087 Drucksachen, 9088 Werkbank). Wege zu anderen Werkzeugen immer `http://127.0.0.1:<port>/…`, nie `localhost` (Fehlerbuch 10a); die Zentrale: `http://127.0.0.1:9081/_werkzeuge/maison/`.
+- **Wege und Ports:** `WO_HAUS.wege` (`/_werkzeuge/<werkzeug>/`), `WO_HAUS.ports` (9281 Zentrale … 9287 Drucksachen, 9288 Werkbank). Wege zu anderen Werkzeugen immer `http://127.0.0.1:<port>/…`, nie `localhost` (Fehlerbuch 10a); die Zentrale: `http://127.0.0.1:9281/_werkzeuge/maison/`.
 - **Farben** (aus `website/assets/wild.css`, `CHARAKTER.md` 4): nur die Variablen. Dunkle Flächen `--wo-tief` (#130E0D Nacht), `--wo-nacht` (#1C1513), `--wo-nacht2` (#261E1A); Gold `--wo-gold` (#D8B264) **nur** als Haarlinie, Etikett, Knauf (Rahmen des Eckschilds); `--wo-akzent` (#7A5C24 Gold tief, Betonung auf Hell); Rot `--wo-rot`/`--wo-punkt` (#F0323F) **nur** als Punkt (Hauptknopf, Wortmarke); Raum `--wo-papier` (#EFE6D8), `--wo-blatt` (#F7F1E7), Creme der Plakate #F2E9DC; Schrift `--wo-tinte` (#1C1513), `--wo-leise` (#5E524A). Ultramarin #1A00AA nur über `.wo-dj` (DJ-Abende, SESSION-Plakate). Keine eigenen Hexwerte für Flächen.
 - **Schrift:** Titel `var(--wo-titel)` = Prata (eine Stärke, nie fett, nie kursiv); Lauf `var(--wo-sans)` = Hanken Grotesk 400; Etiketten `var(--wo-etikett)` = Hanken 500 gesperrt; Zahlen `.wo-zahl` Hanken mit `tabular-nums`. Dateien `/assets/schrift/prata-latin.woff2`, `/assets/schrift/hanken-latin.woff2`. Fraunces, Urbanist, Instrument Sans, DM Mono gibt es hier nicht.
 - **Form: das Eckschild.** Platten 18 px Radius mit Gold-Haarlinie innen und weichem Schatten, Kacheln 14 px; Knöpfe als Schild mit rundem Knauf: `.wo-kn--gold` = Hauptweg Rot mit Creme-Knauf, `.wo-kn--dunkel` = Nebenweg Nacht mit Goldlinie und Gold-Knauf, `.wo-kn--hell` = Creme mit Goldlinie. Über Zwischentiteln eine kurze Gold-Haarlinie, sonst kein Schmuck. Keine Einkerbungen, keine Pillen-Reihen, keine Tickets, keine Leuchtschrift, keine Sticker.

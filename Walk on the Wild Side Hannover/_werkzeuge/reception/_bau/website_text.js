@@ -1,9 +1,9 @@
 // Wortlaut der Website von Walk on the Wild Side, wie ein Gast ihn sieht (31.10.2026): innerText jeder Seite, headless, nur lesen.
-// Quelle für _bau/wildside_wissen.py. Aufruf aus dem Hausordner: node _werkzeuge/reception/_bau/website_text.js [basis, Standard http://127.0.0.1:9084]
+// Quelle für _bau/wildside_wissen.py. Aufruf aus dem Hausordner: node _werkzeuge/reception/_bau/website_text.js [basis, Standard http://127.0.0.1:9284]
 // (der Server des Gästebuchs liefert die Website unter / aus, nur lesend)
 const path = require('path'), fs = require('fs');
 const { chromium } = require('playwright');
-const BASIS = process.argv[2] || 'http://127.0.0.1:9084';
+const BASIS = process.argv[2] || 'http://127.0.0.1:9284';
 const SEITEN = ['index', 'drinks', 'programm', 'tafel', 'haus', 'besuch', 'impressum', 'datenschutz'];
 const ZIEL = path.join(__dirname, 'website-text');
 (async () => {

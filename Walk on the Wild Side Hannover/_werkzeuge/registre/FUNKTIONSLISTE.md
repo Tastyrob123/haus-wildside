@@ -32,7 +32,7 @@ Vorlage: die Besucherliste des Culinarium Hannover (28.10.2026); Rahmen aus der 
 |---|---|---|---|
 | B01 | Der Kopf nennt oben den Titel der Ansicht und darunter den Stand («Beispielwerte · keine echten Besuche») | Rechner | – |
 | B02 | Anleitung: runder Knopf mit Hinweis, öffnet anleitung.html in neuem Tab | alle | – |
-| B03 | Die Zentrale: runder Knopf mit Hinweis, führt zur Zentrale (lokal auf ihren eigenen Server http://127.0.0.1:9081/_werkzeuge/maison/, Fehlerbuch 10a; online ../../maison/ = /maison/; die Adresse antwortet) | alle | – |
+| B03 | Die Zentrale: runder Knopf mit Hinweis, führt zur Zentrale (lokal auf ihren eigenen Server http://127.0.0.1:9281/_werkzeuge/maison/, Fehlerbuch 10a; online ../../maison/ = /maison/; die Adresse antwortet) | alle | – |
 | B04 | «Website ansehen» öffnet die Website in neuem Tab | alle | – |
 | B05 | Die Marke «Das Besucherbuch» (Zeichen des Hauses, oben links) führt zurück zur Übersicht | alle | – |
 | B06 | Am Handy (Oberfläche der Häuser): im Kopf Marke und «Bereiche», Kopf-Titel und runde Knöpfe weichen; Website, Anleitung und Die Stube stehen im aufgeklappten Rand | Handy | – |

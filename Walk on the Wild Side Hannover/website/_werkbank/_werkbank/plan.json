@@ -1,6 +1,6 @@
 {
- "port": 9088,
- "base": "http://127.0.0.1:9088/",
+ "port": 9288,
+ "base": "http://127.0.0.1:9288/",
  "kurz": "wildside",
  "seiten": [
   [

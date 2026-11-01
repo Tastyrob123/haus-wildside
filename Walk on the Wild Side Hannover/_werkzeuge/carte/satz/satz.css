@@ -66,3 +66,89 @@ html,body{margin:0;padding:0;background:#1C1513;-webkit-print-color-adjust:exact
 /* Flächen wachsen, schrumpfen aber nie: sonst läuft Inhalt unbemerkt übereinander statt dass blatt.js die Schrift einpasst (Fehlerbuch 9) */
 .sb-quer,.sb-menue{flex:1 0 auto;min-height:auto}
 .sb-menue{flex:0 0 auto}
+
+/* ================================================================ Valentinsreihe «Drunk in Love» / «Dishes in Love» (01.11.2026)
+   Robert: «Finde deren mit Pink Panther und Schriftarten viel schöner!» Darum im Charakter des Originals (Beitrag der Bar vom 03.02.2026): rosa Grund,
+   Titel in kräftiger runder Display-Schrift, das letzte Wort in Pinselschrift rosa mit orangem Versatz, Namen und Preise in Rot, Zutaten gesperrt,
+   der Leopard mit Herzen und Cocktailglas aus der Karte der Bar (freigestellt, bilder_satz.py). Besser gesetzt: Preise auf einer Linie, ruhiger
+   Rhythmus, Rubrik mit feiner Linie, die Wortmarke der Bar klein oben rechts. Schriften: Titan One, Caveat Brush, Montserrat (google/fonts, feste Schnitte). */
+@font-face{font-family:'Titan Satz';src:url('../fonts/TitanOne-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'Pinsel Satz';src:url('../fonts/CaveatBrush-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'Montserrat Satz';src:url('../fonts/Montserrat-500.ttf') format('truetype');font-weight:500;font-style:normal;font-display:block}
+@font-face{font-family:'Montserrat Satz';src:url('../fonts/Montserrat-600.ttf') format('truetype');font-weight:600;font-style:normal;font-display:block}
+.ws-love{--l-grund:#FEE1E6;--l-rot:#D7102F;--l-tinte:#B3132E;--l-leise:#C4485C;--l-rosa:#F27BB7;--l-orange:#F7943A;background:var(--l-grund);color:var(--l-tinte);font-family:'Montserrat Satz',Arial,sans-serif;font-weight:500}
+.ws-love::before{display:none}
+.ws-love .inhalt{padding:22mm 24mm 4mm}
+.ws-love .sb-quer{align-items:stretch;text-align:left;justify-content:flex-start;gap:calc(9mm*var(--s))}
+.ws-love .sb-oben{align-items:flex-start}
+.ws-love .sb-zeichen{position:absolute;right:14mm;top:13mm;color:var(--l-rot)}
+.ws-love .ws-wm{width:15mm}
+.ws-love .sb-band{margin:0;font-family:'Titan Satz',Arial,sans-serif;font-weight:400;text-transform:uppercase;color:var(--l-rot);line-height:.95;letter-spacing:.01em;text-wrap:nowrap}
+.ws-love .sb-b1{display:block;font-size:calc(50pt*var(--s))}
+.ws-love .sb-b2{display:block;margin:calc(-1.5mm*var(--s)) 0 0 calc(48mm*var(--s));font-family:'Pinsel Satz',cursive;text-transform:uppercase;font-size:calc(58pt*var(--s));
+  line-height:1;letter-spacing:.04em;color:var(--l-rosa);text-shadow:.7mm .6mm 0 var(--l-orange)}
+.ws-love .sb-datum{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(7.6pt*var(--s));letter-spacing:.08em;color:var(--l-rot);margin-top:calc(5mm*var(--s))}
+.ws-love .sb-mit{font-size:calc(9.6pt*var(--s));color:var(--l-leise);margin-top:calc(1.2mm*var(--s))}
+.ws-love .sb-menue{max-width:none;width:100%;padding:0}
+.ws-love .sb-r+.sb-r{margin-top:calc(8mm*var(--s))}
+.ws-love .sb-h{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(9.4pt*var(--s));letter-spacing:.06em;color:var(--l-rot);margin-bottom:calc(3.4mm*var(--s))}
+.ws-love .sb-h::after{background:var(--l-rot);opacity:.35;height:.25mm}
+.ws-love .sb-m{column-gap:8mm;padding:calc(2.6mm*var(--s)) 0}
+.ws-love .sb-n{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(12pt*var(--s));letter-spacing:.04em;text-transform:uppercase;color:var(--l-rot);line-height:1.25}
+.ws-love .sb-mp{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:600;font-size:calc(12pt*var(--s));color:var(--l-rot)}
+.ws-love .sb-dr{font-family:'Montserrat Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.4pt*var(--s));letter-spacing:.08em;color:var(--l-leise);margin-top:calc(1.3mm*var(--s));max-width:120mm}
+.ws-love .sb-deko{position:absolute;z-index:0;pointer-events:none;right:13mm;bottom:20mm;width:70mm;height:auto}
+.ws-love .sb-deko[src$="coupe.png"]{width:30mm;right:42mm;top:22mm;bottom:auto}
+.ws-love .ufuss2{border-top:.25mm solid rgba(215,16,47,.3);color:var(--l-leise);font-family:'Montserrat Satz',Arial,sans-serif;margin:0 24mm}
+/* «Drunk in Love»: die Drinks stehen links neben dem Leoparden, nichts läuft unter die Zeichnung */
+.ws-love:has(.sb-deko[src$="leopard.png"]) .sb-menue{width:62%}
+
+/* ================================================================ Angebot für Feiern «Die Preise der Bar» (01.11.2026)
+   Robert: «das kann man auch nochmal schöner machen». Original der Bar: schwarz mit Neon-Foto «No Negroni without Campari». Hier Nacht mit dem
+   Neon über die ganze Breite, darunter die drei Pauschalen als Spalten mit Foto und grossem Preis, die Preise der Bar in zwei Spalten mit Punktlinie,
+   Service und Budget als zwei Felder mit Gold-Haarlinie. Fotos aus website/assets/bild (bilder_satz.py). */
+.ws-feier{background:#130E0D;color:#F2E9DC}
+.ws-feier::before{inset:7mm;border-color:rgba(216,178,100,.45);z-index:2}
+.ws-feier .sb-held{position:absolute;left:0;right:0;top:0;height:108mm;margin:0;z-index:0;overflow:hidden}
+.ws-feier .sb-held img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
+.ws-feier .sb-held::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,14,13,.05) 0%,rgba(19,14,13,.15) 45%,rgba(19,14,13,.92) 88%,#130E0D 100%)}
+.ws-feier .inhalt{padding:74mm 20mm 4mm}
+.ws-feier .sb-quer{justify-content:flex-start;align-items:stretch;gap:calc(7mm*var(--s))}
+.ws-feier .sb-oben{align-items:flex-start;text-align:left}
+.ws-feier .sb-zeichen{position:absolute;right:14mm;top:13mm;color:#F0323F}
+.ws-feier .ws-wm{width:16mm}
+.ws-feier .sb-band{margin:0;font-size:calc(34pt*var(--s));color:#F2E9DC}
+.ws-feier .sb-datum{color:#D8B264;margin-top:calc(2.4mm*var(--s))}
+.ws-feier .sb-mit{color:rgba(242,233,220,.72)}
+.ws-feier .sb-menue{max-width:none;width:100%;padding:0}
+.ws-feier .sb-h{color:#D8B264}
+.ws-feier .sb-h::after{background:rgba(216,178,100,.5)}
+.ws-feier .sb-n{color:#F2E9DC}
+.ws-feier .sb-mp{color:#E4C88A;font-family:'Prata Satz',Georgia,serif}
+.ws-feier .sb-mp::after{content:' €'}
+.ws-feier .sb-dr{color:rgba(242,233,220,.62)}
+/* Pauschale: drei Spalten, je Foto, Name, was dabei ist, grosser Preis */
+.ws-feier .sb-r0{display:grid;grid-template-columns:repeat(3,1fr);column-gap:5mm}
+.ws-feier .sb-r0 .sb-h{grid-column:1/-1}
+.ws-feier .sb-r0 .sb-m{display:flex;flex-direction:column;padding:0 0 calc(3mm*var(--s));border-radius:3mm;background:#1C1513;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.4);overflow:hidden}
+.ws-feier .sb-mb{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.ws-feier .sb-r0 .sb-n{order:2;padding:calc(3mm*var(--s)) 4mm 0;font-size:calc(11pt*var(--s));line-height:1.25}
+.ws-feier .sb-r0 .sb-dr{order:3;padding:0 4mm;font-size:calc(6.4pt*var(--s));letter-spacing:.05em}
+.ws-feier .sb-r0 .sb-mp{order:4;margin-top:auto;padding:calc(3mm*var(--s)) 4mm 0;text-align:left;font-size:calc(24pt*var(--s));line-height:1}
+/* Was ein Drink kostet: zwei Spalten mit Punktlinie */
+.ws-feier .sb-r1{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm}
+.ws-feier .sb-r1 .sb-h{grid-column:1/-1}
+.ws-feier .sb-r1 .sb-m{grid-template-columns:auto 1fr auto;padding:calc(1.6mm*var(--s)) 0}
+.ws-feier .sb-r1 .sb-m::before{content:'';grid-column:2;grid-row:1;align-self:end;margin:0 2mm 1.3mm;border-bottom:.3mm dotted rgba(216,178,100,.55)}
+.ws-feier .sb-r1 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-size:calc(10pt*var(--s))}
+.ws-feier .sb-r1 .sb-mp{grid-column:3;font-size:calc(13pt*var(--s))}
+/* Budget: zwei Felder mit Gold-Haarlinie, der Betrag gross */
+.ws-feier .sb-r2{display:grid;grid-template-columns:1fr 1fr;column-gap:5mm}
+.ws-feier .sb-r2 .sb-h{grid-column:1/-1}
+.ws-feier .sb-r2 .sb-m{display:flex;flex-direction:column;padding:calc(3.2mm*var(--s)) 5mm;border-radius:3mm;box-shadow:inset 0 0 0 .25mm rgba(216,178,100,.55)}
+.ws-feier .sb-r2 .sb-n{font-family:'Hanken Satz',Arial,sans-serif;font-weight:500;font-size:calc(7.4pt*var(--s));letter-spacing:.08em;text-transform:uppercase;color:#D8B264}
+.ws-feier .sb-r2 .sb-mp{order:3;text-align:left;font-size:calc(22pt*var(--s));margin-top:calc(1.6mm*var(--s))}
+.ws-feier .sb-r2 .sb-dr{order:4;text-transform:none;letter-spacing:0;font-size:calc(7.6pt*var(--s))}
+.ws-feier .sb-unten{max-width:none;align-items:flex-start;text-align:left}
+.ws-feier .sb-hinweis{color:rgba(242,233,220,.62);font-size:calc(7.8pt*var(--s))}
+.ws-feier .ufuss2{color:rgba(242,233,220,.5);border-top-color:rgba(216,178,100,.3);margin:0 20mm}

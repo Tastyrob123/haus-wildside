@@ -8,7 +8,7 @@
    Die Skripte der Website (wild.js) bleiben unverändert. Der Baustein fängt das Abschicken im Fang-Durchlauf am Dokument ab, bevor die Website den Dank zeigt,
    schickt an das Gästebuch und gibt das Abschicken danach an die Website weiter.
    Einbinden (Website-Chat über bau.py, nicht von Hand): <script src="assets/anfrage.js?v={V}" defer></script> nach wild.js.
-   Ziel: /_werkzeuge/reception/api/formular (anders mit <script … data-api="http://127.0.0.1:9084/_werkzeuge/reception/api/formular"> oder window.WS_ANFRAGE_API). */
+   Ziel: /_werkzeuge/reception/api/formular (anders mit <script … data-api="http://127.0.0.1:9284/_werkzeuge/reception/api/formular"> oder window.WS_ANFRAGE_API). */
 (function () {
   'use strict';
   var D = document, skript = D.currentScript;

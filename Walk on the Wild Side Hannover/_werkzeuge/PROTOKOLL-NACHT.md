@@ -63,5 +63,5 @@ Auftrag: `AUFTRAG-NACHT.md`, `CLAUDE.md` («Der Deal»). Stamm: Werkzeuge und We
 
 - Werkzeuge: `Walk on the Wild Side Hannover/_werkzeuge/<maison|bureau|carte|reception|livre|registre|imprimerie>/` (je `LIEFERUNG.md`), Kleid `oberflaeche/` (`UMSTELLUNG.md`).
 - Drucksachen: `_werkzeuge/imprimerie/haeuser/wildside/drucksachen/` (`LISTE.md`), in der Werkbank unter `drucksachen/`.
-- Werkbank: `Walk on the Wild Side Hannover/website/_werkbank/` (Start, Karte, KI, Geprüft, Befund, Unterlagen, Drucksachen, Untersetzer, Sticker, Postkarten, Beigaben, Feed, Mails, Material). Lokal: `bash cloud/server.sh`, dann http://127.0.0.1:9088/werkbank/index.html.
+- Werkbank: `Walk on the Wild Side Hannover/website/_werkbank/` (Start, Karte, KI, Geprüft, Befund, Unterlagen, Drucksachen, Untersetzer, Sticker, Postkarten, Beigaben, Feed, Mails, Material). Lokal: `bash cloud/server.sh`, dann http://127.0.0.1:9288/werkbank/index.html.
 - Prüftafel: Zweig `ergebnis`, `ergebnis/laeufe/main-schnell/tor/index.html`.

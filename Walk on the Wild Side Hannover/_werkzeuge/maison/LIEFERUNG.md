@@ -8,9 +8,9 @@ status: aktiv
 Status: siehe letzter Commit «Tresen: …». Agent `wildside-maison` im Nachtbau. Nichts online, nichts verschickt.
 
 **Adressen** (nur lokal)
-- Der Tresen: http://127.0.0.1:9081/_werkzeuge/maison/ (Prüfserver `python3 server.py 9081` im Ordner `_werkzeuge/maison`)
-- Rundgang: http://127.0.0.1:9081/_werkzeuge/maison/?rundgang
-- Gemeinsames Kleid, Musterseite: http://127.0.0.1:9081/assets/oberflaeche/muster.html?haus=wildside · Anleitung `_werkzeuge/oberflaeche/UMSTELLUNG.md`
+- Der Tresen: http://127.0.0.1:9281/_werkzeuge/maison/ (Prüfserver `python3 server.py 9281` im Ordner `_werkzeuge/maison`)
+- Rundgang: http://127.0.0.1:9281/_werkzeuge/maison/?rundgang
+- Gemeinsames Kleid, Musterseite: http://127.0.0.1:9281/assets/oberflaeche/muster.html?haus=wildside · Anleitung `_werkzeuge/oberflaeche/UMSTELLUNG.md`
 
 ## Was steht
 

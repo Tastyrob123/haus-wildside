@@ -1,10 +1,10 @@
 // Mails von Walk on the Wild Side (Vorlage Culinarium, Nachtbau 31.10.2026): die echte Wortmarke als PNG für die Mails (Mailprogramme zeigen kein SVG)
 // und der obere Teil jeder Mail als Bild für die Werkbank, doppelte Dichte.
-// node mails/_src/aufnahme.js   (Server 9088 läuft; vorher python3 mails/_src/bau.py)  → mails/img/marke.png, _werkbank/ansichten/Mails/NN.jpg
+// node mails/_src/aufnahme.js   (Server 9288 läuft; vorher python3 mails/_src/bau.py)  → mails/img/marke.png, _werkbank/ansichten/Mails/NN.jpg
 const path = require('path'), fs = require('fs');
 let pw; try { pw = require('playwright'); } catch (_) { pw = require('/opt/node-tools/node_modules/playwright'); }
 const { chromium } = pw;
-const ROOT = path.join(__dirname, '..', '..'), B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
+const ROOT = path.join(__dirname, '..', '..'), B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9288) + '/';
 const liste = JSON.parse(fs.readFileSync(path.join(__dirname, 'werkbank.json'), 'utf8'));
 (async () => {
   const b = await chromium.launch({ headless: true });

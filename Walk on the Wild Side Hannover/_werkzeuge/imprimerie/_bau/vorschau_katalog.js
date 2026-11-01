@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 (async () => {
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   await p.addInitScript(() => { try { localStorage.setItem('ds-wildside-willkommen', '1'); } catch (e) {} });
-  await p.goto('http://127.0.0.1:9087/_werkzeuge/imprimerie/', { waitUntil: 'load' });
+  await p.goto('http://127.0.0.1:9287/_werkzeuge/imprimerie/', { waitUntil: 'load' });
   await p.waitForFunction(() => window.DS && DS.M && DS.VB && DS.VB.geladen && window.DSStudio, null, { timeout: 30000 });
   const n = await p.evaluate(async () => {
     const K = window.DSKATALOG, alle = [].concat(...K.ABTEILUNGEN.map(a => a.vorlagen), K.HINWEISE, K.NEWSLETTER, ...K.ANLAESSE.map(a => K.motive(a)));

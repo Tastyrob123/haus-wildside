@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Werkbank Walk on the Wild Side, Seite «Unterlagen» (Werkbank Papier, 31.10.2026; Bauart wie sb_karten.py des Culinarium).
-Die Karten der Bar, neu gesetzt mit der Pairing-Karte (_werkzeuge/carte, Druck über carte/drucke.js auf dem Werkzeug-Server 9083, feste Schnitte
+Die Karten der Bar, neu gesetzt mit der Pairing-Karte (_werkzeuge/carte, Druck über carte/drucke.js auf dem Werkzeug-Server 9283, feste Schnitte
 Prata und Hanken, kein Type 3), jede neben dem Blatt, wie es heute aussieht (Beitrag der Bar vom 03.02.2026, Angebotsmappe der Bar).
 Dazu das Angebot für Feiern: die zwei Angebotsblätter der Plakatwerkstatt neben den Seiten «Modell 3» und «Modell 1» der Angebotsmappe.
 Das Heute-Material kommt aus _quelle/ (nur in dieser Sitzung vorhanden) und wird als PDF nach _werkbank/heute/ kopiert, damit die Seite auch ohne _quelle baut.

@@ -7,9 +7,9 @@ status: aktiv
 
 Status: im Nachtbau 31.10.2026 umgestellt, lokal, nichts online, nichts verschickt (Agent «wildside-registre»).
 
-**Werkzeug:** http://127.0.0.1:9086/_werkzeuge/registre/ (Server: `python3 _werkzeuge/registre/server.py 9086` im Hausordner; Bilder ohne Tagesgruss: `?gruss=tag`)
-**Anleitung:** http://127.0.0.1:9086/_werkzeuge/registre/anleitung.html (zehn Kapitel, Bilder aus dem Werkzeug, neu aufgenommen)
-**Stand-Weg für den Tresen:** http://127.0.0.1:9086/api/registre?tage=30&beispiel=1
+**Werkzeug:** http://127.0.0.1:9286/_werkzeuge/registre/ (Server: `python3 _werkzeuge/registre/server.py 9286` im Hausordner; Bilder ohne Tagesgruss: `?gruss=tag`)
+**Anleitung:** http://127.0.0.1:9286/_werkzeuge/registre/anleitung.html (zehn Kapitel, Bilder aus dem Werkzeug, neu aufgenommen)
+**Stand-Weg für den Tresen:** http://127.0.0.1:9286/api/registre?tage=30&beispiel=1
 
 ## Was steht
 

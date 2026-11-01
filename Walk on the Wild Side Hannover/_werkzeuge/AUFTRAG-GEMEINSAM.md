@@ -19,14 +19,14 @@ Für die Werkzeuge heisst das (Aufbau und Funktionen aus dem Culinarium bleiben,
 
 | Agent | Revier (nur hier schreiben) | Port | Schlüssel im Tor |
 |---|---|---|---|
-| wildside-maison (Der Tresen) | `_werkzeuge/maison/` **und** `_werkzeuge/oberflaeche/` (einziger Schreiber) | 9081 | `tresen` |
-| wildside-bureau (Das Schaufenster) | `_werkzeuge/bureau/` | 9082 | `schaufenster`, `schaufenster-anleitung` |
-| wildside-carte (Die Pairing-Karte) | `_werkzeuge/carte/` | 9083 | `pairing-karte`, `pairing-karte-anleitung` |
-| wildside-reception (Das Gästebuch) | `_werkzeuge/reception/` | 9084 | `gaestebuch`, `gaestebuch-anleitung` |
-| wildside-livre (Das Markenbuch) | `_werkzeuge/livre/` | 9085 | `plakatarchiv`, `plakatarchiv-buch`, `plakatarchiv-anleitung` |
-| wildside-registre (Die Besucherliste) | `_werkzeuge/registre/` | 9086 | `besucherliste`, `besucherliste-anleitung` |
-| wildside-imprimerie (Die Plakatwerkstatt + Drucksachen) | `_werkzeuge/imprimerie/` | 9087 | `plakatwerkstatt`, `plakatwerkstatt-mail` |
-| wildside-werkbank | `website/_werkbank/` | 9088 | `werkbank*` |
+| wildside-maison (Der Tresen) | `_werkzeuge/maison/` **und** `_werkzeuge/oberflaeche/` (einziger Schreiber) | 9281 | `tresen` |
+| wildside-bureau (Das Schaufenster) | `_werkzeuge/bureau/` | 9282 | `schaufenster`, `schaufenster-anleitung` |
+| wildside-carte (Die Pairing-Karte) | `_werkzeuge/carte/` | 9283 | `pairing-karte`, `pairing-karte-anleitung` |
+| wildside-reception (Das Gästebuch) | `_werkzeuge/reception/` | 9284 | `gaestebuch`, `gaestebuch-anleitung` |
+| wildside-livre (Das Markenbuch) | `_werkzeuge/livre/` | 9285 | `plakatarchiv`, `plakatarchiv-buch`, `plakatarchiv-anleitung` |
+| wildside-registre (Die Besucherliste) | `_werkzeuge/registre/` | 9286 | `besucherliste`, `besucherliste-anleitung` |
+| wildside-imprimerie (Die Plakatwerkstatt + Drucksachen) | `_werkzeuge/imprimerie/` | 9287 | `plakatwerkstatt`, `plakatwerkstatt-mail` |
+| wildside-werkbank | `website/_werkbank/` | 9288 | `werkbank*` |
 
 Oberchef: Ziellisten `_Werkzeuge/abnahme-tor/ziele-wildside.json`, `_Werkzeuge/messlauf/ziele-wildside.json`, `cloud/`, Commits und Pushes, Paketprüfung. `website/` (die Website selbst) ändert **niemand** (nur lesen).
 

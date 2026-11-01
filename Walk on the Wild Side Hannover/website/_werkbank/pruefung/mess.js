@@ -1,4 +1,4 @@
-// Werkbank Culinarium: Kopie von _Werkbank-Kit/mess.js, Server 9088 (28.10.2026).
+// Werkbank Culinarium: Kopie von _Werkbank-Kit/mess.js, Server 9288 (28.10.2026).
 /* Flüssigkeit auf schwachem Gerät: Hauptfaden gedrosselt, echte Rad-Ereignisse, Zählung langer Bilder je Abschnitt.
    node _werkbank/mess.js [seite] [CPU] [W] [H] */
 const path = require('path');
@@ -12,7 +12,7 @@ const S = process.argv[2] || 'werkbank/', CPU = +(process.argv[3] || 6), W = +(p
   const cdp = await ctx.newCDPSession(p);
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: CPU });
   const t0 = Date.now();
-  await p.goto((process.env.B || 'http://127.0.0.1:9088/') + S, { waitUntil: 'load' });
+  await p.goto((process.env.B || 'http://127.0.0.1:9288/') + S, { waitUntil: 'load' });
   const lade = Date.now() - t0;
   await p.waitForTimeout(3500);
   await p.evaluate(() => {

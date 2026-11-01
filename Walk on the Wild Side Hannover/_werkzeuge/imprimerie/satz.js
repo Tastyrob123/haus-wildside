@@ -91,7 +91,7 @@
     h: { haus: 'Fotos des Hauses', frei: 'Frei lizenziert', ki: 'Mit KI erzeugt' },
     ki: 'Dieses Bild ist mit KI erzeugt und zeigt kein echtes Gericht oder Getränk des Hauses. Für Werbung nur mit diesem Hinweis oder nach einem echten Foto.',
   };
-  // Das Markenbuch liegt neben der Plakatwerkstatt: lokal /_werkzeuge/livre/, online /werkzeuge/livre/. Auf dem Prüfserver (:9087) liest die Plakatwerkstatt
+  // Das Markenbuch liegt neben der Plakatwerkstatt: lokal /_werkzeuge/livre/, online /werkzeuge/livre/. Auf dem Prüfserver (:9287) liest die Plakatwerkstatt
   // dieselben Dateien unter demselben Weg; die Seite des Markenbuchs öffnet dann auf dessen eigenem Server.
   // Unter drucksachen-studio.vercel.app steht L’Imprimerie allein, ohne Le Livre daneben: dort keine Abfrage (gab bei jedem Öffnen eine 404-Meldung,
   // Aussen-Prüfung 14.10.2026), und «Le Livre öffnen» führt zum Markenbuch unter der Adresse des Hauses.
@@ -108,7 +108,7 @@
     const reihe = (STUFEN.find(r => r[0] === +ms[1]) || [+ms[1]]).filter(w => w <= +ml[2]), ziel = breite * 1.6;
     return DS.livreUrl(ml[1] + '-' + (reihe.find(w => w >= ziel) || +ml[2]) + '.webp');
   };
-  DS.livreSeite = () => location.port === '9087' ? 'http://127.0.0.1:9085/_werkzeuge/livre/' : DS.LIVRE;
+  DS.livreSeite = () => location.port === '9287' ? 'http://127.0.0.1:9285/_werkzeuge/livre/' : DS.LIVRE;
   /* Logo, Logo quer und Wortmarke aus Le Livre: Bildschirm SVG, Blatt und PDF PNG (bis 3000 px, mit Transparenz) */
   DS.livreDateien = M => (M.livre ? M.livre.dateien : []).filter(d => ['logo', 'quer', 'wortmarke'].includes(d.k) && d.var).flatMap(d => {
     const vb = (d.vb || '0 0 4 3').split(' ').map(Number), N = { logo: 'Logo', quer: 'Logo quer', wortmarke: 'Wortmarke' }[d.k];

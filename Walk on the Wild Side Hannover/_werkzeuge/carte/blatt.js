@@ -130,7 +130,7 @@
     CACHE.karte = opt.vorschau ? d.ziel : null; CACHE.css = css; CACHE.html = s.slice();
     // Doldenhorn 17.10.2026: die Schriften des Satzes ausdrücklich laden, bevor eingepasst wird. «fonts.ready» allein meldet fertig, solange noch
     // keine Schrift angefragt ist; dann wurde mit der Ersatzschrift gemessen und eine Seite (Bistro S. 2, am Handy) fälschlich als «zu hoch» gemeldet.
-    var SCHRIFTEN = ['400 12px "Prata Satz"', '400 12px "Hanken Satz"', '500 12px "Hanken Satz"'];
+    var SCHRIFTEN = ['400 12px "Prata Satz"', '400 12px "Hanken Satz"', '500 12px "Hanken Satz"', '400 12px "Titan Satz"', '400 12px "Pinsel Satz"', '500 12px "Montserrat Satz"', '600 12px "Montserrat Satz"'];
     return Promise.all(SCHRIFTEN.map(function (f) { return document.fonts.load(f).catch(function () { return null; }); })).then(function () { return document.fonts.ready; }).then(function () {
       if (opt.vorschau) return null;   // Vorschau: Bilder haben feste Masse, der Satz steht schon, sie laden nach (Slow 4G: Text zuerst)
       return Promise.all([].map.call(document.images, function (i) { return i.complete ? 0 : new Promise(function (r) { i.onload = i.onerror = r; }); }));

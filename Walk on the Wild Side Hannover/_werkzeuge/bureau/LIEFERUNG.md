@@ -9,13 +9,13 @@ status: aktiv
 
 ## Wo
 
-- **Werkzeug:** http://127.0.0.1:9082/_werkzeuge/bureau/ · Server `python3 _werkzeuge/bureau/serve.py 9082` im Hausordner (Prüfläufe mit `BUREAU_PRUEFLAUF=1`).
-- **DJ-Abende:** http://127.0.0.1:9082/_werkzeuge/bureau/?ansicht=e:termine
-- **Anleitung:** http://127.0.0.1:9082/_werkzeuge/bureau/anleitung.html (neun Schritte, Bilder neu aufgenommen am 31.10.2026 mit Wegwerf-Daten)
-- **Prüfseite:** http://127.0.0.1:9082/werkzeuge/website/pruefung.html?haus=wildside
-- **Rundgang:** http://127.0.0.1:9082/_werkzeuge/bureau/?rundgang
+- **Werkzeug:** http://127.0.0.1:9282/_werkzeuge/bureau/ · Server `python3 _werkzeuge/bureau/serve.py 9282` im Hausordner (Prüfläufe mit `BUREAU_PRUEFLAUF=1`).
+- **DJ-Abende:** http://127.0.0.1:9282/_werkzeuge/bureau/?ansicht=e:termine
+- **Anleitung:** http://127.0.0.1:9282/_werkzeuge/bureau/anleitung.html (neun Schritte, Bilder neu aufgenommen am 31.10.2026 mit Wegwerf-Daten)
+- **Prüfseite:** http://127.0.0.1:9282/werkzeuge/website/pruefung.html?haus=wildside
+- **Rundgang:** http://127.0.0.1:9282/_werkzeuge/bureau/?rundgang
 - **Stand-Weg für den Tresen:** `GET /_werkzeuge/bureau/api/ueberblick` → `{aenderungen, zuletzt, bereiche, seiten, termine:{wartet, zahl}}`
-- **Website, wie «online» wäre (Probe-Kopie):** http://127.0.0.1:9082/werkzeuge/website/_probe/wildside/online/index.html
+- **Website, wie «online» wäre (Probe-Kopie):** http://127.0.0.1:9282/werkzeuge/website/_probe/wildside/online/index.html
 
 ## Was gebaut ist
 

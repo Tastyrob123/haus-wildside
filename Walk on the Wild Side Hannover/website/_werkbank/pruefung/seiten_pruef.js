@@ -2,7 +2,7 @@
 //   node website/_werkbank/pruefung/seiten_pruef.js  →  pruefung/seiten.json   (headless, mailto/tel abgefangen, nichts wird abgeschickt)
 const path = require('path'), fs = require('fs');
 const pw = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
-const B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
+const B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9288) + '/';
 const SEITEN = ['werkbank/index.html', 'werkbank/geprueft/index.html', 'werkbank/ki.html', 'werkbank/karte.html', 'werkbank/impressum.html', 'befund/index.html', 'unterlagen/index.html',
   'drucksachen/index.html', 'untersetzer/index.html', 'feed/index.html', 'mails/index.html', 'mails/01-ticket/index.html', 'mails/02-warteliste/index.html',
   'mails/03-frei/index.html', 'material/index.html'];

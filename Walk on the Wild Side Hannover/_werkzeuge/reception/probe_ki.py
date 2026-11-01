@@ -1,6 +1,6 @@
 """Probe-Antworten statt Claude (Robert 16.10.2026: «lokal bis zur Kostenrunde», keine bezahlten KI-Aufrufe in Prüfläufen).
 
-Im Wild Side ist das der Standard: python3 _werkzeuge/reception/server.py 9084 (ohne RECEPTION_KI=1). Kopie aus dem Culinarium, dort aus dem Schäfli, Schlössli, Ruedihus, Carlton und Doldenhorn.
+Im Wild Side ist das der Standard: python3 _werkzeuge/reception/server.py 9284 (ohne RECEPTION_KI=1). Kopie aus dem Culinarium, dort aus dem Schäfli, Schlössli, Ruedihus, Carlton und Doldenhorn.
 Dann ruft kein Teil des Gästebuchs und vom Chat die KI auf und kein Schlüssel wird gelesen. Jede Stelle, die sonst Claude fragt, bekommt
 eine Antwort in genau der Form, die Claude liefern würde, sichtbar als Probe beschriftet:
   Chat (gast.frage)        Text «Probe-Antwort ohne KI …»; nennt der Gast eine E-Mail oder Telefonnummer, ruft die Probe das Werkzeug «anfrage» auf

@@ -13,7 +13,7 @@
   var B800 = { 'an-empore-tafel': 960, 'decke-raum': 900, fenster: 895, flaschen: 900, 'glas-coupe': 900, 'glas-kerze': 900, 'konzert-love': 961, 'momo-giesst': 900, negroni: 900, rueckbar: 900, 'saengerin-kunde': 960, schild: 900, 'schild-ecke': 900, theke: 900, 'tuer-rot': 900, voll: 900 };
   var FOTO = { msAbend: 'saengerin-kunde', msMotive: 'konzert-love', msEvents: 'voll', msAbteilungen: 'decke-raum', msHinweise: 'tuer-rot', msNewsletter: 'glas-kerze', msFotos: 'momo-giesst', msMarke: 'negroni',
     msLivre: 'decke-bar', msMeine: 'theke', msFreigegeben: 'rueckbar', msNeu: 'glas-coupe' };
-  var WEBSITE = location.port === '9087' ? 'http://127.0.0.1:' + ((window.WO_HAUS && WO_HAUS.ports && WO_HAUS.ports.website_lokal) || 8766) + '/' : '/';
+  var WEBSITE = location.port === '9287' ? 'http://127.0.0.1:' + ((window.WO_HAUS && WO_HAUS.ports && WO_HAUS.ports.website_lokal) || 8766) + '/' : '/';
   var MARKE = function () { return WO.zeichen() + '<span><b>' + WO.esc(WO.name('druck')) + '</b><small>Drucksachen · ' + WO.esc(WO.haus.name) + '</small></span>'; };
 
   /* Marke, runde Knöpfe und Website-Pille in beiden Köpfen */

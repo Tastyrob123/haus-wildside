@@ -4,7 +4,7 @@
 // node _werkbank/geraete/schirme.js [feed] [studio]     (Server der Website muss laufen)
 const path = require('path'), fs = require('fs');
 const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
-const HIER = __dirname, B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
+const HIER = __dirname, B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9288) + '/';
 const L = JSON.parse(fs.readFileSync(path.join(HIER, 'laptop.json'), 'utf8'));
 const nur = process.argv.slice(2);
 const CSS = `.devwrap{animation:none!important;opacity:1!important;transform:none!important}

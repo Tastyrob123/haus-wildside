@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vorschau-Server der Werkbank Culinarium (Werkbank-Chat 28.10.2026), nur lokal:  python3 website/_werkbank/serve.py [port], Standard 9088.
+"""Vorschau-Server der Werkbank Culinarium (Werkbank-Chat 28.10.2026), nur lokal:  python3 website/_werkbank/serve.py [port], Standard 9288.
 Zwei Wurzeln, damit alles der Werkbank im eigenen Revier website/_werkbank/ bleibt und die Wege trotzdem wie beim Schäfli sind:
 zuerst website/_werkbank/ (werkbank/, unterlagen/, drucksachen/, feed/, mails/, material/ …), sonst website/ (die Website selbst, nur gelesen).
 Mehrfädig, ohne Zwischenspeicher. Die Quellen der Werkbank (_werkbank/_werkbank/) werden nicht ausgeliefert."""
@@ -7,11 +7,11 @@ import http.server, os, socketserver, sys, urllib.parse, urllib.request, urllib.
 
 # Werkzeuge im Laptop bedienen (Robert 29.10.2026): /_werkzeuge/<werkzeug>/ reicht dieser Server an den Prüfserver des Werkzeugs weiter, damit das
 # Werkzeug als gleiche Herkunft eingebettet werden kann (die Werkzeug-Server erlauben Rahmen nur von sich selbst); ihre Antworten bleiben sonst unverändert.
-WERKZEUG_PORT = {'maison': 9081, 'oberflaeche': 9081, 'bureau': 9082, 'carte': 9083, 'reception': 9084, 'livre': 9085, 'registre': 9086, 'imprimerie': 9087}
+WERKZEUG_PORT = {'maison': 9281, 'oberflaeche': 9281, 'bureau': 9282, 'carte': 9283, 'reception': 9284, 'livre': 9285, 'registre': 9286, 'imprimerie': 9287}
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.dirname(HIER)
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9088
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9288
 
 
 class H(http.server.SimpleHTTPRequestHandler):
@@ -36,11 +36,11 @@ class H(http.server.SimpleHTTPRequestHandler):
         if len(teile) >= 3 and teile[1] == '_werkzeuge' and teile[2] in WERKZEUG_PORT:
             port = WERKZEUG_PORT[teile[2]]
         elif self.path.startswith('/assets/oberflaeche/'):   # das gemeinsame Kleid der Werkzeuge liegt an der Wurzel jedes Werkzeug-Servers
-            port = ref_port or 9081
+            port = ref_port or 9281
         elif self.path.startswith(('/stamm/', '/werkzeuge/')):   # Stammdaten und Teile des Schaufensters liegen nur bei ihm
-            port = 9082
+            port = 9282
         elif self.path.startswith('/api/'):   # Schnittstellen an der Wurzel: an das Werkzeug, von dessen Seite die Anfrage kommt; ohne Herkunft fragt nur das Schaufenster so
-            port = ref_port or 9082
+            port = ref_port or 9282
         else:
             return False
         laenge = int(self.headers.get('Content-Length') or 0)

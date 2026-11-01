@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Das Schaufenster (Website pflegen, Arbeitsname Le Bureau) · Walk on the Wild Side Hannover — eigener Server (Nachtbau 31.10.2026, Vorlage: Culinarium 28.10.2026). python3 _werkzeuge/bureau/serve.py [port]   (Standard 9082)
+"""Das Schaufenster (Website pflegen, Arbeitsname Le Bureau) · Walk on the Wild Side Hannover — eigener Server (Nachtbau 31.10.2026, Vorlage: Culinarium 28.10.2026). python3 _werkzeuge/bureau/serve.py [port]   (Standard 9282)
 
 Das Werkzeug selbst ist der Schreibtisch des Stamms (~/Desktop/Website-Projekte/_Werkzeuge/werkzeuge/website/, Schicht über den gebauten
 Seiten, Probe-Kopie _probe/wildside/, Speicher _Werkzeuge/daten/). Dieser Server legt den Rahmen des Hauses darum, wie bei den anderen
@@ -34,7 +34,7 @@ sys.path.insert(0, str(HIER))
 import termine as T  # noqa: E402  (DJ-Abende, Daten aus website/bau.py › LINEUP)
 import beschreibung as B  # noqa: E402  (Beschreibung des Hauses für den Stamm, Probe-Kopie)
 
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get('BUREAU_PORT', '9082'))
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get('BUREAU_PORT', '9282'))
 GROSS = 3_000_000
 GROSS_FOTO = 36 * 1024 * 1024        # eigenes Foto: bis 25 MB, als Base64 gut ein Drittel mehr (Master 6, F71)
 WEG_FOTO = 64 * 1024 * 1024          # Rest einer zu grossen Anfrage wird bis hier gelesen und verworfen, dann 413 (sonst bricht der Browser mit «Verbindung getrennt» ab)
@@ -56,12 +56,12 @@ CSP = "frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src '
 TEIL = {'maison': 'zentrale', 'carte': 'karten', 'imprimerie': 'druck', 'reception': 'gaeste', 'livre': 'marke', 'registre': 'besuche'}
 
 
-PORTE = {'maison': 9081, 'carte': 9083, 'reception': 9084, 'livre': 9085, 'registre': 9086, 'imprimerie': 9087}   # AUFTRAG-GEMEINSAM.md, je Werkzeug-Chat ein Port
+PORTE = {'maison': 9281, 'carte': 9283, 'reception': 9284, 'livre': 9285, 'registre': 9286, 'imprimerie': 9287}   # AUFTRAG-GEMEINSAM.md, je Werkzeug-Chat ein Port
 
 
 def nachbar(k):
     """Adresse eines anderen Werkzeugs des Hauses: was es in der Kette angibt (_kette/11-werkbank/werkzeuge/<teil>/stand.json › adresse),
-    sonst sein Port aus dem gemeinsamen Auftrag (Zentrale 9081, Karten 9083 …). Jedes Werkzeug läuft bis zur Auslieferung auf eigenem Port;
+    sonst sein Port aus dem gemeinsamen Auftrag (Zentrale 9281, Karten 9283 …). Jedes Werkzeug läuft bis zur Auslieferung auf eigenem Port;
     ein Kopf-Knopf «/_werkzeuge/maison/» führt sonst hier ins Leere."""
     import json
     try:

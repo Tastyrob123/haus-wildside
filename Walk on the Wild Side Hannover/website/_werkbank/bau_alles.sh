@@ -2,12 +2,12 @@
 # Werkbank Walk on the Wild Side: das ganze Paket bauen (Nachtbau 31.10.2026, Vorlage bau_alles.sh des Culinarium).
 #   bash website/_werkbank/bau_alles.sh [--ohne-aufnahmen]
 # Revier: website/_werkbank/ ist der Projektordner des Kits; die Website liegt eine Ebene höher und wird nur gelesen (assets ist ein Verweis).
-# Voraussetzung: Vorschau-Server läuft:  python3 website/_werkbank/serve.py 9088, Werkzeug-Server 9081–9087 (cloud/server.sh). Kit unverändert, headless, nichts geht online.
+# Voraussetzung: Vorschau-Server läuft:  python3 website/_werkbank/serve.py 9288, Werkzeug-Server 9281–9287 (cloud/server.sh). Kit unverändert, headless, nichts geht online.
 # Teile: Kern (Startseite, Befund, KI, Karte, Geprüft), Papier (Unterlagen, Drucksachen, Untersetzer, Sticker, Beigaben, Postkarten), Feed/Mails/Dateien.
 set -e
 K="${WERKBANK_KIT:-$(cd "$(dirname "$0")/../../.." && pwd)/_Werkbank-Kit}"
 P="$(cd "$(dirname "$0")" && pwd)"; cd "$P"
-export PYTHONPATH="$K:$P/_werkbank" WB_PORT=9088
+export PYTHONPATH="$K:$P/_werkbank" WB_PORT=9288
 python3 "$K/kern.py" "$P" | grep -v "Schrift fehlt" || true
 python3 "$K/schriften.py" "$P" > /dev/null || true
 timeout 300 python3 _werkbank/druckschrift.py > /dev/null           # Prata und Hanken als feste Druckschnitte (nach schriften.py, das die Kit-Namen anlegt)
@@ -49,4 +49,4 @@ python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"                    # die Werk
 node _werkbank/sb_strom.js || true
 python3 _werkbank/objekte_bau.py "$P"
 python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"
-echo "fertig: http://127.0.0.1:9088/werkbank/"
+echo "fertig: http://127.0.0.1:9288/werkbank/"

@@ -33,10 +33,10 @@ const ROLLEN = { kueche: 'Bar', service: 'Service', direktion: 'Direktion' };   
 /* Namen der Werkzeuge nur aus kleid/wildside.js (WO_HAUS.namen, eine Stelle); bis Robert wählt, die Arbeitsnamen */
 const NAME = (window.WO && WO.name('karten')) || 'Die Pairing-Karte', STUBE = (window.WO && WO.name('zentrale')) || 'Der Tresen', SCHREIBTISCH = (window.WO && WO.name('website')) || 'Das Schaufenster';   // Namen nur aus kleid/wildside.js (Robert 28.10.2026: Satz A «An der Bar»)
 const klein = n => n.replace(/^(Das|Die|Der) /, a => a.toLowerCase());   // Name mitten im Satz: «arbeitet die Pairing-Karte für sich»
-/* Die Website und die anderen Werkzeuge des Hauses: die Werkzeuge je auf ihrem Port (WO_HAUS.ports, Zentrale 9081 …), immer 127.0.0.1
+/* Die Website und die anderen Werkzeuge des Hauses: die Werkzeuge je auf ihrem Port (WO_HAUS.ports, Zentrale 9281 …), immer 127.0.0.1
    (Fehlerbuch 10a). Die Website liest die Pairing-Karte über ihren eigenen Server (serve.py liefert die Seiten der Website nur lesend aus), lokal
    wie online auf derselben Adresse: so ist «Website ansehen» auch erreichbar, wenn der Website-Server nicht läuft. */
-const PORTE = (window.WO_HAUS && WO_HAUS.ports) || { zentrale: 9081, website: 9082, karten: 9083, gaeste: 9084, marke: 9085, besuche: 9086, druck: 9087, werkbank: 9088, website_lokal: 8765 };
+const PORTE = (window.WO_HAUS && WO_HAUS.ports) || { zentrale: 9281, website: 9282, karten: 9283, gaeste: 9284, marke: 9285, besuche: 9286, druck: 9287, werkbank: 9288, website_lokal: 8765 };
 const HAUS = '/';
 const WERKBANK = location.port ? location.protocol + '//127.0.0.1:' + PORTE.werkbank + '/werkbank/' : '/werkbank/';
 const PORT_WERKZEUG = PORTE;

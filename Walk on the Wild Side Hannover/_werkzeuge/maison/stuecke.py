@@ -45,7 +45,7 @@ def druck():
 def karten():
     import urllib.request
     try:
-        st = json.load(urllib.request.urlopen('http://127.0.0.1:9083/_werkzeuge/carte/api/status', timeout=8))
+        st = json.load(urllib.request.urlopen('http://127.0.0.1:9283/_werkzeuge/carte/api/status', timeout=8))
     except Exception as f:
         print('Karten: Pairing-Karte antwortet nicht', f); return
     k = {x['ziel']: x for x in st.get('karten', [])}

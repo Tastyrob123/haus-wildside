@@ -4,13 +4,13 @@
    Telefon der Bar, Instagram, weiter zu Culinarium und Dirty Chicken, Karte auf «Besuch»).
      node abnahme.js [chromium|webkit|firefox] [1440|390 …] [Nummern …]       einzelne Läufe
      ALLE=1 node abnahme.js                                                   alle Läufe nacheinander, Ergebnis FUNKTIONSLISTE.md
-   Läuft an der eigenen Probe-Kopie (_pruefung/probe.sh → ~/Desktop/Website-Projekte/_Probe Wild Side Registre/), eigener Server auf Port 9086 (PRUEF_PORT, das Werkzeug dafür angehalten) mit
+   Läuft an der eigenen Probe-Kopie (_pruefung/probe.sh → ~/Desktop/Website-Projekte/_Probe Wild Side Registre/), eigener Server auf Port 9286 (PRUEF_PORT, das Werkzeug dafür angehalten) mit
    eigenem Datenordner unter /tmp (wird danach gelöscht). Am echten Haus wird nichts geschrieben. Im Nachtbau gilt die schnelle Prüfung (tor-schnell); dieser Volllauf nur auf Roberts Wort.
    Die Formulare der Website verschicken nichts (Vorführung, wild.js); Instagram, Google Maps und tel: werden im Prüfbrowser abgefangen. */
 const path = require('path'), fs = require('fs'), os = require('os'), cp = require('child_process');
 const PW = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
 const HIER = __dirname;
-const PORT = +(process.env.PRUEF_PORT || 9086);   /* Port des Besucherbuchs (Auftrag: nur der eigene Port); das laufende Werkzeug wird für den Lauf angehalten, geprüft wird die Probe-Kopie mit Wegwerf-Daten */
+const PORT = +(process.env.PRUEF_PORT || 9286);   /* Port des Besucherbuchs (Auftrag: nur der eigene Port); das laufende Werkzeug wird für den Lauf angehalten, geprüft wird die Probe-Kopie mit Wegwerf-Daten */
 const B = 'http://localhost:' + PORT + '/_werkzeuge/registre/';
 const PROBE = path.join(process.env.HOME, 'Desktop/Website-Projekte/_Probe Wild Side Registre');
 const A = B;
@@ -99,7 +99,7 @@ C('B01', 'Kopf', 'Der Kopf nennt oben den Titel der Ansicht und darunter den Sta
 C('B02', 'Kopf', 'Anleitung: runder Knopf mit Hinweis, öffnet anleitung.html in neuem Tab', async env => {
   const p = await auf(env); const a = await p.$('#kopf a[aria-label="Anleitung"]'); ok(a, 'Knopf fehlt');
   ok(await a.getAttribute('href') === 'anleitung.html' && await a.getAttribute('target') === '_blank' && await a.getAttribute('title') === 'Anleitung', 'Ziel/Hinweis'); await p.close(); });
-C('B03', 'Kopf', 'Die Zentrale: runder Knopf mit Hinweis, führt zur Zentrale (lokal auf ihren eigenen Server http://127.0.0.1:9081/_werkzeuge/maison/, Fehlerbuch 10a; online ../../maison/ = /maison/; die Adresse antwortet)', async env => { const p = await auf(env); const a = await p.$(`#kopf a[aria-label="${STUBE_N}, zu allen Werkzeugen"]`); const h = a && await a.getAttribute('href'); const st = (await fetch(new URL(h || 'x', B)).catch(() => ({ status: 0 }))).status; ok(h === 'http://127.0.0.1:9081/_werkzeuge/maison/' && (st === 200 || (!MAISON_DA && st === 404)) && await a.getAttribute('data-tip') === STUBE_N, STUBE_N + ' ' + h + ' ' + st); await p.close(); });
+C('B03', 'Kopf', 'Die Zentrale: runder Knopf mit Hinweis, führt zur Zentrale (lokal auf ihren eigenen Server http://127.0.0.1:9281/_werkzeuge/maison/, Fehlerbuch 10a; online ../../maison/ = /maison/; die Adresse antwortet)', async env => { const p = await auf(env); const a = await p.$(`#kopf a[aria-label="${STUBE_N}, zu allen Werkzeugen"]`); const h = a && await a.getAttribute('href'); const st = (await fetch(new URL(h || 'x', B)).catch(() => ({ status: 0 }))).status; ok(h === 'http://127.0.0.1:9281/_werkzeuge/maison/' && (st === 200 || (!MAISON_DA && st === 404)) && await a.getAttribute('data-tip') === STUBE_N, STUBE_N + ' ' + h + ' ' + st); await p.close(); });
 C('B04', 'Kopf', '«Website ansehen» öffnet die Website in neuem Tab', async env => { const p = await auf(env); const a = await p.$('#kopf a.wo-kn--gold'); ok(a && /index\.html$/.test(await a.getAttribute('href')) && await a.getAttribute('target') === '_blank', 'Website-Knopf'); await p.close(); });
 C('B05', 'Kopf', 'Die Marke «Das Besucherbuch» (Zeichen des Hauses, oben links) führt zurück zur Übersicht', async env => { const p = await auf(env, 'seiten'); await p.click('#kopf .wo-marke-w'); await p.waitForTimeout(300); ok(await text(p, TITEL_K) === 'Übersicht', 'nicht Übersicht'); await p.close(); });
 C('B06', 'Kopf', 'Am Handy (Oberfläche der Häuser): im Kopf Marke und «Bereiche», Kopf-Titel und runde Knöpfe weichen; Website, Anleitung und Die Stube stehen im aufgeklappten Rand', async env => {

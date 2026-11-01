@@ -2,7 +2,7 @@
 //   node website/_werkbank/pruefung/bedienen.js  →  pruefung/bedienen.txt   (headless, mailto/tel abgefangen, nichts wird abgeschickt)
 const path = require('path'), fs = require('fs');
 const pw = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
-const B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
+const B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9288) + '/';
 const aus = [];
 const ok = (m, w, was, wahr, mehr = '') => { const z = `${m} ${w} ${wahr ? 'OK  ' : 'FEHL'} ${was}${mehr ? ' · ' + mehr : ''}`; aus.push(z); console.log(z); };
 async function zu(p, sel) { await p.evaluate(s => { const e = document.querySelector(s); if (e) e.scrollIntoView({ block: 'center' }); }, sel); await p.waitForTimeout(1400); }

@@ -7,7 +7,7 @@ status: aktiv
 
 Kopie der von Robert abgenommenen Pairing-Karte des Culinarium, umgekleidet und mit den Karten der Bar gefüllt («kopieren, umkleiden, Hauswerte eintragen»). Name im Werkzeug aus `_werkzeuge/oberflaeche/kleid/wildside.js` (**Die Pairing-Karte**; Ordner, Adressen und Schlüssel bleiben `carte`).
 
-**Werkzeug:** http://127.0.0.1:9083/_werkzeuge/carte/ · **Anleitung:** http://127.0.0.1:9083/_werkzeuge/carte/anleitung.html · **Prüfung:** http://127.0.0.1:9083/_werkzeuge/carte/pruefung.html
+**Werkzeug:** http://127.0.0.1:9283/_werkzeuge/carte/ · **Anleitung:** http://127.0.0.1:9283/_werkzeuge/carte/anleitung.html · **Prüfung:** http://127.0.0.1:9283/_werkzeuge/carte/pruefung.html
 
 ## Was steht
 
@@ -18,13 +18,13 @@ Kopie der von Robert abgenommenen Pairing-Karte des Culinarium, umgekleidet und 
   - **Dishes in Love** (zweite Seite derselben Karte, Rudis Teller zum Teilen mit Preisen 6–15; abgelesen vom Beitrag der Bar vom 03.02.2026, `_quelle/ig/2026-02-03_…DUT3HDnCMo1-3.jpg`, Wortlaut in `karten_lesen.py` DISHES; «Bouef» der Vorlage als «Bœuf»).
   - **Die Preise der Bar** (Angebotsmappe: sieben Getränkepreise, Pauschale Kategorie 1–3 mit 49/59/79, Service und Raum 500, Budget ab 1.000, Hinweise zu 2 Uhr und Anzahlung; `website/unter.py` PREISE, PAUSCHALE, tafel()).
 - **Satz im Kleid der Bar** (`satz_bau.py`, `satz/satz.css`, A4 hoch): Creme wie die weissen Plakate, Gold-Haarlinie als Rahmen des Eckschilds, Wortmarke rot aus `oberflaeche/kleid/wildside-marke.svg`, Titel und Namen in Prata, Zutaten und Etiketten in Hanken Grotesk, Preise mit Ziffern gleicher Breite. Feste Schnitte für den PDF-Satz (`fonts_statisch.py`: Prata-Regular und HankenGrotesk[wght] aus dem google/fonts-Repository → `fonts/Prata-400.ttf`, `Hanken-400/500.ttf`).
-- **Werkzeug** wie im Culinarium (gleiche Wege und Funktionen, Master 4.3): Einfach / Fortgeschritten, Entwurf, Quittung, Rückgängig, Vorher/nachher, Probe-PDF, Veröffentlichen mit Wort-für-Wort-Prüfung, frühere Fassungen, Prüfseite, Export, Rundgang, Zur Werkbank (9088), Ansicht Website (Drinks, Feiern, Programm; rollt zum Abschnitt der Karte). Fotos je Karte aus `website/assets/bild/` (Momo giesst, Negroni, die Zeichnungen der Valentinskarte, Flaschen), klein `bilder/z/`, gross `bilder/g/`.
+- **Werkzeug** wie im Culinarium (gleiche Wege und Funktionen, Master 4.3): Einfach / Fortgeschritten, Entwurf, Quittung, Rückgängig, Vorher/nachher, Probe-PDF, Veröffentlichen mit Wort-für-Wort-Prüfung, frühere Fassungen, Prüfseite, Export, Rundgang, Zur Werkbank (9288), Ansicht Website (Drinks, Feiern, Programm; rollt zum Abschnitt der Karte). Fotos je Karte aus `website/assets/bild/` (Momo giesst, Negroni, die Zeichnungen der Valentinskarte, Flaschen), klein `bilder/z/`, gross `bilder/g/`.
 - **Eine Quelle für Karte und Website (C27):** jedes Veröffentlichen schreibt `anschluss/karten.json` (je Karte Rubriken, Namen, Zutaten, Preise; dazu «Die Karte»).
 - **Demo-Sperre:** Datei `DEMO` liegt. Die Pairing-Karte schreibt nie in `website/`.
 
 ## Starten und prüfen
 
-- `python3 _werkzeuge/carte/serve.py 9083` → http://127.0.0.1:9083/_werkzeuge/carte/
+- `python3 _werkzeuge/carte/serve.py 9283` → http://127.0.0.1:9283/_werkzeuge/carte/
 - Karten neu: `python3 _werkzeuge/carte/karten_lesen.py` (prüft selbst gegen `website/unter.py`, `drinks.html`, `tafel.html`) → `python3 _werkzeuge/carte/satz_bau.py` → `python3 _werkzeuge/carte/einlesen.py` (ein Stand des Hauses wird nie überschrieben)
 - `python3 _werkzeuge/carte/pruefe.py alles` (Rundlauf Satz → Baum → Satz, Wortlaut der Drucke gegen die Quellen, Karten = Quelle, Schriften der PDFs; Server muss laufen)
 

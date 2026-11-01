@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover, lokaler Server (Port 9086): liefert aus dem Projekt der Bar nur, was das Werkzeug braucht (lesend),
-und /api/registre.   python3 server.py [port]      danach http://127.0.0.1:9086/_werkzeuge/registre/
+"""Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover, lokaler Server (Port 9286): liefert aus dem Projekt der Bar nur, was das Werkzeug braucht (lesend),
+und /api/registre.   python3 server.py [port]      danach http://127.0.0.1:9286/_werkzeuge/registre/
 Kopie des server.py der Besucherliste des Culinarium Hannover (nur kopiert).
 Die Website liegt in website/ neben _werkzeuge/. /_werkzeuge/… kommt aus dem Projekt, alles andere (/assets/, die Seiten) aus website/.
 Die Oberfläche der Häuser (/assets/oberflaeche/) liegt unter _werkzeuge/oberflaeche/ (Kleid wildside, gemeinsam für alle Werkzeuge des Hauses,
@@ -21,7 +21,7 @@ PROJ = os.path.join(WURZEL, 'website')                   # die Website: Schrifte
 STAMM_OF = os.path.join(WURZEL, '_werkzeuge', 'oberflaeche')   # Oberfläche der Häuser mit dem Kleid von Walk on the Wild Side, bis Station 14 sie nach website/assets/ legt
 sys.path.insert(0, HIER)
 import anschluss as AN  # noqa: E402   Dienst /api/registre (dieselben Antworten wie der Hausserver serve.py, Patch in LIEFERUNG.md); Schalter VORFUEHRUNG und Schlüssel dort
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9086
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9286
 GRENZE = {'GET': 600, 'POST': 120}   # je Minute und Absender
 _ZAEHL, _ZSCHLOSS = collections.defaultdict(collections.deque), threading.Lock()
 ERLAUBT = ('/_werkzeuge/registre/', '/_werkzeuge/maison/', '/assets/', '/maison/')   # mehr braucht das Werkzeug nicht; dazu die Seiten der Website (.html in der Wurzel) für «Website ansehen»

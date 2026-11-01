@@ -20,7 +20,7 @@ Quellen: Werkzeug-Master 10a (alle Zeilen mit Werkbank, Feed, Karten, Unterlagen
 | Kein Versprechen, was ein Werkzeug nicht kann (Pairing-Karte schreibt nicht in die Website, nichts online) | ja: Texte zur Pairing-Karte und Szene «Einmal ändern» nennen nur Karte am Platz und PDF | Text |
 | Werkzeug-Namen nur aus der einen Stelle, mit Artikel im richtigen Fall | ja: `kleid/wildside.js` (Satz A), `namen_fall.py` («in der Pairing-Karte», «Den Tresen öffnen») | Text der gebauten Seiten durchsucht |
 | Wege zu Werkzeugen immer 127.0.0.1, nie localhost | ja; auch wenn die Kette `localhost` meldet, setzt die Werkbank 127.0.0.1 (`rh_werkzeuge._weg`) | `grep localhost` in `werkbank/index.html`: 0 |
-| «Zur Werkbank» in jedem Werkzeug über `wbo`, Ziel auf dem echten Server | Links tragen beim Klick `wb=de.<abschnitt>&wy=&wbo=http://127.0.0.1:9088` (`sb_skripte.WB_JS`); Ziel `/werkbank/index.html` von Bureau und Tresen bestätigt | Klickweg |
+| «Zur Werkbank» in jedem Werkzeug über `wbo`, Ziel auf dem echten Server | Links tragen beim Klick `wb=de.<abschnitt>&wy=&wbo=http://127.0.0.1:9288` (`sb_skripte.WB_JS`); Ziel `/werkbank/index.html` von Bureau und Tresen bestätigt | Klickweg |
 | Kein «Zur Werkbank» auf der Website | ja, keine Seite der Website nennt die Werkbank; die Werkbank fasst `website/` nicht an | `grep` aller neun Seiten: 0 |
 | Wegweiser (Register) und Fuß nur mit Laptops, nie zwei gleiche Geräte nebeneinander | ja, alle Objekte Laptops oder Papier | `objekte_bau.py`, Register angesehen |
 | Gestaltung des Kits in eigener Datei (`kapitel.css`) | ja | ganze Seite gescrollt |

@@ -19,9 +19,9 @@ window.WO_HAUS = { kurz: 'wildside', name: 'Wild Side', voll: 'Walk on the Wild 
     druck: 'Plakate für DJ-Abende und Feste, Karten und Beiträge in der Sprache der Bar entwerfen.' },
   wege: { zentrale: '/_werkzeuge/maison/', website: '/_werkzeuge/bureau/', karten: '/_werkzeuge/carte/', gaeste: '/_werkzeuge/reception/', marke: '/_werkzeuge/livre/', besuche: '/_werkzeuge/registre/', druck: '/_werkzeuge/imprimerie/' },
   /* Prüfserver je Werkzeug (cloud/haus.json); Wege zwischen Werkzeugen immer 127.0.0.1, nie localhost (Fehlerbuch 10a) */
-  ports: { zentrale: 9081, website: 9082, karten: 9083, gaeste: 9084, marke: 9085, besuche: 9086, druck: 9087, werkbank: 9088, website_lokal: 8766 } };
+  ports: { zentrale: 9281, website: 9282, karten: 9283, gaeste: 9284, marke: 9285, besuche: 9286, druck: 9287, werkbank: 9288, website_lokal: 8766 } };
 /* Lokal (Prüfserver je Werkzeug) zeigen die Wege zu den ANDEREN Werkzeugen auf deren eigenen Server unter 127.0.0.1, nie auf den eigenen Port
-   (Fund culinarium-reception 28.10.2026: der Knopf «La Maison» öffnete /_werkzeuge/maison/ auf 9084 ohne Stand-Wege; Fehlerbuch 10a). Online bleiben sie relativ.
+   (Fund culinarium-reception 28.10.2026: der Knopf «La Maison» öffnete /_werkzeuge/maison/ auf 9284 ohne Stand-Wege; Fehlerbuch 10a). Online bleiben sie relativ.
    Wer selbst schon absolute Wege setzt: nur Wege umschreiben, die noch mit «/» beginnen (WO_HAUS.wegeLokal = true zeigt, dass es hier geschah). */
 (function () {
   if (!/^(127\.0\.0\.1|localhost)$/.test(location.hostname)) return;

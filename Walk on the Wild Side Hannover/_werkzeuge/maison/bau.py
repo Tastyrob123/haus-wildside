@@ -4,7 +4,7 @@ Kopie des abgenommenen Tresens des Culinarium Hannover (28.–30.10.2026): Funkt
 R03, R04, R18, R19); Kleid und Inhalt aus diesem Haus (Eckschild: Nacht, Gold-Haarlinie, Creme der Plakate, Rot nur als Punkt; Prata und Hanken).
 
   python3 _werkzeuge/maison/bau.py      baut beide Fassungen aus einem Lauf (M13):
-      _werkzeuge/maison/index.html …       lokal, über server.py (http://127.0.0.1:9081/_werkzeuge/maison/)
+      _werkzeuge/maison/index.html …       lokal, über server.py (http://127.0.0.1:9281/_werkzeuge/maison/)
       _werkzeuge/maison/online/…           online-Fassung (nichts wird hochgeladen; Wege ohne localhost)
 
 Empfang: fünf hohe Fenster über den ganzen Schirm, je Werkzeug ein Foto aus der Bar (Fenster zur Strasse, Momo giesst, NEGRONI-Glühbirnen, Gäste an der Bar,
@@ -21,7 +21,7 @@ ROOT = os.path.dirname(WZ)                             # Projektordner des Hause
 WEB = os.path.join(ROOT, 'website')
 QUELLE = os.path.join(HIER, 'quelle')
 ROH = os.path.join(HIER, 'roh')
-PORT = 9081                                             # Prüfserver des Tresens (server.py)
+PORT = 9281                                             # Prüfserver des Tresens (server.py)
 PF = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
 
 
@@ -69,7 +69,7 @@ LAMM_VB, LAMM = svg_innen(ZEICHEN_DATEI)       # Zeichen des Hauses: die Wortmar
 # Reihe wie in allen Häusern (Taste 1 bis 6 gleich).
 REIHE = ['bureau', 'carte', 'imprimerie', 'reception', 'livre', 'registre']
 TEIL = {'bureau': 'website', 'carte': 'karten', 'imprimerie': 'druck', 'reception': 'gaeste', 'livre': 'marke', 'registre': 'besuche'}
-PORTS = {'bureau': 9082, 'carte': 9083, 'reception': 9084, 'livre': 9085, 'registre': 9086, 'imprimerie': 9087}   # AUFTRAG-GEMEINSAM.md
+PORTS = {'bureau': 9282, 'carte': 9283, 'reception': 9284, 'livre': 9285, 'registre': 9286, 'imprimerie': 9287}   # AUFTRAG-GEMEINSAM.md
 
 
 # Namen der Werkzeuge: EINE Stelle für alle sieben Werkzeuge ist _werkzeuge/oberflaeche/kleid/wildside.js (WO_HAUS.namen). Hier nur gelesen.

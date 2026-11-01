@@ -18,26 +18,33 @@
     {
      "name": "Negroni",
      "zutaten": "Gin | Wermut | Bitter | auf Eis gerührt",
-     "preis": ""
+     "preis": "",
+     "bild": ""
     },
     {
      "name": "Paloma",
      "zutaten": "Tequila | Grapefruit | Limette | Soda",
-     "preis": ""
+     "preis": "",
+     "bild": ""
     },
     {
      "name": "Mexikaner",
      "zutaten": "Der scharfe Shot des Hauses",
-     "preis": ""
+     "preis": "",
+     "bild": ""
     },
     {
      "name": "Ohne Alkohol",
      "zutaten": "Shrub | Soda | Kräuter | klarer Saft",
-     "preis": ""
+     "preis": "",
+     "bild": ""
     }
    ]
   }
  ],
  "hinweis": "",
- "quelle": "website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine"
+ "quelle": "website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine",
+ "kleid": "",
+ "deko": "",
+ "held": ""
 }

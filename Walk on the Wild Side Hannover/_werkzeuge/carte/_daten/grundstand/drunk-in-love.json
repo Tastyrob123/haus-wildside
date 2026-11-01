@@ -19,7 +19,7 @@
   {
    "fn": "seite",
    "a": [
-    " data-max=\"1.6\" class=\"blatt ws\" data-b=\"210\" data-h=\"297\" style=\"width:210mm;height:297mm\"",
+    " data-max=\"1.6\" class=\"blatt ws ws-love\" data-b=\"210\" data-h=\"297\" style=\"width:210mm;height:297mm\"",
     {
      "fn": "el",
      "a": [
@@ -53,7 +53,23 @@
            "a": [
             "h2",
             " class=\"sb-band\"",
-            "Drunk in Love"
+            {
+             "fn": "el",
+             "a": [
+              "span",
+              " class=\"sb-b1\"",
+              "Drunk in"
+             ]
+            },
+            " ",
+            {
+             "fn": "el",
+             "a": [
+              "span",
+              " class=\"sb-b2\"",
+              "Love"
+             ]
+            }
            ]
           },
           {
@@ -83,7 +99,7 @@
            "fn": "el",
            "a": [
             "section",
-            " class=\"sb-r\"",
+            " class=\"sb-r sb-r0\"",
             {
              "fn": "el",
              "a": [
@@ -222,6 +238,13 @@
         }
        ]
       }
+     ]
+    },
+    {
+     "fn": "el",
+     "a": [
+      "img",
+      " class=\"sb-deko\" src=\"bild/leopard.png\" alt=\"\""
      ]
     },
     {

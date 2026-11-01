@@ -120,8 +120,8 @@
 
   var basis = fremd ? (von.o ? von.o + '/' : (/^\/imprimerie\//.test(location.pathname) ? location.origin + '/' : '')) : (von.o ? von.o + '/' : WURZEL);
   if (!basis) return;
-  /* Demo-Check 21.10.2026: lokal läuft La Carte auf eigenem Port (9083), die Werkbank auf ihrem Prüfserver (9088, WO_HAUS.ports.werkbank); kam man mit wbo= aus einer Werkbank, geht es dorthin zurück */
-  if (!fremd && !von.o && location.port && /\/_werkzeuge\/carte\//.test(location.pathname)) basis = location.protocol + '//127.0.0.1:' + (((window.WO_HAUS || {}).ports || {}).werkbank || 9088) + '/';
+  /* Demo-Check 21.10.2026: lokal läuft La Carte auf eigenem Port (9283), die Werkbank auf ihrem Prüfserver (9288, WO_HAUS.ports.werkbank); kam man mit wbo= aus einer Werkbank, geht es dorthin zurück */
+  if (!fremd && !von.o && location.port && /\/_werkzeuge\/carte\//.test(location.pathname)) basis = location.protocol + '//127.0.0.1:' + (((window.WO_HAUS || {}).ports || {}).werkbank || 9288) + '/';
 
   /* Sprache: die der Seite, wo es Sprachfassungen gibt; bei den Werkzeugen (nur deutsch) die der Werkbank, aus der man kam */
   var imPfad = /(?:^|\/)(en|fr|zh|ko|ar)\//.exec(pfad);

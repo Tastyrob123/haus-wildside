@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Das Gästebuch (Team hinter dem Gäste-Chat) · Walk on the Wild Side Hannover. Am Rechner aus dem Hausordner: python3 _werkzeuge/reception/server.py [port]   (Standard 9084)
+"""Das Gästebuch (Team hinter dem Gäste-Chat) · Walk on the Wild Side Hannover. Am Rechner aus dem Hausordner: python3 _werkzeuge/reception/server.py [port]   (Standard 9284)
 Kopie des Gästebuchs des Culinarium Hannover (31.10.2026), dort aus dem Gastgeber der Taverne zum Schäfli; Aufbau und Wege gleich.
 Walk on the Wild Side ist eine Nachbarschafts-Mixology-Bar in Linden-Mitte: Reservieren, Privates Dinner, Feiern an der langen Tafel und in der ganzen Bar, Nachrichten.
 
@@ -28,7 +28,7 @@ WERK = os.path.join(PROJ, '_werkzeuge')        # die Werkzeuge des Hauses (hier 
 sys.path.insert(0, HIER)
 import reception  # noqa: E402
 
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9084
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9284
 VERBOTEN = ('_sicherung', '_studio', '_dienste', '_werkbank', '_recherche', '_qa', '_varianten-online', '_werkzeuge/reception/daten', '_werkzeuge/reception/gast',
             '_werkzeuge/reception/_bau', '_werkzeuge/reception/pruefung', '_werkzeuge/reception/online', '_daten', '_varianten', '_zuschnitt', '_alt', '.env', '__pycache__', 'potenzialanalyse')   # nie ausliefern
 _GAST, _SCHLOSS, _SCHLOSS_KI = None, threading.Lock(), threading.Lock()

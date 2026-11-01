@@ -20,9 +20,9 @@ Gebaut am 31.10.2026 im Nachtbau (Revier `_werkzeuge/reception/`), Kopie des Bau
 
 1. `_werkzeuge/reception/baustein/anfrage.js` nach `website/assets/anfrage.js` kopieren.
 2. In `bau.py` auf `besuch.html` und `tafel.html` **nach** `wild.js` einhängen: `<script src="assets/anfrage.js?v={VERSION}" defer></script>`.
-3. Ziel der Anfragen: auf dem Server des Gästebuchs (:9084) gilt der Standard `/_werkzeuge/reception/api/formular`. Läuft die Website auf einem anderen Server, braucht es `data-api` mit voller Adresse **und** eine Weiterleitung, weil das Gästebuch nur Aufrufe von der eigenen Seite annimmt (Herkunft 403).
+3. Ziel der Anfragen: auf dem Server des Gästebuchs (:9284) gilt der Standard `/_werkzeuge/reception/api/formular`. Läuft die Website auf einem anderen Server, braucht es `data-api` mit voller Adresse **und** eine Weiterleitung, weil das Gästebuch nur Aufrufe von der eigenen Seite annimmt (Herkunft 403).
 4. Datenschutz: `datenschutz.html` muss dann sagen, wo die Anfrage liegt (beim Team der Bar, zwölf Monate, Löschung auf Wunsch). Vom Haus zu prüfen.
 
 ## Geprüft
 
-Auf dem Server :9084 (der die Website ausliefert) mit dem Baustein in die Seite gesetzt, nicht in die Website geschrieben: Reservieren auf `besuch.html` und eine Feier auf `tafel.html` liegen danach im Eingang; ohne Name erscheint die Meldung, nichts wird abgelegt.
+Auf dem Server :9284 (der die Website ausliefert) mit dem Baustein in die Seite gesetzt, nicht in die Website geschrieben: Reservieren auf `besuch.html` und eine Feier auf `tafel.html` liegen danach im Eingang; ohne Name erscheint die Meldung, nichts wird abgelegt.

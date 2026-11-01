@@ -57,7 +57,8 @@ def zeile(t):
 
 # ---------------------------------------------------------------- Bausteine (dieselben Klassen setzt satz.js für «Die Karte»)
 def eintrag(x):
-    innen = f'<p class="sb-n">{e(x["name"])}</p>'
+    innen = f'<img class="sb-mb" src="bild/{x["bild"]}" alt="">' if x.get('bild') else ''
+    innen += f'<p class="sb-n">{e(x["name"])}</p>'
     if x['preis']:
         innen += f'<p class="sb-mp">{e(x["preis"])}</p>'
     if x['zutaten']:
@@ -65,13 +66,24 @@ def eintrag(x):
     return f'<div class="sb-m">{innen}</div>'
 
 
-def rubrik(r):
-    return f'<section class="sb-r"><p class="sb-h">{e(r["titel"])}</p>' + ''.join(eintrag(x) for x in r['eintraege']) + '</section>'
+def rubrik(r, i=0):
+    bild = ' sb-r--bild' if any(x.get('bild') for x in r['eintraege']) else ''
+    return f'<section class="sb-r sb-r{i}{bild}"><p class="sb-h">{e(r["titel"])}</p>' + ''.join(eintrag(x) for x in r['eintraege']) + '</section>'
+
+
+def band(d):
+    """Titel der Karte. Valentinsreihe wie das Original: alles bis aufs letzte Wort als kräftige Display-Schrift («DRUNK IN»), das letzte Wort
+    in Pinselschrift («LOVE»); der Wortlaut bleibt."""
+    t = d['titel']
+    if d.get('kleid') == 'love' and ' ' in t:
+        vorn, letzt = t.rsplit(' ', 1)
+        return f'<h2 class="sb-band"><span class="sb-b1">{e(vorn)}</span> <span class="sb-b2">{e(letzt)}</span></h2>'
+    return f'<h2 class="sb-band">{e(t)}</h2>'
 
 
 def oben(d):
     return (f'<div class="sb-oben"><span class="uz sb-zeichen">{WM}</span>'
-            f'<h2 class="sb-band">{e(d["titel"])}</h2><p class="sb-datum">{e(d["datum"])}</p>'
+            f'{band(d)}<p class="sb-datum">{e(d["datum"])}</p>'
             + (f'<p class="sb-mit">{e(d["mit"])}</p>' if d.get('mit') else '') + '</div>')
 
 
@@ -79,9 +91,14 @@ def unten(d):
     return f'<div class="sb-unten"><p class="sb-hinweis">{e(d["hinweis"])}</p></div>' if d.get('hinweis') else ''
 
 
-def blatt(inhalt, mx='1.6'):
-    return (f'<section data-max="{mx}" class="blatt ws" data-b="210" data-h="297" style="width:210mm;height:297mm">'
-            f'<div class="inhalt">{inhalt}</div><footer class="ufuss2">{e(FUSS)}</footer></section>')
+def blatt(inhalt, mx='1.6', d=None):
+    """Ein Blatt A4 hoch. kleid 'love': rosa Grund, die Zeichnung der Bar (deko) unten rechts; 'feier': Nacht mit Foto der Bar oben (held)."""
+    d = d or {}
+    kl = ' ws-' + d['kleid'] if d.get('kleid') else ''
+    held = f'<figure class="sb-held"><img src="bild/{d["held"]}" alt=""></figure>' if d.get('held') else ''
+    deko = f'<img class="sb-deko" src="bild/{d["deko"]}" alt="">' if d.get('deko') else ''
+    return (f'<section data-max="{mx}" class="blatt ws{kl}" data-b="210" data-h="297" style="width:210mm;height:297mm">'
+            f'{held}<div class="inhalt">{inhalt}</div>{deko}<footer class="ufuss2">{e(FUSS)}</footer></section>')
 
 
 def doc(titel, seiten):
@@ -91,8 +108,8 @@ def doc(titel, seiten):
 
 def barkarte(kid):
     d = q(kid)
-    menue = '<div class="sb-menue">' + ''.join(rubrik(r) for r in d['rubriken']) + '</div>'
-    return doc(d['name'], [blatt(f'<div class="sb-quer">{oben(d)}{menue}{unten(d)}</div>')])
+    menue = '<div class="sb-menue">' + ''.join(rubrik(r, i) for i, r in enumerate(d['rubriken'])) + '</div>'
+    return doc(d['name'], [blatt(f'<div class="sb-quer">{oben(d)}{menue}{unten(d)}</div>', d=d)])
 
 
 def zeichen():

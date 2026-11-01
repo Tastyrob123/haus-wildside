@@ -7,10 +7,10 @@
   var BASIS = 'haeuser/wildside/kopf/';
   /* Foto je Ansicht (1200 px, haeuser/wildside/kopf/, gebaut von bau.py) */
   var FOTO = { msStart: 'schild', msAbend: 'saengerin-kunde', msMotive: 'konzert-love', msEvents: 'voll', msAbteilungen: 'decke-raum', msHinweise: 'tuer-rot', msNewsletter: 'glas-kerze', msFotos: 'momo-giesst', msMarke: 'negroni', msLivre: 'decke-bar', msMeine: 'theke', msFreigegeben: 'rueckbar', msNeu: 'glas-coupe', weg: 'schild-ecke', entwuerfe: 'flaschen' };
-  /* La Maison des Wild Side: liegt wie die Plakatwerkstatt unter _werkzeuge/ (lokal /_werkzeuge/maison/ auf deren Server :9081, online /maison/) */
-  var MAISON = location.port === '9087' ? 'http://127.0.0.1:9081/_werkzeuge/maison/' : /\/_werkzeuge\//.test(location.pathname) ? '../maison/' : '/maison/';
+  /* La Maison des Wild Side: liegt wie die Plakatwerkstatt unter _werkzeuge/ (lokal /_werkzeuge/maison/ auf deren Server :9281, online /maison/) */
+  var MAISON = location.port === '9287' ? 'http://127.0.0.1:9281/_werkzeuge/maison/' : /\/_werkzeuge\//.test(location.pathname) ? '../maison/' : '/maison/';
   /* R05: die Website des Hauses (lokal auf ihrem Server :8766 (WO_HAUS.ports.website_lokal), online dieselbe Adresse) */
-  var WEBSITE = location.port === '9087' ? 'http://127.0.0.1:' + ((window.WO_HAUS && WO_HAUS.ports && WO_HAUS.ports.website_lokal) || 8766) + '/' : '/';
+  var WEBSITE = location.port === '9287' ? 'http://127.0.0.1:' + ((window.WO_HAUS && WO_HAUS.ports && WO_HAUS.ports.website_lokal) || 8766) + '/' : '/';
   var WELT = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.4 3.6 5.2 3.6 8.5s-1 6.1-3.6 8.5c-2.6-2.4-3.6-5.2-3.6-8.5s1-6.1 3.6-8.5z"/></svg>';
   var HAUS = '<svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>';
 

@@ -1,8 +1,8 @@
 /* Bilder für die Anleitung (anleitung.html), Das Markenbuch · Walk on the Wild Side Hannover: ein Bildschirmfoto je Kapitel aus dem echten Werkzeug (Chromium, unsichtbar), 1512 × 900 → 1200 px breit.
-   node _werkzeuge/livre/anleitung_bilder.js [basis]   (Server: python3 _werkzeuge/livre/server.py 9085) */
+   node _werkzeuge/livre/anleitung_bilder.js [basis]   (Server: python3 _werkzeuge/livre/server.py 9285) */
 const path = require('path'), fs = require('fs');
 const PW = require('playwright');
-const A = process.argv[2] || 'http://127.0.0.1:9085/_werkzeuge/livre/';
+const A = process.argv[2] || 'http://127.0.0.1:9285/_werkzeuge/livre/';
 const AUS = path.join(__dirname, 'anleitung');
 const w = (p, ms) => p.waitForTimeout(ms);
 const K = [

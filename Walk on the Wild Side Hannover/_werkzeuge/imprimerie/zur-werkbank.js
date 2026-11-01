@@ -1,5 +1,5 @@
 /* L’Imprimerie · Walk on the Wild Side Hannover: Kopie von _werkzeuge/maison/zur-werkbank.js (Baustein von La Maison), geschrieben von bau.py.
-   Änderungen: die Wurzel des Hauses wird auch aus _werkzeuge/imprimerie/ und werkzeuge/imprimerie/ erkannt (Master F78); der Prüfserver :9087 gilt als eigene Adresse. */
+   Änderungen: die Wurzel des Hauses wird auch aus _werkzeuge/imprimerie/ und werkzeuge/imprimerie/ erkannt (Master F78); der Prüfserver :9287 gilt als eigene Adresse. */
 /* «Zur Werkbank» (R19) · Der Tresen des Wild Side: Kopie des Bausteins der Häuser, Schlüssel des Hauses «wildside-wb». Gebaut von bau.py. */
 /* «Zur Werkbank» (Robert 12.10.2026): ein Knopf unten links auf jeder Seite, die man aus der Werkbank heraus öffnet.
    Eine Datei für alle Seiten, sie bringt Aussehen und Verhalten selbst mit (eigener Schattenbaum, kein Stylesheet der Seite greift hinein).
@@ -46,7 +46,7 @@
   var SPRACHEN = ['de', 'en', 'fr', 'zh', 'ko', 'ar'];
   var TEXT = { de: 'Zur Werkbank', en: 'To the workbench', fr: 'Vers l’atelier', zh: '前往工作台', ko: '작업대로', ar: 'إلى منضدة العمل' };
   var OHNE_SPRACHE = /^(control|_werkzeuge|studio|mission-control|reception|marke|maison|imprimerie|mails|werkbank\/anleitung)\/|^mappe/;   // gibt es nur deutsch: Sprache der Werkbank gilt
-  var FREMD_ZIEL = /^https:\/\/[a-z0-9-]+-analyse\.tastystudios\.ch$|^https:\/\/drucksachen-studio\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):(8963|9087)$/;   // L’Imprimerie auf eigener Adresse
+  var FREMD_ZIEL = /^https:\/\/[a-z0-9-]+-analyse\.tastystudios\.ch$|^https:\/\/drucksachen-studio\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):(8963|9287)$/;   // L’Imprimerie auf eigener Adresse
   var HERKUNFT = /^https:\/\/[a-z0-9-]+\.tastystudios\.ch$|^https:\/\/[a-z0-9-]+\.vercel\.app$|^http:\/\/(127\.0\.0\.1|localhost):\d{2,5}$/;   // von wo eine Werkbank herkommen darf
   var SCHL = 'wildside-wb';
 

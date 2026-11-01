@@ -18,26 +18,33 @@
     {
      "name": "Frensh 26",
      "zutaten": "Gin | Bergamotte | Nori | Schaumwein",
-     "preis": "12"
+     "preis": "12",
+     "bild": ""
     },
     {
      "name": "Whey Bramble",
      "zutaten": "Gin | Lemon Shrub | Vetiver | Whey Berry Soda",
-     "preis": "12"
+     "preis": "12",
+     "bild": ""
     },
     {
      "name": "Pink Lady",
      "zutaten": "Kakaobutter-Fat-Washed Rum | Himbeerpüree | Agave | Limette",
-     "preis": "12"
+     "preis": "12",
+     "bild": ""
     },
     {
      "name": "Karamella",
      "zutaten": "Havana 7 Jahre | Portwein | Johannisbeere | Karamell | schwarze Walnüsse | Limette",
-     "preis": "12"
+     "preis": "12",
+     "bild": ""
     }
    ]
   }
  ],
  "hinweis": "",
- "quelle": "website/unter.py drinks() karte (vom Plakat der Valentinskarte, Beitrag der Bar vom 03.02.2026)"
+ "quelle": "website/unter.py drinks() karte (vom Plakat der Valentinskarte, Beitrag der Bar vom 03.02.2026)",
+ "kleid": "love",
+ "deko": "leopard.png",
+ "held": ""
 }

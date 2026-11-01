@@ -8,7 +8,7 @@ und für gesperrte Etiketten; die echte Wortmarke (WALK / ON THE / WILD SIDE, na
 (website/bau.py HAUS und LINEUP, ihre Seiten), CHARAKTER.md und _quelle/, nichts abgetippt, nichts erfunden.
 
 Eigenes Revier: website/_werkbank/ ist der Projektordner des Kits (ROOT), die Website liegt eine Ebene höher (WEB) und wird nur gelesen;
-assets/ ist ein Verweis auf website/assets (nur gelesen). Serviert von website/_werkbank/serve.py auf Port 9088 (zuerst das Revier, sonst die Website).
+assets/ ist ein Verweis auf website/assets (nur gelesen). Serviert von website/_werkbank/serve.py auf Port 9288 (zuerst das Revier, sonst die Website).
 Ton: die Bar duzt (Website, Instagram): der Brief sagt «Hallo Derya», sonst «ihr/euch» an Derya und Momo. Deutsche Schreibung mit ß.
 Kein Preis für Roberts Arbeit in der Werkbank. Eine E-Mail-Adresse der Bar ist nicht belegt: keine erfunden, Kontakt über Telefon, Instagram, Formular."""
 import json
@@ -37,7 +37,7 @@ NAME = 'Walk on the Wild Side'
 KURZ = 'wildside'
 LEISTE = ''          # die Wortmarke steht in der Leiste schon als Zeichen (keine doppelten Logos, Kriterium 14)
 HAUSART = 'restaurant'
-PORT = 9088
+PORT = 9288
 DOMAIN = 'Instagram'   # die Bar hat heute keine Website (wildside-hannover.de war nie eine, CHARAKTER.md 9); «heute» ist das Profil auf Instagram
 HEUTE_URL = 'https://www.instagram.com/walkonthewildside_hannover/'
 ANREDE = 'Hallo Derya, hallo Momo'
@@ -115,7 +115,7 @@ def _werkzeugname(teil):
 # ---------- Unterlagen: die Karten der Bar (gesetzt mit der Pairing-Karte, PDFs in unterlagen/pdf) ----------
 SATZ_FUSS = 'Walk on the Wild Side · Haasemannstraße 13 · 30449 Hannover-Linden'
 UNTERLAGEN = dict(
-    pflege=('Karten selbst ändern', 'http://127.0.0.1:9083/_werkzeuge/carte/'),
+    pflege=('Karten selbst ändern', 'http://127.0.0.1:9283/_werkzeuge/carte/'),
     text='Die Karte wechselt immer wieder, die Drinks dafür entwirft Momo. Hier liegen die Karten der Bar neu gesetzt neben dem Blatt, wie es auf dem Tisch lag.',
     seite_text='Die Karten der Bar, neu gesetzt im Kleid der neuen Seite: Momos Drinks mit Zutaten und Preis. Links das Blatt, wie es auf dem Tisch lag, rechts die Idee. Jede neue Karte schreibt ihr ' + _nf.in_(_werkzeugname('karten')) + '.',
     knopf2=('Die Drinks auf der Website', '../drinks.html'))
@@ -228,7 +228,7 @@ PAPIER = dict(
     etik_text='An der Theke stehen Momos Drinks auf Untersetzern: zwölf Ideen mit der Wortmarke, dem Eckschild und den Wellen der SESSION-Plakate.',
     druck_text='Von der Karte bis zum Plakat für die Tür, dazu <a href="../sticker/index.html" target="_blank" rel="noopener">Sticker</a> und <a href="../beigaben/index.html" target="_blank" rel="noopener">Beigaben</a>.',
     orte_e=[(3, 6, 28, -3), (36, 6, 28, 2), (69, 6, 28, -2), (3, 54, 28, 2), (36, 54, 28, -3), (69, 54, 28, 3)],
-    orte_d=[('karte', 3, 16, 29, -3, 0), ('tuer', 35.5, 16, 29, 2, 0), ('session', 68, 16, 29, -2, 0)])
+    orte_d=[('karte', 3, 16, 29, -3, 0), ('pw-session-aushang-a3', 35.5, 16, 29, 2, 0), ('pw-tanz-in-den-mai', 68, 16, 29, -2, 0)])   # Robert 1.11.2026: drei echte Drucksachen der Bar, nie nur ein Blatt
 PAPIER_SEITE = dict(
     breit={'karte', 'karte-r', 'briefbogen', 'umschlag', 'gutschein', 'gutschein-r'},
     formen=set(),

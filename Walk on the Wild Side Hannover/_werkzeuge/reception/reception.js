@@ -16,7 +16,7 @@ const MARKE = '<img class="brief__marke" src="marke-haus.svg" width="1296" heigh
 const telNb = t => t.replace(/\+\d[\d ]{6,}\d/g, m => m.replace(/ /g, '\u00a0'));   // Telefonnummer nie mitten in der Zahl umbrechen
 const KOPF_EIGEN = (G, k) => !!(G && G[k] && typeof G[k].t === 'string' && G[k].t.trim() && G[k].t !== GKOPF[k]);   // Hausname und Zeile nur, wenn jemand sie selbst geschrieben hat   // die Wortmarke der Bar (Kopie von _werkzeuge/oberflaeche/kleid/wildside-zeichen.svg)
 /* Lokal läuft jedes Werkzeug auf seinem eigenen Server (WO_HAUS.ports): Wege zu den anderen Werkzeugen im Kopf mit voller Adresse 127.0.0.1:<port>, nie relativ
-   (sonst öffnet z. B. die Zentrale auf 9084 ohne ihren Server) und nie localhost (Fehlerbuch 10a). Online bleiben die Wege relativ. */
+   (sonst öffnet z. B. die Zentrale auf 9284 ohne ihren Server) und nie localhost (Fehlerbuch 10a). Online bleiben die Wege relativ. */
 (() => { const H = window.WO_HAUS || {}, P = H.ports || {}, W = H.wege || {};
   if (/^(127\.0\.0\.1|localhost|\[::1\])$/.test(location.hostname)) Object.keys(W).forEach(k => { if (k !== 'gaeste' && P[k] && /^\//.test(W[k])) W[k] = 'http://127.0.0.1:' + P[k] + W[k]; }); })();
 const STUBE = /\/_werkzeuge\//.test(location.pathname) ? 'http://127.0.0.1:' + ((window.WO_HAUS || {}).ports || {}).zentrale + '/_werkzeuge/maison/' : '/maison/';   // die Zentrale: lokal auf ihrem eigenen Server (WO_HAUS.ports, nie localhost), online /maison/

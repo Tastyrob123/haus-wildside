@@ -1,5 +1,5 @@
 {
- "stand": "2026-10-31 17:55:37",
+ "stand": "2026-11-01 02:24:24",
  "quelle": "Die Pairing-Karte (_werkzeuge/carte/_daten/stand/)",
  "karten": {
   "klassiker": {
@@ -125,6 +125,26 @@
   "preisliste": {
    "rubriken": [
     {
+     "titel": "Pauschale pro Person",
+     "eintraege": [
+      {
+       "name": "Kategorie 1 · Bier, Wein, Spritz",
+       "zutaten": "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "preis": "49,00"
+      },
+      {
+       "name": "Kategorie 2 · Dazu Longdrinks",
+       "zutaten": "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "preis": "59,00"
+      },
+      {
+       "name": "Kategorie 3 · Dazu fünf Signature Cocktails",
+       "zutaten": "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
+       "preis": "79,00"
+      }
+     ]
+    },
+    {
      "titel": "Was ein Drink kostet",
      "eintraege": [
       {
@@ -161,26 +181,6 @@
        "name": "Alkoholfreie Getränke",
        "zutaten": "",
        "preis": "3,00"
-      }
-     ]
-    },
-    {
-     "titel": "Pauschale pro Person",
-     "eintraege": [
-      {
-       "name": "Kategorie 1 · Bier, Wein, Spritz",
-       "zutaten": "Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
-       "preis": "49,00"
-      },
-      {
-       "name": "Kategorie 2 · Dazu Longdrinks",
-       "zutaten": "Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
-       "preis": "59,00"
-      },
-      {
-       "name": "Kategorie 3 · Dazu fünf Signature Cocktails",
-       "zutaten": "Fünf Signature Cocktails · Longdrinks · Bier · Wein · Spritzgetränke · Shots · alkoholfreie Getränke",
-       "preis": "79,00"
       }
      ]
     },

@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 """Prüfserver des Tresens (La Maison) · Walk on the Wild Side Hannover (nur zum Bedienen und Prüfen; Kopie des Stamms vom 28.10.2026).
 
-  python3 _werkzeuge/maison/server.py [port]      Standard 9081
+  python3 _werkzeuge/maison/server.py [port]      Standard 9281
 
 Liefert nur lesend (GET/HEAD):
   /_werkzeuge/…            aus _werkzeuge/ (La Maison unter /_werkzeuge/maison/)
   /assets/oberflaeche/…    aus _werkzeuge/oberflaeche/ (gemeinsames Kleid aller sieben Werkzeuge des Hauses)
   /assets/…  und Seiten    aus website/ (Fotos, Schriften, Wortmarke, Seiten für «Website ansehen»)
 Die Stand-Wege der Werkzeuge reicht er weiter: /_weiter/<werkzeug>/<weg> geht an die Adresse, die das Werkzeug in der Kette angibt
-(_kette/11-werkbank/werkzeuge/<teil>/stand.json → adresse), sonst an seinen festen Port (9082 … 9087); nur 127.0.0.1, nur GET.
+(_kette/11-werkbank/werkzeuge/<teil>/stand.json → adresse), sonst an seinen festen Port (9282 … 9287); nur 127.0.0.1, nur GET.
 Ein Browser liest nicht quer über Ports, deshalb dieser Umweg. Fehlermeldungen der Seite (POST /studio/api/fehler) werden angenommen und verworfen."""
 import http.server, json, os, socketserver, sys, urllib.request, urllib.error
 from urllib.parse import urlparse, unquote, urljoin
 
-PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9081
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 9281
 WURZEL = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 WEB = os.path.join(WURZEL, 'website')
 WZ = os.path.join(WURZEL, '_werkzeuge')
 OF = os.path.join(WZ, 'oberflaeche')
 TEIL = {'bureau': 'website', 'carte': 'karten', 'imprimerie': 'druck', 'reception': 'gaeste', 'livre': 'marke', 'registre': 'besuche'}
-WERKBANK = 'http://127.0.0.1:9088'   # Server der Werkbank (Agent «wildside-werkbank», Port 9088): «Zur Werkbank» führt lokal dorthin
-FEST = {'bureau': 9082, 'carte': 9083, 'reception': 9084, 'livre': 9085, 'registre': 9086, 'imprimerie': 9087}   # Ports aus dem gemeinsamen Auftrag
+WERKBANK = 'http://127.0.0.1:9288'   # Server der Werkbank (Agent «wildside-werkbank», Port 9288): «Zur Werkbank» führt lokal dorthin
+FEST = {'bureau': 9282, 'carte': 9283, 'reception': 9284, 'livre': 9285, 'registre': 9286, 'imprimerie': 9287}   # Ports aus dem gemeinsamen Auftrag
 
 
 def adresse(k):

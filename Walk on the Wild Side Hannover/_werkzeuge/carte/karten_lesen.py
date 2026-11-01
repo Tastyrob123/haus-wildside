@@ -75,9 +75,14 @@ def erster_satz(t):
     return ' | '.join(x.strip() for x in re.split(r',\s*|\s+und\s+', s) if x.strip())
 
 
-def karte(ziel, name, unter, gruppe, foto, titel, datum, mit, rubriken, quelle, hinweis='', ab=''):
+def karte(ziel, name, unter, gruppe, foto, titel, datum, mit, rubriken, quelle, hinweis='', ab='', kleid='', bilder=None):
+    """kleid: '' (Creme der Bar), 'love' (Valentinsreihe im Charakter des Originals), 'feier' (Angebot für Feiern mit Fotos der Bar);
+    bilder: Bilder aus satz/bild/ (bilder_satz.py): {'deko': …, 'held': …, 'rubrik': {Rubrik: [Bild je Eintrag]}}"""
+    b = bilder or {}
     return dict(ziel=ziel, art='satz', key=ziel, name=name, unter=unter, gruppe=gruppe, ab=ab, plakat='', foto=foto, titel=titel, datum=datum, mit=mit,
-                rubriken=[dict(titel=t, eintraege=[dict(name=n, zutaten=z, preis=p) for n, z, p in e]) for t, e in rubriken], hinweis=hinweis, quelle=quelle)
+                rubriken=[dict(titel=t, eintraege=[dict(name=n, zutaten=z, preis=p, bild=((b.get('rubrik') or {}).get(t) or [''] * len(e))[i])
+                                                   for i, (n, z, p) in enumerate(e)]) for t, e in rubriken],
+                hinweis=hinweis, quelle=quelle, kleid=kleid, deko=b.get('deko', ''), held=b.get('held', ''))
 
 
 def lesen():
@@ -86,21 +91,24 @@ def lesen():
     aus['drunk-in-love'] = karte('drunk-in-love', 'Drunk in Love', 'Valentinstag 2026', 'Weitere Karten', 'k30-coupe', 'Drunk in Love',
                                  'Valentinstag · 14. Februar 2026', 'Wild Side goes in love',
                                  [('Cupid’s Signature Drinks', [(n, z.replace(' · ', ' | '), p) for n, z, p in q['karte']])],
-                                 'website/unter.py drinks() karte (vom Plakat der Valentinskarte, Beitrag der Bar vom 03.02.2026)', ab='2026-02-14')
+                                 'website/unter.py drinks() karte (vom Plakat der Valentinskarte, Beitrag der Bar vom 03.02.2026)', ab='2026-02-14',
+                                 kleid='love', bilder={'deko': 'leopard.png'})
     aus['dishes-in-love'] = karte('dishes-in-love', 'Dishes in Love', 'Teller zum Teilen', 'Weitere Karten', 'k30-leopard', 'Dishes in Love',
-                                  'Valentinstag · 14. Februar 2026', 'Kleine Dishes zum Teilen, mit Rudi', DISHES, DISHES_QUELLE, ab='2026-02-14')
+                                  'Valentinstag · 14. Februar 2026', 'Kleine Dishes zum Teilen, mit Rudi', DISHES, DISHES_QUELLE, ab='2026-02-14',
+                                  kleid='love', bilder={'deko': 'coupe.png'})
     aus['klassiker'] = karte('klassiker', 'Die Klassiker', 'An jedem Abend', 'Weitere Karten', 'negroni', 'Die Klassiker', 'Auch ohne Frage',
                              'Ein paar Drinks gehören fest zum Haus.', [('Die Klassiker', [(n, erster_satz(s), '') for n, s in q['klassiker']])],
                              'website/unter.py drinks() klassiker (Seite drinks.html «Die Klassiker»), ohne Preise: die Website nennt keine')
     pausch = [(k + ' · ' + t, z, p + ',00') for k, t, z, p in q['pauschale']]
     aus['preisliste'] = karte('preisliste', 'Die Preise der Bar', 'Für Feiern und Gesellschaften', 'Weitere Karten', 'flaschen', 'Die Preise der Bar',
                               'Für Feiern im Wild Side', 'Für die lange Tafel und die ganze Bar',
-                              [('Was ein Drink kostet', [(t, '', p) for t, p in q['preise']]),
-                               ('Pauschale pro Person', pausch),
+                              [('Pauschale pro Person', pausch),
+                               ('Was ein Drink kostet', [(t, '', p) for t, p in q['preise']]),
                                ('Budget', [('Service und Raum', '', '500,00'), ('Euer Budget für Drinks', 'Lässt sich nach oben frei anpassen', 'ab 1.000,00')])],
                               'website/unter.py PREISE, PAUSCHALE und tafel() (Angebotsmappe der Bar, _quelle/angebote-pdf/Wild Side Angebote.pdf)',
                               hinweis='Pauschale und Budget: geschlossene Gesellschaft ab 30 Gästen, 19 bis 2 Uhr, ab 2 Uhr jede angefangene Stunde 10 Euro pro Person. '
-                                      'Alle Preise in Euro, brutto. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.')
+                                      'Alle Preise in Euro, brutto. Anzahlung 30 % eine Woche vorher, Rest vor Beginn.',
+                              kleid='feier', bilder={'held': 'an-campari.webp', 'rubrik': {'Pauschale pro Person': ['an-sours.webp', 'an-glaeser.webp', 'an-negroni.webp']}})
     pruefe(aus, q)
     return aus
 
@@ -145,10 +153,10 @@ def pruefe(aus, q):
                 if x['name'] not in drinks:
                     fehl.append(f'{z}: «{x["name"]}» steht nicht in website/drinks.html')
         if z == 'preisliste':
-            for x in d['rubriken'][0]['eintraege']:
+            for x in d['rubriken'][1]['eintraege']:
                 if f'{x["name"]}' not in tafel or f'{x["preis"]} €' not in tafel:
                     fehl.append(f'{z}: «{x["name"]} {x["preis"]}» steht nicht in website/tafel.html')
-            for x in d['rubriken'][1]['eintraege']:
+            for x in d['rubriken'][0]['eintraege']:
                 if x['preis'].split(',')[0] + ' €' not in tafel:
                     fehl.append(f'{z}: Pauschale {x["preis"]} steht nicht in website/tafel.html')
             for b in ('500 €', 'ab 1.000 €'):

@@ -3,7 +3,7 @@
 // Jede Stelle: Seite, Anker (Abschnitt oben an den Rand), Verschiebung in px, optional ein Klick vor der Aufnahme. Nichts wird abgeschickt.
 const path = require('path'), fs = require('fs');
 const { chromium } = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
-const HIER = __dirname, B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9088) + '/';
+const HIER = __dirname, B = 'http://127.0.0.1:' + (process.env.WB_PORT || 9288) + '/';
 const IDEEN = [
   ['start', 'index.html', null, 0], ['bar', 'index.html', '#bar', 0], ['gespraech', 'index.html', '#drinks', 0],
   ['gewoelbe', 'index.html', '.gewoelbe', 0], ['chronik', 'index.html', '#seit2017', 0], ['lauter', 'index.html', '#lauter', 0],

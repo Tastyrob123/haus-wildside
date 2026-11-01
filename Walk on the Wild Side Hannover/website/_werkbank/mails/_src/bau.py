@@ -10,7 +10,7 @@ mit Beschreibung; Tabellen und feste Stile, Titel in Prata (Georgia, wo ein Mail
 Namen, Daten und Nummern der Gäste sind Beispielwerte und so beschriftet; Preise, Zeiten, Adresse, DJ-Abend und Feste sind die der Bar.
 Wortlaut von Tasty Studios, als Vorschlag. Gebaut, nie verschickt.
 
-Aufruf:  python3 mails/_src/bau.py  → mails/NN-<fall>/index.html, mails/index.html, mails/img/;  danach WB_PORT=9088 node mails/_src/aufnahme.js"""
+Aufruf:  python3 mails/_src/bau.py  → mails/NN-<fall>/index.html, mails/index.html, mails/img/;  danach WB_PORT=9288 node mails/_src/aufnahme.js"""
 import ast, html, json, os, re, glob, shutil
 
 HIER = os.path.dirname(os.path.abspath(__file__)); MAILS = os.path.dirname(HIER); ROOT = os.path.dirname(MAILS); WEB = os.path.dirname(ROOT)

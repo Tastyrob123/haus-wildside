@@ -9,8 +9,8 @@ status: entwurf
 
 ## Wo
 
-- **Werkzeug:** http://127.0.0.1:9087/_werkzeuge/imprimerie/ · Server im Ordner `_werkzeuge/imprimerie`: `python3 serve.py 9087`
-- **Newsletter-Baukasten:** http://127.0.0.1:9087/_werkzeuge/imprimerie/mail.html · **Prüfseite:** …/pruefung.html · **Anleitung:** …/hilfe/
+- **Werkzeug:** http://127.0.0.1:9287/_werkzeuge/imprimerie/ · Server im Ordner `_werkzeuge/imprimerie`: `python3 serve.py 9287`
+- **Newsletter-Baukasten:** http://127.0.0.1:9287/_werkzeuge/imprimerie/mail.html · **Prüfseite:** …/pruefung.html · **Anleitung:** …/hilfe/
 - **Drucksachen der Bar:** `haeuser/wildside/drucksachen/` (PDF + Vorschaubild, Liste `LISTE.md`, `liste.json`)
 - **Name:** aus `_werkzeuge/oberflaeche/kleid/wildside.js` (`WO.name('druck')`), Dateien und Adressen bleiben `imprimerie`. Merker ohne Begrüssung: `localStorage['ds-wildside-willkommen'] = '1'`.
 

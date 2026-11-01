@@ -1,6 +1,6 @@
 /* Die Plakatwerkstatt · Walk on the Wild Side: die fertigen Drucksachen der Bar als PDF (3 mm Beschnitt, Schriften eingebettet) und Vorschaubild,
    gesetzt mit dem Werkzeug selbst (DS.dokument, DS.pdf, DS.png) aus dem Katalog der Bar (katalog.js). Dazu Druckprüfung und Stilprüfung je Stück.
-   Aufruf (Server :9087 läuft):  NODE_PATH=$(npm root -g) node _bau/drucksachen.js   → haeuser/wildside/drucksachen/ + LISTE.md */
+   Aufruf (Server :9287 läuft):  NODE_PATH=$(npm root -g) node _bau/drucksachen.js   → haeuser/wildside/drucksachen/ + LISTE.md */
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 const ZIEL = path.join(__dirname, '..', 'haeuser', 'wildside', 'drucksachen');
@@ -31,7 +31,7 @@ const STUECKE = [
   const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1400, height: 900 } });
   const fehler = []; p.on('pageerror', e => fehler.push(e.message));
   await p.addInitScript(() => { try { localStorage.setItem('ds-wildside-willkommen', '1'); } catch (e) {} });
-  await p.goto('http://127.0.0.1:9087/_werkzeuge/imprimerie/', { waitUntil: 'load' });
+  await p.goto('http://127.0.0.1:9287/_werkzeuge/imprimerie/', { waitUntil: 'load' });
   await p.waitForFunction(() => window.DS && DS.M && window.DSStudio && DS.pdf, null, { timeout: 30000 });
   await p.waitForTimeout(1500);
   const zeilen = [];

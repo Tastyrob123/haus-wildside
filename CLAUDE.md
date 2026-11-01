@@ -25,7 +25,7 @@ Dieser Ordner ist **ein Haus** (hier: Walk on the Wild Side Hannover). Robert ha
 
 ## Ablauf (Schleife bis grün)
 1. **Lesen:** `_Werkzeuge/OBERCHEF-PAKET.md`, `_Werkzeuge/ROBERTS-KRITERIEN.md`, `vorgaben/`, `<Haus>/_werkzeuge/AUFTRAG-GEMEINSAM.md`, `UEBERGABE.md`/`CHARAKTER.md` des Hauses.
-2. **Einrichten** (einmal je Sitzung): `bash cloud/vorbereiten.sh chromium` und `bash cloud/server.sh` (gleiche Ports wie auf dem Mac, 9081–9088). Für schnelle Einzelblicke reicht Chromium hier; die volle Prüfung läuft in Actions.
+2. **Einrichten** (einmal je Sitzung): `bash cloud/vorbereiten.sh chromium` und `bash cloud/server.sh` (eigene Ports 9281–9288, seit 1.11.2026: auf dem Mac laufen auf 9081–9088 die Werkzeuge des Culinarium). Für schnelle Einzelblicke reicht Chromium hier; die volle Prüfung läuft in Actions.
 3. **Bauen** nach dem Oberchef-Paket: Werkbank, die sieben Werkzeuge, Drucksachen. Kein Teil-Chat nötig, du arbeitest Revier für Revier; nur Roberts Auftrag und echte Fehler bauen. Sicherung vor jeder Änderung (`…vor-<thema>-<datum>`, sie wird nicht eingecheckt).
 4. **Prüfen lassen:** committen und pushen mit `[schnell]` in der Nachricht (alle Werkzeuge) oder `[schnell: tresen,gaestebuch]` (nur diese). (`[abnahme]` ist der alte Volllauf mit jedem Zustand – nur auf Roberts ausdrücklichen Wunsch.) GitHub verteilt das auf bis zu ~190 Rechner (je Werkzeug Inventar in WebKit 1440, je Werkzeug und Breite 1280/1000/390 die Stichprobe, je Werkzeuggruppe × Chromium/WebKit × 1440/1280/1000/390 der Messlauf).
 5. **Warten ohne Leerlauf:** `until git fetch -q origin ergebnis && git show origin/ergebnis:ergebnis/laeufe/<zweig>/lauf.json 2>/dev/null | grep -q "$(git rev-parse HEAD)"; do sleep 120; done` — dann `git worktree add -f /tmp/erg origin/ergebnis`.

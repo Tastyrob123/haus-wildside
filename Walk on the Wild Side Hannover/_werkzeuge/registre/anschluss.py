@@ -1,5 +1,5 @@
 """Die Besucherliste (Le Registre) · Walk on the Wild Side Hannover: der Dienst /api/registre als zwei Funktionen, damit der eigene Server des Werkzeugs (server.py,
-Port 9086) und später der Hausserver (Anschluss bei der Auslieferung) genau dasselbe antworten. Online antwortet online/registre.py (gleiche Regeln, eigener Speicher).
+Port 9286) und später der Hausserver (Anschluss bei der Auslieferung) genau dasselbe antworten. Online antwortet online/registre.py (gleiche Regeln, eigener Speicher).
 
   antwort_get(query)                      → (code, daten)   Vorführung: Beispielwerte (ablage_heute); mit ?k=<Schlüssel> echte Werte; ?export=1 nur mit Schlüssel
   antwort_post(pfad_query, roh, ip, ua)   → (code, daten)   eine Zeile von assets/js/messung.js; ?fehler=1 Skriptfehler des Werkzeugs (nur ins Protokoll)

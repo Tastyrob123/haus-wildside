@@ -2,7 +2,7 @@
 // dazu ein Bogen über die ganze Seite.   node website/_werkbank/pruefung/zeigen.js  →  ~/Desktop/Website-Projekte/_Oberchef/zeigen/culinarium/werkbank/
 const path = require('path'), fs = require('fs');
 const pw = require(path.join(process.env.HOME, 'Desktop/Apps & Tools/Tasty Website Builder/node_modules/playwright'));
-const Z = path.join(process.env.HOME, 'Desktop/Website-Projekte/_Oberchef/zeigen/culinarium/werkbank'), B = 'http://127.0.0.1:9088/werkbank/index.html';
+const Z = path.join(process.env.HOME, 'Desktop/Website-Projekte/_Oberchef/zeigen/culinarium/werkbank'), B = 'http://127.0.0.1:9288/werkbank/index.html';
 const STELLEN = [['start', null], ['befund', '#k1'], ['marke', '#k2'], ['website', '#k3'], ['werkzeuge', '#k5'], ['papier', '#k6'], ['feed', '#feed'], ['angebot', '#sag-vorschlag'], ['schluss', '#schluss']];
 (async () => {
   fs.mkdirSync(path.join(Z, 'bogen'), { recursive: true });
