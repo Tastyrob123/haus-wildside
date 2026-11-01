@@ -537,19 +537,32 @@
       dt.y = +(yb - dt.h).toFixed(2);
       if (zt) texte.push(zt); texte.push(dt);
       feld('datum', [dt].concat(zt ? [zt] : []));
+      /* Nichts übereinander: Name und Zusatzzeile weichen belegten Flächen (Kopf, Datum, einander) nach oben aus, notfalls nach unten */
+      const kasten = els => { const p = Math.max(1.2, Math.min(...els.map(e => e.gr)) * .28); let l = 1e9, r = -1e9, o = 1e9, un = -1e9;
+        els.forEach(e => { const bw = DS.mess(e).bw || e.w, x1 = e.ausr === 'r' ? e.x + e.w - bw : e.ausr === 'c' ? e.x + (e.w - bw) / 2 : e.x; l = Math.min(l, x1); r = Math.max(r, x1 + bw); o = Math.min(o, e.y); un = Math.max(un, e.y + e.h); });
+        return { l: l - p, r: r + p, o: o - p, u: un + p }; };
+      const belegt = [kasten(kopf), kasten([dt].concat(zt ? [zt] : []))];
+      const ausweichen = e => {
+        for (let n = 0; n < 8; n++) {
+          const k = kasten([e]), hit = belegt.find(b => k.l < b.r && k.r > b.l && k.o < b.u && k.u > b.o); if (!hit) break;
+          const hoch = hit.o - (k.u - e.y), runter = hit.u + (e.y - k.o);
+          e.y = +(hoch >= kopfUnten - 1 && n < 6 ? hoch : Math.min(runter, fy1 - e.h)).toFixed(2);
+        }
+        belegt.push(kasten([e]));
+      };
       // Name des Abends
       if (i.name) {
         const ngr = GR[g('name').groesse] || 1, nl = g('name').lage || 'mr', nw = fw * .4 * Math.max(1, ngr), nlinks = /l$/.test(nl);
         const n = tx(c, 'plakat', i.name, nw, t.gr * .2 * ngr, farbe('name', blau), { slot: 'name', ausr: nlinks ? 'l' : 'r', x: nlinks ? x0 : xr - nw, zeile: 1.12 });
         n.y = +(/^o/.test(nl) ? kopfUnten + fh * .04 : /^u/.test(nl) ? (G && /^u/.test(dl) && /l$/.test(dl) === nlinks ? dt.y - fh * .04 - n.h : fy1 - fh * .045 - n.h) : fy0 + fh * (quadrat ? .5 : .47)).toFixed(2);
-        texte.push(n); feld('name', [n]);
+        if (G) ausweichen(n); texte.push(n); feld('name', [n]);
       }
       // Zusatzzeile (frei: «FREE ENTRY», «B2B MIT …»)
       if (i.zusatz) {
         const zg = GR[g('zusatz').groesse] || 1, zl = g('zusatz').lage || 'or', zw2 = fw * .5, zlinks = /l$/.test(zl);
         const z = tx(c, 'plakat', String(i.zusatz).toUpperCase(), zw2, t.gr * .17 * zg, farbe('zusatz', blau), { slot: 'zusatz', ausr: zlinks ? 'l' : 'r', x: zlinks ? x0 : xr - zw2, zeile: 1.12 });
         z.y = +(/^o/.test(zl) ? kopfUnten + fh * .015 : /^m/.test(zl) ? fy0 + fh * .4 : fy1 - fh * .045 - z.h).toFixed(2);
-        texte.push(z); feld('zusatz', [z]);
+        if (G) ausweichen(z); texte.push(z); feld('zusatz', [z]);
       }
       felder.forEach(f => c.el.push(f)); texte.forEach(e => c.el.push(e));
       const Z = c.M.zeichen2 || c.M.zeichen, zh = fussH * .96, zw = +(zh / Z.verh).toFixed(2);

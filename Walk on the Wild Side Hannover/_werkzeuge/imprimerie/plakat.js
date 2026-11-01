@@ -117,12 +117,12 @@
   }
   function pruefeLesbar() {
     const p = $('#bkPruefung'); if (!p) return;
-    const schlecht = TEILE.filter(([k]) => k !== 'kopf' && (k !== 'zusatz' || ($('#pkZusatz') || { value: '' }).value.trim()) && lesbar(k) < 4.5);
+    const schlecht = TEILE.filter(([k]) => k !== 'kopf' && (k !== 'zusatz' || ($('#pkZusatz') || { value: '' }).value.trim()) && lesbar(k) < (k === 'zusatz' ? 4.5 : 3));   // Name und Datum stehen gross und fett: 3:1 wie grosse Schrift nach WCAG, die kleine Zusatzzeile 4,5:1
     const gk = zustand().gestalt.kopf, kopf = !(gk.farbe === 'blau' && !gk.feld) && lesbar('kopf') < 3;   // SESSION in Ultramarin auf den Wellen ist das Zeichen der Plakate der Bar; sonst gilt für die grosse Schrift 3:1
     if (!schlecht.length && !kopf) { p.className = 'bk-pruefung bk-pruefung--gut'; p.textContent = 'Gut lesbar: jeder Text hebt sich genug vom Grund ab.'; return; }
     const namen = schlecht.map(([, n]) => n).concat(kopf ? ['SESSION'] : []);
     p.className = 'bk-pruefung bk-pruefung--hinweis';
-    p.innerHTML = `<span>Schwer zu lesen auf den Wellen: ${esc(namen.join(', '))}. Vorschlag: ein Creme-Feld dahinter, die Schrift in Ultramarin.</span> <button type="button" class="ms-lnk" id="bkVorschlag">Vorschlag übernehmen</button>`;
+    p.innerHTML = `<span>Schwer zu lesen: ${esc(namen.join(', '))}. Vorschlag: ein Creme-Feld dahinter, die Schrift in Ultramarin.</span> <button type="button" class="ms-lnk" id="bkVorschlag">Vorschlag übernehmen</button>`;
     $('#bkVorschlag').addEventListener('click', () => {
       schlecht.forEach(([k]) => Object.assign(zustand().gestalt[k], { feld: 'creme', farbe: 'blau' }));
       if (kopf) Object.assign(zustand().gestalt.kopf, { farbe: 'blau', feld: 'creme' });
