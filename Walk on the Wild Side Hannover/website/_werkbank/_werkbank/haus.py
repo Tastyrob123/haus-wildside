@@ -516,6 +516,8 @@ def nach_bau():
         print('knopf_mitte nicht gesetzt:', _f)
     import kleid_wild   # zuletzt: Schriftfamilien des Kits auf Prata und Hanken, Reste der Vorlage im Kleid der Bar (Wild Side 31.10.2026)
     kleid_wild.anwenden(ROOT)
+    import ruecksprung   # Zurück im Browser landet auf der alten Höhe, auf jeder Seite der Werkbank (Robert 1.11.2026)
+    ruecksprung.anwenden(ROOT)
 
 
 TITEL_NEU = {   # eigene Überschriften des Wild Side (Werkbank-Regel 14), keine gleich wie bei Culinarium, Schäfli oder Schlössli

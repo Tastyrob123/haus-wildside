@@ -49,4 +49,5 @@ python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"                    # die Werk
 node _werkbank/sb_strom.js || true
 python3 _werkbank/objekte_bau.py "$P"
 python3 "$K/bau.py" "$P" | grep -v "Schrift fehlt"
+python3 _werkbank/ruecksprung.py "$P"                                 # zuletzt: Rücksprung auf die alte Höhe in jeder Seite (auch nach den Bauten der Beigaben)
 echo "fertig: http://127.0.0.1:9288/werkbank/"

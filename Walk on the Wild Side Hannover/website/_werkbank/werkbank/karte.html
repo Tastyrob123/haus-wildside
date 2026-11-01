@@ -6,7 +6,7 @@
 <title>Die Übergabe · Walk on the Wild Side</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preload" href="fonts/prata.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="werkbank.css?v=1793499759"><link rel="stylesheet" href="kapitel.css?v=1793499843">
+<link rel="stylesheet" href="werkbank.css?v=1793501063"><link rel="stylesheet" href="kapitel.css?v=1793501154">
 <style>
 html,body{margin:0;background:var(--nacht,#0b1d3d)}
 body{min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:clamp(20px,4vw,64px) 16px}
@@ -26,7 +26,7 @@ body{min-height:100vh;display:flex;justify-content:center;align-items:flex-start
         </header>
         <div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div><p class="mn-gang"><span>I</span>Was euch gehört</p><ul class="mn-l"><li>Website, Werkzeuge, Karten, Drucksachen, Beiträge und Dateien gehören dem Walk on the Wild Side.</li><li>Domain, Server und Zugänge stehen auf euren Namen.</li><li>Die Rechte an Fotos und Plakaten bleiben bei euch und euren Fotografen.</li></ul>
         <div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div><p class="mn-gang"><span>II</span>Wie es läuft</p><ul class="mn-l"><li>Alles läuft so, wie ihr es hier seht.</li><li>Klappt etwas nicht, meldet ihr euch bei mir.</li><li>Keine Bindung, kein Vertrag.</li></ul>
-        <div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div><p class="mn-gang"><span>III</span>Auf Wunsch: Wartung</p><ul class="mn-l"><li>Wenn ihr möchtet, kümmere ich mich jeden Monat um Sicherheitsupdates, Anpassungen beim Datenschutz und Ähnliches.</li><li>Freiwillig und nicht verpflichtend. Ihr sagt Bescheid, wenn ihr es wollt, und genauso, wenn nicht mehr.</li></ul>
+        <div class="sag-orn" aria-hidden="true"><i></i><b></b><i></i></div><p class="mn-gang"><span>III</span>Laufende Betreuung – optional, aber empfohlen</p><ul class="mn-l"><li>Jeden Monat Sicherheitsupdates für Seite und Werkzeuge.</li><li>Anpassungen beim Datenschutz, wenn sich Regeln ändern.</li><li>Server, Domain und Sicherungen im Blick.</li><li>Kleine Fehler behebe ich, sobald ihr sie meldet.</li><li>Optional, aber empfohlen. Ihr sagt Bescheid, wenn ihr sie wollt, und genauso, wenn nicht mehr.</li></ul>
         <p class="mn-ki"><a class="kn kn--klein" href="ki.html">Mehr zu KI und euren Daten<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></p>
         <footer class="mn-ende"><i></i><span>Hamburg, 1. November 2026</span><i></i></footer>
         <p class="mn-pdf"><a class="kn kn--klein" href="vorschlag-wildside.pdf" download>Als PDF speichern<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5"/></svg></i></a></p>
@@ -52,5 +52,32 @@ a.kn>.tm,button.kn>.tm,.uwahl button>.tm,.uschalter button>.tm,.wahl button>.tm,
 .uwahl button,.uschalter button,.wahl button,.vh-wahl button{display:inline-flex;align-items:center;justify-content:center}
 .tm-l{letter-spacing:0}
 
-@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}</style><script id="knopf-mitte-js">(function(){function m(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var t=k.firstChild;if(t&&t.nodeType===3&&t.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=t.textContent;k.replaceChild(s,t);t=s}if(!t||t.nodeType!==1||!t.classList.contains('tm')||t.querySelector('.tm-l'))return;var x=t.textContent.replace(/\s+$/,'');if(x.length<2)return;var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);t.textContent=x.slice(0,-1);t.appendChild(l)})}m();addEventListener('load',m)})();</script></body>
+@media(max-width:480px){h1.t1{font-size:min(36px,8.6vw)!important}}</style><script id="knopf-mitte-js">(function(){function m(){document.querySelectorAll('.kn,.sbf-z,.wahl button,.vh-wahl button,.uwahl button,.uschalter button').forEach(function(k){var t=k.firstChild;if(t&&t.nodeType===3&&t.textContent.trim()){var s=document.createElement('span');s.className='tm';s.textContent=t.textContent;k.replaceChild(s,t);t=s}if(!t||t.nodeType!==1||!t.classList.contains('tm')||t.querySelector('.tm-l'))return;var x=t.textContent.replace(/\s+$/,'');if(x.length<2)return;var l=document.createElement('span');l.className='tm-l';l.textContent=x.slice(-1);t.textContent=x.slice(0,-1);t.appendChild(l)})}m();addEventListener('load',m)})();</script><script id="ruecksprung">(function () {
+  var K = 'rs:' + location.pathname, d = document.documentElement;
+  function merk() { try { var y = String(Math.round(window.scrollY || 0)); sessionStorage.setItem(K, y); if (document.getElementById('rh-zurueck')) sessionStorage.setItem('wb-y', y); } catch (e) {} }
+  var t = 0;
+  addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(merk, 150); }, { passive: true });
+  addEventListener('pagehide', merk);
+  document.addEventListener('click', function (ev) { if (ev.target.closest && ev.target.closest('a[href]')) merk(); }, true);
+  var nav = null; try { nav = performance.getEntriesByType('navigation')[0]; } catch (e) {}
+  if (!nav || nav.type !== 'back_forward') return;
+  if (document.getElementById('rh-zurueck')) return;   /* die Startseite stellt die Höhe selbst her (rh-zurueck liest «wb-y», das hier laufend mitgeschrieben wird) */
+  var y = null; try { y = sessionStorage.getItem(K); } catch (e) {}
+  if (y === null || !/^\d+$/.test(y) || +y < 40) return;
+  y = +y;
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  var st = document.createElement('style');
+  st.textContent = 'html.rs-sofort,html.rs-sofort *{transition:none!important;animation-duration:0s!important;animation-delay:0s!important;scroll-behavior:auto!important}';
+  document.head.appendChild(st); d.classList.add('rs-sofort');
+  var weg = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (k) { addEventListener(k, function () { weg = true; }, { once: true, passive: true }); });
+  function oben() { var g = y + innerHeight * 1.2; [].forEach.call(document.querySelectorAll('[data-a],.zt,.roll,img.ld'), function (e) { var r = e.getBoundingClientRect(); if (r.top + scrollY < g) e.classList.add('da'); }); }
+  function geh() { if (!weg) { window.scrollTo(0, y); oben(); } }
+  function los() {
+    geh(); requestAnimationFrame(function () { geh(); requestAnimationFrame(function () { d.classList.remove('rs-sofort'); }); });
+    var n = 0, iv = setInterval(function () { n++; if (Math.abs(scrollY - y) > 40) geh(); if (n >= 12 || weg) clearInterval(iv); }, 150);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', los); else los();
+  addEventListener('load', function () { if (Math.abs(scrollY - y) > 40) geh(); });
+})();</script></body>
 </html>
