@@ -49,6 +49,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
  +'<link rel="stylesheet" href="'+o+'grund.css?v=981c6e9a15"><link rel="stylesheet" href="'+o+'rahmen-buehne.css?v=d4b190fafe"><link rel="stylesheet" href="'+o+'kleid/wildside.css?v=86ae7e819c"><link rel="stylesheet" href="'+b+'oberflaeche.css?v=1-ws1">'
  +'<script src="'+o+'kleid/wildside.js?v=0faf36298c"><\/script><script src="'+o+'oberflaeche.js?v=0b1fa78a6c" defer><\/script><script src="'+b+'oberflaeche.js?v=0b1fa78a6cud081f5ae" defer><\/script>');})();</script>
 <link rel="stylesheet" href="plakat.css?v=22-ws1">
+<link rel="stylesheet" href="engine.css?v=1-ws1">
 </head>
 <body>
 <header class="kopf">
@@ -178,6 +179,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
       <button data-ansicht="start"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Übersicht</span></button>
       <button data-ansicht="events"><svg viewBox="0 0 24 24"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></svg><span>Anlässe & Events</span><em id="evZahl"></em></button>
       <button data-ansicht="abend"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M14 5h5v5M5 9.5 9.5 5M14.5 19 19 14.5"/></svg><span>DJ-Abend anlegen</span></button>
+      <button data-ansicht="engine"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M5 21h14"/></svg><span>Event beschreiben</span></button>
       <button data-ansicht="motive"><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="17" rx="1.5"/><path d="M4 14.5h16M7 17.5h10M7 7l3 3 2-2 5 5"/></svg><span>Plakat-Grund</span><em id="pkZahl"></em></button>
       <button data-ansicht="abteilungen"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01"/></svg><span>Abteilungen</span><em id="abZahl"></em></button>
       <button data-ansicht="hinweise"><svg viewBox="0 0 24 24"><path d="M12 3 2.5 20h19zM12 10v4.5M12 17.5v.1"/></svg><span>Hinweise im Haus</span><em id="hiZahl"></em></button>
@@ -271,6 +273,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
         </div>
         <div class="pk-raster" id="pkVorschlaege"></div>
       </div>
+      <div id="msEngine" hidden></div>
       <div id="msMotive" hidden>
         <div class="ms-titel"><h1>Plakat-Grund</h1><span class="ms-leise">Die rot-cremefarbenen Wellen der SESSION-Plakate und die Gesichter der Bar in Schwarzweiss, jedes gleich als Plakat. Öffnen, Namen und Datum eintragen, fertig.</span></div>
         <div id="pkFilter"></div><p class="pk-motivzahl" id="pkMotivZahl"></p>
@@ -342,8 +345,9 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
 <script src="instagram.js?v=40-ws1"></script>
 <script src="lelivre.js?v=c4-ws1"></script>
 <script src="siegel.js?v=1-ws1"></script>
-<script src="start.js?v=96-ws1"></script>
+<script src="start.js?v=97-ws1"></script>
 <script src="plakat.js?v=28-ws1"></script>
+<script src="engine.js?v=1-ws1"></script>
 <script src="fuehrung.js?v=41-ws1"></script>
 <script>/* Handy (R07, Prüfung 16.10.2026): die Seitenleiste mit den Bereichen war unter 900 px ganz weg. Der Knopf «Bereiche» klappt sie als Fach auf,
    nach der Wahl schliesst sie sich; Escape und Tippen daneben schliessen auch. */

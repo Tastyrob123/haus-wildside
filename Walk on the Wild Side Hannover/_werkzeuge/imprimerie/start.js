@@ -752,7 +752,7 @@
     k.style.setProperty('--ry', (x * 9).toFixed(2) + 'deg'); k.style.setProperty('--rx', (-y * 7).toFixed(2) + 'deg');
     k.style.setProperty('--gx', (x * 70).toFixed(1) + '%'); k.style.setProperty('--gy', (y * 70).toFixed(1) + '%');
   }
-  const ANSICHTEN = { start: '#msStart', events: '#msEvents', abteilungen: '#msAbteilungen', hinweise: '#msHinweise', abend: '#msAbend', motive: '#msMotive', newsletter: '#msNewsletter', detail: '#msDetail', meine: '#msMeine', freigegeben: '#msFreigegeben', neu: '#msNeu', fotos: '#msFotos', marke: '#msMarke', livre: '#msLivre' };
+  const ANSICHTEN = { start: '#msStart', events: '#msEvents', abteilungen: '#msAbteilungen', hinweise: '#msHinweise', abend: '#msAbend', engine: '#msEngine', motive: '#msMotive', newsletter: '#msNewsletter', detail: '#msDetail', meine: '#msMeine', freigegeben: '#msFreigegeben', neu: '#msNeu', fotos: '#msFotos', marke: '#msMarke', livre: '#msLivre' };
   function waehleAnsicht(a) {
     if (a !== 'neu' && mitFoto) { mitFoto = null; zeigeMitFotoKopf(); }
     const zahl = Object.keys(st().alleDocs()).length + mailsLesen().length;
@@ -770,6 +770,7 @@
     if (a === 'hinweise' || a === 'newsletter') zeichneListe(a);
     if (a === 'marke') zeichneMarke();
     if ((a === 'abend' || a === 'motive') && window.DSPlakat) DSPlakat.zeige(a);
+    if (a === 'engine' && window.DSEngine) DSEngine.zeige();   // Ideen-Engine «Event beschreiben» (engine.js, 1.11.2026)
     if (a === 'freigegeben') zeichneFreigegeben();
     $('#startSuche').placeholder = innerWidth < 700 ? 'Suchen' : innerWidth < 1100 ? (a === 'neu' ? 'Arten suchen …' : a === 'fotos' || a === 'livre' ? 'Fotos suchen …' : 'Medien suchen …') : a === 'neu' ? 'Arten suchen: Plakat, Karte, Story …' : a === 'fotos' || a === 'livre' ? 'Fotos suchen: Drink, Decke, Plakat …' : `In deinen ${zahl} Medien suchen …`;
     filtern();
