@@ -532,8 +532,8 @@ def seite(online, v):
                 f'<picture><source media="(max-width:800px)" srcset="img/fenster-{k}-band.webp {BILDER["fenster-" + k + "-band"][0]}w" sizes="100vw">'
                 f'<img src="img/fenster-{k}-900.webp" srcset="img/fenster-{k}-600.webp 600w, img/fenster-{k}-900.webp 900w" sizes="20vw" '
                 f'width="{b[0]}" height="{b[1]}" alt="{e(BILDER_W[f]["alt"])}" decoding="async" fetchpriority="high" onload="this.classList.add(\'da\')"></picture></a>'
-                f'<span class="m-f5__t" id="f5-{k}"><span class="m-f5__w">{e(ROLLE_K[k])}</span><b>{e(W[k]["name"])}</b><small data-stand="{k}-kurz">{e(KURZ[k])}</small>'
-                f'<i class="m-f5__p" aria-hidden="true">{PF}</i></span></li>')
+                f'<div class="m-f5__t" id="f5-{k}"><span class="m-f5__w">{e(ROLLE_K[k])}</span><b>{e(W[k]["name"])}</b><small data-stand="{k}-kurz">{e(KURZ[k])}</small>'
+                f'<i class="m-f5__p" aria-hidden="true">{PF}</i></div></li>')   # Schrift als eigener Block (div): Etikett, Name und Stand sind Zeilen einer Tafel, kein Fliesstext des li (Tor WebKit 1000/1280)
 
     # Empfang wie beim Grand Beau-Rivage: die Fenster, darüber in der Mitte der Kopf (Wortmarke · Bar · Ort, «Der Tresen» gross, Gruss, Datum) und die
     # Zahlenzeile der Besucherliste (Taste 6). Keine «x», getrennt mit «·»; «Beispiel» leise in der Datumszeile.
