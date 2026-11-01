@@ -109,8 +109,8 @@
     zeichnen = setTimeout(() => {
       const box = $('#bkBlatt'); if (!box || !window.DSStudio) return;
       const breit = matchMedia('(min-width:1100px)').matches, F = DS.FORMATE[zustand().format] || { b: 4, h: 5 };
-      const h = breit ? Math.min(560, innerHeight - 220) : Math.min(480, Math.round((box.clientWidth || 320) * F.h / F.b));
-      try { const v = DSStudio.miniBox(bauDoc(), 0, Math.max(260, h)); box.replaceChildren(v); } catch (e) { console.warn(e); }
+      const bw = (box.clientWidth || 320) - 4, h = Math.min(breit ? Math.min(600, innerHeight - 200) : 520, Math.floor(bw * F.h / F.b));   // nie breiter als die Spalte
+      try { const v = DSStudio.miniBox(bauDoc(), 0, Math.max(200, h)); box.replaceChildren(v); } catch (e) { console.warn(e); }
       const w = werte(); $('#bkUnter').textContent = `${w.name} · ${tag(w.samstag)} · ${(DS.FORMATE[zustand().format] || {}).name || ''}`;
       pruefeLesbar(); merke();
     }, 90);
@@ -118,7 +118,7 @@
   function pruefeLesbar() {
     const p = $('#bkPruefung'); if (!p) return;
     const schlecht = TEILE.filter(([k]) => k !== 'kopf' && (k !== 'zusatz' || ($('#pkZusatz') || { value: '' }).value.trim()) && lesbar(k) < 4.5);
-    const kopf = lesbar('kopf') < 3;   // SESSION ist gross: 3:1 genügt
+    const kopf = lesbar('kopf') < 2.5;   // SESSION ist das grosse Zeichen der Plakate (Ultramarin auf den Wellen wie bei der Bar): 2,5:1 genügt
     if (!schlecht.length && !kopf) { p.className = 'bk-pruefung bk-pruefung--gut'; p.textContent = 'Gut lesbar: jeder Text hebt sich genug vom Grund ab.'; return; }
     const namen = schlecht.map(([, n]) => n).concat(kopf ? ['SESSION'] : []);
     p.className = 'bk-pruefung bk-pruefung--hinweis';
