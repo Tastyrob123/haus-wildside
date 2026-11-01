@@ -1,0 +1,12 @@
+[
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "017",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → NEU ERSTELLEN",
+"k": 2,
+"art": "platzhalter",
+"text": "Arten suchen …",
+"info": "[1000] Platzhalter 130 px breit, Feld innen 60 px: «Arten suchen …» abgeschnitten",
+"sel": "input#startSuche"
+}
+]

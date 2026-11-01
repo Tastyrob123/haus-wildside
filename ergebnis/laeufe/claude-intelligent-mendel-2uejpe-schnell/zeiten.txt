@@ -1,0 +1,31 @@
+Werkzeug                     Zust.    min  s/Zust gleich nachgesp. Funde 1440 alle Breiten
+besucherliste-anleitung         16    4.7    17.6      0        18          0            0
+besucherliste                   40    8.3    12.5      1         5          0            0
+gaestebuch-anleitung            11    3.7    20.2      0        23          0            0
+gaestebuch                      40    5.9     8.8      6        15          0            0
+pairing-karte-anleitung         14    1.8     7.7      0         6          0            0
+pairing-karte                   20    4.4    13.2      2         5          0            0
+plakatarchiv-anleitung           8    2.5    18.8      0         9          0            0
+plakatarchiv-buch                6    2.2    22.0      0         9          0            0
+plakatarchiv                    13    3.7    17.1      0         2          0            2
+plakatwerkstatt-mail            40   10.7    16.1      0        30          3           13
+plakatwerkstatt                 40    9.4    14.1      0         9          3           13
+schaufenster-anleitung          19    7.8    24.6      2        31          0            0
+schaufenster                    40   12.8    19.2      6         6          0            0
+tresen                           4    0.9    13.5      0         4          0            0
+werkbank-befund                  1    0.2    12.0      0         1          0            0
+werkbank-beigaben                1    0.2    12.0      0         1          0            0
+werkbank-drucksachen             1    0.2    12.0      0         1          0            0
+werkbank-feed                    2    2.5    75.0      0         1          0            0
+werkbank-geprueft                6    0.8     8.0      4         1          0            0
+werkbank-karte                  11    2.2    12.0      0         8          0            0
+werkbank-ki                     41   31.9    46.7     13        62          0            0
+werkbank-mails                   1    0.2    12.0      0         1          0            0
+werkbank-material                1    0.2    12.0      0         1          0            0
+werkbank-postkarten              1    0.3    18.0      0         1          0            0
+werkbank-sticker                 1    0.2    12.0      0         1          0            0
+werkbank-unterlagen              4    0.6     9.0      0         1          0            0
+werkbank-untersetzer             1    0.2    12.0      0         1          0            0
+werkbank                        40   40.3    60.5     10        19          0            0
+SUMME                          423  158.8    22.5     44       272                      28
+Rechnerzeit aller Tore: 159 min (nacheinander); Uhrzeit mit 3 parallel siehe lauf.out

@@ -1,0 +1,282 @@
+[
+{
+"werkzeug": "plakatarchiv",
+"zustand": "001",
+"name": "Start",
+"k": 2,
+"art": "spalte",
+"text": "Guten Morgen. Schön, dass du da bist. Womit fangen wir an?",
+"info": "[390] Text zerfällt: 11 Wörter auf 7 Zeilen, Breite 314 px",
+"sel": "div#ansicht > section.wo-sb.wo-sb--voll > div.wo-sb__text > h1.wo-sb__h"
+},
+{
+"werkzeug": "plakatarchiv",
+"zustand": "001",
+"name": "Start",
+"k": 2,
+"art": "spalte",
+"text": "Schön, dass du da bist. Womit fangen wir an?",
+"info": "[390] Text zerfällt: 9 Wörter auf 6 Zeilen, Breite 217 px",
+"sel": "section.wo-sb.wo-sb--voll > div.wo-sb__text > h1.wo-sb__h > em"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "[1280] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "[1280] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "[1280] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "[390] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "[390] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "[390] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 2,
+"art": "gekuerzt",
+"text": "",
+"info": "[1000] Eingabe 180 px in Feld 178 px",
+"sel": "input#enOrt"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "[1000] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "[1000] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt-mail",
+"zustand": "020",
+"name": "DIE PLAKATWERKSTATT NEWSLETTER & E-MAIL → Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "[1000] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "[1280] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "[1280] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "[1280] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "[390] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "[390] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "[390] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 2,
+"art": "gekuerzt",
+"text": "",
+"info": "[1000] Eingabe 180 px in Feld 178 px",
+"sel": "input#enOrt"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "INSTAGRAM 4:5",
+"info": "[1000] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "STORY",
+"info": "[1000] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+},
+{
+"werkzeug": "plakatwerkstatt",
+"zustand": "005",
+"name": "Event beschreiben",
+"k": 35,
+"art": "text-mitte",
+"text": "A3",
+"info": "[1000] Schrift 0.7 px zu weit rechts (Glyphen 8 px hoch in Kasten 40 px)",
+"sel": "form#enForm > div.en-unten > span.en-formate > button"
+}
+]

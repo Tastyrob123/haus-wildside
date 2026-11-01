@@ -1,0 +1,9 @@
+## Schnelle Prüfung main
+```
+Werkzeug                     Zust.    min  s/Zust gleich nachgesp. Funde 1440 alle Breiten
+plakatwerkstatt-mail            40   10.5    15.8      0        28          0            0
+SUMME                           40   10.5    15.8      0        28                       0
+Rechnerzeit aller Tore: 10 min (nacheinander); Uhrzeit mit 3 parallel siehe lauf.out
+
+{"zustaende": 40, "felder": {"rot": 80, "gruen": 640, "auge": 660, "np": 0, "na": 100}, "funde": 0}
+```
