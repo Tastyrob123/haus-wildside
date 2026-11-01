@@ -38,7 +38,7 @@ addEventListener('DOMContentLoaded',function(){setTimeout(function(){var s=docum
 <script src="katalog.js?v=37-ws1"></script>
 <script>(function(){try{var K=window.DSKATALOG;if(!K||/[?&]haus=(?!wildside)/.test(location.search))return;var h=new Date();h.setHours(0,0,0,0);var k=K.ANLAESSE.filter(function(a){return new Date(a.bis+"T00:00")>=h}).sort(function(x,y){return((new Date(x.von+"T00:00")<h)-(new Date(y.von+"T00:00")<h))||x.von.localeCompare(y.von)}).slice(0,4).map(function(a){return a.fotos[0]}).concat(K.ABTEILUNGEN.map(function(a){return a.foto}));k.filter(function(f,i){return f&&k.indexOf(f)===i}).forEach(function(f){var l=document.createElement("link");l.rel="preload";l.as="image";l.href="haeuser/wildside/mini/"+f+".webp";document.head.appendChild(l)})}catch(e){}})();</script>
 <link rel="stylesheet" href="lib/auswahl.css?v=36-ws1">
-<link rel="stylesheet" href="studio.css?v=90-ws1">
+<link rel="stylesheet" href="studio.css?v=91-ws1">
 <link rel="stylesheet" href="ms-bureau.css?v=31-ws1">
 <script>/* Hauseigene Stilschicht (Robert 15./16.10.2026: GBR hell mit Bühne und Schweben wie die übrigen Werkzeuge des Hauses). Ein Haus ohne Eintrag bleibt beim Kern. */
 (function(){var HAUS_STIL={wildside:1},h=new URLSearchParams(location.search).get('haus')||'wildside';if(!HAUS_STIL[h])return;var b='haeuser/'+h+'/';var o='/assets/oberflaeche/';
@@ -318,7 +318,7 @@ document.write('<link rel="stylesheet" href="'+b+'hell.css?v=14-ws1"><link rel="
 <script src="siegel.js?v=1-ws1"></script>
 <script src="start.js?v=96-ws1"></script>
 <script src="plakat.js?v=24-ws1"></script>
-<script src="fuehrung.js?v=40-ws1"></script>
+<script src="fuehrung.js?v=41-ws1"></script>
 <script>/* Handy (R07, Prüfung 16.10.2026): die Seitenleiste mit den Bereichen war unter 900 px ganz weg. Der Knopf «Bereiche» klappt sie als Fach auf,
    nach der Wahl schliesst sie sich; Escape und Tippen daneben schliessen auch. */
 (function(){var k=document.getElementById('msBereiche'),s=document.getElementById('start');if(!k||!s)return;

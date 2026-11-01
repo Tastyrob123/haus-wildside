@@ -1585,7 +1585,7 @@ span.ll-d__f[style*="background-image"]{background-size:220px auto;background-re
 #start.scrollt .ms-haupt>*{pointer-events:none}
 
 /* In einem Zug (16.10.2026): die Arbeitsfläche der Startseite zeigt sich erst, wenn Kacheln und erste Fotos fertig sind (start.js bereitMachen) */
-#start:not(.bereit) .ms-haupt{visibility:hidden}
+/* 1.11.2026 (WebKit nach dem Wechsel aus mail.html: die Fläche blieb leer, weil «bereit» nicht kam): die Übersicht ist ohne Auslöser sichtbar, die Fotos blenden nach */
 
 /* Freigegeben als Messingschild (Robert 16.10.2026, Nr. 24 aus _qa/freigabe-30.html): kleine Plakette am unteren Rand des Blatts, zwei Schrauben */
 .schild-frei{position:absolute;z-index:6;left:50%;bottom:6px;translate:-50% 0;padding:6px 18px 5px;border-radius:3px;white-space:nowrap;pointer-events:none;
