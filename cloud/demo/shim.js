@@ -19,6 +19,29 @@
       return { weg: pfad + u.search, nur: pfad };
     } catch (e) { return null; }
   }
+  /* Bildgrößen: aufgenommen wurde nur eine Breite. Fehlt «name-640.webp», nimm die nächste vorhandene Größe desselben Bildes. */
+  var GROESSEN = {};
+  Object.keys(KARTE).forEach(function (k) {
+    var m = /^(.*)-(\d{2,4})\.(webp|jpe?g|png|avif)$/.exec(k.split('?')[0]);
+    if (m) (GROESSEN[m[1] + '|' + m[3]] = GROESSEN[m[1] + '|' + m[3]] || []).push([+m[2], KARTE[k]]);
+  });
+  function variante(nur) {
+    var m = /^(.*)-(\d{2,4})\.(webp|jpe?g|png|avif)$/.exec(nur); if (!m) return null;
+    var l = GROESSEN[m[1] + '|' + m[3]]; if (!l) return null;
+    var w = +m[2], best = null;
+    l.forEach(function (x) { if (!best || (x[0] >= w) && (best[0] < w || x[0] < best[0]) || best[0] < w && x[0] > best[0]) best = x; });
+    return best && best[1];
+  }
+  var VORHANDEN = {};
+  Object.keys(KARTE).forEach(function (k) { VORHANDEN[KARTE[k]] = 1; });
+  function groesse(abs) {                                  // volle Adresse in der Demo → vorhandene Größe (oder null)
+    try { abs = new URL(abs, location.href).href; } catch (e) { return null; }
+    if (abs.indexOf(BASE) !== 0) return null;
+    var rel = abs.slice(BASE.length).split(/[?#]/)[0];
+    try { rel = decodeURIComponent(rel); } catch (e) {}
+    if (VORHANDEN[rel]) return null;
+    var v = variante(rel); return v ? BASE + v : null;
+  }
   function ziel(p) {                                       // Datei in der Demo für einen Weg (oder null)
     var n = norm(p); if (!n) return null; if (n.aussen) return n.aussen;
     var w = n.weg, d = decodeURIComponent;
@@ -26,6 +49,9 @@
     if (!f) { try { f = KARTE[d(w)] || KARTE[d(n.nur)]; } catch (e) {} }
     if (!f && /^u/.test(n.nur)) f = KARTE['_' + w.slice(1)] || KARTE['_' + n.nur.slice(1)];
     if (!f && /\/$/.test(n.nur)) f = KARTE[n.nur + 'index.html'];
+    if (!f) f = variante(n.nur);
+    /* Seiten der Website (oberste Ebene, nicht in der Demo): zur öffentlichen Website, wenn links.json «website» nennt */
+    if (!f && LINKS.website && /^([\w-]+\.html)?$/.test(n.nur)) return LINKS.website.replace(/\/?$/, '/') + n.nur + (n.weg.slice(n.nur.length) || '');
     return BASE + (f || n.nur.replace(/^_/, 'u'));
   }
   window.__demoZiel = ziel;
@@ -73,7 +99,8 @@
   });
   function fixHtml(s) {
     return typeof s !== 'string' ? s : s.replace(/(\s(?:src|href|poster)=)(["'])(\/(?!\/)[^"']*)\2/g, function (_, a, q, p) { return a + q + ziel(p) + q; })
-      .replace(/url\(\s*(['"]?)(\/(?!\/)[^'")]+)\1\s*\)/g, function (_, q, p) { return 'url(' + q + ziel(p) + q + ')'; });
+      .replace(/url\(\s*(['"]?)(\/(?!\/)[^'")]+)\1\s*\)/g, function (_, q, p) { return 'url(' + q + ziel(p) + q + ')'; })
+      .replace(/(\ssrcset=)(["'])([^"']*)\2/g, function (_, a, q, v) { return a + q + v.replace(/(^|,\s*)(\/(?!\/)[^\s,]+)/g, function (_, s, p) { return s + ziel(p); }) + q; });
   }
   var dw = document.write, dwl = document.writeln;
   document.write = function () { return dw.apply(document, [].map.call(arguments, fixHtml)); };
@@ -96,14 +123,29 @@
       if (!v || el.__demoGebogen === v) continue;
       if (/^(#|data:|blob:|mailto:|tel:|javascript:|https?:\/\/(?!127\.0\.0\.1|localhost))/i.test(v)) continue;
       if (v.charAt(0) === '/' || /^https?:\/\/(127\.0\.0\.1|localhost)/.test(v)) {
-        var z = ziel(v); if (z) { el.__demoGebogen = z; el.setAttribute(a, z); if (a === 'href' && el.tagName === 'A' && /^https:\/\/claude\.ai/.test(z)) el.target = '_blank'; }
+        var z = ziel(v); if (z) { el.__demoGebogen = z; el.setAttribute(a, z); if (a === 'href' && el.tagName === 'A' && /^https?:/.test(z) && z.indexOf(ORIGIN) !== 0) el.target = '_blank'; }
       }
     }
     var st = el.getAttribute('style');
+    /* Hintergrundbild per Skript mit voller Adresse in der Demo, aber diese Größe fehlt: vorhandene Größe nehmen */
+    if (st && st.indexOf(BASE) >= 0 && /-\d{2,4}\.(webp|jpe?g|png|avif)/.test(st)) {
+      var st2 = st.replace(/url\(\s*(['"]?)([^'")]+)\1\s*\)/g, function (g, q, u) { var x = groesse(u); return x ? 'url(' + q + x + q + ')' : g; });
+      if (st2 !== st) { setA.call(el, 'style', st2); st = st2; }
+    }
     if (st && /url\(\s*['"]?\/(?!\/)/.test(st)) setA.call(el, 'style', st.replace(/url\(\s*(['"]?)(\/(?!\/)[^'")]+)\1\s*\)/g, function (_, q, p) { return 'url(' + q + ziel(p) + q + ')'; }));
     if (el.tagName === 'STYLE' && /url\(\s*['"]?\/(?!\/)/.test(el.textContent)) el.textContent = el.textContent.replace(/url\(\s*(['"]?)(\/(?!\/)[^'")]+)\1\s*\)/g, function (_, q, p) { return 'url(' + q + ziel(p) + q + ')'; });
     var ss = el.getAttribute('srcset');
     if (ss && /(^|,)\s*\//.test(ss)) el.setAttribute('srcset', ss.replace(/(^|,\s*)(\/[^\s,]+)/g, function (_, a, p) { return a + ziel(p); }));
+    /* Bilder mit fehlender Größe (auch relative Wege): vorhandene Größe nehmen */
+    if (el.tagName === 'IMG' || el.tagName === 'SOURCE') {
+      var s = el.getAttribute('src'), g = s && /-\d{2,4}\.(webp|jpe?g|png|avif)/.test(s) && groesse(s);
+      if (g) setA.call(el, 'src', g);
+      var ss2 = el.getAttribute('srcset');
+      if (ss2 && /-\d{2,4}\.(webp|jpe?g|png|avif)/.test(ss2)) {
+        var neu = ss2.split(',').map(function (c) { var t = c.trim().split(/\s+/); var x = groesse(t[0]); return (x || t[0]) + (t[1] ? ' ' + t[1] : ''); }).join(', ');
+        if (neu !== ss2) setA.call(el, 'srcset', neu);
+      }
+    }
   }
   function alle(root) { if (root.nodeType !== 1) return; biege(root); var l = root.querySelectorAll('[src],[href],[srcset],[poster],[data-src],[style],style'); for (var i = 0; i < l.length; i++) biege(l[i]); }
   new MutationObserver(function (ms) {
@@ -118,7 +160,7 @@
   /* Seitenwechsel per Skript auf andere Wege («location.href = '/…'») */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
-    var h = a.getAttribute('href'); if (h && h.charAt(0) === '/') { e.preventDefault(); location.href = ziel(h); }
+    var h = a.getAttribute('href'); if (h && (h.charAt(0) === '/' || /^https?:\/\/(127\.0\.0\.1|localhost)[:\/]/.test(h))) { e.preventDefault(); var z = ziel(h); if (/^https?:/.test(z) && z.indexOf(ORIGIN) !== 0) window.open(z, '_blank', 'noopener'); else location.href = z; }
   }, true);
   var asg = window.Location && Location.prototype.assign;
   if (asg) Location.prototype.assign = function (u) { var n = norm(u); return asg.call(this, n ? ziel(u) : u); };
