@@ -247,6 +247,7 @@
     const minFormat = (st.mindestgrade_mm || {})[doc.formatKey];
     const minFuer = aufbau => { for (const z of Object.values(st.mindestgrade_zweck || {})) if ((z.aufbau || []).includes(aufbau) && (st.mindestgrade_mm || {})[z.wie]) return st.mindestgrade_mm[z.wie]; return minFormat; };   // Stilblatt mindestgrade_zweck (29.10.)
     doc.seiten.forEach((s, i) => {
+      if (s.engine) return;   // Event-Plakate der Ideen-Engine (engine.js, 1.11.2026) folgen den echten Event-Plakaten der Bar, nicht dem Stilblatt der Hausdrucksachen; die technische Prüfung (DS.pruefe) gilt weiter
       const seite = mehr ? `Seite ${i + 1}: ` : '', aufbau = s.quelle && s.quelle.vorlage, min = minFuer(aufbau), kurz = el => `«${String(el.text || '').replace(/\s+/g, ' ').slice(0, 30)}${(el.text || '').length > 30 ? '…' : ''}»`;
       const auf = el => el.x < f.b && el.x + (el.w || 0) > 0 && el.y < f.h && el.y + (el.h || DS.elHoehe(M, el) || 0) > 0;
       const texte = s.el.filter(el => el.typ === 'text' && auf(el) && String(el.text || '').trim());

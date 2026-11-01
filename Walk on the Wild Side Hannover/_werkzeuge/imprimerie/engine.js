@@ -134,8 +134,8 @@
     const hals = [lean * .3, -.42], kopf = [lean * .42, -.58], sch = [lean * .26, -.36];
     const P = (p, d, l) => [p[0] + d[0] * l, p[1] + d[1] * l];
     const glied = (a, t1, t2, s, l1, l2) => { const b = P(a, dir(t1, s), l1), c = P(b, dir(t2, s), l2); return `M${f2(a[0])} ${f2(a[1])} L${f2(b[0])} ${f2(b[1])} L${f2(c[0])} ${f2(c[1])}`; };
-    const arme = [-1, 1].map(s => { const t1 = r.zw(1.1, 2.9); return glied(sch, t1, t1 + r.zw(-1, .9), s, .2, .19); }).join(' ');
-    const beine = [-1, 1].map(s => { const t1 = r.zw(.08, .75); return glied([0, 0], t1, t1 + r.zw(-.8, .25), s, .25, .25); }).join(' ');
+    const arme = [-1, 1].map(s => { const t1 = r.zw(1.1, 2.9); return glied(sch, t1, t1 + r.zw(-1, .9), s, .17, .15); }).join(' ');
+    const beine = [-1, 1].map(s => { const t1 = r.zw(.08, .75); return glied([0, 0], t1, t1 + r.zw(-.8, .25), s, .21, .2); }).join(' ');
     return { d: `M${f2(hals[0])} ${f2(hals[1])} Q${f2(lean * .2)} -.2 0 0 ${arme} ${beine}`, kopf };
   }
   /* Linien-Figur (Oktoberfest): stehende Person, Füsse bei y=0, Kopf oben bei -1; Strichfarbe currentColor, Fläche Papier */
@@ -192,18 +192,18 @@
     let rillen = ''; for (let rr = ri + .9 * k; rr < R - .5 * k; rr += r.zw(.6, 1.1) * k) rillen += `<path d="${bogen(rr)}" fill="none" stroke="#3b3535" stroke-width="${f2(.18 * k)}" opacity="${f2(r.zw(.4, .8))}"/>`;
     const defs = korn(W, H, k) + `<linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="-.5" y1="-.7" x2=".5" y2=".6"><stop offset="0" stop-color="${pal[0]}"/><stop offset=".55" stop-color="${pal[1]}"/><stop offset="1" stop-color="${pal[0]}"/></linearGradient>`
       + `<linearGradient id="g2" gradientUnits="userSpaceOnUse" x1=".5" y1="-.7" x2="-.5" y2=".6"><stop offset="0" stop-color="${pal[1]}"/><stop offset="1" stop-color="${pal[0]}"/></linearGradient>`
-      + `<filter id="hof" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation=".06"/></filter><filter id="kern" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation=".045"/></filter>`
+      + `<filter id="hof" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation=".05"/></filter><filter id="kern" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation=".035"/></filter>`
       + `<filter id="weich" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation=".03"/></filter>`;
     let fig = '';
-    const n = Math.max(4, Math.min(7, Math.round((yB - cy) / R * 2.6 + 2))), s = R * r.zw(.95, 1.12);
+    const n = Math.max(4, Math.min(7, Math.round((yB - cy) / R * 2.6 + 2))), s = R * r.zw(.78, .9);
     for (let i = 0; i < n; i++) {
       const t = n === 1 ? .5 : i / (n - 1), seite = i % 2 ? 1 : -1;
-      let x = cx + seite * R * r.zw(.12, .72) * (n % 2 && i === n - 1 ? 0 : 1), y = cy - R * .15 + (yB - cy) * t * .78 + r.zw(-.06, .06) * R;
+      let x = cx + seite * R * r.zw(.3, .82) * (n % 2 && i === n - 1 ? 0 : 1), y = cy - R * .15 + (yB - cy) * t * .78 + r.zw(-.06, .06) * R;
       x = Math.max(m + s * .32, Math.min(W - m - s * .32, x));
       const f = taenzer(r), gr = r.ja() ? 'g1' : 'g2';
       fig += `<g transform="translate(${f2(x)} ${f2(y)}) scale(${f2(s)})" stroke-linecap="round" stroke-linejoin="round" fill="none">`
-        + `<g filter="url(#hof)" stroke="url(#${gr})" fill="url(#${gr})"><path d="${f.d}" stroke-width=".25"/><circle cx="${f2(f.kopf[0])}" cy="${f2(f.kopf[1])}" r=".14" stroke="none"/></g>`
-        + `<g filter="url(#kern)" stroke="${pal[2]}" fill="${pal[2]}" opacity=".7"><path d="${f.d}" stroke-width=".1"/><circle cx="${f2(f.kopf[0])}" cy="${f2(f.kopf[1])}" r=".07" stroke="none"/></g></g>`;
+        + `<g filter="url(#hof)" stroke="url(#${gr})" fill="url(#${gr})"><path d="${f.d}" stroke-width=".3"/><circle cx="${f2(f.kopf[0])}" cy="${f2(f.kopf[1])}" r=".15" stroke="none"/></g>`
+        + `<g filter="url(#kern)" stroke="${pal[2]}" fill="${pal[2]}" opacity=".75"><path d="${f.d}" stroke-width=".13"/><circle cx="${f2(f.kopf[0])}" cy="${f2(f.kopf[1])}" r=".08" stroke="none"/></g></g>`;
     }
     const sy = SYMBOLE[E.art] || SYMBOLE.fest;
     for (let i = 0; i < 4; i++) {
@@ -412,7 +412,7 @@
         const key = bildEintragen(e.svg, F, `${STIL_NAMEN[s]} · ${E.name}`);
         const bild = { id: neueId(), typ: 'bild', bild: key, x: -DS.B, y: -DS.B, w: F.b + 2 * DS.B, h: F.h + 2 * DS.B, fx: .5, fy: .5, zoom: 1, slot: 'bild' };
         const doc = { id: 'd' + Date.now().toString(36) + i, name: `${E.name} · ${STIL_NAMEN[s]}`, formatKey: E.format, format: { b: F.b, h: F.h },
-          seiten: [{ grund: e.grund, tapete: null, el: [bild].concat(e.el), frei: true }], hinweise: [], auftrag: 'Ideen-Engine: ' + E.name, geaendert: Date.now() };
+          seiten: [{ grund: e.grund, tapete: null, el: [bild].concat(e.el), frei: true, engine: e.stil || true }], hinweise: [], auftrag: 'Ideen-Engine: ' + E.name, geaendert: Date.now() };
         IDEEN.push({ stil: s, doc, svg: e.svg, farben: e.farben, zweite: i === stile.length - 1, E });
       } catch (err) { console.warn('Idee', s, err); }
     }
